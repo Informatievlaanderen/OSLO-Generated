@@ -1,122 +1,43 @@
 {
   "@context": {
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "foaf": "http://xmlns.com/foaf/0.1/",
-    "schema": "http://schema.org/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
-    "dc": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "org": "http://www.w3.org/ns/org#",
-    "skos": "http://www.w3.org/2004/02/skos/core#"
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "org": "http://www.w3.org/ns/org#"
   },
   "@graph": [
     {
-      "@id": "http://data.europa.eu/m8g/Cost",
+      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "Kost",
+        "@value": "van toepassing op tijdsinterval",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/CriterionRequirement",
-      "rdfs:label": {
-        "@value": "Criteriumvereiste",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/hasParticipation",
-      "rdfs:label": {
-        "@value": "heeft participatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183884012560",
-      "foaf:mbox": {
-        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183883945100"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Goedele",
-      "foaf:lastName": "Van der Spiegel"
-    },
-    {
-      "@id": "_:g47183883945100",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
       }
     },
     {
-      "@id": "http://data.europa.eu/m8g/belongsToAgent",
+      "@id": "http://data.europa.eu/m8g/Participation",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "behoort tot agent",
+        "@value": "Participatie",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "http://purl.org/vocab/cpsv#hasInput",
+      "@id": "http://data.vlaanderen.be/ns/organisatie#Hoedanigheid",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "heeft input",
+        "@value": "Hoedanigheid",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.vlaanderen.be/ns/organisatie#contactinfo",
-      "rdfs:label": {
-        "@value": "contactinfo",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/role",
-      "rdfs:label": {
-        "@value": "rol",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/Evidence",
-      "rdfs:label": {
-        "@value": "Bewijs",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#isGedocumenteerdDoor",
-      "rdfs:label": {
-        "@value": "is gedocumenteerd door",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "http://purl.org/vocab/cpsv#PublicService"
-      },
-      "rdfs:comment": {
-        "@value": "Verwijzing naar een dossier met een logische bundeling van documenten binnen een bepaalde consumptie van een Publieke Dienstverlening.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "https://lod.milieuinfo.be/ns/dossier"
       }
     },
     {
       "@id": "http://purl.org/vocab/cpsv#PublicService",
+      "@type": "rdfs:Class",
       "rdfs:label": [
         {
           "@value": "Publieke Dienstverlening",
@@ -126,33 +47,108 @@
           "@value": "Publieke Dienstverlening (aanbod)",
           "@language": "nl"
         }
-      ],
-      "@type": "rdfs:Class"
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#actie",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "actie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#Status",
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "De status die van toepassing is op een entiteit op een bepaald tijdstip.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "Status",
+        "@language": "nl"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/transactie",
-      "rdfs:label": [
+      "foaf:maker": [
         {
-          "@value": "Public Service - Transaction",
-          "@language": "en"
+          "@id": "_:g46989483712800"
         },
         {
-          "@value": "Dienst - Transactie",
-          "@language": "nl"
+          "@id": "_:g46989483538080"
+        },
+        {
+          "@id": "_:g46989481314140"
+        },
+        {
+          "@id": "_:g46989483577440"
+        },
+        {
+          "@id": "_:g46989483787240"
+        },
+        {
+          "@id": "_:g46989482250000"
+        },
+        {
+          "@id": "_:g46989483644300"
+        },
+        {
+          "@id": "_:g46989483495760"
+        },
+        {
+          "@id": "_:g46989483954660"
+        }
+      ],
+      "dc:contributor": [
+        {
+          "@id": "_:g46989480826880"
+        },
+        {
+          "@id": "_:g46989477973500"
+        },
+        {
+          "@id": "_:g46989477873440"
+        },
+        {
+          "@id": "_:g46989481673000"
+        },
+        {
+          "@id": "_:g46989475075240"
+        }
+      ],
+      "http://www.w3.org/2001/02pd/rec54#editor": [
+        {
+          "@id": "_:g46989480936040"
+        },
+        {
+          "@id": "_:g46989481456180"
         }
       ],
       "dc:mediator": {
-        "@id": "_:g47183878540360"
+        "@id": "_:g46989476459040"
       },
-      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/transactie",
-      "http://www.w3.org/2001/02pd/rec54#editor": [
-        {
-          "@id": "_:g47183883542640"
-        },
-        {
-          "@id": "_:g47183882756120"
-        }
-      ],
+      "dc:issued": {
+        "@value": "2017-12-05",
+        "@type": "xsd:date"
+      },
+      "@type": "owl:Ontology",
       "dc:title": [
         {
           "@value": "Public Service - Transaction",
@@ -163,368 +159,90 @@
           "@language": "nl"
         }
       ],
-      "@type": "owl:Ontology",
       "dc:license": {
         "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
       },
-      "dc:contributor": [
+      "rdfs:label": [
         {
-          "@id": "_:g47183877129520"
+          "@value": "Public Service - Transaction",
+          "@language": "en"
         },
         {
-          "@id": "_:g47183879861900"
-        },
-        {
-          "@id": "_:g47183880128280"
-        },
-        {
-          "@id": "_:g47183883806480"
-        },
-        {
-          "@id": "_:g47183882908900"
+          "@value": "Dienst - Transactie",
+          "@language": "nl"
         }
       ],
-      "dc:issued": {
-        "@value": "2017-12-05",
-        "@type": "xsd:date"
-      },
-      "foaf:maker": [
-        {
-          "@id": "_:g47183886073540"
-        },
-        {
-          "@id": "_:g47183884012560"
-        },
-        {
-          "@id": "_:g47183883614640"
-        },
-        {
-          "@id": "_:g47183884317480"
-        },
-        {
-          "@id": "_:g47183885826380"
-        },
-        {
-          "@id": "_:g47183884105960"
-        },
-        {
-          "@id": "_:g47183885900080"
-        },
-        {
-          "@id": "_:g47183885561800"
-        },
-        {
-          "@id": "_:g47183885977440"
-        }
-      ]
+      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/transactie"
     },
     {
-      "@id": "https://lod.milieuinfo.be/ns/dossier",
+      "@id": "http://data.europa.eu/m8g/Cost",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "Dossier",
+        "@value": "Kost",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#actie",
-      "rdfs:label": {
-        "@value": "actie",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/transactie#Status",
-      "rdfs:label": {
-        "@value": "Status",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De status die van toepassing is op een entiteit op een bepaald tijdstip.",
-        "@language": "nl"
-      },
-      "@type": "owl:Class",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      }
-    },
-    {
-      "@id": "http://data.vlaanderen.be/ns/organisatie#Hoedanigheid",
-      "rdfs:label": {
-        "@value": "Hoedanigheid",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "org:memberOf",
-      "rdfs:label": {
-        "@value": "is lid van",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
-      "rdfs:label": {
-        "@value": "van toepassing op tijdsinterval",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:relation",
-      "rdfs:label": {
-        "@value": "is gerelateerd met",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/Output",
-      "rdfs:label": {
-        "@value": "Output",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/RequirementResponse",
-      "rdfs:label": {
-        "@value": "Criterium antwoord",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/value",
-      "rdfs:label": {
-        "@value": "waarde",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau",
-      "rdfs:label": {
-        "@value": "betrouwbaarheidsniveau",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "http://data.europa.eu/m8g/Evidence"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Van een toepassing wordt verwacht dat hier een bepaalde codelijst aan wordt gekoppeld met mogelijke betrouwbaarheidsniveau's. Bijvoorbeeld 0 = 'bewijs verstrekt door de aanvrager', 1 = 'bewijs gevalideerd door een dossierbehandelaar'...",
-        "@language": "nl"
-      },
+      "@id": "http://data.europa.eu/m8g/providesRequirementResponse",
       "@type": "rdf:Property",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:comment": {
-        "@value": "Geeft aan hoe betrouwbaar het bewijs is.",
-        "@language": "nl"
-      }
-    },
-    {
-      "@id": "dc:title",
       "rdfs:label": {
-        "@value": "titel",
+        "@value": "verschaft criterium antwoord",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#statusVlaamsCode",
-      "rdfs:label": {
-        "@value": "status Vlaamse code",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
       }
     },
     {
       "@id": "http://data.europa.eu/m8g/issuedByOrganisation",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "uitgegeven door organisatie",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/serviceProvider",
-      "rdfs:label": {
-        "@value": "dienstverlener",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183885900080",
-      "foaf:mbox": {
-        "@id": "mailto:Siegfried.Vanlishout@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183885914540"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Ziggy",
-      "foaf:lastName": "Vanlishout"
-    },
-    {
-      "@id": "_:g47183885914540",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
       }
     },
     {
-      "@id": "_:g47183885561800",
-      "foaf:mbox": {
-        "@id": "mailto:thomas.dhaenens@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183885568180"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Thomas",
-      "foaf:lastName": "D'haenens"
-    },
-    {
-      "@id": "_:g47183885568180",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
+      "@id": "dc:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "nl"
       }
     },
     {
       "@id": "http://data.europa.eu/m8g/currency",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "valuta",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "_:g47183882756120",
+      "@id": "https://www.w3.org/ns/org#Organization",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Organisatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989480936040",
       "foaf:mbox": {
         "@id": "mailto:michiel.de.keyzer@pwc.com"
       },
-      "schema:affiliation": {
-        "@id": "_:g47183883001200"
-      },
+      "foaf:lastName": "De Keyzer",
       "@type": "foaf:person",
-      "foaf:firstName": "Michiel",
-      "foaf:lastName": "De Keyzer"
+      "schema:affiliation": {
+        "@id": "_:g46989480709440"
+      },
+      "foaf:firstName": "Michiel"
     },
     {
-      "@id": "_:g47183883001200",
+      "@id": "_:g46989480709440",
       "foaf:name": "PwC",
       "foaf:homepage": {
         "@id": "http://www.pwc.be"
       }
     },
     {
-      "@id": "_:g47183882908900",
-      "foaf:mbox": {
-        "@id": "mailto:barbara.vanoggh@bosa.fgov.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183882732420"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Barbara",
-      "foaf:lastName": "Van Gogh"
-    },
-    {
-      "@id": "_:g47183882732420",
-      "foaf:name": "BOSA",
-      "foaf:homepage": {
-        "@id": "https://bosa.belgium.be/"
-      }
-    },
-    {
-      "@id": "_:g47183886073540",
-      "foaf:mbox": {
-        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183886087660"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Raf",
-      "foaf:lastName": "Buyle"
-    },
-    {
-      "@id": "_:g47183886087660",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/hasCriterion",
-      "rdfs:label": {
-        "@value": "heeft criterium",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://www.w3.org/ns/org#Organization",
-      "rdfs:label": {
-        "@value": "Organisatie",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g47183877129520",
-      "foaf:mbox": {
-        "@id": "mailto:jasmin.derijcker@stad.antwerpen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183884517180"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Jasmin",
-      "foaf:lastName": "De Rijcker"
-    },
-    {
-      "@id": "_:g47183884517180",
-      "foaf:name": "Stad Antwerpen",
-      "foaf:homepage": {
-        "@id": "https://www.antwerpen.be/"
-      }
-    },
-    {
-      "@id": "_:g47183883699200",
+      "@id": "_:g46989474062800",
       "foaf:name": "Skryv",
       "foaf:homepage": {
         "@id": "https://www.skryv.com/"
@@ -532,22 +250,287 @@
     },
     {
       "@id": "dc:Agent",
+      "@type": "rdfs:Class",
       "rdfs:label": {
         "@value": "Agent",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
+      }
     },
     {
-      "@id": "http://data.europa.eu/m8g/providesRequirementResponse",
+      "@id": "http://data.europa.eu/m8g/Output",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "verschaft criterium antwoord",
+        "@value": "Output",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://lod.milieuinfo.be/ns/dossier",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Dossier",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989483787240",
+      "foaf:mbox": {
+        "@id": "mailto:Siegfried.Vanlishout@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Vanlishout",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483803280"
+      },
+      "foaf:firstName": "Ziggy"
+    },
+    {
+      "@id": "_:g46989483803280",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/hasCost",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft kost",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:date",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "datum",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "foaf:page",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "documentatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/person#Person",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Persoon",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau",
+      "@type": "rdf:Property",
+      "rdfs:domain": {
+        "@id": "http://data.europa.eu/m8g/Evidence"
+      },
+      "rdfs:comment": {
+        "@value": "Geeft aan hoe betrouwbaar het bewijs is.",
         "@language": "nl"
       },
-      "@type": "rdf:Property"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Van een toepassing wordt verwacht dat hier een bepaalde codelijst aan wordt gekoppeld met mogelijke betrouwbaarheidsniveau's. Bijvoorbeeld 0 = 'bewijs verstrekt door de aanvrager', 1 = 'bewijs gevalideerd door een dossierbehandelaar'...",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "betrouwbaarheidsniveau",
+        "@language": "nl"
+      }
     },
     {
-      "@id": "_:g47183878540360",
+      "@id": "http://data.europa.eu/m8g/Evidence",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Bewijs",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/belongsToAgent",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "behoort tot agent",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989483712800",
+      "foaf:mbox": {
+        "@id": "mailto:joost.deweghe@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "De Weghe",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483721060"
+      },
+      "foaf:firstName": "Joost"
+    },
+    {
+      "@id": "_:g46989483538080",
+      "foaf:mbox": {
+        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Tanghe",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483544620"
+      },
+      "foaf:firstName": "Niko"
+    },
+    {
+      "@id": "_:g46989481314140",
+      "foaf:mbox": {
+        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Buyle",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989481274220"
+      },
+      "foaf:firstName": "Raf"
+    },
+    {
+      "@id": "_:g46989483577440",
+      "foaf:mbox": {
+        "@id": "mailto:bart.misseeuw@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Misseeuw",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483584740"
+      },
+      "foaf:firstName": "Bart"
+    },
+    {
+      "@id": "_:g46989482250000",
+      "foaf:mbox": {
+        "@id": "mailto:dries.beheydt@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Beheydt",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483465980"
+      },
+      "foaf:firstName": "Dries"
+    },
+    {
+      "@id": "_:g46989483644300",
+      "foaf:mbox": {
+        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Mostaert",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483660420"
+      },
+      "foaf:firstName": "Katrien"
+    },
+    {
+      "@id": "_:g46989483495760",
+      "foaf:mbox": {
+        "@id": "mailto:thomas.dhaenens@bz.vlaanderen.be"
+      },
+      "foaf:lastName": "D'haenens",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483503900"
+      },
+      "foaf:firstName": "Thomas"
+    },
+    {
+      "@id": "_:g46989483954660",
+      "foaf:mbox": {
+        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
+      },
+      "foaf:lastName": "Van der Spiegel",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989483969920"
+      },
+      "foaf:firstName": "Goedele"
+    },
+    {
+      "@id": "_:g46989480826880",
+      "foaf:mbox": {
+        "@id": "mailto:guy.rammant@cevi.be"
+      },
+      "foaf:lastName": "Rammant",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989480642560"
+      },
+      "foaf:firstName": "Guy"
+    },
+    {
+      "@id": "_:g46989477973500",
+      "foaf:mbox": {
+        "@id": "mailto:nikolaos.loutas@pwc.com"
+      },
+      "foaf:lastName": "Loutas",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989477613160"
+      },
+      "foaf:firstName": "Nikolaos"
+    },
+    {
+      "@id": "_:g46989477873440",
+      "foaf:mbox": {
+        "@id": "mailto:barbara.vanoggh@bosa.fgov.be"
+      },
+      "foaf:lastName": "Van Gogh",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989477661480"
+      },
+      "foaf:firstName": "Barbara"
+    },
+    {
+      "@id": "_:g46989481673000",
+      "foaf:mbox": {
+        "@id": "mailto:jasmin.derijcker@stad.antwerpen.be"
+      },
+      "foaf:lastName": "De Rijcker",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989481613380"
+      },
+      "foaf:firstName": "Jasmin"
+    },
+    {
+      "@id": "_:g46989475075240",
+      "foaf:mbox": {
+        "@id": "mailto:toon.timbermont@skryv.com"
+      },
+      "foaf:lastName": "Timbermont",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989474062800"
+      },
+      "foaf:firstName": "Toon"
+    },
+    {
+      "@id": "_:g46989481456180",
+      "foaf:mbox": {
+        "@id": "mailto:jens.scheerlinck@pwc.com"
+      },
+      "foaf:lastName": "Scheerlinck",
+      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g46989481717160"
+      },
+      "foaf:firstName": "Jens"
+    },
+    {
+      "@id": "_:g46989476459040",
       "foaf:mbox": {
         "@id": "mailto:oslo@kb.vlaanderen.be"
       },
@@ -557,216 +540,39 @@
       }
     },
     {
-      "@id": "_:g47183883542640",
-      "foaf:mbox": {
-        "@id": "mailto:jens.scheerlinck@pwc.com"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183883742240"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Jens",
-      "foaf:lastName": "Scheerlinck"
-    },
-    {
-      "@id": "_:g47183879861900",
-      "foaf:mbox": {
-        "@id": "mailto:nikolaos.loutas@pwc.com"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183879703920"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Nikolaos",
-      "foaf:lastName": "Loutas"
-    },
-    {
-      "@id": "_:g47183880128280",
-      "foaf:mbox": {
-        "@id": "mailto:guy.rammant@cevi.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183879701140"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Guy",
-      "foaf:lastName": "Rammant"
-    },
-    {
-      "@id": "_:g47183883806480",
-      "foaf:mbox": {
-        "@id": "mailto:toon.timbermont@skryv.com"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183883699200"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Toon",
-      "foaf:lastName": "Timbermont"
-    },
-    {
-      "@id": "_:g47183883614640",
-      "foaf:mbox": {
-        "@id": "mailto:dries.beheydt@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183885769960"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Dries",
-      "foaf:lastName": "Beheydt"
-    },
-    {
-      "@id": "_:g47183884317480",
-      "foaf:mbox": {
-        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183884251940"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Katrien",
-      "foaf:lastName": "Mostaert"
-    },
-    {
-      "@id": "_:g47183885826380",
-      "foaf:mbox": {
-        "@id": "mailto:joost.deweghe@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183885842720"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Joost",
-      "foaf:lastName": "De Weghe"
-    },
-    {
-      "@id": "_:g47183884105960",
-      "foaf:mbox": {
-        "@id": "mailto:bart.misseeuw@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183884085880"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Bart",
-      "foaf:lastName": "Misseeuw"
-    },
-    {
-      "@id": "_:g47183885977440",
-      "foaf:mbox": {
-        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47183885994280"
-      },
-      "@type": "foaf:person",
-      "foaf:firstName": "Niko",
-      "foaf:lastName": "Tanghe"
-    },
-    {
-      "@id": "_:g47183879703920",
-      "foaf:name": "PwC",
-      "foaf:homepage": {
-        "@id": "http://www.pwc.be"
+      "@id": "http://data.europa.eu/m8g/role",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rol",
+        "@language": "nl"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/transactie#isInstantieVan",
+      "@id": "http://data.vlaanderen.be/ns/organisatie#contactinfo",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "is instantie van",
+        "@value": "contactinfo",
         "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "http://purl.org/vocab/cpsv#PublicService"
-      },
-      "rdfs:comment": {
-        "@value": "Linkt een bepaalde consumptie van een publieke dienstverlening (een transactie) met het product uit het dienstverleningsregister.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "http://purl.org/vocab/cpsv#PublicService"
       }
     },
     {
-      "@id": "dc:date",
+      "@id": "dc:description",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "datum",
+        "@value": "beschrijving",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183885769960",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
       }
     },
     {
-      "@id": "http://data.europa.eu/m8g/Participation",
+      "@id": "http://data.europa.eu/m8g/CriterionRequirement",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "Participatie",
+        "@value": "Criteriumvereiste",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://www.w3.org/ns/person#Person",
-      "rdfs:label": {
-        "@value": "Persoon",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#statusVlaamsFase",
-      "rdfs:label": {
-        "@value": "status Vlaams fase",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "Is het eerste veld van 2 verplichte velden (Fase+Status) die samen de 'Generieke Vlaamse status' specifiëren. De StatusVlaamsFase vormt de eerste en hogere indeling van het dossierverloop (in aanvraag, in behandeling, in beroep, in uitvoering enz). Verdere precisering binnen de Fase gebeurt dan in het veld StatusVlaamsCode.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/transactie#streefdatum",
-      "rdfs:label": {
-        "@value": "streefdatum",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "xsd:date"
-      }
-    },
-    {
-      "@id": "_:g47183884251940",
+      "@id": "_:g46989483721060",
       "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/"
@@ -774,188 +580,17 @@
     },
     {
       "@id": "dc:language",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "taal",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "foaf:page",
-      "rdfs:label": {
-        "@value": "documentatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183879701140",
-      "foaf:name": "Cevi NV",
-      "foaf:homepage": {
-        "@id": "https://www.cevi.be/"
       }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#heeftStatus",
-      "rdfs:label": {
-        "@value": "heeft status",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "http://purl.org/vocab/cpsv#PublicService"
-      },
-      "rdfs:comment": {
-        "@value": "Link tussen Publieke Dienstverlening en Status.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      }
-    },
-    {
-      "@id": "_:g47183885842720",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/hasCost",
-      "rdfs:label": {
-        "@value": "heeft kost",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/validatesCriterionRequirement",
-      "rdfs:label": {
-        "@value": "valideert criterium vereiste",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183885994280",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "rdfs:label": {
-        "@value": "referentie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:type",
-      "rdfs:label": {
-        "@value": "type",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47183884085880",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47183883742240",
-      "foaf:name": "PwC",
-      "foaf:homepage": {
-        "@id": "http://www.pwc.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#actieNodig",
-      "rdfs:label": {
-        "@value": "actie nodig",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "xsd:boolean"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#statusEDRL",
-      "rdfs:label": {
-        "@value": "status EDRL",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
-      },
-      "rdfs:comment": {
-        "@value": "De status volgens de Europese Dienstenrichtlijn",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/transactie#wordtGeconsumeerdDoor",
-      "rdfs:label": {
-        "@value": "wordt geconsumeerd door",
-        "@language": "nl"
-      },
-      "rdfs:domain": {
-        "@id": "http://purl.org/vocab/cpsv#PublicService"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Dit is typisch de Agent die de Publieke Dienstverlening heeft aangevraagd of opgestart.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/transactie"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
-      },
-      "rdfs:comment": {
-        "@value": "De Agent die een bepaalde Publieke Dienstverlening afneemt",
-        "@language": "nl"
-      }
-    },
-    {
-      "@id": "dc:description",
-      "rdfs:label": {
-        "@value": "beschrijving",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
     },
     {
       "@id": "https://data.vlaanderen.be/ns/transactie#statusWijzigingsdatum",
-      "rdfs:label": {
-        "@value": "statusdatum",
-        "@language": "nl"
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:date"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/transactie#Status"
@@ -964,29 +599,394 @@
         "@value": "Is de verplichte vermelding van de datum + tijdstip waarop de betrokken status werd geregistreerd.",
         "@language": "nl"
       },
-      "@type": "owl:DatatypeProperty",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/transactie"
       },
+      "rdfs:label": {
+        "@value": "statusdatum",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#isInstantieVan",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      },
+      "rdfs:domain": {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      },
+      "rdfs:comment": {
+        "@value": "Linkt een bepaalde consumptie van een publieke dienstverlening (een transactie) met het product uit het dienstverleningsregister.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "is instantie van",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989480642560",
+      "foaf:name": "Cevi NV",
+      "foaf:homepage": {
+        "@id": "https://www.cevi.be/"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "waarde",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/RequirementResponse",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Criterium antwoord",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989481613380",
+      "foaf:name": "Stad Antwerpen",
+      "foaf:homepage": {
+        "@id": "https://www.antwerpen.be/"
+      }
+    },
+    {
+      "@id": "_:g46989483465980",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g46989477613160",
+      "foaf:name": "PwC",
+      "foaf:homepage": {
+        "@id": "http://www.pwc.be"
+      }
+    },
+    {
+      "@id": "_:g46989483544620",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g46989483969920",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "referentie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#isGedocumenteerdDoor",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://lod.milieuinfo.be/ns/dossier"
+      },
+      "rdfs:domain": {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      },
+      "rdfs:comment": {
+        "@value": "Verwijzing naar een dossier met een logische bundeling van documenten binnen een bepaalde consumptie van een Publieke Dienstverlening.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "is gedocumenteerd door",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989481274220",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "http://purl.org/vocab/cpsv#hasInput",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft input",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#statusEDRL",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "De status volgens de Europese Dienstenrichtlijn",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "status EDRL",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989483584740",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#wordtGeconsumeerdDoor",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "dc:Agent"
+      },
+      "rdfs:domain": {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      },
+      "rdfs:comment": {
+        "@value": "De Agent die een bepaalde Publieke Dienstverlening afneemt",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Dit is typisch de Agent die de Publieke Dienstverlening heeft aangevraagd of opgestart.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "wordt geconsumeerd door",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/validatesCriterionRequirement",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "valideert criterium vereiste",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/hasParticipation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft participatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#heeftStatus",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:domain": {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      },
+      "rdfs:comment": {
+        "@value": "Link tussen Publieke Dienstverlening en Status.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "heeft status",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "org:memberOf",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "is lid van",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/provenByEvidence",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "bewezen door",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989481717160",
+      "foaf:name": "PwC",
+      "foaf:homepage": {
+        "@id": "http://www.pwc.be"
+      }
+    },
+    {
+      "@id": "_:g46989477661480",
+      "foaf:name": "BOSA",
+      "foaf:homepage": {
+        "@id": "https://bosa.belgium.be/"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#streefdatum",
+      "@type": "owl:DatatypeProperty",
       "rdfs:range": {
         "@id": "xsd:date"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "streefdatum",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#actieNodig",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "actie nodig",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "titel",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989483660420",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#statusVlaamsFase",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "Is het eerste veld van 2 verplichte velden (Fase+Status) die samen de 'Generieke Vlaamse status' specifiëren. De StatusVlaamsFase vormt de eerste en hogere indeling van het dossierverloop (in aanvraag, in behandeling, in beroep, in uitvoering enz). Verdere precisering binnen de Fase gebeurt dan in het veld StatusVlaamsCode.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "status Vlaams fase",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/serviceProvider",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "dienstverlener",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46989483503900",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "dc:relation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "is gerelateerd met",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/transactie#statusVlaamsCode",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/transactie#Status"
+      },
+      "rdfs:comment": {
+        "@value": "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/transactie"
+      },
+      "rdfs:label": {
+        "@value": "status Vlaamse code",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/hasCriterion",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft criterium",
+        "@language": "nl"
       }
     },
     {
       "@id": "http://purl.org/vocab/cpsv#produces",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "produceert",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/provenByEvidence",
-      "rdfs:label": {
-        "@value": "bewezen door",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     }
   ]
 }
