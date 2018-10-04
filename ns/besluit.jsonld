@@ -2,46 +2,115 @@
   "@context": {
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dc": "http://purl.org/dc/terms/",
-    "foaf": "http://xmlns.com/foaf/0.1/",
     "prov": "http://www.w3.org/ns/prov#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "schema": "http://schema.org/"
+    "schema": "http://schema.org/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@graph": [
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#aantalTegenstanders",
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftVoorstander",
       "rdfs:label": [
         {
-          "@value": "aantal tegenstanders",
+          "@value": "heeft voorstander",
           "@language": "nl"
         },
         {
-          "@value": "number of opponents",
+          "@value": "has proponent",
           "@language": "en"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "rdfs:subPropertyOf": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer"
       },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Een mandataris die als voorstander heeft gestemd op het onderwerp van de stemming.",
+          "@language": "nl"
+        },
+        {
+          "@value": "A mandatary that voted in favor of the subject of the vote.",
+          "@language": "en"
+        }
+      ],
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
       },
-      "@type": "owl:DatatypeProperty",
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer",
+      "rdfs:label": [
+        {
+          "@value": "heeft stemmer",
+          "@language": "nl"
+        },
+        {
+          "@value": "has voter",
+          "@language": "en"
+        }
+      ],
+      "rdfs:subPropertyOf": {
+        "@id": "prov:wasAssociatedWith"
+      },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      },
       "rdfs:comment": [
         {
-          "@value": "The number of voters who voted against.",
+          "@value": "A mandatary participating in the vote.",
           "@language": "en"
         },
         {
-          "@value": "Het aantal stemmers dat als tegenstander heeft gestemd.",
+          "@value": "Een mandataris die deelneemt aan de stemming.",
           "@language": "nl"
         }
       ],
-      "rdfs:range": {
-        "@id": "xsd:integer"
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#Stemming",
+      "rdfs:label": [
+        {
+          "@value": "Vote",
+          "@language": "en"
+        },
+        {
+          "@value": "Stemming",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "Geformaliseerde handeling waarbij de stemgerechtigde leden van een bestuursorgaan hun keuze te kennen geven.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Formalized act in which the voting members of a governing body express their choice.",
+          "@language": "en"
+        }
+      ],
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
@@ -56,30 +125,57 @@
           "@language": "en"
         }
       ],
+      "foaf:maker": [
+        {
+          "@id": "_:g47090984664200"
+        },
+        {
+          "@id": "_:g47090984420200"
+        },
+        {
+          "@id": "_:g47090984297820"
+        },
+        {
+          "@id": "_:g47090984786860"
+        },
+        {
+          "@id": "_:g47090984542240"
+        }
+      ],
       "dc:issued": {
         "@value": "2017-10-11",
         "@type": "xsd:date"
       },
-      "foaf:maker": [
+      "http://www.w3.org/2001/02pd/rec54#editor": [
         {
-          "@id": "_:g47347508856120"
+          "@id": "_:g47090984941960"
         },
         {
-          "@id": "_:g47347502168300"
+          "@id": "_:g47090984922260"
         },
         {
-          "@id": "_:g47347504749720"
+          "@id": "_:g47090980678940"
         },
         {
-          "@id": "_:g47347508981720"
+          "@id": "_:g47090978438560"
         },
         {
-          "@id": "_:g47347497064880"
+          "@id": "_:g47090985044520"
+        },
+        {
+          "@id": "_:g47090977326940"
+        },
+        {
+          "@id": "_:g47090984787520"
         }
       ],
       "dc:mediator": {
-        "@id": "_:g47347508169420"
+        "@id": "_:g47090984700740"
       },
+      "dc:license": {
+        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
+      },
+      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/besluit",
       "dc:title": [
         {
           "@value": "Besluit",
@@ -90,289 +186,648 @@
           "@language": "en"
         }
       ],
-      "dc:license": {
-        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
-      },
+      "@type": "owl:Ontology",
       "dc:contributor": [
         {
-          "@id": "_:g47347509016920"
+          "@id": "_:g47090981385840"
         },
         {
-          "@id": "_:g47347509060860"
+          "@id": "_:g47090982722460"
         },
         {
-          "@id": "_:g47347500834280"
+          "@id": "_:g47090984260300"
         },
         {
-          "@id": "_:g47347508663000"
+          "@id": "_:g47090981347780"
         },
         {
-          "@id": "_:g47347508301880"
+          "@id": "_:g47090982174380"
         },
         {
-          "@id": "_:g47347507957960"
+          "@id": "_:g47090980775260"
         },
         {
-          "@id": "_:g47347508225160"
+          "@id": "_:g47090981350200"
         },
         {
-          "@id": "_:g47347508955600"
+          "@id": "_:g47090975453380"
         },
         {
-          "@id": "_:g47347507927400"
+          "@id": "_:g47090980739260"
         },
         {
-          "@id": "_:g47347508736440"
+          "@id": "_:g47090982039340"
         },
         {
-          "@id": "_:g47347508804600"
+          "@id": "_:g47090984183820"
         },
         {
-          "@id": "_:g47347504912180"
+          "@id": "_:g47090975253220"
         },
         {
-          "@id": "_:g47347508088400"
+          "@id": "_:g47090982336320"
         },
         {
-          "@id": "_:g47347508172080"
+          "@id": "_:g47090982696220"
         },
         {
-          "@id": "_:g47347508035380"
+          "@id": "_:g47090983873380"
         },
         {
-          "@id": "_:g47347508460240"
+          "@id": "_:g47090984317240"
         },
         {
-          "@id": "_:g47347508841900"
+          "@id": "_:g47090981329700"
         },
         {
-          "@id": "_:g47347508315180"
+          "@id": "_:g47090980701880"
         },
         {
-          "@id": "_:g47347508631340"
+          "@id": "_:g47090984456580"
         },
         {
-          "@id": "_:g47347508378880"
+          "@id": "_:g47090983989000"
         },
         {
-          "@id": "_:g47347508412080"
+          "@id": "_:g47090977721120"
         },
         {
-          "@id": "_:g47347508525760"
+          "@id": "_:g47090984613200"
         },
         {
-          "@id": "_:g47347508519940"
+          "@id": "_:g47090984541100"
         },
         {
-          "@id": "_:g47347508861120"
+          "@id": "_:g47090980644620"
         },
         {
-          "@id": "_:g47347501309420"
+          "@id": "_:g47090982563460"
         },
         {
-          "@id": "_:g47347508600180"
+          "@id": "_:g47090984123280"
         },
         {
-          "@id": "_:g47347509093580"
+          "@id": "_:g47090982279280"
         }
-      ],
-      "@type": "owl:Ontology",
-      "http://www.w3.org/2001/02pd/rec54#editor": [
-        {
-          "@id": "_:g47347508062320"
-        },
-        {
-          "@id": "_:g47347505041800"
-        },
-        {
-          "@id": "_:g47347506308940"
-        },
-        {
-          "@id": "_:g47347507818560"
-        },
-        {
-          "@id": "_:g47347507883320"
-        },
-        {
-          "@id": "_:g47347507948640"
-        },
-        {
-          "@id": "_:g47347505786020"
-        }
-      ],
-      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/besluit"
+      ]
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#Stemming",
+      "@id": "https://data.vlaanderen.be/ns/besluit#geheim",
       "rdfs:label": [
         {
-          "@value": "Vote",
+          "@value": "geheim",
+          "@language": "nl"
+        },
+        {
+          "@value": "secret",
+          "@language": "en"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Geeft aan of de stemming geheim was. Bij een geheime stemming wordt niet individueel bekend gemaakt wie op wat heeft gestemd.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Indicates whether the vote used secret ballots. In a vote using secret ballots the individual choice of voters is not known.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#aantalOnthouders",
+      "rdfs:label": [
+        {
+          "@value": "number of abstentions",
           "@language": "en"
         },
         {
-          "@value": "Stemming",
+          "@value": "aantal onthouders",
           "@language": "nl"
         }
       ],
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Het aantal stemmers dat als onthouding heeft gestemd.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The number of voters that abstained.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "prov:wasGeneratedBy",
+      "rdfs:label": {
+        "@value": "is gegenereerd door",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+      "rdfs:label": [
+        {
+          "@value": "is gehouden door",
+          "@language": "nl"
+        },
+        {
+          "@value": "held by",
+          "@language": "en"
+        }
+      ],
+      "rdfs:subPropertyOf": {
+        "@id": "prov:wasStartedBy"
+      },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Duidt aan door welk orgaan de zitting is gehouden.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The governing body that held the session.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#Zitting",
+      "rdfs:label": [
+        {
+          "@value": "Zitting",
+          "@language": "nl"
+        },
+        {
+          "@value": "Session",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "A formalized meeting of members of a governing body with the purpose of handling matters in its jurisdiction.",
+          "@language": "en"
+        },
+        {
+          "@value": "Een geformaliseerde samenkomst van de leden van een bestuursorgaan met het doel om de aangelegenheden te regelen waarvoor het bevoegd is.",
+          "@language": "nl"
+        }
+      ],
+      "@type": "owl:Class",
       "rdfs:subClassOf": {
         "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
       },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "Formalized act in which the voting members of a governing body express their choice.",
-          "@language": "en"
-        },
-        {
-          "@value": "Geformaliseerde handeling waarbij de stemgerechtigde leden van een bestuursorgaan hun keuze te kennen geven.",
-          "@language": "nl"
-        }
-      ]
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+      "@id": "http://data.europa.eu/eli/ontology#description",
+      "rdfs:label": {
+        "@value": "beschrijving",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#behandelt",
       "rdfs:label": [
         {
-          "@value": "heeft voorzitter",
+          "@value": "behandelt",
           "@language": "nl"
         },
         {
-          "@value": "has chairman",
+          "@value": "covers",
           "@language": "en"
+        }
+      ],
+      "http://purl.org/vocab/vann/usageNote": [
+        {
+          "@value": "Ook punten die kunnen ingepland worden (voorafgaand aan de zitting) en er eventueel weer af gehaald worden, vallen hieronder.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Items scheduled in advance (before the session) and that may be removed later on, are covered by this definition.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Een formeel vastgelegd agendapunt van de zitting.",
+          "@language": "nl"
+        },
+        {
+          "@value": "A formally determined topic of the session.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt",
+      "rdfs:label": [
+        {
+          "@value": "Agenda Item",
+          "@language": "en"
+        },
+        {
+          "@value": "Agendapunt",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "Formally accepted topic to be discussed in a meeting.",
+          "@language": "en"
+        },
+        {
+          "@value": "Formeel aanvaard te behandelen onderwerp op een zitting.",
+          "@language": "nl"
+        }
+      ],
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "_:g47090982174380",
+      "foaf:lastName": "Peeters",
+      "foaf:firstName": "Jef",
+      "schema:affiliation": {
+        "@id": "_:g47090982107100"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982107100",
+      "foaf:name": "Remmicom",
+      "foaf:homepage": {
+        "@id": "http://www.remmicom.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#gevolg",
+      "rdfs:label": [
+        {
+          "@value": "gevolg",
+          "@language": "nl"
+        },
+        {
+          "@value": "consequence",
+          "@language": "en"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Het gevolg van de stemming.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The consequence of the vote.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#Artikel",
+      "rdfs:label": [
+        {
+          "@value": "Artikel",
+          "@language": "nl"
+        },
+        {
+          "@value": "Article",
+          "@language": "en"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "Formally defined part of a legal expression, describing one or more of the intended legal effects.",
+          "@language": "en"
+        },
+        {
+          "@value": "Formeel afgebakend onderdeel van een besluit, dat een of meer van de beoogde rechtsgevolgen beschrijft.",
+          "@language": "nl"
+        }
+      ],
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {
+          "@id": "http://data.europa.eu/eli/ontology#LegalExpression"
+        },
+        {
+          "@id": "http://purl.org/vocab/cpsv#FormalFramework"
         }
       ],
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "De mandataris die de rol als voorzitter heeft gedurende de activiteit.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Mandatary acting as the chairman during the activity.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit",
       "rdfs:label": [
         {
+          "@value": "Meeting Activity",
+          "@language": "en"
+        },
+        {
           "@value": "Vergaderactiviteit",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "Een vergadering of fase ervan.",
           "@language": "nl"
         },
         {
-          "@value": "Meeting Activity",
+          "@value": "A meeting or phase of a meeting.",
           "@language": "en"
         }
       ],
+      "@type": "owl:Class",
       "rdfs:subClassOf": {
         "@id": "prov:Activity"
       },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "A meeting or phase of a meeting.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een vergadering of fase ervan.",
-          "@language": "nl"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige",
-      "rdfs:label": [
-        {
-          "@value": "heeft aanwezige",
-          "@language": "nl"
-        },
-        {
-          "@value": "has present",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "An agent (e.g.: mandatary) who was present during (a part of) the activity where he had a certain responsibility.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "prov:wasAssociatedWith"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
       }
     },
     {
-      "@id": "http://data.europa.eu/eli/ontology#number",
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
+      "rdfs:label": [
+        {
+          "@value": "has draft resolution",
+          "@language": "en"
+        },
+        {
+          "@value": "heeft ontwerpbesluit",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "foaf:Document"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Een (mogelijks nog aan te vullen of aan te passen) ontwerp voor het besluit dat uit dit agendapunt zou voortkomen.",
+          "@language": "nl"
+        },
+        {
+          "@value": "A (possibly incomplete) draft for the resolution that would arise from this agenda item.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/eli/ontology#title_short",
       "rdfs:label": {
-        "@value": "nummer",
+        "@value": "korte titel",
         "@language": "nl"
       },
       "@type": "rdf:Property"
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#aantalVoorstanders",
+      "@id": "dc:subject",
+      "rdfs:label": {
+        "@value": "onderwerp",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#houdtZitting",
       "rdfs:label": [
         {
-          "@value": "number of proponents",
+          "@value": "has session",
           "@language": "en"
         },
         {
-          "@value": "aantal voorstanders",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "The number of voters that voted in favor.",
-          "@language": "en"
-        },
-        {
-          "@value": "Het aantal stemmers dat als voorstander heeft gestemd.",
+          "@value": "houdt zitting",
           "@language": "nl"
         }
       ],
       "rdfs:range": {
-        "@id": "xsd:integer"
+        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Een zitting gehouden of gepland door het bestuursorgaan.",
+          "@language": "nl"
+        },
+        {
+          "@value": "A session held or planned by the governing body.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#onderwerp",
+      "rdfs:label": [
+        {
+          "@value": "onderwerp",
+          "@language": "nl"
+        },
+        {
+          "@value": "subject",
+          "@language": "en"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "The description of the subject of the vote.",
+          "@language": "en"
+        },
+        {
+          "@value": "De beschrijving van het onderwerp waarover de stemming gaat.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftTegenstander",
+      "rdfs:label": [
+        {
+          "@value": "heeft tegenstander",
+          "@language": "nl"
+        },
+        {
+          "@value": "has opponent",
+          "@language": "en"
+        }
+      ],
+      "rdfs:subPropertyOf": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer"
+      },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Een mandataris die als tegenstander heeft gestemd op het onderwerp van de stemming.",
+          "@language": "nl"
+        },
+        {
+          "@value": "A mandatary that voted against the topic of the vote.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "dc:description",
+      "rdfs:label": {
+        "@value": "beschrijving",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "_:g47090975253220",
+      "foaf:lastName": "Van Bockstaele",
+      "foaf:firstName": "Miranda",
+      "schema:affiliation": {
+        "@id": "_:g47090977284020"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090977284020",
+      "foaf:name": "Herzele",
+      "foaf:homepage": {
+        "@id": "http://www.herzele.be"
+      }
+    },
+    {
+      "@id": "_:g47090982336320",
+      "foaf:lastName": "Podevyn",
+      "foaf:firstName": "Sophie",
+      "schema:affiliation": {
+        "@id": "_:g47090982104640"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982104640",
+      "foaf:name": "Stad Aalst",
+      "foaf:homepage": {
+        "@id": "http://Aalst.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#aangebrachtNa",
+      "rdfs:label": [
+        {
+          "@value": "added after",
+          "@language": "en"
+        },
+        {
+          "@value": "aangebracht na",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:subPropertyOf": {
+        "@id": "dc:relation"
+      },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Het agendapunt dat op de agenda direct dit agendapunt voorafging.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The agenda item that preceded this item on the agenda.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
@@ -392,251 +847,37 @@
       "@type": "rdf:Property"
     },
     {
-      "@id": "http://data.europa.eu/eli/ontology#description",
-      "rdfs:label": {
-        "@value": "beschrijving",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt.type",
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
       "rdfs:label": [
         {
-          "@value": "type",
-          "@language": "en"
+          "@value": "heeft zittingsverslag",
+          "@language": "nl"
         },
         {
-          "@value": "type",
-          "@language": "nl"
+          "@value": "has session report",
+          "@language": "en"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
+      "http://purl.org/vocab/vann/usageNote": [
         {
-          "@value": "Type van het agendapunt.",
-          "@language": "nl"
+          "@value": "For example: a transcript, audio recording or video recording.",
+          "@language": "en"
         },
         {
-          "@value": "The type of the agenda item.",
-          "@language": "en"
+          "@value": "Bijvoorbeeld een transcript of audio- of video-opname.",
+          "@language": "nl"
         }
       ],
       "rdfs:range": {
-        "@id": "skos:Concept"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt",
-      "rdfs:label": [
-        {
-          "@value": "Agenda Item",
-          "@language": "en"
-        },
-        {
-          "@value": "Agendapunt",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+        "@id": "foaf:Document"
       },
-      "@type": "owl:Class",
       "rdfs:comment": [
         {
-          "@value": "Formally accepted topic to be discussed in a meeting.",
-          "@language": "en"
-        },
-        {
-          "@value": "Formeel aanvaard te behandelen onderwerp op een zitting.",
-          "@language": "nl"
-        }
-      ]
-    },
-    {
-      "@id": "dc:references",
-      "rdfs:label": {
-        "@value": "verwijst",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#Artikel",
-      "rdfs:label": [
-        {
-          "@value": "Article",
-          "@language": "en"
-        },
-        {
-          "@value": "Artikel",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:subClassOf": [
-        {
-          "@id": "http://data.europa.eu/eli/ontology#LegalExpression"
-        },
-        {
-          "@id": "http://purl.org/vocab/cpsv#FormalFramework"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "Formeel afgebakend onderdeel van een besluit, dat een of meer van de beoogde rechtsgevolgen beschrijft.",
+          "@value": "Een verslag van de zitting.",
           "@language": "nl"
         },
         {
-          "@value": "Formally defined part of a legal expression, describing one or more of the intended legal effects.",
-          "@language": "en"
-        }
-      ]
-    },
-    {
-      "@id": "http://data.europa.eu/eli/ontology#title_short",
-      "rdfs:label": {
-        "@value": "korte titel",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:title",
-      "rdfs:label": {
-        "@value": "titel",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "prov:atLocation",
-      "rdfs:label": {
-        "@value": "op locatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47347508225160",
-      "schema:affiliation": {
-        "@id": "_:g47347508240880"
-      },
-      "foaf:firstName": "Melissa",
-      "@type": "foaf:person",
-      "foaf:lastName": "Merckx"
-    },
-    {
-      "@id": "_:g47347508240880",
-      "foaf:name": "Antwerpen",
-      "foaf:homepage": {
-        "@id": "http://stad.Antwerpen.be"
-      }
-    },
-    {
-      "@id": "_:g47347508051020",
-      "foaf:name": "Stad Aalst",
-      "foaf:homepage": {
-        "@id": "http://Aalst.be"
-      }
-    },
-    {
-      "@id": "dc:subject",
-      "rdfs:label": {
-        "@value": "onderwerp",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "prov:startedAtTime",
-      "rdfs:label": {
-        "@value": "gestart op tijdstip",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47347507927400",
-      "schema:affiliation": {
-        "@id": "_:g47347506348420"
-      },
-      "foaf:firstName": "Johan",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van der Waal"
-    },
-    {
-      "@id": "_:g47347506348420",
-      "foaf:name": "V-ICT-OR",
-      "foaf:homepage": {
-        "@id": "http://www.v-ict-or.be"
-      }
-    },
-    {
-      "@id": "http://data.europa.eu/eli/ontology#cites",
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#Zitting",
-      "rdfs:label": [
-        {
-          "@value": "Zitting",
-          "@language": "nl"
-        },
-        {
-          "@value": "Session",
-          "@language": "en"
-        }
-      ],
-      "rdfs:subClassOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "A formalized meeting of members of a governing body with the purpose of handling matters in its jurisdiction.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een geformaliseerde samenkomst van de leden van een bestuursorgaan met het doel om de aangelegenheden te regelen waarvoor het bevoegd is.",
-          "@language": "nl"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#behandelt",
-      "rdfs:label": [
-        {
-          "@value": "behandelt",
-          "@language": "nl"
-        },
-        {
-          "@value": "covers",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "http://purl.org/vocab/vann/usageNote": [
-        {
-          "@value": "Ook punten die kunnen ingepland worden (voorafgaand aan de zitting) en er eventueel weer af gehaald worden, vallen hieronder.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Items scheduled in advance (before the session) and that may be removed later on, are covered by this definition.",
+          "@value": "A report of the session.",
           "@language": "en"
         }
       ],
@@ -644,18 +885,8 @@
         "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
       },
       "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Een formeel vastgelegd agendapunt van de zitting.",
-          "@language": "nl"
-        },
-        {
-          "@value": "A formally determined topic of the session.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
@@ -667,77 +898,144 @@
       "@type": "rdf:Property"
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#geheim",
+      "@id": "https://data.vlaanderen.be/ns/besluit#gebeurtNa",
       "rdfs:label": [
         {
-          "@value": "secret",
+          "@value": "takes place after",
           "@language": "en"
         },
         {
-          "@value": "geheim",
+          "@value": "gebeurt na",
           "@language": "nl"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "rdfs:subPropertyOf": {
+        "@id": "dc:relation"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
       },
-      "@type": "owl:DatatypeProperty",
       "rdfs:comment": [
         {
-          "@value": "Geeft aan of de stemming geheim was. Bij een geheime stemming wordt niet individueel bekend gemaakt wie op wat heeft gestemd.",
-          "@language": "nl"
+          "@value": "The preceding agenda item within the same meeting. Allows determination of the order in which items were handled.",
+          "@language": "en"
         },
         {
-          "@value": "Indicates whether the vote used secret ballots. In a vote using secret ballots the individual choice of voters is not known.",
-          "@language": "en"
+          "@value": "Verwijzing naar het voorgaand behandeld agendapunt binnen dezelfde zitting. Laat toe om de volgorde van de behandelingen op te bouwen.",
+          "@language": "nl"
         }
       ],
-      "rdfs:range": {
-        "@id": "xsd:boolean"
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "dc:description",
+      "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
+      "rdfs:label": [
+        {
+          "@value": "Agenda Item Handling",
+          "@language": "en"
+        },
+        {
+          "@value": "Behandeling van Agendapunt",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "The execution of the actions to process an agenda item during a meeting.",
+          "@language": "en"
+        },
+        {
+          "@value": "De uitvoering van de acties om een agendapunt te verwerken tijdens een zitting.",
+          "@language": "nl"
+        }
+      ],
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "dc:title",
       "rdfs:label": {
-        "@value": "beschrijving",
+        "@value": "titel",
         "@language": "nl"
       },
       "@type": "rdf:Property"
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#motivering",
+      "@id": "_:g47090977337020",
+      "foaf:name": "Antwerpen",
+      "foaf:homepage": {
+        "@id": "http://stad.antwerpen.be"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/eli/ontology#cites",
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#aantalTegenstanders",
       "rdfs:label": [
         {
-          "@value": "motivering",
-          "@language": "nl"
+          "@value": "number of opponents",
+          "@language": "en"
         },
         {
-          "@value": "motivation",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Besluit"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
+          "@value": "aantal tegenstanders",
           "@language": "nl"
-        },
-        {
-          "@value": "Description of the legal and factual motivation behind the decision expressed in the resolution.",
-          "@language": "en"
         }
       ],
       "rdfs:range": {
-        "@id": "rdf:langString"
+        "@id": "xsd:integer"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Het aantal stemmers dat als tegenstander heeft gestemd.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The number of voters who voted against.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "_:g47090984892500",
+      "foaf:name": "imec-MICT-UGent",
+      "foaf:homepage": {
+        "@id": "https://www.ugent.be/ps/communicatiewetenschappen/mict"
+      }
+    },
+    {
+      "@id": "_:g47090981385840",
+      "foaf:lastName": "Acke",
+      "foaf:firstName": "Ines",
+      "schema:affiliation": {
+        "@id": "_:g47090981407080"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090981407080",
+      "foaf:name": "Stad Gent",
+      "foaf:homepage": {
+        "@id": "http://stad.gent"
       }
     },
     {
@@ -752,12 +1050,33 @@
           "@language": "en"
         }
       ],
-      "rdfs:subClassOf": [
+      "http://purl.org/vocab/vann/usageNote": [
         {
-          "@id": "foaf:Document"
+          "@value": "This includes both individual resolutions (legal acts with an individual character such as grants) and general resolutions (decisions of general rules that are aimed at a group rather than individuals, such as the traffic rules).",
+          "@language": "en"
         },
         {
+          "@value": "Hieronder vallen zowel individuele besluiten (rechtshandelingen met een individueel karakter zoals het toekennen van een subsidie) als besluiten van algemene strekking (beslissingen van algemene reglementaire strekking die niet gericht zijn op een individu maar op een groep, zoals de verkeersregels).",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:comment": [
+        {
+          "@value": "De authentieke schriftelijke neerslag van een beslissing van een bestuursorgaan. Deze beslissing houdt een rechtshandeling in waarbij sprake is van een beoogd rechtsgevolg.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The authentic written summary of a decision of a governing body. This decision involves a legal act with an intended legal effect.",
+          "@language": "en"
+        }
+      ],
+      "@type": "owl:Class",
+      "rdfs:subClassOf": [
+        {
           "@id": "http://data.europa.eu/eli/ontology#LegalExpression"
+        },
+        {
+          "@id": "foaf:Document"
         },
         {
           "@id": "http://purl.org/vocab/cpsv#FormalFramework"
@@ -765,413 +1084,488 @@
       ],
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "http://purl.org/vocab/vann/usageNote": [
-        {
-          "@value": "Hieronder vallen zowel individuele besluiten (rechtshandelingen met een individueel karakter zoals het toekennen van een subsidie) als besluiten van algemene strekking (beslissingen van algemene reglementaire strekking die niet gericht zijn op een individu maar op een groep, zoals de verkeersregels).",
-          "@language": "nl"
-        },
-        {
-          "@value": "This includes both individual resolutions (legal acts with an individual character such as grants) and general resolutions (decisions of general rules that are aimed at a group rather than individuals, such as the traffic rules).",
-          "@language": "en"
-        }
-      ],
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "The authentic written summary of a decision of a governing body. This decision involves a legal act with an intended legal effect.",
-          "@language": "en"
-        },
-        {
-          "@value": "De authentieke schriftelijke neerslag van een beslissing van een bestuursorgaan. Deze beslissing houdt een rechtshandeling in waarbij sprake is van een beoogd rechtsgevolg.",
-          "@language": "nl"
-        }
-      ]
+      }
     },
     {
-      "@id": "_:g47347509029560",
-      "foaf:name": "Antwerpen",
+      "@id": "_:g47090984004280",
+      "foaf:name": "Raad Van State",
       "foaf:homepage": {
-        "@id": "http://stad.antwerpen.be"
+        "@id": "http://www.raadvanstate.be/"
       }
     },
     {
-      "@id": "_:g47347508172080",
-      "schema:affiliation": {
-        "@id": "_:g47347508180120"
-      },
-      "foaf:firstName": "Miranda",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Bockstaele"
-    },
-    {
-      "@id": "_:g47347508180120",
-      "foaf:name": "Herzele",
-      "foaf:homepage": {
-        "@id": "http://www.herzele.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#onderwerp",
-      "rdfs:label": [
-        {
-          "@value": "subject",
-          "@language": "en"
-        },
-        {
-          "@value": "onderwerp",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "De beschrijving van het onderwerp waarover de stemming gaat.",
-          "@language": "nl"
-        },
-        {
-          "@value": "The description of the subject of the vote.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "rdf:langString"
-      }
-    },
-    {
-      "@id": "prov:wasGeneratedBy",
-      "rdfs:label": {
-        "@value": "is gegenereerd door",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47347508460240",
-      "schema:affiliation": {
-        "@id": "_:g47347508475520"
-      },
-      "foaf:firstName": "Luc",
-      "@type": "foaf:person",
-      "foaf:lastName": "Vanpaemel"
-    },
-    {
-      "@id": "_:g47347508475520",
-      "foaf:name": "Vlaams Parlement",
-      "foaf:homepage": {
-        "@id": "http://www.vlaamsparlement.be"
-      }
-    },
-    {
-      "@id": "_:g47347508105220",
-      "foaf:name": "CEVI",
-      "foaf:homepage": {
-        "@id": "http://www.cevi.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftSecretaris",
-      "rdfs:label": [
-        {
-          "@value": "heeft secretaris",
-          "@language": "nl"
-        },
-        {
-          "@value": "has secretary",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "The mandatary acting as the secretary during the activity.",
-          "@language": "en"
-        },
-        {
-          "@value": "De mandataris die de rol van secretaris heeft gedurende de activiteit.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-      "rdfs:label": [
-        {
-          "@value": "is gehouden door",
-          "@language": "nl"
-        },
-        {
-          "@value": "held by",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Duidt aan door welk orgaan de zitting is gehouden.",
-          "@language": "nl"
-        },
-        {
-          "@value": "The governing body that held the session.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "prov:wasStartedBy"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
-      }
-    },
-    {
-      "@id": "_:g47347508062320",
-      "schema:affiliation": {
-        "@id": "_:g47347508032740"
-      },
-      "foaf:firstName": "Erik",
-      "foaf:mbox": {
-        "@id": "mailto:erik.mannens@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Mannens"
-    },
-    {
-      "@id": "_:g47347508032740",
-      "foaf:name": "imec-IDLab-UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
-      }
-    },
-    {
-      "@id": "_:g47347508856120",
-      "schema:affiliation": {
-        "@id": "_:g47347508826020"
-      },
+      "@id": "_:g47090984664200",
+      "foaf:lastName": "De Paepe",
       "foaf:firstName": "Dieter",
+      "schema:affiliation": {
+        "@id": "_:g47090984642780"
+      },
+      "@type": "foaf:person",
       "foaf:mbox": {
         "@id": "mailto:dieter.depaepe@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "De Paepe"
-    },
-    {
-      "@id": "_:g47347508826020",
-      "foaf:name": "imec-IDLab-UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
       }
     },
     {
-      "@id": "_:g47347504896540",
-      "foaf:name": "Lier",
-      "foaf:homepage": {
-        "@id": "http://lier.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#gebeurtNa",
-      "rdfs:label": [
-        {
-          "@value": "gebeurt na",
-          "@language": "nl"
-        },
-        {
-          "@value": "takes place after",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "The preceding agenda item within the same meeting. Allows determination of the order in which items were handled.",
-          "@language": "en"
-        },
-        {
-          "@value": "Verwijzing naar het voorgaand behandeld agendapunt binnen dezelfde zitting. Laat toe om de volgorde van de behandelingen op te bouwen.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "dc:relation"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
-      "rdfs:label": [
-        {
-          "@value": "Behandeling van Agendapunt",
-          "@language": "nl"
-        },
-        {
-          "@value": "Agenda Item Handling",
-          "@language": "en"
-        }
-      ],
-      "rdfs:subClassOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": [
-        {
-          "@value": "The execution of the actions to process an agenda item during a meeting.",
-          "@language": "en"
-        },
-        {
-          "@value": "De uitvoering van de acties om een agendapunt te verwerken tijdens een zitting.",
-          "@language": "nl"
-        }
-      ]
-    },
-    {
-      "@id": "_:g47347502168300",
-      "schema:affiliation": {
-        "@id": "_:g47347501689500"
-      },
-      "foaf:firstName": "Dieter",
-      "foaf:mbox": {
-        "@id": "mailto:dieter.depaepe@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "De Paepe"
-    },
-    {
-      "@id": "_:g47347501689500",
+      "@id": "_:g47090984642780",
       "foaf:name": "imec - UGent",
       "foaf:homepage": {
         "@id": "http://idlab.ugent.be"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
+      "@id": "https://data.vlaanderen.be/ns/besluit#openbaar",
       "rdfs:label": [
         {
-          "@value": "planned public",
-          "@language": "en"
+          "@value": "openbaar",
+          "@language": "nl"
         },
         {
-          "@value": "gepland openbaar",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Indicates whether the item is planned to be discussed publicly.",
+          "@value": "public",
           "@language": "en"
-        },
-        {
-          "@value": "Geeft aan of het agendapunt al dan niet bedoeld is om openbaar te bespreken.",
-          "@language": "nl"
         }
       ],
       "rdfs:range": {
         "@id": "xsd:boolean"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Indicates whether the handling effectively happened in public.",
+          "@language": "en"
+        },
+        {
+          "@value": "Geeft aan of de bespreking effectief openbaar verlopen is.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftTegenstander",
-      "rdfs:label": [
-        {
-          "@value": "heeft tegenstander",
-          "@language": "nl"
-        },
-        {
-          "@value": "has opponent",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "@id": "_:g47090982722460",
+      "foaf:lastName": "Van Molle",
+      "foaf:firstName": "Chris",
+      "schema:affiliation": {
+        "@id": "_:g47090982697840"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "A mandatary that voted against the topic of the vote.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een mandataris die als tegenstander heeft gestemd op het onderwerp van de stemming.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:subPropertyOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982697840",
+      "foaf:name": "Stad Aalst",
+      "foaf:homepage": {
+        "@id": "http://Aalst.be"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer",
+      "@id": "_:g47090984420200",
+      "foaf:lastName": "De Paepe",
+      "foaf:firstName": "Dieter",
+      "schema:affiliation": {
+        "@id": "_:g47090984398520"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:dieter.depaepe@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090984297820",
+      "foaf:lastName": "Godderis",
+      "foaf:firstName": "Heidi",
+      "schema:affiliation": {
+        "@id": "_:g47090984276500"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:heidi.godderis@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090984786860",
+      "foaf:lastName": "De Smet",
+      "foaf:firstName": "Katrien",
+      "schema:affiliation": {
+        "@id": "_:g47090984765640"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:katrien.desmet@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090984542240",
+      "foaf:lastName": "Volders",
+      "foaf:firstName": "Veronique",
+      "schema:affiliation": {
+        "@id": "_:g47090984520960"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:veronique.volders@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090984941960",
+      "foaf:lastName": "De Vocht",
+      "foaf:firstName": "Laurens",
+      "schema:affiliation": {
+        "@id": "_:g47090984956120"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:laurens.devocht@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090984922260",
+      "foaf:lastName": "Van Compernolle",
+      "foaf:firstName": "Mathias",
+      "schema:affiliation": {
+        "@id": "_:g47090984892500"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:mathias.vancompernolle@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090980678940",
+      "foaf:lastName": "Mannens",
+      "foaf:firstName": "Erik",
+      "schema:affiliation": {
+        "@id": "_:g47090984877920"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:erik.mannens@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090978438560",
+      "foaf:lastName": "De Vocht",
+      "foaf:firstName": "Laurens",
+      "schema:affiliation": {
+        "@id": "_:g47090985065140"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:laurens.devocht@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090985044520",
+      "foaf:lastName": "Vandamme",
+      "foaf:firstName": "Fie",
+      "schema:affiliation": {
+        "@id": "_:g47090985014960"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:fie.vandamme@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090977326940",
+      "foaf:lastName": "Van de Vyvere",
+      "foaf:firstName": "Brecht",
+      "schema:affiliation": {
+        "@id": "_:g47090976277000"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:brecht.vandevyvere@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090984787520",
+      "foaf:lastName": "Buyle",
+      "foaf:firstName": "Raf",
+      "schema:affiliation": {
+        "@id": "_:g47090980840860"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090984700740",
+      "foaf:name": "Data Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://data.vlaanderen.be"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:oslo@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090984260300",
+      "foaf:lastName": "Dewelde",
+      "foaf:firstName": "Danny",
+      "schema:affiliation": {
+        "@id": "_:g47090984278200"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090981347780",
+      "foaf:lastName": "Behiels",
+      "foaf:firstName": "Katrien",
+      "schema:affiliation": {
+        "@id": "_:g47090981642680"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090980775260",
+      "foaf:lastName": "Roos",
+      "foaf:firstName": "Sylvie",
+      "schema:affiliation": {
+        "@id": "_:g47090980716240"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090981350200",
+      "foaf:lastName": "Brusselle",
+      "foaf:firstName": "Kristel",
+      "schema:affiliation": {
+        "@id": "_:g47090981271180"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090975453380",
+      "foaf:lastName": "Cosijns",
+      "foaf:firstName": "Anja",
+      "schema:affiliation": {
+        "@id": "_:g47090974287780"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090980739260",
+      "foaf:lastName": "Bierens",
+      "foaf:firstName": "Reynder",
+      "schema:affiliation": {
+        "@id": "_:g47090980982060"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982039340",
+      "foaf:lastName": "Cambré",
+      "foaf:firstName": "Renée",
+      "schema:affiliation": {
+        "@id": "_:g47090982171040"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984183820",
+      "foaf:lastName": "Versteels",
+      "foaf:firstName": "Marijke",
+      "schema:affiliation": {
+        "@id": "_:g47090984190160"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982696220",
+      "foaf:lastName": "Adriaens",
+      "foaf:firstName": "Daniël",
+      "schema:affiliation": {
+        "@id": "_:g47090983807580"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090983873380",
+      "foaf:lastName": "Tamsyn",
+      "foaf:firstName": "Jonas",
+      "schema:affiliation": {
+        "@id": "_:g47090983880560"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984317240",
+      "foaf:lastName": "Van der Waal",
+      "foaf:firstName": "Johan",
+      "schema:affiliation": {
+        "@id": "_:g47090984334100"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090981329700",
+      "foaf:lastName": "Van Bogaert",
+      "foaf:firstName": "Micheline",
+      "schema:affiliation": {
+        "@id": "_:g47090980895900"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090980701880",
+      "foaf:lastName": "Cocquyt",
+      "foaf:firstName": "Tom",
+      "schema:affiliation": {
+        "@id": "_:g47090980601380"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984456580",
+      "foaf:lastName": "Merckx",
+      "foaf:firstName": "Melissa",
+      "schema:affiliation": {
+        "@id": "_:g47090984470600"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090983989000",
+      "foaf:lastName": "De Cock",
+      "foaf:firstName": "Wouter",
+      "schema:affiliation": {
+        "@id": "_:g47090984004280"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090977721120",
+      "foaf:lastName": "Lodewyckx",
+      "foaf:firstName": "Lynn",
+      "schema:affiliation": {
+        "@id": "_:g47090977337020"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984613200",
+      "foaf:lastName": "Van Deynse",
+      "foaf:firstName": "Heidi",
+      "schema:affiliation": {
+        "@id": "_:g47090984629440"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984541100",
+      "foaf:lastName": "Vermeiren",
+      "foaf:firstName": "Eric",
+      "schema:affiliation": {
+        "@id": "_:g47090984548040"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090980644620",
+      "foaf:lastName": "Vanpaemel",
+      "foaf:firstName": "Luc",
+      "schema:affiliation": {
+        "@id": "_:g47090978068740"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982563460",
+      "foaf:lastName": "Manshanden",
+      "foaf:firstName": "Niels",
+      "schema:affiliation": {
+        "@id": "_:g47090982464140"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984123280",
+      "foaf:lastName": "Van Campenhout",
+      "foaf:firstName": "Geert",
+      "schema:affiliation": {
+        "@id": "_:g47090984138600"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090982279280",
+      "foaf:lastName": "Verbeek",
+      "foaf:firstName": "Marian",
+      "schema:affiliation": {
+        "@id": "_:g47090982227360"
+      },
+      "@type": "foaf:person"
+    },
+    {
+      "@id": "_:g47090984956120",
+      "foaf:name": "imec - UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090984278200",
+      "foaf:name": "Lier",
+      "foaf:homepage": {
+        "@id": "http://lier.be"
+      }
+    },
+    {
+      "@id": "_:g47090982171040",
+      "foaf:name": "Vlaams Parlement",
+      "foaf:homepage": {
+        "@id": "http://www.vlaamsparlement.be"
+      }
+    },
+    {
+      "@id": "_:g47090984276500",
+      "foaf:name": "Agentschap Binnenlands Bestuur",
+      "foaf:homepage": {
+        "@id": "http://binnenland.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47090984398520",
+      "foaf:name": "imec-IDLab-UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090980895900",
+      "foaf:name": "CEVI",
+      "foaf:homepage": {
+        "@id": "http://www.cevi.be"
+      }
+    },
+    {
+      "@id": "_:g47090984520960",
+      "foaf:name": "Agentschap Binnenlands Bestuur",
+      "foaf:homepage": {
+        "@id": "http://binnenland.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47090981642680",
+      "foaf:name": "Digipolis",
+      "foaf:homepage": {
+        "@id": "http://digipolis.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige",
       "rdfs:label": [
         {
-          "@value": "has voter",
+          "@value": "has present",
           "@language": "en"
         },
         {
-          "@value": "heeft stemmer",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "A mandatary participating in the vote.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een mandataris die deelneemt aan de stemming.",
+          "@value": "heeft aanwezige",
           "@language": "nl"
         }
       ],
@@ -1179,51 +1573,248 @@
         "@id": "prov:wasAssociatedWith"
       },
       "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+        "@id": "dc:Agent"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "An agent (e.g.: mandatary) who was present during (a part of) the activity where he had a certain responsibility.",
+          "@language": "en"
+        },
+        {
+          "@value": "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "_:g47347508878840",
+      "@id": "_:g47090984190160",
+      "foaf:name": "Herzele",
+      "foaf:homepage": {
+        "@id": "http://www.herzele.be"
+      }
+    },
+    {
+      "@id": "_:g47090983807580",
+      "foaf:name": "Herzele",
+      "foaf:homepage": {
+        "@id": "http://www.herzele.be"
+      }
+    },
+    {
+      "@id": "_:g47090984470600",
+      "foaf:name": "Antwerpen",
+      "foaf:homepage": {
+        "@id": "http://stad.Antwerpen.be"
+      }
+    },
+    {
+      "@id": "_:g47090976277000",
+      "foaf:name": "imec - UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "_:g47090980716240",
+      "foaf:name": "Stad Gent",
+      "foaf:homepage": {
+        "@id": "http://stad.gent"
+      }
+    },
+    {
+      "@id": "_:g47090981271180",
+      "foaf:name": "Kaprijke",
+      "foaf:homepage": {
+        "@id": "http://www.kaprijke.be"
+      }
+    },
+    {
+      "@id": "_:g47090978068740",
       "foaf:name": "Vlaams Parlement",
       "foaf:homepage": {
         "@id": "http://www.vlaamsparlement.be"
       }
     },
     {
-      "@id": "_:g47347508169420",
-      "foaf:name": "Data Vlaanderen",
-      "foaf:mbox": {
-        "@id": "mailto:oslo@kb.vlaanderen.be"
+      "@id": "prov:atLocation",
+      "rdfs:label": {
+        "@value": "op locatie",
+        "@language": "nl"
       },
-      "foaf:homepage": {
-        "@id": "https://data.vlaanderen.be"
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "prov:startedAtTime",
+      "rdfs:label": {
+        "@value": "gestart op tijdstip",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#motivering",
+      "rdfs:label": [
+        {
+          "@value": "motivation",
+          "@language": "en"
+        },
+        {
+          "@value": "motivering",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "rdf:langString"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Description of the legal and factual motivation behind the decision expressed in the resolution.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Besluit"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "_:g47347505041800",
-      "schema:affiliation": {
-        "@id": "_:g47347505335340"
-      },
-      "foaf:firstName": "Laurens",
-      "foaf:mbox": {
-        "@id": "mailto:laurens.devocht@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "De Vocht"
-    },
-    {
-      "@id": "_:g47347505335340",
+      "@id": "_:g47090984877920",
       "foaf:name": "imec-IDLab-UGent",
       "foaf:homepage": {
         "@id": "http://idlab.ugent.be"
       }
     },
     {
-      "@id": "_:g47347508707000",
+      "@id": "_:g47090974287780",
+      "foaf:name": "Herzele",
+      "foaf:homepage": {
+        "@id": "http://www.herzele.be"
+      }
+    },
+    {
+      "@id": "_:g47090984548040",
+      "foaf:name": "Niel",
+      "foaf:homepage": {
+        "@id": "http://www.niel.be"
+      }
+    },
+    {
+      "@id": "_:g47090980982060",
       "foaf:name": "Cipal Schaubroeck",
       "foaf:homepage": {
         "@id": "http://www.cipalschaubroeck.be"
       }
+    },
+    {
+      "@id": "_:g47090984629440",
+      "foaf:name": "Maldegem",
+      "foaf:homepage": {
+        "@id": "http://www.maldegem.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt.type",
+      "rdfs:label": [
+        {
+          "@value": "type",
+          "@language": "en"
+        },
+        {
+          "@value": "type",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "The type of the agenda item.",
+          "@language": "en"
+        },
+        {
+          "@value": "Type van het agendapunt.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "_:g47090984765640",
+      "foaf:name": "Agentschap Binnenlands Bestuur",
+      "foaf:homepage": {
+        "@id": "http://binnenland.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47090985014960",
+      "foaf:name": "imec-MICT-UGent",
+      "foaf:homepage": {
+        "@id": "https://www.ugent.be/ps/communicatiewetenschappen/mict"
+      }
+    },
+    {
+      "@id": "_:g47090984138600",
+      "foaf:name": "ABB",
+      "foaf:homepage": {
+        "@id": "http://binnenland.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47090982464140",
+      "foaf:name": "iBabs BV",
+      "foaf:homepage": {
+        "@id": "http://msi.nl"
+      }
+    },
+    {
+      "@id": "_:g47090983880560",
+      "foaf:name": "Cipal Schaubroeck",
+      "foaf:homepage": {
+        "@id": "http://www.cipalschaubroeck.be"
+      }
+    },
+    {
+      "@id": "_:g47090982227360",
+      "foaf:name": "VVSG",
+      "foaf:homepage": {
+        "@id": "http://www.vvsg.be"
+      }
+    },
+    {
+      "@id": "_:g47090985065140",
+      "foaf:name": "imec-IDLab-UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "dc:references",
+      "rdfs:label": {
+        "@value": "verwijst",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
     },
     {
       "@id": "prov:generated",
@@ -1234,258 +1825,162 @@
       "@type": "rdf:Property"
     },
     {
-      "@id": "_:g47347508841900",
-      "schema:affiliation": {
-        "@id": "_:g47347508812440"
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemming",
+      "rdfs:label": [
+        {
+          "@value": "has vote",
+          "@language": "en"
+        },
+        {
+          "@value": "heeft stemming",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
       },
-      "foaf:firstName": "Eric",
-      "@type": "foaf:person",
-      "foaf:lastName": "Vermeiren"
-    },
-    {
-      "@id": "_:g47347508812440",
-      "foaf:name": "Niel",
-      "foaf:homepage": {
-        "@id": "http://www.niel.be"
+      "rdfs:comment": [
+        {
+          "@value": "A vote taking place during the handling of the agenda item.",
+          "@language": "en"
+        },
+        {
+          "@value": "Een stemming die plaatsvond tijdens de behandeling van het agendapunt.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "_:g47347509016920",
-      "schema:affiliation": {
-        "@id": "_:g47347509029560"
-      },
-      "foaf:firstName": "Lynn",
-      "@type": "foaf:person",
-      "foaf:lastName": "Lodewyckx"
-    },
-    {
-      "@id": "_:g47347505044800",
+      "@id": "_:g47090980601380",
       "foaf:name": "Vlaams parlement",
       "foaf:homepage": {
         "@id": "http://www.vlaamsparlement.be"
       }
     },
     {
-      "@id": "_:g47347509060860",
-      "schema:affiliation": {
-        "@id": "_:g47347509031280"
-      },
-      "foaf:firstName": "Katrien",
-      "@type": "foaf:person",
-      "foaf:lastName": "Behiels"
-    },
-    {
-      "@id": "_:g47347509031280",
-      "foaf:name": "Digipolis",
+      "@id": "_:g47090984334100",
+      "foaf:name": "V-ICT-OR",
       "foaf:homepage": {
-        "@id": "http://digipolis.be"
+        "@id": "http://www.v-ict-or.be"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftVoorstander",
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftSecretaris",
       "rdfs:label": [
         {
-          "@value": "has proponent",
+          "@value": "has secretary",
           "@language": "en"
         },
         {
-          "@value": "heeft voorstander",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "A mandatary that voted in favor of the subject of the vote.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een mandataris die als voorstander heeft gestemd op het onderwerp van de stemming.",
+          "@value": "heeft secretaris",
           "@language": "nl"
         }
       ],
       "rdfs:subPropertyOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer"
+        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
       },
       "rdfs:range": {
         "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "De mandataris die de rol van secretaris heeft gedurende de activiteit.",
+          "@language": "nl"
+        },
+        {
+          "@value": "The mandatary acting as the secretary during the activity.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "_:g47347504687600",
-      "foaf:name": "Agentschap Binnenlands Bestuur",
-      "foaf:homepage": {
-        "@id": "http://binnenland.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "_:g47347506308940",
-      "schema:affiliation": {
-        "@id": "_:g47347506063400"
-      },
-      "foaf:firstName": "Raf",
-      "foaf:mbox": {
-        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Buyle"
-    },
-    {
-      "@id": "_:g47347506063400",
+      "@id": "_:g47090980840860",
       "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
       }
     },
     {
-      "@id": "_:g47347508631340",
-      "schema:affiliation": {
-        "@id": "_:g47347508609980"
-      },
-      "foaf:firstName": "Ines",
-      "@type": "foaf:person",
-      "foaf:lastName": "Acke"
-    },
-    {
-      "@id": "_:g47347508609980",
-      "foaf:name": "Stad Gent",
-      "foaf:homepage": {
-        "@id": "http://stad.gent"
-      }
-    },
-    {
-      "@id": "_:g47347508315180",
-      "schema:affiliation": {
-        "@id": "_:g47347508285800"
-      },
-      "foaf:firstName": "Jef",
-      "@type": "foaf:person",
-      "foaf:lastName": "Peeters"
-    },
-    {
-      "@id": "_:g47347508285800",
-      "foaf:name": "Remmicom",
-      "foaf:homepage": {
-        "@id": "http://www.remmicom.be"
-      }
-    },
-    {
-      "@id": "_:g47347500834280",
-      "schema:affiliation": {
-        "@id": "_:g47347508928800"
-      },
-      "foaf:firstName": "Marijke",
-      "@type": "foaf:person",
-      "foaf:lastName": "Versteels"
-    },
-    {
-      "@id": "_:g47347508928800",
-      "foaf:name": "Herzele",
-      "foaf:homepage": {
-        "@id": "http://www.herzele.be"
-      }
-    },
-    {
-      "@id": "_:g47347507818560",
-      "schema:affiliation": {
-        "@id": "_:g47347506534420"
-      },
-      "foaf:firstName": "Mathias",
-      "foaf:mbox": {
-        "@id": "mailto:mathias.vancompernolle@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Compernolle"
-    },
-    {
-      "@id": "_:g47347506534420",
-      "foaf:name": "imec-MICT-UGent",
-      "foaf:homepage": {
-        "@id": "https://www.ugent.be/ps/communicatiewetenschappen/mict"
-      }
-    },
-    {
-      "@id": "_:g47347505786020",
-      "schema:affiliation": {
-        "@id": "_:g47347505659260"
-      },
-      "foaf:firstName": "Laurens",
-      "foaf:mbox": {
-        "@id": "mailto:laurens.devocht@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "De Vocht"
-    },
-    {
-      "@id": "_:g47347505659260",
-      "foaf:name": "imec - UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
-      }
-    },
-    {
-      "@id": "_:g47347508812740",
-      "foaf:name": "Stad Aalst",
-      "foaf:homepage": {
-        "@id": "http://Aalst.be"
-      }
-    },
-    {
-      "@id": "_:g47347508663000",
-      "schema:affiliation": {
-        "@id": "_:g47347508670480"
-      },
-      "foaf:firstName": "Geert",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Campenhout"
-    },
-    {
-      "@id": "_:g47347508670480",
-      "foaf:name": "ABB",
-      "foaf:homepage": {
-        "@id": "http://binnenland.vlaanderen.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#aangebrachtNa",
+      "@id": "https://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
       "rdfs:label": [
         {
-          "@value": "added after",
+          "@value": "has chairman",
           "@language": "en"
         },
         {
-          "@value": "aangebracht na",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "The agenda item that preceded this item on the agenda.",
-          "@language": "en"
-        },
-        {
-          "@value": "Het agendapunt dat op de agenda direct dit agendapunt voorafging.",
+          "@value": "heeft voorzitter",
           "@language": "nl"
         }
       ],
       "rdfs:subPropertyOf": {
-        "@id": "dc:relation"
+        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
       },
       "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "De mandataris die de rol als voorzitter heeft gedurende de activiteit.",
+          "@language": "nl"
+        },
+        {
+          "@value": "Mandatary acting as the chairman during the activity.",
+          "@language": "en"
+        }
+      ],
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
+      "rdfs:label": [
+        {
+          "@value": "gepland openbaar",
+          "@language": "nl"
+        },
+        {
+          "@value": "planned public",
+          "@language": "en"
+        }
+      ],
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "rdfs:comment": [
+        {
+          "@value": "Indicates whether the item is planned to be discussed publicly.",
+          "@language": "en"
+        },
+        {
+          "@value": "Geeft aan of het agendapunt al dan niet bedoeld is om openbaar te bespreken.",
+          "@language": "nl"
+        }
+      ],
+      "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
@@ -1500,101 +1995,48 @@
           "@language": "en"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "A mandatary that abstained their vote on the topic of the vote.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een mandataris die als onthouder heeft gestemd op het onderwerp van de stemming.",
-          "@language": "nl"
-        }
-      ],
       "rdfs:subPropertyOf": {
         "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemmer"
       },
       "rdfs:range": {
         "@id": "https://data.vlaanderen.be/ns/mandaat#Mandataris"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
-      "rdfs:label": [
-        {
-          "@value": "has draft resolution",
-          "@language": "en"
-        },
-        {
-          "@value": "heeft ontwerpbesluit",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Agendapunt"
-      },
-      "@type": "owl:ObjectProperty",
       "rdfs:comment": [
         {
-          "@value": "A (possibly incomplete) draft for the resolution that would arise from this agenda item.",
-          "@language": "en"
+          "@value": "Een mandataris die als onthouder heeft gestemd op het onderwerp van de stemming.",
+          "@language": "nl"
         },
         {
-          "@value": "Een (mogelijks nog aan te vullen of aan te passen) ontwerp voor het besluit dat uit dit agendapunt zou voortkomen.",
-          "@language": "nl"
+          "@value": "A mandatary that abstained their vote on the topic of the vote.",
+          "@language": "en"
         }
       ],
-      "rdfs:range": {
-        "@id": "foaf:Document"
-      }
-    },
-    {
-      "@id": "_:g47347507883320",
-      "schema:affiliation": {
-        "@id": "_:g47347507870360"
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
       },
-      "foaf:firstName": "Brecht",
-      "foaf:mbox": {
-        "@id": "mailto:brecht.vandevyvere@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Van de Vyvere"
-    },
-    {
-      "@id": "_:g47347507870360",
-      "foaf:name": "imec - UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
+      "@type": "owl:ObjectProperty",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart",
       "rdfs:label": [
         {
-          "@value": "heeft aanwezige bij start",
-          "@language": "nl"
-        },
-        {
           "@value": "has present at start",
           "@language": "en"
+        },
+        {
+          "@value": "heeft aanwezige bij start",
+          "@language": "nl"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "rdfs:subPropertyOf": {
+        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
+      "rdfs:range": {
+        "@id": "dc:Agent"
       },
-      "@type": "owl:ObjectProperty",
       "rdfs:comment": [
         {
           "@value": "Een agent die aanwezig was bij de start van de activiteit waar hij een zekere verantwoordelijkheid had.",
@@ -1605,150 +2047,54 @@
           "@language": "en"
         }
       ],
-      "rdfs:subPropertyOf": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#heeftAanwezige"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
-      }
-    },
-    {
-      "@id": "_:g47347502197440",
-      "foaf:name": "iBabs BV",
-      "foaf:homepage": {
-        "@id": "http://msi.nl"
-      }
-    },
-    {
-      "@id": "_:g47347508393080",
-      "foaf:name": "Kaprijke",
-      "foaf:homepage": {
-        "@id": "http://www.kaprijke.be"
-      }
-    },
-    {
-      "@id": "_:g47347508301880",
-      "schema:affiliation": {
-        "@id": "_:g47347508316480"
-      },
-      "foaf:firstName": "Wouter",
-      "@type": "foaf:person",
-      "foaf:lastName": "De Cock"
-    },
-    {
-      "@id": "_:g47347508316480",
-      "foaf:name": "Raad Van State",
-      "foaf:homepage": {
-        "@id": "http://www.raadvanstate.be/"
-      }
-    },
-    {
-      "@id": "_:g47347499676500",
-      "foaf:name": "Cipal Schaubroeck",
-      "foaf:homepage": {
-        "@id": "http://www.cipalschaubroeck.be"
-      }
-    },
-    {
-      "@id": "_:g47347508917860",
-      "foaf:name": "Maldegem",
-      "foaf:homepage": {
-        "@id": "http://www.maldegem.be"
-      }
-    },
-    {
-      "@id": "_:g47347504749720",
-      "schema:affiliation": {
-        "@id": "_:g47347504687600"
-      },
-      "foaf:firstName": "Katrien",
-      "foaf:mbox": {
-        "@id": "mailto:katrien.desmet@bz.vlaanderen.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "De Smet"
-    },
-    {
-      "@id": "_:g47347507957960",
-      "schema:affiliation": {
-        "@id": "_:g47347507973140"
-      },
-      "foaf:firstName": "Daniël",
-      "@type": "foaf:person",
-      "foaf:lastName": "Adriaens"
-    },
-    {
-      "@id": "_:g47347507973140",
-      "foaf:name": "Herzele",
-      "foaf:homepage": {
-        "@id": "http://www.herzele.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#houdtZitting",
-      "rdfs:label": [
-        {
-          "@value": "houdt zitting",
-          "@language": "nl"
-        },
-        {
-          "@value": "has session",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
       "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
+        "@id": "https://data.vlaanderen.be/ns/besluit#Vergaderactiviteit"
       },
       "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Een zitting gehouden of gepland door het bestuursorgaan.",
-          "@language": "nl"
-        },
-        {
-          "@value": "A session held or planned by the governing body.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/besluit#gevolg",
+      "@id": "https://data.vlaanderen.be/ns/besluit#aantalVoorstanders",
       "rdfs:label": [
         {
-          "@value": "consequence",
+          "@value": "number of proponents",
           "@language": "en"
         },
         {
-          "@value": "gevolg",
+          "@value": "aantal voorstanders",
           "@language": "nl"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "rdfs:range": {
+        "@id": "xsd:integer"
       },
+      "rdfs:comment": [
+        {
+          "@value": "The number of voters that voted in favor.",
+          "@language": "en"
+        },
+        {
+          "@value": "Het aantal stemmers dat als voorstander heeft gestemd.",
+          "@language": "nl"
+        }
+      ],
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
       },
       "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "The consequence of the vote.",
-          "@language": "en"
-        },
-        {
-          "@value": "Het gevolg van de stemming.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "rdf:langString"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/besluit"
       }
+    },
+    {
+      "@id": "http://data.europa.eu/eli/ontology#number",
+      "rdfs:label": {
+        "@value": "nummer",
+        "@language": "nl"
+      },
+      "@type": "rdf:Property"
     },
     {
       "@id": "https://data.vlaanderen.be/ns/besluit#heeftNotulen",
@@ -1762,13 +2108,9 @@
           "@language": "nl"
         }
       ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
+      "rdfs:range": {
+        "@id": "foaf:Document"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
-      },
-      "@type": "owl:ObjectProperty",
       "rdfs:comment": [
         {
           "@value": "The formal proceedings of the session.",
@@ -1779,354 +2121,12 @@
           "@language": "nl"
         }
       ],
-      "rdfs:range": {
-        "@id": "foaf:Document"
-      }
-    },
-    {
-      "@id": "_:g47347508378880",
-      "schema:affiliation": {
-        "@id": "_:g47347508393080"
-      },
-      "foaf:firstName": "Kristel",
-      "@type": "foaf:person",
-      "foaf:lastName": "Brusselle"
-    },
-    {
-      "@id": "_:g47347508955600",
-      "schema:affiliation": {
-        "@id": "_:g47347508917860"
-      },
-      "foaf:firstName": "Heidi",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Deynse"
-    },
-    {
-      "@id": "_:g47347508412080",
-      "schema:affiliation": {
-        "@id": "_:g47347508390720"
-      },
-      "foaf:firstName": "Marian",
-      "@type": "foaf:person",
-      "foaf:lastName": "Verbeek"
-    },
-    {
-      "@id": "_:g47347508390720",
-      "foaf:name": "VVSG",
-      "foaf:homepage": {
-        "@id": "http://www.vvsg.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftStemming",
-      "rdfs:label": [
-        {
-          "@value": "heeft stemming",
-          "@language": "nl"
-        },
-        {
-          "@value": "has vote",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "A vote taking place during the handling of the agenda item.",
-          "@language": "en"
-        },
-        {
-          "@value": "Een stemming die plaatsvond tijdens de behandeling van het agendapunt.",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      }
-    },
-    {
-      "@id": "_:g47347507948640",
-      "schema:affiliation": {
-        "@id": "_:g47347507935400"
-      },
-      "foaf:firstName": "Fie",
-      "foaf:mbox": {
-        "@id": "mailto:fie.vandamme@ugent.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Vandamme"
-    },
-    {
-      "@id": "_:g47347507935400",
-      "foaf:name": "imec-MICT-UGent",
-      "foaf:homepage": {
-        "@id": "https://www.ugent.be/ps/communicatiewetenschappen/mict"
-      }
-    },
-    {
-      "@id": "_:g47347508615260",
-      "foaf:name": "Stad Gent",
-      "foaf:homepage": {
-        "@id": "http://stad.gent"
-      }
-    },
-    {
-      "@id": "_:g47347508525760",
-      "schema:affiliation": {
-        "@id": "_:g47347508504560"
-      },
-      "foaf:firstName": "Anja",
-      "@type": "foaf:person",
-      "foaf:lastName": "Cosijns"
-    },
-    {
-      "@id": "_:g47347508504560",
-      "foaf:name": "Herzele",
-      "foaf:homepage": {
-        "@id": "http://www.herzele.be"
-      }
-    },
-    {
-      "@id": "_:g47347508519940",
-      "schema:affiliation": {
-        "@id": "_:g47347505044800"
-      },
-      "foaf:firstName": "Tom",
-      "@type": "foaf:person",
-      "foaf:lastName": "Cocquyt"
-    },
-    {
-      "@id": "_:g47347508981720",
-      "schema:affiliation": {
-        "@id": "_:g47347508959640"
-      },
-      "foaf:firstName": "Heidi",
-      "foaf:mbox": {
-        "@id": "mailto:heidi.godderis@bz.vlaanderen.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Godderis"
-    },
-    {
-      "@id": "_:g47347508959640",
-      "foaf:name": "Agentschap Binnenlands Bestuur",
-      "foaf:homepage": {
-        "@id": "http://binnenland.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "_:g47347508736440",
-      "schema:affiliation": {
-        "@id": "_:g47347508707000"
-      },
-      "foaf:firstName": "Jonas",
-      "@type": "foaf:person",
-      "foaf:lastName": "Tamsyn"
-    },
-    {
-      "@id": "_:g47347497064880",
-      "schema:affiliation": {
-        "@id": "_:g47347509093540"
-      },
-      "foaf:firstName": "Veronique",
-      "foaf:mbox": {
-        "@id": "mailto:veronique.volders@bz.vlaanderen.be"
-      },
-      "@type": "foaf:person",
-      "foaf:lastName": "Volders"
-    },
-    {
-      "@id": "_:g47347508804600",
-      "schema:affiliation": {
-        "@id": "_:g47347508812740"
-      },
-      "foaf:firstName": "Sophie",
-      "@type": "foaf:person",
-      "foaf:lastName": "Podevyn"
-    },
-    {
-      "@id": "_:g47347504912180",
-      "schema:affiliation": {
-        "@id": "_:g47347504896540"
-      },
-      "foaf:firstName": "Danny",
-      "@type": "foaf:person",
-      "foaf:lastName": "Dewelde"
-    },
-    {
-      "@id": "_:g47347508088400",
-      "schema:affiliation": {
-        "@id": "_:g47347508105220"
-      },
-      "foaf:firstName": "Micheline",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Bogaert"
-    },
-    {
-      "@id": "_:g47347508035380",
-      "schema:affiliation": {
-        "@id": "_:g47347508051020"
-      },
-      "foaf:firstName": "Chris",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Molle"
-    },
-    {
-      "@id": "_:g47347508861120",
-      "schema:affiliation": {
-        "@id": "_:g47347508878840"
-      },
-      "foaf:firstName": "Renée",
-      "@type": "foaf:person",
-      "foaf:lastName": "Cambré"
-    },
-    {
-      "@id": "_:g47347501309420",
-      "schema:affiliation": {
-        "@id": "_:g47347499676500"
-      },
-      "foaf:firstName": "Reynder",
-      "@type": "foaf:person",
-      "foaf:lastName": "Bierens"
-    },
-    {
-      "@id": "_:g47347508600180",
-      "schema:affiliation": {
-        "@id": "_:g47347508615260"
-      },
-      "foaf:firstName": "Sylvie",
-      "@type": "foaf:person",
-      "foaf:lastName": "Roos"
-    },
-    {
-      "@id": "_:g47347509093580",
-      "schema:affiliation": {
-        "@id": "_:g47347502197440"
-      },
-      "foaf:firstName": "Niels",
-      "@type": "foaf:person",
-      "foaf:lastName": "Manshanden"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
-      "rdfs:label": [
-        {
-          "@value": "has session report",
-          "@language": "en"
-        },
-        {
-          "@value": "heeft zittingsverslag",
-          "@language": "nl"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "http://purl.org/vocab/vann/usageNote": [
-        {
-          "@value": "Bijvoorbeeld een transcript of audio- of video-opname.",
-          "@language": "nl"
-        },
-        {
-          "@value": "For example: a transcript, audio recording or video recording.",
-          "@language": "en"
-        }
-      ],
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/besluit#Zitting"
       },
       "@type": "owl:ObjectProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Een verslag van de zitting.",
-          "@language": "nl"
-        },
-        {
-          "@value": "A report of the session.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "foaf:Document"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#openbaar",
-      "rdfs:label": [
-        {
-          "@value": "public",
-          "@language": "en"
-        },
-        {
-          "@value": "openbaar",
-          "@language": "nl"
-        }
-      ],
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Geeft aan of de bespreking effectief openbaar verlopen is.",
-          "@language": "nl"
-        },
-        {
-          "@value": "Indicates whether the handling effectively happened in public.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "xsd:boolean"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/besluit#aantalOnthouders",
-      "rdfs:label": [
-        {
-          "@value": "aantal onthouders",
-          "@language": "nl"
-        },
-        {
-          "@value": "number of abstentions",
-          "@language": "en"
-        }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/besluit"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/besluit#Stemming"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:comment": [
-        {
-          "@value": "Het aantal stemmers dat als onthouding heeft gestemd.",
-          "@language": "nl"
-        },
-        {
-          "@value": "The number of voters that abstained.",
-          "@language": "en"
-        }
-      ],
-      "rdfs:range": {
-        "@id": "xsd:integer"
-      }
-    },
-    {
-      "@id": "_:g47347509093540",
-      "foaf:name": "Agentschap Binnenlands Bestuur",
-      "foaf:homepage": {
-        "@id": "http://binnenland.vlaanderen.be/"
       }
     }
   ]
