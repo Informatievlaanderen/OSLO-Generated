@@ -5,7 +5,7 @@
 
 <head>
               
-  <title>Verkeersbordendatabank</title>
+  <title>Verkeersborden</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,7 +44,7 @@
         <div class="layout layout--wide">
           <div class="grid u-hr">
             <div class="col--9-12 col--1-1--s">
-              <h1 class="h1">Verkeersbordendatabank</h1>
+              <h1 class="h1">Verkeersborden</h1>
               <div class="head" role="contentinfo" id="respecHeader">
                 <dl>
                   <dt>Laatste aanpassing</dt>
@@ -85,7 +85,7 @@
                     <span typeof="foaf:Person">
                       <span class="p-name fn" property="foaf:lastName">Tuerlinckx</span>,
                       <span class="p-name fn" property="foaf:firstName">Stephen</span>
-                      - <span class="p-org org h-org h-card">Agentschap Wegen en Verkeer</span>
+                      - <span class="p-org org h-org h-card">Departement Mobiliteit en Openbare Werken</span>
                     </span>
                   </dd>
                   
@@ -185,12 +185,11 @@
             <div class="region" id="introduction">
               <div class="introduction typography">
               
-<p>Dit document beschrijft een <strong>applicatieprofiel</strong>, in dit geval <strong>Verkeersbordendatabank</strong>.
+<p>Dit document beschrijft het <strong>applicatieprofiel</strong> voor het domein van de <strong>statische verticale Verkeersborden</strong>.
 Het applicatieprofiel is ontwikkeld binnen het project
 <a href="http://lokaalbestuur.vlaanderen.be/lokale-besluiten-als-gelinkte-open-data">Lokale Besluiten als Gelinkte
-Open Data</a> en laat toe om de verkeersbordendatabank gelinkt te ontsluiten zodat besluiten van lokale besturen hiermee kunnen linken.
-Het beantwoordt de vraag over hoe het corresponderende domeinmodel in de praktijk kan toegepast worden.
-Daarbij worden de beperkingen (kardinaliteit, codelijsten) toegelicht en de overeenkomstige (RDF) termen opgelijst.
+Open Data</a>.
+Dit applicatieprofiel beschrijft een informatiemodel om opstellingen van verkeersborden op het openbaar domein zodanig te beschrijven dat de gegevens kunnen uitgewisseld worden ongeacht de toepassing of de context van de toepassing.
 </p>
 
               </div>
@@ -199,11 +198,22 @@ Daarbij worden de beperkingen (kardinaliteit, codelijsten) toegelicht en de over
             <div class="region region--no-space-top typography" id="summary">
                 <h2 class="h2" aria-level="1" role="heading" id="h2_sotd">Samenvatting</h2>
                 
-    <p>Dit applicatieprofiel beschrijft een informatiemodel om opstellingen van verkeersborden op het openbaar domein gelinkt op te stellen en te delen. Enerzijds beschrijft dit model basisentiteiten (Opstelling, Steun, Bevestiging en Verankering) om het fysieke aspect van een verkeersbordopstelling te beschrijven, anderzijds wordt er dieper ingegaan op de betekenis van dit fysieke verkeersbord met de entiteit Verkeerbordbasis. Wat er beslist wordt in een lokaal besluit slaat op deze laatste.</p>
+    <p>Vertrekkend vanuit het LBLOD project is het applicatieprofiel opgezet als gemeenschappelijk datamodel enerzijds voor de verwijzing naar verkeersborden in de besluiten van lokale besturen over de organisatie van het verkeer en plaatsing van verkeerssignalisatie (de zogenaamde aanvullende en tijdelijke reglementen en signalisatievergunningen), en anderzijds voor de ondubbelzinnig referentie aan te plaatsen of geplaatste verkeersborden in functie van technische werkzaamheden, routeplanning en de inventarisatie zoals in verkeersborden.vlaanderen en mobiliteitsanalyses.  Het profiel zal toelaten dat gegevens uit een geografisch ingetekende signalisatie maximaal kunnen overgebracht worden naar besluitvormende documenten en omgekeerd.</p>
 
-    <p>Verkeersbord en Verkeersbordbasis zijn opgesplitst, omdat een fysiek verkeersbord meerdere verkeersborden kan bevatten op hetzelfde vlak. Verkeersbordbasis slaat hier dus op zijn conceptuele vorm en Verkeersbord op de fysieke vorm zoals aangegeven in OSLO-OpenbaarDomein.</p>
+    <p>Als basis voor dit model is terug gegrepen naar het datamodel van <a href="https://github.com/WegenenVerkeer/verkeersborden-sync">verkeersborden.vlaanderen</a>, het applicatieprofiel van LBLOD <a href="https://data.vlaanderen.be/doc/applicatieprofiel/besluit-mobiliteit/">Besluit Mobiliteit<a> en de <a href="https://data.vlaanderen.be/doc/applicatieprofiel/infrastructuurcataloog/">Objectcatalogus infrastructuurelementen</a> van OSLO Openbaar Domein. Doorheen de verschillende werkgroepen is gekomen tot een model dat bruikbaar is in de toepassingscontexten van zowel de regelgeving als technisch onderhoud.</p>
 
-    <p>Dit model stelt voor om een gecontroleerde lijst op te bouwen van verkeersborden. Verkeersbord 'F1' is bijvoorbeeld een concept. Sommige borden, zoals wegwijzers (bv.: F29), vragen een specifieke invulling. Verkeersbordbasis stelt hierbij de lokale implementatie voor van dit soort verkeersbord met als 'variabel opschrift' wat er op het bord komt.</p>
+    <p>Enerzijds beschrijft dit datamodel basisentiteiten zoals Opstelling, Steun, Bevestiging en Verankering naast het gegeven van het <a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement">Infrastructuurelement</a>, dat overgenomen wordt uit het vocabularium van het Openbaar Domein om de fysieke aspecten van een verkeersbordopstelling te beschrijven.  
+    Anderzijds schrijft het profiel zich in in het applicatieprofiel voor <a href="https://data.vlaanderen.be/doc/applicatieprofiel/besluit-mobiliteit/">besluiten over mobiliteit</a> voor het aangeven van de legitieme gronden voor de plaatsing van verkeersborden, maar verdiept daarin ook de beschrijving van de betekenis van het verkeersbord met de entiteit Verkeersteken.
+    </p>
+
+    <p>Het ene luik richt zich op het registreren van de nodige data voor effectieve plaatsing, onderhoud, herstelling en beheer. Hier wordt het antwoord gegeven op een vraag als: welke gegevens zijn er nodig om de beschadigde borden op een bepaalde locatie te vervangen. Het andere luik richt zich op het registreren van de nodige referenties voor de verantwoorde legitimering van de plaatsing. Hier wordt het antwoord gegeven op een vraag als: vanwaar haalt het verkeersbord op die locatie zijn verordende kracht?</p>
+
+    <p>Het kernbegrip aan de technische zijde is Infrastructuurelement. Het fysieke verkeersbord is daar trouwens een subklasse van, evenals alle mogelijke entiteiten in het openbaar domein  waaraan een verkeersbord kan zijn bevestigd. Het kernbegrip aan de regulerende zijde is verkeersteken.  Verkeerstekens kunnen van 3 verschillende types zijn zoals in de wegcode aangegeven: verkeersborden, verkeerslichten en wegmarkeringen. Het fysieke Verkeersbord, Wegmarkering en Verkeerslicht zijn dan een realisatie van dit Verkeersteken zoals aangegeven in het diagram. In dit model richten we ons op de verkeerstekens die als verkeersbord worden opgesteld. Ze zijn de concrete instantiatie van een bepaald bij wet gedefinieerd verkeersbordconcept, op een bepaalde locatie, in uitvoering van een bepaalde als besluit genotuleerde mobiliteitsmaatregel. Indien het verkeersbordconcept een variabel opschrift voorschrijft, krijgt het een invulling op basis van het besluit. (bv. C43 kan voor de snelheidsbeperking verschillende getallen dragen zoals ‘30’, ‘50’)</p>
+
+    <p>Het geheel van de bij wet gedefinieerde verkeersborden (Verkeersbordconcept) vormt een gecontroleerde lijst of een kennissysteem (<a href="https://www.w3.org/TR/skos-reference/">SKOS</a>). Typisch zal in een toepassingsomgeving deze lijst aan de gebruiker aangereikt worden om de unieke referenties naar een bepaald bord te hergebruiken in een besluit of bij de intekening op een kaart. 
+    Het verkeersteken is de atomaire voorstelling van een verkeersbord op een bepaald adres en/of volgens een plaatsbeschrijving. Zo kan het zijn dat het (fysieke) verkeersbord meerdere verkeerstekens bevat. Het verkeersbord heeft bepaalde fysieke kenmerken, al dan niet volgens vastgelegde standaarden zoals in het standaard bestek 250, en is ofwel bevestigd aan een daarvoor bestemde steun of aan ander bestaand <a href="https://data.vlaanderen.be/doc/applicatieprofiel/infrastructuurcataloog/">infrastructuurelement</a> zoals een lataarnpaal, verkeerslicht, pijler, borstwering, enz.</p>
+
+    <p>Het geheel van de verkeersborden op een bepaalde locatie wordt aangeduid als een opstelling. De verkeersborden op één opstelling kunnen verschillende aanzichten hebben, ttz. kunnen bedoeld zijn voor verschillende wegsegmenten/verkeersrichtingen. </p>
 
             </div>
 
@@ -220,7 +230,7 @@ Dit document werd gepubliceerd als Ontwerpdocument. De specificatie zoals in dit
 <p>
 Dit document is bedoeld om uit te groeien tot een standaard in het beschreven domein. Desalniettemin heeft het op dit ogenblik geen officieel statuut en vertegenwoordigt het geen consensus binnen OSLO.
 </p>                                                                  
-<p>Feedback op deze specificatie kan gegeven worden als een topic in onze <a href="https://github.com/Informatievlaanderen/OSLO-Public-Discussion">publieke reviewdiscussielijst</a>.</p>   
+<p>Feedback op deze specificatie kan gegeven worden als een topic in onze <a href="https://github.com/Informatievlaanderen/OSLO-Discussion">publieke reviewdiscussielijst</a>.</p>   
 
               </section>
             </div>
@@ -269,18 +279,25 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                     <p>In dit document wordt correct gebruik van de volgende entiteiten toegelicht:
                       <br />
                       |
+                      <a href="#Afsluiting">Afsluiting</a> |
                       <a href="#Artikel wegcode">Artikel wegcode</a> |
                       <a href="#Bevestiging">Bevestiging</a> |
+                      <a href="#Galgsteun">Galgsteun</a> |
                       <a href="#Infrastructuurelement">Infrastructuurelement</a> |
+                      <a href="#Mobiliteitsmaatregel">Mobiliteitsmaatregel</a> |
+                      <a href="#Muurarmatuur">Muurarmatuur</a> |
                       <a href="#Opstelling">Opstelling</a> |
+                      <a href="#SignalisatieEnLeidingenportiek">SignalisatieEnLeidingenportiek</a> |
                       <a href="#Signalisatievergunning">Signalisatievergunning</a> |
                       <a href="#Steun">Steun</a> |
-                      <a href="#Steun aan gevel of muur">Steun aan gevel of muur</a> |
                       <a href="#Verankering">Verankering</a> |
                       <a href="#Verkeersbord">Verkeersbord</a> |
                       <a href="#Verkeersbordcategorie">Verkeersbordcategorie</a> |
                       <a href="#Verkeersbordconcept">Verkeersbordconcept</a> |
+                      <a href="#Verkeerslicht">Verkeerslicht</a> |
                       <a href="#Verkeersteken">Verkeersteken</a> |
+                      <a href="#Verlichtingspaal">Verlichtingspaal</a> |
+                      <a href="#Wegmarkering">Wegmarkering</a> |
                     </p>
                   </div>
                   
@@ -289,8 +306,8 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
               </div>
             </div>
             <div class="region region--no-space-top">
-              <a href="/cms/ap/verkeersbordendatabank/overview.jpg" target="_blank">
-                 <img src="/cms/ap/verkeersbordendatabank/overview.jpg" />
+              <a href="/cms/ap/verkeersborden/overview.jpg" target="_blank">
+                 <img src="/cms/ap/verkeersborden/overview.jpg" />
               </a>
             </div>
             <div class="region region--no-space-top">
@@ -298,10 +315,25 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
+              <h3 class="h3" id="Afsluiting"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Afsluiting" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Afsluiting" data-placement="right">Afsluiting</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Op het terrein ondubbelzinnig aanwijsbare en permanent verankerde scheiding.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
+                    
+                  </dl>
+                </div>
+                
+            </div>
+            
+            <div class="region region--no-space-top">
               <h3 class="h3" id="Artikel wegcode"><a href="http://data.europa.eu/eli/ontology#LegalResourceSubdivision" data-toggle="tooltip" data-content="http://data.europa.eu/eli/ontology#LegalResourceSubdivision" data-placement="right">Artikel wegcode</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Een deel van een rechtsgrond,op een arbitrair niveau van precisie,zoals een hoofdstuk,artikel,paragraaf of lijst element.</dd>
+                    <dt>Beschrijving</dt><dd>Een deel van een rechtsgrond, op een arbitrair niveau van precisie, zoals een hoofdstuk,artikel,paragraaf of lijst element.</dd>
                     
                     <dt>Gebruik</dt><dd>Bijvoorbeeld: artikel 12.1 Verkeersborden F1, F1a of F1b...</dd>
                     
@@ -353,7 +385,7 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                             bevestigt aan</a>
                           </code>
                         </td>
-                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-placement="right">Infrastructuurelement</a></td>
+                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-placement="right">OSLO-OpenbaarDomein::Infrastructuurelement</a></td>
                         <td>1</td>
                         <td property="rdfs:comment">Infrastructuurelement waaraan de bevestiging is bevestigd.</td>
                         <td property="vann:usageNote"></td>
@@ -381,7 +413,7 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                             hangt op</a>
                           </code>
                         </td>
-                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-placement="right">Verkeersbord</a></td>
+                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-placement="right">OSLO-OpenbaarDomein::Verkeersbord</a></td>
                         <td>1</td>
                         <td property="rdfs:comment">Verkeersbord die met deze bevestiging is opgehangen.</td>
                         <td property="vann:usageNote"></td>
@@ -409,6 +441,21 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
+              <h3 class="h3" id="Galgsteun"><a href="https://data.vlaanderen.be/ns/mobiliteit#Galgsteun" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Galgsteun" data-placement="right">Galgsteun</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Elke overspanning van een gedeelte van de wegbaan, watergang of spoorbaan waarbij slechts aan één kant gesteund wordt waarbij signalisatieborden werden aangebracht.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
+                    
+                  </dl>
+                </div>
+                
+            </div>
+            
+            <div class="region region--no-space-top">
               <h3 class="h3" id="Infrastructuurelement"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-placement="right">Infrastructuurelement</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
@@ -427,7 +474,6 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                       <a href="#Infrastructuurelement%3Amateriaal">materiaal</a>, 
                       <a href="#Infrastructuurelement%3Aplaatsingsdatum">plaatsingsdatum</a>, 
                       <a href="#Infrastructuurelement%3Aproductiedatum">productiedatum</a>, 
-                      <a href="#Infrastructuurelement%3Averankerd%20met">verankerd met</a>, 
                       <a href="#Infrastructuurelement%3Averwijderingsdatum">verwijderingsdatum</a>.</dd>
                     
                   </dl>
@@ -588,20 +634,6 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                         <td></td>
                       </tr>
                     
-                      <tr id="Infrastructuurelement%3Averankerd%20met" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet">
-                        <td>
-                          <code property="rdfs:label">
-                            <a href="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet" data-placement="right">
-                            verankerd met</a>
-                          </code>
-                        </td>
-                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-placement="right">Verankering</a></td>
-                        <td>0...1</td>
-                        <td property="rdfs:comment">Waarmee het infrastructuurelement verankerd is.</td>
-                        <td property="vann:usageNote"></td>
-                        <td></td>
-                      </tr>
-                    
                       <tr id="Infrastructuurelement%3Averwijderingsdatum" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/openbaardomein#einddatum">
                         <td>
                           <code property="rdfs:label">
@@ -623,10 +655,74 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
+              <h3 class="h3" id="Mobiliteitsmaatregel"><a href="https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel" data-placement="right">Mobiliteitsmaatregel</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Maatregel om de beweging en verplaatsing van de weggebruiker op het openbaar domein of privé domein met openbaar karakter te organiseren.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
+                      <a href="#Mobiliteitsmaatregel%3Awordt%20aangeduid%20door">wordt aangeduid door</a>.</dd>
+                    
+                  </dl>
+                </div>
+                
+                <div class="u-table-overflow">
+                  <table class="data-table">
+                    <thead>
+                      <tr class="data-table__header">
+                        <th class="data-table__header-title--sortable data-table__header-title--sortable-active">Eigenschap</th>
+                        <th class="data-table__header-title--sortable">Verwacht Type</th>
+                        <th class="data-table__header-title--sortable">Kardinaliteit</th>
+                        <th class="data-table__header-title--sortable">Beschrijving</th>
+                        <th class="data-table__header-title--sortable">Gebruik</th>
+                        <th class="data-table__header-title--sortable">Codelijst</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="supertype">
+                    
+                      <tr id="Mobiliteitsmaatregel%3Awordt%20aangeduid%20door" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#wordtAangeduidDoor">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#wordtAangeduidDoor" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#wordtAangeduidDoor" data-placement="right">
+                            wordt aangeduid door</a>
+                          </code>
+                        </td>
+                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-placement="right">Verkeersteken</a></td>
+                        <td></td>
+                        <td property="rdfs:comment">Een verkeersteken dat bijdraagt tot de aanduiding van een mobiliteitsmaatregel.</td>
+                        <td property="vann:usageNote"></td>
+                        <td></td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                </div>
+      			  
+            </div>
+            
+            <div class="region region--no-space-top">
+              <h3 class="h3" id="Muurarmatuur"><a href="https://data.vlaanderen.be/ns/mobiliteit#Muurarmatuur" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Muurarmatuur" data-placement="right">Muurarmatuur</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>TODO</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
+                    
+                  </dl>
+                </div>
+                
+            </div>
+            
+            <div class="region region--no-space-top">
               <h3 class="h3" id="Opstelling"><a href="https://data.vlaanderen.be/ns/mobiliteit#Opstelling" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Opstelling" data-placement="right">Opstelling</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Het geheel van verticale verkeerssignalisatie die bevestigd is op dezelfde infrastructuurelementen.</dd>
+                    <dt>Beschrijving</dt><dd>Het geheel van verticale verkeerssignalisatie die bevestigd is op infrastructuurelementen op éénzelfde geolocatie.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
@@ -707,7 +803,7 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                             omvat infrastructuurelement</a>
                           </code>
                         </td>
-                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-placement="right">Infrastructuurelement</a></td>
+                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement" data-placement="right">OSLO-OpenbaarDomein::Infrastructuurelement</a></td>
                         <td>0...*</td>
                         <td property="rdfs:comment">Infrastructuurelement die voor de ondersteuning zorgt in de opstelling.</td>
                         <td property="vann:usageNote"></td>
@@ -721,7 +817,7 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                             omvat verkeersbord</a>
                           </code>
                         </td>
-                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-placement="right">Verkeersbord</a></td>
+                        <td><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-placement="right">OSLO-OpenbaarDomein::Verkeersbord</a></td>
                         <td>1...*</td>
                         <td property="rdfs:comment">Verkeersbord die op de opstelling staat.</td>
                         <td property="vann:usageNote"></td>
@@ -777,6 +873,21 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
+              <h3 class="h3" id="SignalisatieEnLeidingenportiek"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#SignalisatieEnLeidingenportiek" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#SignalisatieEnLeidingenportiek" data-placement="right">SignalisatieEnLeidingenportiek</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Elke overspanning van een gedeelte van de wegbaan, watergang of spoorbaan waarbij verkeersborden werden aangebracht.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
+                    
+                  </dl>
+                </div>
+                
+            </div>
+            
+            <div class="region region--no-space-top">
               <h3 class="h3" id="Signalisatievergunning"><a href="https://data.vlaanderen.be/ns/besluit#Signalisatievergunning" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/besluit#Signalisatievergunning" data-placement="right">Signalisatievergunning</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
@@ -829,13 +940,15 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
               <h3 class="h3" id="Steun"><a href="https://data.vlaanderen.be/ns/mobiliteit#Steun" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Steun" data-placement="right">Steun</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Paal waaraan signalisatie bevestigd kan worden.</dd>
+                    <dt>Beschrijving</dt><dd>Infrastructuurelement van het type paal bedoeld voor het bevestigen van wegsignalisatie.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
                     <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
                       <a href="#Steun%3Abreedte">breedte</a>, 
                       <a href="#Steun%3Adiameter">diameter</a>, 
+                      <a href="#Steun%3Ainwendige%20verlichting">inwendige verlichting</a>, 
+                      <a href="#Steun%3Ais%20verankerd%20met">is verankerd met</a>, 
                       <a href="#Steun%3Alengte">lengte</a>, 
                       <a href="#Steun%3Alengte%20bovengronds">lengte bovengronds</a>, 
                       <a href="#Steun%3Alengte%20ondergronds">lengte ondergronds</a>, 
@@ -885,6 +998,34 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                         <td>0...1</td>
                         <td property="rdfs:comment">Diameter van de steun.</td>
                         <td property="vann:usageNote">Te gebruiken wanneer de vorm cirkelvormig is.</td>
+                        <td></td>
+                      </tr>
+                    
+                      <tr id="Steun%3Ainwendige%20verlichting" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#inwendigeVerlichting">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#inwendigeVerlichting" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#inwendigeVerlichting" data-placement="right">
+                            inwendige verlichting</a>
+                          </code>
+                        </td>
+                        <td><a href="http://www.w3.org/2001/XMLSchema#boolean" data-toggle="tooltip" data-content="http://www.w3.org/2001/XMLSchema#boolean" data-placement="right">Boolean</a></td>
+                        <td>1</td>
+                        <td property="rdfs:comment">Duidt aan of de steun inwendige verlichting bevat.</td>
+                        <td property="vann:usageNote"></td>
+                        <td></td>
+                      </tr>
+                    
+                      <tr id="Steun%3Ais%20verankerd%20met" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet" data-placement="right">
+                            is verankerd met</a>
+                          </code>
+                        </td>
+                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-placement="right">Verankering</a></td>
+                        <td>0...1</td>
+                        <td property="rdfs:comment">Waarmee het infrastructuurelement verankerd is.</td>
+                        <td property="vann:usageNote"></td>
                         <td></td>
                       </tr>
                     
@@ -965,25 +1106,10 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
-              <h3 class="h3" id="Steun aan gevel of muur"><a href="https://data.vlaanderen.be/ns/mobiliteit#SteunAanGevelOfMuur" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#SteunAanGevelOfMuur" data-placement="right">Steun aan gevel of muur</a></h3>
-                <div class="region region--no-space-top">
-                  <dl>
-                    <dt>Beschrijving</dt><dd>Steun die bevestigd is aan een muur of gevel om verticale verkeerssignalisatie aan te brengen.</dd>
-                    
-                    <dt>Eigenschappen</dt>
-                    
-                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
-                    
-                  </dl>
-                </div>
-                
-            </div>
-            
-            <div class="region region--no-space-top">
               <h3 class="h3" id="Verankering"><a href="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verankering" data-placement="right">Verankering</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Bovengrondse en/of ondergrondse elementen die de opstelling ondersteunen.</dd>
+                    <dt>Beschrijving</dt><dd>Bovengrondse en/of ondergrondse elementen die de steun stabiel rechtop zetten.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
@@ -1077,11 +1203,12 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
               <h3 class="h3" id="Verkeersbord"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord" data-placement="right">Verkeersbord</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Wegsignalisatie aangebracht op een element op het openbaar domein (paal, gevel, portiek...) om het verkeer op de openbare weg te regelen en die geen verkeerslicht zijn.</dd>
+                    <dt>Beschrijving</dt><dd>Fysieke drager van het verkeersteken waarvan de betekenis bepaald wordt door een verkeersbordconcept.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
                     <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
+                      <a href="#Verkeersbord%3Aaan%20muur%20zonder%20armatuur">aan muur zonder armatuur</a>, 
                       <a href="#Verkeersbord%3Aaanzicht">aanzicht</a>, 
                       <a href="#Verkeersbord%3Aafbeelding">afbeelding</a>, 
                       <a href="#Verkeersbord%3Aafmeting">afmeting</a>, 
@@ -1108,6 +1235,20 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                     </thead>
 
                     <tbody class="supertype">
+                    
+                      <tr id="Verkeersbord%3Aaan%20muur%20zonder%20armatuur" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur" data-placement="right">
+                            aan muur zonder armatuur</a>
+                          </code>
+                        </td>
+                        <td><a href="http://www.w3.org/2001/XMLSchema#boolean" data-toggle="tooltip" data-content="http://www.w3.org/2001/XMLSchema#boolean" data-placement="right">Boolean</a></td>
+                        <td>1</td>
+                        <td property="rdfs:comment">Duidt aan of het verkeersbord bevestigd is aan een muur zonder armatuur.</td>
+                        <td property="vann:usageNote">Indien er wel een muurarmatuur gebruikt wordt, is deze waarde false.</td>
+                        <td></td>
+                      </tr>
                     
                       <tr id="Verkeersbord%3Aaanzicht" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#aanzicht">
                         <td>
@@ -1280,14 +1421,13 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
               <h3 class="h3" id="Verkeersbordconcept"><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-placement="right">Verkeersbordconcept</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Concept van een bepaalde soort verkeersbord.</dd>
+                    <dt>Beschrijving</dt><dd>Inhoudelijke definitie van de betekenis van een verkeersbord zoals opgenomen in de wegcode.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
                     <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
                       <a href="#Verkeersbordconcept%3Abetekenis">betekenis</a>, 
                       <a href="#Verkeersbordconcept%3Aclassificatie">classificatie</a>, 
-                      <a href="#Verkeersbordconcept%3Aheeft%20gerelateerd%20bord">heeft gerelateerd bord</a>, 
                       <a href="#Verkeersbordconcept%3Aur">ur</a>, 
                       <a href="#Verkeersbordconcept%3Averkeersbordcode">verkeersbordcode</a>.</dd>
                     
@@ -1337,20 +1477,6 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                         <td></td>
                       </tr>
                     
-                      <tr id="Verkeersbordconcept%3Aheeft%20gerelateerd%20bord" typeof="rdfs:Property" resource="http://www.w3.org/2004/02/skos/core#related">
-                        <td>
-                          <code property="rdfs:label">
-                            <a href="http://www.w3.org/2004/02/skos/core#related" data-toggle="tooltip" data-content="http://www.w3.org/2004/02/skos/core#related" data-placement="right">
-                            heeft gerelateerd bord</a>
-                          </code>
-                        </td>
-                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-placement="right">Verkeersbordconcept</a></td>
-                        <td>0...*</td>
-                        <td property="rdfs:comment">Verkeersbordconcept die gerelateerd is aan deze.</td>
-                        <td property="vann:usageNote">Bijvoorbeeld: F1a duidt begin van een bebouwde kom aan en is gerelateerd aan F3a die het einde aanduidt.</td>
-                        <td></td>
-                      </tr>
-                    
                       <tr id="Verkeersbordconcept%3Aur" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#grafischeWeergave">
                         <td>
                           <code property="rdfs:label">
@@ -1386,10 +1512,59 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
             </div>
             
             <div class="region region--no-space-top">
+              <h3 class="h3" id="Verkeerslicht"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeerslicht" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeerslicht" data-placement="right">Verkeerslicht</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Wegsignalisatie dat met behulp van lichtsignalen het regelen van het oprijden van onder andere een gelijkvloerse kruising, de toegang tot bruggen, tunnels en spoorwegovergangen, de toegang tot parkeergarages en -terreinen.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
+                      <a href="#Verkeerslicht%3Arealiseert">realiseert</a>.</dd>
+                    
+                  </dl>
+                </div>
+                
+                <div class="u-table-overflow">
+                  <table class="data-table">
+                    <thead>
+                      <tr class="data-table__header">
+                        <th class="data-table__header-title--sortable data-table__header-title--sortable-active">Eigenschap</th>
+                        <th class="data-table__header-title--sortable">Verwacht Type</th>
+                        <th class="data-table__header-title--sortable">Kardinaliteit</th>
+                        <th class="data-table__header-title--sortable">Beschrijving</th>
+                        <th class="data-table__header-title--sortable">Gebruik</th>
+                        <th class="data-table__header-title--sortable">Codelijst</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="supertype">
+                    
+                      <tr id="Verkeerslicht%3Arealiseert" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#realiseert">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#realiseert" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#realiseert" data-placement="right">
+                            realiseert</a>
+                          </code>
+                        </td>
+                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-placement="right">Verkeersteken</a></td>
+                        <td>1...*</td>
+                        <td property="rdfs:comment">Het verkeersteken dat gerealiseerd werd met dit verkeerslicht.</td>
+                        <td property="vann:usageNote"></td>
+                        <td></td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                </div>
+      			  
+            </div>
+            
+            <div class="region region--no-space-top">
               <h3 class="h3" id="Verkeersteken"><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-placement="right">Verkeersteken</a></h3>
                 <div class="region region--no-space-top">
                   <dl>
-                    <dt>Beschrijving</dt><dd>Voorstelling van een verkeersbord dat overeenstemt met 1 wegcode.</dd>
+                    <dt>Beschrijving</dt><dd>De voorstelling van een aanwijzing ten behoeve van de weggebruikers die verbonden wordt aan het aankondigen of opleggen van een bepaalde verkeersmaatregel zoals bepaald in de wegcode.</dd>
                     
                     <dt>Eigenschappen</dt>
                     
@@ -1400,7 +1575,8 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                       <a href="#Verkeersteken%3Aheeft%20gerelateerd%20bord">heeft gerelateerd bord</a>, 
                       <a href="#Verkeersteken%3Aheeft%20onderbord">heeft onderbord</a>, 
                       <a href="#Verkeersteken%3Aheeft%20verkeersbordconcept">heeft verkeersbordconcept</a>, 
-                      <a href="#Verkeersteken%3Ais%20zonebord">is zonebord</a>, 
+                      <a href="#Verkeersteken%3Ais%20begin%20zone">is begin zone</a>, 
+                      <a href="#Verkeersteken%3Ais%20einde%20zone">is einde zone</a>, 
                       <a href="#Verkeersteken%3Aplaatsbeschrijving">plaatsbeschrijving</a>, 
                       <a href="#Verkeersteken%3Astatus">status</a>, 
                       <a href="#Verkeersteken%3Avariabel%20opschrift">variabel opschrift</a>.</dd>
@@ -1501,22 +1677,36 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
                           </code>
                         </td>
                         <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept" data-placement="right">Verkeersbordconcept</a></td>
-                        <td>1</td>
+                        <td>0...1</td>
                         <td property="rdfs:comment">Algemeen verkeersbordconcept van de verkeersbordbasis.</td>
                         <td property="vann:usageNote"></td>
                         <td></td>
                       </tr>
                     
-                      <tr id="Verkeersteken%3Ais%20zonebord" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#isZonebord">
+                      <tr id="Verkeersteken%3Ais%20begin%20zone" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#isBeginZone">
                         <td>
                           <code property="rdfs:label">
-                            <a href="https://data.vlaanderen.be/ns/mobiliteit#isZonebord" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#isZonebord" data-placement="right">
-                            is zonebord</a>
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#isBeginZone" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#isBeginZone" data-placement="right">
+                            is begin zone</a>
                           </code>
                         </td>
                         <td><a href="http://www.w3.org/2001/XMLSchema#boolean" data-toggle="tooltip" data-content="http://www.w3.org/2001/XMLSchema#boolean" data-placement="right">Boolean</a></td>
                         <td>0...1</td>
-                        <td property="rdfs:comment">Duidt aan of het verkeersbord een zonebord is.</td>
+                        <td property="rdfs:comment">Duidt aan of het verkeersteken het begin van een zone aanduidt.</td>
+                        <td property="vann:usageNote"></td>
+                        <td></td>
+                      </tr>
+                    
+                      <tr id="Verkeersteken%3Ais%20einde%20zone" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#isEindeZone">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#isEindeZone" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#isEindeZone" data-placement="right">
+                            is einde zone</a>
+                          </code>
+                        </td>
+                        <td><a href="http://www.w3.org/2001/XMLSchema#boolean" data-toggle="tooltip" data-content="http://www.w3.org/2001/XMLSchema#boolean" data-placement="right">Boolean</a></td>
+                        <td>1</td>
+                        <td property="rdfs:comment">Duidt aan of het verkeersteken het einde van een zone aanduidt.</td>
                         <td property="vann:usageNote"></td>
                         <td></td>
                       </tr>
@@ -1569,12 +1759,76 @@ Modellicentie Gratis Hergebruik - v1.0</a>.</p>
       			  
             </div>
             
+            <div class="region region--no-space-top">
+              <h3 class="h3" id="Verlichtingspaal"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#Verlichtingspaal" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#Verlichtingspaal" data-placement="right">Verlichtingspaal</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Een openbaar lichtpunt op een paal dat gebruikt wordt om de omgeving te verlichten en waaraan verkeersborden gehangen kunnen worden.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn geen eigenschappen gedefinieerd.</dd>
+                    
+                  </dl>
+                </div>
+                
+            </div>
+            
+            <div class="region region--no-space-top">
+              <h3 class="h3" id="Wegmarkering"><a href="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Wegmarkering" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Wegmarkering" data-placement="right">Wegmarkering</a></h3>
+                <div class="region region--no-space-top">
+                  <dl>
+                    <dt>Beschrijving</dt><dd>Schilderingen aangebracht op het verhard gedeelte van de wegbaan of kleurveranderingen van de verharding die een onderdeel vormen van de verkeerswetgeving.</dd>
+                    
+                    <dt>Eigenschappen</dt>
+                    
+                    <dd>Voor deze entiteit zijn de volgende eigenschappen gedefinieerd:
+                      <a href="#Wegmarkering%3Arealiseert">realiseert</a>.</dd>
+                    
+                  </dl>
+                </div>
+                
+                <div class="u-table-overflow">
+                  <table class="data-table">
+                    <thead>
+                      <tr class="data-table__header">
+                        <th class="data-table__header-title--sortable data-table__header-title--sortable-active">Eigenschap</th>
+                        <th class="data-table__header-title--sortable">Verwacht Type</th>
+                        <th class="data-table__header-title--sortable">Kardinaliteit</th>
+                        <th class="data-table__header-title--sortable">Beschrijving</th>
+                        <th class="data-table__header-title--sortable">Gebruik</th>
+                        <th class="data-table__header-title--sortable">Codelijst</th>
+                      </tr>
+                    </thead>
+
+                    <tbody class="supertype">
+                    
+                      <tr id="Wegmarkering%3Arealiseert" typeof="rdfs:Property" resource="https://data.vlaanderen.be/ns/mobiliteit#realiseert">
+                        <td>
+                          <code property="rdfs:label">
+                            <a href="https://data.vlaanderen.be/ns/mobiliteit#realiseert" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#realiseert" data-placement="right">
+                            realiseert</a>
+                          </code>
+                        </td>
+                        <td><a href="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-toggle="tooltip" data-content="https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken" data-placement="right">Verkeersteken</a></td>
+                        <td>1...*</td>
+                        <td property="rdfs:comment">Het verkeersteken dat gerealiseerd werd met deze wegmarkering.</td>
+                        <td property="vann:usageNote"></td>
+                        <td></td>
+                      </tr>
+                    
+                    </tbody>
+                  </table>
+                </div>
+      			  
+            </div>
+            
 
             
             <div class="region region--no-space-top" id="jsonld">
                 <h2 class="h2" aria-level="1" role="heading" id="h2_sotd">JSON-LD context</h2>
                 
-<p>Een herbruikbare JSON-LD context definitie voor dit applicatieprofiel is terug te vinden op: <a href="https://test.data.vlaanderen.be/context/verkeersbordendatabank.jsonld" target="_blank">https://test.data.vlaanderen.be/context/verkeersbordendatabank.jsonld</a></p>
+<p>Een herbruikbare JSON-LD context definitie voor dit applicatieprofiel is terug te vinden op: <a href="https://data.vlaanderen.be/context/verkeersborden.jsonld" target="_blank">https://data.vlaanderen.be/context/verkeersborden.jsonld</a></p>
 
             </div>
           </div>

@@ -2,14 +2,21 @@
 	"@context":
 	{
 		"Bevestiging":"https://data.vlaanderen.be/ns/mobiliteit#Bevestiging",
-		"Infrastructuurelement":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement",
+		"Galgsteun":"https://data.vlaanderen.be/ns/mobiliteit#Galgsteun",
+		"Mobiliteitsmaatregel":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
+		"Muurarmatuur":"https://data.vlaanderen.be/ns/mobiliteit#Muurarmatuur",
+		"OSLO-OpenbaarDomein::Afsluiting":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Afsluiting",
+		"OSLO-OpenbaarDomein::Infrastructuurelement":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement",
+		"OSLO-OpenbaarDomein::SignalisatieEnLeidingenportiek":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#SignalisatieEnLeidingenportiek",
+		"OSLO-OpenbaarDomein::Verkeersbord":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord",
+		"OSLO-OpenbaarDomein::Verkeerslicht":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeerslicht",
+		"OSLO-OpenbaarDomein::Verlichtingspaal":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#Verlichtingspaal",
+		"OSLO-OpenbaarDomein::Wegmarkering":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Wegmarkering",
 		"Opstelling":"https://data.vlaanderen.be/ns/mobiliteit#Opstelling",
 		"Rechtsgrondonderdeel":"http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
 		"Signalisatievergunning":"https://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
 		"Steun":"https://data.vlaanderen.be/ns/mobiliteit#Steun",
-		"SteunAanGevelOfMuur":"https://data.vlaanderen.be/ns/mobiliteit#SteunAanGevelOfMuur",
 		"Verankering":"https://data.vlaanderen.be/ns/mobiliteit#Verankering",
-		"Verkeersbord":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord",
 		"Verkeersbordcategorie":"http://www.w3.org/2004/02/skos/core#Concept",
 		"Verkeersbordconcept":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept",
 		"Verkeersteken":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
@@ -26,17 +33,21 @@
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isOpgehangenAan",
 			"@type":"https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord"
 		},
-		"Infrastructuurelement.isOpgehangenAan":{
+		"OSLO-OpenbaarDomein::Infrastructuurelement.isOpgehangenAan":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Infrastructuurelement.heeftBevestiging",
 			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Bevestiging"
 		},
-		"Verkeersbord.afmeting":{
+		"OSLO-OpenbaarDomein::Verkeersbord.afmeting":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#afmeting",
 			"@type":"http://www.w3.org/2001/XMLSchema#integer"
 		},
 		"Verkeersteken.status":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordbasis.status",
 			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"aanMuurZonderArmatuur":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
 		},
 		"aanzicht":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#aanzicht",
@@ -103,7 +114,7 @@
 		},
 		"heeftGerelateerdBord":{
 			"@id":"http://www.w3.org/2004/02/skos/core#related",
-			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
 			"@container":"@set"
 		},
 		"heeftOnderbord":{
@@ -114,6 +125,18 @@
 		"heeftVerkeersbordconcept":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftVerkeersbordconcept",
 			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept"
+		},
+		"inwendigeVerlichting":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#inwendigeVerlichting",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"isBeginZone":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isBeginZone",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"isEindeZone":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isEindeZone",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
 		},
 		"isOpgehangenAan":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord.heeftBevestiging",
@@ -127,10 +150,6 @@
 		"isVerankerdMet":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet",
 			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verankering"
-		},
-		"isZonebord":{
-			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isZonebord",
-			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
 		},
 		"kleur":{
 			"@id":"http://dbpedia.org/ontology/colour",
@@ -238,6 +257,10 @@
 		"wanddikte":{
 			"@id":"https://data.vlaanderen.be/ns/mobiliteit#wanddikte",
 			"@type":"http://www.w3.org/2001/XMLSchema#integer"
+		},
+		"wordtAangeduidDoor":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#wordtAangeduidDoor",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
 		}
 	}
 }
