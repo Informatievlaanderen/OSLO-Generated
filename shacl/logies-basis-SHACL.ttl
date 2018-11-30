@@ -1,0 +1,864 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix qb:      <http://purl.org/linked-data/cube#> .
+<https://data.vlaanderen.be/shacl/logies-basis#LogiesShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/Logies> ;
+	sh:property [
+		sh:name "behoortTotToeristischeRegio" ;
+		sh:description "Specifieert tot welke regio het logies behoort." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/behoortTotToeristischeRegio> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/ToeristischeRegio> ;
+	] ;
+	sh:property [
+		sh:name "heeftMedia" ;
+		sh:description "Media gerelateerd aan het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftMedia> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/MediaObject> ;
+	] ;
+	sh:property [
+		sh:name "heeftVerhuurEenheid" ;
+		sh:description "Een verhuureenheid die gerelateerd is aan een logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftVerhuurEenheid> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Verhuureenheid> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftRegistratie" ;
+		sh:description "De registratie van het logies bij Toerisme Vlaanderen." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftRegistratie> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Registratie> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftOfficieleBeoordeling" ;
+		sh:description "Een officiele beoordeling voor een logies, door een erkende organisatie." ;
+		sh:path <http://schema.org/starRating> ;
+		sh:class <http://schema.org/Rating> ;
+	] ;
+	sh:property [
+		sh:name "heeftBeschrijving" ;
+		sh:description "Beschrijving van het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftBeschrijving> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Beschrijving> ;
+	] ;
+	sh:property [
+		sh:name "heeftContactInformatie" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/contactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+	] ;
+	sh:property [
+		sh:name "heeftFaciliteit" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/amenityFeature> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Faciliteit> ;
+	] ;
+	sh:property [
+		sh:name "heeftAlternatieveUitbating" ;
+		sh:description "De relatie tussen een logies en andere, commerciele uitbating van het logies. Bijvoorbeeld een B&B die ook als vakantiewoning wordt verhuurt." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftAlternatieveUitbating> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Logies> ;
+	] ;
+	sh:property [
+		sh:name "alternatieveNaam" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/alternativeName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalSlaapplaatsen" ;
+		sh:description "Totale aantal personen dat een logies kan bedienen." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/aantalSlaapplaatsen> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalVerhuureenheden" ;
+		sh:description "Totale aantal eenheden waarover het logies beschikt." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/aantalVerhuureenheden> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "identificator" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/adms#identifier> ;
+		sh:class <http://www.w3.org/ns/adms#Identifier> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doelpubliek" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/audience> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "capaciteit" ;
+		sh:description "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/capaciteit> ;
+		sh:class <http://schema.org/QuantitativeValue> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatie" ;
+		sh:description "De geometrische locatie van het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/locatie> ;
+		sh:class <http://www.w3.org/ns/locn#Geometry> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/name> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#VerhuureenheidShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/Verhuureenheid> ;
+	sh:property [
+		sh:name "heeftKamer" ;
+		sh:description "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/heeftKamer> ;
+		sh:class <http://schema.org/Room> ;
+	] ;
+	sh:property [
+		sh:name "heeftFaciliteit" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/amenityFeature> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Faciliteit> ;
+	] ;
+	sh:property [
+		sh:name "aantalSlaapplaatsen" ;
+		sh:description "Totale aantal personen dat een logies of verhuureenheid kan bedienen." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/aantalSlaapplaatsen> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalKamers" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/numberOfRooms> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/name> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatie" ;
+		sh:description "De geometrische locatie van het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/locatie> ;
+		sh:class <http://www.w3.org/ns/locn#Geometry> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "capaciteit" ;
+		sh:description "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/capaciteit> ;
+		sh:class <http://schema.org/QuantitativeValue> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#BeoordelingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/Rating> ;
+	sh:property [
+		sh:name "heeftAuteur" ;
+		sh:description "de organisatie die de beoordeling uitvaardigt." ;
+		sh:path <http://schema.org/author> ;
+		sh:class <http://www.w3.org/ns/regorg#RegisteredOrganization> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "hoogsteBeoordeling" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/bestRating> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "laagsteBeoordeling" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/worstRating> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beoordeling" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/ratingValue> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/ContactPoint> ;
+	sh:property [
+		sh:name "aanschrijfvorm" ;
+		sh:description "TODO" ;
+		sh:path <http://ww.w3.org/2006/vcard/ns#honorific-prefix> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactnaam" ;
+		sh:description "TODO" ;
+		sh:path <http://xmlns.com/foaf/0.1/name> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "email" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/email> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "telefoon" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/telephone> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "fax" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/faxNumber> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "website" ;
+		sh:description "TODO" ;
+		sh:path <http://xmlns.com/foaf/0.1/page> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "openingsuren" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/openingHours> ;
+		sh:class <http://schema.org/OpeningHoursSpecification> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschikbaarheid" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/hoursAvailable> ;
+		sh:class <http://schema.org/OpeningHoursSpecification> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adres" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/locn#address> ;
+		sh:class <http://www.w3.org/ns/locn#Address> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#AdresShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/adres#Adres> ;
+	sh:property [
+		sh:name "huisnummer" ;
+		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#huisnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "busnummer" ;
+		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#busnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "positie" ;
+		sh:description "Positie van een karakeristiek punt dat de positie van het adres vertegenwoordigt volgens een bepaalde specificatie en inclusief informatie over de herkomst van de positie." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#positie> ;
+		sh:class <https://data.vlaanderen.be/ns/generiek#GeografischePositie> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "officieelToegekend" ;
+		sh:description "Geeft aan of het adres officieel door de adresbeheerder is toegekend." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#officieelToegekend> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "status" ;
+		sh:description "Actuele toestand van het adres." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#Adres.status> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftGemeentenaam" ;
+		sh:description "TODO" ;
+		sh:path <https://data.vlaanderen.be/ns/adres#heeftGemeentenaam> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Gemeentenaam> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftStraatnaam" ;
+		sh:description "TODO" ;
+		sh:path <https://data.vlaanderen.be/ns/adres#heeftStraatnaam> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Straatnaam> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftPostinfo" ;
+		sh:description "TODO" ;
+		sh:path <https://data.vlaanderen.be/ns/adres#heeftPostinfo> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Postinfo> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#GeregistreerdeOrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/regorg#RegisteredOrganization> ;
+	sh:property [
+		sh:name "registratie" ;
+		sh:description "Identificator dat de organisatie verkreeg bij registratie." ;
+		sh:path <http://www.w3.org/ns/regorg#registration> ;
+		sh:class <http://www.w3.org/ns/adms#Identifier> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "wettelijkeNaam" ;
+		sh:description "Wettelijk geregistreerde naam vd organisatie." ;
+		sh:path <http://www.w3.org/ns/regorg#legalName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "rechtsvorm" ;
+		sh:description "Juridisch statuut van de geregistreerde organisatie." ;
+		sh:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "rechtstoestand" ;
+		sh:description "Status van de geregistreerde organisatie." ;
+		sh:path <https://data.vlaanderen.be/ns/organisatie#rechtstoestand> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "rechtspersoonlijkheid" ;
+		sh:description "Geeft aan of de rechtspersoonlijkheid van de geregistreerde organisatie deze is van een natuurlijk persoon of van een rechtspersoon. " ;
+		sh:path <https://data.vlaanderen.be/ns/organisatie#rechtspersoonlijkheid> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#ToeristischeRegioShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/ToeristischeRegio> ;
+	sh:property [
+		sh:name "label" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#BeschrijvingShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/Beschrijving> ;
+	sh:property [
+		sh:name "waarde" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/value> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#MediaObjectShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/MediaObject> ;
+	sh:property [
+		sh:name "contentUrl" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/contentUrl> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "caption" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/caption> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "thumbnailUrl" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/thumbnailUrl> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "taal" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/inLanguage> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "hoogte" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/height> ;
+		sh:class <http://schema.org/QuantitativeValue> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "breedte" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/width> ;
+		sh:class <http://schema.org/QuantitativeValue> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "formaat" ;
+		sh:description "TODO" ;
+		sh:path <http://purl.org/dc/terms/format> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatie" ;
+		sh:description "De geometrische locatie van het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/locatie> ;
+		sh:class <http://www.w3.org/ns/locn#Geometry> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/Faciliteit> ;
+	sh:property [
+		sh:name "isSpecialisatieVan" ;
+		sh:description "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/isSpecialisatieVan> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Faciliteit> ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/name> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschikbaarVan" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/validFrom> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschikbaarTot" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/validThrough> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#KwantitatieveWaardeShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/QuantitativeValue> ;
+	sh:property [
+		sh:name "waarde" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/value> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "eenheid" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/unitText> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "genormeerdeEenheid" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/unitCode> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#KamerShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/Room> ;
+	sh:property [
+		sh:name "heeftFaciliteit" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/amenityFeature> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/Faciliteit> ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "TODO" ;
+		sh:path <http://purl.org/dc/terms/type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "verdieping" ;
+		sh:description "Het niveau waarop de kamer zich bevind." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/verdieping> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Address> ;
+	sh:property [
+		sh:name "verwijstNaar" ;
+		sh:description "Adres waarvan de adresvoorstelling is afgeleid." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#verwijstNaar> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Adres> ;
+	] ;
+	sh:property [
+		sh:name "volledigAdres" ;
+		sh:description "Het complete adres in één string, al dan niet geformatteerd." ;
+		sh:path <http://www.w3.org/ns/locn#fullAddress> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postbus" ;
+		sh:description "Postbusnummer in een postkantoor." ;
+		sh:path <http://www.w3.org/ns/locn#poBox> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "straatnaam" ;
+		sh:description "Straatnaam vh adres." ;
+		sh:path <http://www.w3.org/ns/locn#thoroughfare> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatieaanduiding" ;
+		sh:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc." ;
+		sh:path <http://www.w3.org/ns/locn#locatorDesignator> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "huisnummer" ;
+		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "busnummer" ;
+		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatienaam" ;
+		sh:description "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt." ;
+		sh:path <http://www.w3.org/ns/locn#locatorName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adresgebied" ;
+		sh:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is" ;
+		sh:path <http://www.w3.org/ns/locn#addressArea> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postnaam" ;
+		sh:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
+		sh:path <http://www.w3.org/ns/locn#postName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gemeentenaam" ;
+		sh:description "Gemeentenaam vh adres." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "administratieveEenheidNiveau2" ;
+		sh:description "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat." ;
+		sh:path <http://www.w3.org/ns/locn#adminUnitL2> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "administratieveEenheidNiveau1" ;
+		sh:description "Hoogste Administratieve eenheid vh adres, doorgaans een land." ;
+		sh:path <http://www.w3.org/ns/locn#adminUnitL1> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "land" ;
+		sh:description "Land waarin het adres gelegen is." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#land> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postcode" ;
+		sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
+		sh:path <http://www.w3.org/ns/locn#postCode> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#RegistratieShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/Registratie> ;
+	sh:property [
+		sh:name "registratieStatus" ;
+		sh:description "Status van het geregistreerde logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies/registratieStatus> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "creatie" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/prov#qualifiedGeneration> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "TODO" ;
+		sh:path <dcterms:type> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "identificator" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/adms#identifier> ;
+		sh:class <http://www.w3.org/ns/adms#Identifier> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opheffing" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/prov#qualifiedInvalidation> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies/CreatiefWerk> ;
+	sh:property [
+		sh:name "isVertalingVan" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/translationOfWork> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/CreatiefWerk> ;
+	] ;
+	sh:property [
+		sh:name "isGebaseerdOp" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/exampleOfWork> ;
+		sh:class <https://data.vlaanderen.be/ns/logies/CreatiefWerk> ;
+	] ;
+	sh:property [
+		sh:name "publicatieDatum" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/datePublished> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "bewerkt" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/dateModified> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doelpubliek" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/audience> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/name> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "TODO" ;
+		sh:path <https://schema.org/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "licentie" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/license> ;
+		sh:class <http://purl.org/dc/terms/LicenseDocument> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#GeometrieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
+	sh:property [
+		sh:name "wkt" ;
+		sh:description "TODO" ;
+		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gml" ;
+		sh:description "TODO" ;
+		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#PuntShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
+	sh:property [
+		sh:name "wgs84Latitude" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "wgs84Longitude" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
