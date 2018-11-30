@@ -1,24 +1,724 @@
 {
   "@context": {
-    "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dc": "http://purl.org/dc/terms/",
-    "foaf": "http://xmlns.com/foaf/0.1/",
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "prov": "http://www.w3.org/ns/prov#",
-    "schema": "http://schema.org/",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
-    "dc11": "http://purl.org/dc/elements/1.1/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "vcard": "http://www.w3.org/2006/vcard/ns#",
-    "org": "http://www.w3.org/ns/org#"
+    "schema": "http://schema.org/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dc": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "org": "http://www.w3.org/ns/org#",
+    "dc11": "http://purl.org/dc/elements/1.1/",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
   },
   "@graph": [
+    {
+      "@id": "prov:Location",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Locatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/sf#Polygon",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Polygoon",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "vcard:honorific-prefix",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "aanschrijfprefix",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "schema:email",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "email",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "rdfs:Literal",
+      "@type": "rdfs:Class"
+    },
+    {
+      "@id": "http://www.w3.org/ns/locn#Geometry",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Geometrie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/territorialApplication",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "territoriale toepassing",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807706640",
+      "foaf:name": "ANB",
+      "foaf:homepage": {
+        "@id": "https://www.lne.be/"
+      }
+    },
+    {
+      "@id": "dc:description",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "beschrijving",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "begin",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:atTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "op tijdstip",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:Agent",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Agent",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:Location",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Locatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#nummer",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bv nummer vh artikel, paragraaf, hoofdstuk...",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Nummer vh documentonderdeel.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "nummer",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:integer"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bv artikel, hoofdstuk, paragraaf...",
+        "@language": "nl"
+      },
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Een apart onderdeel van een groter document of verzameld document.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Documentonderdeel",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek",
+      "dc:title": [
+        {
+          "@value": "Generiek",
+          "@language": "nl"
+        },
+        {
+          "@value": "Generic",
+          "@language": "en"
+        }
+      ],
+      "dc:license": {
+        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
+      },
+      "foaf:maker": [
+        {
+          "@id": "_:g46986805048700"
+        },
+        {
+          "@id": "_:g46986808062880"
+        },
+        {
+          "@id": "_:g46986807675900"
+        },
+        {
+          "@id": "_:g46986803756960"
+        },
+        {
+          "@id": "_:g46986797751240"
+        },
+        {
+          "@id": "_:g46986807802420"
+        },
+        {
+          "@id": "_:g46986807541500"
+        },
+        {
+          "@id": "_:g46986801012120"
+        },
+        {
+          "@id": "_:g46986807296480"
+        },
+        {
+          "@id": "_:g46986807085360"
+        },
+        {
+          "@id": "_:g46986807178460"
+        },
+        {
+          "@id": "_:g46986807936760"
+        },
+        {
+          "@id": "_:g46986807422600"
+        },
+        {
+          "@id": "_:g46986805485000"
+        },
+        {
+          "@id": "_:g46986807015920"
+        }
+      ],
+      "@type": "owl:Ontology",
+      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/generiek",
+      "http://www.w3.org/2001/02pd/rec54#editor": [
+        {
+          "@id": "_:g46986804442820"
+        },
+        {
+          "@id": "_:g46986805021820"
+        }
+      ],
+      "dc:contributor": [
+        {
+          "@id": "_:g46986807064380"
+        },
+        {
+          "@id": "_:g46986807482040"
+        },
+        {
+          "@id": "_:g46986807138340"
+        },
+        {
+          "@id": "_:g46986807727980"
+        },
+        {
+          "@id": "_:g46986807358640"
+        },
+        {
+          "@id": "_:g46986807851060"
+        },
+        {
+          "@id": "_:g46986807244420"
+        },
+        {
+          "@id": "_:g46986806998940"
+        },
+        {
+          "@id": "_:g46986807605360"
+        }
+      ],
+      "dc:mediator": {
+        "@id": "_:g46986805276580"
+      },
+      "rdfs:label": [
+        {
+          "@value": "Generiek",
+          "@language": "nl"
+        },
+        {
+          "@value": "Generic",
+          "@language": "en"
+        }
+      ],
+      "dc:issued": {
+        "@value": "2018-10-04",
+        "@type": "xsd:date"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/sf#Point",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Punt",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:Agent",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Agent",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807244420",
+      "foaf:lastName": "Misseeuw",
+      "foaf:firstName": "Bart",
+      "schema:affiliation": {
+        "@id": "_:g46986807231360"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:bart.misseeuw@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807231360",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "dc:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:Jurisdiction",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Jurisdictie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/eli/ontology#language",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "taal",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "schema:ContactPoint",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Contactpunt",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:Generation",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Creatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:used",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gebruikt",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "einde",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#schemaAgency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "schema agentschap",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "rdf:langString",
+      "@type": "rdfs:Class"
+    },
+    {
+      "@id": "prov:Entity",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Entiteit",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "als WKT",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/subject",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "onderwerp",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#Versie",
+      "rdfs:subClassOf": {
+        "@id": "prov:Entity"
+      },
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Stelt een entiteit voor in één specifieke periode.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Versie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#Identifier",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Identificator",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/PeriodOfTime",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "TijdsInterval",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum",
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Datum waarop een gebeurtenis plaatsvond evt op een alternatieve manier beschreven. ",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Gebeurtenisdatum",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:activity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "activiteit",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#tussentijdstip",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Datum en tijd van een moment tussen begin en einde.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "tussentijdstip",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      }
+    },
+    {
+      "@id": "_:g46986804307420",
+      "foaf:name": "imec - UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd",
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
+      },
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "De versie stelt de entiteit voor gedurende een bepaalde periode in de gemodelleerde werkelijkheid.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Versie volgens Geldige Tijd",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/geosparql#asGML",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "als GML",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807064380",
+      "foaf:lastName": "Spiessens",
+      "foaf:firstName": "Sarah",
+      "schema:affiliation": {
+        "@id": "_:g46986807051260"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:sarah.spiessens@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807051260",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "identificator",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "schema:faxNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "faxnummer",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986805048700",
+      "foaf:lastName": "Oeyen",
+      "foaf:firstName": "Quincy",
+      "schema:affiliation": {
+        "@id": "_:g46986804720180"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:quincy.oeyen@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986804720180",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g46986807345300",
+      "foaf:name": "Digipolis Gent",
+      "foaf:homepage": {
+        "@id": "http://stad.gent"
+      }
+    },
+    {
+      "@id": "_:g46986804442820",
+      "foaf:lastName": "Mannens",
+      "foaf:firstName": "Erik",
+      "schema:affiliation": {
+        "@id": "_:g46986804307420"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:erik.mannens@ugent.be"
+      }
+    },
+    {
+      "@id": "dc:isPartOf",
+      "@type": "rdf:Property",
+      "rdfs:label": [
+        {
+          "@value": "is onderdeel van",
+          "@language": "nl"
+        },
+        {
+          "@value": "is deel van",
+          "@language": "nl"
+        }
+      ]
+    },
+    {
+      "@id": "prov:Invalidation",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Opheffing",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807482040",
+      "foaf:lastName": "Lombaert",
+      "foaf:firstName": "Hannes",
+      "schema:affiliation": {
+        "@id": "_:g46986807460500"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:hannes.lombaert@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807460500",
+      "foaf:name": "ABB",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g46986807392300",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g46986805500980",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "dc:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "titel",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807138340",
+      "foaf:lastName": "Stevens",
+      "foaf:firstName": "Annita",
+      "schema:affiliation": {
+        "@id": "_:g46986807116420"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:Annita.Stevens@vlm.be"
+      }
+    },
+    {
+      "@id": "_:g46986807116420",
+      "foaf:name": "VLM",
+      "foaf:homepage": {
+        "@id": "http://vlm.be"
+      }
+    },
+    {
+      "@id": "prov:Activity",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Activiteit",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Identificator van de specifieke versie van een object.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "versie-identificator",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Identificator van een object opgesplitst in zijn onderdelen.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Gestructureerde Identificator",
+        "@language": "nl"
+      }
+    },
     {
       "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum.einde",
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum"
       },
+      "@type": "owl:DatatypeProperty",
       "rdfs:comment": {
         "@value": "Datum en tijd waarop de gebeurtenis eindigde.",
         "@language": "nl"
@@ -32,248 +732,847 @@
       },
       "rdfs:range": {
         "@id": "xsd:dateTime"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum",
-      "rdfs:comment": {
-        "@value": "Datum waarop een gebeurtenis plaatsvond evt op een alternatieve manier beschreven. ",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Gebeurtenisdatum",
-        "@language": "nl"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek",
-      "dc:contributor": [
-        {
-          "@id": "_:g47045608798260"
-        },
-        {
-          "@id": "_:g47045608543560"
-        },
-        {
-          "@id": "_:g47045608675180"
-        },
-        {
-          "@id": "_:g47045608420640"
-        },
-        {
-          "@id": "_:g47045608183040"
-        },
-        {
-          "@id": "_:g47045607846140"
-        },
-        {
-          "@id": "_:g47045607952900"
-        },
-        {
-          "@id": "_:g47045608067760"
-        },
-        {
-          "@id": "_:g47045608306480"
-        }
-      ],
-      "dc:issued": {
-        "@value": "2018-10-04",
-        "@type": "xsd:date"
-      },
-      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/generiek",
-      "rdfs:label": [
-        {
-          "@value": "Generiek",
-          "@language": "nl"
-        },
-        {
-          "@value": "Generic",
-          "@language": "en"
-        }
-      ],
-      "@type": "owl:Ontology",
-      "dc:title": [
-        {
-          "@value": "Generiek",
-          "@language": "nl"
-        },
-        {
-          "@value": "Generic",
-          "@language": "en"
-        }
-      ],
-      "foaf:maker": [
-        {
-          "@id": "_:g47045607879340"
-        },
-        {
-          "@id": "_:g47045604464480"
-        },
-        {
-          "@id": "_:g47045605082180"
-        },
-        {
-          "@id": "_:g47045596286940"
-        },
-        {
-          "@id": "_:g47045608503580"
-        },
-        {
-          "@id": "_:g47045608124000"
-        },
-        {
-          "@id": "_:g47045607997300"
-        },
-        {
-          "@id": "_:g47045608242780"
-        },
-        {
-          "@id": "_:g47045608638300"
-        },
-        {
-          "@id": "_:g47045607732480"
-        },
-        {
-          "@id": "_:g47045601650220"
-        },
-        {
-          "@id": "_:g47045605225100"
-        },
-        {
-          "@id": "_:g47045608764740"
-        },
-        {
-          "@id": "_:g47045607802200"
-        },
-        {
-          "@id": "_:g47045608377200"
-        }
-      ],
-      "dc:mediator": {
-        "@id": "_:g47045607755580"
-      },
-      "http://www.w3.org/2001/02pd/rec54#editor": [
-        {
-          "@id": "_:g47045607696500"
-        },
-        {
-          "@id": "_:g47045605916320"
-        }
-      ],
-      "dc:license": {
-        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
       }
     },
     {
-      "@id": "http://data.europa.eu/m8g/subject",
+      "@id": "schema:telephone",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "onderwerp",
+        "@value": "telefoon",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "prov:Entity",
-      "rdfs:label": {
-        "@value": "Entiteit",
-        "@language": "nl"
+      "@id": "_:g46986808062880",
+      "foaf:lastName": "Thoeye",
+      "foaf:firstName": "Thimo",
+      "schema:affiliation": {
+        "@id": "_:g46986808040880"
       },
-      "@type": "rdfs:Class"
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:Thimo.Thoeye@stad.gent"
+      }
     },
     {
-      "@id": "prov:Agent",
-      "rdfs:label": {
-        "@value": "Agent",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
+      "@id": "_:g46986808040880",
+      "foaf:name": "Stad Gent",
+      "foaf:homepage": {
+        "@id": "http://stad.gent"
+      }
     },
     {
-      "@id": "prov:Generation",
-      "rdfs:label": {
-        "@value": "Creatie",
-        "@language": "nl"
+      "@id": "_:g46986807727980",
+      "foaf:lastName": "Vermeiren",
+      "foaf:firstName": "Geert",
+      "schema:affiliation": {
+        "@id": "_:g46986807706640"
       },
-      "@type": "rdfs:Class"
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:geert.vermeiren@lne.vlaanderen.be"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd",
+      "@id": "_:g46986807780280",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g46986807675900",
+      "foaf:lastName": "Thijs",
+      "foaf:firstName": "Geert",
+      "schema:affiliation": {
+        "@id": "_:g46986807645320"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:geert.thijs@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807645320",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "foaf:name",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "naam",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807358640",
+      "foaf:lastName": "Leire",
+      "foaf:firstName": "Katrien",
+      "schema:affiliation": {
+        "@id": "_:g46986807345300"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:katrien.leire@digipolis.gent"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#handeldeInOpdrachtVan",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "De betrokken organisatie behoudt hierbij een zekere verantwoordelijkheid mbt het resultaat vd activiteit.",
+        "@language": "nl"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "prov:actedOnBehalfOf"
+      },
+      "rdfs:domain": {
+        "@id": "prov:Agent"
+      },
+      "@type": "owl:ObjectProperty",
       "rdfs:comment": {
-        "@value": "De versie stelt de entiteit voor gedurende een bepaalde periode in de gemodelleerde werkelijkheid.",
+        "@value": "Organisatie die de agent vertegenwoordigt bij het uitvoeren ve specifieke activiteit en waarvan hij/zij de vereiste autoriteit/verantwoordelijkheid heeft gekregen om dit te doen.",
         "@language": "nl"
       },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/generiek"
       },
       "rdfs:label": {
-        "@value": "Versie volgens Geldige Tijd",
+        "@value": "handelde in opdracht van",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "org:Organization"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/locn#address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "adres",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:wasAssociatedWith",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "was geassocieerd met",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum.begin",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Datum en tijd waarop de gebeurtenis startte.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "begin",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      }
+    },
+    {
+      "@id": "_:g46986803756960",
+      "foaf:lastName": "Vanderstraeten",
+      "foaf:firstName": "Henk",
+      "schema:affiliation": {
+        "@id": "_:g46986803669820"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:henk.vanderstraeten@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986803669820",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g46986807422600",
+      "foaf:lastName": "Buyle",
+      "foaf:firstName": "Raf",
+      "schema:affiliation": {
+        "@id": "_:g46986807392300"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986805485000",
+      "foaf:lastName": "Taelemans",
+      "foaf:firstName": "An",
+      "schema:affiliation": {
+        "@id": "_:g46986805500980"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:an.taelemans@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986797751240",
+      "foaf:lastName": "De Vidts",
+      "foaf:firstName": "Björn",
+      "schema:affiliation": {
+        "@id": "_:g46986808175160"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:bjorn.devidts@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986808175160",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g46986807015920",
+      "foaf:lastName": "D'haenens",
+      "foaf:firstName": "Thomas",
+      "schema:affiliation": {
+        "@id": "_:g46986807001780"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:thomas.dhaenens@bz.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807001780",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g46986807802420",
+      "foaf:lastName": "Vanlishout",
+      "foaf:firstName": "Ziggy",
+      "schema:affiliation": {
+        "@id": "_:g46986807780280"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:siegfried.vanlishout@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807851060",
+      "foaf:lastName": "Devroey",
+      "foaf:firstName": "Wim",
+      "schema:affiliation": {
+        "@id": "_:g46986807829720"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:wim.devroey@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807829720",
+      "foaf:name": "ABB",
+      "foaf:homepage": {
+        "@id": "http://binnenland.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "foaf:page",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "pagina",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/locn#geometry",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geometrie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/sf#LineString",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Lijnstring",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "dc:creator",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "maker",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807541500",
+      "foaf:lastName": "Van Hoecke",
+      "foaf:firstName": "Willem",
+      "schema:affiliation": {
+        "@id": "_:g46986807519140"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:willem.vanhoecke@cipalschaubroeck.be"
+      }
+    },
+    {
+      "@id": "_:g46986807519140",
+      "foaf:name": "Cipal Schaubroeck",
+      "foaf:homepage": {
+        "@id": "http://cipalschaubroeck.be"
+      }
+    },
+    {
+      "@id": "_:g46986805276580",
+      "foaf:name": "Data Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://data.vlaanderen.be"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:oslo@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986806998940",
+      "foaf:lastName": "Bosmans",
+      "foaf:firstName": "Karen",
+      "schema:affiliation": {
+        "@id": "_:g46986806985780"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:karen.bosmans@lne.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986806985780",
+      "foaf:name": "LNE",
+      "foaf:homepage": {
+        "@id": "https://www.lne.be/"
+      }
+    },
+    {
+      "@id": "_:g46986807274120",
+      "foaf:name": "LNE",
+      "foaf:homepage": {
+        "@id": "https://www.lne.be/"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
+      "rdfs:domain": {
+        "@id": "http://www.w3.org/ns/adms#Identifier"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "Identificator vh object opgesplitst in zijn onderdelen.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "gestructureerde identificator",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+      }
+    },
+    {
+      "@id": "prov:qualifiedInvalidation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gekwalificeerde opheffing",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://purl.org/vocab/cpsv#FormalFramework",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Formeel Kader",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#bewerking",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bvb \"correctie\" als de entiteit een record is en bvb gegenereerd werd om het voorgaand record ve object te verbeteren.",
+        "@language": "nl"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "dc11:type"
+      },
+      "rdfs:domain": {
+        "@id": "prov:Activity"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "Aard vd bewerking die ihkv de activiteit op de entiteit is uitgevoerd.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "bewerking",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      }
+    },
+    {
+      "@id": "skos:Concept",
+      "@type": "rdfs:Class"
+    },
+    {
+      "@id": "_:g46986801012120",
+      "foaf:lastName": "Beheydt",
+      "foaf:firstName": "Dries",
+      "schema:affiliation": {
+        "@id": "_:g46986800838080"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:dries.beheydt@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986800838080",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Laat toe om objecten met dezelfde identificator maar van verschillend type en/of afkomstig uit verschillende domeinen uiteen te houden. In praktijk bv een uri samengesteld uit betekenisvolle elementen zoals een domeinnaam, type en concept (bv https://data.vlaanderen.be/id/adres/). ",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "String die toegvoegd wordt aan de lokaleidentificator om deze globaal uniek te maken.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "naamruimte",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "schema:hoursAvailable",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "uren beschikbaarheid",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807296480",
+      "foaf:lastName": "Van Haute",
+      "foaf:firstName": "Geert",
+      "schema:affiliation": {
+        "@id": "_:g46986807274120"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:geert.vanhaute@lne.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986805021820",
+      "foaf:lastName": "De Vocht",
+      "foaf:firstName": "Laurens",
+      "schema:affiliation": {
+        "@id": "_:g46986804612380"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:laurens.devocht@ugent.be"
+      }
+    },
+    {
+      "@id": "_:g46986804612380",
+      "foaf:name": "imec - UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#default",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Hieronder wordt de positie verstaan die per default moet worden gebruikt als het object meerdere posities heeft.",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Geeft aan of de positie een default positie is.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "default",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": " ",
         "@language": "nl"
       },
       "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Geografische positie aangegeven dmv een punt.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Geografische Positie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#AdministratieveEenheid",
       "rdfs:subClassOf": {
+        "@id": "dc:Location"
+      },
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "Bestuurlijke eenheid waar een lidstaat rechtsbevoegdheid heeft en/of uitoefent, in het kader van lokaal, regionaal of nationaal bestuur.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Administratieve Eenheid",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807070860",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g46986807605360",
+      "foaf:lastName": "Nolf",
+      "foaf:firstName": "Geraldine",
+      "schema:affiliation": {
+        "@id": "_:g46986807583900"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:geraldine.nolf@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g46986807583900",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#specificatie",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bvb perceel, gebouw...",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "Het type object op basis waarvan het punt werd bepaald.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "specificatie",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      }
+    },
+    {
+      "@id": "_:g46986807085360",
+      "foaf:lastName": "De Smet",
+      "foaf:firstName": "Katrien",
+      "schema:affiliation": {
+        "@id": "_:g46986807070860"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:katrien.desmet@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#methode",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bvb positie afgeleid ve bestaand object (bvb door berekening vd centroïde).",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "De manier waarop het punt werd bepaald.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "methode",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "String gebruikt om het object uniek te identificeren binnen de naamruimte.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "lokale identificator",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#plaats",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Typisch een land.",
+        "@language": "nl"
+      },
+      "rdfs:domain": {
+        "@id": "dc:Jurisdiction"
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "Ruimtelijk gebied of benoemde plaats waarmee de Jurisdictie samenvalt.",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "plaats",
+        "@language": "nl"
+      },
+      "rdfs:range": {
+        "@id": "dc:Location"
+      }
+    },
+    {
+      "@id": "_:g46986807906000",
+      "foaf:name": "imec - UGent",
+      "foaf:homepage": {
+        "@id": "http://idlab.ugent.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+      "rdfs:subPropertyOf": {
+        "@id": "prov:specializationOf"
+      },
+      "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#Versie",
+      },
+      "@type": "owl:ObjectProperty",
       "rdfs:comment": {
-        "@value": "Stelt een entiteit voor in één specifieke periode.",
+        "@value": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
         "@language": "nl"
       },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/generiek"
       },
       "rdfs:label": {
-        "@value": "Versie",
+        "@value": "is tijdspecialisatie van",
         "@language": "nl"
       },
-      "@type": "owl:Class",
-      "rdfs:subClassOf": {
+      "rdfs:range": {
         "@id": "prov:Entity"
       }
     },
     {
-      "@id": "dc:issued",
-      "rdfs:label": {
-        "@value": "uitgegeven",
-        "@language": "nl"
+      "@id": "_:g46986807178460",
+      "foaf:lastName": "Bauwens",
+      "foaf:firstName": "Dorien",
+      "schema:affiliation": {
+        "@id": "_:g46986807148180"
       },
-      "@type": "rdf:Property"
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:dorien.bauwens@bz.vlaanderen.be"
+      }
     },
     {
-      "@id": "dc:Jurisdiction",
-      "rdfs:label": {
-        "@value": "Jurisdictie",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
+      "@id": "_:g46986807148180",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
     },
     {
-      "@id": "http://www.opengis.net/ont/sf#Point",
+      "@id": "dc:relation",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "Punt",
+        "@value": "relatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g46986807936760",
+      "foaf:lastName": "De Paepe",
+      "foaf:firstName": "Dieter",
+      "schema:affiliation": {
+        "@id": "_:g46986807906000"
+      },
+      "@type": "foaf:person",
+      "foaf:mbox": {
+        "@id": "mailto:dieter.depaepe@ugent.be"
+      }
+    },
+    {
+      "@id": "foaf:Document",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Document",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#VersieVolgensTransactietijd",
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
+      },
+      "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "De versie stelt de entiteit voor gedurende een bepaalde periode in een databank.",
         "@language": "nl"
       },
-      "@type": "rdfs:Class"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/generiek"
+      },
+      "rdfs:label": {
+        "@value": "Versie volgens Transactietijd",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "prov:qualifiedGeneration",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gekwalificeerde creatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "skos:notation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "notatie",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "schema:openingHours",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "openingsuren",
+        "@language": "nl"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/generiek#geplandeStart",
       "rdfs:domain": {
         "@id": "prov:Activity"
       },
+      "@type": "owl:DatatypeProperty",
       "rdfs:comment": [
-        {
-          "@value": "Het tijdstip waarop de activiteit gepland is om te beginnen.",
-          "@language": "nl"
-        },
         {
           "@value": "The time at which the activity is planned to start.",
           "@language": "en"
+        },
+        {
+          "@value": "Het tijdstip waarop de activiteit gepland is om te beginnen.",
+          "@language": "nl"
         }
       ],
       "rdfs:isDefinedBy": {
@@ -291,1321 +1590,22 @@
       ],
       "rdfs:range": {
         "@id": "xsd:dateTime"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "prov:Activity",
-      "rdfs:label": {
-        "@value": "Activiteit",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/PeriodOfTime",
-      "rdfs:label": {
-        "@value": "TijdsInterval",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/startTime",
-      "rdfs:label": {
-        "@value": "begin",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:ContactPoint",
-      "rdfs:label": {
-        "@value": "Contactpunt",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://www.opengis.net/ont/sf#LineString",
-      "rdfs:label": {
-        "@value": "Lijnstring",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "rdfs:Literal",
-      "@type": "rdfs:Class"
+      }
     },
     {
       "@id": "rdfs:label",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "label",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "rdf:langString",
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "rdfs:label": {
-        "@value": "geometrie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://www.w3.org/ns/adms#schemaAgency",
-      "rdfs:label": {
-        "@value": "schema agentschap",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
-      "rdfs:domain": {
-        "@id": "http://www.w3.org/ns/adms#Identifier"
-      },
-      "rdfs:comment": {
-        "@value": "Identificator vh object opgesplitst in zijn onderdelen.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "gestructureerde identificator",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:label": {
-        "@value": "Identificator",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
-      "rdfs:comment": {
-        "@value": "Identificator van een object opgesplitst in zijn onderdelen.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Gestructureerde Identificator",
-        "@language": "nl"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "dc:title",
-      "rdfs:label": {
-        "@value": "titel",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
-      },
-      "rdfs:comment": {
-        "@value": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "is tijdspecialisatie van",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "prov:Entity"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:subPropertyOf": {
-        "@id": "prov:specializationOf"
       }
     },
     {
-      "@id": "dc:Agent",
+      "@id": "dc:issued",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "Agent",
+        "@value": "uitgegeven",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#bewerking",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bvb \"correctie\" als de entiteit een record is en bvb gegenereerd werd om het voorgaand record ve object te verbeteren.",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Aard vd bewerking die ihkv de activiteit op de entiteit is uitgevoerd.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "bewerking",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:domain": {
-        "@id": "prov:Activity"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "dc11:type"
-      }
-    },
-    {
-      "@id": "skos:Concept",
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://purl.org/vocab/cpsv#FormalFramework",
-      "rdfs:label": {
-        "@value": "Formeel Kader",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g47045606215840",
-      "foaf:name": "imec - UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
-      }
-    },
-    {
-      "@id": "dc:Location",
-      "rdfs:label": {
-        "@value": "Locatie",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/endTime",
-      "rdfs:label": {
-        "@value": "einde",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:creator",
-      "rdfs:label": {
-        "@value": "maker",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045608481140",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#nummer",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bv nummer vh artikel, paragraaf, hoofdstuk...",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Nummer vh documentonderdeel.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "nummer",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:integer"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bv artikel, hoofdstuk, paragraaf...",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Een apart onderdeel van een groter document of verzameld document.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Documentonderdeel",
-        "@language": "nl"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "_:g47045607923140",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "prov:qualifiedGeneration",
-      "rdfs:label": {
-        "@value": "gekwalificeerde creatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045597529240",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47045607879340",
-      "foaf:mbox": {
-        "@id": "mailto:katrien.desmet@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607857040"
-      },
-      "foaf:firstName": "Katrien",
-      "@type": "foaf:person",
-      "foaf:lastName": "De Smet"
-    },
-    {
-      "@id": "_:g47045607857040",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "rdfs:label": {
-        "@value": "identificator",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "vcard:honorific-prefix",
-      "rdfs:label": {
-        "@value": "aanschrijfprefix",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045608798260",
-      "foaf:mbox": {
-        "@id": "mailto:geert.vermeiren@lne.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608776460"
-      },
-      "foaf:firstName": "Geert",
-      "@type": "foaf:person",
-      "foaf:lastName": "Vermeiren"
-    },
-    {
-      "@id": "_:g47045608776460",
-      "foaf:name": "ANB",
-      "foaf:homepage": {
-        "@id": "https://www.lne.be/"
-      }
-    },
-    {
-      "@id": "_:g47045608306480",
-      "foaf:mbox": {
-        "@id": "mailto:geraldine.nolf@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608284600"
-      },
-      "foaf:firstName": "Geraldine",
-      "@type": "foaf:person",
-      "foaf:lastName": "Nolf"
-    },
-    {
-      "@id": "_:g47045608284600",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47045604464480",
-      "foaf:mbox": {
-        "@id": "mailto:dorien.bauwens@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045604372400"
-      },
-      "foaf:firstName": "Dorien",
-      "@type": "foaf:person",
-      "foaf:lastName": "Bauwens"
-    },
-    {
-      "@id": "_:g47045604372400",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
-      },
-      "rdfs:comment": {
-        "@value": "Identificator van de specifieke versie van een object.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "versie-identificator",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": " ",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Geografische positie aangegeven dmv een punt.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Geografische Positie",
-        "@language": "nl"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "_:g47045608543560",
-      "foaf:mbox": {
-        "@id": "mailto:karen.bosmans@lne.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608530200"
-      },
-      "foaf:firstName": "Karen",
-      "@type": "foaf:person",
-      "foaf:lastName": "Bosmans"
-    },
-    {
-      "@id": "_:g47045608530200",
-      "foaf:name": "LNE",
-      "foaf:homepage": {
-        "@id": "https://www.lne.be/"
-      }
-    },
-    {
-      "@id": "prov:qualifiedInvalidation",
-      "rdfs:label": {
-        "@value": "gekwalificeerde opheffing",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045605082180",
-      "foaf:mbox": {
-        "@id": "mailto:henk.vanderstraeten@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045605033980"
-      },
-      "foaf:firstName": "Henk",
-      "@type": "foaf:person",
-      "foaf:lastName": "Vanderstraeten"
-    },
-    {
-      "@id": "_:g47045605033980",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "schema:telephone",
-      "rdfs:label": {
-        "@value": "telefoon",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045608093760",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47045608764740",
-      "foaf:mbox": {
-        "@id": "mailto:geert.thijs@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608734360"
-      },
-      "foaf:firstName": "Geert",
-      "@type": "foaf:person",
-      "foaf:lastName": "Thijs"
-    },
-    {
-      "@id": "_:g47045608734360",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47045608675180",
-      "foaf:mbox": {
-        "@id": "mailto:wim.devroey@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608653460"
-      },
-      "foaf:firstName": "Wim",
-      "@type": "foaf:person",
-      "foaf:lastName": "Devroey"
-    },
-    {
-      "@id": "_:g47045608420640",
-      "foaf:mbox": {
-        "@id": "mailto:sarah.spiessens@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608407680"
-      },
-      "foaf:firstName": "Sarah",
-      "@type": "foaf:person",
-      "foaf:lastName": "Spiessens"
-    },
-    {
-      "@id": "_:g47045608183040",
-      "foaf:mbox": {
-        "@id": "mailto:hannes.lombaert@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608161540"
-      },
-      "foaf:firstName": "Hannes",
-      "@type": "foaf:person",
-      "foaf:lastName": "Lombaert"
-    },
-    {
-      "@id": "_:g47045607846140",
-      "foaf:mbox": {
-        "@id": "mailto:Annita.Stevens@vlm.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607833000"
-      },
-      "foaf:firstName": "Annita",
-      "@type": "foaf:person",
-      "foaf:lastName": "Stevens"
-    },
-    {
-      "@id": "_:g47045607952900",
-      "foaf:mbox": {
-        "@id": "mailto:bart.misseeuw@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607923140"
-      },
-      "foaf:firstName": "Bart",
-      "@type": "foaf:person",
-      "foaf:lastName": "Misseeuw"
-    },
-    {
-      "@id": "_:g47045608067760",
-      "foaf:mbox": {
-        "@id": "mailto:katrien.leire@digipolis.gent"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608038040"
-      },
-      "foaf:firstName": "Katrien",
-      "@type": "foaf:person",
-      "foaf:lastName": "Leire"
-    },
-    {
-      "@id": "_:g47045596286940",
-      "foaf:mbox": {
-        "@id": "mailto:bjorn.devidts@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045597529240"
-      },
-      "foaf:firstName": "Björn",
-      "@type": "foaf:person",
-      "foaf:lastName": "De Vidts"
-    },
-    {
-      "@id": "_:g47045608503580",
-      "foaf:mbox": {
-        "@id": "mailto:quincy.oeyen@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608481140"
-      },
-      "foaf:firstName": "Quincy",
-      "@type": "foaf:person",
-      "foaf:lastName": "Oeyen"
-    },
-    {
-      "@id": "_:g47045608124000",
-      "foaf:mbox": {
-        "@id": "mailto:dries.beheydt@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608093760"
-      },
-      "foaf:firstName": "Dries",
-      "@type": "foaf:person",
-      "foaf:lastName": "Beheydt"
-    },
-    {
-      "@id": "_:g47045607997300",
-      "foaf:mbox": {
-        "@id": "mailto:thomas.dhaenens@bz.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607975000"
-      },
-      "foaf:firstName": "Thomas",
-      "@type": "foaf:person",
-      "foaf:lastName": "D'haenens"
-    },
-    {
-      "@id": "_:g47045608242780",
-      "foaf:mbox": {
-        "@id": "mailto:Thimo.Thoeye@stad.gent"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608220480"
-      },
-      "foaf:firstName": "Thimo",
-      "@type": "foaf:person",
-      "foaf:lastName": "Thoeye"
-    },
-    {
-      "@id": "_:g47045608638300",
-      "foaf:mbox": {
-        "@id": "mailto:willem.vanhoecke@cipalschaubroeck.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608607440"
-      },
-      "foaf:firstName": "Willem",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Hoecke"
-    },
-    {
-      "@id": "_:g47045607732480",
-      "foaf:mbox": {
-        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607718040"
-      },
-      "foaf:firstName": "Raf",
-      "@type": "foaf:person",
-      "foaf:lastName": "Buyle"
-    },
-    {
-      "@id": "_:g47045601650220",
-      "foaf:mbox": {
-        "@id": "mailto:siegfried.vanlishout@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045601682240"
-      },
-      "foaf:firstName": "Ziggy",
-      "@type": "foaf:person",
-      "foaf:lastName": "Vanlishout"
-    },
-    {
-      "@id": "_:g47045605225100",
-      "foaf:mbox": {
-        "@id": "mailto:geert.vanhaute@lne.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045605280560"
-      },
-      "foaf:firstName": "Geert",
-      "@type": "foaf:person",
-      "foaf:lastName": "Van Haute"
-    },
-    {
-      "@id": "_:g47045607802200",
-      "foaf:mbox": {
-        "@id": "mailto:an.taelemans@kb.vlaanderen.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045607788140"
-      },
-      "foaf:firstName": "An",
-      "@type": "foaf:person",
-      "foaf:lastName": "Taelemans"
-    },
-    {
-      "@id": "_:g47045608377200",
-      "foaf:mbox": {
-        "@id": "mailto:dieter.depaepe@ugent.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045608346900"
-      },
-      "foaf:firstName": "Dieter",
-      "@type": "foaf:person",
-      "foaf:lastName": "De Paepe"
-    },
-    {
-      "@id": "_:g47045607755580",
-      "foaf:mbox": {
-        "@id": "mailto:oslo@kb.vlaanderen.be"
-      },
-      "foaf:name": "Data Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://data.vlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47045607696500",
-      "foaf:mbox": {
-        "@id": "mailto:erik.mannens@ugent.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045606215840"
-      },
-      "foaf:firstName": "Erik",
-      "@type": "foaf:person",
-      "foaf:lastName": "Mannens"
-    },
-    {
-      "@id": "_:g47045605916320",
-      "foaf:mbox": {
-        "@id": "mailto:laurens.devocht@ugent.be"
-      },
-      "schema:affiliation": {
-        "@id": "_:g47045606033960"
-      },
-      "foaf:firstName": "Laurens",
-      "@type": "foaf:person",
-      "foaf:lastName": "De Vocht"
-    },
-    {
-      "@id": "skos:notation",
-      "rdfs:label": {
-        "@value": "notatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045608653460",
-      "foaf:name": "ABB",
-      "foaf:homepage": {
-        "@id": "http://binnenland.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "schema:faxNumber",
-      "rdfs:label": {
-        "@value": "faxnummer",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#handeldeInOpdrachtVan",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "De betrokken organisatie behoudt hierbij een zekere verantwoordelijkheid mbt het resultaat vd activiteit.",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Organisatie die de agent vertegenwoordigt bij het uitvoeren ve specifieke activiteit en waarvan hij/zij de vereiste autoriteit/verantwoordelijkheid heeft gekregen om dit te doen.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "handelde in opdracht van",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "org:Organization"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:domain": {
-        "@id": "prov:Agent"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "prov:actedOnBehalfOf"
-      }
-    },
-    {
-      "@id": "_:g47045608407680",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#tussentijdstip",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum"
-      },
-      "rdfs:comment": {
-        "@value": "Datum en tijd van een moment tussen begin en einde.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "tussentijdstip",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:dateTime"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "_:g47045608161540",
-      "foaf:name": "ABB",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "prov:atTime",
-      "rdfs:label": {
-        "@value": "op tijdstip",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "foaf:Document",
-      "rdfs:label": {
-        "@value": "Document",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g47045607788140",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47045608346900",
-      "foaf:name": "imec - UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
-      }
-    },
-    {
-      "@id": "_:g47045601682240",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "prov:Location",
-      "rdfs:label": {
-        "@value": "Locatie",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g47045608038040",
-      "foaf:name": "Digipolis Gent",
-      "foaf:homepage": {
-        "@id": "http://stad.gent"
-      }
-    },
-    {
-      "@id": "prov:activity",
-      "rdfs:label": {
-        "@value": "activiteit",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:email",
-      "rdfs:label": {
-        "@value": "email",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:isPartOf",
-      "rdfs:label": [
-        {
-          "@value": "is deel van",
-          "@language": "nl"
-        },
-        {
-          "@value": "is onderdeel van",
-          "@language": "nl"
-        }
-      ],
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045607833000",
-      "foaf:name": "VLM",
-      "foaf:homepage": {
-        "@id": "http://vlm.be"
-      }
-    },
-    {
-      "@id": "prov:used",
-      "rdfs:label": {
-        "@value": "gebruikt",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:openingHours",
-      "rdfs:label": {
-        "@value": "openingsuren",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045605280560",
-      "foaf:name": "LNE",
-      "foaf:homepage": {
-        "@id": "https://www.lne.be/"
-      }
-    },
-    {
-      "@id": "http://data.europa.eu/eli/ontology#language",
-      "rdfs:label": {
-        "@value": "taal",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#specificatie",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bvb perceel, gebouw...",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Het type object op basis waarvan het punt werd bepaald.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "specificatie",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
-      }
-    },
-    {
-      "@id": "dc:description",
-      "rdfs:label": {
-        "@value": "beschrijving",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045607975000",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
-      "rdfs:label": {
-        "@value": "als WKT",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://www.opengis.net/ont/geosparql#asGML",
-      "rdfs:label": {
-        "@value": "als GML",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "foaf:name",
-      "rdfs:label": {
-        "@value": "naam",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#AdministratieveEenheid",
-      "rdfs:comment": {
-        "@value": "Bestuurlijke eenheid waar een lidstaat rechtsbevoegdheid heeft en/of uitoefent, in het kader van lokaal, regionaal of nationaal bestuur.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Administratieve Eenheid",
-        "@language": "nl"
-      },
-      "@type": "owl:Class",
-      "rdfs:subClassOf": {
-        "@id": "dc:Location"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Laat toe om objecten met dezelfde identificator maar van verschillend type en/of afkomstig uit verschillende domeinen uiteen te houden. In praktijk bv een uri samengesteld uit betekenisvolle elementen zoals een domeinnaam, type en concept (bv https://data.vlaanderen.be/id/adres/). ",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "String die toegvoegd wordt aan de lokaleidentificator om deze globaal uniek te maken.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "naamruimte",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/ns/locn#address",
-      "rdfs:label": {
-        "@value": "adres",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045608220480",
-      "foaf:name": "Stad Gent",
-      "foaf:homepage": {
-        "@id": "http://stad.gent"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
-      },
-      "rdfs:comment": {
-        "@value": "String gebruikt om het object uniek te identificeren binnen de naamruimte.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "lokale identificator",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "_:g47045608607440",
-      "foaf:name": "Cipal Schaubroeck",
-      "foaf:homepage": {
-        "@id": "http://cipalschaubroeck.be"
-      }
-    },
-    {
-      "@id": "prov:wasAssociatedWith",
-      "rdfs:label": {
-        "@value": "was geassocieerd met",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47045607718040",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "http://www.opengis.net/ont/sf#Polygon",
-      "rdfs:label": {
-        "@value": "Polygoon",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "prov:Invalidation",
-      "rdfs:label": {
-        "@value": "Opheffing",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://www.w3.org/ns/adms#status",
-      "rdfs:label": {
-        "@value": "status",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#methode",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bvb positie afgeleid ve bestaand object (bvb door berekening vd centroïde).",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De manier waarop het punt werd bepaald.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "methode",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#default",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Hieronder wordt de positie verstaan die per default moet worden gebruikt als het object meerdere posities heeft.",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Geeft aan of de positie een default positie is.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "default",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:boolean"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#GeografischePositie"
-      }
-    },
-    {
-      "@id": "_:g47045606033960",
-      "foaf:name": "imec - UGent",
-      "foaf:homepage": {
-        "@id": "http://idlab.ugent.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum.begin",
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum"
-      },
-      "rdfs:comment": {
-        "@value": "Datum en tijd waarop de gebeurtenis startte.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "begin",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:dateTime"
-      },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "foaf:page",
-      "rdfs:label": {
-        "@value": "pagina",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:type",
-      "rdfs:label": {
-        "@value": "type",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://www.w3.org/ns/locn#Geometry",
-      "rdfs:label": {
-        "@value": "Geometrie",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "http://data.europa.eu/m8g/territorialApplication",
-      "rdfs:label": {
-        "@value": "territoriale toepassing",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "dc:relation",
-      "rdfs:label": {
-        "@value": "relatie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#VersieVolgensTransactietijd",
-      "rdfs:comment": {
-        "@value": "De versie stelt de entiteit voor gedurende een bepaalde periode in een databank.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "Versie volgens Transactietijd",
-        "@language": "nl"
-      },
-      "@type": "owl:Class",
-      "rdfs:subClassOf": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
-      }
-    },
-    {
-      "@id": "schema:hoursAvailable",
-      "rdfs:label": {
-        "@value": "uren beschikbaarheid",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/generiek#plaats",
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Typisch een land.",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Ruimtelijk gebied of benoemde plaats waarmee de Jurisdictie samenvalt.",
-        "@language": "nl"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/generiek"
-      },
-      "rdfs:label": {
-        "@value": "plaats",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "dc:Location"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:domain": {
-        "@id": "dc:Jurisdiction"
       }
     }
   ]
