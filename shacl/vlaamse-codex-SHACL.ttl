@@ -54,6 +54,14 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/eli/ontology#LegalExpression> ;
 	sh:property [
+		sh:name "realiseert" ;
+		sh:description "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt." ;
+		sh:path <http://data.europa.eu/eli/ontology#realizes> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "gecorrigeerdDoor" ;
 		sh:description "Geeft een hulpmiddel aan dat tekstuele wijzigingen introduceert (zoals correctie of spelfouten) zonder juridische wijzigingen in deze bron, uitdrukking of indeling." ;
 		sh:path <http://data.europa.eu/eli/ontology#corrected_by> ;
@@ -66,26 +74,17 @@
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
-		sh:name "realiseert" ;
-		sh:description "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt." ;
-		sh:path <http://data.europa.eu/eli/ontology#realizes> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "citeeropschrift" ;
-		sh:description "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen." ;
+		sh:description "De beknopte titel of officiële korte naam van een decreet, wet, besluit..." ;
 		sh:path <http://data.europa.eu/eli/ontology#title_short> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "commentaar" ;
 		sh:description "Een verslag van de bron." ;
 		sh:path <http://purl.org/dc/terms/description> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -149,33 +148,36 @@
 		sh:path <http://data.europa.eu/eli/ontology#is_about> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 	] ;
+	sh:property [
+		sh:name "nummer" ;
+		sh:description "Een identificator of een ander onderscheidend kenmerk voor een verschijningsvorm." ;
+		sh:path <http://data.europa.eu/eli/ontology#number> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opschrift" ;
+		sh:description "De titel of officiële naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd." ;
+		sh:path <http://data.europa.eu/eli/ontology#title> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/eli/ontology#LegalResource> ;
 	sh:property [
-		sh:name "verantwoordelijke" ;
-		sh:description "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud)." ;
-		sh:path <http://data.europa.eu/eli/ontology#responsibility_of> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:name "heeftDeel" ;
+		sh:description "Geeft aan dat deze bron uit deelbronnen bestaat." ;
+		sh:path <http://purl.org/dc/terms/hasPart> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
 	] ;
 	sh:property [
-		sh:name "vervangt" ;
-		sh:description "Geeft aan dat deze bron een andere volledig vernieuwt." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#vervangt> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "vervangenBij" ;
-		sh:description "Geeft een bron aan die volledig vernieuwd is door een andere." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#vervangenBij> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "zetOm" ;
-		sh:description "Geeft aan dat deze wetgeving (of een deel van de wetgeving) voldoet aan de doelstellingen van een andere wetgeving, door het nemen van passende uitvoeringsmaatregelen." ;
-		sh:path <http://data.europa.eu/eli/ontology#transposes> ;
+		sh:name "voegtIn" ;
+		sh:description "Deze bron vult een andere aan met legale impact." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#voegtIn> ;
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
@@ -185,63 +187,21 @@
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
-		sh:name "bekrachtigt" ;
-		sh:description "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "heeftDeel" ;
-		sh:description "Geeft aan dat deze bron uit deelbronnen bestaat." ;
-		sh:path <http://purl.org/dc/terms/hasPart> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
-	] ;
-	sh:property [
-		sh:name "ingetrokkenBij" ;
-		sh:description "Geeft aan dat deze bron volledig wordt geannuleerd door een andere bron." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#ingetrokkenBij> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "isGerealiseerdDoor" ;
-		sh:description "De verschijningsvorm die deze rechtsbron materialiseert in een concrete tekst." ;
-		sh:path <http://data.europa.eu/eli/ontology#is_realized_by> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ;
-	] ;
-	sh:property [
-		sh:name "wijzigt" ;
-		sh:description "Duidt aan dat deze rechtsgrond een verandering met legale gevolgen doorvoert op een andere rechtsgrond. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ;
-		sh:path <http://data.europa.eu/eli/ontology#amends> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "citeert" ;
-		sh:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen." ;
-		sh:path <http://data.europa.eu/eli/ontology#cites> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
-		sh:name "bekrachtigdBij" ;
-		sh:description "Inverse van "bekrachtigt"." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigdBij> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
-	] ;
-	sh:property [
 		sh:name "opgehevenBij" ;
 		sh:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig wordt ingetrokken door een andere juridische hulpbron." ;
 		sh:path <https://data.vlaanderen.be/ns/wetgeving#opgehevenBij> ;
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
-		sh:name "voegtIn" ;
-		sh:description "Deze bron vult een andere aan met legale impact." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#voegtIn> ;
+		sh:name "zetOm" ;
+		sh:description "Geeft aan dat deze wetgeving (of een deel van de wetgeving) voldoet aan de doelstellingen van een andere wetgeving, door het nemen van passende uitvoeringsmaatregelen." ;
+		sh:path <http://data.europa.eu/eli/ontology#transposes> ;
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
-		sh:name "trektIn" ;
-		sh:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere." ;
-		sh:path <https://data.vlaanderen.be/ns/wetgeving#trektIn> ;
+		sh:name "citeert" ;
+		sh:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen." ;
+		sh:path <http://data.europa.eu/eli/ontology#cites> ;
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
@@ -257,9 +217,63 @@
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
+		sh:name "isGerealiseerdDoor" ;
+		sh:description "De verschijningsvorm die deze rechtsbron materialiseert in een concrete tekst." ;
+		sh:path <http://data.europa.eu/eli/ontology#is_realized_by> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ;
+	] ;
+	sh:property [
+		sh:name "ingetrokkenBij" ;
+		sh:description "Geeft aan dat deze bron volledig wordt geannuleerd door een andere bron." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#ingetrokkenBij> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "vervangenBij" ;
+		sh:description "Geeft een bron aan die volledig vernieuwd is door een andere." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#vervangenBij> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "verantwoordelijke" ;
+		sh:description "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud)." ;
+		sh:path <http://data.europa.eu/eli/ontology#responsibility_of> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+	] ;
+	sh:property [
+		sh:name "trektIn" ;
+		sh:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#trektIn> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
 		sh:name "zieOok" ;
 		sh:description "Duidt op een of ander manier gerelateerd ander document, niet noodzakelijk een legale bron." ;
 		sh:path <http://data.europa.eu/eli/ontology#related_to> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "vervangt" ;
+		sh:description "Geeft aan dat deze bron een andere volledig vernieuwt." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#vervangt> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "bekrachtigt" ;
+		sh:description "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "bekrachtigdBij" ;
+		sh:description "Inverse van "bekrachtigt"." ;
+		sh:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigdBij> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
+	] ;
+	sh:property [
+		sh:name "wijzigt" ;
+		sh:description "Duidt aan dat deze rechtsgrond een verandering met legale gevolgen doorvoert op een andere rechtsgrond. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering." ;
+		sh:path <http://data.europa.eu/eli/ontology#amends> ;
 		sh:class <http://data.europa.eu/eli/ontology#LegalResource> ;
 	] ;
 	sh:property [
@@ -275,6 +289,7 @@
 		sh:path <http://data.europa.eu/eli/ontology#type_document> ;
 		sh:class <http://fixme.com#AardWetgeving> ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
 		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/AardWetgeving> ;
 	] ;
 	sh:property [
@@ -282,6 +297,7 @@
 		sh:description "De datum waarop de regelgeving van kracht wordt." ;
 		sh:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -289,29 +305,8 @@
 		sh:description "De laatste dag waarop de regelgeving nog van kracht is." ;
 		sh:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/vlaamse-codex#HoofstukShape>
-	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/wetgeving#Hoofstuk> ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/vlaamse-codex#ArtikelShape>
-	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/wetgeving#Artikel> ;
-	sh:property [
-		sh:name "nummer" ;
-		sh:description "Een identificator of een ander onderscheidend kenmerk voor een verschijningsvorm." ;
-		sh:path <http://data.europa.eu/eli/ontology#number> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/vlaamse-codex#ParagraafShape>
-	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/wetgeving#Paragraaf> ;
 	sh:closed false .
 
