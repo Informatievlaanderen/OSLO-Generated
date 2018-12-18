@@ -4,24 +4,23 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/melding#Terugmelding> ;
 	sh:property [
-		sh:name "melder" ;
-		sh:description "De Agent die het probleem waarover gemeld wordt opmerkte." ;
-		sh:path <https://data.vlaanderen.be/ns/melding#melder> ;
+		sh:name "betrokkene" ;
+		sh:description "Agent die als derde belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#betrokkene> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
+	] ;
+	sh:property [
+		sh:name "behandelaar" ;
+		sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#behandelaar> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "indiener" ;
 		sh:description "Agent die de Melding heeft aangemaakt en/of ingediend." ;
 		sh:path <https://data.vlaanderen.be/ns/melding#indiener> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "behandelaar" ;
-		sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen." ;
-		sh:path <https://data.vlaanderen.be/ns/melding#behandelaar> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -34,12 +33,6 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "betrokkene" ;
-		sh:description "Agent die als derde belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan." ;
-		sh:path <https://data.vlaanderen.be/ns/melding#betrokkene> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-	] ;
-	sh:property [
 		sh:name "heeftDoelwit" ;
 		sh:description "De relatie tussen de Melding en het doelwit, het Meldingsobject waarop de melding slaat." ;
 		sh:path <http://www.w3.org/ns/oa#hasTarget> ;
@@ -50,6 +43,13 @@
 		sh:description "De applicatie dat de Melding creëerde." ;
 		sh:path <https://data.vlaanderen.be/ns/melding#meldingsapplicatie> ;
 		sh:class <https://data.vlaanderen.be/ns/melding#Applicatie> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "melder" ;
+		sh:description "De Agent die het probleem waarover gemeld wordt opmerkte." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#melder> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -339,17 +339,17 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/dc/dcmitype/Dataset> ;
 	sh:property [
-		sh:name "eigenschap" ;
-		sh:description "Verwijst naar de Eigenschap die deel uitmaakt van de Dataset." ;
-		sh:path <https://data.vlaanderen.be/ns/melding#eigenschap> ;
-		sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap> ;
-	] ;
-	sh:property [
 		sh:name "bronhouder" ;
 		sh:description "De bronhouder is verantwoordelijk voor het opnemen van gegevens in de dataset en het bewaken van de kwaliteit daarvan." ;
 		sh:path <https://data.vlaanderen.be/ns/melding#bronhouder> ;
 		sh:class <https://www.w3.org/ns/org#Organization> ;
 		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "eigenschap" ;
+		sh:description "Verwijst naar de Eigenschap die deel uitmaakt van de Dataset." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#eigenschap> ;
+		sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap> ;
 	] ;
 	sh:property [
 		sh:name "beschrijving" ;
@@ -393,19 +393,19 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/melding#Meldingsobject> ;
 	sh:property [
+		sh:name "behandelaar" ;
+		sh:description "Agent die werd aangewezen om het meldingsobject op te volgen en af te handelen." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#behandelaar> ;
+		sh:class <https://www.w3.org/ns/org#Organization> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
 		sh:name "heeftBron" ;
 		sh:description "De bron (Dataset) waar het Meldingsobject in voor komt." ;
 		sh:path <http://www.w3.org/ns/oa#hasSource> ;
 		sh:class <http://purl.org/dc/dcmitype/Dataset> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "behandelaar" ;
-		sh:description "Agent die werd aangewezen om het meldingsobject op te volgen en af te handelen." ;
-		sh:path <https://data.vlaanderen.be/ns/melding#behandelaar> ;
-		sh:class <https://www.w3.org/ns/org#Organization> ;
-		sh:minCount 1 ;
 	] ;
 	sh:property [
 		sh:name "heeftToestand" ;
