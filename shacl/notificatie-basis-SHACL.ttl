@@ -1,16 +1,40 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix qb:      <http://purl.org/linked-data/cube#> .
-<https://data.vlaanderen.be/shacl/notifiatie-basis#GetypeerdeStringShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/notificatie-basis#GetypeerdeStringShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#TijdsintervalShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
+	sh:property [
+		sh:name "gml" ;
+		sh:description "Geometrie uitgedrukt in gml-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "wkt" ;
+		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/m8g/PeriodOfTime> ;
 	sh:property [
 		sh:name "begin" ;
-		sh:description "TODO" ;
+		sh:description "Moment waarop het tijdsinterval begint." ;
 		sh:path <http://data.europa.eu/m8g/startTime> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
 		sh:minCount 1 ;
@@ -18,155 +42,87 @@
 	] ;
 	sh:property [
 		sh:name "einde" ;
-		sh:description "TODO" ;
+		sh:description "Moment waarop het tijdsinterval eindigt." ;
 		sh:path <http://data.europa.eu/m8g/endTime> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#IdentificatorShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/adms#Identifier> ;
-	sh:property [
-		sh:name "identificator" ;
-		sh:description "TODO" ;
-		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendDoor" ;
-		sh:description "TODO" ;
-		sh:path <http://purl.org/dc/terms/creator> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendDoorString" ;
-		sh:description "TODO" ;
-		sh:path <http://www.w3.org/ns/adms#schemaAgency> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendOp" ;
-		sh:description "TODO" ;
-		sh:path <http://purl.org/dc/terms/issued> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/notifiatie-basis#GeometrieShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
-	sh:property [
-		sh:name "gml" ;
-		sh:description "TODO" ;
-		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "wkt" ;
-		sh:description "TODO" ;
-		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/notifiatie-basis#GeografischeNaamShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#ContactInfoShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://schema.org/ContactPoint> ;
 	sh:property [
 		sh:name "aanschrijfvorm" ;
-		sh:description "TODO" ;
+		sh:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen." ;
 		sh:path <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "adres" ;
-		sh:description "TODO" ;
+		sh:description "Adres dat men kan aanschrijven of bezoeken." ;
 		sh:path <http://www.w3.org/ns/locn#address> ;
 		sh:class <http://www.w3.org/ns/locn#Address> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "beschikbaarheid" ;
-		sh:description "TODO" ;
+		sh:description "Periode waarin contact kan worden opgenomen." ;
 		sh:path <http://schema.org/hoursAvailable> ;
 		sh:class <http://schema.org/OpeningHoursSpecification> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "contactnaam" ;
-		sh:description "TODO" ;
+		sh:description "Naam van bvb de persoon die men kan contacteren." ;
 		sh:path <http://xmlns.com/foaf/0.1/name> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "email" ;
-		sh:description "TODO" ;
+		sh:description "Email-adres waarnaar men kan mailen." ;
 		sh:path <http://schema.org/email> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "fax" ;
-		sh:description "TODO" ;
+		sh:description "Faxnummer waarnaar men kan faxen." ;
 		sh:path <http://schema.org/faxNumber> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "openingsuren" ;
-		sh:description "TODO" ;
+		sh:description "Uren waarbinnen contact kan worden opgenomen." ;
 		sh:path <http://schema.org/openingHours> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "telefoon" ;
-		sh:description "TODO" ;
+		sh:description "Telefoonnummer waarop men kan bellen." ;
 		sh:path <http://schema.org/telephone> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "website" ;
-		sh:description "TODO" ;
+		sh:description "Website waarnaar men kan surfen." ;
 		sh:path <http://xmlns.com/foaf/0.1/page> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#PubliekeDienstverleningShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/vocab/cpsv#PublicService> ;
 	sh:property [
@@ -175,108 +131,9 @@
 		sh:path <http://data.europa.eu/m8g/hasCompetentAuthority> ;
 		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
 	] ;
-	sh:property [
-		sh:name "alternatieveNaam" ;
-		sh:description "Andere naam waaronder de dienstverlening bekend is." ;
-		sh:path <http://www.w3.org/2004/02/skos/core#altLabel> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "beschrijving" ;
-		sh:description "Beschrijving van de Publieke Dienstverlening. " ;
-		sh:path <http://purl.org/dc/terms/description> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "contactinfo" ;
-		sh:description "Informatie waarmee de Publieke Dienstverlening kan worden gecontacteerd." ;
-		sh:path <http://data.europa.eu/m8g/hasContactPoint> ;
-		sh:class <http://schema.org/ContactPoint> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "kost" ;
-		sh:description "Kostprijs verbonden aan het gebruik van de Publieke dienstverlening." ;
-		sh:path <http://data.europa.eu/m8g/hasCost> ;
-		sh:class <http://data.europa.eu/m8g/Cost> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "naam" ;
-		sh:description "Officiële naam van de Publieke Dienstverlening." ;
-		sh:path <http://purl.org/dc/terms/title> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "ruimtelijkeDekking" ;
-		sh:description "Gebied waarin de Publieke Dienstverlening beschikbaar is." ;
-		sh:path <http://purl.org/dc/terms/spatial> ;
-		sh:class <http://purl.org/dc/terms/Location> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList <http://publications.europa.eu/mdr/authority/atu/index.html> ;
-	] ;
-	sh:property [
-		sh:name "sector" ;
-		sh:description "Sector of bedrijvigheid waarop de Publieke Dienstverlening betrekking heeft of waarvoor deze is bedoeld." ;
-		sh:path <http://data.europa.eu/m8g/sector> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "status" ;
-		sh:description "Geeft aan of een Publieke Dienstverlening actief, inactief, in ontwikkeling etc is." ;
-		sh:path <http://www.w3.org/ns/adms#status> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList < http://purl.org/adms/status/> ;
-	] ;
-	sh:property [
-		sh:name "taal" ;
-		sh:description "Taal waarin een Publieke Dienstverlening wordt aangeboden." ;
-		sh:path <http://purl.org/dc/terms/language> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList <http://publications.europa.eu/mdr/authority/language/> ;
-	] ;
-	sh:property [
-		sh:name "trefwoord" ;
-		sh:description "Sleutelwoord, term, begrip dat de Publieke Dienst beschrijft." ;
-		sh:path <http://www.w3.org/ns/dcat#keyword> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "type" ;
-		sh:description "Soort Publieke Dienstverlening." ;
-		sh:path <http://purl.org/dc/terms/type> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "verwerkingstijd" ;
-		sh:description "Geschatte tijd nodig om de Publieke Dienstverlening af te leveren." ;
-		sh:path <http://data.europa.eu/m8g/processingTime> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#PubliekeOrganisatieShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/m8g/PublicOrganisation> ;
 	sh:property [
@@ -286,20 +143,9 @@
 		sh:class <https://schema.org/Brand> ;
 		sh:minCount 1 ;
 	] ;
-	sh:property [
-		sh:name "werkingsgebied" ;
-		sh:description "Administratief gebied dat de Publieke Organisatie dekt." ;
-		sh:path <http://purl.org/dc/terms/spatial> ;
-		sh:class <http://purl.org/dc/terms/Location> ;
-	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#AgentShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://purl.org/dc/terms/Agent> ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/notifiatie-basis#AdministratieveEenheidShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://schema.org/AdministrativeArea> ;
 	sh:property [
@@ -318,7 +164,7 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#DoelgroepShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://schema.org/Audience> ;
 	sh:property [
@@ -343,9 +189,15 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#InformeerActieShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://schema.org/InformAction> ;
+	sh:property [
+		sh:name "isGerelateerdMet" ;
+		sh:description "Een relatie tussen twee Informeer Acties." ;
+		sh:path <http://purl.org/dc/terms/relation> ;
+		sh:class <https://schema.org/InformAction> ;
+	] ;
 	sh:property [
 		sh:name "resulteertIn" ;
 		sh:description "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen." ;
@@ -359,12 +211,6 @@
 		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isGerelateerdMet" ;
-		sh:description "Een relatie tussen twee Informeer Acties." ;
-		sh:path <http://purl.org/dc/terms/relation> ;
-		sh:class <https://schema.org/InformAction> ;
 	] ;
 	sh:property [
 		sh:name "doelgroep" ;
@@ -402,7 +248,7 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#SleutelWaardeShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#SleutelWaardeShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://schema.org/PropertyValue> ;
 	sh:property [
@@ -423,7 +269,7 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#MerkShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://schema.org/Brand> ;
 	sh:property [
@@ -450,7 +296,7 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/notifiatie-basis#NotificatieberichtShape>
+<https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> ;
 	sh:property [
@@ -458,8 +304,6 @@
 		sh:description "De agent die het notificatiebericht ontvangt." ;
 		sh:path <https://schema.org/recipient> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "afzender" ;
