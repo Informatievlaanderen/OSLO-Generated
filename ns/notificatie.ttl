@@ -20,12 +20,6 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-dcterms:Agent a rdfs:Class ;
-    rdfs:label "Agent"@nl .
-
-schema:ContactPoint a rdfs:Class ;
-    rdfs:label "Contactpunt"@nl .
-
 <https://schema.org/AdministrativeArea> a rdfs:Class ;
     rdfs:label "Administratieve Eenheid"@nl .
 
@@ -56,23 +50,11 @@ schema:dateReceived a rdf:Property ;
 schema:dateSent a rdf:Property ;
     rdfs:label "datum verzending"@nl .
 
-schema:email a rdf:Property ;
-    rdfs:label "email"@nl .
-
 schema:expires a rdf:Property ;
     rdfs:label "vervalt"@nl .
 
-schema:faxNumber a rdf:Property ;
-    rdfs:label "faxnummer"@nl .
-
-schema:hoursAvailable a rdf:Property ;
-    rdfs:label "uren beschikbaarheid"@nl .
-
 schema:name a rdf:Property ;
     rdfs:label "naam"@nl .
-
-schema:openingHours a rdf:Property ;
-    rdfs:label "openingsuren"@nl .
 
 schema:recipient a rdf:Property ;
     rdfs:label "bestemmeling"@nl .
@@ -80,29 +62,20 @@ schema:recipient a rdf:Property ;
 schema:sender a rdf:Property ;
     rdfs:label "afzender"@nl .
 
-schema:telephone a rdf:Property ;
-    rdfs:label "telefoon"@nl .
-
 schema:url a rdf:Property ;
     rdfs:label "url"@nl .
-
-<http://www.w3.org/2006/vcard/ns#honorific-prefix> a rdf:Property ;
-    rdfs:label "aanschrijfprefix"@nl .
 
 <http://www.w3.org/ns/adms#identifier> a rdf:Property ;
     rdfs:label "identificator"@nl .
 
-locn:address a rdf:Property ;
-    rdfs:label "adres"@nl .
-
 locn:geometry a rdf:Property ;
     rdfs:label "geometrie"@nl .
 
-foaf:name a rdf:Property ;
-    rdfs:label "naam"@nl .
-
-foaf:page a rdf:Property ;
-    rdfs:label "pagina"@nl .
+<https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> a owl:Class ;
+    rdfs:label "Notificatiebericht"@nl ;
+    rdfs:comment "Een bericht van een afzender naar een bestemmeling met als doel het informeren van de bestemmeling."@nl ;
+    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> ;
+    rdfs:subClassOf "https://schema.org/Message" .
 
 <https://data.vlaanderen.be/ns/notificatie#inhoud> a owl:ObjectProperty ;
     rdfs:label "inhoud"@nl ;
@@ -128,9 +101,7 @@ foaf:page a rdf:Property ;
 <https://data.vlaanderen.be/ns/notificatie#resulteertIn> a owl:ObjectProperty ;
     rdfs:label "resulteert in"@nl ;
     rdfs:comment "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen."@nl ;
-    rdfs:domain <https://schema.org/InformAction> ;
-    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> ;
-    rdfs:range <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> .
+    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
 
 <https://schema.org/about> a rdf:Property ;
     rdfs:label "onderwerp"@nl .
@@ -148,42 +119,21 @@ foaf:page a rdf:Property ;
     rdfs:label "naam"@nl,
         "titel"@nl .
 
-<https://schema.org/recipient> a rdf:Property ;
-    rdfs:label "bestemmeling"@nl .
-
 <https://schema.org/text> a rdf:Property ;
     rdfs:label "tekst"@nl .
 
 <https://schema.org/value> a rdf:Property ;
     rdfs:label "waarde"@nl .
 
-<https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> a owl:Class ;
-    rdfs:label "Notificatiebericht"@nl ;
-    rdfs:comment "Een bericht van een afzender naar een bestemmeling met als doel het informeren van de bestemmeling."@nl ;
-    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> ;
-    rdfs:subClassOf "https://schema.org/Message" .
-
 <https://data.vlaanderen.be/ns/notificatie> a owl:Ontology ;
     rdfs:label "Notification"@en,
         "Notificatie"@nl ;
     dcterms:contributor [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
-                    foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Liesbeth" ;
-            foaf:lastName "Rombouts" ;
-            foaf:mbox <mailto:liesbeth.rombouts@kb.vlaanderen.be> ],
-        [ a foaf:person ;
             schema:affiliation [ foaf:homepage <http://www.pwc.be> ;
                     foaf:name "PwC" ] ;
             foaf:firstName "Nikolaos" ;
             foaf:lastName "Loutas" ;
             foaf:mbox <mailto:nikolaos.loutas@pwc.com> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://bosa.belgium.be/> ;
-                    foaf:name "BOSA" ] ;
-            foaf:firstName "Steven" ;
-            foaf:lastName "Tielemans" ;
-            foaf:mbox <mailto:steven.tielemans@bosa.fgov.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://www.scip-cspi.be/> ;
                     foaf:name "CSPI" ] ;
@@ -201,8 +151,20 @@ foaf:page a rdf:Property ;
                     foaf:name "AHOVOKS" ] ;
             foaf:firstName "Bert" ;
             foaf:lastName "Thiry" ;
-            foaf:mbox <mailto:bert.thiry@ond.vlaanderen.be> ] ;
-    dcterms:issued "2018-06-21"^^xsd:date ;
+            foaf:mbox <mailto:bert.thiry@ond.vlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
+                    foaf:name "Informatie Vlaanderen" ] ;
+            foaf:firstName "Liesbeth" ;
+            foaf:lastName "Rombouts" ;
+            foaf:mbox <mailto:liesbeth.rombouts@kb.vlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://bosa.belgium.be/> ;
+                    foaf:name "BOSA" ] ;
+            foaf:firstName "Steven" ;
+            foaf:lastName "Tielemans" ;
+            foaf:mbox <mailto:steven.tielemans@bosa.fgov.be> ] ;
+    dcterms:issued "2018-12-19"^^xsd:date ;
     dcterms:license <https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html> ;
     dcterms:mediator [ foaf:homepage <https://data.vlaanderen.be> ;
             foaf:mbox <mailto:oslo@kb.vlaanderen.be> ;
@@ -213,33 +175,27 @@ foaf:page a rdf:Property ;
     ns1:editor [ a foaf:person ;
             schema:affiliation [ foaf:homepage <http://www.pwc.be> ;
                     foaf:name "PwC" ] ;
-            foaf:firstName "Michiel" ;
-            foaf:lastName "De Keyzer" ;
-            foaf:mbox <mailto:michiel.de.keyzer@pwc.com> ],
+            foaf:firstName "Jens" ;
+            foaf:lastName "Scheerlinck" ;
+            foaf:mbox <mailto:jens.scheerlinck@pwc.com> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <http://www.pwc.be> ;
                     foaf:name "PwC" ] ;
-            foaf:firstName "Jens" ;
-            foaf:lastName "Scheerlinck" ;
-            foaf:mbox <mailto:jens.scheerlinck@pwc.com> ] ;
+            foaf:firstName "Michiel" ;
+            foaf:lastName "De Keyzer" ;
+            foaf:mbox <mailto:michiel.de.keyzer@pwc.com> ] ;
     foaf:maker [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
-                    foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Dries" ;
-            foaf:lastName "Beheydt" ;
-            foaf:mbox <mailto:dries.beheydt@kb.vlaanderen.be> ],
-        [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
                     foaf:name "Informatie Vlaanderen" ] ;
             foaf:firstName "Bart" ;
             foaf:lastName "Misseeuw" ;
             foaf:mbox <mailto:bart.misseeuw@kb.vlaanderen.be> ],
         [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
                     foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Goedele" ;
-            foaf:lastName "Van der Spiegel" ;
-            foaf:mbox <mailto:goedele.vanderspiegel@kb.vlaanderen.be> ],
+            foaf:firstName "Dries" ;
+            foaf:lastName "Beheydt" ;
+            foaf:mbox <mailto:dries.beheydt@kb.vlaanderen.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
                     foaf:name "Informatie Vlaanderen" ] ;
@@ -251,5 +207,11 @@ foaf:page a rdf:Property ;
                     foaf:name "Informatie Vlaanderen" ] ;
             foaf:firstName "Niko" ;
             foaf:lastName "Tanghe" ;
+            foaf:mbox <mailto:goedele.vanderspiegel@kb.vlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
+                    foaf:name "Informatie Vlaanderen" ] ;
+            foaf:firstName "Goedele" ;
+            foaf:lastName "Van der Spiegel" ;
             foaf:mbox <mailto:goedele.vanderspiegel@kb.vlaanderen.be> ] .
 

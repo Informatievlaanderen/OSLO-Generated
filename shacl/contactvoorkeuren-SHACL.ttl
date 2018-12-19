@@ -1,34 +1,421 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix qb:      <http://purl.org/linked-data/cube#> .
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#ContactInfoShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/ContactPoint> ;
+	sh:property [
+		sh:name "aanschrijfvorm" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adres" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/locn#address> ;
+		sh:class <http://www.w3.org/ns/locn#Address> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactnaam" ;
+		sh:description "TODO" ;
+		sh:path <http://xmlns.com/foaf/0.1/name> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "email" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/email> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "telefoon" ;
+		sh:description "TODO" ;
+		sh:path <http://schema.org/telephone> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#AdresvoorstellingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Address> ;
+	sh:property [
+		sh:name "busnummer" ;
+		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
+		sh:path <http://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gemeentenaam" ;
+		sh:description "Gemeentenaam van het adres." ;
+		sh:path <http://data.vlaanderen.be/ns/adres#gemeentenaam> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "huisnummer" ;
+		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
+		sh:path <http://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "land" ;
+		sh:description "Land waarin het adres gelegen is." ;
+		sh:path <http://data.vlaanderen.be/ns/adres#land> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postcode" ;
+		sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
+		sh:path <http://www.w3.org/ns/locn#postCode> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "straatnaam" ;
+		sh:description "Straatnaam van het adres." ;
+		sh:path <http://www.w3.org/ns/locn#thoroughfare> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "verwijstNaar" ;
+		sh:description "Verwijst naar de identificator (URI) van een adres in het adresregister." ;
+		sh:path <http://data.vlaanderen.be/ns/adres#verwijstNaar> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Adres> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#DocumentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://xmlns.com/foaf/0.1/Document> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#HoedanigheidShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/organisatie#Hoedanigheid> ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie zoals email, telefoon die toelaat de hoedanigheid te contacteren." ;
+		sh:path <https://data.vlaanderen.be/ns/organisatie#contactinfo> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#PersoonShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/person#Person> ;
+	sh:property [
+		sh:name "achternaam" ;
+		sh:description "TODO" ;
+		sh:path <http://xmlns.com/foaf/0.1/familyName> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "alternatieveNaam" ;
+		sh:description "Alternatief voor de volledige naam vd persoon." ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#alternatieveNaam> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie zoals email, telefoon die toelaat de Persoon te contacteren." ;
+		sh:path <http://schema.org/contactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "geboortenaam" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/person#birthName> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gebruikteVoornaam" ;
+		sh:description "Belangrijkste vd voornamen ve persoon." ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "geslacht" ;
+		sh:description "Het feit of de persoon een man of een vrouw is." ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#geslacht> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "patroniem" ;
+		sh:description "TODO" ;
+		sh:path <http://www.w3.org/ns/person#patronymicName> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "volledigeNaam" ;
+		sh:description "De volledige naam vd persoon, doorgaans de combinatie van voornamen en achternaam." ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#volledigeNaam> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "voornaam" ;
+		sh:description "TODO" ;
+		sh:path <http://xmlns.com/foaf/0.1/givenName> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie zoals email, telefoon die toelaat de Agent te contacteren." ;
+		sh:path <http://schema.org/contactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeDienstverleningShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/vocab/cpsv#PublicService> ;
+	sh:property [
+		sh:name "alternatieveNaam" ;
+		sh:description "Andere naam waaronder de dienstverlening bekend is." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#altLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Beschrijving van de Publieke Dienstverlening. " ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie waarmee de Publieke Dienstverlening kan worden gecontacteerd." ;
+		sh:path <http://data.europa.eu/m8g/hasContactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "kost" ;
+		sh:description "Kostprijs verbonden aan het gebruik van de Publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasCost> ;
+		sh:class <http://data.europa.eu/m8g/Cost> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "Officiële naam van de Publieke Dienstverlening." ;
+		sh:path <http://purl.org/dc/terms/title> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "ruimtelijkeDekking" ;
+		sh:description "Gebied waarin de Publieke Dienstverlening beschikbaar is." ;
+		sh:path <http://purl.org/dc/terms/spatial> ;
+		sh:class <http://purl.org/dc/terms/Location> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <http://publications.europa.eu/mdr/authority/atu/index.html> ;
+	] ;
+	sh:property [
+		sh:name "sector" ;
+		sh:description "Sector of bedrijvigheid waarop de Publieke Dienstverlening betrekking heeft of waarvoor deze is bedoeld." ;
+		sh:path <http://data.europa.eu/m8g/sector> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "status" ;
+		sh:description "Geeft aan of een Publieke Dienstverlening actief, inactief, in ontwikkeling etc is." ;
+		sh:path <http://www.w3.org/ns/adms#status> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList < http://purl.org/adms/status/> ;
+	] ;
+	sh:property [
+		sh:name "taal" ;
+		sh:description "Taal waarin een Publieke Dienstverlening wordt aangeboden." ;
+		sh:path <http://purl.org/dc/terms/language> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <http://publications.europa.eu/mdr/authority/language/> ;
+	] ;
+	sh:property [
+		sh:name "trefwoord" ;
+		sh:description "Sleutelwoord, term, begrip dat de Publieke Dienst beschrijft." ;
+		sh:path <http://www.w3.org/ns/dcat#keyword> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Soort Publieke Dienstverlening." ;
+		sh:path <http://purl.org/dc/terms/type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "verwerkingstijd" ;
+		sh:description "Geschatte tijd nodig om de Publieke Dienstverlening af te leveren." ;
+		sh:path <http://data.europa.eu/m8g/processingTime> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeOrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/PublicOrganisation> ;
+	sh:property [
+		sh:name "werkingsgebied" ;
+		sh:description "Administratief gebied dat de Publieke Organisatie dekt." ;
+		sh:path <http://purl.org/dc/terms/spatial> ;
+		sh:class <http://purl.org/dc/terms/Location> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/contactvoorkeuren#OrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/org#Organization> ;
+	sh:property [
+		sh:name "activiteit" ;
+		sh:description "Type activiteit die door de Organisatie wordt uitgeoefend." ;
+		sh:path <http://www.w3.org/ns/regorg#orgActivity> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "alternatieveNaam" ;
+		sh:description "Andere naam waaronder de organisatie bekend is." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#altLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Beschrijving van de Publieke Organisatie." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "classificatie" ;
+		sh:description "Rangschikking van de Organisatie in een classificatiesysteem." ;
+		sh:path <http://www.w3.org/ns/org#classification> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren. " ;
+		sh:path <http://schema.org/contactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doel" ;
+		sh:description "Bestaanreden vd Organisatie." ;
+		sh:path <http://www.w3.org/ns/org#purpose> ;
+	] ;
+	sh:property [
+		sh:name "homepage" ;
+		sh:description "Adres vd homepage van de website vd Publieke Organisatie." ;
+		sh:path <http://xmlns.com/foaf/0.1/homepage> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "logo" ;
+		sh:description "Verwijzing naar het logo vd Publieke Organisatie." ;
+		sh:path <http://schema.org/logo> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "status" ;
+		sh:description "Toestand vd Organisatie." ;
+		sh:path <http://www.w3.org/ns/regorg#orgStatus> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Type Organisatie." ;
+		sh:path <http://www.w3.org/ns/regorg#orgType> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "voorkeursNaam" ;
+		sh:description "Naam waarmee de Organisatie bij voorkeur wordt aangeduid." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkingsactiviteitShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/toestemming#Verwerkingsactiviteit> ;
-	sh:property [
-		sh:name "extraInformatie" ;
-		sh:description "Verwijzing naar een document met extra informatie over de verwerkingsactiviteit." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#extraInformatie> ;
-		sh:class <http://xmlns.com/foaf/0.1/Document> ;
-	] ;
 	sh:property [
 		sh:name "isGerelateerdMet" ;
 		sh:description "De Publieke Dienstverlening waarbinnen de toestemming kadert." ;
 		sh:path <http://purl.org/dc/terms/relation> ;
 		sh:class <http://purl.org/vocab/cpsv#PublicService> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "verwerkingsverantwoordelijke" ;
-		sh:description "Een overheidsinstantie, een dienst of een ander orgaan die/dat, alleen of samen met anderen, het doel van en de middelen voor de verwerking van persoonsgegevens vaststelt." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#verwerkingsverantwoordelijke> ;
-		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "verwerker" ;
-		sh:description "een natuurlijke persoon of rechtspersoon, een overheidsinstantie, een dienst of een ander orgaan die/dat ten behoeve van de verwerkingsverantwoordelijke persoonsgegevens verwerkt." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#verwerker> ;
-		sh:class <http://www.w3.org/ns/org#Organization> ;
 	] ;
 	sh:property [
 		sh:name "contactkanaal" ;
@@ -60,7 +447,7 @@
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-		qb:codeList <https://data.vlaanderen.be/doc/conceptscheme/Verwerkingstypes> ;
+		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/Verwerkingstypes> ;
 	] ;
 	sh:property [
 		sh:name "verwerkingsgrond" ;
@@ -88,79 +475,14 @@
 	sh:targetClass <https://data.vlaanderen.be/ns/toestemming#AlgemeneVoorwaarden> ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#DocumentShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://xmlns.com/foaf/0.1/Document> ;
-	sh:property [
-		sh:name "url" ;
-		sh:description "Een doorverwijzing naar een webpagina." ;
-		sh:path <http://schema.org/url> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkersovereenkomstShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/toestemming#Verwerkersovereenkomst> ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeDienstverleningShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://purl.org/vocab/cpsv#PublicService> ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#OrganisatieShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/org#Organization> ;
-	sh:property [
-		sh:name "heeftVerwerkersovereenkomstMet" ;
-		sh:description "Verwijst naar de verwerkersovereenkomst die is aangegaan tussen de verwerker en de verwerkingsverantwoordelijke." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#heeftVerwerkersovereenkomstMet> ;
-		sh:class <https://data.vlaanderen.be/ns/toestemming#Verwerkersovereenkomst> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeOrganisatieShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://data.europa.eu/m8g/PublicOrganisation> ;
-	sh:property [
-		sh:name "heeftVerwerkersovereenkomstMet" ;
-		sh:description "Verwijst naar de verwerkersovereenkomst die is aangegaan tussen de verwerker en de verwerkingsverantwoordelijke." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#heeftVerwerkersovereenkomstMet> ;
-		sh:class <https://data.vlaanderen.be/ns/toestemming#Verwerkersovereenkomst> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#AgentShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://purl.org/dc/terms/Agent> ;
-	sh:property [
-		sh:name "contactinfo" ;
-		sh:description "Informatie zoals email, telefoon die toelaat de Agent te contacteren." ;
-		sh:path <http://schema.org/contactPoint> ;
-		sh:class <http://schema.org/ContactPoint> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#ToestemmingShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/toestemming#Toestemming> ;
-	sh:property [
-		sh:name "dataSubject" ;
-		sh:description "Verwijst naar de Agent die het onderwerp vormt van de persoonlijke informatie waarvoor toestemming verleend werd." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#dataSubject> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
 	sh:property [
 		sh:name "gegevenVoor" ;
 		sh:description "Relatie met de verwerkingsactiviteit waarvoor expliciet toestemming werd gegeven." ;
@@ -179,19 +501,18 @@
 		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/Contactkanaal> ;
 	] ;
 	sh:property [
-		sh:name "notificatiecategorie" ;
-		sh:description "De notificatie categorie waarvoor de Agent toestemming verleende om gecontacteerd te worden." ;
-		sh:path <https://data.vlaanderen.be/ns/toestemming#notificatiecategorie> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:maxCount 1 ;
-		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/Notificatiecategorie> ;
-	] ;
-	sh:property [
 		sh:name "gegevenOp" ;
 		sh:description "De datum waarop de toestemming werd verleend." ;
 		sh:path <https://data.vlaanderen.be/ns/toestemming#gegevenOp> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "notificatiecategorie" ;
+		sh:description "De notificatie categorie waarvoor de Agent toestemming verleende om gecontacteerd te worden." ;
+		sh:path <https://data.vlaanderen.be/ns/toestemming#notificatiecategorie> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -208,98 +529,6 @@
 		sh:description "De datum waarop de toestemming vervalt." ;
 		sh:path <http://schema.org/expires> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#ContactInfoShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://schema.org/ContactPoint> ;
-	sh:property [
-		sh:name "aanschrijfvorm" ;
-		sh:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen." ;
-		sh:path <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "adres" ;
-		sh:description "Adres dat men kan aanschrijven." ;
-		sh:path <http://www.w3.org/ns/locn#address> ;
-		sh:class <http://www.w3.org/ns/locn#Address> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "contactnaam" ;
-		sh:description "Naam van de persoon die men kan contacteren." ;
-		sh:path <http://xmlns.com/foaf/0.1/name> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "email" ;
-		sh:description "Email-adres waarnaar men kan mailen." ;
-		sh:path <http://schema.org/email> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "telefoon" ;
-		sh:description "Telefoonnummer waarop men kan bellen of smsen." ;
-		sh:path <http://schema.org/telephone> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/contactvoorkeuren#AdresvoorstellingShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/locn#Address> ;
-	sh:property [
-		sh:name "busnummer" ;
-		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "gemeentenaam" ;
-		sh:description "Gemeentenaam van het adres." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "huisnummer" ;
-		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "land" ;
-		sh:description "Land waarin het adres gelegen is." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#land> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "postcode" ;
-		sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
-		sh:path <http://www.w3.org/ns/locn#postCode> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "straatnaam" ;
-		sh:description "Straatnaam van het adres." ;
-		sh:path <http://www.w3.org/ns/locn#thoroughfare> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "verwijstNaar" ;
-		sh:description "Verwijst naar de identificator (URI) van een adres in het adresregister." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#verwijstNaar> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
