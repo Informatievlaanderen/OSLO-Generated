@@ -80,7 +80,7 @@
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#GeboorteShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://data.vlaanderen.be/ns/persoon#Geboorte> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/persoon#Geboorte> ;
 	sh:property [
 		sh:name "datum" ;
 		sh:description "De geboortedatum." ;
@@ -95,19 +95,19 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/person#Person> ;
 	sh:property [
-		sh:name "heeftGeboorte" ;
-		sh:description "Duidt de geboorte van de persoon aan." ;
-		sh:path <http://data.vlaanderen.be/ns/persoon#heeftGeboorte> ;
-		sh:class <http://data.vlaanderen.be/ns/persoon#Geboorte> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isAangesteldAls" ;
 		sh:description "Een mandatarisrol die eigen is aan de persoon." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldAls> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftGeboorte" ;
+		sh:description "Duidt de geboorte van de persoon aan." ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#heeftGeboorte> ;
+		sh:class <https://data.vlaanderen.be/ns/persoon#Geboorte> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "achternaam" ;
@@ -120,14 +120,14 @@
 	sh:property [
 		sh:name "alternatieveNaam" ;
 		sh:description "Een roepnaam van de persoon." ;
-		sh:path <http://data.vlaanderen.be/ns/persoon#alternatieveNaam> ;
+		sh:path <http://xmlns.com/foaf/0.1/name> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "gebruikteVoornaam" ;
 		sh:description "De te gebruiken voornaam van alle officiële voornamen van de persoon." ;
-		sh:path <http://data.vlaanderen.be/ns/persoon#gebruikteVoornaam> ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -135,7 +135,7 @@
 	sh:property [
 		sh:name "geslacht" ;
 		sh:description "Het officiële geslacht van de persoon." ;
-		sh:path <http://data.vlaanderen.be/ns/persoon#geslacht> ;
+		sh:path <https://data.vlaanderen.be/ns/persoon#geslacht> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -180,21 +180,21 @@
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#Bestuursorgaan (in bestuursperiode)Shape>
 	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan> ;
+	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
+	sh:property [
+		sh:name "isTijdspecialisatieVan" ;
+		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
+		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
+		sh:class <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
 	sh:property [
 		sh:name "bevat" ;
 		sh:description "Een mandaat binnen het orgaan." ;
 		sh:path <http://www.w3.org/ns/org#hasPost> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
 		sh:minCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isTijdspecialisatieVan" ;
-		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
-		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
-		sh:class <https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
 
@@ -237,7 +237,7 @@
 		sh:name "steltSamen" ;
 		sh:description "Het orgaan waarvan de samenstelling wordt bepaald door de verkiezing." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#steltSamen> ;
-		sh:class <https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan> ;
+		sh:class <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -307,18 +307,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat> ;
 	sh:property [
-		sh:name "isResultaatVoor" ;
-		sh:description "De lijst waarop het resultaat betrekking heeft." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVoor> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isResultaatVan" ;
 		sh:description "De persoon horende bij het resultaat." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVan> ;
 		sh:class <http://www.w3.org/ns/person#Person> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "isResultaatVoor" ;
+		sh:description "De lijst waarop het resultaat betrekking heeft." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVoor> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -354,7 +354,7 @@
 	sh:property [
 		sh:name "aantalHouders" ;
 		sh:description "Maximale aantal mandatarissen dat tegelijk dit mandaat kan opnemen." ;
-		sh:path <https://data.vlaanderen.be/ns/organisatie#aantalHouders> ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#aantalHouders> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -371,7 +371,7 @@
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/bestuur#Bestuurseenheid> ;
+	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ;
 	sh:property [
 		sh:name "classificatie" ;
 		sh:description "Classificatie van de bestuurseenheid." ;
@@ -391,7 +391,7 @@
 	sh:property [
 		sh:name "werkingsgebied" ;
 		sh:description "Geografische gebied waarbinnen de bestuurseenheid bepaalde verantwoordelijkheden heeft waarbinnen het bestuurshandelingen kan stellen." ;
-		sh:path <https://data.vlaanderen.be/ns/bestuur#werkingsgebied> ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#werkingsgebied> ;
 		sh:class <http://www.w3.org/ns/prov#Location> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -400,12 +400,12 @@
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#BestuursorgaanShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan> ;
+	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
 	sh:property [
 		sh:name "bestuurt" ;
 		sh:description "De bestuurseenheid die door het orgaan bestuurd wordt." ;
-		sh:path <https://data.vlaanderen.be/ns/bestuur#bestuurt> ;
-		sh:class <https://data.vlaanderen.be/ns/bestuur#Bestuurseenheid> ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#bestuurt> ;
+		sh:class <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -444,24 +444,29 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 	sh:property [
+		sh:name "bekleedt" ;
+		sh:description "Het mandaat dat deze mandataris bekleedt." ;
+		sh:path <http://www.w3.org/ns/org#holds> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "isTijdelijkVervangenDoor" ;
 		sh:description "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 	] ;
 	sh:property [
-		sh:name "isBestuurlijkeAliasVan" ;
-		sh:description "De persoon die de mandatarisrol vervult." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan> ;
-		sh:class <http://www.w3.org/ns/person#Person> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
+		sh:name "isOntslagenDoor" ;
+		sh:description "De rechtsgrond die het ontslag van de mandataris vastlegt." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging> ;
 	] ;
 	sh:property [
-		sh:name "bekleedt" ;
-		sh:description "Het mandaat dat deze mandataris bekleedt." ;
-		sh:path <http://www.w3.org/ns/org#holds> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
+		sh:name "isLidVan" ;
+		sh:description "Duidt een lidmaatschap aan van de mandataris." ;
+		sh:path <http://www.w3.org/ns/org#hasMembership> ;
+		sh:class <http://www.w3.org/ns/org#Membership> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -472,17 +477,12 @@
 		sh:minCount 1 ;
 	] ;
 	sh:property [
-		sh:name "isLidVan" ;
-		sh:description "Duidt een lidmaatschap aan van de mandataris." ;
-		sh:path <http://www.w3.org/ns/org#hasMembership> ;
-		sh:class <http://www.w3.org/ns/org#Membership> ;
+		sh:name "isBestuurlijkeAliasVan" ;
+		sh:description "De persoon die de mandatarisrol vervult." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan> ;
+		sh:class <http://www.w3.org/ns/person#Person> ;
+		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isOntslagenDoor" ;
-		sh:description "De rechtsgrond die het ontslag van de mandataris vastlegt." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging> ;
 	] ;
 	sh:property [
 		sh:name "beleidsdomein" ;
