@@ -7,6 +7,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://data.europa.eu/m8g/PeriodOfTime> a rdfs:Class;
@@ -83,45 +84,19 @@ foaf:Document a rdfs:Class;
    rdfs:comment "Bestuurlijke eenheid waar een lidstaat rechtsbevoegdheid heeft en/of uitoefent, in het kader van lokaal, regionaal of nationaal bestuur."@nl;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
 
-<https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> a owl:Class;
-   rdfs:label "Documentonderdeel"@nl;
-   <http://purl.org/vocab/vann/usageNote> "Bv artikel, hoofdstuk, paragraaf..."@nl;
-   rdfs:comment "Een apart onderdeel van een groter document of verzameld document."@nl;
-   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
-
-<https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum> a owl:Class;
-   rdfs:label "Gebeurtenisdatum"@nl;
-   rdfs:comment "Datum waarop een gebeurtenis plaatsvond evt op een alternatieve manier beschreven. "@nl;
-   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
-
 <https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum.begin> a owl:DatatypeProperty;
    rdfs:label "begin"@nl;
    rdfs:comment "Datum en tijd waarop de gebeurtenis startte."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#dateTime" .
+   rdfs:range xsd:dateTime .
 
 <https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum.einde> a owl:DatatypeProperty;
    rdfs:label "einde"@nl;
    rdfs:comment "Datum en tijd waarop de gebeurtenis eindigde."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#dateTime" .
-
-<https://data.vlaanderen.be/ns/generiek#GeografischePositie> a owl:Class;
-   rdfs:label "Geografische Positie"@nl;
-   rdfs:comment "Geografische positie aangegeven dmv een punt."@nl;
-   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
-
-<https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> a owl:Class;
-   rdfs:label "Gestructureerde Identificator"@nl;
-   rdfs:comment "Identificator van een object opgesplitst in zijn onderdelen."@nl;
-   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
-
-<https://data.vlaanderen.be/ns/generiek#Versie> a owl:Class;
-   rdfs:label "Versie"@nl;
-   rdfs:comment "Stelt een entiteit voor in één specifieke periode."@nl;
-   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
+   rdfs:range xsd:dateTime .
 
 <https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd> a owl:Class;
    rdfs:label "Versie volgens Geldige Tijd"@nl;
@@ -137,107 +112,296 @@ foaf:Document a rdfs:Class;
    rdfs:label "bewerking"@nl;
    <http://purl.org/vocab/vann/usageNote> "Bvb \"correctie\" als de entiteit een record is en bvb gegenereerd werd om het voorgaand record ve object te verbeteren."@nl;
    rdfs:comment "Aard vd bewerking die ihkv de activiteit op de entiteit is uitgevoerd."@nl;
-   rdfs:domain "http://www.w3.org/ns/prov#Activity";
+   rdfs:domain prov:Activity;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2004/02/skos/core#Concept" .
+   rdfs:range skos:Concept .
 
 <https://data.vlaanderen.be/ns/generiek#default> a owl:DatatypeProperty;
    rdfs:label "default"@nl;
    <http://purl.org/vocab/vann/usageNote> "Hieronder wordt de positie verstaan die per default moet worden gebruikt als het object meerdere posities heeft."@nl;
    rdfs:comment "Geeft aan of de positie een default positie is."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GeografischePositie";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GeografischePositie>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#boolean" .
+   rdfs:range xsd:boolean .
 
 <https://data.vlaanderen.be/ns/generiek#geplandeStart> a owl:DatatypeProperty;
    rdfs:label "geplande start"@nl;
    rdfs:comment "Het tijdstip waarop de activiteit gepland is om te beginnen."@nl;
-   rdfs:domain "http://www.w3.org/ns/prov#Activity";
+   rdfs:domain prov:Activity;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#dateTime" .
+   rdfs:range xsd:dateTime .
 
 <https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator> a owl:ObjectProperty;
    rdfs:label "gestructureerde identificator"@nl;
    rdfs:comment "Identificator vh object opgesplitst in zijn onderdelen."@nl;
-   rdfs:domain "http://www.w3.org/ns/adms#Identifier";
+   rdfs:domain <http://www.w3.org/ns/adms#Identifier>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator" .
+   rdfs:range <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> .
 
 <https://data.vlaanderen.be/ns/generiek#handeldeInOpdrachtVan> a owl:ObjectProperty;
    rdfs:label "handelde in opdracht van"@nl;
    <http://purl.org/vocab/vann/usageNote> "De betrokken organisatie behoudt hierbij een zekere verantwoordelijkheid mbt het resultaat vd activiteit."@nl;
    rdfs:comment "Organisatie die de agent vertegenwoordigt bij het uitvoeren ve specifieke activiteit en waarvan hij/zij de vereiste autoriteit/verantwoordelijkheid heeft gekregen om dit te doen."@nl;
-   rdfs:domain "http://www.w3.org/ns/prov#Agent";
+   rdfs:domain prov:Agent;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/ns/org#Organization" .
+   rdfs:range org:Organization .
 
 <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> a owl:ObjectProperty;
    rdfs:label "is tijdspecialisatie van"@nl;
    rdfs:comment "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#Versie";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#Versie>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/ns/prov#Entity" .
+   rdfs:range prov:Entity .
 
 <https://data.vlaanderen.be/ns/generiek#lokaleIdentificator> a owl:DatatypeProperty;
    rdfs:label "lokale identificator"@nl;
    rdfs:comment "String gebruikt om het object uniek te identificeren binnen de naamruimte."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#string" .
+   rdfs:range xsd:string .
 
 <https://data.vlaanderen.be/ns/generiek#methode> a owl:ObjectProperty;
    rdfs:label "methode"@nl;
    <http://purl.org/vocab/vann/usageNote> "Bvb positie afgeleid ve bestaand object (bvb door berekening vd centroïde)."@nl;
    rdfs:comment "De manier waarop het punt werd bepaald."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GeografischePositie";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GeografischePositie>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2004/02/skos/core#Concept" .
+   rdfs:range skos:Concept .
 
 <https://data.vlaanderen.be/ns/generiek#naamruimte> a owl:DatatypeProperty;
    rdfs:label "naamruimte"@nl;
    <http://purl.org/vocab/vann/usageNote> "Laat toe om objecten met dezelfde identificator maar van verschillend type en/of afkomstig uit verschillende domeinen uiteen te houden. In praktijk bv een uri samengesteld uit betekenisvolle elementen zoals een domeinnaam, type en concept (bv https://data.vlaanderen.be/id/adres/). "@nl;
    rdfs:comment "String die toegvoegd wordt aan de lokaleidentificator om deze globaal uniek te maken."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#string" .
+   rdfs:range xsd:string .
 
 <https://data.vlaanderen.be/ns/generiek#nummer> a owl:DatatypeProperty;
    rdfs:label "nummer"@nl;
    <http://purl.org/vocab/vann/usageNote> "Bv nummer vh artikel, paragraaf, hoofdstuk..."@nl;
    rdfs:comment "Nummer vh documentonderdeel."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#integer" .
+   rdfs:range xsd:integer .
 
 <https://data.vlaanderen.be/ns/generiek#plaats> a owl:ObjectProperty;
    rdfs:label "plaats"@nl;
    <http://purl.org/vocab/vann/usageNote> "Typisch een land."@nl;
    rdfs:comment "Ruimtelijk gebied of benoemde plaats waarmee de Jurisdictie samenvalt."@nl;
-   rdfs:domain "http://purl.org/dc/terms/Jurisdiction";
+   rdfs:domain dc:Jurisdiction;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://purl.org/dc/terms/Location" .
+   rdfs:range dc:Location .
 
 <https://data.vlaanderen.be/ns/generiek#specificatie> a owl:ObjectProperty;
    rdfs:label "specificatie"@nl;
    <http://purl.org/vocab/vann/usageNote> "Bvb perceel, gebouw..."@nl;
    rdfs:comment "Het type object op basis waarvan het punt werd bepaald."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GeografischePositie";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GeografischePositie>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2004/02/skos/core#Concept" .
+   rdfs:range skos:Concept .
 
 <https://data.vlaanderen.be/ns/generiek#tussentijdstip> a owl:DatatypeProperty;
    rdfs:label "tussentijdstip"@nl;
    rdfs:comment "Datum en tijd van een moment tussen begin en einde."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#dateTime" .
+   rdfs:range xsd:dateTime .
 
 <https://data.vlaanderen.be/ns/generiek#versieIdentificator> a owl:DatatypeProperty;
    rdfs:label "versie-identificator"@nl;
    rdfs:comment "Identificator van de specifieke versie van een object."@nl;
-   rdfs:domain "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator";
+   rdfs:domain <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
-   rdfs:range "http://www.w3.org/2001/XMLSchema#string" .
+   rdfs:range xsd:string .
+
+<http://data.europa.eu/eli/ontology#language> a rdf:Property;
+   rdfs:label "taal"@nl .
+
+<http://data.europa.eu/m8g/endTime> a rdf:Property;
+   rdfs:label "einde"@nl .
+
+<http://data.europa.eu/m8g/startTime> a rdf:Property;
+   rdfs:label "begin"@nl .
+
+<http://data.europa.eu/m8g/subject> a rdf:Property;
+   rdfs:label "onderwerp"@nl .
+
+<http://data.europa.eu/m8g/territorialApplication> a rdf:Property;
+   rdfs:label "territoriale toepassing"@nl .
+
+dc:creator a rdf:Property;
+   rdfs:label "maker"@nl .
+
+dc:description a rdf:Property;
+   rdfs:label "beschrijving"@nl .
+
+dc:isPartOf a rdf:Property;
+   rdfs:label "is deel van"@nl,
+     "is onderdeel van"@nl .
+
+dc:issued a rdf:Property;
+   rdfs:label "uitgegeven"@nl .
+
+dc:relation a rdf:Property;
+   rdfs:label "relatie"@nl .
+
+dc:title a rdf:Property;
+   rdfs:label "titel"@nl .
+
+dc:type a rdf:Property;
+   rdfs:label "type"@nl .
+
+schema:contactPoint a rdf:Property;
+   rdfs:label "contactpunt"@nl .
+
+schema:email a rdf:Property;
+   rdfs:label "email"@nl .
+
+schema:faxNumber a rdf:Property;
+   rdfs:label "faxnummer"@nl .
+
+schema:hoursAvailable a rdf:Property;
+   rdfs:label "uren beschikbaarheid"@nl .
+
+schema:logo a rdf:Property;
+   rdfs:label "logo"@nl .
+
+schema:openingHours a rdf:Property;
+   rdfs:label "openingsuren"@nl .
+
+schema:telephone a rdf:Property;
+   rdfs:label "telefoon"@nl .
+
+<http://www.opengis.net/ont/geosparql#asGML> a rdf:Property;
+   rdfs:label "als GML"@nl .
+
+<http://www.opengis.net/ont/geosparql#asWKT> a rdf:Property;
+   rdfs:label "als WKT"@nl .
+
+rdfs:label a rdf:Property;
+   rdfs:label "label"@nl .
+
+skos:altLabel a rdf:Property;
+   rdfs:label "alternatieve label"@nl .
+
+skos:notation a rdf:Property;
+   rdfs:label "notatie"@nl .
+
+skos:prefLabel a rdf:Property;
+   rdfs:label "voorkeurslabel"@nl .
+
+vcard:honorific-prefix a rdf:Property;
+   rdfs:label "aanschrijfprefix"@nl .
+
+<http://www.w3.org/ns/adms#identifier> a rdf:Property;
+   rdfs:label "identificator"@nl .
+
+<http://www.w3.org/ns/adms#schemaAgency> a rdf:Property;
+   rdfs:label "schema agentschap"@nl .
+
+<http://www.w3.org/ns/adms#status> a rdf:Property;
+   rdfs:label "status"@nl .
+
+<http://www.w3.org/ns/locn#address> a rdf:Property;
+   rdfs:label "adres"@nl .
+
+<http://www.w3.org/ns/locn#geometry> a rdf:Property;
+   rdfs:label "geometrie"@nl .
+
+org:classification a rdf:Property;
+   rdfs:label "classificatie"@nl .
+
+org:purpose a rdf:Property;
+   rdfs:label "doel"@nl .
+
+<http://www.w3.org/ns/person#birthName> a rdf:Property;
+   rdfs:label "geboortenaam"@nl .
+
+<http://www.w3.org/ns/person#patronymicName> a rdf:Property;
+   rdfs:label "patroniem"@nl .
+
+prov:activity a rdf:Property;
+   rdfs:label "activiteit"@nl .
+
+prov:atTime a rdf:Property;
+   rdfs:label "op tijdstip"@nl .
+
+prov:qualifiedGeneration a rdf:Property;
+   rdfs:label "gekwalificeerde creatie"@nl .
+
+prov:qualifiedInvalidation a rdf:Property;
+   rdfs:label "gekwalificeerde opheffing"@nl .
+
+prov:used a rdf:Property;
+   rdfs:label "gebruikt"@nl .
+
+prov:wasAssociatedWith a rdf:Property;
+   rdfs:label "was geassocieerd met"@nl .
+
+<http://www.w3.org/ns/regorg#orgActivity> a rdf:Property;
+   rdfs:label "organisatieactiviteit"@nl .
+
+<http://www.w3.org/ns/regorg#orgStatus> a rdf:Property;
+   rdfs:label "organisatiestatus"@nl .
+
+<http://www.w3.org/ns/regorg#orgType> a rdf:Property;
+   rdfs:label "organisatietype"@nl .
+
+foaf:familyName a rdf:Property;
+   rdfs:label "familienaam"@nl .
+
+foaf:givenName a rdf:Property;
+   rdfs:label "gegeven naam"@nl .
+
+foaf:homepage a rdf:Property;
+   rdfs:label "homepage"@nl .
+
+foaf:name a rdf:Property;
+   rdfs:label "naam"@nl .
+
+foaf:page a rdf:Property;
+   rdfs:label "pagina"@nl .
+
+<https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> a owl:Class;
+   rdfs:label "Documentonderdeel"@nl;
+   <http://purl.org/vocab/vann/usageNote> "Bv artikel, hoofdstuk, paragraaf..."@nl;
+   rdfs:comment "Een apart onderdeel van een groter document of verzameld document."@nl;
+   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
+
+<https://data.vlaanderen.be/ns/generiek#Versie> a owl:Class;
+   rdfs:label "Versie"@nl;
+   rdfs:comment "Stelt een entiteit voor in één specifieke periode."@nl;
+   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
+
+<https://data.vlaanderen.be/ns/organisatie#contactinfo> a rdf:Property;
+   rdfs:label "contactinfo"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#alternatieveNaam> a rdf:Property;
+   rdfs:label "alternatieve naam"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam> a rdf:Property;
+   rdfs:label "gebruikte voornaam"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#geslacht> a rdf:Property;
+   rdfs:label "geslacht"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#volledigeNaam> a rdf:Property;
+   rdfs:label "volledige naam"@nl .
+
+<https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum> a owl:Class;
+   rdfs:label "Gebeurtenisdatum"@nl;
+   rdfs:comment "Datum waarop een gebeurtenis plaatsvond evt op een alternatieve manier beschreven. "@nl;
+   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
+
+<https://data.vlaanderen.be/ns/generiek#GeografischePositie> a owl:Class;
+   rdfs:label "Geografische Positie"@nl;
+   rdfs:comment "Geografische positie aangegeven dmv een punt."@nl;
+   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
+
+<https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> a owl:Class;
+   rdfs:label "Gestructureerde Identificator"@nl;
+   rdfs:comment "Identificator van een object opgesplitst in zijn onderdelen."@nl;
+   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek> .
 
 <https://data.vlaanderen.be/ns/generiek> a owl:Ontology;
    rdfs:label "generiek"@nl,
@@ -249,40 +413,85 @@ foaf:Document a rdfs:Class;
      foaf:mbox "mailto:oslo@kb.vlaanderen.be";
      foaf:name "Data Vlaanderen"
 ];
-   rdfs:seeAlso <http://www.w3.org/ns/person#Person>,
+   rdfs:seeAlso rdf:langString,
+     dc:description,
      skos:Concept,
+     dc:title,
      <http://www.opengis.net/ont/sf#Point>,
-     prov:Activity,
-     <http://www.opengis.net/ont/sf#Polygon>,
-     <https://data.vlaanderen.be/ns/organisatie#Hoedanigheid>,
-     <http://data.europa.eu/m8g/PeriodOfTime>,
-     prov:Invalidation,
-     dc:Agent,
-     <http://www.w3.org/ns/locn#Geometry>,
-     dc:Location,
-     dc:Jurisdiction,
      <http://www.opengis.net/ont/sf#LineString>,
+     <http://www.opengis.net/ont/sf#Polygon>,
+     prov:Activity,
      schema:ContactPoint,
-     <http://purl.org/vocab/cpsv#FormalFramework>,
-     prov:Location,
-     prov:Agent,
-     prov:Entity,
-     org:Organization,
      rdfs:Literal,
-     rdf:langString,
+     org:Organization,
+     prov:atTime,
+     <http://data.europa.eu/m8g/PeriodOfTime>,
+     prov:Location,
+     schema:contactPoint,
+     dc:Jurisdiction,
+     dc:Agent,
+     dc:type,
+     dc:isPartOf,
+     dc:creator,
+     <http://purl.org/vocab/cpsv#FormalFramework>,
+     schema:email,
+     <http://data.europa.eu/m8g/endTime>,
      <http://www.w3.org/ns/adms#Identifier>,
+     schema:telephone,
+     skos:prefLabel,
+     <http://data.europa.eu/m8g/subject>,
+     dc:Location,
+     schema:faxNumber,
+     dc:issued,
+     <http://data.europa.eu/m8g/startTime>,
+     <http://www.w3.org/ns/person#Person>,
+     <http://www.w3.org/ns/locn#address>,
+     foaf:homepage,
+     <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam>,
+     <http://www.w3.org/ns/regorg#orgActivity>,
+     <http://www.w3.org/ns/adms#schemaAgency>,
+     <http://www.opengis.net/ont/geosparql#asWKT>,
+     <http://www.w3.org/ns/person#birthName>,
+     <http://data.europa.eu/m8g/territorialApplication>,
+     org:classification,
+     skos:notation,
+     skos:altLabel,
+     <https://data.vlaanderen.be/ns/organisatie#Hoedanigheid>,
+     <http://data.europa.eu/eli/ontology#language>,
+     foaf:name,
+     prov:Invalidation,
+     foaf:Document,
+     <https://data.vlaanderen.be/ns/persoon#alternatieveNaam>,
+     schema:hoursAvailable,
+     prov:Agent,
+     <http://www.w3.org/ns/regorg#orgType>,
+     foaf:page,
+     <https://data.vlaanderen.be/ns/organisatie#contactinfo>,
+     prov:Entity,
+     <https://data.vlaanderen.be/ns/persoon#geslacht>,
+     <http://www.w3.org/ns/person#patronymicName>,
+     schema:logo,
+     foaf:givenName,
+     dc:relation,
+     <http://www.w3.org/ns/locn#geometry>,
      prov:Generation,
-     foaf:Document;
+     prov:wasAssociatedWith,
+     prov:qualifiedGeneration,
+     vcard:honorific-prefix,
+     schema:openingHours,
+     <http://www.w3.org/ns/adms#identifier>,
+     rdfs:label,
+     prov:activity,
+     prov:qualifiedInvalidation,
+     foaf:familyName,
+     <http://www.w3.org/ns/locn#Geometry>,
+     org:purpose,
+     <https://data.vlaanderen.be/ns/persoon#volledigeNaam>,
+     prov:used,
+     <http://www.w3.org/ns/adms#status>,
+     <http://www.opengis.net/ont/geosparql#asGML>,
+     <http://www.w3.org/ns/regorg#orgStatus>;
    <http://www.w3.org/2001/02pd/rec54#editor> [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
-       foaf:homepage "http://idlab.ugent.be";
-       foaf:name "imec - UGent"
-  ];
-     foaf:first_name "Laurens";
-     foaf:last_name "De Vocht";
-     foaf:mbox "laurens.devocht@ugent.be"
-],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
        foaf:homepage "http://idlab.ugent.be";
@@ -291,6 +500,15 @@ foaf:Document a rdfs:Class;
      foaf:first_name "Erik";
      foaf:last_name "Mannens";
      foaf:mbox "erik.mannens@ugent.be"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "http://idlab.ugent.be";
+       foaf:name "imec - UGent"
+  ];
+     foaf:first_name "Laurens";
+     foaf:last_name "De Vocht";
+     foaf:mbox "laurens.devocht@ugent.be"
 ];
    foaf:maker [
      a <http://www.w3.org/ns/person#Person>;
@@ -298,27 +516,9 @@ foaf:Document a rdfs:Class;
        foaf:homepage "https://overheid.vlaanderen.be/";
        foaf:name "Informatie Vlaanderen"
   ];
-     foaf:first_name "Dorien";
-     foaf:last_name "Bauwens";
-     foaf:mbox "dorien.bauwens@bz.vlaanderen.be"
-],  [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
-       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-       foaf:name "Informatie Vlaanderen"
-  ];
-     foaf:first_name "Raf";
-     foaf:last_name "Buyle";
-     foaf:mbox "raf.buyle@kb.vlaanderen.be"
-],  [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
-       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-       foaf:name "Informatie Vlaanderen"
-  ];
-     foaf:first_name "Björn";
-     foaf:last_name "De Vidts";
-     foaf:mbox "bjorn.devidts@kb.vlaanderen.be"
+     foaf:first_name "Quincy";
+     foaf:last_name "Oeyen";
+     foaf:mbox "quincy.oeyen@bz.vlaanderen.be"
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
@@ -328,15 +528,6 @@ foaf:Document a rdfs:Class;
      foaf:first_name "Geert";
      foaf:last_name "Thijs";
      foaf:mbox "geert.thijs@kb.vlaanderen.be"
-],  [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
-       foaf:homepage "https://www.lne.be/";
-       foaf:name "LNE"
-  ];
-     foaf:first_name "Geert";
-     foaf:last_name "Van Haute";
-     foaf:mbox "geert.vanhaute@lne.vlaanderen.be"
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
@@ -352,9 +543,9 @@ foaf:Document a rdfs:Class;
        foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
        foaf:name "Informatie Vlaanderen"
   ];
-     foaf:first_name "An";
-     foaf:last_name "Taelemans";
-     foaf:mbox "an.taelemans@kb.vlaanderen.be"
+     foaf:first_name "Raf";
+     foaf:last_name "Buyle";
+     foaf:mbox "raf.buyle@kb.vlaanderen.be"
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
@@ -364,6 +555,51 @@ foaf:Document a rdfs:Class;
      foaf:first_name "Henk";
      foaf:last_name "Vanderstraeten";
      foaf:mbox "henk.vanderstraeten@bz.vlaanderen.be"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+       foaf:name "Informatie Vlaanderen"
+  ];
+     foaf:first_name "Ziggy";
+     foaf:last_name "Vanlishout";
+     foaf:mbox "siegfried.vanlishout@kb.vlaanderen.be"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+       foaf:name "Informatie Vlaanderen"
+  ];
+     foaf:first_name "An";
+     foaf:last_name "Taelemans";
+     foaf:mbox "an.taelemans@kb.vlaanderen.be"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "http://stad.gent";
+       foaf:name "Stad Gent"
+  ];
+     foaf:first_name "Thimo";
+     foaf:last_name "Thoeye";
+     foaf:mbox "Thimo.Thoeye@stad.gent"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+       foaf:name "Informatie Vlaanderen"
+  ];
+     foaf:first_name "Björn";
+     foaf:last_name "De Vidts";
+     foaf:mbox "bjorn.devidts@kb.vlaanderen.be"
+],  [
+     a <http://www.w3.org/ns/person#Person>;
+     schema:affiliation [
+       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+       foaf:name "Informatie Vlaanderen"
+  ];
+     foaf:first_name "Dries";
+     foaf:last_name "Beheydt";
+     foaf:mbox "dries.beheydt@kb.vlaanderen.be"
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
@@ -385,12 +621,12 @@ foaf:Document a rdfs:Class;
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
-       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-       foaf:name "Informatie Vlaanderen"
+       foaf:homepage "https://www.lne.be/";
+       foaf:name "LNE"
   ];
-     foaf:first_name "Ziggy";
-     foaf:last_name "Vanlishout";
-     foaf:mbox "siegfried.vanlishout@kb.vlaanderen.be"
+     foaf:first_name "Geert";
+     foaf:last_name "Van Haute";
+     foaf:mbox "geert.vanhaute@lne.vlaanderen.be"
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
@@ -403,28 +639,10 @@ foaf:Document a rdfs:Class;
 ],  [
      a <http://www.w3.org/ns/person#Person>;
      schema:affiliation [
-       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-       foaf:name "Informatie Vlaanderen"
-  ];
-     foaf:first_name "Dries";
-     foaf:last_name "Beheydt";
-     foaf:mbox "dries.beheydt@kb.vlaanderen.be"
-],  [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
-       foaf:homepage "http://stad.gent";
-       foaf:name "Stad Gent"
-  ];
-     foaf:first_name "Thimo";
-     foaf:last_name "Thoeye";
-     foaf:mbox "Thimo.Thoeye@stad.gent"
-],  [
-     a <http://www.w3.org/ns/person#Person>;
-     schema:affiliation [
        foaf:homepage "https://overheid.vlaanderen.be/";
        foaf:name "Informatie Vlaanderen"
   ];
-     foaf:first_name "Quincy";
-     foaf:last_name "Oeyen";
-     foaf:mbox "quincy.oeyen@bz.vlaanderen.be"
+     foaf:first_name "Dorien";
+     foaf:last_name "Bauwens";
+     foaf:mbox "dorien.bauwens@bz.vlaanderen.be"
 ] .
