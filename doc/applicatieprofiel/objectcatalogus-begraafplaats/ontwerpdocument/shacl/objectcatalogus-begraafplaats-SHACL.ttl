@@ -1,37 +1,161 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
- [
-     <sh:datatype> "http://www.w3.org/2001/XMLSchema#boolean";
-     <sh:description> "Duidt aan of er al dan niet een grafteken, bijvoorbeeld een zerk, aanwezig is.";
-     <sh:maxCount> "1";
-     <sh:minCount> "1";
-     <sh:name> "grafteken";
-     <sh:path> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafteken"
-] .
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#BegraafplaatsBlokShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#BegraafplaatsBlok" .
 
- [
-     <sh:datatype> "http://www.w3.org/2001/XMLSchema#integer";
-     <sh:description> "Geeft het aantal bezette plaatsen van een graf weer.";
-     <sh:maxCount> "1";
-     <sh:minCount> "1";
-     <sh:name> "bezetting";
-     <sh:path> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#bezetting"
-] .
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#BegraafplaatsRijShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#BegraafplaatsRij" .
 
- [
-     <sh:datatype> "http://www.w3.org/2001/XMLSchema#boolean";
-     <sh:description> "Duidt aan of het graf voorzien is van een ondergrondse of bovengrondse ruimte.";
-     <sh:maxCount> "1";
-     <sh:minCount> "1";
-     <sh:name> "grafkelder aanwezig";
-     <sh:path> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafkelderAanwezig"
-] .
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#ColumbariumShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#Columbarium" .
 
- [
-     <sh:class> "http://www.w3.org/2004/02/skos/core#Concept";
-     <sh:description> "Het type graf.";
-     <sh:maxCount> "1";
-     <sh:minCount> "1";
-     <sh:name> "graftype";
-     <sh:path> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#graftype"
-] .
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#DeelShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#property> [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#double";
+     <http://www.w3.org/ns/shacl#description> "De afmeting van het object in vierkante meter.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "oppervlakte";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein#oppervlakte>
+];
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein#Deel" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#ElementShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein#Element" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#FysiekObjectShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#property> [
+     <http://www.w3.org/ns/shacl#class> skos:Concept;
+     <http://www.w3.org/ns/shacl#description> "De precisie waarmee het object opgemeten werd.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "nauwkeurigheid";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+],  [
+     <http://www.w3.org/ns/shacl#class> rdfs:Resource;
+     <http://www.w3.org/ns/shacl#description> "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
+     <http://www.w3.org/ns/shacl#name> "relatie";
+     <http://www.w3.org/ns/shacl#path> dc:relation
+],  [
+     <http://www.w3.org/ns/shacl#class> <http://www.opengis.net/ont/geosparql#Geometry>;
+     <http://www.w3.org/ns/shacl#description> "De geometrie overeenkomstig met een bepaald object.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "geometrie";
+     <http://www.w3.org/ns/shacl#path> <http://www.w3.org/ns/locn#geometry>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#integer";
+     <http://www.w3.org/ns/shacl#description> "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "niveau";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein#niveau>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#dateTime";
+     <http://www.w3.org/ns/shacl#description> "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "einddatum";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#dateTime";
+     <http://www.w3.org/ns/shacl#description> "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "begindatum";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
+];
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein#FysiekObject" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#GrafShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#property> [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#boolean";
+     <http://www.w3.org/ns/shacl#description> "Duidt aan of er al dan niet een grafteken, bijvoorbeeld een zerk, aanwezig is.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "grafteken";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafteken>
+],  [
+     <http://www.w3.org/ns/shacl#class> skos:Concept;
+     <http://www.w3.org/ns/shacl#description> "Het type graf.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "graftype";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#graftype>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#integer";
+     <http://www.w3.org/ns/shacl#description> "Geeft het aantal beschikbare plaatsen van een graf weer.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "capaciteit";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#capaciteit>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#integer";
+     <http://www.w3.org/ns/shacl#description> "Geeft het aantal bezette plaatsen van een graf weer.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "bezetting";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#bezetting>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#boolean";
+     <http://www.w3.org/ns/shacl#description> "Duidt aan of het graf voorzien is van een ondergrondse of bovengrondse ruimte.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#minCount> "1";
+     <http://www.w3.org/ns/shacl#name> "grafkelder aanwezig";
+     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafkelderAanwezig>
+];
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#Graf" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#GraftypesShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "http://www.w3.org/2004/02/skos/core#Concept" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#NauwkeurigsheidsklassenShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "http://www.w3.org/2004/02/skos/core#Concept" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#StrooiweideShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#Strooiweide" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#TerreindeelShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#property> [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#double";
+     <http://www.w3.org/ns/shacl#description> "De lineare grootte van het object in meter.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "lengte";
+     <http://www.w3.org/ns/shacl#path> <http://open.vocab.org/terms/length>
+],  [
+     <http://www.w3.org/ns/shacl#datatype> "http://www.w3.org/2001/XMLSchema#double";
+     <http://www.w3.org/ns/shacl#description> "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.";
+     <http://www.w3.org/ns/shacl#maxCount> "1";
+     <http://www.w3.org/ns/shacl#name> "breedte";
+     <http://www.w3.org/ns/shacl#path> schema:width
+];
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel" .
+
+<https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#UrnenveldShacl> a <http://www.w3.org/ns/shacl#NodeShape>;
+   <http://www.w3.org/ns/shacl#closed> false;
+   <http://www.w3.org/ns/shacl#targetClass> "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#Urnenveld" .
+
+ [ <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#shapes> <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#BegraafplaatsBlokShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#StrooiweideShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#ColumbariumShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#FysiekObjectShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#BegraafplaatsRijShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#DeelShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#ElementShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#UrnenveldShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#GrafShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#NauwkeurigsheidsklassenShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#TerreindeelShacl>,
+       <https://data.vlaanderen.be/shacl/objectcatalogus-begraafplaats#GraftypesShacl>] .
