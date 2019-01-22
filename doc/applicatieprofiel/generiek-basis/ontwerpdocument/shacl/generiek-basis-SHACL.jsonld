@@ -4,31 +4,36 @@
     "sh:class": {
       "@type": "@id"
     },
+    "sh:datatype": {
+      "@type": "@id"
+    },
     "sh:path": {
       "@type": "@id"
     },
     "sh:property": {
       "@type": "@id"
     },
+    "sh:targetClass": {
+      "@type": "@id"
+    },
     "shapes": {
       "@type": "@id"
     },
-    "@vocab": "https://data.vlaanderen.be/shacl/generiek-basis#"
+    "@vocab": "https://data.vlaanderen.be/shacl/generiek-basis"
   },
+  "@id": "https://data.vlaanderen.be/shacl/generiek-basis",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#DocumentOnderdeelShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#DocumentOnderdeelShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "nummer",
-          "sh:description": "Nummer vh documentonderdeel.",
-          "sh:path": "https://data.vlaanderen.be/ns/generiek#nummer",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:name": "is deel van",
+          "sh:description": "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen.",
+          "sh:path": "http://purl.org/dc/terms/isPartOf",
+          "sh:class": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel"
         },
         {
           "sh:name": "is onderdeel van",
@@ -37,10 +42,12 @@
           "sh:class": "http://xmlns.com/foaf/0.1/Document"
         },
         {
-          "sh:name": "is deel van",
-          "sh:description": "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen.",
-          "sh:path": "http://purl.org/dc/terms/isPartOf",
-          "sh:class": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel"
+          "sh:name": "nummer",
+          "sh:description": "Nummer vh documentonderdeel.",
+          "sh:path": "https://data.vlaanderen.be/ns/generiek#nummer",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
         },
         {
           "sh:name": "type",
@@ -53,21 +60,21 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieVolgensTransactietijdShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieVolgensTransactietijdShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#VersieVolgensTransactietijd",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieVolgensGeldigeTijdShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieVolgensGeldigeTijdShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GebeurtenisdatumShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GebeurtenisdatumShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#Gebeurtenisdatum",
       "sh:closed": false,
@@ -96,14 +103,14 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AdministratieveEenheidShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AdministratieveEenheidShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#AdministratieveEenheid",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GestructureerdeIdentificatorShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GestructureerdeIdentificatorShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
       "sh:closed": false,
@@ -134,7 +141,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeografischePositieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeografischePositieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#GeografischePositie",
       "sh:closed": false,
@@ -145,6 +152,14 @@
           "sh:path": "https://data.vlaanderen.be/ns/generiek#default",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "geometrie",
+          "sh:description": "De cartografische coöordinaten vh punt.",
+          "sh:path": "http://www.w3.org/ns/locn#geometry",
+          "sh:class": "http://www.opengis.net/ont/sf#Point",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
         },
         {
           "sh:name": "methode",
@@ -159,36 +174,28 @@
           "sh:path": "https://data.vlaanderen.be/ns/generiek#specificatie",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "geometrie",
-          "sh:description": "De cartografische coöordinaten vh punt.",
-          "sh:path": "http://www.w3.org/ns/locn#geometry",
-          "sh:class": "http://www.opengis.net/ont/sf#Point",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
         }
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#Versie",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "is tijdspecialisatie van",
-          "sh:description": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
-          "sh:path": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
-          "sh:class": "http://www.w3.org/ns/prov#Entity",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
           "sh:name": "creatie",
           "sh:description": "Beschrijving vh ontstaan vd versie.",
           "sh:path": "http://www.w3.org/ns/prov#qualifiedGeneration",
           "sh:class": "http://www.w3.org/ns/prov#Generation",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "is tijdspecialisatie van",
+          "sh:description": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
+          "sh:path": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+          "sh:class": "http://www.w3.org/ns/prov#Entity",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
@@ -202,21 +209,21 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AdresvoorstellingShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AdresvoorstellingShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/locn#Address",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#DocumentShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#DocumentShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://xmlns.com/foaf/0.1/Document",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ActiviteitShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ActiviteitShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Activity",
       "sh:closed": false,
@@ -231,14 +238,14 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#LocatieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#LocatieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Location",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PlaatsShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PlaatsShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://purl.org/dc/terms/Location",
       "sh:closed": false,
@@ -260,28 +267,28 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#LijnStringShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#LijnStringShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#LineString",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PolygoonShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PolygoonShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#Polygon",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#TaalStringShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#TaalStringShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstentiteitShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstentiteitShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Entity",
       "sh:closed": false,
@@ -297,7 +304,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#OpheffingShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#OpheffingShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Invalidation",
       "sh:closed": false,
@@ -320,7 +327,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#CreatieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#CreatieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Generation",
       "sh:closed": false,
@@ -343,7 +350,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#JurisdictieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#JurisdictieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://purl.org/dc/terms/Jurisdiction",
       "sh:closed": false,
@@ -359,14 +366,14 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#BewerkingstypeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#BewerkingstypeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstagentShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstagentShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Agent",
       "sh:closed": false,
@@ -388,11 +395,18 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstactiviteitShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HerkomstactiviteitShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Activity",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:name": "applicatie",
+          "sh:description": "Gebruik ve entiteit door een activiteit.",
+          "sh:path": "http://www.w3.org/ns/prov#used",
+          "sh:class": "http://www.w3.org/ns/prov#Entity",
+          "sh:maxCount": "1"
+        },
         {
           "sh:name": "bewerking",
           "sh:description": "Aard vd bewerking die ihkv de activiteit op de entiteit is uitgevoerd.",
@@ -400,13 +414,6 @@
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1",
           "sh:minCount": "1"
-        },
-        {
-          "sh:name": "applicatie",
-          "sh:description": "Gebruik ve entiteit door een activiteit.",
-          "sh:path": "http://www.w3.org/ns/prov#used",
-          "sh:class": "http://www.w3.org/ns/prov#Entity",
-          "sh:maxCount": "1"
         },
         {
           "sh:name": "operator",
@@ -418,70 +425,70 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NAL_currencyShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NAL_currencyShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PlaatscodeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PlaatscodeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#EurovocShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#EurovocShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NUTSShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NUTSShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NAL_typeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#NAL_typeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#TaalcodeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#TaalcodeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ELI_statusShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ELI_statusShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PuntShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PuntShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#Point",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GetypeerdeStringShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GetypeerdeStringShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Literal",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/locn#Geometry",
       "sh:closed": false,
@@ -503,35 +510,35 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieSpecificatieWaardeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieSpecificatieWaardeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieMethodeWaardeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeometrieMethodeWaardeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeografischeNaamShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GeografischeNaamShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HoedanigheidShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#HoedanigheidShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/organisatie#Hoedanigheid",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ObjectShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ObjectShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/prov#Entity",
       "sh:closed": false,
@@ -545,7 +552,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ContactInfoShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#ContactInfoShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://schema.org/ContactPoint",
       "sh:closed": false,
@@ -616,23 +623,23 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#FormeelKaderShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#FormeelKaderShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://purl.org/vocab/cpsv#FormalFramework",
       "sh:closed": false,
       "sh:property": [
-        {
-          "sh:name": "is gerelateerd aan",
-          "sh:description": "Ander formeel kader dat met het formeel kader verband houdt.",
-          "sh:path": "http://purl.org/dc/terms/relation",
-          "sh:class": "http://purl.org/vocab/cpsv#FormalFramework"
-        },
         {
           "sh:name": "beschrijving",
           "sh:description": "Beschrijving van het formeel kader.",
           "sh:path": "http://purl.org/dc/terms/description",
           "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "is gerelateerd aan",
+          "sh:description": "Ander formeel kader dat met het formeel kader verband houdt.",
+          "sh:path": "http://purl.org/dc/terms/relation",
+          "sh:class": "http://purl.org/vocab/cpsv#FormalFramework"
         },
         {
           "sh:name": "naam",
@@ -676,28 +683,28 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#OrganisatieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#OrganisatieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/org#Organization",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PersoonShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PersoonShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/person#Person",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AgentShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AgentShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://purl.org/dc/terms/Agent",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#IdentificatorShacl",
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#IdentificatorShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/adms#Identifier",
       "sh:closed": false,

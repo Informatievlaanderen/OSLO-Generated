@@ -4,29 +4,36 @@
     "sh:class": {
       "@type": "@id"
     },
+    "sh:datatype": {
+      "@type": "@id"
+    },
     "sh:path": {
       "@type": "@id"
     },
     "sh:property": {
       "@type": "@id"
     },
+    "sh:targetClass": {
+      "@type": "@id"
+    },
     "shapes": {
       "@type": "@id"
     },
-    "@vocab": "https://data.vlaanderen.be/shacl/openbaar-domein#"
+    "@vocab": "https://data.vlaanderen.be/shacl/openbaar-domein"
   },
+  "@id": "https://data.vlaanderen.be/shacl/openbaar-domein",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#FysiekObjectShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#FysiekObjectShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#FysiekObject",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "eigenaar",
-          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het object.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar",
-          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:name": "begindatum",
+          "sh:description": "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1"
         },
         {
@@ -37,10 +44,10 @@
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "begindatum",
-          "sh:description": "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:name": "eigenaar",
+          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het object.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
           "sh:maxCount": "1"
         },
         {
@@ -51,11 +58,12 @@
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "niveau",
-          "sh:description": "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#niveau",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1"
+          "sh:name": "geometrie",
+          "sh:description": "De geometrie overeenkomstig met een bepaald object.",
+          "sh:path": "http://www.w3.org/ns/locn#geometry",
+          "sh:class": "http://www.opengis.net/ont/geosparql#Geometry",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
         },
         {
           "sh:name": "nauwkeurigheid",
@@ -66,12 +74,11 @@
           "sh:minCount": "1"
         },
         {
-          "sh:name": "geometrie",
-          "sh:description": "De geometrie overeenkomstig met een bepaald object.",
-          "sh:path": "http://www.w3.org/ns/locn#geometry",
-          "sh:class": "http://www.opengis.net/ont/geosparql#Geometry",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:name": "niveau",
+          "sh:description": "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#niveau",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:maxCount": "1"
         },
         {
           "sh:name": "relatie",
@@ -82,18 +89,25 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#FysiekVoorkomenShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#FysiekVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#DeelShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#DeelShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Deel",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:name": "oppervlakte",
+          "sh:description": "De afmeting van het object in vierkante meter.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#oppervlakte",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:maxCount": "1"
+        },
         {
           "sh:name": "voorkomen",
           "sh:description": "Verwijst naar het fysiek voorkomen van het beheerdeel.",
@@ -101,34 +115,27 @@
           "sh:class": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
           "sh:maxCount": "1",
           "sh:minCount": "1"
-        },
-        {
-          "sh:name": "oppervlakte",
-          "sh:description": "De afmeting van het object in vierkante meter.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#oppervlakte",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:maxCount": "1"
         }
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#ElementShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#ElementShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Element",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#GebiedShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#GebiedShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Gebied",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "eigenaar",
-          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het gebied.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar",
-          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:name": "begindatum",
+          "sh:description": "Datum waarop de huidige versie van het beheergebied in gebruik wordt genomen.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1"
         },
         {
@@ -139,10 +146,10 @@
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "begindatum",
-          "sh:description": "Datum waarop de huidige versie van het beheergebied in gebruik wordt genomen.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:name": "eigenaar",
+          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het gebied.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
           "sh:maxCount": "1"
         },
         {
@@ -169,7 +176,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#CollectieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#CollectieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Collectie",
       "sh:closed": false,
@@ -191,7 +198,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#BegroeidVoorkomenShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#BegroeidVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#BegroeidVoorkomen",
       "sh:closed": false,
@@ -222,11 +229,18 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#VegetatieElementShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#VegetatieElementShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/vegetatie#VegetatieElement",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:name": "hoogte",
+          "sh:description": "De hoogte van het object zelf, in meter.",
+          "sh:path": "http://schema.org/height",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:maxCount": "1"
+        },
         {
           "sh:name": "plantdatum",
           "sh:description": "De datum waarop het vegetatie element werd geplant.",
@@ -236,13 +250,6 @@
           "sh:minCount": "1"
         },
         {
-          "sh:name": "hoogte",
-          "sh:description": "De hoogte van het object zelf, in meter.",
-          "sh:path": "http://schema.org/height",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:maxCount": "1"
-        },
-        {
           "sh:name": "soortcode",
           "sh:description": "Een unieke identificator voor de soort van het vegetatie-element. ",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortcode",
@@ -250,21 +257,21 @@
           "sh:minCount": "*"
         },
         {
-          "sh:name": "wetenschappelijke soortnaam",
-          "sh:description": "De wetenschappelijke soortnaam van het vegetatie-element.",
-          "sh:path": "http://rs.tdwg.org/dwc/terms/scientificName",
-          "sh:minCount": "*"
-        },
-        {
           "sh:name": "soortnaam Nederlands",
           "sh:description": "Soortnaam in het Nederlands.",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands",
           "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        },
+        {
+          "sh:name": "wetenschappelijke soortnaam",
+          "sh:description": "De wetenschappelijke soortnaam van het vegetatie-element.",
+          "sh:path": "http://rs.tdwg.org/dwc/terms/scientificName",
+          "sh:minCount": "*"
         }
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#InfrastructuurelementShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#InfrastructuurelementShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement",
       "sh:closed": false,
@@ -278,7 +285,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#WaterdeelShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#WaterdeelShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterdeel",
       "sh:closed": false,
@@ -294,19 +301,11 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TerreindeelShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TerreindeelShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel",
       "sh:closed": false,
       "sh:property": [
-        {
-          "sh:name": "voorkomen",
-          "sh:description": "Het voorkomen van het terreindeel.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#voorkomen",
-          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
         {
           "sh:name": "breedte",
           "sh:description": "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.",
@@ -320,11 +319,19 @@
           "sh:path": "http://open.vocab.org/terms/length",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
           "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "voorkomen",
+          "sh:description": "Het voorkomen van het terreindeel.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#voorkomen",
+          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
         }
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TerreinVoorkomenShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TerreinVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#TerreinVoorkomen",
       "sh:closed": false,
@@ -346,14 +353,14 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#PolygoonShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#PolygoonShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#Polygon",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#OrganisatieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#OrganisatieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/ns/org#Organization",
       "sh:closed": false,
@@ -383,7 +390,7 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#GeometrieShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#GeometrieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/geosparql#Geometry",
       "sh:closed": false,
@@ -405,35 +412,35 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#PuntShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#PuntShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#Point",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#LijnstringShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#LijnstringShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.opengis.net/ont/sf#LineString",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#DrassigheidWaardeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#DrassigheidWaardeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TaludWaardeShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#TaludWaardeShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#RelatieObjectShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#RelatieObjectShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Resource",
       "sh:closed": false,
@@ -457,14 +464,14 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#NauwkeurigsheidsklassenShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#NauwkeurigsheidsklassenShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "sh:closed": false,
       "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#WaterVoorkomenShacl",
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein#WaterVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/waterdeel#WaterVoorkomen",
       "sh:closed": false,
