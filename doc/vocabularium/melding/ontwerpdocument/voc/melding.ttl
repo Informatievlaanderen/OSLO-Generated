@@ -1,0 +1,503 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://data.europa.eu/m8g/PublicOrganisation> a rdfs:Class;
+  rdfs:label "Publieke Organisatie"@nl .
+
+dcmitype:Dataset a rdfs:Class;
+  rdfs:label "Dataset"@nl .
+
+dc:Agent a rdfs:Class;
+  rdfs:label "Agent"@nl .
+
+skos:Concept a rdfs:Class;
+  rdfs:label "Concept"@nl .
+
+<http://www.w3.org/ns/locn#Geometry> a rdfs:Class;
+  rdfs:label "Geometrie"@nl .
+
+oa:TimeState a rdfs:Class;
+  rdfs:label "TijdToestand"@nl .
+
+org:Organization a rdfs:Class;
+  rdfs:label "Organisatie"@nl .
+
+org:OrganizationalUnit a rdfs:Class;
+  rdfs:label "Organisatie-eenheid"@nl .
+
+<http://www.w3.org/ns/person#Person> a rdfs:Class;
+  rdfs:label "Persoon"@nl .
+
+<https://data.vlaanderen.be/ns/organisatie#Hoedanigheid> a rdfs:Class;
+  rdfs:label "Hoedanigheid"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#GeregistreerdPersoon> a rdfs:Class;
+  rdfs:label "Geregistreerd Persoon"@nl .
+
+<https://data.vlaanderen.be/ns/melding#Applicatie> a owl:Class;
+  rdfs:label "Applicatie"@nl;
+  rdfs:comment "Een artificiële agent in een softwareomgeving."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#Terugmelding> a owl:Class;
+  rdfs:label "Terugmelding"@nl;
+  rdfs:comment "Beschrijft de terugmelding van fouten of onvolledigheden in digitale gegevensbronnen naar de verantwoordelijke bronbeheerder."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#eigenschap> a owl:ObjectProperty;
+  rdfs:label "eigenschap"@nl;
+  rdfs:comment "Verwijst naar de Eigenschap die deel uitmaakt van een bepaalde Dataset."@nl;
+  rdfs:domain rdfs:Resource;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#gerelateerdeBody> a owl:ObjectProperty;
+  rdfs:label "gerelateerde body"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Indien de Melding meerdere Meldingsobjecten bevat biedt deze eigenschap de mogelijkheid om te beschrijven welke MeldingBody relevant is voor de behandeling van het Meldingsobject."@nl;
+  rdfs:comment "De body van de Melding die betrekking heeft op het Meldingsobject."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Meldingsobject>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range <https://data.vlaanderen.be/ns/melding#MeldingBody> .
+
+<https://data.vlaanderen.be/ns/melding#heeftEigenschap> a owl:ObjectProperty;
+  rdfs:label "heeft eigenschap"@nl;
+  rdfs:comment "Refereert naar een eigenschap die het object beschrijft."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Meldingsobject>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut> .
+
+<https://data.vlaanderen.be/ns/melding#heeftStatus> a owl:ObjectProperty;
+  rdfs:label "heeft status"@nl;
+  rdfs:comment "De Status verbonden aan de Melding."@nl;
+  rdfs:domain rdfs:Resource;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range <https://data.vlaanderen.be/ns/melding#Meldingstatus> .
+
+<https://data.vlaanderen.be/ns/melding#huidigeWaarde> a owl:DatatypeProperty;
+  rdfs:label "huidige waarde"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Dit is de waarde zoals waargenomen door de indiener van de melding."@nl;
+  rdfs:comment "De huidige waarde van een Eigenschap."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:string .
+
+<https://data.vlaanderen.be/ns/melding#meldbaar> a owl:DatatypeProperty;
+  rdfs:label "meldbaar"@nl;
+  rdfs:comment "Geeft aan of op de eigenschap kan teruggemeld worden (true) of deze louter ter informatie van de gebruiker wordt getoond (false). "@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Eigenschap>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:boolean .
+
+<https://data.vlaanderen.be/ns/melding#meldingsapplicatie> a owl:ObjectProperty;
+  rdfs:label "meldingsapplicatie"@nl;
+  rdfs:comment "De applicatie dat de Melding creëerde."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#mogelijkeWaarden> a owl:ObjectProperty;
+  rdfs:label "mogelijke waarden"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Het is aangeraden de mogelijke waarden voor te stellen als een skos:ConceptScheme (https://www.w3.org/TR/skos-primer/)"@nl;
+  rdfs:comment "Associeert de Eigenschap met een exhaustieve lijst aan mogelijk waarden (bv. een codelijst)."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#statusdatum> a owl:DatatypeProperty;
+  rdfs:label "statusdatum"@nl;
+  rdfs:comment "De datum van een Status."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:dateTime .
+
+<https://data.vlaanderen.be/ns/melding#statuswaarde> a rdf:Property;
+  rdfs:label "status type"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Er wordt verwacht dat het status type gedefinieerd is in een codelijst. Het bepalen en ontlsuiten van deze codelijst kan applicatie-specifiek worden ingevuld. "@nl;
+  rdfs:comment "Het type van de Status."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#statuswijzigingDoor> a owl:ObjectProperty;
+  rdfs:label "statuswijziging door"@nl;
+  rdfs:comment "De Agent die deze status heeft geactiveerd. "@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range dc:Agent .
+
+<https://data.vlaanderen.be/ns/melding#verwachtType> a owl:DatatypeProperty;
+  rdfs:label "verwacht type"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Gebruik bij voorkeur een regular expression of primitief datatype zoals een integer, boolean, floating-point nummer, string..."@nl;
+  rdfs:comment "Geeft het bereik van mogelijke waarden aan voor de eigenschap."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Eigenschap>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:string .
+
+<https://data.vlaanderen.be/ns/melding#voorgesteldeWaarde> a owl:DatatypeProperty;
+  rdfs:label "voorgestelde waarde"@nl;
+  <http://purl.org/vocab/vann/usageNote> "De suggereerde correct waarde zoals aangegeven door de indiener van de melding."@nl;
+  rdfs:comment "De voorgestelde waarde van een Eigenschap."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:string .
+
+<https://data.vlaanderen.be/ns/melding#webpagina> a owl:DatatypeProperty;
+  rdfs:label "webpagina"@nl;
+  rdfs:comment "Een doorverwijzing naar een webpagina."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/melding#Melding>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding>;
+  rdfs:range xsd:anyURI .
+
+dc:description a rdf:Property;
+  rdfs:label "beschrijving"@nl .
+
+dc:spatial a rdf:Property;
+  rdfs:label "ruimtelijk"@nl .
+
+dc:title a rdf:Property;
+  rdfs:label "titel"@nl .
+
+schema:contactPoint a rdf:Property;
+  rdfs:label "contactpunt"@nl .
+
+schema:logo a rdf:Property;
+  rdfs:label "logo"@nl .
+
+<http://www.opengis.net/ont/geosparql#asGML> a rdf:Property;
+  rdfs:label "gml"@nl .
+
+<http://www.opengis.net/ont/geosparql#asWKT> a rdf:Property;
+  rdfs:label "wkt"@nl .
+
+rdfs:label a rdf:Property;
+  rdfs:label "label"@nl .
+
+skos:altLabel a rdf:Property;
+  rdfs:label "alternatieve label"@nl .
+
+skos:prefLabel a rdf:Property;
+  rdfs:label "voorkeurslabel"@nl,
+    "label"@nl .
+
+<http://www.w3.org/ns/locn#geometry> a rdf:Property;
+  rdfs:label "geometrie"@nl .
+
+oa:cachedSource a rdf:Property;
+  rdfs:label "cached bron"@nl .
+
+oa:hasBody a rdf:Property;
+  rdfs:label "heeft body"@nl .
+
+oa:hasSource a rdf:Property;
+  rdfs:label "heeftBron"@nl .
+
+oa:hasState a rdf:Property;
+  rdfs:label "heeft toestand"@nl .
+
+oa:hasTarget a rdf:Property;
+  rdfs:label "heeft doelwit"@nl .
+
+oa:motivatedBy a rdf:Property;
+  rdfs:label "meldingstype"@nl .
+
+oa:sourceDate a rdf:Property;
+  rdfs:label "datum vaststelling"@nl .
+
+org:classification a rdf:Property;
+  rdfs:label "classificatie"@nl .
+
+org:hasUnit a rdf:Property;
+  rdfs:label "heeft eenheid"@nl .
+
+org:memberOf a rdf:Property;
+  rdfs:label "is lid van"@nl .
+
+org:purpose a rdf:Property;
+  rdfs:label "doel"@nl .
+
+org:unitOf a rdf:Property;
+  rdfs:label "eenheid van"@nl .
+
+<http://www.w3.org/ns/person#birthName> a rdf:Property;
+  rdfs:label "geboortenaam"@nl .
+
+<http://www.w3.org/ns/person#patronymicName> a rdf:Property;
+  rdfs:label "patroniem"@nl .
+
+<http://www.w3.org/ns/regorg#orgActivity> a rdf:Property;
+  rdfs:label "organisatieactiviteit"@nl .
+
+<http://www.w3.org/ns/regorg#orgStatus> a rdf:Property;
+  rdfs:label "organisatiestatus"@nl .
+
+<http://www.w3.org/ns/regorg#orgType> a rdf:Property;
+  rdfs:label "organisatietype"@nl .
+
+foaf:familyName a rdf:Property;
+  rdfs:label "familienaam"@nl .
+
+foaf:givenName a rdf:Property;
+  rdfs:label "gegeven naam"@nl .
+
+foaf:homepage a rdf:Property;
+  rdfs:label "homepage"@nl .
+
+<https://data.vlaanderen.be/ns/melding#Melding> a owl:Class;
+  rdfs:label "Melding"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Een melding kan gebruikt worden voor vaststellingen in de echte wereld,bijvoorbeeld het melden van een put in de weg of sluikstort,of voor het melden van fouten of onvolledigheden in digitale gegevensbronnen."@nl;
+  rdfs:comment "Beschrijft de melding van een probleem of een vaststelling die mogelijks aanleiding geeft tot een actie van de overheid."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#MeldingBody> a owl:Class;
+  rdfs:label "Melding Body"@nl;
+  rdfs:comment "De body van de Melding,deze omvat relevante informatie voor de verdere afhandeling van de melding."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/organisatie#contactinfo> a rdf:Property;
+  rdfs:label "contactinfo"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#alternatieveNaam> a rdf:Property;
+  rdfs:label "alternatieve naam"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam> a rdf:Property;
+  rdfs:label "gebruikte voornaam"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#geslacht> a rdf:Property;
+  rdfs:label "geslacht"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#registratie> a rdf:Property;
+  rdfs:label "registratie"@nl .
+
+<https://data.vlaanderen.be/ns/persoon#volledigeNaam> a rdf:Property;
+  rdfs:label "volledige naam"@nl .
+
+<https://www.w3.org/ns/activitystreams#attachment> a rdf:Property;
+  rdfs:label "bijlage"@nl .
+
+<https://www.w3.org/ns/activitystreams#summary> a rdf:Property;
+  rdfs:label "samenvatting"@nl .
+
+<https://www.w3.org/ns/hydra/core#required> a rdf:Property;
+  rdfs:label "verplicht"@nl .
+
+<https://data.vlaanderen.be/ns/melding#Eigenschap> a owl:Class;
+  rdfs:label "Eigenschap"@nl;
+  rdfs:comment "De klasse voor het beschrijven van de data velden waaruit een dataset bestaat."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#Meldingsobject> a owl:Class;
+  rdfs:label "Meldingsobject"@nl;
+  rdfs:comment "Het Meldingsobject identificeert een resource,een specifiek deel van een resource,een bepaalde representatie van een resource of een combinatie hiervan welke gebruikt wordt binnen de Melding."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut> a owl:Class;
+  rdfs:label "Meldingsobject Attribuut"@nl;
+  rdfs:comment "Beschrijft een attribuut van het Meldingsobject."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding#Meldingstatus> a owl:Class;
+  rdfs:label "Status"@nl;
+  rdfs:comment "De Status van de Melding in het verwerkingsproces op een bepaald tijdstip."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/melding> .
+
+<https://data.vlaanderen.be/ns/melding> a owl:Ontology;
+  rdfs:label "melding"@en,
+    "melding"@nl;
+  dc:contributor [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Thomas";
+    foaf:last_name "Sobry";
+    foaf:mbox "Thomas.Sobry@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://bosa.belgium.be/";
+      foaf:name "BOSA"
+    ];
+    foaf:first_name "Barbara";
+    foaf:last_name "Van Gogh";
+    foaf:mbox "barbara.vanoggh@bosa.fgov.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Pieter";
+    foaf:last_name "Kempenaers";
+    foaf:mbox "Pieter.Kempenaers@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Joost";
+    foaf:last_name "De Geyndt";
+    foaf:mbox "Joost.DeGeyndt@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Stijn";
+    foaf:last_name "Van Speybroeck";
+    foaf:mbox "Stijn.VanSpeybroeck@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://www.antwerpen.be/";
+      foaf:name "Stad Antwerpen"
+    ];
+    foaf:first_name "Jasmin";
+    foaf:last_name "De Rijcker";
+    foaf:mbox "jasmin.derijcker@stad.antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Liesbeth";
+    foaf:last_name "Rombouts";
+    foaf:mbox "liesbeth.rombouts@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.pwc.be";
+      foaf:name "PwC"
+    ];
+    foaf:first_name "Nikolaos";
+    foaf:last_name "Loutas";
+    foaf:mbox "nikolaos.loutas@pwc.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Stefan";
+    foaf:last_name "Van Camp";
+    foaf:mbox "Stefan.VanCamp@kb.vlaanderen.be"
+  ];
+  dc:license "https://data.vlaanderen.be/doc/licentie/modellicentie-gratis-hergebruik/v1.0";
+  dc:mediator [
+    foaf:homepage "https://data.vlaanderen.be";
+    foaf:mbox "mailto:oslo@kb.vlaanderen.be";
+    foaf:name "Data Vlaanderen"
+  ];
+  rdfs:seeAlso dc:title,
+    dc:description,
+    skos:Concept,
+    oa:TimeState,
+    <http://www.w3.org/ns/locn#geometry>,
+    schema:contactPoint,
+    <http://www.w3.org/ns/locn#Geometry>,
+    dc:spatial,
+    <https://data.vlaanderen.be/ns/persoon#GeregistreerdPersoon>,
+    <https://data.vlaanderen.be/ns/organisatie#Hoedanigheid>,
+    <http://www.opengis.net/ont/geosparql#asGML>,
+    org:OrganizationalUnit,
+    <http://data.europa.eu/m8g/PublicOrganisation>,
+    oa:hasState,
+    <https://data.vlaanderen.be/ns/organisatie#contactinfo>,
+    <http://www.w3.org/ns/person#Person>,
+    org:classification,
+    <http://www.w3.org/ns/regorg#orgStatus>,
+    foaf:homepage,
+    org:hasUnit,
+    skos:prefLabel,
+    <http://www.w3.org/ns/regorg#orgType>,
+    org:Organization,
+    oa:hasBody,
+    oa:hasSource,
+    dcmitype:Dataset,
+    foaf:givenName,
+    dc:Agent,
+    <http://www.w3.org/ns/person#patronymicName>,
+    oa:motivatedBy,
+    oa:cachedSource,
+    <https://data.vlaanderen.be/ns/persoon#alternatieveNaam>,
+    oa:hasTarget,
+    schema:logo,
+    skos:altLabel,
+    foaf:familyName,
+    org:memberOf,
+    <https://data.vlaanderen.be/ns/persoon#registratie>,
+    <https://www.w3.org/ns/activitystreams#attachment>,
+    rdfs:label,
+    oa:sourceDate,
+    <http://www.opengis.net/ont/geosparql#asWKT>,
+    <https://www.w3.org/ns/activitystreams#summary>,
+    <https://data.vlaanderen.be/ns/persoon#volledigeNaam>,
+    <https://data.vlaanderen.be/ns/persoon#geslacht>,
+    <https://www.w3.org/ns/hydra/core#required>,
+    <http://www.w3.org/ns/regorg#orgActivity>,
+    org:purpose,
+    org:unitOf,
+    <http://www.w3.org/ns/person#birthName>,
+    <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam>;
+  <http://www.w3.org/2001/02pd/rec54#editor> [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.pwc.be";
+      foaf:name "PwC"
+    ];
+    foaf:first_name "Jens";
+    foaf:last_name "Scheerlinck";
+    foaf:mbox "jens.scheerlinck@pwc.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.pwc.be";
+      foaf:name "PwC"
+    ];
+    foaf:first_name "Michiel";
+    foaf:last_name "De Keyzer";
+    foaf:mbox "michiel.de.keyzer@pwc.com"
+  ];
+  foaf:maker [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Carolien";
+    foaf:last_name "Willen";
+    foaf:mbox "carolien.willen@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Jurgen";
+    foaf:last_name "Dooms";
+    foaf:mbox "Jurgen.Dooms@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Goedele";
+    foaf:last_name "Van der Spiegel";
+    foaf:mbox "goedele.vanderspiegel@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Joost";
+    foaf:last_name "De Weghe";
+    foaf:mbox "joost.deweghe@kb.vlaanderen.be"
+  ] .
