@@ -12,17 +12,17 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "bevat" ;
-		sh:description "Duidt aan dat een documentversie onderdeel kan uitmaken van een publicatie." ;
-		sh:path <http://purl.org/dc/terms/hasPart> ;
-		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
-	] ;
-	sh:property [
 		sh:name "heeftBevoegde" ;
 		sh:description "Duidt aan dat een publicatie één of meerdere agenten als bevoegden heeft." ;
 		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftBevoegde> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "bevat" ;
+		sh:description "Duidt aan dat een documentversie onderdeel kan uitmaken van een publicatie." ;
+		sh:path <http://purl.org/dc/terms/hasPart> ;
+		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
 	] ;
 	sh:property [
 		sh:name "aantalWoorden" ;
@@ -140,10 +140,10 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
 	sh:property [
-		sh:name "isVertalingVan" ;
-		sh:description "Duidt aan dat een documentversie gerelateerd is aan een andere documentversie doordat deze tweede een vertaling van de eerste is." ;
-		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isVertalingVan> ;
-		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
+		sh:name "vereist" ;
+		sh:description "Duidt aan dat een documentversie een vertalingsaanvraag kan vereisen." ;
+		sh:path <http://purl.org/dc/terms/requires> ;
+		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Vertalingsaanvraag> ;
 	] ;
 	sh:property [
 		sh:name "isAangebrachtDoor" ;
@@ -154,10 +154,10 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "vereist" ;
-		sh:description "Duidt aan dat een documentversie een vertalingsaanvraag kan vereisen." ;
-		sh:path <http://purl.org/dc/terms/requires> ;
-		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Vertalingsaanvraag> ;
+		sh:name "isVertalingVan" ;
+		sh:description "Duidt aan dat een documentversie gerelateerd is aan een andere documentversie doordat deze tweede een vertaling van de eerste is." ;
+		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isVertalingVan> ;
+		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
 	] ;
 	sh:property [
 		sh:name "formaat" ;
@@ -282,6 +282,13 @@
 		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Consultatievraag> ;
 	] ;
 	sh:property [
+		sh:name "geeftAanleidingTot" ;
+		sh:description "Duidt aan dat een beslissing als gevolg van een dossier in een welbepaalde procedurestap aangemaakt kan worden." ;
+		sh:path <http://www.w3.org/ns/prov#generated> ;
+		sh:class <http://data.vlaanderen.be/ns/besluit#Besluit> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "isAangevraagdVoor" ;
 		sh:description "Duidt aan dat iemand heeft aangevraagd om een dossier in een welbepaalde procedurestap op de agenda te plaatsen van een welbepaalde zitting." ;
 		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isAangevraagdVoor> ;
@@ -290,23 +297,16 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "bevat" ;
-		sh:description "Duidt aan dat een dossier in een welbepaalde procedurestap een documentversie kan bevatten." ;
-		sh:path <http://purl.org/dc/terms/hasPart> ;
-		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
-	] ;
-	sh:property [
-		sh:name "geeftAanleidingTot" ;
-		sh:description "Duidt aan dat een beslissing als gevolg van een dossier in een welbepaalde procedurestap aangemaakt kan worden." ;
-		sh:path <http://www.w3.org/ns/prov#generated> ;
-		sh:class <http://data.vlaanderen.be/ns/besluit#Besluit> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isGeagendeerdVia" ;
 		sh:description "Duidt aan dat een dossier in een welbepaalde procedurestap gebruikt wordt als informatiebron om een agendapunt te bespreken." ;
 		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isGeagendeerdVia> ;
 		sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ;
+	] ;
+	sh:property [
+		sh:name "bevat" ;
+		sh:description "Duidt aan dat een dossier in een welbepaalde procedurestap een documentversie kan bevatten." ;
+		sh:path <http://purl.org/dc/terms/hasPart> ;
+		sh:class <https://data.vlaanderen.be/ns/besluitvorming#Documentversie> ;
 	] ;
 	sh:property [
 		sh:name "fase" ;
@@ -377,18 +377,18 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
+		sh:name "heeftContactpersoon" ;
+		sh:description "Duidt aan dat een consultatievraag één of meerdere agenten als contactpersoon kan hebben, bv. bij het adviesorgaan." ;
+		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftContactpersoon> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+	] ;
+	sh:property [
 		sh:name "isGesteldAan" ;
 		sh:description "Duidt aan dat een consultatievraag aan een agent gesteld wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isGesteldAan> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "heeftContactpersoon" ;
-		sh:description "Duidt aan dat een consultatievraag één of meerdere agenten als contactpersoon kan hebben, bv. bij het adviesorgaan." ;
-		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftContactpersoon> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
 		sh:name "aanvraag" ;
@@ -426,6 +426,12 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Agendapunt> ;
 	sh:property [
+		sh:name "heeftAanwezige" ;
+		sh:description "Duidt aan dat een agent aanwezig is bij de behandeling van een agendapunt." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+	] ;
+	sh:property [
 		sh:name "geeftAanleidingTot" ;
 		sh:description "Duidt aan dat een beslissing als gevolg van een agendapunt aangemaakt kan worden." ;
 		sh:path <http://www.w3.org/ns/prov#generated> ;
@@ -438,12 +444,6 @@
 		sh:path <http://data.vlaanderen.be/ns/besluit#aangebrachtNa> ;
 		sh:class <http://data.vlaanderen.be/ns/besluit#Agendapunt> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "heeftAanwezige" ;
-		sh:description "Duidt aan dat een agent aanwezig is bij de behandeling van een agendapunt." ;
-		sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
 		sh:name "aanmaakdatum" ;
@@ -555,17 +555,17 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Besluit> ;
 	sh:property [
+		sh:name "isGerealiseerdDoor" ;
+		sh:description "Duidt aan dat een beslissing gerealiseerd wordt via een (of meerdere) publicatie(s)." ;
+		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isGerealiseerdDoor> ;
+		sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ;
+	] ;
+	sh:property [
 		sh:name "geeftAanleidingTot" ;
 		sh:description "Duidt aan dat de nieuwsbriefinfo als gevolg van een beslissing aangemaakt kan worden." ;
 		sh:path <http://www.w3.org/ns/prov#generated> ;
 		sh:class <https://data.vlaanderen.be/ns/besluitvorming#NieuwsbriefInfo> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isGerealiseerdDoor" ;
-		sh:description "Duidt aan dat een beslissing gerealiseerd wordt via een (of meerdere) publicatie(s)." ;
-		sh:path <https://data.vlaanderen.be/ns/besluitvorming#isGerealiseerdDoor> ;
-		sh:class <http://data.europa.eu/eli/ontology#LegalExpression> ;
 	] ;
 	sh:property [
 		sh:name "beschrijving" ;
@@ -814,19 +814,10 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://dbpedia.org/ontology/Case> ;
 	sh:property [
-		sh:name "heeftContactpersoon" ;
-		sh:description "Duidt aan dat een dossier één of meerdere agenten als contactpersoon heeft." ;
-		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftContactpersoon> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-	] ;
-	sh:property [
-		sh:name "heeftIndiener" ;
-		sh:description "Duidt aan dat een dossier een agent als indiener heeft." ;
-		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftIndiener> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
+		sh:name "doorloopt" ;
+		sh:description "Duidt aan dat een dossier verschillende stappen doorloopt, waarbij een procedurestap een welbepaalde fase beschrijft." ;
+		sh:path <http://purl.org/dc/terms/hasPart> ;
+		sh:class <http://dbpedia.org/ontology/UnitOfWork> ;
 	] ;
 	sh:property [
 		sh:name "isGerelateerdAan" ;
@@ -835,9 +826,9 @@
 		sh:class <http://dbpedia.org/ontology/Case> ;
 	] ;
 	sh:property [
-		sh:name "heeftCreator" ;
-		sh:description "Duidt aan dat een dossier door een agent is aangemaakt." ;
-		sh:path <http://purl.org/dc/terms/creator> ;
+		sh:name "heeftIndiener" ;
+		sh:description "Duidt aan dat een dossier een agent als indiener heeft." ;
+		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftIndiener> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -850,10 +841,19 @@
 		sh:minCount 1 ;
 	] ;
 	sh:property [
-		sh:name "doorloopt" ;
-		sh:description "Duidt aan dat een dossier verschillende stappen doorloopt, waarbij een procedurestap een welbepaalde fase beschrijft." ;
-		sh:path <http://purl.org/dc/terms/hasPart> ;
-		sh:class <http://dbpedia.org/ontology/UnitOfWork> ;
+		sh:name "heeftContactpersoon" ;
+		sh:description "Duidt aan dat een dossier één of meerdere agenten als contactpersoon heeft." ;
+		sh:path <https://data.vlaanderen.be/ns/besluitvorming#heeftContactpersoon> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftCreator" ;
+		sh:description "Duidt aan dat een dossier door een agent is aangemaakt." ;
+		sh:path <http://purl.org/dc/terms/creator> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "aanmaakdatum" ;
