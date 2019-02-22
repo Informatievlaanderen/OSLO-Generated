@@ -49,11 +49,6 @@ rdfs:Literal a rdfs:Class .
 <https://schema.org/PropertyValue> a rdfs:Class;
   rdfs:label "Sleutel/Waarde Paar"@nl .
 
-<https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> a owl:Class;
-  rdfs:label "Notificatiebericht"@nl;
-  rdfs:comment "Een bericht van een afzender naar een bestemmeling met als doel het informeren van de bestemmeling."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
-
 <https://data.vlaanderen.be/ns/notificatie#inhoud> a owl:ObjectProperty;
   rdfs:label "inhoud"@nl;
   rdfs:comment "De inhoud van een Notificatiebericht."@nl;
@@ -78,7 +73,9 @@ rdfs:Literal a rdfs:Class .
 <https://data.vlaanderen.be/ns/notificatie#resulteertIn> a owl:ObjectProperty;
   rdfs:label "resulteert in"@nl;
   rdfs:comment "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
+  rdfs:domain <https://schema.org/InformAction>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie>;
+  rdfs:range <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> .
 
 <http://data.europa.eu/m8g/endTime> a rdf:Property;
   rdfs:label "einde"@nl .
@@ -211,6 +208,11 @@ foaf:name a rdf:Property;
 foaf:page a rdf:Property;
   rdfs:label "pagina"@nl .
 
+<https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> a owl:Class;
+  rdfs:label "Notificatiebericht"@nl;
+  rdfs:comment "Een bericht van een afzender naar een bestemmeling met als doel het informeren van de bestemmeling."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
+
 <https://schema.org/about> a rdf:Property;
   rdfs:label "onderwerp"@nl .
 
@@ -240,27 +242,9 @@ foaf:page a rdf:Property;
   rdfs:label "waarde"@nl .
 
 <https://data.vlaanderen.be/ns/notificatie> a owl:Ontology;
-  rdfs:label "notificatie"@nl,
-    "notificatie"@en;
+  rdfs:label "notificatie"@en,
+    "notificatie"@nl;
   dc:contributor [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://bosa.belgium.be/";
-      foaf:name "BOSA"
-    ];
-    foaf:first_name "Barbara";
-    foaf:last_name "Van Gogh";
-    foaf:mbox "barbara.vanoggh@bosa.fgov.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://www.scip-cspi.be/";
-      foaf:name "CSPI"
-    ];
-    foaf:first_name "Ginette";
-    foaf:last_name "Schollaert";
-    foaf:mbox "ginette.schollaert@cspi-scip.be"
-  ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "https://bosa.belgium.be/";
@@ -272,12 +256,12 @@ foaf:page a rdf:Property;
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
-      foaf:homepage "http://www.pwc.be";
-      foaf:name "PwC"
+      foaf:homepage "https://bosa.belgium.be/";
+      foaf:name "BOSA"
     ];
-    foaf:first_name "Nikolaos";
-    foaf:last_name "Loutas";
-    foaf:mbox "nikolaos.loutas@pwc.com"
+    foaf:first_name "Barbara";
+    foaf:last_name "Van Gogh";
+    foaf:mbox "barbara.vanoggh@bosa.fgov.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -296,6 +280,24 @@ foaf:page a rdf:Property;
     foaf:first_name "Liesbeth";
     foaf:last_name "Rombouts";
     foaf:mbox "liesbeth.rombouts@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.pwc.be";
+      foaf:name "PwC"
+    ];
+    foaf:first_name "Nikolaos";
+    foaf:last_name "Loutas";
+    foaf:mbox "nikolaos.loutas@pwc.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://www.scip-cspi.be/";
+      foaf:name "CSPI"
+    ];
+    foaf:first_name "Ginette";
+    foaf:last_name "Schollaert";
+    foaf:mbox "ginette.schollaert@cspi-scip.be"
   ];
   dc:license "https://data.vlaanderen.be/doc/licentie/modellicentie-gratis-hergebruik/v1.0";
   dc:mediator [
@@ -303,82 +305,73 @@ foaf:page a rdf:Property;
     foaf:mbox "mailto:oslo@kb.vlaanderen.be";
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <http://data.europa.eu/m8g/endTime>,
-    dc:description,
-    dc:Agent,
-    schema:dateReceived,
-    <http://purl.org/vocab/cpsv#PublicService>,
-    <https://schema.org/PropertyValue>,
-    <http://data.europa.eu/m8g/processingTime>,
-    rdf:langString,
+  rdfs:seeAlso dc:issued,
     <https://schema.org/AdministrativeArea>,
-    <http://www.w3.org/ns/adms#Identifier>,
-    <http://data.europa.eu/m8g/hasCompetentAuthority>,
-    <http://data.europa.eu/m8g/PublicOrganisation>,
-    schema:brand,
-    rdfs:Literal,
-    schema:contactPoint,
-    schema:ContactPoint,
-    schema:dateSent,
-    <https://schema.org/Audience>,
-    dc:spatial,
-    <https://schema.org/about>,
     <http://data.europa.eu/m8g/PeriodOfTime>,
-    <https://schema.org/agent>,
-    <http://data.europa.eu/m8g/sector>,
-    schema:dateRead,
-    <https://schema.org/text>,
-    <http://data.europa.eu/m8g/hasCost>,
-    skos:altLabel,
-    <https://schema.org/InformAction>,
-    schema:recipient,
-    <https://schema.org/geographicArea>,
-    <https://schema.org/name>,
-    <http://www.w3.org/ns/locn#geometry>,
-    schema:name,
-    <http://www.w3.org/ns/adms#status>,
-    schema:faxNumber,
-    schema:expires,
-    dc:creator,
-    schema:sender,
-    dc:relation,
-    dc:title,
-    <http://data.europa.eu/m8g/hasContactPoint>,
-    schema:email,
-    schema:openingHours,
+    schema:contactPoint,
     dc:language,
+    <http://purl.org/vocab/cpsv#PublicService>,
+    skos:altLabel,
+    dc:relation,
+    rdf:langString,
+    schema:ContactPoint,
+    dc:Agent,
+    <https://schema.org/recipient>,
+    <https://schema.org/PropertyValue>,
+    <http://data.europa.eu/m8g/PublicOrganisation>,
+    <http://data.europa.eu/m8g/endTime>,
     <http://www.w3.org/ns/locn#Geometry>,
-    foaf:page,
-    schema:telephone,
-    dcat:keyword,
-    <http://www.opengis.net/ont/geosparql#asGML>,
-    <http://www.opengis.net/ont/geosparql#asWKT>,
-    schema:hoursAvailable,
-    <http://www.w3.org/ns/adms#schemaAgency>,
-    <http://www.w3.org/ns/locn#address>,
-    <https://schema.org/value>,
-    <http://www.w3.org/ns/adms#identifier>,
     <https://schema.org/Brand>,
-    <https://schema.org/dateCreated>,
-    dc:issued,
-    <https://schema.org/audienceType>,
+    <http://www.w3.org/ns/adms#Identifier>,
+    <https://schema.org/InformAction>,
+    dc:spatial,
+    <http://www.w3.org/ns/adms#identifier>,
     <http://data.europa.eu/m8g/startTime>,
-    vcard:honorific-prefix,
-    dc:type,
-    schema:url,
+    <https://schema.org/Audience>,
+    schema:dateSent,
+    <https://schema.org/name>,
+    schema:hoursAvailable,
+    <http://data.europa.eu/m8g/processingTime>,
+    schema:expires,
+    <http://www.opengis.net/ont/geosparql#asGML>,
+    schema:brand,
+    schema:name,
+    schema:openingHours,
     foaf:name,
+    foaf:page,
+    schema:dateRead,
+    dcat:keyword,
+    <http://www.opengis.net/ont/geosparql#asWKT>,
+    schema:recipient,
+    <http://www.w3.org/ns/adms#schemaAgency>,
+    rdfs:Literal,
+    dc:description,
+    <http://www.w3.org/ns/locn#geometry>,
     skos:notation,
-    <https://schema.org/recipient>;
+    dc:title,
+    dc:type,
+    schema:faxNumber,
+    <https://schema.org/text>,
+    <https://schema.org/dateCreated>,
+    <https://schema.org/value>,
+    <https://schema.org/about>,
+    <http://www.w3.org/ns/locn#address>,
+    <http://data.europa.eu/m8g/hasCompetentAuthority>,
+    <https://schema.org/agent>,
+    <http://www.w3.org/ns/adms#status>,
+    <http://data.europa.eu/m8g/hasCost>,
+    dc:creator,
+    vcard:honorific-prefix,
+    <http://data.europa.eu/m8g/hasContactPoint>,
+    <http://data.europa.eu/m8g/sector>,
+    schema:dateReceived,
+    <https://schema.org/geographicArea>,
+    <https://schema.org/audienceType>,
+    schema:email,
+    schema:telephone,
+    schema:url,
+    schema:sender;
   <http://www.w3.org/2001/02pd/rec54#editor> [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "http://www.pwc.be";
-      foaf:name "PwC"
-    ];
-    foaf:first_name "Michiel";
-    foaf:last_name "De Keyzer";
-    foaf:mbox "michiel.de.keyzer@pwc.com"
-  ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "http://www.pwc.be";
@@ -387,17 +380,17 @@ foaf:page a rdf:Property;
     foaf:first_name "Jens";
     foaf:last_name "Scheerlinck";
     foaf:mbox "jens.scheerlinck@pwc.com"
-  ];
-  foaf:maker [
+  ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
-      foaf:homepage "https://overheid.vlaanderen.be/";
-      foaf:name "Informatie Vlaanderen"
+      foaf:homepage "http://www.pwc.be";
+      foaf:name "PwC"
     ];
-    foaf:first_name "Niko";
-    foaf:last_name "Tanghe";
-    foaf:mbox "goedele.vanderspiegel@kb.vlaanderen.be"
-  ], [
+    foaf:first_name "Michiel";
+    foaf:last_name "De Keyzer";
+    foaf:mbox "michiel.de.keyzer@pwc.com"
+  ];
+  foaf:maker [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "https://overheid.vlaanderen.be/";
@@ -412,18 +405,27 @@ foaf:page a rdf:Property;
       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:first_name "Dries";
-    foaf:last_name "Beheydt";
-    foaf:mbox "dries.beheydt@kb.vlaanderen.be"
+    foaf:first_name "Bart";
+    foaf:last_name "Misseeuw";
+    foaf:mbox "bart.misseeuw@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Niko";
+    foaf:last_name "Tanghe";
+    foaf:mbox "goedele.vanderspiegel@kb.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:first_name "Bart";
-    foaf:last_name "Misseeuw";
-    foaf:mbox "bart.misseeuw@kb.vlaanderen.be"
+    foaf:first_name "Dries";
+    foaf:last_name "Beheydt";
+    foaf:mbox "dries.beheydt@kb.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
