@@ -54,12 +54,12 @@
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#ApplicatieShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://fixme.com#Applicatie> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/melding#Applicatie> ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingstatusShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://fixme.com#Meldingstatus> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/melding#Meldingstatus> ;
 	sh:property [
 		sh:name "beschrijving" ;
 		sh:description "Een beschrijving van de Status." ;
@@ -71,7 +71,7 @@
 	sh:property [
 		sh:name "statusdatum" ;
 		sh:description "De datum van een Status." ;
-		sh:path <http://fixme.com#statusdatum> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#statusdatum> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -79,8 +79,8 @@
 	sh:property [
 		sh:name "statuswaarde" ;
 		sh:description "Het type van de Status." ;
-		sh:path <http://fixme.com#statuswaarde> ;
-		sh:class <http://fixme.com#MeldingStatuswaarde> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#statuswaarde> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/MeldingStatuswaarde> ;
@@ -88,7 +88,7 @@
 	sh:property [
 		sh:name "statuswijzigingDoor" ;
 		sh:description "De Agent die deze status heeft geactiveerd. " ;
-		sh:path <http://fixme.com#statuswijzigingDoor> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#statuswijzigingDoor> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -97,7 +97,7 @@
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingBodyShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://fixme.com#MeldingBody> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/melding#MeldingBody> ;
 	sh:property [
 		sh:name "beschrijving" ;
 		sh:description "Een tekstuele beschrijving van de melding." ;
@@ -149,25 +149,54 @@
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://fixme.com#Melding> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/melding#Melding> ;
+	sh:property [
+		sh:name "betrokkene" ;
+		sh:description "Agent die belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#betrokkene> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+	] ;
 	sh:property [
 		sh:name "meldingsapplicatie" ;
 		sh:description "De applicatie dat de Melding creëerde." ;
-		sh:path <http://fixme.com#meldingsapplicatie> ;
-		sh:class <http://fixme.com#Applicatie> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#meldingsapplicatie> ;
+		sh:class <https://data.vlaanderen.be/ns/melding#Applicatie> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "indiener" ;
+		sh:description "Agent die de Melding heeft aangemaakt en/of ingediend." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#indiener> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "behandelaar" ;
+		sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#behandelaar> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "meldingsorganisatie" ;
+		sh:description "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding." ;
+		sh:path <https://data.vlaanderen.be/ns/melding#meldingsorganisatie> ;
+		sh:class <https://www.w3.org/ns/org#Organization> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "heeftBody" ;
 		sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody)." ;
 		sh:path <http://www.w3.org/ns/oa#hasBody> ;
-		sh:class <http://fixme.com#MeldingBody> ;
+		sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody> ;
 	] ;
 	sh:property [
 		sh:name "heeftStatus" ;
 		sh:description "De Status verbonden aan de Melding." ;
-		sh:path <http://fixme.com#heeftStatus> ;
-		sh:class <http://fixme.com#Meldingstatus> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#heeftStatus> ;
+		sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus> ;
 	] ;
 	sh:property [
 		sh:name "meldingstype" ;
@@ -194,7 +223,7 @@
 	sh:property [
 		sh:name "webpagina" ;
 		sh:description "Een doorverwijzing naar een webpagina over deze Melding." ;
-		sh:path <http://fixme.com#webpagina> ;
+		sh:path <https://data.vlaanderen.be/ns/melding#webpagina> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
 		sh:maxCount 1 ;
 	] ;
