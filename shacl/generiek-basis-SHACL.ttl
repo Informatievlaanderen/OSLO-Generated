@@ -14,30 +14,30 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> ;
 	sh:property [
-		sh:name "isOnderdeelVan" ;
-		sh:description "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen." ;
-		sh:path <http://purl.org/dc/terms/isPartOf> ;
-		sh:class <http://xmlns.com/foaf/0.1/Document> ;
-	] ;
-	sh:property [
 		sh:name "isDeelVan" ;
 		sh:description "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen." ;
 		sh:path <http://purl.org/dc/terms/isPartOf> ;
 		sh:class <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel> ;
 	] ;
 	sh:property [
-		sh:name "type" ;
-		sh:description "Aard van het documentonderdeel." ;
-		sh:path <http://purl.org/dc/terms/type> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
+		sh:name "isOnderdeelVan" ;
+		sh:description "Een verwante bron waarin de beschreven bron fysiek of logisch is opgenomen." ;
+		sh:path <http://purl.org/dc/terms/isPartOf> ;
+		sh:class <http://xmlns.com/foaf/0.1/Document> ;
 	] ;
 	sh:property [
 		sh:name "nummer" ;
 		sh:description "Nummer vh documentonderdeel." ;
 		sh:path <https://data.vlaanderen.be/ns/generiek#nummer> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Aard van het documentonderdeel." ;
+		sh:path <http://purl.org/dc/terms/type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -105,18 +105,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/dc/terms/Location> ;
 	sh:property [
-		sh:name "plaatsnaam" ;
-		sh:description "Naam van de plaats of van het gebied." ;
-		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-	] ;
-	sh:property [
 		sh:name "geometrie" ;
 		sh:description "Geometrie van de plaats of het gebied." ;
 		sh:path <http://www.w3.org/ns/locn#geometry> ;
 		sh:class <http://www.w3.org/ns/locn#Geometry> ;
 		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "plaatsnaam" ;
+		sh:description "Naam van de plaats of van het gebied." ;
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
 	] ;
 	sh:closed false .
 
@@ -185,18 +185,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/prov#Invalidation> ;
 	sh:property [
+		sh:name "activiteit" ;
+		sh:description "Activiteit die tot de opheffing vd entiteit heeft geleid." ;
+		sh:path <http://www.w3.org/ns/prov#activity> ;
+		sh:class <http://www.w3.org/ns/prov#Activity> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "tijdstip" ;
 		sh:description "Tijdstip waarop de opheffing vd entiteit plaatsvond." ;
 		sh:path <http://www.w3.org/ns/prov#atTime> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "activiteit" ;
-		sh:description "Activiteit die tot de opheffing vd entiteit heeft geleid." ;
-		sh:path <http://www.w3.org/ns/prov#activity> ;
-		sh:class <http://www.w3.org/ns/prov#Activity> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -205,18 +205,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/prov#Generation> ;
 	sh:property [
+		sh:name "activiteit" ;
+		sh:description "Activiteit die tot de creatie vd entiteit heeft geleid." ;
+		sh:path <http://www.w3.org/ns/prov#activity> ;
+		sh:class <http://www.w3.org/ns/prov#Activity> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "tijdstip" ;
 		sh:description "Tijdstip waarop de creatie vd entiteit plaatsvond." ;
 		sh:path <http://www.w3.org/ns/prov#atTime> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "activiteit" ;
-		sh:description "Activiteit die tot de creatie vd entiteit heeft geleid." ;
-		sh:path <http://www.w3.org/ns/prov#activity> ;
-		sh:class <http://www.w3.org/ns/prov#Activity> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -257,13 +257,6 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/prov#Activity> ;
 	sh:property [
-		sh:name "operator" ;
-		sh:description "Geeft aan welke agent verantwoordelijk was voor de activiteit en meer bepaald verantwoordelijk was voor het uitvoeren vd activiteit." ;
-		sh:path <http://www.w3.org/ns/prov#wasAssociatedWith> ;
-		sh:class <http://www.w3.org/ns/prov#Agent> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "applicatie" ;
 		sh:description "Gebruik ve entiteit door een activiteit." ;
 		sh:path <http://www.w3.org/ns/prov#used> ;
@@ -276,6 +269,13 @@
 		sh:path <https://data.vlaanderen.be/ns/generiek#bewerking> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "operator" ;
+		sh:description "Geeft aan welke agent verantwoordelijk was voor de activiteit en meer bepaald verantwoordelijk was voor het uitvoeren vd activiteit." ;
+		sh:path <http://www.w3.org/ns/prov#wasAssociatedWith> ;
+		sh:class <http://www.w3.org/ns/prov#Agent> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -294,16 +294,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
 	sh:property [
-		sh:name "wkt" ;
-		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
-		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
+		sh:name "gml" ;
+		sh:description "Geometrie uitgedrukt in gml-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "gml" ;
-		sh:description "Geometrie uitgedrukt in gml-formaat." ;
-		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
+		sh:name "wkt" ;
+		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:maxCount 1 ;
 	] ;
@@ -320,13 +320,6 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "specificatie" ;
-		sh:description "Het type object op basis waarvan het punt werd bepaald." ;
-		sh:path <https://data.vlaanderen.be/ns/generiek#specificatie> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "geometrie" ;
 		sh:description "De cartografische coöordinaten vh punt." ;
 		sh:path <http://www.w3.org/ns/locn#geometry> ;
@@ -338,6 +331,13 @@
 		sh:name "methode" ;
 		sh:description "De manier waarop het punt werd bepaald." ;
 		sh:path <https://data.vlaanderen.be/ns/generiek#methode> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "specificatie" ;
+		sh:description "Het type object op basis waarvan het punt werd bepaald." ;
+		sh:path <https://data.vlaanderen.be/ns/generiek#specificatie> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:maxCount 1 ;
 	] ;
@@ -403,6 +403,20 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
+		sh:name "adres" ;
+		sh:description "Adres dat men kan aanschrijven of bezoeken." ;
+		sh:path <http://www.w3.org/ns/locn#address> ;
+		sh:class <http://www.w3.org/ns/locn#Address> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschikbaarheid" ;
+		sh:description "Periode waarin contact kan worden opgenomen." ;
+		sh:path <http://schema.org/hoursAvailable> ;
+		sh:class <https://schema.org/OpeningHoursSpecification> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "contactnaam" ;
 		sh:description "Naam van bvb de persoon die men kan contacteren." ;
 		sh:path <http://xmlns.com/foaf/0.1/name> ;
@@ -417,24 +431,10 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "telefoon" ;
-		sh:description "Telefoonnummer waarop men kan bellen." ;
-		sh:path <http://schema.org/telephone> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "fax" ;
 		sh:description "Faxnummer waarnaar men kan faxen." ;
 		sh:path <http://schema.org/faxNumber> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "website" ;
-		sh:description "Website waarnaar men kan surfen." ;
-		sh:path <http://xmlns.com/foaf/0.1/page> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -445,17 +445,17 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "beschikbaarheid" ;
-		sh:description "Periode waarin contact kan worden opgenomen." ;
-		sh:path <http://schema.org/hoursAvailable> ;
-		sh:class <https://schema.org/OpeningHoursSpecification> ;
+		sh:name "telefoon" ;
+		sh:description "Telefoonnummer waarop men kan bellen." ;
+		sh:path <http://schema.org/telephone> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "adres" ;
-		sh:description "Adres dat men kan aanschrijven of bezoeken." ;
-		sh:path <http://www.w3.org/ns/locn#address> ;
-		sh:class <http://www.w3.org/ns/locn#Address> ;
+		sh:name "website" ;
+		sh:description "Website waarnaar men kan surfen." ;
+		sh:path <http://xmlns.com/foaf/0.1/page> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -470,6 +470,13 @@
 		sh:class <http://purl.org/vocab/cpsv#FormalFramework> ;
 	] ;
 	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Beschrijving van het formeel kader." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "naam" ;
 		sh:description "Naam vh formeel kader." ;
 		sh:path <http://purl.org/dc/terms/title> ;
@@ -478,16 +485,9 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "beschrijving" ;
-		sh:description "Beschrijving van het formeel kader." ;
-		sh:path <http://purl.org/dc/terms/description> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "taal" ;
-		sh:description "Taal waarin het formeel kader beschikbaar is." ;
-		sh:path <http://data.europa.eu/eli/ontology#language> ;
+		sh:name "onderwerp" ;
+		sh:description "Onderwerp vh formeel kader." ;
+		sh:path <http://data.europa.eu/m8g/subject> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
@@ -498,9 +498,9 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "onderwerp" ;
-		sh:description "Onderwerp vh formeel kader." ;
-		sh:path <http://data.europa.eu/m8g/subject> ;
+		sh:name "taal" ;
+		sh:description "Taal waarin het formeel kader beschikbaar is." ;
+		sh:path <http://data.europa.eu/eli/ontology#language> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
@@ -536,17 +536,17 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/adms#Identifier> ;
 	sh:property [
-		sh:name "identificator" ;
-		sh:description "String gebruikt om het object uniek te identificeren. " ;
-		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "gestructureerdedentificator" ;
 		sh:description "Identificator vh object opgesplitst in zijn onderdelen." ;
 		sh:path <https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator> ;
 		sh:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "identificator" ;
+		sh:description "String gebruikt om het object uniek te identificeren. " ;
+		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
