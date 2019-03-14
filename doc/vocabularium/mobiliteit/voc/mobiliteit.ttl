@@ -3,6 +3,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
@@ -88,7 +89,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Inname>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range <http://data.europa.eu/m8g/PeriodOfTime>;
-  rdfs:subPropertyOf "http://purl.org/dc/terms/temporal" .
+  rdfs:subPropertyOf dc:temporal .
 
 <https://data.vlaanderen.be/ns/mobiliteit#Inname.tijdsintervalGepland> a owl:ObjectProperty;
   rdfs:label "gepland tijdsinterval"@nl;
@@ -96,7 +97,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Inname>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range <http://data.europa.eu/m8g/PeriodOfTime>;
-  rdfs:subPropertyOf "http://purl.org/dc/terms/temporal" .
+  rdfs:subPropertyOf dc:temporal .
 
 <https://data.vlaanderen.be/ns/mobiliteit#Inname.type> a owl:ObjectProperty;
   rdfs:label "type"@nl;
@@ -220,7 +221,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:date;
-  rdfs:subPropertyOf "http://purl.org/dc/terms/date" .
+  rdfs:subPropertyOf dc:date .
 
 <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.uitersteAntwoorddatum> a owl:DatatypeProperty;
   rdfs:label "uiterste antwoorddatum"@nl;
@@ -228,7 +229,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:date;
-  rdfs:subPropertyOf "http://purl.org/dc/terms/date" .
+  rdfs:subPropertyOf dc:date .
 
 <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.antwoordDatum> a owl:DatatypeProperty;
   rdfs:label "antwoorddatum"@nl;
@@ -236,7 +237,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:date;
-  rdfs:subPropertyOf "http://purl.org/dc/terms/date" .
+  rdfs:subPropertyOf dc:date .
 
 <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.gaatAkkoord> a owl:DatatypeProperty;
   rdfs:label "gaat akkoord"@nl;
@@ -312,7 +313,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Werken>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:dateTime;
-  rdfs:subPropertyOf "http://www.w3.org/ns/prov#endedAtTime" .
+  rdfs:subPropertyOf prov:endedAtTime .
 
 <https://data.vlaanderen.be/ns/mobiliteit#aanvraagStatus> a owl:ObjectProperty;
   rdfs:label "aanvraagstatus"@nl;
@@ -414,7 +415,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Synergie>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:date;
-  rdfs:subPropertyOf "http://purl.org/dc/elements/1.1/date" .
+  rdfs:subPropertyOf dc11:date .
 
 <https://data.vlaanderen.be/ns/mobiliteit#fabricagevoorschrift> a owl:DatatypeProperty;
   rdfs:label "fabricagevoorschrift"@nl;
@@ -567,7 +568,7 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit#Synergie>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit>;
   rdfs:range xsd:date;
-  rdfs:subPropertyOf "http://purl.org/dc/elements/1.1/date" .
+  rdfs:subPropertyOf dc11:date .
 
 <https://data.vlaanderen.be/ns/mobiliteit#status> a owl:ObjectProperty;
   rdfs:label "status"@nl;
@@ -639,8 +640,6 @@ dc11:description a rdf:Property;
 
 dc:description a rdf:Property;
   rdfs:label "beschrijving"@nl .
-
-dc:temporal a rdf:Property .
 
 schema:contactPoint a rdf:Property;
   rdfs:label "contactinfo"@nl .
@@ -748,6 +747,8 @@ foaf:page a rdf:Property;
   rdfs:comment "Overlap of dicht bijeen liggen van zones in tijd en ruimte."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit> .
 
+dc:temporal a rdf:Property .
+
 <https://data.vlaanderen.be/ns/mobiliteit#Opstelling> a owl:Class;
   rdfs:label "Opstelling"@nl;
   rdfs:comment "Het geheel van verticale verkeerssignalisatie die bevestigd is op dezelfde infrastructuurelementen."@nl;
@@ -810,47 +811,38 @@ foaf:page a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit> .
 
 <https://data.vlaanderen.be/ns/mobiliteit> a owl:Ontology;
-  rdfs:label "mobiliteit"@nl,
-    "mobiliteit"@en;
+  rdfs:label "mobiliteit"@en,
+    "mobiliteit"@nl;
   dc:contributor [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Vilvoorde"];
-    foaf:first_name "Bert";
-    foaf:last_name "Muyldermans";
-    foaf:mbox "bert.muyldermans@vilvoorde.be"
+    schema:affiliation [foaf:name "Stad Antwerpen"];
+    foaf:first_name "Tessa";
+    foaf:last_name "Van Reyn";
+    foaf:mbox "tessa.vanreyn@stad.antwerpen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Merkator"];
-    foaf:first_name "Luc";
-    foaf:last_name "De Heyn";
-    foaf:mbox "luc.deheyn@merkator.com"
+    schema:affiliation [foaf:name "Stad Aalst"];
+    foaf:first_name "Lieve";
+    foaf:last_name "Vijverman";
+    foaf:mbox "lieve.vijverman@aalst.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Antwerpen"];
+    foaf:first_name "Gerd";
+    foaf:last_name "Morren";
+    foaf:mbox "gerd.morren@stad.antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Londerzeel"];
+    foaf:first_name "Ilse";
+    foaf:last_name "Vanhove";
+    foaf:mbox "ilse.vanhove@londerzeel.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Gent"];
     foaf:first_name "Jonas";
     foaf:last_name "Verhaeghe";
     foaf:mbox "jonas.verhaeghe@stad.gent"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://www.antwerpen.be/";
-      foaf:name "Stad Antwerpen"
-    ];
-    foaf:first_name "Gert";
-    foaf:last_name "Brams";
-    foaf:mbox "gert.brams@stad.antwerpen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Oostende"];
-    foaf:first_name "Didier";
-    foaf:last_name "Jonckheere";
-    foaf:mbox "didier.jonckheere@oostende.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Tenforce"];
-    foaf:first_name "Bastiaan";
-    foaf:last_name "Deblieck";
-    foaf:mbox "bastiaan.deblieck@tenforce.com"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -862,39 +854,34 @@ foaf:page a rdf:Property;
     foaf:mbox "lien.allaert@stad.gent"
   ], [
     a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://www.antwerpen.be/";
+      foaf:name "Stad Antwerpen"
+    ];
+    foaf:first_name "Gert";
+    foaf:last_name "Brams";
+    foaf:mbox "gert.brams@stad.antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Eeklo"];
+    foaf:first_name "Nicole";
+    foaf:last_name "Verbruggen";
+    foaf:mbox "nicole.verbruggen@eeklo.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Departement MOW"
+    ];
+    foaf:first_name "Els";
+    foaf:last_name "De Reyt";
+    foaf:mbox "els.dereyt@mow.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Lier"];
     foaf:first_name "Luc";
     foaf:last_name "Janssens";
     foaf:mbox "luc.janssens@lier.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Aalst"];
-    foaf:first_name "Lieve";
-    foaf:last_name "Vijverman";
-    foaf:mbox "lieve.vijverman@aalst.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Nazareth"];
-    foaf:first_name "Sharon";
-    foaf:last_name "Audoor";
-    foaf:mbox "sharon.audoor@nazareth.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    foaf:first_name "Berit";
-    foaf:last_name "Verhelst";
-    foaf:mbox "beritverhelst@gmail.com"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Bredene"];
-    foaf:first_name "Inge";
-    foaf:last_name "Van Mechelen";
-    foaf:mbox "inge.vanmechelen@bredene.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Sint-Pieters-Leeuw"];
-    foaf:first_name "Annelien";
-    foaf:last_name "Baes";
-    foaf:mbox "annelien.baes@sint-pieters-leeuw.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Balen"];
@@ -903,10 +890,90 @@ foaf:page a rdf:Property;
     foaf:mbox "ann.verbeeck@balen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://www.turnhout.be/";
+      foaf:name "Turnhout"
+    ];
+    foaf:first_name "Karolien";
+    foaf:last_name "Van den Broeck";
+    foaf:mbox "karolien.vandenbroeck@turnhout.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://wegenenverkeer.be/";
+      foaf:name "Agentschap Wegen en Verkeer"
+    ];
+    foaf:first_name "Geert";
+    foaf:last_name "Van Gaever";
+    foaf:mbox "geert.vangaever@mow.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    foaf:first_name "Berit";
+    foaf:last_name "Verhelst";
+    foaf:mbox "beritverhelst@gmail.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Gerd";
-    foaf:last_name "Morren";
-    foaf:mbox "gerd.morren@stad.antwerpen.be"
+    foaf:first_name "Bart";
+    foaf:last_name "Van de voorde";
+    foaf:mbox "Bart.VandeVoorde@stad.Antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Londerzeel"];
+    foaf:first_name "Gert";
+    foaf:last_name "Vermeiren";
+    foaf:mbox "gert.vermeiren@londerzeel.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Bredene"];
+    foaf:first_name "hubert";
+    foaf:last_name "schmitt";
+    foaf:mbox "hubert.schmitt@bredene.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Antwerpen"];
+    foaf:first_name "Christiaan";
+    foaf:last_name "Bos";
+    foaf:mbox "Christiaan.Bos@stad.Antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Oostende"];
+    foaf:first_name "Didier";
+    foaf:last_name "Jonckheere";
+    foaf:mbox "didier.jonckheere@oostende.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Geert";
+    foaf:last_name "Thijs";
+    foaf:mbox "geert.thijs@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Balen"];
+    foaf:first_name "Griet";
+    foaf:last_name "Wielockx";
+    foaf:mbox "griet.wielockx@balen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Gent"];
+    foaf:first_name "Anne-Lies";
+    foaf:last_name "Goossens";
+    foaf:mbox "annelies.goossens@stad.gent"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Nazareth"];
+    foaf:first_name "Ludwig";
+    foaf:last_name "Noppe";
+    foaf:mbox "ludwig.noppe@nazareth.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Lier"];
+    foaf:first_name "Steven";
+    foaf:last_name "De Preter";
+    foaf:mbox "steven.depreter@lier.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -919,63 +986,6 @@ foaf:page a rdf:Property;
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
-      foaf:homepage "http://wegenenverkeer.be/";
-      foaf:name "Agentschap Wegen en Verkeer"
-    ];
-    foaf:first_name "Geert";
-    foaf:last_name "Van Gaever";
-    foaf:mbox "geert.vangaever@mow.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://overheid.vlaanderen.be/";
-      foaf:name "Departement MOW"
-    ];
-    foaf:first_name "Els";
-    foaf:last_name "De Reyt";
-    foaf:mbox "els.dereyt@mow.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Eeklo"];
-    foaf:first_name "Nicole";
-    foaf:last_name "Verbruggen";
-    foaf:mbox "nicole.verbruggen@eeklo.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Bart";
-    foaf:last_name "Van de voorde";
-    foaf:mbox "Bart.VandeVoorde@stad.Antwerpen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:first_name "Geert";
-    foaf:last_name "Thijs";
-    foaf:mbox "geert.thijs@kb.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Aalter"];
-    foaf:first_name "Sara";
-    foaf:last_name "Joly";
-    foaf:mbox "sara.joly@aalter.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Departement CJM"];
-    foaf:first_name "Roel";
-    foaf:last_name "Devriendt";
-    foaf:mbox "roel.devriendt@cjsm.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Londerzeel"];
-    foaf:first_name "Gert";
-    foaf:last_name "Vermeiren";
-    foaf:mbox "gert.vermeiren@londerzeel.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
       foaf:homepage "https://www.antwerpen.be/";
       foaf:name "Stad Antwerpen"
     ];
@@ -984,111 +994,40 @@ foaf:page a rdf:Property;
     foaf:mbox "lien.bakelants@stad.antwerpen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Balen"];
-    foaf:first_name "Griet";
-    foaf:last_name "Wielockx";
-    foaf:mbox "griet.wielockx@balen.be"
+    schema:affiliation [foaf:name "VVSG"];
+    foaf:first_name "Erwin";
+    foaf:last_name "Debruyne";
+    foaf:mbox "erwin.debruyne@vvsg.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:first_name "Wouter";
-    foaf:last_name "De Ryck";
-    foaf:mbox "wouter.deryck@kb.vlaanderen.be"
+    schema:affiliation [foaf:name "Tenforce"];
+    foaf:first_name "Bastiaan";
+    foaf:last_name "Deblieck";
+    foaf:mbox "bastiaan.deblieck@tenforce.com"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Oostende"];
-    foaf:first_name "Katrien";
-    foaf:last_name "Van Daele";
-    foaf:mbox "katrien.vandaele@oostende.be"
+    schema:affiliation [foaf:name "Sint-Pieters-Leeuw"];
+    foaf:first_name "Annelien";
+    foaf:last_name "Baes";
+    foaf:mbox "annelien.baes@sint-pieters-leeuw.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Christiaan";
-    foaf:last_name "Bos";
-    foaf:mbox "Christiaan.Bos@stad.Antwerpen.be"
+    schema:affiliation [foaf:name "Sint-Gillis-Waas"];
+    foaf:first_name "Philippe";
+    foaf:last_name "Smeets";
+    foaf:mbox "philippe.smeets@sint-gillis-waas.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    foaf:first_name "Patrick";
-    foaf:last_name "Vandijck";
-    foaf:mbox "patrick.vandijck@vlaamsbrabant.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "http://www.nevele.be/";
-      foaf:name "Nevele"
-    ];
-    foaf:first_name "Sam";
-    foaf:last_name "Blok";
-    foaf:mbox "Sam.Blok@nevele.be"
+    schema:affiliation [foaf:name "Bredene"];
+    foaf:first_name "Inge";
+    foaf:last_name "Van Mechelen";
+    foaf:mbox "inge.vanmechelen@bredene.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Boechout"];
     foaf:first_name "Sofie";
     foaf:last_name "ThonǸ";
     foaf:mbox "sofie.thone@boechout.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "http://stad.gent";
-      foaf:name "Stad Gent"
-    ];
-    foaf:first_name "Stijn";
-    foaf:last_name "Dobbelaere";
-    foaf:mbox "stijn.dobbelaere@stad.gent"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Aalst"];
-    foaf:first_name "Tom";
-    foaf:last_name "Van Neyghem";
-    foaf:mbox "tom.vanneyghem@aalst.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Tessa";
-    foaf:last_name "Van Reyn";
-    foaf:mbox "tessa.vanreyn@stad.antwerpen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "http://www.vvsg.be/Pages/Home.aspx";
-      foaf:name "VVSG"
-    ];
-    foaf:first_name "Ward";
-    foaf:last_name "Van Hal";
-    foaf:mbox "ward.vanhal@vvsg.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Aalst"];
-    foaf:first_name "Joris";
-    foaf:last_name "Verbeken";
-    foaf:mbox "joris.verbeken@aalst.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Londerzeel"];
-    foaf:first_name "Ilse";
-    foaf:last_name "Vanhove";
-    foaf:mbox "ilse.vanhove@londerzeel.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Bredene"];
-    foaf:first_name "hubert";
-    foaf:last_name "schmitt";
-    foaf:mbox "hubert.schmitt@bredene.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Nazareth"];
-    foaf:first_name "Joke";
-    foaf:last_name "Van Hoeymissen";
-    foaf:mbox "joke.van.hoeymissen@nazareth.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://overheid.vlaanderen.be/";
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:first_name "Jef";
-    foaf:last_name "Daems";
-    foaf:mbox "jef.daems@kb.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -1109,31 +1048,42 @@ foaf:page a rdf:Property;
     foaf:mbox "Peter.bogaert@stad.gent"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "VVSG"];
-    foaf:first_name "Erwin";
-    foaf:last_name "Debruyne";
-    foaf:mbox "erwin.debruyne@vvsg.be"
+    schema:affiliation [foaf:name "Nazareth"];
+    foaf:first_name "Sharon";
+    foaf:last_name "Audoor";
+    foaf:mbox "sharon.audoor@nazareth.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Bredene"];
-    foaf:first_name "Tom";
-    foaf:last_name "Verbeke";
-    foaf:mbox "tom.verbeke@bredene.be"
+    foaf:first_name "Patrick";
+    foaf:last_name "Vandijck";
+    foaf:mbox "patrick.vandijck@vlaamsbrabant.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://www.turnhout.be/";
-      foaf:name "Turnhout"
-    ];
-    foaf:first_name "Karolien";
-    foaf:last_name "Van den Broeck";
-    foaf:mbox "karolien.vandenbroeck@turnhout.be"
+    schema:affiliation [foaf:name "Nazareth"];
+    foaf:first_name "Joke";
+    foaf:last_name "Van Hoeymissen";
+    foaf:mbox "joke.van.hoeymissen@nazareth.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Vilvoorde"];
+    foaf:first_name "Bert";
+    foaf:last_name "Muyldermans";
+    foaf:mbox "bert.muyldermans@vilvoorde.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Bredene"];
     foaf:first_name "Sandra-Lien";
     foaf:last_name "Dubuy";
     foaf:mbox "sandra.dubuy@bredene.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.nevele.be/";
+      foaf:name "Nevele"
+    ];
+    foaf:first_name "Sam";
+    foaf:last_name "Blok";
+    foaf:mbox "Sam.Blok@nevele.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -1145,39 +1095,46 @@ foaf:page a rdf:Property;
     foaf:mbox "raf.buyle@kb.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Gent"];
-    foaf:first_name "Anne-Lies";
-    foaf:last_name "Goossens";
-    foaf:mbox "annelies.goossens@stad.gent"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Nazareth"];
-    foaf:first_name "Ludwig";
-    foaf:last_name "Noppe";
-    foaf:mbox "ludwig.noppe@nazareth.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Peter";
-    foaf:last_name "Moreels";
-    foaf:mbox "Peter.Moreels@stad.Antwerpen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Sint-Gillis-Waas"];
-    foaf:first_name "Philippe";
-    foaf:last_name "Smeets";
-    foaf:mbox "philippe.smeets@sint-gillis-waas.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Lier"];
-    foaf:first_name "Steven";
-    foaf:last_name "De Preter";
-    foaf:mbox "steven.depreter@lier.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
     foaf:first_name "Wouter";
-    foaf:last_name "Verhelst";
-    foaf:mbox "w.verhelst@wvi.be"
+    foaf:last_name "De Ryck";
+    foaf:mbox "wouter.deryck@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Oostende"];
+    foaf:first_name "Katrien";
+    foaf:last_name "Van Daele";
+    foaf:mbox "katrien.vandaele@oostende.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Merkator"];
+    foaf:first_name "Luc";
+    foaf:last_name "De Heyn";
+    foaf:mbox "luc.deheyn@merkator.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://www.vvsg.be/Pages/Home.aspx";
+      foaf:name "VVSG"
+    ];
+    foaf:first_name "Ward";
+    foaf:last_name "Van Hal";
+    foaf:mbox "ward.vanhal@vvsg.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://stad.gent";
+      foaf:name "Stad Gent"
+    ];
+    foaf:first_name "Stijn";
+    foaf:last_name "Dobbelaere";
+    foaf:mbox "stijn.dobbelaere@stad.gent"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Departement CJM"];
+    foaf:first_name "Roel";
+    foaf:last_name "Devriendt";
+    foaf:mbox "roel.devriendt@cjsm.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -1187,6 +1144,50 @@ foaf:page a rdf:Property;
     foaf:first_name "Stephen";
     foaf:last_name "Tuerlinckx";
     foaf:mbox "stephen.tuerlinckx@mow.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    foaf:first_name "Wouter";
+    foaf:last_name "Verhelst";
+    foaf:mbox "w.verhelst@wvi.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Antwerpen"];
+    foaf:first_name "Peter";
+    foaf:last_name "Moreels";
+    foaf:mbox "Peter.Moreels@stad.Antwerpen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://overheid.vlaanderen.be/";
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:first_name "Jef";
+    foaf:last_name "Daems";
+    foaf:mbox "jef.daems@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Aalst"];
+    foaf:first_name "Tom";
+    foaf:last_name "Van Neyghem";
+    foaf:mbox "tom.vanneyghem@aalst.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Aalst"];
+    foaf:first_name "Joris";
+    foaf:last_name "Verbeken";
+    foaf:mbox "joris.verbeken@aalst.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Aalter"];
+    foaf:first_name "Sara";
+    foaf:last_name "Joly";
+    foaf:mbox "sara.joly@aalter.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Bredene"];
+    foaf:first_name "Tom";
+    foaf:last_name "Verbeke";
+    foaf:mbox "tom.verbeke@bredene.be"
   ];
   dc:license "https://data.vlaanderen.be/doc/licentie/modellicentie-gratis-hergebruik/v1.0";
   dc:mediator [
@@ -1194,43 +1195,49 @@ foaf:page a rdf:Property;
     foaf:mbox "mailto:oslo@kb.vlaanderen.be";
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <http://vocab.gtfs.org/terms#Route>,
-    foaf:page,
-    <http://www.w3.org/ns/locn#address>,
-    <http://vocab.gtfs.org/terms#Stop>,
-    <http://data.vlaanderen.be/ns/besluit#Artikel>,
+  rdfs:seeAlso skos:Concept,
+    schema:contactPoint,
+    dc:temporal,
+    <http://vocab.gtfs.org/terms#Route>,
+    dc:description,
+    org:classification,
+    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord>,
+    <https://data.vlaanderen.be/ns/mobiliteit#heeftRoute>,
+    <https://data.vlaanderen.be/ns/weg#TransportLinkSequentie>,
+    <http://www.w3.org/ns/adms#identifier>,
+    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement>,
+    dc11:contributor,
+    schema:ContactPoint,
+    <http://data.europa.eu/eli/ontology#LegalResourceSubdivision>,
+    schema:faxNumber,
     schema:openingHours,
     vcard:honorific-prefix,
-    schema:contactPoint,
-    <https://data.vlaanderen.be/ns/mobiliteit#heeftRoute>,
-    <http://data.europa.eu/eli/ontology#LegalResourceSubdivision>,
-    schema:hoursAvailable,
-    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord>,
-    dc:description,
-    <http://www.w3.org/ns/adms#identifier>,
-    schema:ContactPoint,
-    schema:telephone,
-    skos:Concept,
-    rdfs:Resource,
-    schema:email,
-    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement>,
-    schema:faxNumber,
     <http://data.europa.eu/eli/ontology#number>,
-    <http://www.w3.org/ns/adms#status>,
-    dc11:description,
+    rdfs:Resource,
+    <http://data.vlaanderen.be/ns/besluit#Artikel>,
+    <http://www.w3.org/ns/locn#address>,
+    foaf:name,
+    schema:email,
     <https://data.vlaanderen.be/ns/mobiliteit#beheerder>,
-    dc11:contributor,
-    org:classification,
-    <https://data.vlaanderen.be/ns/weg#TransportLinkSequentie>,
-    dc:temporal,
-    <http://www.w3.org/ns/locn#geometry>,
-    foaf:name;
+    foaf:page,
+    dc11:description,
+    schema:hoursAvailable,
+    <http://vocab.gtfs.org/terms#Stop>,
+    <http://www.w3.org/ns/adms#status>,
+    schema:telephone,
+    <http://www.w3.org/ns/locn#geometry>;
   foaf:maker [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
     foaf:first_name "Els";
     foaf:last_name "Bossier";
     foaf:mbox "els.bossier@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "PwC"];
+    foaf:first_name "Brecht";
+    foaf:last_name "Wyns";
+    foaf:mbox "http://www.pwc.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -1243,12 +1250,12 @@ foaf:page a rdf:Property;
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
-      foaf:homepage "http://binnenland.vlaanderen.be/";
-      foaf:name "Agentschap Binnenlands Bestuur"
+      foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
+      foaf:name "Informatie Vlaanderen"
     ];
-    foaf:first_name "Domien";
-    foaf:last_name "Decloedt";
-    foaf:mbox "domien.decloedt@bz.vlaanderen.be"
+    foaf:first_name "Katrien";
+    foaf:last_name "De Smet";
+    foaf:mbox "katrien.desmet@kb.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "PwC"];
@@ -1258,41 +1265,17 @@ foaf:page a rdf:Property;
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
-      foaf:homepage "https://www.ugent.be/ps/communicatiewetenschappen/mict";
-      foaf:name "imec-MICT-UGent"
+      foaf:homepage "http://binnenland.vlaanderen.be/";
+      foaf:name "Agentschap Binnenlands Bestuur"
     ];
-    foaf:first_name "Mathias";
-    foaf:last_name "Van Compernolle";
-    foaf:mbox "mathias.vancompernolle@ugent.be"
+    foaf:first_name "Veronique";
+    foaf:last_name "Volders";
+    foaf:mbox "veronique.volders@bz.vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "PwC"];
     foaf:first_name "Frederik";
     foaf:last_name "Van Eeghem";
-    foaf:mbox "http://www.pwc.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "https://overheid.vlaanderen.be/informatie-vlaanderen";
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:first_name "Katrien";
-    foaf:last_name "De Smet";
-    foaf:mbox "katrien.desmet@kb.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [
-      foaf:homepage "http://redpencil.io";
-      foaf:name "redpencil.io"
-    ];
-    foaf:first_name "Johan";
-    foaf:last_name "Delaure";
-    foaf:mbox "johan.delaure@redpencil.io"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "PwC"];
-    foaf:first_name "Brecht";
-    foaf:last_name "Wyns";
     foaf:mbox "http://www.pwc.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
@@ -1307,11 +1290,26 @@ foaf:page a rdf:Property;
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "https://www.ugent.be/ps/communicatiewetenschappen/mict";
-      foaf:name "imec - UGent"
+      foaf:name "imec-MICT-UGent"
     ];
-    foaf:first_name "Eveline";
-    foaf:last_name "Vlassenroot";
-    foaf:mbox "eveline.vlassenroot@ugent.be"
+    foaf:first_name "Mathias";
+    foaf:last_name "Van Compernolle";
+    foaf:mbox "mathias.vancompernolle@ugent.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:first_name "Naomi";
+    foaf:last_name "Oste";
+    foaf:mbox "naomi.oste@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "http://redpencil.io";
+      foaf:name "redpencil.io"
+    ];
+    foaf:first_name "Johan";
+    foaf:last_name "Delaure";
+    foaf:mbox "johan.delaure@redpencil.io"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
@@ -1323,17 +1321,20 @@ foaf:page a rdf:Property;
     foaf:mbox "toon.timbermont@skryv.com"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:first_name "Naomi";
-    foaf:last_name "Oste";
-    foaf:mbox "naomi.oste@kb.vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
       foaf:homepage "http://binnenland.vlaanderen.be/";
       foaf:name "Agentschap Binnenlands Bestuur"
     ];
-    foaf:first_name "Veronique";
-    foaf:last_name "Volders";
-    foaf:mbox "veronique.volders@bz.vlaanderen.be"
+    foaf:first_name "Domien";
+    foaf:last_name "Decloedt";
+    foaf:mbox "domien.decloedt@bz.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [
+      foaf:homepage "https://www.ugent.be/ps/communicatiewetenschappen/mict";
+      foaf:name "imec - UGent"
+    ];
+    foaf:first_name "Eveline";
+    foaf:last_name "Vlassenroot";
+    foaf:mbox "eveline.vlassenroot@ugent.be"
   ] .
