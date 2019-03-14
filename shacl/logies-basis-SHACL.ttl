@@ -4,10 +4,10 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/logies#Logies> ;
 	sh:property [
-		sh:name "heeftRegistratie" ;
-		sh:description "De registratie van het logies bij Toerisme Vlaanderen." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#heeftRegistratie> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Registratie> ;
+		sh:name "heeftAlternatieveUitbating" ;
+		sh:description "De relatie tussen een logies en andere, commerciele uitbating van het logies. Bijvoorbeeld een B&B die ook als vakantiewoning wordt verhuurt." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Logies> ;
 	] ;
 	sh:property [
 		sh:name "heeftFaciliteit" ;
@@ -16,28 +16,23 @@
 		sh:class <https://data.vlaanderen.be/ns/logies#Faciliteit> ;
 	] ;
 	sh:property [
-		sh:name "heeftKwaliteitsLabel" ;
-		sh:description "Een kwaliteitslabel dat is toegekend aan het logies. " ;
-		sh:path <https://data.vlaanderen.be/ns/logies#heeftKwaliteitsLabel> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Kwaliteitslabel> ;
-	] ;
-	sh:property [
-		sh:name "heeftAlternatieveUitbating" ;
-		sh:description "De relatie tussen een logies en andere, commerciele uitbating van het logies. Bijvoorbeeld een B&B die ook als vakantiewoning wordt verhuurt." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Logies> ;
-	] ;
-	sh:property [
-		sh:name "heeftVerhuureenheid" ;
-		sh:description "Een verhuureenheid die gerelateerd is aan een logies." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Verhuureenheid> ;
+		sh:name "heeftBeschrijving" ;
+		sh:description "Beschrijving van het object." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftBeschrijving> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Beschrijving> ;
 	] ;
 	sh:property [
 		sh:name "heeftMedia" ;
 		sh:description "Media gerelateerd aan het object." ;
 		sh:path <https://data.vlaanderen.be/ns/logies#heeftMedia> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#MediaObject> ;
+		sh:class <http://schema.org/MediaObject> ;
+	] ;
+	sh:property [
+		sh:name "behoortTotToeristischeRegio" ;
+		sh:description "Specifieert tot welke regio het logies behoort." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#ToeristischeRegio> ;
+		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
 	] ;
 	sh:property [
 		sh:name "heeftOfficieleBeoordeling" ;
@@ -46,17 +41,29 @@
 		sh:class <http://schema.org/Rating> ;
 	] ;
 	sh:property [
-		sh:name "heeftBeschrijving" ;
-		sh:description "Beschrijving van het object." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#heeftBeschrijving> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Beschrijving> ;
+		sh:name "heeftRegistratie" ;
+		sh:description "De registratie van het logies bij Toerisme Vlaanderen." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftRegistratie> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Registratie> ;
 	] ;
 	sh:property [
-		sh:name "behoortTotToeristischeRegio" ;
-		sh:description "Specifieert tot welke regio het logies behoort." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#ToeristischeRegio> ;
-		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
+		sh:name "heeftVerhuureenheid" ;
+		sh:description "Een verhuureenheid die gerelateerd is aan een logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Verhuureenheid> ;
+	] ;
+	sh:property [
+		sh:name "heeftUitbater" ;
+		sh:description "De uitbater van het logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftUitbater> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftKwaliteitsLabel" ;
+		sh:description "Een kwaliteitslabel dat is toegekend aan het logies. " ;
+		sh:path <https://data.vlaanderen.be/ns/logies#heeftKwaliteitsLabel> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Kwaliteitslabel> ;
 	] ;
 	sh:property [
 		sh:name "alternatieveNaam" ;
@@ -180,11 +187,6 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/logies-basis#AgentShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://purl.org/dc/terms/Agent> ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/logies-basis#BeoordelingShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://schema.org/Rating> ;
@@ -237,80 +239,6 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://schema.org/ContactPoint> ;
-	sh:property [
-		sh:name "aanschrijfvorm" ;
-		sh:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen." ;
-		sh:path <http://ww.w3.org/2006/vcard/ns#honorific-prefix> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "contactnaam" ;
-		sh:description "Naam van het contact, bijvoorbeeld de persoon die men kan contacteren." ;
-		sh:path <http://xmlns.com/foaf/0.1/name> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "email" ;
-		sh:description "Email-adres waarnaar men kan mailen." ;
-		sh:path <http://schema.org/email> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "telefoon" ;
-		sh:description "Telefoonnummer waarop men kan bellen." ;
-		sh:path <http://schema.org/telephone> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "fax" ;
-		sh:description "Faxnummer waarnaar men kan faxen." ;
-		sh:path <http://schema.org/faxNumber> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "website" ;
-		sh:description "Website waarnaar men kan surfen." ;
-		sh:path <http://xmlns.com/foaf/0.1/page> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "openingsuren" ;
-		sh:description "Uren waarbinnen contact kan worden opgenomen." ;
-		sh:path <http://schema.org/openingHours> ;
-		sh:class <http://schema.org/OpeningHoursSpecification> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "beschikbaarheid" ;
-		sh:description "Periode waarin contact kan worden opgenomen." ;
-		sh:path <http://schema.org/hoursAvailable> ;
-		sh:class <http://schema.org/OpeningHoursSpecification> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "adres" ;
-		sh:description "Adres dat men kan aanschrijven of bezoeken." ;
-		sh:path <http://www.w3.org/ns/locn#address> ;
-		sh:class <http://www.w3.org/ns/locn#Address> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/logies-basis#AdresShape>
-	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/adres#Adres> ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/logies-basis#GeregistreerdeOrganisatieShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/regorg#RegisteredOrganization> ;
@@ -357,9 +285,9 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/logies#ToeristischeRegio> ;
 	sh:property [
-		sh:name "label" ;
-		sh:description "Naam van de regio." ;
-		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+		sh:name "plaatsnaam" ;
+		sh:description "naam van de regio" ;
+		sh:path <http://www.w3.org/2000/01/rdf-schema#label> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -394,7 +322,7 @@
 
 <https://data.vlaanderen.be/shacl/logies-basis#MediaObjectShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/logies#MediaObject> ;
+	sh:targetClass <http://schema.org/MediaObject> ;
 	sh:property [
 		sh:name "contentUrl" ;
 		sh:description "Locatie waar het media object kan worden gedownload. De eigenlijke bytes van het object." ;
@@ -498,7 +426,6 @@
 		sh:description "Datum waarop de faciliteit beschikbaar wordt." ;
 		sh:path <http://schema.org/validFrom> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -506,7 +433,6 @@
 		sh:description "Datum waarna de faciliteit niet meer beschikbaar is." ;
 		sh:path <http://schema.org/validThrough> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -527,7 +453,6 @@
 		sh:description "Een niet genormeerde eenheid." ;
 		sh:path <http://schema.org/unitText> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -535,7 +460,6 @@
 		sh:description "Een eenheid zoals vastgesteld door een standardisatieorgaan of overheid." ;
 		sh:path <http://schema.org/unitCode> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -571,152 +495,16 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/locn#Address> ;
-	sh:property [
-		sh:name "verwijstNaar" ;
-		sh:description "Adres waarvan de adresvoorstelling is afgeleid." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#verwijstNaar> ;
-		sh:class <https://data.vlaanderen.be/ns/adres#Adres> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "volledigAdres" ;
-		sh:description "Het complete adres in één string, al dan niet geformatteerd." ;
-		sh:path <http://www.w3.org/ns/locn#fullAddress> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "postbus" ;
-		sh:description "Postbusnummer in een postkantoor." ;
-		sh:path <http://www.w3.org/ns/locn#poBox> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "straatnaam" ;
-		sh:description "Straatnaam vh adres." ;
-		sh:path <http://www.w3.org/ns/locn#thoroughfare> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "locatieaanduiding" ;
-		sh:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc." ;
-		sh:path <http://www.w3.org/ns/locn#locatorDesignator> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "huisnummer" ;
-		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "busnummer" ;
-		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "locatienaam" ;
-		sh:description "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt." ;
-		sh:path <http://www.w3.org/ns/locn#locatorName> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "adresgebied" ;
-		sh:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is" ;
-		sh:path <http://www.w3.org/ns/locn#addressArea> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "postnaam" ;
-		sh:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
-		sh:path <http://www.w3.org/ns/locn#postName> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "gemeentenaam" ;
-		sh:description "Gemeentenaam vh adres." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "administratieveEenheidNiveau2" ;
-		sh:description "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat." ;
-		sh:path <http://www.w3.org/ns/locn#adminUnitL2> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "administratieveEenheidNiveau1" ;
-		sh:description "Hoogste Administratieve eenheid vh adres, doorgaans een land." ;
-		sh:path <http://www.w3.org/ns/locn#adminUnitL1> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "land" ;
-		sh:description "Land waarin het adres gelegen is." ;
-		sh:path <https://data.vlaanderen.be/ns/adres#land> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "postcode" ;
-		sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
-		sh:path <http://www.w3.org/ns/locn#postCode> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/logies-basis#RegistratieShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/logies#Registratie> ;
 	sh:property [
-		sh:name "isTijdspecialisatieVan" ;
-		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
-		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Registratie> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "registratieStatus" ;
-		sh:description "Status van het geregistreerde logies." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#registratieStatus> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:name "verantwoordelijkeOrganisatie" ;
+		sh:description "De organisatie waar het logies werd geregistreerd." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#verantwoordelijkeOrganisatie> ;
+		sh:class <http://www.w3.org/ns/regorg#RegisteredOrganization> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
-	] ;
-	sh:property [
-		sh:name "creatie" ;
-		sh:description "Beschrijving van het ontstaan van de versie." ;
-		sh:path <http://www.w3.org/ns/prov#qualifiedGeneration> ;
-		sh:class <http://www.w3.org/ns/prov#Generation> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "type" ;
-		sh:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie." ;
-		sh:path <http://purl.org/dc/terms/type> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/d59411cd-6d71-44d9-a0b3-cf958d89858d> ;
 	] ;
 	sh:property [
 		sh:name "identificator" ;
@@ -726,31 +514,23 @@
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
-	sh:property [
-		sh:name "opheffing" ;
-		sh:description "Beschrijving van het verdwijnen van de versie." ;
-		sh:path <http://www.w3.org/ns/prov#qualifiedInvalidation> ;
-		sh:class <http://www.w3.org/ns/prov#Invalidation> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://schema.org/CreativeWork> ;
 	sh:property [
-		sh:name "isGebaseerdOp" ;
-		sh:description "Het werk dat als bron werd gebruikt voor dit werk." ;
-		sh:path <http://schema.org/exampleOfWork> ;
-		sh:class <http://schema.org/CreativeWork> ;
-		sh:maxCount 1 ;
+		sh:name "heeftAuteur" ;
+		sh:description "De auteur van het werk." ;
+		sh:path <http://schema,org/author> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
-		sh:name "heeftAuteur" ;
-		sh:description "de auteur van het werk." ;
-		sh:path <http://schema.org/author> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:name "isGebaseerdOp" ;
+		sh:description "Het werk dat als bron werd gebruikt voor dit werk." ;
+		sh:path <http://schema.org/isBasedOn> ;
+		sh:class <http://schema.org/CreativeWork> ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "isVertalingVan" ;
@@ -798,82 +578,6 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/logies-basis#GeometrieShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
-	sh:property [
-		sh:name "wkt" ;
-		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
-		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "gml" ;
-		sh:description "Geometrie uitgedrukt in gml-formaat." ;
-		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/logies-basis#PuntShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
-	sh:property [
-		sh:name "wgs84Latitude" ;
-		sh:description "De breedtegraad van een locatie." ;
-		sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "wgs84Longitude" ;
-		sh:description "De lengtegraad van een locatie." ;
-		sh:path <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/logies-basis#IdentificatorShape>
-	a sh:NodeShape ;
-	sh:targetClass <http://www.w3.org/ns/adms#Identifier> ;
-	sh:property [
-		sh:name "identificator" ;
-		sh:description "String gebruikt om het object uniek te identificeren. " ;
-		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendDoor" ;
-		sh:description "Organisatie of persoon die de identificator heeft uitgegeven." ;
-		sh:path <http://purl.org/dc/terms/creator> ;
-		sh:class <http://purl.org/dc/terms/Agent> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendDoorString" ;
-		sh:description "Naam van de agent die de identificator heeft toegekend." ;
-		sh:path <http://www.w3.org/ns/adms#schemaAgency> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "toegekendOp" ;
-		sh:description "Tijdstip waarop de identificator werd uitgegeven." ;
-		sh:path <http://purl.org/dc/terms/issued> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:closed false .
-
 <https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/logies#Kwaliteitslabel> ;
@@ -885,7 +589,7 @@
 		sh:minCount 1 ;
 	] ;
 	sh:property [
-		sh:name "beoordeling" ;
+		sh:name "label" ;
 		sh:description "Naam van het label." ;
 		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
@@ -917,12 +621,235 @@
 	] ;
 	sh:closed false .
 
+<https://data.vlaanderen.be/shacl/logies-basis#AdresShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/adres#Adres> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Address> ;
+	sh:property [
+		sh:name "verwijstNaar" ;
+		sh:description "Adres waarvan de adresvoorstelling is afgeleid." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#verwijstNaar> ;
+		sh:class <https://data.vlaanderen.be/ns/adres#Adres> ;
+	] ;
+	sh:property [
+		sh:name "administratieveEenheidNiveau1" ;
+		sh:description "Hoogste Administratieve eenheid vh adres, doorgaans een land." ;
+		sh:path <http://www.w3.org/ns/locn#adminUnitL1> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "administratieveEenheidNiveau2" ;
+		sh:description "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat." ;
+		sh:path <http://www.w3.org/ns/locn#adminUnitL2> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adresgebied" ;
+		sh:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is" ;
+		sh:path <http://www.w3.org/ns/locn#addressArea> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "busnummer" ;
+		sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gemeentenaam" ;
+		sh:description "Gemeentenaam vh adres." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "huisnummer" ;
+		sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "land" ;
+		sh:description "Land waarin het adres gelegen is." ;
+		sh:path <https://data.vlaanderen.be/ns/adres#land> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatieaanduiding" ;
+		sh:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc." ;
+		sh:path <http://www.w3.org/ns/locn#locatorDesignator> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "locatienaam" ;
+		sh:description "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt." ;
+		sh:path <http://www.w3.org/ns/locn#locatorName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postbus" ;
+		sh:description "Postbusnummer in een postkantoor." ;
+		sh:path <http://www.w3.org/ns/locn#poBox> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postcode" ;
+		sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
+		sh:path <http://www.w3.org/ns/locn#postCode> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "postnaam" ;
+		sh:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid." ;
+		sh:path <http://www.w3.org/ns/locn#postName> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "straatnaam" ;
+		sh:description "Straatnaam vh adres." ;
+		sh:path <http://www.w3.org/ns/locn#thoroughfare> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "volledigAdres" ;
+		sh:description "Het complete adres in één string, al dan niet geformatteerd." ;
+		sh:path <http://www.w3.org/ns/locn#fullAddress> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/ContactPoint> ;
+	sh:property [
+		sh:name "aanschrijfvorm" ;
+		sh:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen." ;
+		sh:path <http://www.w3.org/2006/vcard/ns#honorific-prefix> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adres" ;
+		sh:description "Adres dat men kan aanschrijven of bezoeken." ;
+		sh:path <http://www.w3.org/ns/locn#address> ;
+		sh:class <http://www.w3.org/ns/locn#Address> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschikbaarheid" ;
+		sh:description "Periode waarin contact kan worden opgenomen." ;
+		sh:path <http://schema.org/hoursAvailable> ;
+		sh:class <http://schema.org/OpeningHoursSpecification> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactnaam" ;
+		sh:description "Naam van bvb de persoon die men kan contacteren." ;
+		sh:path <http://xmlns.com/foaf/0.1/name> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "email" ;
+		sh:description "Email-adres waarnaar men kan mailen." ;
+		sh:path <http://schema.org/email> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "fax" ;
+		sh:description "Faxnummer waarnaar men kan faxen." ;
+		sh:path <http://schema.org/faxNumber> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "openingsuren" ;
+		sh:description "Uren waarbinnen contact kan worden opgenomen." ;
+		sh:path <http://schema.org/openingHours> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "telefoon" ;
+		sh:description "Telefoonnummer waarop men kan bellen." ;
+		sh:path <http://schema.org/telephone> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "website" ;
+		sh:description "Website waarnaar men kan surfen." ;
+		sh:path <http://xmlns.com/foaf/0.1/page> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#IdentificatorShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/adms#Identifier> ;
+	sh:property [
+		sh:name "gestructureerdeIdentificator" ;
+		sh:description "Identificator van het object, opgeplitst in zijn onderdelen." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
+		sh:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "identificator" ;
+		sh:description "String gebruikt om het object uniek te identificeren. " ;
+		sh:path <http://www.w3.org/2004/02/skos/core#notation> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toegekendDoor" ;
+		sh:description "Link naar de agent die de identificator heeft uitgegeven." ;
+		sh:path <http://purl.org/dc/terms/creator> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toegekendDoorString" ;
+		sh:description "Naam vd agent die de identificator heeft toegekend." ;
+		sh:path <http://www.w3.org/ns/adms#schemaAgency> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toegekendOp" ;
+		sh:description "Tijdstip waarop de identificator werd uitgegeven." ;
+		sh:path <http://purl.org/dc/terms/issued> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
 <https://data.vlaanderen.be/shacl/logies-basis#LocatieaanduidingShape>
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/adres#Locatieaanduiding> ;
 	sh:property [
 		sh:name "aanduiding" ;
-		sh:description "Identificatie van de locatie." ;
+		sh:description "Alfanumerieke code waarmee het identificerend deel van een adreslocator wordt aangeduid." ;
 		sh:path <https://data.vlaanderen.be/ns/adres#Locatieaanduiding.aanduiding> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:minCount 1 ;
@@ -930,12 +857,87 @@
 	] ;
 	sh:property [
 		sh:name "type" ;
-		sh:description "Aard van de locatieaanduiding." ;
+		sh:description "Aard vd locatieaanduiding." ;
 		sh:path <https://data.vlaanderen.be/ns/adres#Locatieaanduiding.type> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-		qb:codeList <http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#GeometrieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
+	sh:property [
+		sh:name "gml" ;
+		sh:description "Geometrie uitgedrukt in gml-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "wkt" ;
+		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#LicentieDocumentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/LicenseDocument> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/logies-basis#RegistratieVolgensGeldigeTijdShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/logies#RegistratieVolgensGeldigeTijd> ;
+	sh:property [
+		sh:name "isTijdspecialisatieVan" ;
+		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
+		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
+		sh:class <https://data.vlaanderen.be/ns/logies#Registratie> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "creatie" ;
+		sh:description "Beschrijving van het ontstaan van de versie." ;
+		sh:path <http://www.w3.org/ns/prov#qualifiedGeneration> ;
+		sh:class <http://www.w3.org/ns/prov#Generation> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opheffing" ;
+		sh:description "Beschrijving van het verdwijnen van de versie." ;
+		sh:path <http://www.w3.org/ns/prov#qualifiedInvalidation> ;
+		sh:class <http://www.w3.org/ns/prov#Invalidation> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "registratieStatus" ;
+		sh:description "Status van het geregistreerde logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#registratieStatus> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie." ;
+		sh:path <http://purl.org/dc/terms/type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/d59411cd-6d71-44d9-a0b3-cf958d89858d> ;
 	] ;
 	sh:closed false .
 

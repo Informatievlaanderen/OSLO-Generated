@@ -21,17 +21,20 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+dcterms:LicenseDocument a rdfs:Class ;
+    rdfs:label "Licentiedocument"@nl .
+
 schema:CreativeWork a rdfs:Class ;
     rdfs:label "Creatief Werk"@nl .
+
+schema:MediaObject a rdfs:Class ;
+    rdfs:label "Media Object"@nl .
 
 schema:QuantitativeValue a rdfs:Class ;
     rdfs:label "Kwantitatieve waarde"@nl .
 
 schema:Rating a rdfs:Class ;
     rdfs:label "Beoordeling"@nl .
-
-skos:Concept a rdfs:Class ;
-    rdfs:label "Code"@nl .
 
 dcterms:format a rdf:Property ;
     rdfs:label "formaat"@nl .
@@ -42,6 +45,9 @@ dcterms:issued a rdf:Property ;
 dcterms:type a rdf:Property ;
     rdfs:label "type"@nl .
 
+<http://schema,org/author> a rdf:Property ;
+    rdfs:label "heeft auteur"@nl .
+
 schema:alternativeName a rdf:Property ;
     rdfs:label "alternatieve naam"@nl .
 
@@ -50,6 +56,9 @@ schema:amenityFeature a rdf:Property ;
 
 schema:audience a rdf:Property ;
     rdfs:label "doelpubliek"@nl .
+
+schema:author a rdf:Property ;
+    rdfs:label "heeft auteur"@nl .
 
 schema:bestRating a rdf:Property ;
     rdfs:label "hoogste beoordeling"@nl .
@@ -72,9 +81,6 @@ schema:datePublished a rdf:Property ;
 schema:description a rdf:Property ;
     rdfs:label "beschrijving"@nl .
 
-schema:exampleOfWork a rdf:Property ;
-    rdfs:label "is gebaseerd op"@nl .
-
 schema:exifData a rdf:Property ;
     rdfs:label "exif data"@nl .
 
@@ -83,6 +89,9 @@ schema:height a rdf:Property ;
 
 schema:inLanguage a rdf:Property ;
     rdfs:label "taal"@nl .
+
+schema:isBasedOn a rdf:Property ;
+    rdfs:label "is gebaseerd op"@nl .
 
 schema:license a rdf:Property ;
     rdfs:label "licentie"@nl .
@@ -125,6 +134,9 @@ schema:width a rdf:Property ;
 
 schema:worstRating a rdf:Property ;
     rdfs:label "laagste beoordeling"@nl .
+
+rdfs:label a rdf:Property ;
+    rdfs:label "label"@nl .
 
 skos:prefLabel a rdf:Property ;
     rdfs:label "label"@nl .
@@ -210,7 +222,7 @@ logies:heeftMedia a owl:ObjectProperty ;
     rdfs:comment "Media gerelateerd aan het object."@nl ;
     rdfs:domain rdf:Resource ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
-    rdfs:range logies:MediaObject .
+    rdfs:range schema:MediaObject .
 
 logies:heeftRegistratie a owl:ObjectProperty ;
     rdfs:label "heeft registratie"@nl ;
@@ -218,6 +230,13 @@ logies:heeftRegistratie a owl:ObjectProperty ;
     rdfs:domain logies:Logies ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
     rdfs:range logies:Registratie .
+
+logies:heeftUitbater a owl:ObjectProperty ;
+    rdfs:label "heeft uitbater"@nl ;
+    rdfs:comment "De uitbater van een logies."@nl ;
+    rdfs:domain logies:Logies ;
+    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
+    rdfs:range dcterms:Agent .
 
 logies:heeftVerhuureenheid a owl:ObjectProperty ;
     rdfs:label "heeft verhuureenheid"@nl ;
@@ -274,9 +293,16 @@ logies:onthaalLocatie a owl:ObjectProperty ;
 logies:registratieStatus a owl:ObjectProperty ;
     rdfs:label "registratie status"@nl ;
     rdfs:comment "Status van het geregistreerde logies."@nl ;
-    rdfs:domain logies:Registratie ;
+    rdfs:domain logies:RegistratieVolgensGeldigeTijd ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
     rdfs:range skos:Concept .
+
+logies:verantwoordelijkeOrganisatie a owl:ObjectProperty ;
+    rdfs:label "verantwoordelijke organisatie"@nl ;
+    rdfs:comment "De organisatie waar het logies werd geregistreerd."@nl ;
+    rdfs:domain logies:Registratie ;
+    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
+    rdfs:range rov:RegisteredOrganization .
 
 logies:Beschrijving a owl:Class ;
     rdfs:label "Beschrijving"@nl ;
@@ -284,12 +310,12 @@ logies:Beschrijving a owl:Class ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
     rdfs:subClassOf schema:CreativeWork .
 
-logies:MediaObject a owl:Class ;
-    rdfs:label "Media Object"@nl ;
-    rdfs:comment "Een media-object, zoals bijvoorbeeld een afbeelding, video of audio-object."@nl ;
+logies:RegistratieVolgensGeldigeTijd a owl:Class ;
+    rdfs:label "Registratie in periode"@nl ;
+    rdfs:comment "Een registratie beperkt tot een bepaalde periode."@nl ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
-    rdfs:subClassOf schema:CreativeWork,
-        schema:MediaObject .
+    rdfs:subClassOf <https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd>,
+        logies:Registratie .
 
 locn:geometry a rdf:Property ;
     rdfs:label "geometrie"@nl .
@@ -305,12 +331,6 @@ logies:Kwaliteitslabel a owl:Class ;
     rdfs:comment """Toekenning van een label aan een logies dat aan de voorwaarden van het label voldoet.\r
 """@nl ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> .
-
-logies:Registratie a owl:Class ;
-    rdfs:label "Registratie"@nl ;
-    rdfs:comment "Registratie van het logies bij een officiële instantie."@nl ;
-    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
-    rdfs:subClassOf <https://data.vlaanderen.be/ns/generiek#Versie> .
 
 logies:Ruimte a owl:Class ;
     rdfs:label "Ruimte"@nl ;
@@ -330,6 +350,11 @@ logies:Verhuureenheid a owl:Class ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
     rdfs:subClassOf schema:Accomodation .
 
+logies:Registratie a owl:Class ;
+    rdfs:label "Registratie"@nl ;
+    rdfs:comment "Registratie van het logies bij een officiële instantie."@nl ;
+    rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> .
+
 logies:Logies a owl:Class ;
     rdfs:label "Logies"@nl ;
     vann:usageNote "Zie ook https://schema.org/docs/hotels.html"@nl ;
@@ -337,16 +362,28 @@ logies:Logies a owl:Class ;
 \r
 vorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblijf biedt voor een of meer nachten, en dat wordt aangeboden op de toeristische markt."""@nl ;
     rdfs:isDefinedBy <https://data.vlaanderen.be/ns/logies> ;
-    rdfs:subClassOf schema:LodgingBusiness .
+    owl:equivalentClass schema:LodgingBusiness .
 
 <https://data.vlaanderen.be/ns/logies> a owl:Ontology ;
     rdfs:label "Logies"@nl ;
     dcterms:contributor [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
                     foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Kevin" ;
-            foaf:lastName "Haleydt" ;
-            foaf:mbox <mailto:kevin.haleydt@kb.vlaanderen.be> ],
+            foaf:firstName "Raf" ;
+            foaf:lastName "Buyle" ;
+            foaf:mbox <mailto:raf.buyle@kb.vlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <http://provincieantwerpen.be> ;
+                    foaf:name "Provincie Antwerpen" ] ;
+            foaf:firstName "Peter" ;
+            foaf:lastName "Roothans" ;
+            foaf:mbox <mailto:peter.roothans@provincieantwerpen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://provincieantwerpen.be> ;
+                    foaf:name "Provincie Antwerpen" ] ;
+            foaf:firstName "Susy" ;
+            foaf:lastName "Van Baelen" ;
+            foaf:mbox <mailto:susy.vanbaelen@provincieantwerpen.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://redpencil.io> ;
                     foaf:name "redpencil.io" ] ;
@@ -354,11 +391,17 @@ vorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblij
             foaf:lastName "Pauwels" ;
             foaf:mbox <mailto:erika.pauwels@redpencil.io> ],
         [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <http://cjt.be> ;
-                    foaf:name "CJT" ] ;
-            foaf:firstName "Frederik" ;
-            foaf:lastName "Vercammen" ;
-            foaf:mbox <mailto:frederik.vercammen@cjt.be> ],
+            schema:affiliation [ foaf:homepage <https://redpencil.io> ;
+                    foaf:name "redpencil.io" ] ;
+            foaf:firstName "Aad" ;
+            foaf:lastName "Versteden" ;
+            foaf:mbox <mailto:aad.versteden@redpencil.io> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://visitlimburg.be> ;
+                    foaf:name "Toerisme Limburg" ] ;
+            foaf:firstName "Sebastiaan" ;
+            foaf:lastName "Jammaers" ;
+            foaf:mbox <mailto:sebastiaan.jammaers@limburg.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://toerismevlaanderen.be> ;
                     foaf:name "Toerisme Vlaanderen" ] ;
@@ -372,47 +415,11 @@ vorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblij
             foaf:lastName "Portier" ;
             foaf:mbox <mailto:marc.portier@westtoer.be> ],
         [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://redpencil.io> ;
-                    foaf:name "redpencil.io" ] ;
-            foaf:firstName "Aad" ;
-            foaf:lastName "Versteden" ;
-            foaf:mbox <mailto:aad.versteden@redpencil.io> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
-                    foaf:name "Departement Kanselarij en Bestuur" ] ;
-            foaf:firstName "Filip" ;
-            foaf:lastName "De Maesschalck" ;
-            foaf:mbox <mailto:filip.demaesschalck@vlaanderen.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
-                    foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Jens" ;
-            foaf:lastName "Scheerlinck" ;
-            foaf:mbox <mailto:jens.scheerlinck@kb.vlaanderen.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <http://provincieantwerpen.be> ;
-                    foaf:name "Provincie Antwerpen" ] ;
-            foaf:firstName "Peter" ;
-            foaf:lastName "Roothans" ;
-            foaf:mbox <mailto:peter.roothans@provincieantwerpen.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://visitlimburg.be> ;
-                    foaf:name "Toerisme Limburg" ] ;
-            foaf:firstName "Sebastiaan" ;
-            foaf:lastName "Jammaers" ;
-            foaf:mbox <mailto:sebastiaan.jammaers@limburg.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
-                    foaf:name "Informatie Vlaanderen" ] ;
-            foaf:firstName "Raf" ;
-            foaf:lastName "Buyle" ;
-            foaf:mbox <mailto:raf.buyle@kb.vlaanderen.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://vlaamsbrabant.be> ;
-                    foaf:name "Toerisme Vlaams Brabant" ] ;
-            foaf:firstName "Tina" ;
-            foaf:lastName "Huybrecht" ;
-            foaf:mbox <mailto:tina.huybrechts@vlaamsbrabant.be> ],
+            schema:affiliation [ foaf:homepage <http://cjt.be> ;
+                    foaf:name "CJT" ] ;
+            foaf:firstName "Frederik" ;
+            foaf:lastName "Vercammen" ;
+            foaf:mbox <mailto:frederik.vercammen@cjt.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <http://www.pwc.be> ;
                     foaf:name "PwC" ] ;
@@ -420,11 +427,35 @@ vorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblij
             foaf:lastName "Scheerlinck" ;
             foaf:mbox <mailto:jens.scheerlinck@pwc.com> ],
         [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
+                    foaf:name "Informatie Vlaanderen" ] ;
+            foaf:firstName "Jens" ;
+            foaf:lastName "Scheerlinck" ;
+            foaf:mbox <mailto:jens.scheerlinck@kb.vlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://logereninvlaanderen.be> ;
+                    foaf:name "Logeren in Vlaanderen" ] ;
+            foaf:firstName "Joris" ;
+            foaf:lastName "Vansweevelt" ;
+            foaf:mbox <mailto:joris.vansweevelt@logereninvlaanderen.be> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://vlaamsbrabant.be> ;
+                    foaf:name "Toerisme Vlaams Brabant" ] ;
+            foaf:firstName "Tina" ;
+            foaf:lastName "Huybrecht" ;
+            foaf:mbox <mailto:tina.huybrechts@vlaamsbrabant.be> ],
+        [ a foaf:person ;
             schema:affiliation [ foaf:homepage <http://tenforce.com> ;
                     foaf:name "Tenforce" ] ;
             foaf:firstName "Bert" ;
             foaf:lastName "Van Nuffelen" ;
             foaf:mbox <mailto:bert.van.nuffelen@tenforce.com> ],
+        [ a foaf:person ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/> ;
+                    foaf:name "Departement Kanselarij en Bestuur" ] ;
+            foaf:firstName "Filip" ;
+            foaf:lastName "De Maesschalck" ;
+            foaf:mbox <mailto:filip.demaesschalck@vlaanderen.be> ],
         [ a foaf:person ;
             schema:affiliation [ foaf:homepage <https://logereninvlaanderen.be> ;
                     foaf:name "Logeren in Vlaanderen" ] ;
@@ -432,17 +463,11 @@ vorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblij
             foaf:lastName "Vandercleyen" ;
             foaf:mbox <mailto:stephanie.vandercleyen@logereninvlaanderen.be> ],
         [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://provincieantwerpen.be> ;
-                    foaf:name "Provincie Antwerpen" ] ;
-            foaf:firstName "Susy" ;
-            foaf:lastName "Van Baelen" ;
-            foaf:mbox <mailto:susy.vanbaelen@provincieantwerpen.be> ],
-        [ a foaf:person ;
-            schema:affiliation [ foaf:homepage <https://logereninvlaanderen.be> ;
-                    foaf:name "Logeren in Vlaanderen" ] ;
-            foaf:firstName "Joris" ;
-            foaf:lastName "Vansweevelt" ;
-            foaf:mbox <mailto:joris.vansweevelt@logereninvlaanderen.be> ] ;
+            schema:affiliation [ foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen> ;
+                    foaf:name "Informatie Vlaanderen" ] ;
+            foaf:firstName "Kevin" ;
+            foaf:lastName "Haleydt" ;
+            foaf:mbox <mailto:kevin.haleydt@kb.vlaanderen.be> ] ;
     dcterms:issued "2018-11-23"^^xsd:date ;
     dcterms:license <file:///tmp/workspace/ttl/http://example.com/TODO>,
         <https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html> ;
