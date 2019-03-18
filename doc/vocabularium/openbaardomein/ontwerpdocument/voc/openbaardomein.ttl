@@ -1,62 +1,22 @@
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.opengis.net/ont/geosparql#Geometry> a rdfs:Class;
-  rdfs:label "Geometrie"@nl .
-
-<http://www.opengis.net/ont/sf#LineString> a rdfs:Class;
-  rdfs:label "Lijnstring"@nl .
-
-<http://www.opengis.net/ont/sf#Point> a rdfs:Class;
-  rdfs:label "Punt"@nl .
-
-<http://www.opengis.net/ont/sf#Polygon> a rdfs:Class;
-  rdfs:label "Polygoon"@nl .
-
-rdfs:Resource a rdfs:Class;
-  rdfs:label "Relatie Object"@nl .
-
-skos:Concept a rdfs:Class;
-  rdfs:label "Talud waarde"@nl,
-    "Nauwkeurigheidsklassen"@nl,
-    "Drassigheid"@nl .
-
 org:Organization a rdfs:Class;
   rdfs:label "Organisatie"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#BegroeidVoorkomen> a rdfs:Class;
-  rdfs:label "Begroeid Voorkomen"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement> a rdfs:Class;
-  rdfs:label "Infrastructuurelement"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/terreindeel#TerreinVoorkomen> a rdfs:Class;
-  rdfs:label "Terrein Voorkomen"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel> a rdfs:Class;
-  rdfs:label "Terreindeel"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/vegetatie#VegetatieElement> a rdfs:Class;
-  rdfs:label "Vegetatie Element"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/waterdeel#WaterVoorkomen> a rdfs:Class;
-  rdfs:label "Water Voorkomen"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterdeel> a rdfs:Class;
-  rdfs:label "Waterdeel"@nl .
 
 <https://data.vlaanderen.be/ns/openbaardomein#Element> a owl:Class;
   rdfs:label "Element"@nl;
   rdfs:comment "Afzonderlijk te onderscheiden element dat ofwel direct of indirect bevestigd is aan het aardoppervlak."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
+  rdfs:subClassOf <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
 <https://data.vlaanderen.be/ns/openbaardomein#Gebied> a owl:Class;
   rdfs:label "Gebied"@nl;
@@ -121,8 +81,12 @@ org:Organization a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
   rdfs:range xsd:double .
 
-<http://open.vocab.org/terms/length> a rdf:Property;
-  rdfs:label "lengte"@nl .
+<https://data.vlaanderen.be/ns/openbaardomein#voorkomen> a owl:ObjectProperty;
+  rdfs:label "voorkomen"@nl;
+  rdfs:comment "Verwijst naar het fysiek voorkomen van het beheerobject."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/openbaardomein#Deel>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
+  rdfs:range <https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen> .
 
 dc:relation a rdf:Property;
   rdfs:label "relatie"@nl .
@@ -131,23 +95,8 @@ dc:title a rdf:Property;
   rdfs:label "titel"@nl,
     "naam"@nl .
 
-dwc:scientificName a rdf:Property;
-  rdfs:label "wetenschappelijke soortnaam"@nl .
-
 schema:contactPoint a rdf:Property;
   rdfs:label "contactinfo"@nl .
-
-schema:height a rdf:Property;
-  rdfs:label "hoogte"@nl .
-
-schema:width a rdf:Property;
-  rdfs:label "breedte"@nl .
-
-<http://www.opengis.net/ont/geosparql#asGML> a rdf:Property;
-  rdfs:label "gml"@nl .
-
-<http://www.opengis.net/ont/geosparql#asWKT> a rdf:Property;
-  rdfs:label "wkt"@nl .
 
 skos:altLabel a rdf:Property;
   rdfs:label "alternatieve naam"@nl .
@@ -169,141 +118,27 @@ skos:prefLabel a rdf:Property;
   rdfs:comment "Beschrijving van het fysieke voorkomen van het object."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein> .
 
-<https://data.vlaanderen.be/ns/openbaardomein#bronnaam> a rdf:Property;
-  rdfs:label "bronnaam"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein#uuid> a rdf:Property;
-  rdfs:label "uuid"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein#voorkomen> a rdf:Property,
-    owl:ObjectProperty;
-  rdfs:label "voorkomen"@nl;
-  rdfs:comment "Verwijst naar het fysiek voorkomen van het beheerobject."@nl;
-  rdfs:domain <https://data.vlaanderen.be/ns/openbaardomein#Deel>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
-  rdfs:range <https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen> .
-
-<https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#drassigheid> a rdf:Property;
-  rdfs:label "drassigheid"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortcode> a rdf:Property;
-  rdfs:label "soortcode"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortnaamNederlands> a rdf:Property;
-  rdfs:label "soortnaam Nederlands"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal> a rdf:Property;
-  rdfs:label "materiaal"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/terreindeel#obstakels> a rdf:Property;
-  rdfs:label "obstakels"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/terreindeel#talud> a rdf:Property;
-  rdfs:label "talud"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/vegetatie#plantdatum> a rdf:Property;
-  rdfs:label "plantdatum"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortcode> a rdf:Property;
-  rdfs:label "soortcode"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands> a rdf:Property;
-  rdfs:label "soortnaam Nederlands"@nl .
-
-<https://data.vlaanderen.be/ns/openbaardomein/waterdeel#voorkomen> a rdf:Property;
-  rdfs:label "voorkomen"@nl .
-
 <https://data.vlaanderen.be/ns/openbaardomein#Deel> a owl:Class;
   rdfs:label "Deel"@nl;
   rdfs:comment "Homogeen gedeelte van het aardoppervlak, met een gelijkaardige hoofdfunctie en fysiek voorkomen."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
+  rdfs:subClassOf <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
 <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> a owl:Class;
   rdfs:label "Object"@nl;
   rdfs:comment "De hoofdklasse waar alle objecten die geïnventariseerd kunnen worden van afgeleid worden."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/openbaardomein>;
+  rdfs:subClassOf prov:Entity .
 
 <https://data.vlaanderen.be/ns/openbaardomein> a owl:Ontology;
   rdfs:label "openbaardomein"@nl,
     "openbaardomein"@en;
   dc:contributor [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Federale Overheidsdienst Beleid en Ondersteuning"];
-    foaf:first_name "Liesbet";
-    foaf:last_name "DHondt";
-    foaf:mbox "liesbet.dhondt@bosa.fgov.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Elia"];
-    foaf:first_name "Ruben";
-    foaf:last_name "Deblauwe";
-    foaf:mbox "ruben.deblauwe@elia.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Hogeschool PXL"];
-    foaf:first_name "Bea";
-    foaf:last_name "Toppet";
-    foaf:mbox "bea.toppet@pxl.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Sint-Niklaas"];
-    foaf:first_name "Els";
-    foaf:last_name "Podevyn";
-    foaf:mbox "els.podevyn@sint-niklaas.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Oostende"];
-    foaf:first_name "Ellen";
-    foaf:last_name "Debever";
-    foaf:mbox "ellen.debever@oostende.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Provincie Oost-Vlaanderen"];
-    foaf:first_name "Pieter";
-    foaf:last_name "Deckers";
-    foaf:mbox "pieter.deckers@oost-vlaanderen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Vereniging voor Openbaar Groen"];
-    foaf:first_name "Emmanuel";
-    foaf:last_name "Ampe";
-    foaf:mbox "emmanuel@vvog.info"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Geosparc"];
-    foaf:first_name "Berdien";
-    foaf:last_name "De Roo";
-    foaf:mbox "berdien.deroo@geosparc.com"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "WVI"];
-    foaf:first_name "Wouter";
-    foaf:last_name "Verhelst";
-    foaf:mbox "w.verhelst@wvi.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Antwerpen"];
-    foaf:first_name "Joke";
-    foaf:last_name "Van De Maele";
-    foaf:mbox "joke.vandemaele@stad.antwerpen.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Provincie Vlaams-Brabant"];
-    foaf:first_name "Floris";
-    foaf:last_name "Van den Broeck";
-    foaf:mbox "floris.vandenbroeck@vlaamsbrabant.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Hogeschool Gent"];
-    foaf:first_name "Cornelis";
-    foaf:last_name "Stal";
-    foaf:mbox "cornelis.stal@hogent.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Gent - Data & Informatie"];
-    foaf:first_name "Diedrik";
-    foaf:last_name "Gaus";
-    foaf:mbox "Diedrik.gaus@stad.gent"
+    foaf:first_name "Kristien";
+    foaf:last_name "De Rouck";
+    foaf:mbox "kristien.derouck@hogent.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "G.I.M. - Geographic Information Management"];
@@ -312,10 +147,22 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "an@gim.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Stad Aalst"];
-    foaf:first_name "Joris";
-    foaf:last_name "Verbeken";
-    foaf:mbox "joris.verbeken@aalst.be"
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:first_name "Tom";
+    foaf:last_name "Van Herck";
+    foaf:mbox "Tom.vanherck@kb.vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Provincie Oost-Vlaanderen"];
+    foaf:first_name "Steven";
+    foaf:last_name "De Vriendt";
+    foaf:mbox "steven.de.vriendt@oost-vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Gent - Data & Informatie"];
+    foaf:first_name "Diedrik";
+    foaf:last_name "Gaus";
+    foaf:mbox "Diedrik.gaus@stad.gent"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Provincie Oost-Vlaanderen"];
@@ -324,10 +171,82 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "filip.mahieu@oost-vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Gemeente Evergem"];
+    foaf:first_name "Peter";
+    foaf:last_name "Van de Veire";
+    foaf:mbox "peter.vandeveire@evergem.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Hogeschool Gent"];
-    foaf:first_name "Kristien";
-    foaf:last_name "De Rouck";
-    foaf:mbox "kristien.derouck@hogent.be"
+    foaf:first_name "Dennis";
+    foaf:last_name "Devriendt";
+    foaf:mbox "dennis.devriendt@hogent.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Hogeschool Gent"];
+    foaf:first_name "Cornelis";
+    foaf:last_name "Stal";
+    foaf:mbox "cornelis.stal@hogent.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Sint-Niklaas"];
+    foaf:first_name "Els";
+    foaf:last_name "Podevyn";
+    foaf:mbox "els.podevyn@sint-niklaas.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Geosparc"];
+    foaf:first_name "Berdien";
+    foaf:last_name "De Roo";
+    foaf:mbox "berdien.deroo@geosparc.com"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Vereniging voor Openbaar Groen"];
+    foaf:first_name "Emmanuel";
+    foaf:last_name "Ampe";
+    foaf:mbox "emmanuel@vvog.info"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Federale Overheidsdienst Beleid en Ondersteuning"];
+    foaf:first_name "Liesbet";
+    foaf:last_name "DHondt";
+    foaf:mbox "liesbet.dhondt@bosa.fgov.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "TMVW"];
+    foaf:first_name "Nicolas";
+    foaf:last_name "De Blieck";
+    foaf:mbox "nicolas.deblieck@farys.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Provincie Vlaams-Brabant"];
+    foaf:first_name "Floris";
+    foaf:last_name "Van den Broeck";
+    foaf:mbox "floris.vandenbroeck@vlaamsbrabant.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Oostende"];
+    foaf:first_name "Ellen";
+    foaf:last_name "Debever";
+    foaf:mbox "ellen.debever@oostende.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Hogeschool PXL"];
+    foaf:first_name "Bea";
+    foaf:last_name "Toppet";
+    foaf:mbox "bea.toppet@pxl.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Aalst"];
+    foaf:first_name "Joris";
+    foaf:last_name "Verbeken";
+    foaf:mbox "joris.verbeken@aalst.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Stad Antwerpen"];
+    foaf:first_name "Joke";
+    foaf:last_name "Van De Maele";
+    foaf:mbox "joke.vandemaele@stad.antwerpen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Aalst"];
@@ -336,10 +255,16 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "jan.dewael@aalst.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Gemeente Evergem"];
-    foaf:first_name "Peter";
-    foaf:last_name "Van de Veire";
-    foaf:mbox "peter.vandeveire@evergem.be"
+    schema:affiliation [foaf:name "Elia"];
+    foaf:first_name "Ruben";
+    foaf:last_name "Deblauwe";
+    foaf:mbox "ruben.deblauwe@elia.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "WVI"];
+    foaf:first_name "Wouter";
+    foaf:last_name "Verhelst";
+    foaf:mbox "w.verhelst@wvi.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Lier"];
@@ -354,16 +279,16 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "luk.mutsaerts@vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
+    schema:affiliation [foaf:name "Provincie Oost-Vlaanderen"];
+    foaf:first_name "Pieter";
+    foaf:last_name "Deckers";
+    foaf:mbox "pieter.deckers@oost-vlaanderen.be"
+  ], [
+    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Federale Overheidsdienst Beleid en Ondersteuning"];
     foaf:first_name "Marc";
     foaf:last_name "Bruyland";
     foaf:mbox "marc.bruyland@bosa.fgov.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Provincie Oost-Vlaanderen"];
-    foaf:first_name "Steven";
-    foaf:last_name "De Vriendt";
-    foaf:mbox "steven.de.vriendt@oost-vlaanderen.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "Stad Aalst"];
@@ -372,34 +297,16 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "pieter.lauwereys@aalst.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Geosparc"];
-    foaf:first_name "Oliver";
-    foaf:last_name "May";
-    foaf:mbox "oliver.may@geosparc.com"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "TMVW"];
-    foaf:first_name "Nicolas";
-    foaf:last_name "De Blieck";
-    foaf:mbox "nicolas.deblieck@farys.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Hogeschool Gent"];
-    foaf:first_name "Dennis";
-    foaf:last_name "Devriendt";
-    foaf:mbox "dennis.devriendt@hogent.be"
-  ], [
-    a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [foaf:name "De Vlaamse Waterweg nv"];
     foaf:first_name "Reinhilde";
     foaf:last_name "Schepens";
     foaf:mbox "reinhilde.schepens@wenz.be"
   ], [
     a <http://www.w3.org/ns/person#Person>;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:first_name "Tom";
-    foaf:last_name "Van Herck";
-    foaf:mbox "Tom.vanherck@kb.vlaanderen.be"
+    schema:affiliation [foaf:name "Geosparc"];
+    foaf:first_name "Oliver";
+    foaf:last_name "May";
+    foaf:mbox "oliver.may@geosparc.com"
   ];
   dc:license "https://data.vlaanderen.be/doc/licentie/modellicentie-gratis-hergebruik/v1.0";
   dc:mediator [
@@ -407,45 +314,13 @@ skos:prefLabel a rdf:Property;
     foaf:mbox "mailto:oslo@kb.vlaanderen.be";
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso schema:width,
-    skos:Concept,
-    skos:prefLabel,
-    <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#plantdatum>,
-    <http://www.opengis.net/ont/geosparql#Geometry>,
-    schema:contactPoint,
-    <https://data.vlaanderen.be/ns/openbaardomein#uuid>,
-    <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#WaterVoorkomen>,
-    <http://open.vocab.org/terms/length>,
-    <http://www.opengis.net/ont/sf#LineString>,
-    <http://www.opengis.net/ont/geosparql#asGML>,
-    <http://www.opengis.net/ont/sf#Point>,
-    <https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel>,
-    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal>,
-    <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement>,
-    <http://www.opengis.net/ont/sf#Polygon>,
-    <https://data.vlaanderen.be/ns/openbaardomein#bronnaam>,
-    <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#voorkomen>,
+  rdfs:seeAlso skos:altLabel,
     dc:relation,
-    <https://data.vlaanderen.be/ns/openbaardomein/terreindeel#TerreinVoorkomen>,
-    <https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#BegroeidVoorkomen>,
-    <https://data.vlaanderen.be/ns/openbaardomein/terreindeel#obstakels>,
-    skos:altLabel,
-    dwc:scientificName,
-    <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterdeel>,
-    <https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#drassigheid>,
-    <https://data.vlaanderen.be/ns/openbaardomein/terreindeel#talud>,
     org:Organization,
-    <http://www.opengis.net/ont/geosparql#asWKT>,
-    <https://data.vlaanderen.be/ns/openbaardomein#voorkomen>,
-    rdfs:Resource,
     dc:title,
-    <https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortcode>,
-    schema:height,
-    <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortcode>,
     <http://www.w3.org/ns/locn#geometry>,
-    <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands>,
-    <https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortnaamNederlands>,
-    <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#VegetatieElement>;
+    schema:contactPoint,
+    skos:prefLabel;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a <http://www.w3.org/ns/person#Person>;
     schema:affiliation [
