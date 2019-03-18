@@ -8,7 +8,8 @@
     "uri": "https://data.vlaanderen.be/ns/mobiliteit",
     "prefix": "",
     "abstract": [],
-    "comment": []
+    "comment": [],
+    "issued": "2018-08-16"
   },
   "classes": [
     {
@@ -401,15 +402,17 @@
       "usage": {},
       "properties": [
         {
-          "uri": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel.verwijstNaar",
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
           "name": {
-            "nl": "verwijst naar"
+            "nl": "heeft route"
           },
-          "sort_nl": "verwijst naar",
+          "sort_nl": "heeft route",
           "description": {
-            "nl": "Artikel beschreven in de wegcode waarvan de verkeersmaatregel de uitvoering is."
+            "nl": "Route die bij de mobiliteitsmaatregel hoort."
           },
-          "usage": {},
+          "usage": {
+            "nl": "Kan bijvoorbeeld gebruikt om aan te duiden waar andere snelheidsbeperking geldt."
+          },
           "domain": [
             {
               "uri": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
@@ -418,8 +421,8 @@
           ],
           "range": [
             {
-              "range_label": "Rechtsgrondonderdeel",
-              "range_uri": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
+              "range_label": "OSLO-Weg::TransportLinkSet",
+              "range_uri": "https://data.vlaanderen.be/ns/weg#TransportLinkSet"
             }
           ],
           "cardinality": "0..*",
@@ -476,17 +479,15 @@
           "codelist_uri": ""
         },
         {
-          "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel.verwijstNaar",
           "name": {
-            "nl": "heeft route"
+            "nl": "verwijst naar"
           },
-          "sort_nl": "heeft route",
+          "sort_nl": "verwijst naar",
           "description": {
-            "nl": "Route die bij de mobiliteitsmaatregel hoort."
+            "nl": "Artikel beschreven in de wegcode waarvan de verkeersmaatregel de uitvoering is."
           },
-          "usage": {
-            "nl": "Kan bijvoorbeeld gebruikt om aan te duiden waar andere snelheidsbeperking geldt."
-          },
+          "usage": {},
           "domain": [
             {
               "uri": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
@@ -495,8 +496,8 @@
           ],
           "range": [
             {
-              "range_label": "OSLO-Weg::TransportLinkSet",
-              "range_uri": "https://data.vlaanderen.be/ns/weg#TransportLinkSet"
+              "range_label": "Rechtsgrondonderdeel",
+              "range_uri": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
             }
           ],
           "cardinality": "0..*",
@@ -1268,16 +1269,729 @@
           "codelist_uri": ""
         }
       ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+      "name": {
+        "nl": "Voorwaarde"
+      },
+      "sort_nl": "Voorwaarde",
+      "description": {
+        "nl": "Datgene waaraan moet voldaan worden om een geldig besluit te zijn."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://purl.org/dc/terms/description",
+          "name": {
+            "nl": "beschrijving"
+          },
+          "sort_nl": "beschrijving",
+          "description": {
+            "nl": "Beschrijving van de voorwaarde."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+              "EA-Name": "Voorwaarde"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
+      "name": {
+        "nl": "Signalisatievergunning"
+      },
+      "sort_nl": "Signalisatievergunning",
+      "description": {
+        "nl": "Een vergunning voor het tijdelijk aanbrengen of wijzigen van signalisatie op het openbaar domein of privaat domein met openbaar karakter."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#vergunt",
+          "name": {
+            "nl": "vergunt"
+          },
+          "sort_nl": "vergunt",
+          "description": {
+            "nl": "Verkeersteken (Verkeersbord, Wegmarkering of Verkeerslicht) dat vergunt is in de signalisatievergunning."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
+              "EA-Name": "Signalisatievergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Verkeersteken",
+              "range_uri": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
+            }
+          ],
+          "cardinality": "1..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#heeftSignalisatieplan",
+          "name": {
+            "nl": "heeft signalisatieplan"
+          },
+          "sort_nl": "heeft signalisatieplan",
+          "description": {
+            "nl": "Signalisatieplan die bij de signalisatievergunning hoort."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
+              "EA-Name": "Signalisatievergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Signalisatieplan",
+              "range_uri": "https://data.vlaanderen.be/ns/mobiliteit#Signalisatieplan"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning.verguntType",
+          "name": {
+            "nl": "vergunt type"
+          },
+          "sort_nl": "vergunt type",
+          "description": {
+            "nl": "Type signalisatievergunning dat vergund wordt."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
+              "EA-Name": "Signalisatievergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Signalisatietype",
+              "range_uri": "http://www.w3.org/2004/02/skos/core#Concept"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Innamevergunning",
+      "name": {
+        "nl": "Innamevergunning"
+      },
+      "sort_nl": "Innamevergunning",
+      "description": {
+        "nl": "De vergunning voor het tijdelijk in gebruik nemen van het openbaar domein."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#verguntType",
+          "name": {
+            "nl": "vergunt type"
+          },
+          "sort_nl": "vergunt type",
+          "description": {
+            "nl": "Type vergunning dat vergunt wordt."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Innamevergunning",
+              "EA-Name": "Innamevergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Innametype",
+              "range_uri": "http://www.w3.org/2004/02/skos/core#Concept"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+      "name": {
+        "nl": "Vergunning"
+      },
+      "sort_nl": "Vergunning",
+      "description": {
+        "nl": "Een toelating om in een bepaalde tijdspanne een bepaalde activiteit uit te voeren die anders verboden is."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#aanvraagDatum",
+          "name": {
+            "nl": "aanvraagdatum"
+          },
+          "sort_nl": "aanvraagdatum",
+          "description": {
+            "nl": "Datum waarop de vergunning aangevraagd wordt."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "DateTime",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#dateTime"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#aanvrager",
+          "name": {
+            "nl": "aanvrager"
+          },
+          "sort_nl": "aanvrager",
+          "description": {
+            "nl": "Wie de vergunning aanvraagt."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Agent",
+              "range_uri": "http://purl.org/dc/terms/Agent"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#belastingsplichtig",
+          "name": {
+            "nl": "belastingsplichtig"
+          },
+          "sort_nl": "belastingsplichtig",
+          "description": {
+            "nl": "Duidt aan of  er belastingen op de vergunning betaald zal moeten worden."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Boolean",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#boolean"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#opdrachtgever",
+          "name": {
+            "nl": "opdrachtgever"
+          },
+          "sort_nl": "opdrachtgever",
+          "description": {
+            "nl": "Persoon of organisatie die opdracht gegeven heeft om een vergunning aan te vragen."
+          },
+          "usage": {
+            "nl": "Wanneer de opdrachtgever zelf de vergunning aanvraagt, is de opdrachtgever hetzelfde als de aanvrager."
+          },
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Agent",
+              "range_uri": "http://purl.org/dc/terms/Agent"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#reden",
+          "name": {
+            "nl": "reden"
+          },
+          "sort_nl": "reden",
+          "description": {
+            "nl": "Waarvoor de vergunning nodig is."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://purl.org/dc/terms/temporal",
+          "name": {
+            "nl": "tijdsinterval"
+          },
+          "sort_nl": "tijdsinterval",
+          "description": {
+            "nl": "Periode waarbinnen de vergunning geldig is."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Tijdsinterval",
+              "range_uri": "http://data.europa.eu/m8g/PeriodOfTime"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#uitvoerder",
+          "name": {
+            "nl": "uitvoerder"
+          },
+          "sort_nl": "uitvoerder",
+          "description": {
+            "nl": "Persoon of organisatie die de uitvoering doet waarvoor de vergunning toelating gegeven heeft."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Agent",
+              "range_uri": "http://purl.org/dc/terms/Agent"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#vergunningsdatum",
+          "name": {
+            "nl": "vergunningsdatum"
+          },
+          "sort_nl": "vergunningsdatum",
+          "description": {
+            "nl": "Datum waarop de vergunning is goedgekeurd."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Vergunning",
+              "EA-Name": "Vergunning"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "DateTime",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#dateTime"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Artikel",
+      "name": {
+        "nl": "Artikel"
+      },
+      "sort_nl": "Artikel",
+      "description": {
+        "nl": "Formeel afgebakend onderdeel van een besluit,dat een of meer van de beoogde rechtsgevolgen beschrijft."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#isOnderdeelVan",
+          "name": {
+            "nl": "is onderdeel van"
+          },
+          "sort_nl": "is onderdeel van",
+          "description": {
+            "nl": "Het besluit waarvan het artikel een onderdeel is."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Artikel",
+              "EA-Name": "Artikel"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Besluit",
+              "range_uri": "http://data.vlaanderen.be/ns/besluit#Besluit"
+            }
+          ],
+          "cardinality": "undefined..undefined",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde",
+          "name": {
+            "nl": "heeft voorwaarde"
+          },
+          "sort_nl": "heeft voorwaarde",
+          "description": {
+            "nl": "Voorwaarde waaraan het artikel gebonden is."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Artikel",
+              "EA-Name": "Artikel"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Voorwaarde",
+              "range_uri": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.europa.eu/eli/ontology#number",
+          "name": {
+            "nl": "nummer"
+          },
+          "sort_nl": "nummer",
+          "description": {
+            "nl": "Het nummer van het artikel."
+          },
+          "usage": {
+            "nl": "Voorbeeld voor onderscheid met titel te verduidelijken: 'Artikel 1' is het nummer, 'Artikel 1 van het Gemeentedecreet' is de titel."
+          },
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Artikel",
+              "EA-Name": "Artikel"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#TijdelijkReglement",
+      "name": {
+        "nl": "Tijdelijk Reglement"
+      },
+      "sort_nl": "Tijdelijk Reglement",
+      "description": {
+        "nl": "Een aanvullend reglement op de politie van het wegverkeer met een tijdelijke geldigheid."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://purl.org/dc/terms/temporal",
+          "name": {
+            "nl": "tijdsinterval"
+          },
+          "sort_nl": "tijdsinterval",
+          "description": {
+            "nl": "Periode waarbinnen het reglement geldig is."
+          },
+          "usage": {
+            "nl": "Een tijdelijk reglement is slechts één periode waarbinnen het geldig is."
+          },
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#TijdelijkReglement",
+              "EA-Name": "TijdelijkReglement"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Tijdsinterval",
+              "range_uri": "http://data.europa.eu/m8g/PeriodOfTime"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#AanvullendReglement",
+      "name": {
+        "nl": "Aanvullend Reglement"
+      },
+      "sort_nl": "Aanvullend Reglement",
+      "description": {
+        "nl": "Een aanvullend reglement op de politie van het wegverkeer is een besluit met betrekking tot de aanpassing van de algemene wegcode aan plaatselijke omstandigheden met een blijvend of periodiek karakter."
+      },
+      "usage": {},
+      "properties": [
+        {
+          "uri": "http://purl.org/dc/terms/temporal",
+          "name": {
+            "nl": "tijdsinterval"
+          },
+          "sort_nl": "tijdsinterval",
+          "description": {
+            "nl": "Periode waarbinnen het aanvullend reglement geldig is."
+          },
+          "usage": {
+            "nl": "Aanvullend reglement kan uit meerdere periodes bestaan."
+          },
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#AanvullendReglement",
+              "EA-Name": "AanvullendReglement"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Tijdsinterval",
+              "range_uri": "http://data.europa.eu/m8g/PeriodOfTime"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+      "name": {
+        "nl": "Besluit"
+      },
+      "sort_nl": "Besluit",
+      "description": {
+        "nl": "De authentieke schriftelijke neerslag van een beslissing van een bestuursorgaan. Deze beslissing houdt een rechtshandeling in waarbij sprake is van een beoogd rechtsgevolg."
+      },
+      "usage": {
+        "nl": "Hieronder vallen zowel individuele besluiten (rechtshandelingen met een individueel karakter zoals het toekennen van een subsidie) als besluiten van algemene strekking (beslissingen van algemene reglementaire strekking die niet gericht zijn op een individu maar op een groep, zoals de verkeersregels)."
+      },
+      "properties": [
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde",
+          "name": {
+            "nl": "heeft voorwaarde"
+          },
+          "sort_nl": "heeft voorwaarde",
+          "description": {
+            "nl": "Voorwaarde waaraan het besluit gebonden is."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+              "EA-Name": "Besluit"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Voorwaarde",
+              "range_uri": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.europa.eu/eli/ontology#description",
+          "name": {
+            "nl": "beschrijving"
+          },
+          "sort_nl": "beschrijving",
+          "description": {
+            "nl": "Een beknopte beschrijving van het besluit."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+              "EA-Name": "Besluit"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.europa.eu/eli/ontology#title_short",
+          "name": {
+            "nl": "citeeropschrift"
+          },
+          "sort_nl": "citeeropschrift",
+          "description": {
+            "nl": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+              "EA-Name": "Besluit"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.vlaanderen.be/ns/besluit#motivering",
+          "name": {
+            "nl": "motivering"
+          },
+          "sort_nl": "motivering",
+          "description": {
+            "nl": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+              "EA-Name": "Besluit"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "TaalString",
+              "range_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.europa.eu/eli/ontology#date_publication",
+          "name": {
+            "nl": "publicatiedatum"
+          },
+          "sort_nl": "publicatiedatum",
+          "description": {
+            "nl": "De officiële publicatiedatum van het besluit."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.vlaanderen.be/ns/besluit#Besluit",
+              "EA-Name": "Besluit"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Date",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#date"
+            }
+          ],
+          "cardinality": "1..1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "https://data.vlaanderen.be/ns/weg#TransportLinkSet",
+      "name": {
+        "nl": "Transport Link Set"
+      },
+      "sort_nl": "Transport Link Set",
+      "description": {
+        "nl": "Een verzameling transportlinksequenties en/of individuele transportlinks die een specifieke functie of betekenis hebben in een transportnetwerk."
+      },
+      "usage": {},
+      "properties": []
+    },
+    {
+      "uri": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+      "name": {
+        "nl": "Rechtsgrondonderdeel"
+      },
+      "sort_nl": "Rechtsgrondonderdeel",
+      "description": {
+        "nl": "Een deel van een rechtsgrond,op een arbitrair niveau van precisie,zoals een hoofdstuk,artikel,paragraaf of lijst element."
+      },
+      "usage": {},
+      "properties": []
     }
   ],
   "properties": [
     {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel.verwijstNaar",
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
       "name": {
-        "nl": "verwijst naar"
+        "nl": "heeft route"
       },
       "description": {
-        "nl": "Artikel beschreven in de wegcode waarvan de verkeersmaatregel de uitvoering is."
+        "nl": "Route die bij de mobiliteitsmaatregel hoort."
       },
       "domain": [
         null
@@ -1285,7 +1999,9 @@
       "range": [
         null
       ],
-      "usage": {},
+      "usage": {
+        "nl": "Kan bijvoorbeeld gebruikt om aan te duiden waar andere snelheidsbeperking geldt."
+      },
       "parents": []
     },
     {
@@ -1306,12 +2022,12 @@
       "parents": []
     },
     {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist",
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord",
       "name": {
-        "nl": "vereist"
+        "nl": "heeft onderbord"
       },
       "description": {
-        "nl": "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen."
+        "nl": "Onderbord dat behoort tot dit verkeersteken."
       },
       "domain": [
         null
@@ -1340,12 +2056,12 @@
       "parents": []
     },
     {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel.verwijstNaar",
       "name": {
-        "nl": "heeft route"
+        "nl": "verwijst naar"
       },
       "description": {
-        "nl": "Route die bij de mobiliteitsmaatregel hoort."
+        "nl": "Artikel beschreven in de wegcode waarvan de verkeersmaatregel de uitvoering is."
       },
       "domain": [
         null
@@ -1353,18 +2069,16 @@
       "range": [
         null
       ],
-      "usage": {
-        "nl": "Kan bijvoorbeeld gebruikt om aan te duiden waar andere snelheidsbeperking geldt."
-      },
+      "usage": {},
       "parents": []
     },
     {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord",
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist",
       "name": {
-        "nl": "heeft onderbord"
+        "nl": "vereist"
       },
       "description": {
-        "nl": "Onderbord dat behoort tot dit verkeersteken."
+        "nl": "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen."
       },
       "domain": [
         null
