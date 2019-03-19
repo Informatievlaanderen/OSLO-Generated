@@ -1,0 +1,335 @@
+{
+  "@context": {
+    "Voertuigbeperking": "https://data.vlaanderen.be/ns/weg#Voertuigbeperking",
+    "NationaleWeg": "https://data.vlaanderen.be/ns/weg#NationaleWeg",
+    "Wegverharding": "https://data.vlaanderen.be/ns/weg#Wegverharding",
+    "Gewicht": "https://data.vlaanderen.be/ns/weg#Gewicht",
+    "Snelheid": "https://data.vlaanderen.be/ns/weg#Snelheid",
+    "Lengte": "https://data.vlaanderen.be/ns/weg#Lengte",
+    "Afstand": "https://data.vlaanderen.be/ns/weg#Afstand",
+    "Meting": "https://data.vlaanderen.be/ns/weg#Meting",
+    "Wegbreedte": "https://data.vlaanderen.be/ns/weg#Wegbreedte",
+    "AantalRijstroken": "https://data.vlaanderen.be/ns/weg#AantalRijstroken",
+    "Snelheidsbeperking": "https://data.vlaanderen.be/ns/weg#Snelheidsbeperking",
+    "Rijrichting": "https://data.vlaanderen.be/ns/weg#Rijrichting",
+    "Positie": "https://data.vlaanderen.be/ns/weg#Positie",
+    "GenummerdeWeg": "https://data.vlaanderen.be/ns/weg#GenummerdeWeg",
+    "EuropeseWeg": "https://data.vlaanderen.be/ns/weg#EuropeseWeg",
+    "OngelijkgrondseKruising": "https://data.vlaanderen.be/ns/weg#OngelijkgrondseKruising",
+    "Wegknoop": "https://data.vlaanderen.be/ns/weg#Wegknoop",
+    "Wegsegment": "https://data.vlaanderen.be/ns/weg#Wegsegment",
+    "heeftRijrichting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#heeftRijrichting",
+      "@type": "https://data.vlaanderen.be/ns/weg#Rijrichting",
+      "@container": "@set"
+    },
+    "heeftVoertuigbeperking": {
+      "@id": "https://data.vlaanderen.be/ns/weg#heeftVoertuigbeperking",
+      "@type": "https://data.vlaanderen.be/ns/weg#Voertuigbeperking",
+      "@container": "@set"
+    },
+    "onderliggendWegsegment": {
+      "@id": "https://data.vlaanderen.be/ns/weg#onderliggendWegsegment",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegsegment"
+    },
+    "Wegsegment.behoortTot": {
+      "@id": "https://data.vlaanderen.be/ns/weg#behoortTot",
+      "@type": "https://data.vlaanderen.be/ns/weg#EuropeseWeg",
+      "@container": "@set"
+    },
+    "heeftSnelheidsbeperking": {
+      "@id": "https://data.vlaanderen.be/ns/weg#heeftSnelheidsbeperking",
+      "@type": "https://data.vlaanderen.be/ns/weg#Snelheidsbeperking",
+      "@container": "@set"
+    },
+    "linkerwegbeheerder": {
+      "@id": "https://data.vlaanderen.be/ns/weg#linkerwegbeheerder",
+      "@type": "http://www.w3.org/ns/org#Organization"
+    },
+    "eindknoop": {
+      "@id": "https://data.vlaanderen.be/ns/weg#eindknoop",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegknoop"
+    },
+    "beginknoop": {
+      "@id": "https://data.vlaanderen.be/ns/weg#beginknoop",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegknoop"
+    },
+    "linkerstraatnaam": {
+      "@id": "https://data.vlaanderen.be/ns/weg#linkerstraatnaam",
+      "@type": "https://data.vlaanderen.be/ns/adres#Straatnaam"
+    },
+    "rechterstraatnaam": {
+      "@id": "https://data.vlaanderen.be/ns/weg#rechterstraatnaam",
+      "@type": "https://data.vlaanderen.be/ns/adres#Straatnaam"
+    },
+    "Wegsegment.behoortTotSet": {
+      "@id": "https://data.vlaanderen.be/ns/weg#behoortTotSetOpPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Positie",
+      "@container": "@set"
+    },
+    "Positie.behoortTotSet": {
+      "@id": "https://data.vlaanderen.be/ns/weg#behoortTotSet",
+      "@type": "https://data.vlaanderen.be/ns/weg#GenummerdeWeg"
+    },
+    "rechtergemeentenaam": {
+      "@id": "https://data.vlaanderen.be/ns/weg#rechtergemeentenaam",
+      "@type": "https://data.vlaanderen.be/ns/adres#Gemeentenaam"
+    },
+    "bovenliggendWegsegment": {
+      "@id": "https://data.vlaanderen.be/ns/weg#bovenliggendWegsegment",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegsegment"
+    },
+    "rechterwegbeheerder": {
+      "@id": "https://data.vlaanderen.be/ns/weg#rechterwegbeheerder",
+      "@type": "http://www.w3.org/ns/org#Organization"
+    },
+    "linkergemeentenaam": {
+      "@id": "https://data.vlaanderen.be/ns/weg#linkergemeentenaam",
+      "@type": "https://data.vlaanderen.be/ns/adres#Gemeentenaam"
+    },
+    "opmeting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#opmeting",
+      "@type": "https://data.vlaanderen.be/ns/weg#Meting"
+    },
+    "beperking": {
+      "@id": "https://data.vlaanderen.be/ns/weg#beperking",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "nationaleWegnummer": {
+      "@id": "https://data.vlaanderen.be/ns/weg#nationaleWegnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "verharding": {
+      "@id": "https://data.vlaanderen.be/ns/weg#verharding",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Wegverharding.vanPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#vanPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "Wegverharding.totPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#totPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "meeteenheid": {
+      "@id": "https://data.vlaanderen.be/ns/weg#meeteenheid",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "waarde": {
+      "@id": "https://data.vlaanderen.be/ns/weg#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "breedte": {
+      "@id": "https://data.vlaanderen.be/ns/weg#breedte",
+      "@type": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    "Wegbreedte.totPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#totPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "Wegbreedte.vanPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#vanPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "nauwkeurigheidVanOpmeting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#nauwkeurigheidVanOpmeting",
+      "@type": ""
+    },
+    "aantal": {
+      "@id": "https://data.vlaanderen.be/ns/weg#aantal",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "AantalRijstroken.vanPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#vanPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "AantalRijstroken.totPositie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#totPositie",
+      "@type": "https://data.vlaanderen.be/ns/weg#Lengte"
+    },
+    "AantalRijstroken.richting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#richting",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "snelheidsbeperkingWaarde": {
+      "@id": "https://data.vlaanderen.be/ns/weg#snelheidsbeperkingWaarde",
+      "@type": "https://data.vlaanderen.be/ns/weg#Snelheid"
+    },
+    "Snelheidsbeperking.richting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#richting",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "snelheidslimietBron": {
+      "@id": "https://data.vlaanderen.be/ns/weg#snelheidslimietBron",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "snelheidszone": {
+      "@id": "https://data.vlaanderen.be/ns/weg#snelheidszone",
+      "@type": "https://data.vlaanderen.be/ns/weg#Snelheid",
+      "@container": "@set"
+    },
+    "omgeving": {
+      "@id": "https://data.vlaanderen.be/ns/weg#omgeving",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@container": "@set"
+    },
+    "rijrichting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#rijrichting",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "voertuigtype": {
+      "@id": "https://data.vlaanderen.be/ns/weg#voertuigtype",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@container": "@set"
+    },
+    "geldigheidsperiode": {
+      "@id": "https://data.vlaanderen.be/ns/weg#geldigheidsperiode",
+      "@type": "http://purl.org/dc/terms/PeriodOfTime",
+      "@container": "@set"
+    },
+    "volgnummer": {
+      "@id": "https://data.vlaanderen.be/ns/weg#volgnummer",
+      "@type": ""
+    },
+    "Positie.richting": {
+      "@id": "https://data.vlaanderen.be/ns/weg#richting",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "genummerdeWegnummer": {
+      "@id": "https://data.vlaanderen.be/ns/weg#genummerdeWegnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "europeesWegnummer": {
+      "@id": "https://data.vlaanderen.be/ns/weg#europeesWegnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "geometrie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#geometrie",
+      "@type": "http://www.opengis.net/ont/sf#Point"
+    },
+    "middellijnGeometrie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#middellijnGeometrie",
+      "@type": "http://www.opengis.net/ont/sf#LineString"
+    },
+    "wegsegmentstatus": {
+      "@id": "https://data.vlaanderen.be/ns/weg#wegsegmentstatus",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "morfologischeWegklasse": {
+      "@id": "https://data.vlaanderen.be/ns/weg#morfologischeWegklasse",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "wegcategorie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#wegcategorie",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "toegangsbeperking": {
+      "@id": "https://data.vlaanderen.be/ns/weg#toegangsbeperking",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "methodeWegsegmentgeometrie": {
+      "@id": "https://data.vlaanderen.be/ns/weg#methodeWegsegmentgeometrie",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "wegverharding": {
+      "@id": "https://data.vlaanderen.be/ns/weg#wegverharding",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegverharding",
+      "@container": "@set"
+    },
+    "aantalRijstroken": {
+      "@id": "https://data.vlaanderen.be/ns/weg#aantalRijstroken",
+      "@type": "https://data.vlaanderen.be/ns/weg#AantalRijstroken",
+      "@container": "@set"
+    },
+    "wegbreedte": {
+      "@id": "https://data.vlaanderen.be/ns/weg#wegbreedte",
+      "@type": "https://data.vlaanderen.be/ns/weg#Wegbreedte",
+      "@container": "@set"
+    },
+    "alternatieveStraatnaam": {
+      "@id": "https://data.vlaanderen.be/ns/weg#alternatieveStraatnaam",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "GestructureerdeIdentificator": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+    "Identificator": "http://www.w3.org/ns/adms#Identifier",
+    "OmgevingsWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "SnelheidslimietBronWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "BeperkingsTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Tijdsinterval": "http://purl.org/dc/terms/PeriodOfTime",
+    "VoertuigTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "MeeteenheidWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "ReferentiepuntTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "RichtingWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "WegverhardingTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "WegknoopTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "WegcategorieTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "MorfologieTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "ToegangsbeperkingTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "GenummerdeWegRichtingWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "OngelijkgrondseKruisingTypeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "GeometrieMethodeWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "WegsegmentStatusWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Punt": "http://www.opengis.net/ont/sf#Point",
+    "Lijnstring": "http://www.opengis.net/ont/sf#LineString",
+    "Geometrie": "http://www.w3.org/ns/locn#Geometry",
+    "Organisatie": "http://www.w3.org/ns/org#Organization",
+    "Straatnaam": "https://data.vlaanderen.be/ns/adres#Straatnaam",
+    "Gemeentenaam": "https://data.vlaanderen.be/ns/adres#Gemeentenaam",
+    "lokaleIdentificator": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#lokaleIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "naamruimte": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#naamruimte",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "versieIdentificator": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#versieIdentificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "identificator": {
+      "@id": "http://www.w3.org/2004/02/skos/core#notation",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "gestructureerdedentificator": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
+      "@type": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
+    },
+    "toegekendDoor": {
+      "@id": "http://purl.org/dc/terms/creator",
+      "@type": "http://purl.org/dc/terms/Agent"
+    },
+    "toegekendDoorString": {
+      "@id": "http://www.w3.org/ns/adms#schemaAgency",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "toegekendOp": {
+      "@id": "http://purl.org/dc/terms/issued",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "begin": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#Tijdsinterval.begin",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "einde": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#Tijdsinterval.einde",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "wkt": {
+      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "gml": {
+      "@id": "http://www.opengis.net/ont/geosparql#asGML",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "OngelijkgrondseKruising.type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Wegknoop.type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    }
+  }
+}

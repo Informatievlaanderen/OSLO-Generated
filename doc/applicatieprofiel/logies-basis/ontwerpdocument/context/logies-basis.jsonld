@@ -1,0 +1,511 @@
+{
+  "@context": {
+    "Logies": "https://data.vlaanderen.be/ns/logies#Logies",
+    "Verhuureenheid": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
+    "ToeristischeRegio": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
+    "Beschrijving": "https://data.vlaanderen.be/ns/logies#Beschrijving",
+    "MediaObject": "https://data.vlaanderen.be/ns/logies#MediaObject",
+    "Faciliteit": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+    "Ruimte": "https://data.vlaanderen.be/ns/logies#Ruimte",
+    "Registratie": "https://data.vlaanderen.be/ns/logies#Registratie",
+    "Kwaliteitslabel": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
+    "heeftRegistratie": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftRegistratie",
+      "@type": "https://data.vlaanderen.be/ns/logies#Registratie",
+      "@container": "@set"
+    },
+    "behoortTotToeristischeRegio": {
+      "@id": "https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio",
+      "@type": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
+      "@container": "@set"
+    },
+    "heeftVerhuureenheid": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid",
+      "@type": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
+      "@container": "@set"
+    },
+    "heeftKwaliteitsLabel": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftKwaliteitsLabel",
+      "@type": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
+      "@container": "@set"
+    },
+    "heeftKamer": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftKamer",
+      "@type": "https://data.vlaanderen.be/ns/logies#Ruimte",
+      "@container": "@set"
+    },
+    "heeftAlternatieveUitbating": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating",
+      "@type": "https://data.vlaanderen.be/ns/logies#Logies",
+      "@container": "@set"
+    },
+    "isSpecialisatieVan": {
+      "@id": "https://data.vlaanderen.be/ns/logies#isSpecialisatieVan",
+      "@type": "https://data.vlaanderen.be/ns/logies#Faciliteit"
+    },
+    "heeftMedia": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftMedia",
+      "@type": "https://data.vlaanderen.be/ns/logies#MediaObject",
+      "@container": "@set"
+    },
+    "heeftBeschrijving": {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftBeschrijving",
+      "@type": "https://data.vlaanderen.be/ns/logies#Beschrijving",
+      "@container": "@set"
+    },
+    "Logies.aantalSlaapplaatsen": {
+      "@id": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "aantalVerhuureenheden": {
+      "@id": "https://data.vlaanderen.be/ns/logies#aantalVerhuureenheden",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Logies.capaciteit": {
+      "@id": "https://data.vlaanderen.be/ns/logies#capaciteit",
+      "@type": "http://schema.org/QuantitativeValue",
+      "@container": "@set"
+    },
+    "onthaalLocatie": {
+      "@id": "https://data.vlaanderen.be/ns/logies#onthaalLocatie",
+      "@type": "http://www.w3.org/ns/locn#Geometry"
+    },
+    "onthaalAdres": {
+      "@id": "https://data.vlaanderen.be/ns/logies#onthaalAdres",
+      "@type": "http://www.w3.org/ns/locn#Address",
+      "@container": "@set"
+    },
+    "Verhuureenheid.aantalSlaapplaatsen": {
+      "@id": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Verhuureenheid.locatie": {
+      "@id": "https://data.vlaanderen.be/ns/logies#locatie",
+      "@type": "http://www.w3.org/ns/locn#Geometry"
+    },
+    "Verhuureenheid.capaciteit": {
+      "@id": "https://data.vlaanderen.be/ns/logies#capaciteit",
+      "@type": "http://schema.org/QuantitativeValue",
+      "@container": "@set"
+    },
+    "bevatPlaats": {
+      "@id": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
+      "@type": "http://purl.org/dc/terms/Location",
+      "@container": "@set"
+    },
+    "MediaObject.locatie": {
+      "@id": "https://data.vlaanderen.be/ns/logies#locatie",
+      "@type": "http://www.w3.org/ns/locn#Geometry"
+    },
+    "Ruimte.locatieaanduiding": {
+      "@id": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
+      "@type": ""
+    },
+    "registratieStatus": {
+      "@id": "https://data.vlaanderen.be/ns/logies#registratieStatus",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Agent": "http://purl.org/dc/terms/Agent",
+    "Beoordeling": "http://schema.org/Rating",
+    "ContactInfo": "http://schema.org/ContactPoint",
+    "Adres": "https://data.vlaanderen.be/ns/adres#Adres",
+    "GeregistreerdeOrganisatie": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+    "KwantitatieveWaarde": "http://schema.org/QuantitativeValue",
+    "Adresvoorstelling": "http://www.w3.org/ns/locn#Address",
+    "CreatiefWerk": "http://schema.org/CreativeWork",
+    "Geometrie": "http://www.w3.org/ns/locn#Geometry",
+    "Punt": "http://www.w3.org/2003/01/geo/wgs84_pos#Point",
+    "Identificator": "http://www.w3.org/ns/adms#Identifier",
+    "Code": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Locatieaanduiding": "https://data.vlaanderen.be/ns/adres#Locatieaanduiding",
+    "Kwaliteitslabel.heeftAuteur": {
+      "@id": "http://schema.org/author",
+      "@type": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+      "@container": "@set"
+    },
+    "heeftOfficieleBeoordeling": {
+      "@id": "http://schema.org/starRating",
+      "@type": "http://schema.org/Rating",
+      "@container": "@set"
+    },
+    "Ruimte.heeftFaciliteit": {
+      "@id": "http://schema.org/amenityFeature",
+      "@type": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+      "@container": "@set"
+    },
+    "isGebaseerdOp": {
+      "@id": "http://schema.org/exampleOfWork",
+      "@type": "http://schema.org/CreativeWork"
+    },
+    "CreatiefWerk.heeftAuteur": {
+      "@id": "http://schema.org/author",
+      "@type": "http://purl.org/dc/terms/Agent",
+      "@container": "@set"
+    },
+    "verwijstNaar": {
+      "@id": "https://data.vlaanderen.be/ns/adres#verwijstNaar",
+      "@type": "https://data.vlaanderen.be/ns/adres#Adres"
+    },
+    "Beoordeling.heeftAuteur": {
+      "@id": "http://schema.org/author",
+      "@type": "http://www.w3.org/ns/regorg#RegisteredOrganization"
+    },
+    "isTijdspecialisatieVan": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+      "@type": "https://data.vlaanderen.be/ns/logies#Registratie"
+    },
+    "isVertalingVan": {
+      "@id": "http://schema.org/translationOfWork",
+      "@type": "http://schema.org/CreativeWork"
+    },
+    "Logies.heeftFaciliteit": {
+      "@id": "http://schema.org/amenityFeature",
+      "@type": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+      "@container": "@set"
+    },
+    "Verhuureenheid.heeftFaciliteit": {
+      "@id": "http://schema.org/amenityFeature",
+      "@type": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+      "@container": "@set"
+    },
+    "alternatieveNaam": {
+      "@id": "http://schema.org/alternativeName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Logies.identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "Logies.doelpubliek": {
+      "@id": "http://schema.org/audience",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@container": "@set"
+    },
+    "Logies.naam": {
+      "@id": "http://schema.org/name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "contactPunt": {
+      "@id": "http://schema.org/contactPoint",
+      "@type": "http://schema.org/ContactPoint",
+      "@container": "@set"
+    },
+    "aantalKamers": {
+      "@id": "http://schema.org/numberOfRooms",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Verhuureenheid.naam": {
+      "@id": "http://schema.org/name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "hoogsteBeoordeling": {
+      "@id": "http://schema.org/bestRating",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "laagsteBeoordeling": {
+      "@id": "http://schema.org/worstRating",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Beoordeling.beoordeling": {
+      "@id": "http://schema.org/ratingValue",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Beoordeling.beschrijving": {
+      "@id": "http://schema.org/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Beoordeling.toegekendOp": {
+      "@id": "http://purl.org/dc/terms/issued",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "aanschrijfvorm": {
+      "@id": "http://ww.w3.org/2006/vcard/ns#honorific-prefix",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "contactnaam": {
+      "@id": "http://xmlns.com/foaf/0.1/name",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "email": {
+      "@id": "http://schema.org/email",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "telefoon": {
+      "@id": "http://schema.org/telephone",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "fax": {
+      "@id": "http://schema.org/faxNumber",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "website": {
+      "@id": "http://xmlns.com/foaf/0.1/page",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "openingsuren": {
+      "@id": "http://schema.org/openingHours",
+      "@type": "http://schema.org/OpeningHoursSpecification"
+    },
+    "beschikbaarheid": {
+      "@id": "http://schema.org/hoursAvailable",
+      "@type": "http://schema.org/OpeningHoursSpecification"
+    },
+    "adres": {
+      "@id": "http://www.w3.org/ns/locn#address",
+      "@type": "http://www.w3.org/ns/locn#Address"
+    },
+    "registratie": {
+      "@id": "http://www.w3.org/ns/regorg#registration",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "wettelijkeNaam": {
+      "@id": "http://www.w3.org/ns/regorg#legalName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "rechtsvorm": {
+      "@id": "https://data.vlaanderen.be/ns/organisatie#rechtsvorm",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "rechtstoestand": {
+      "@id": "https://data.vlaanderen.be/ns/organisatie#rechtstoestand",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "rechtspersoonlijkheid": {
+      "@id": "https://data.vlaanderen.be/ns/organisatie#rechtspersoonlijkheid",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "label": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "geometrie": {
+      "@id": "http://www.w3.org/ns/locn#geometry",
+      "@type": "http://www.w3.org/ns/locn#Geometry"
+    },
+    "tekst": {
+      "@id": "http://schema.org/value",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "contentUrl": {
+      "@id": "http://schema.org/contentUrl",
+      "@type": ""
+    },
+    "caption": {
+      "@id": "http://schema.org/caption",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "thumbnailUrl": {
+      "@id": "http://schema.org/thumbnailUrl",
+      "@type": ""
+    },
+    "taal": {
+      "@id": "http://schema.org/inLanguage",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@container": "@set"
+    },
+    "hoogte": {
+      "@id": "http://schema.org/height",
+      "@type": "http://schema.org/QuantitativeValue"
+    },
+    "breedte": {
+      "@id": "http://schema.org/width",
+      "@type": "http://schema.org/QuantitativeValue"
+    },
+    "formaat": {
+      "@id": "http://purl.org/dc/terms/format",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "exifData": {
+      "@id": "http://schema.org/exifData",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "MediaObject.beschrijving": {
+      "@id": "http://schema.org/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "@container": "@set"
+    },
+    "Faciliteit.naam": {
+      "@id": "http://schema.org/name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Faciliteit.beschrijving": {
+      "@id": "http://schema.org/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "beschikbaarVan": {
+      "@id": "http://schema.org/validFrom",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "beschikbaarTot": {
+      "@id": "http://schema.org/validThrough",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "waarde": {
+      "@id": "http://schema.org/value",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "eenheid": {
+      "@id": "http://schema.org/unitText",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "genormeerdeEenheid": {
+      "@id": "http://schema.org/unitCode",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Ruimte.type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Ruimte.beschrijving": {
+      "@id": "http://schema.org/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "@container": "@set"
+    },
+    "volledigAdres": {
+      "@id": "http://www.w3.org/ns/locn#fullAddress",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "postbus": {
+      "@id": "http://www.w3.org/ns/locn#poBox",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "straatnaam": {
+      "@id": "http://www.w3.org/ns/locn#thoroughfare",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Adresvoorstelling.locatieaanduiding": {
+      "@id": "http://www.w3.org/ns/locn#locatorDesignator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "huisnummer": {
+      "@id": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "busnummer": {
+      "@id": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "locatienaam": {
+      "@id": "http://www.w3.org/ns/locn#locatorName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "adresgebied": {
+      "@id": "http://www.w3.org/ns/locn#addressArea",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "postnaam": {
+      "@id": "http://www.w3.org/ns/locn#postName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "gemeentenaam": {
+      "@id": "https://data.vlaanderen.be/ns/adres#gemeentenaam",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "administratieveEenheidNiveau2": {
+      "@id": "http://www.w3.org/ns/locn#adminUnitL2",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "administratieveEenheidNiveau1": {
+      "@id": "http://www.w3.org/ns/locn#adminUnitL1",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "land": {
+      "@id": "https://data.vlaanderen.be/ns/adres#land",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "postcode": {
+      "@id": "http://www.w3.org/ns/locn#postCode",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "creatie": {
+      "@id": "http://www.w3.org/ns/prov#qualifiedGeneration",
+      "@type": "http://www.w3.org/ns/prov#Generation"
+    },
+    "Registratie.type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Registratie.identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "opheffing": {
+      "@id": "http://www.w3.org/ns/prov#qualifiedInvalidation",
+      "@type": "http://www.w3.org/ns/prov#Invalidation"
+    },
+    "publicatieDatum": {
+      "@id": "http://schema.org/datePublished",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "bewerkt": {
+      "@id": "http://schema.org/dateModified",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "CreatiefWerk.doelpubliek": {
+      "@id": "http://schema.org/audience",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@container": "@set"
+    },
+    "CreatiefWerk.naam": {
+      "@id": "http://schema.org/name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "@container": "@set"
+    },
+    "licentie": {
+      "@id": "http://schema.org/license",
+      "@type": "http://purl.org/dc/terms/LicenseDocument"
+    },
+    "wkt": {
+      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "gml": {
+      "@id": "http://www.opengis.net/ont/geosparql#asGML",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "wgs84Latitude": {
+      "@id": "http://www.w3.org/2003/01/geo/wgs84_pos#lat",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "wgs84Longitude": {
+      "@id": "http://www.w3.org/2003/01/geo/wgs84_pos#long",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "Identificator.identificator": {
+      "@id": "http://www.w3.org/2004/02/skos/core#notation",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "toegekendDoor": {
+      "@id": "http://purl.org/dc/terms/creator",
+      "@type": "http://purl.org/dc/terms/Agent"
+    },
+    "toegekendDoorString": {
+      "@id": "http://www.w3.org/ns/adms#schemaAgency",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Identificator.toegekendOp": {
+      "@id": "http://purl.org/dc/terms/issued",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Kwaliteitslabel.beoordeling": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Kwaliteitslabel.beschrijving": {
+      "@id": "http://schema.org/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Kwaliteitslabel.toegekendOp": {
+      "@id": "http://purl.org/dc/terms/issued",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "aanduiding": {
+      "@id": "https://data.vlaanderen.be/ns/adres#Locatieaanduiding.aanduiding",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Locatieaanduiding.type": {
+      "@id": "https://data.vlaanderen.be/ns/adres#Locatieaanduiding.type",
+      "@type": ""
+    }
+  }
+}
