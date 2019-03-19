@@ -216,13 +216,15 @@
       "parents": [
         "http://schema.org/LocationFeatureSpecification"
       ],
-      "usage": {}
+      "usage": {
+        "nl": "Toerisme Vlaanderen stelt een basis lijst beschikbaar: https://linked.toerismevlaanderen.be/doc/facilities ."
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen."
+        "nl": "Toekenning van een label aan een logies dat aan de voorwaarden van het label voldoet.\r\n"
       },
       "name": {
         "nl": "Kwaliteitslabel"
@@ -239,27 +241,10 @@
       "name": {
         "nl": "Logies"
       },
-      "parents": [
-        "http://schema.org/LodgingBusiness"
-      ],
+      "parents": [],
       "usage": {
         "nl": "Zie ook https://schema.org/docs/hotels.html"
       }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#MediaObject",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Een media-object, zoals bijvoorbeeld een afbeelding, video of audio-object."
-      },
-      "name": {
-        "nl": "Media Object"
-      },
-      "parents": [
-        "http://schema.org/CreativeWork",
-        "http://schema.org/MediaObject"
-      ],
-      "usage": {}
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#Registratie",
@@ -270,8 +255,21 @@
       "name": {
         "nl": "Registratie"
       },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#RegistratieVolgensGeldigeTijd",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Een registratie beperkt tot een bepaalde periode."
+      },
+      "name": {
+        "nl": "Registratie in periode"
+      },
       "parents": [
-        "https://data.vlaanderen.be/ns/generiek#Versie"
+        "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd",
+        "https://data.vlaanderen.be/ns/logies#Registratie"
       ],
       "usage": {}
     },
@@ -389,7 +387,9 @@
       "range": [
         "https://data.vlaanderen.be/ns/logies#ToeristischeRegio"
       ],
-      "usage": {}
+      "usage": {
+        "nl": "We raden aan de toeristische regio's te herbruiken uit deze lijst: https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
@@ -535,7 +535,7 @@
         "nl": "heeft media"
       },
       "range": [
-        "https://data.vlaanderen.be/ns/logies#MediaObject"
+        "http://schema.org/MediaObject"
       ],
       "usage": {}
     },
@@ -556,6 +556,26 @@
         "https://data.vlaanderen.be/ns/logies#Registratie"
       ],
       "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftUitbater",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De uitbater van het logies."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/logies#Logies"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "heeft uitbater"
+      },
+      "range": [
+        "http://purl.org/dc/terms/Agent"
+      ],
+      "usage": {
+        "nl": "Een organisatie of een persoon."
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid",
@@ -592,6 +612,24 @@
       },
       "range": [
         "https://data.vlaanderen.be/ns/logies#Faciliteit"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#kwaliteitsLabelCode",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "kwaliteits label code"
+      },
+      "range": [
+        "http://www.w3.org/2004/02/skos/core#Concept"
       ],
       "usage": {}
     },
@@ -637,7 +675,7 @@
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep."
       },
@@ -648,7 +686,9 @@
       "name": {
         "nl": "locatie aanduiding"
       },
-      "range": [],
+      "range": [
+        "https://data.vlaanderen.be/ns/adres#Locatieaanduiding"
+      ],
       "usage": {}
     },
     {
@@ -698,7 +738,7 @@
         "nl": "Status van het geregistreerde logies."
       },
       "domain": [
-        "https://data.vlaanderen.be/ns/logies#Registratie"
+        "https://data.vlaanderen.be/ns/logies#RegistratieVolgensGeldigeTijd"
       ],
       "generalization": [],
       "name": {
@@ -708,14 +748,48 @@
         "http://www.w3.org/2004/02/skos/core#Concept"
       ],
       "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#verantwoordelijkeOrganisatie",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De organisatie waar het logies werd geregistreerd."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/logies#Registratie"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "verantwoordelijke organisatie"
+      },
+      "range": [
+        "http://www.w3.org/ns/regorg#RegisteredOrganization"
+      ],
+      "usage": {
+        "nl": "In Vlaanderen is dit altijd Toerisme Vlaanderen (https://data.vlaanderen.be/id/organisatie/OVO000034)"
+      }
     }
   ],
   "externals": [
+    {
+      "@id": "http://purl.org/dc/terms/LicenseDocument",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Licentiedocument"
+      }
+    },
     {
       "@id": "http://schema.org/CreativeWork",
       "@type": "rdfs:Class",
       "name": {
         "nl": "Creatief Werk"
+      }
+    },
+    {
+      "@id": "http://schema.org/MediaObject",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Media Object"
       }
     },
     {
@@ -730,13 +804,6 @@
       "@type": "rdfs:Class",
       "name": {
         "nl": "Beoordeling"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "Code"
       }
     }
   ],
@@ -773,7 +840,14 @@
       "@id": "http://purl.org/dc/terms/type",
       "@type": "rdf:Property",
       "name": {
-        "nl": "type"
+        "nl": "registratie type"
+      }
+    },
+    {
+      "@id": "http://schema,org/author",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "heeft auteur"
       }
     },
     {
@@ -816,6 +890,20 @@
       "@type": "rdf:Property",
       "name": {
         "nl": "doelpubliek"
+      }
+    },
+    {
+      "@id": "http://schema.org/author",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "heeft auteur"
+      }
+    },
+    {
+      "@id": "http://schema.org/author",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "heeft auteur"
       }
     },
     {
@@ -896,13 +984,6 @@
       }
     },
     {
-      "@id": "http://schema.org/exampleOfWork",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "is gebaseerd op"
-      }
-    },
-    {
       "@id": "http://schema.org/exifData",
       "@type": "rdf:Property",
       "name": {
@@ -921,6 +1002,13 @@
       "@type": "rdf:Property",
       "name": {
         "nl": "taal"
+      }
+    },
+    {
+      "@id": "http://schema.org/isBasedOn",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is gebaseerd op"
       }
     },
     {
@@ -1050,7 +1138,7 @@
       }
     },
     {
-      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@id": "http://www.w3.org/2000/01/rdf-schema#label",
       "@type": "rdf:Property",
       "name": {
         "nl": "label"

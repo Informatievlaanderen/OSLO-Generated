@@ -31,6 +31,144 @@
   "@id": "https://data.vlaanderen.be/shacl/verkeersborden",
   "shapes": [
     {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#VerkeerstekenWettelijkeStatusShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#VerkeerstekenWettelijkeStatus",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "status",
+          "sh:description": "Duidt de wettelijke status aan van het verkeersteken.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#VerkeerstekenWettelijkeStatus.status",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "veroorzaaktDoor",
+          "sh:description": "De mobiliteitsmaatregel die ervoor gezorgd heeft dat het verkeersteken een bepaalde wettelijke status bekomen heeft.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#VerkeerstekenWettelijkeStatus.veroorzaaktDoor",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
+          "sh:maxCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#VerkeersbordconceptStatusShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#VerkeersbordconceptStatus",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "status",
+          "sh:description": "Duidt of het verkeersbordconcept nog gebruikt wordt.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#VerkeersbordconceptStatus.status",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "veroorzaaktDoor",
+          "sh:description": "Door welk rechtsgrondonderdeel het verkeersbordconcept in deze status bekomen is.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#veroorzaaktDoor",
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+          "sh:maxCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#DraagconstructieVerkeersbordenShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#DraagconstructieVerkeersborden",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#Verkeersbord-VerkeerstekenShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "heeftOnderbord",
+          "sh:description": "Onderbord die behoort tot dit verkeersteken.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken"
+        },
+        {
+          "sh:name": "heeftVerkeersbordconcept",
+          "sh:description": "Algemeen verkeersbordconcept van het verkeersteken.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeftVerkeersbordconcept",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "isBeginZone",
+          "sh:description": "Duidt aan of het verkeersbord-verkeersteken het begin van een zone aanduidt.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isBeginZone",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "isEindeZone",
+          "sh:description": "Duidt aan of het verkeerbord-verkeersteken het einde van een zone aanduidt.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isEindeZone",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::GalgsteunShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#OSLO-OpenbaarDomein::Galgsteun",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#DraagconstructieRetroreflecterendeVerkeersbordenShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#DraagconstructieRetroreflecterendeVerkeersborden",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "beheerder",
+          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het object.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "isOpgehangenAan",
+          "sh:description": "Bevestiging waarmee een verkeersbord aan dit infrastructuurelement is opgehangen.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Infrastructuurelement.heeftBevestiging",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Bevestiging",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "kleur",
+          "sh:description": "Kleur van de draagconstructie.",
+          "sh:path": "http://dbpedia.org/ontology/colour",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "leverancier",
+          "sh:description": "Agent die de draagconstructie aanlevert.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#leverancier",
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "materiaal",
+          "sh:description": "Materiaal waaruit de draagconstructie voor retroreflecterende verkeersborden is uit opgebouwd.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept"
+        }
+      ]
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/verkeersborden#MobiliteitsmaatregelShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
@@ -62,7 +200,7 @@
           "sh:name": "isOpgehangenAan",
           "sh:description": "Verkeersbord die met deze bevestiging is opgehangen.",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isOpgehangenAan",
-          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#RetroreflecterendVerkeersbord",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
@@ -70,7 +208,7 @@
           "sh:name": "isOpgehangenAan",
           "sh:description": "Infrastructuurelement waaraan bevestigd is.",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isOpgehangenAan",
-          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#DraagconstructieRetroreflecterendeVerkeersborden",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
@@ -111,104 +249,19 @@
           "sh:maxCount": "1"
         },
         {
+          "sh:name": "operationeleStatus",
+          "sh:description": "Operationele status van de verankering.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verankering.operationeleStatus",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        },
+        {
           "sh:name": "type",
           "sh:description": "Soort verankering.",
           "sh:path": "http://purl.org/dc/terms/type",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1",
           "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#SteunShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Steun",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "BNorm",
-          "sh:description": "TODO",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#BNorm",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "bestekNummerCEKeuring",
-          "sh:description": "Verwijzing naar het bestek van de CE certifiëring.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#bestekNummerCEKeuring",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "breedte",
-          "sh:description": "Breedte van de steun.",
-          "sh:path": "http://dbpedia.org/ontology/width",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "diameter",
-          "sh:description": "Diameter van de steun.",
-          "sh:path": "http://dbpedia.org/ontology/diameter",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "fabricagevoorschrift",
-          "sh:description": "Genormaliseerde referentie waaraan het infrastructuur element aan voldoet.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#fabricagevoorschrift",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "inwendigeVerlichting",
-          "sh:description": "Duidt aan of de steun inwendige verlichting bevat.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#inwendigeVerlichting",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "isVerankerdMet",
-          "sh:description": "Waarmee het infrastructuurelement verankerd is.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verankering",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "lengte",
-          "sh:description": "Lengte van de steun.",
-          "sh:path": "http://dbpedia.org/ontology/length",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "lengteBovengronds",
-          "sh:description": "Lengte van de steun boven het verhardingsniveau of maaiveld.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#lengteBovengronds",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "lengteOndergronds",
-          "sh:description": "Lengte van de steun onder het verhardingsniveau of maaiveld.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#lengteOndergronds",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "vorm",
-          "sh:description": "Vorm van de steun.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#vorm",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "wanddikte",
-          "sh:description": "Dikte van de wand in millimeter.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#wanddikte",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1"
         }
       ]
     },
@@ -226,23 +279,22 @@
         },
         {
           "sh:name": "geometrie",
-          "sh:description": "Geometrie van de opstelling",
+          "sh:description": "Geolocatie van de opstelling met ook haar geometrie indien geen puntlocatie.",
           "sh:path": "http://www.w3.org/ns/locn#geometry",
           "sh:class": "http://www.w3.org/ns/locn#Geometry",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:maxCount": "1"
         },
         {
           "sh:name": "hoortBij",
-          "sh:description": "Wegsegment waarbij de opstelling geplaatst is.",
+          "sh:description": "Wegsegment waarbij de opstellling geplaatst is.",
           "sh:path": "http://www.w3.org/ns/locn#geometry",
           "sh:class": "https://data.vlaanderen.be/ns/weg#Wegsegment"
         },
         {
-          "sh:name": "omvatInfrastructuurelement",
-          "sh:description": "Infrastructuurelement die voor de ondersteuning zorgt in de opstelling.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#omvatInfrastructuurelement",
-          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement"
+          "sh:name": "omvatDraagconstructieVerkeersborden",
+          "sh:description": "Draagconstructie die voor de ondersteuning zorgt in de opstelling.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#omvatDraagconstructieVerkeersborden",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#DraagconstructieVerkeersborden"
         },
         {
           "sh:name": "omvatVerkeersbord",
@@ -252,26 +304,67 @@
           "sh:minCount": "1"
         },
         {
-          "sh:name": "positieTenOpzichtVanRijweg",
-          "sh:description": "Manier waarop de opstelling zich verhoudt tot de rijbaan.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#positieTenOpzichtVanRijweg",
+          "sh:name": "operationeleStatus",
+          "sh:description": "Status van de opstelling.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Opstelling.operationeleStatus",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "positieTenOpzichtVanRijbaan",
+          "sh:description": "De plaatsing van het verkeersbord ten aanzien van de rijbaan.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#positieTenOpzichtVanRijbaan",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#RetroreflecterendVerkeersbordShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#RetroreflecterendVerkeersbord",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "aanMuurZonderArmatuur",
+          "sh:description": "Duidt aan of het verkeersbord bevestigd is aan een muur zonder armatuur.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
         {
-          "sh:name": "status",
-          "sh:description": "Status van de opstelling.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#status",
+          "sh:name": "fabricagevoorschrift",
+          "sh:description": "Genormaliseerde referentie waaraan het verkeersbord voldoet.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#fabricagevoorschrift",
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "folietype",
+          "sh:description": "Type van de folie die bevestigd is aan het verkeersbord.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#folietype",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "virtueel",
-          "sh:description": "Duidt aan dat de opstelling niet fysiek bestaat.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#virtueel",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:name": "isOpgehangenAan",
+          "sh:description": "Bevestiging waarmee het verkeersbord is opgehangen.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord.heeftBevestiging",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Bevestiging"
+        },
+        {
+          "sh:name": "kleurAchterkant",
+          "sh:description": "Kleur van het retroreflecterend verkeersbord.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#kleurAchterkant",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "materiaal",
+          "sh:description": "Materiaal waaruit het retroreflecterend verkeersbord is uit opgebouwd.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept"
         }
       ]
     },
@@ -302,6 +395,14 @@
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept"
         },
         {
+          "sh:name": "status",
+          "sh:description": "Status van het verkeersbordconcept.",
+          "sh:path": "http://www.w3.org/2003/06/sw-vocab-status/ns#term_status",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#VerkeersbordconceptStatus",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
           "sh:name": "verkeersbordcode",
           "sh:description": "Code die aan dit soort bord gegeven wordt binnen de wegcode.",
           "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel",
@@ -318,9 +419,9 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "adresVoorstelling",
+          "sh:name": "adresvoorstelling",
           "sh:description": "Adresvoorstelling van het verkeersteken.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#adresVoorstelling",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken.adresvoorstelling",
           "sh:class": "http://www.w3.org/ns/locn#Address",
           "sh:maxCount": "1"
         },
@@ -331,58 +432,23 @@
           "sh:class": "http://xmlns.com/foaf/0.1/Document"
         },
         {
-          "sh:name": "buitenwerkingtreding",
-          "sh:description": "Periode waarbinnen het verkeersteken niet geldig is.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#buitenwerkingtreding",
-          "sh:class": "http://schema.org/OpeningHoursSpecification"
-        },
-        {
           "sh:name": "heeftGerelateerdVerkeersteken",
           "sh:description": "Verkeersbordbasis die hieraan gerelateerd is.",
           "sh:path": "http://www.w3.org/2004/02/skos/core#related",
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
         },
         {
-          "sh:name": "heeftOnderbord",
-          "sh:description": "Onderbord die behoort tot dit verkeersteken.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
-        },
-        {
-          "sh:name": "heeftVerkeersbordconcept",
-          "sh:description": "Algemeen verkeersbordconcept van het verkeersteken.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeftVerkeersbordconcept",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "isBeginZone",
-          "sh:description": "Duidt aan of het verkeersteken het begin van een zone aanduidt.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isBeginZone",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "isEindeZone",
-          "sh:description": "Duidt aan of het verkeersteken het einde van een zone aanduidt.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isEindeZone",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:maxCount": "1"
+          "sh:name": "inwerkingstijd",
+          "sh:description": "Wanneer het verkeersteken actief is.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#inwerkingstijd",
+          "sh:class": "http://schema.org/Schedule"
         },
         {
           "sh:name": "plaatsbeschrijving",
           "sh:description": "Tekstuele beschrijving waar het verkeersteken zal komen.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken.plaatsbeschrijving",
+          "sh:path": "http://schema.org/location",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "status",
-          "sh:description": "Status van het verkeersteken.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken.status",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
         },
         {
           "sh:name": "variabelOpschrift",
@@ -390,38 +456,282 @@
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#variabelOpschrift",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "wettelijkeStatus",
+          "sh:description": "Wettelijke status van het verkeersteken.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken.wettelijkeStatus",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#VerkeerstekenWettelijkeStatus",
+          "sh:maxCount": "1"
         }
       ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::MuurBinnenDeWegbaanShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#MuurBinnenDeWegbaan",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::MuurShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Muur",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::StraatspiegelShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Straatspiegel",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::StootbandNewJerseyShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#StootbandNewJersey",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::SlagboomShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Slagboom",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::SchampblokShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Schampblok",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::PijlerShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Pijler",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::PaalBovenleidingTramTreinTrolleyShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#PaalBovenleidingTramTreinTrolley",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::OpenbareVerlichtingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#OpenbareVerlichting",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::KnipperlichtShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Knipperlicht",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::GeluidschermShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Geluidscherm",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::FlitspaalShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Flitspaal",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::FietstelpaalShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Fietstelpaal",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::FietsstallingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Fietsstalling",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::ElektriciteitspaalShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Elektriciteitspaal",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::DraadafsluitingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Draadafsluiting",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::BestendigeAfsluitingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#BestendigeAfsluiting",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VerkeersbordShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "aanzicht",
+          "sh:description": "De hoek waarin het fysiek bord gepositioneerd is ten opzichte van een vooropgestelde as.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#aanzicht",
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "afbeelding",
+          "sh:description": "Weergave van het geïnstalleerde verkeersbord op het openbaar domein.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#grafischeWeergave",
+          "sh:class": "http://xmlns.com/foaf/0.1/Document"
+        },
+        {
+          "sh:name": "afmeting",
+          "sh:description": "Afmeting (lengte) van het verkeersbord.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord.afmeting",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "beheerder",
+          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het verkeersbord.",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "breedte",
+          "sh:description": "Breedte van het verkeersbord.",
+          "sh:path": "http://dbpedia.org/ontology/width",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "hoogte",
+          "sh:description": "Hoogte van het verkeersbord.",
+          "sh:path": "http://schema.org/height",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "leverancier",
+          "sh:description": "Agent die het verkeersbord aanlevert.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#leverancier",
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "operationeleStatus",
+          "sh:description": "Operationele status van een verkeersbord.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord.operationeleStatus",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "opmerking",
+          "sh:description": "Opmerking over het verkeersbord.",
+          "sh:path": "http://schema.org/comment",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        {
+          "sh:name": "opstelhoogte",
+          "sh:description": "Afstand tussen het maaiveld en de onderrand van het bord.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#opstelhoogte",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "realiseert",
+          "sh:description": "Relateert een verkeersbord op het openbaar domein tot het verkeersteken.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#realiseert",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::BorstweringShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Borstwering",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VangrailShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#Vangrail",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::NadarShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Nadar",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VakwerksteunShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Vakwerksteun",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::SignalisatieEnLeidingenportiekShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#SignalisatieEnLeidingenportiek",
+      "sh:closed": false,
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VerlichtingspaalShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuurelement#Verlichtingspaal",
+      "sh:closed": false,
+      "sh:property": []
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VerkeerslichtShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeerslicht",
       "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "realiseert",
-          "sh:description": "Het verkeersteken dat gerealiseerd werd met dit verkeerslicht.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#realiseert",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
-          "sh:minCount": "1"
-        }
-      ]
+      "sh:property": []
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::WegmarkeringShape",
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::NewJerseyShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Wegmarkering",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#NewJersey",
       "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "realiseert",
-          "sh:description": "Het verkeersteken dat gerealiseerd werd met deze wegmarkering.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#realiseert",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
-          "sh:minCount": "1"
-        }
-      ]
+      "sh:property": []
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::AfsluitingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Afsluiting",
+      "sh:closed": false,
+      "sh:property": []
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/verkeersborden#SignalisatievergunningShape",
@@ -430,12 +740,10 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "verguntType",
-          "sh:description": "Type signalisatievergunning dat vergund wordt.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning.verguntType",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:name": "vergunt",
+          "sh:description": "Verkeersteken dat vergunt wordt.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#vergunt",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
         }
       ]
     },
@@ -456,133 +764,80 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::InfrastructuurelementShape",
+      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#SteunRetroreflecterendVerkeersbordShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Steun",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "beheerder",
-          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het object.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder",
-          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:name": "breedte",
+          "sh:description": "Breedte van de steun.",
+          "sh:path": "http://dbpedia.org/ontology/width",
+          "sh:class": "http://schema.org/QuantitativeValue",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "isOpgehangenAan",
-          "sh:description": "Bevestiging waarmee een verkeersbord aan dit infrastructuurelement is opgehangen.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Infrastructuurelement.heeftBevestiging",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Bevestiging",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:name": "diameter",
+          "sh:description": "Diameter van de steun.",
+          "sh:path": "http://dbpedia.org/ontology/diameter",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
         },
         {
-          "sh:name": "kleur",
-          "sh:description": "Kleur van het infrastructuur element.",
-          "sh:path": "http://dbpedia.org/ontology/colour",
+          "sh:name": "fabricagevoorschrift",
+          "sh:description": "Genormaliseerde referentie waaraan de steun voldoet.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#fabricagevoorschrift",
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "isVerankerdMet",
+          "sh:description": "Waarmee het infrastructuurelement verankerd is.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#isVerankerdMet",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verankering",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "lengte",
+          "sh:description": "Lengte van de steun.",
+          "sh:path": "http://dbpedia.org/ontology/length",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "lengteBovengronds",
+          "sh:description": "Lengte van de steun boven het verhardingsniveau of maaiveld.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#lengteBovengronds",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "lengteOndergronds",
+          "sh:description": "Lengte van de steun onder het verhardingsniveau of maaiveld.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#lengteOndergronds",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "operationeleStatus",
+          "sh:description": "Operationele status van de draagconstructie.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#DraagconstructieVerkeersborden.operationeleStatus",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "leverancier",
-          "sh:description": "Leverancier van het infrastructuurelement.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#leverancier",
-          "sh:class": "http://purl.org/dc/terms/Agent",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "materiaal",
-          "sh:description": "Materiaal waar het object uit vervaardigd is.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept"
-        },
-        {
-          "sh:name": "plaatsingsdatum",
-          "sh:description": "Datum waarop het infrastructuur element geïnstalleerd is.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum"
-        },
-        {
-          "sh:name": "productiedatum",
-          "sh:description": "Wanneer het infrastructuurelement geproduceerd is.",
-          "sh:path": "http://www.w3.org/ns/prov#generatedAtTime",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "verwijderingsdatum",
-          "sh:description": "Datum waarop het infrastructuur element verwijderd is.",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#einddatum"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/verkeersborden#OSLO-OpenbaarDomein::VerkeersbordShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verkeersbord",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "aanMuurZonderArmatuur",
-          "sh:description": "Duidt aan of het verkeersbord bevestigd is aan een muur zonder armatuur.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#aanMuurZonderArmatuur",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "aanzicht",
-          "sh:description": "De hoek waarin het fysiek bord gepositioneerd is ten opzichte van een vooropgestelde as.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#aanzicht",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "afbeelding",
-          "sh:description": "Weergave van het geïnstalleerde verkeersbord op het openbaar domein.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#grafischeWeergave",
-          "sh:class": "http://xmlns.com/foaf/0.1/Document"
-        },
-        {
-          "sh:name": "afmeting",
-          "sh:description": "Afmeting (lengte) van het verkeersbord.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#afmeting",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "folietype",
-          "sh:description": "Type van de folie die bevestigd is aan het verkeersbord.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#folietype",
+          "sh:name": "vorm",
+          "sh:description": "Vorm van de steun.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#vorm",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "isOpgehangenAan",
-          "sh:description": "Bevestiging waarmee het verkeersbord is opgehangen.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord.heeftBevestiging",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Bevestiging"
-        },
-        {
-          "sh:name": "opmerking",
-          "sh:description": "Opmerking over het verkeersbord.",
-          "sh:path": "http://schema.org/comment",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string"
-        },
-        {
-          "sh:name": "opstelhoogte",
-          "sh:description": "Afstand tussen het maaiveld en de onderrand van het bord.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#opstelhoogte",
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "realiseert",
-          "sh:description": "Relateert een verkeersbord op het openbaar domein tot het verkeersteken.",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#realiseert",
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
-          "sh:minCount": "1"
+          "sh:name": "wanddikte",
+          "sh:description": "Dikte van de wand.",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#wanddikte",
+          "sh:class": "http://schema.org/QuantitativeValue",
+          "sh:maxCount": "1"
         }
       ]
     },
