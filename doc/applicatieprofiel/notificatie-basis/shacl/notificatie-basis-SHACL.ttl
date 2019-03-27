@@ -7,20 +7,20 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
+<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#GetypeerdeStringShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#AgentShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#SleutelWaardeShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape> .
+    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape> .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
@@ -47,10 +47,28 @@
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Faxnummer waarnaar men kan faxen.";
+    <http://www.w3.org/ns/shacl#description> "Telefoonnummer waarop men kan bellen.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "fax";
-    <http://www.w3.org/ns/shacl#path> schema:faxNumber
+    <http://www.w3.org/ns/shacl#name> "telefoon";
+    <http://www.w3.org/ns/shacl#path> schema:telephone
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
+    <http://www.w3.org/ns/shacl#description> "Uren waarbinnen contact kan worden opgenomen.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "openingsuren";
+    <http://www.w3.org/ns/shacl#path> schema:openingHours
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/locn#Address>;
+    <http://www.w3.org/ns/shacl#description> "Adres dat men kan aanschrijven of bezoeken.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "adres";
+    <http://www.w3.org/ns/shacl#path> <http://www.w3.org/ns/locn#address>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> rdf:langString;
+    <http://www.w3.org/ns/shacl#description> "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "aanschrijfvorm";
+    <http://www.w3.org/ns/shacl#path> vcard:honorific-prefix
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
     <http://www.w3.org/ns/shacl#description> "Email-adres waarnaar men kan mailen.";
@@ -64,11 +82,11 @@
     <http://www.w3.org/ns/shacl#name> "beschikbaarheid";
     <http://www.w3.org/ns/shacl#path> schema:hoursAvailable
   ], [
-    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/locn#Address>;
-    <http://www.w3.org/ns/shacl#description> "Adres dat men kan aanschrijven of bezoeken.";
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "Faxnummer waarnaar men kan faxen.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "adres";
-    <http://www.w3.org/ns/shacl#path> <http://www.w3.org/ns/locn#address>
+    <http://www.w3.org/ns/shacl#name> "fax";
+    <http://www.w3.org/ns/shacl#path> schema:faxNumber
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
     <http://www.w3.org/ns/shacl#description> "Naam van bvb de persoon die men kan contacteren.";
@@ -76,41 +94,17 @@
     <http://www.w3.org/ns/shacl#name> "contactnaam";
     <http://www.w3.org/ns/shacl#path> foaf:name
   ], [
-    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
-    <http://www.w3.org/ns/shacl#description> "Uren waarbinnen contact kan worden opgenomen.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "openingsuren";
-    <http://www.w3.org/ns/shacl#path> schema:openingHours
-  ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:anyURI;
     <http://www.w3.org/ns/shacl#description> "Website waarnaar men kan surfen.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#name> "website";
     <http://www.w3.org/ns/shacl#path> foaf:page
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> rdf:langString;
-    <http://www.w3.org/ns/shacl#description> "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "aanschrijfvorm";
-    <http://www.w3.org/ns/shacl#path> vcard:honorific-prefix
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Telefoonnummer waarop men kan bellen.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "telefoon";
-    <http://www.w3.org/ns/shacl#path> schema:telephone
   ];
   <http://www.w3.org/ns/shacl#targetClass> schema:ContactPoint .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
-    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/adms#Identifier>;
-    <http://www.w3.org/ns/shacl#description> "Een identificator voor de doelgroep.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "identificator";
-    <http://www.w3.org/ns/shacl#path> <http://www.w3.org/ns/adms#identifier>
-  ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
     <http://www.w3.org/ns/shacl#description> "Een typering van de doelgroep.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
@@ -121,6 +115,12 @@
     <http://www.w3.org/ns/shacl#description> "Het geografisch gebied geassocieerd met de doelgroep.";
     <http://www.w3.org/ns/shacl#name> "geografischGebied";
     <http://www.w3.org/ns/shacl#path> <https://schema.org/geographicArea>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://www.w3.org/ns/adms#Identifier>;
+    <http://www.w3.org/ns/shacl#description> "Een identificator voor de doelgroep.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "identificator";
+    <http://www.w3.org/ns/shacl#path> <http://www.w3.org/ns/adms#identifier>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <https://schema.org/Audience> .
 
@@ -132,16 +132,16 @@
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
     <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
-    <http://www.w3.org/ns/shacl#description> "Geometrie uitgedrukt in wkt-formaat.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "wkt";
-    <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#asWKT>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
     <http://www.w3.org/ns/shacl#description> "Geometrie uitgedrukt in gml-formaat.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#name> "gml";
     <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#asGML>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
+    <http://www.w3.org/ns/shacl#description> "Geometrie uitgedrukt in wkt-formaat.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "wkt";
+    <http://www.w3.org/ns/shacl#path> <http://www.opengis.net/ont/geosparql#asWKT>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/locn#Geometry> .
 
@@ -152,10 +152,21 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
+    <http://www.w3.org/ns/shacl#class> skos:Concept;
+    <http://www.w3.org/ns/shacl#description> "Het onderwerp van de informeer actie.";
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "onderwerp";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/about>
+  ], [
     <http://www.w3.org/ns/shacl#class> <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht>;
     <http://www.w3.org/ns/shacl#description> "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen.";
     <http://www.w3.org/ns/shacl#name> "resulteertIn";
     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#resulteertIn>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <https://schema.org/InformAction>;
+    <http://www.w3.org/ns/shacl#description> "Een relatie tussen twee Informeer Acties.";
+    <http://www.w3.org/ns/shacl#name> "isGerelateerdMet";
+    <http://www.w3.org/ns/shacl#path> dc:relation
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/m8g/PublicOrganisation>;
     <http://www.w3.org/ns/shacl#description> "Duidt de agent aan die aanleiding gaf tot de InformeerActie.";
@@ -165,10 +176,10 @@
     <http://www.w3.org/ns/shacl#path> <https://schema.org/agent>
   ], [
     <http://www.w3.org/ns/shacl#class> skos:Concept;
-    <http://www.w3.org/ns/shacl#description> "Het onderwerp van de informeer actie.";
+    <http://www.w3.org/ns/shacl#description> "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
     <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "onderwerp";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/about>
+    <http://www.w3.org/ns/shacl#name> "notificatiekanaal";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
   ], [
     <http://www.w3.org/ns/shacl#class> <https://schema.org/Audience>;
     <http://www.w3.org/ns/shacl#description> "De bestemmeling(en) die de informatie dien(t)(en) te ontvangen.";
@@ -176,21 +187,10 @@
     <http://www.w3.org/ns/shacl#name> "doelgroep";
     <http://www.w3.org/ns/shacl#path> schema:recipient
   ], [
-    <http://www.w3.org/ns/shacl#class> <https://schema.org/InformAction>;
-    <http://www.w3.org/ns/shacl#description> "Een relatie tussen twee Informeer Acties.";
-    <http://www.w3.org/ns/shacl#name> "isGerelateerdMet";
-    <http://www.w3.org/ns/shacl#path> dc:relation
-  ], [
     <http://www.w3.org/ns/shacl#class> <https://schema.org/PropertyValue>;
     <http://www.w3.org/ns/shacl#description> "De inhoud van een Notificatiebericht.";
     <http://www.w3.org/ns/shacl#name> "inhoud";
     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#inhoud>
-  ], [
-    <http://www.w3.org/ns/shacl#class> skos:Concept;
-    <http://www.w3.org/ns/shacl#description> "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "notificatiekanaal";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
   ], [
     <http://www.w3.org/ns/shacl#description> "Het tijdsinterval waarbinnen de Informeer Actie relevant is en bijgevolg kan resulteren in de verzending van notificatieberichten.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
@@ -227,6 +227,52 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
+    <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
+    <http://www.w3.org/ns/shacl#description> "De datum waarop het Notificatiebericht gecreëerd werd.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "datumCreatie";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/dateCreated>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "De tekstuele inhoud van het Notificatiebericht.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "tekst";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/text>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:anyURI;
+    <http://www.w3.org/ns/shacl#description> "Een url voor het Notificatiebericht.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "url";
+    <http://www.w3.org/ns/shacl#path> schema:url
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
+    <http://www.w3.org/ns/shacl#description> "De datum waarop het Notificatiebericht werd verzonden naar de bestemmeling. ";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "datumVerzending";
+    <http://www.w3.org/ns/shacl#path> schema:dateSent
+  ], [
+    <http://www.w3.org/ns/shacl#class> dc:Agent;
+    <http://www.w3.org/ns/shacl#description> "De agent die het notificatiebericht ontvangt.";
+    <http://www.w3.org/ns/shacl#name> "bestemmeling";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/recipient>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "Een titel voor het Notificatiebericht.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "titel";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/name>
+  ], [
+    <http://www.w3.org/ns/shacl#class> skos:Concept;
+    <http://www.w3.org/ns/shacl#description> "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "notificatiekanaal";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
+  ], [
     <http://www.w3.org/ns/shacl#class> <https://schema.org/Brand>;
     <http://www.w3.org/ns/shacl#description> "De afzender van het Notificatiebericht.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
@@ -240,11 +286,6 @@
     <http://www.w3.org/ns/shacl#name> "datumOntvangen";
     <http://www.w3.org/ns/shacl#path> schema:dateReceived
   ], [
-    <http://www.w3.org/ns/shacl#class> dc:Agent;
-    <http://www.w3.org/ns/shacl#description> "De agent die het notificatiebericht ontvangt.";
-    <http://www.w3.org/ns/shacl#name> "bestemmeling";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/recipient>
-  ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
     <http://www.w3.org/ns/shacl#description> "De datum waarop het Notificatiebericht werd gelezen door de bestemmeling. ";
     <http://www.w3.org/ns/shacl#maxCount> 1;
@@ -252,51 +293,10 @@
     <http://www.w3.org/ns/shacl#path> schema:dateRead
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
-    <http://www.w3.org/ns/shacl#description> "De datum waarop het Notificatiebericht werd verzonden naar de bestemmeling. ";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "datumVerzending";
-    <http://www.w3.org/ns/shacl#path> schema:dateSent
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
-    <http://www.w3.org/ns/shacl#description> "De datum waarop het Notificatiebericht gecreëerd werd.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "datumCreatie";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/dateCreated>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:anyURI;
-    <http://www.w3.org/ns/shacl#description> "Een url voor het Notificatiebericht.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "url";
-    <http://www.w3.org/ns/shacl#path> schema:url
-  ], [
-    <http://www.w3.org/ns/shacl#class> skos:Concept;
-    <http://www.w3.org/ns/shacl#description> "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "notificatiekanaal";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Een titel voor het Notificatiebericht.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "titel";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/name>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
     <http://www.w3.org/ns/shacl#description> "De datum waarop een Notificatiebericht vervalt.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#name> "vervalt";
     <http://www.w3.org/ns/shacl#path> schema:expires
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De tekstuele inhoud van het Notificatiebericht.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "tekst";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/text>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> .
 
@@ -325,18 +325,18 @@
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De waarde van het sleutel/waarde paar.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "waarde";
-    <http://www.w3.org/ns/shacl#path> <https://schema.org/value>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
     <http://www.w3.org/ns/shacl#description> "Het label is de sleutel van het sleutel/waarde paar.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#minCount> 1;
     <http://www.w3.org/ns/shacl#name> "naam";
     <http://www.w3.org/ns/shacl#path> <https://schema.org/name>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "De waarde van het sleutel/waarde paar.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "waarde";
+    <http://www.w3.org/ns/shacl#path> <https://schema.org/value>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <https://schema.org/PropertyValue> .
 
