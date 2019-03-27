@@ -444,7 +444,6 @@
 		sh:name "waarde" ;
 		sh:description "De waarde of hoeveelheid van de kwanitatieve waarde. " ;
 		sh:path <http://schema.org/value> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -514,18 +513,29 @@
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
+	sh:property [
+		sh:name "registratieStatus" ;
+		sh:description "Status van het geregistreerde logies." ;
+		sh:path <https://data.vlaanderen.be/ns/logies#registratieStatus> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie." ;
+		sh:path <http://purl.org/dc/terms/type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/d59411cd-6d71-44d9-a0b3-cf958d89858d> ;
+	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://schema.org/CreativeWork> ;
-	sh:property [
-		sh:name "isVertalingVan" ;
-		sh:description "Het werk waarop deze vertaling is gebaseerd." ;
-		sh:path <http://schema.org/translationOfWork> ;
-		sh:class <http://schema.org/CreativeWork> ;
-		sh:maxCount 1 ;
-	] ;
 	sh:property [
 		sh:name "heeftAuteur" ;
 		sh:description "De auteur van het werk." ;
@@ -536,6 +546,13 @@
 		sh:name "isGebaseerdOp" ;
 		sh:description "Het werk dat als bron werd gebruikt voor dit werk." ;
 		sh:path <http://schema.org/isBasedOn> ;
+		sh:class <http://schema.org/CreativeWork> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "isVertalingVan" ;
+		sh:description "Het werk waarop deze vertaling is gebaseerd." ;
+		sh:path <http://schema.org/translationOfWork> ;
 		sh:class <http://schema.org/CreativeWork> ;
 		sh:maxCount 1 ;
 	] ;
@@ -634,6 +651,7 @@
 		sh:description "Adres waarvan de adresvoorstelling is afgeleid." ;
 		sh:path <https://data.vlaanderen.be/ns/adres#verwijstNaar> ;
 		sh:class <https://data.vlaanderen.be/ns/adres#Adres> ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "administratieveEenheidNiveau1" ;
@@ -689,14 +707,12 @@
 		sh:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc." ;
 		sh:path <http://www.w3.org/ns/locn#locatorDesignator> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "locatienaam" ;
 		sh:description "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt." ;
 		sh:path <http://www.w3.org/ns/locn#locatorName> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "postbus" ;
@@ -893,51 +909,5 @@
 <https://data.vlaanderen.be/shacl/logies-basis#LicentieDocumentShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/dc/terms/LicenseDocument> ;
-	sh:closed false .
-
-<https://data.vlaanderen.be/shacl/logies-basis#RegistratieVolgensGeldigeTijdShape>
-	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/logies#RegistratieVolgensGeldigeTijd> ;
-	sh:property [
-		sh:name "isTijdspecialisatieVan" ;
-		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
-		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
-		sh:class <https://data.vlaanderen.be/ns/logies#Registratie> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "creatie" ;
-		sh:description "Beschrijving van het ontstaan van de versie." ;
-		sh:path <http://www.w3.org/ns/prov#qualifiedGeneration> ;
-		sh:class <http://www.w3.org/ns/prov#Generation> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "opheffing" ;
-		sh:description "Beschrijving van het verdwijnen van de versie." ;
-		sh:path <http://www.w3.org/ns/prov#qualifiedInvalidation> ;
-		sh:class <http://www.w3.org/ns/prov#Invalidation> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "registratieStatus" ;
-		sh:description "Status van het geregistreerde logies." ;
-		sh:path <https://data.vlaanderen.be/ns/logies#registratieStatus> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/48c5b233-44bc-49d1-93a7-b5005586baa2> ;
-	] ;
-	sh:property [
-		sh:name "type" ;
-		sh:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie." ;
-		sh:path <http://purl.org/dc/terms/type> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-		qb:codeList <https://linked.toerismevlaanderen.be/doc/conceptschemes/d59411cd-6d71-44d9-a0b3-cf958d89858d> ;
-	] ;
 	sh:closed false .
 
