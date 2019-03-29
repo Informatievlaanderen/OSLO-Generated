@@ -34,6 +34,113 @@
   "@id": "https://data.vlaanderen.be/shacl/logies-basis",
   "shapes": [
     {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#BeschrijvingShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Beschrijving",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "tekst",
+          "sh:description": "Tekstuele inhoud van de beschrijving.",
+          "sh:path": "http://schema.org/value",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "beschikbaarTot",
+          "sh:description": "Datum waarna de faciliteit niet meer beschikbaar is.",
+          "sh:path": "http://schema.org/validThrough",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "beschikbaarVan",
+          "sh:description": "Datum waarop de faciliteit beschikbaar wordt.",
+          "sh:path": "http://schema.org/validFrom",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "beschrijving",
+          "sh:description": "Een omschrijving van de aanwezige infrastructuur of aangeboden diensten.",
+          "sh:path": "http://schema.org/description",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "isSpecialisatieVan",
+          "sh:description": "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#isSpecialisatieVan",
+          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "naam",
+          "sh:description": "Een label of naam van de aangeboden dienst of aanwezige infrastructuur.",
+          "sh:path": "http://schema.org/name",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "beschrijving",
+          "sh:description": "Beschrijving van het toegekende label.",
+          "sh:path": "http://schema.org/description",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "heeftAuteur",
+          "sh:description": "De organisatie die het kwaliteitslabel heeft toegekend.",
+          "sh:path": "http://schema.org/author",
+          "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "kwaliteitsLabelCode",
+          "sh:description": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#kwaliteitsLabelCode",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "label",
+          "sh:description": "Naam van het label.",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "toegekendOp",
+          "sh:description": "Datum waarop het kwaliteitslabel is toegekend.",
+          "sh:path": "http://purl.org/dc/terms/issued",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/logies-basis#LogiesShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Logies",
@@ -172,185 +279,6 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#VerhuureenheidShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "aantalKamers",
-          "sh:description": "Aantal kamers dat de verhuureenheid ter beschikking heeft.",
-          "sh:path": "http://schema.org/numberOfRooms",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "aantalSlaapplaatsen",
-          "sh:description": "Totale aantal personen dat een logies of verhuureenheid kan bedienen.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "capaciteit",
-          "sh:description": "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#capaciteit",
-          "sh:class": "http://schema.org/QuantitativeValue"
-        },
-        {
-          "sh:name": "heeftFaciliteit",
-          "sh:description": "Aanwezige infrastructuur of dienst.",
-          "sh:path": "http://schema.org/amenityFeature",
-          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit"
-        },
-        {
-          "sh:name": "heeftKamer",
-          "sh:description": "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#heeftKamer",
-          "sh:class": "https://data.vlaanderen.be/ns/logies#Ruimte"
-        },
-        {
-          "sh:name": "locatie",
-          "sh:description": "De geometrische locatie van het object.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#locatie",
-          "sh:class": "http://www.w3.org/ns/locn#Geometry",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "naam",
-          "sh:description": "Benaming van de verhuureenheid",
-          "sh:path": "http://schema.org/name",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#ToeristischeRegioShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "bevatPlaats",
-          "sh:description": "een plaats die zich fysiek in de regio. bevindt.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
-          "sh:class": "http://purl.org/dc/terms/Location"
-        },
-        {
-          "sh:name": "geometrie",
-          "sh:description": "De geometrie van de regio.",
-          "sh:path": "http://www.w3.org/ns/locn#geometry",
-          "sh:class": "http://www.w3.org/ns/locn#Geometry",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "plaatsnaam",
-          "sh:description": "naam van de regio",
-          "sh:path": "http://www.w3.org/2000/01/rdf-schema#label",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#BeschrijvingShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Beschrijving",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "tekst",
-          "sh:description": "Tekstuele inhoud van de beschrijving.",
-          "sh:path": "http://schema.org/value",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Faciliteit",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "beschikbaarTot",
-          "sh:description": "Datum waarna de faciliteit niet meer beschikbaar is.",
-          "sh:path": "http://schema.org/validThrough",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "beschikbaarVan",
-          "sh:description": "Datum waarop de faciliteit beschikbaar wordt.",
-          "sh:path": "http://schema.org/validFrom",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "beschrijving",
-          "sh:description": "Een omschrijving van de aanwezige infrastructuur of aangeboden diensten.",
-          "sh:path": "http://schema.org/description",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "isSpecialisatieVan",
-          "sh:description": "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#isSpecialisatieVan",
-          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "naam",
-          "sh:description": "Een label of naam van de aangeboden dienst of aanwezige infrastructuur.",
-          "sh:path": "http://schema.org/name",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#RuimteShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Ruimte",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "beschrijving",
-          "sh:description": "beschrijving van de ruimte",
-          "sh:path": "http://schema.org/description",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-        },
-        {
-          "sh:name": "heeftFaciliteit",
-          "sh:description": "Aanwezige infrastructuur of dienst.",
-          "sh:path": "http://schema.org/amenityFeature",
-          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit"
-        },
-        {
-          "sh:name": "locatieaanduiding",
-          "sh:description": "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
-          "sh:class": "https://data.vlaanderen.be/ns/adres#Locatieaanduiding",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "type",
-          "sh:description": "Type van de kamer.",
-          "sh:path": "http://purl.org/dc/terms/type",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:maxCount": "1"
-        }
-      ]
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/logies-basis#RegistratieShape",
       "@type": "sh:NodeShape",
       "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Registratie",
@@ -369,52 +297,6 @@
           "sh:description": "De organisatie waar het logies werd geregistreerd.",
           "sh:path": "https://data.vlaanderen.be/ns/logies#verantwoordelijkeOrganisatie",
           "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "beschrijving",
-          "sh:description": "Beschrijving van het toegekende label.",
-          "sh:path": "http://schema.org/description",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "heeftAuteur",
-          "sh:description": "De organisatie die het kwaliteitslabel heeft toegekend.",
-          "sh:path": "http://schema.org/author",
-          "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "kwaliteitsLabelCode",
-          "sh:description": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen.",
-          "sh:path": "https://data.vlaanderen.be/ns/logies#kwaliteitsLabelCode",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "label",
-          "sh:description": "Naam van het label.",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "toegekendOp",
-          "sh:description": "Datum waarop het kwaliteitslabel is toegekend.",
-          "sh:path": "http://purl.org/dc/terms/issued",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         }
@@ -466,6 +348,124 @@
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "qb:codeList": "https://linked.toerismevlaanderen.be/doc/conceptschemes/d59411cd-6d71-44d9-a0b3-cf958d89858d"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#RuimteShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Ruimte",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "beschrijving",
+          "sh:description": "beschrijving van de ruimte",
+          "sh:path": "http://schema.org/description",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        },
+        {
+          "sh:name": "heeftFaciliteit",
+          "sh:description": "Aanwezige infrastructuur of dienst.",
+          "sh:path": "http://schema.org/amenityFeature",
+          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit"
+        },
+        {
+          "sh:name": "locatieaanduiding",
+          "sh:description": "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
+          "sh:class": "https://data.vlaanderen.be/ns/adres#Locatieaanduiding",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "type",
+          "sh:description": "Type van de kamer.",
+          "sh:path": "http://purl.org/dc/terms/type",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:maxCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#ToeristischeRegioShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "bevatPlaats",
+          "sh:description": "een plaats die zich fysiek in de regio. bevindt.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
+          "sh:class": "http://purl.org/dc/terms/Location"
+        },
+        {
+          "sh:name": "geometrie",
+          "sh:description": "De geometrie van de regio.",
+          "sh:path": "http://www.w3.org/ns/locn#geometry",
+          "sh:class": "http://www.w3.org/ns/locn#Geometry",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "plaatsnaam",
+          "sh:description": "naam van de regio",
+          "sh:path": "http://www.w3.org/2000/01/rdf-schema#label",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/logies-basis#VerhuureenheidShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "aantalKamers",
+          "sh:description": "Aantal kamers dat de verhuureenheid ter beschikking heeft.",
+          "sh:path": "http://schema.org/numberOfRooms",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "aantalSlaapplaatsen",
+          "sh:description": "Totale aantal personen dat een logies of verhuureenheid kan bedienen.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "capaciteit",
+          "sh:description": "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#capaciteit",
+          "sh:class": "http://schema.org/QuantitativeValue"
+        },
+        {
+          "sh:name": "heeftFaciliteit",
+          "sh:description": "Aanwezige infrastructuur of dienst.",
+          "sh:path": "http://schema.org/amenityFeature",
+          "sh:class": "https://data.vlaanderen.be/ns/logies#Faciliteit"
+        },
+        {
+          "sh:name": "heeftKamer",
+          "sh:description": "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#heeftKamer",
+          "sh:class": "https://data.vlaanderen.be/ns/logies#Ruimte"
+        },
+        {
+          "sh:name": "locatie",
+          "sh:description": "De geometrische locatie van het object.",
+          "sh:path": "https://data.vlaanderen.be/ns/logies#locatie",
+          "sh:class": "http://www.w3.org/ns/locn#Geometry",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "naam",
+          "sh:description": "Benaming van de verhuureenheid",
+          "sh:path": "http://schema.org/name",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1"
         }
       ]
     },

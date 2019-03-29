@@ -34,16 +34,83 @@
   "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#VergaderactiviteitShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#AgendapuntShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Vergaderactiviteit",
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "heeftAanwezige",
-          "sh:description": "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
-          "sh:class": "http://purl.org/dc/terms/Agent"
+          "sh:name": "aangebrachtNa",
+          "sh:description": "Het agendapunt dat op de agenda direct dit agendapunt voorafging.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#aangebrachtNa",
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "beschrijving",
+          "sh:description": "Korte beschrijving van het agendapunt.",
+          "sh:path": "http://purl.org/dc/terms/description",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "geplandOpenbaar",
+          "sh:description": "Geeft aan of het agendapunt al dan niet bedoeld is om openbaar te bespreken.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "heeftOntwerpbesluit",
+          "sh:description": "Een (mogelijks nog aan te vullen of aan te passen) ontwerp voor het besluit dat uit dit agendapunt zou voortkomen.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
+          "sh:class": "http://xmlns.com/foaf/0.1/Document"
+        },
+        {
+          "sh:name": "refereertAan",
+          "sh:description": "Een ander agendapunt waarnaar verwezen wordt vanuit dit agendapunt.",
+          "sh:path": "http://purl.org/dc/terms/references",
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
+        },
+        {
+          "sh:name": "titel",
+          "sh:description": "De naam van het agendapunt.",
+          "sh:path": "http://purl.org/dc/terms/title",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "type",
+          "sh:description": "Type van het agendapunt.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#Agendapunt.type",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:minCount": "1"
+        }
+      ]
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#ArtikelShape",
+      "@type": "sh:NodeShape",
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Artikel",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:name": "nummer",
+          "sh:description": "Het nummer van het artikel.",
+          "sh:path": "http://data.europa.eu/eli/ontology#number",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "realiseert",
+          "sh:description": "De rechtsgrond beschreven door dit artikel.",
+          "sh:path": "http://data.europa.eu/eli/ontology#realizes",
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
         }
       ]
     },
@@ -112,147 +179,53 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#AgendapuntShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#BesluitShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Besluit",
       "sh:closed": false,
       "sh:property": [
-        {
-          "sh:name": "aangebrachtNa",
-          "sh:description": "Het agendapunt dat op de agenda direct dit agendapunt voorafging.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#aangebrachtNa",
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
-          "sh:maxCount": "1"
-        },
         {
           "sh:name": "beschrijving",
-          "sh:description": "Korte beschrijving van het agendapunt.",
-          "sh:path": "http://purl.org/dc/terms/description",
+          "sh:description": "Een beknopte beschrijving van het besluit.",
+          "sh:path": "http://data.europa.eu/eli/ontology#description",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "geplandOpenbaar",
-          "sh:description": "Geeft aan of het agendapunt al dan niet bedoeld is om openbaar te bespreken.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "heeftOntwerpbesluit",
-          "sh:description": "Een (mogelijks nog aan te vullen of aan te passen) ontwerp voor het besluit dat uit dit agendapunt zou voortkomen.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
-          "sh:class": "http://xmlns.com/foaf/0.1/Document"
-        },
-        {
-          "sh:name": "refereertAan",
-          "sh:description": "Een ander agendapunt waarnaar verwezen wordt vanuit dit agendapunt.",
-          "sh:path": "http://purl.org/dc/terms/references",
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
-        },
-        {
-          "sh:name": "titel",
-          "sh:description": "De naam van het agendapunt.",
-          "sh:path": "http://purl.org/dc/terms/title",
+          "sh:name": "citeeropschrift",
+          "sh:description": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen.",
+          "sh:path": "http://data.europa.eu/eli/ontology#title_short",
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "type",
-          "sh:description": "Type van het agendapunt.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#Agendapunt.type",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:minCount": "1"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#ZittingShape",
-      "@type": "sh:NodeShape",
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Zitting",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:name": "behandelt",
-          "sh:description": "Een formeel vastgelegd agendapunt van de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#behandelt",
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "eind",
-          "sh:description": "Tijdstip waarop de zitting eindigt.",
-          "sh:path": "http://www.w3.org/ns/prov#endedAtTime",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "geplandeStart",
-          "sh:description": "Het tijdstip waarop de zitting gepland is om te beginnen.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#geplandeStart",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "heeftAanwezigeBijStart",
-          "sh:description": "Een mandataris (van het bestuursorsgaan die de zitting hield) die aanwezig was bij de start van de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart",
-          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "heeftNotulen",
-          "sh:description": "De formele notulen van de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftNotulen",
-          "sh:class": "http://xmlns.com/foaf/0.1/Document",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "heeftSecretaris",
-          "sh:description": "De mandataris die de rol van secretaris heeft gedurende de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
-          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
+          "sh:name": "motivering",
+          "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#motivering",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
         {
-          "sh:name": "heeftVoorzitter",
-          "sh:description": "De mandataris die de rol als voorzitter heeft gedurende de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
-          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "heeftZittingsverslag",
-          "sh:description": "Een verslag van de zitting.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
-          "sh:class": "http://xmlns.com/foaf/0.1/Document"
-        },
-        {
-          "sh:name": "isGehoudenDoor",
-          "sh:description": "Duidt aan door welk orgaan de zitting is gehouden.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "locatie",
-          "sh:description": "Locatie waar de zitting plaatsvindt. Doorgaans is dit een zaal in een gebouw.",
-          "sh:path": "http://www.w3.org/ns/prov#atLocation",
-          "sh:class": "http://www.w3.org/ns/prov#Location",
+          "sh:name": "publicatiedatum",
+          "sh:description": "De officiële publicatiedatum van het besluit.",
+          "sh:path": "http://data.europa.eu/eli/ontology#date_publication",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
           "sh:maxCount": "1"
         },
         {
-          "sh:name": "start",
-          "sh:description": "Tijdstip waarop de zitting begint.",
-          "sh:path": "http://www.w3.org/ns/prov#startedAtTime",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:name": "realiseert",
+          "sh:description": "De rechtsgrond beschreven door dit besluit.",
+          "sh:path": "http://data.europa.eu/eli/ontology#realizes",
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResource",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "volgtUit",
+          "sh:description": "De behandeling van het agendapunt die tot dit besluit heeft geleid.",
+          "sh:path": "http://www.w3.org/ns/prov#wasGeneratedBy",
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         }
@@ -347,77 +320,104 @@
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#ArtikelShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#VergaderactiviteitShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Artikel",
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Vergaderactiviteit",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "nummer",
-          "sh:description": "Het nummer van het artikel.",
-          "sh:path": "http://data.europa.eu/eli/ontology#number",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
-        },
-        {
-          "sh:name": "realiseert",
-          "sh:description": "De rechtsgrond beschreven door dit artikel.",
-          "sh:path": "http://data.europa.eu/eli/ontology#realizes",
-          "sh:class": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
-          "sh:maxCount": "1",
-          "sh:minCount": "1"
+          "sh:name": "heeftAanwezige",
+          "sh:description": "Een agent (bvb: mandataris) die aanwezig was tijdens (een deel van) de activiteit waar hij een zekere verantwoordelijkheid had.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+          "sh:class": "http://purl.org/dc/terms/Agent"
         }
       ]
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#BesluitShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-publicatie#ZittingShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Besluit",
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Zitting",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:name": "beschrijving",
-          "sh:description": "Een beknopte beschrijving van het besluit.",
-          "sh:path": "http://data.europa.eu/eli/ontology#description",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:maxCount": "1"
+          "sh:name": "behandelt",
+          "sh:description": "Een formeel vastgelegd agendapunt van de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#behandelt",
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+          "sh:minCount": "1"
         },
         {
-          "sh:name": "citeeropschrift",
-          "sh:description": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen.",
-          "sh:path": "http://data.europa.eu/eli/ontology#title_short",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "motivering",
-          "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#motivering",
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:name": "eind",
+          "sh:description": "Tijdstip waarop de zitting eindigt.",
+          "sh:path": "http://www.w3.org/ns/prov#endedAtTime",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
         {
-          "sh:name": "publicatiedatum",
-          "sh:description": "De officiële publicatiedatum van het besluit.",
-          "sh:path": "http://data.europa.eu/eli/ontology#date_publication",
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:maxCount": "1"
-        },
-        {
-          "sh:name": "realiseert",
-          "sh:description": "De rechtsgrond beschreven door dit besluit.",
-          "sh:path": "http://data.europa.eu/eli/ontology#realizes",
-          "sh:class": "http://data.europa.eu/eli/ontology#LegalResource",
+          "sh:name": "geplandeStart",
+          "sh:description": "Het tijdstip waarop de zitting gepland is om te beginnen.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#geplandeStart",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         },
         {
-          "sh:name": "volgtUit",
-          "sh:description": "De behandeling van het agendapunt die tot dit besluit heeft geleid.",
-          "sh:path": "http://www.w3.org/ns/prov#wasGeneratedBy",
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
+          "sh:name": "heeftAanwezigeBijStart",
+          "sh:description": "Een mandataris (van het bestuursorsgaan die de zitting hield) die aanwezig was bij de start van de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart",
+          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "heeftNotulen",
+          "sh:description": "De formele notulen van de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftNotulen",
+          "sh:class": "http://xmlns.com/foaf/0.1/Document",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "heeftSecretaris",
+          "sh:description": "De mandataris die de rol van secretaris heeft gedurende de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
+          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "heeftVoorzitter",
+          "sh:description": "De mandataris die de rol als voorzitter heeft gedurende de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "heeftZittingsverslag",
+          "sh:description": "Een verslag van de zitting.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
+          "sh:class": "http://xmlns.com/foaf/0.1/Document"
+        },
+        {
+          "sh:name": "isGehoudenDoor",
+          "sh:description": "Duidt aan door welk orgaan de zitting is gehouden.",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+          "sh:maxCount": "1",
+          "sh:minCount": "1"
+        },
+        {
+          "sh:name": "locatie",
+          "sh:description": "Locatie waar de zitting plaatsvindt. Doorgaans is dit een zaal in een gebouw.",
+          "sh:path": "http://www.w3.org/ns/prov#atLocation",
+          "sh:class": "http://www.w3.org/ns/prov#Location",
+          "sh:maxCount": "1"
+        },
+        {
+          "sh:name": "start",
+          "sh:description": "Tijdstip waarop de zitting begint.",
+          "sh:path": "http://www.w3.org/ns/prov#startedAtTime",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:maxCount": "1",
           "sh:minCount": "1"
         }
