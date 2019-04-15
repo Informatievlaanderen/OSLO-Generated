@@ -220,13 +220,13 @@
       },
       "properties": [
         {
-          "uri": "http://www.w3.org/ns/org#postIn",
+          "uri": "http://www.w3.org/ns/org#heldBy",
           "name": {
-            "nl": "is positie in"
+            "nl": "wordt ingevuld door"
           },
-          "sort_nl": "is positie in",
+          "sort_nl": "wordt ingevuld door",
           "description": {
-            "nl": "Organisatie waar de positie bestaat."
+            "nl": "Geeft aan welke agent een positie heeft (typisch bij de organisatie waar de positie is gedefinieerd)."
           },
           "usage": {
             "nl": " "
@@ -239,11 +239,11 @@
           ],
           "range": [
             {
-              "range_label": "Organisatie",
-              "range_uri": "http://www.w3.org/ns/org#Organization"
+              "range_label": "Agent",
+              "range_uri": "http://purl.org/dc/terms/Agent"
             }
           ],
-          "cardinality": "0..*",
+          "cardinality": "",
           "codelist_uri": ""
         },
         {
@@ -274,13 +274,13 @@
           "codelist_uri": ""
         },
         {
-          "uri": "http://www.w3.org/ns/org#heldBy",
+          "uri": "http://www.w3.org/ns/org#postIn",
           "name": {
-            "nl": "wordt ingevuld door"
+            "nl": "is positie in"
           },
-          "sort_nl": "wordt ingevuld door",
+          "sort_nl": "is positie in",
           "description": {
-            "nl": "Geeft aan welke agent een positie heeft (typisch bij de organisatie waar de positie is gedefinieerd)."
+            "nl": "Organisatie waar de positie bestaat."
           },
           "usage": {
             "nl": " "
@@ -293,11 +293,11 @@
           ],
           "range": [
             {
-              "range_label": "Agent",
-              "range_uri": "http://purl.org/dc/terms/Agent"
+              "range_label": "Organisatie",
+              "range_uri": "http://www.w3.org/ns/org#Organization"
             }
           ],
-          "cardinality": "",
+          "cardinality": "0..*",
           "codelist_uri": ""
         },
         {
@@ -605,16 +605,16 @@
       },
       "properties": [
         {
-          "uri": "http://www.w3.org/ns/org#originalOrganization",
+          "uri": "http://data.europa.eu/m8g/hasFormalFramework",
           "name": {
-            "nl": "heeft oorspronkelijke organisatie"
+            "nl": "vindt plaats binnen"
           },
-          "sort_nl": "heeft oorspronkelijke organisatie",
+          "sort_nl": "vindt plaats binnen",
           "description": {
-            "nl": "Organisatie voor deze de verandering onderging."
+            "nl": "Verwijst naar het formeel kader dat tot het veranderingsmoment heeft geleid."
           },
           "usage": {
-            "nl": "Merk op dat deze relatie zinloos is als het veranderingsmoment een oprichting is (een oprichting is geen verandering aan bestaande organisatie)."
+            "nl": "Indien het veranderingsmoment betrekking heeft op het oprichten van een publieke organisatie is dit attribuut verplicht. Dit wordt uitgedrukt dmv de constraint verplichtIndienOprichtingPubliekeOrganisatie."
           },
           "domain": [
             {
@@ -624,8 +624,8 @@
           ],
           "range": [
             {
-              "range_label": "Organisatie",
-              "range_uri": "http://www.w3.org/ns/org#Organization"
+              "range_label": "FormeelKader",
+              "range_uri": "http://purl.org/vocab/cpsv#FormalFramework"
             }
           ],
           "cardinality": "0..*",
@@ -659,16 +659,16 @@
           "codelist_uri": ""
         },
         {
-          "uri": "http://data.europa.eu/m8g/hasFormalFramework",
+          "uri": "http://www.w3.org/ns/org#originalOrganization",
           "name": {
-            "nl": "vindt plaats binnen"
+            "nl": "heeft oorspronkelijke organisatie"
           },
-          "sort_nl": "vindt plaats binnen",
+          "sort_nl": "heeft oorspronkelijke organisatie",
           "description": {
-            "nl": "Verwijst naar het formeel kader dat tot het veranderingsmoment heeft geleid."
+            "nl": "Organisatie voor deze de verandering onderging."
           },
           "usage": {
-            "nl": "Indien het veranderingsmoment betrekking heeft op het oprichten van een publieke organisatie is dit attribuut verplicht. Dit wordt uitgedrukt dmv de constraint verplichtIndienOprichtingPubliekeOrganisatie."
+            "nl": "Merk op dat deze relatie zinloos is als het veranderingsmoment een oprichting is (een oprichting is geen verandering aan bestaande organisatie)."
           },
           "domain": [
             {
@@ -678,8 +678,8 @@
           ],
           "range": [
             {
-              "range_label": "FormeelKader",
-              "range_uri": "http://purl.org/vocab/cpsv#FormalFramework"
+              "range_label": "Organisatie",
+              "range_uri": "http://www.w3.org/ns/org#Organization"
             }
           ],
           "cardinality": "0..*",
@@ -974,16 +974,43 @@
       "usage": {},
       "properties": [
         {
-          "uri": "http://www.w3.org/ns/org#memberOf",
+          "uri": "http://www.w3.org/ns/org#hasMembership",
           "name": {
-            "nl": "is lid van"
+            "nl": "heeft lidmaatschap"
           },
-          "sort_nl": "is lid van",
+          "sort_nl": "heeft lidmaatschap",
           "description": {
-            "nl": "Niet nader bepaald lidmaatschap van een agent van een organisatie."
+            "nl": "Lidmaatschap van een agent (van een organisatie)."
           },
           "usage": {
-            "nl": "Dekt elk type aansluiting of betrokkenheid van een agent bij een organisatie, niet enkel formeel lidmaatschap. Kan eventueel verder gespecialiseerd worden."
+            "nl": "Het lidmaatschap wordt meer in detail beschreven met de entiteit lidmaatschap."
+          },
+          "domain": [
+            {
+              "uri": "http://purl.org/dc/terms/Agent",
+              "EA-Name": "Agent"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Lidmaatschap",
+              "range_uri": "http://www.w3.org/ns/org#Membership"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/org#headOf",
+          "name": {
+            "nl": "is hoofd van"
+          },
+          "sort_nl": "is hoofd van",
+          "description": {
+            "nl": "Verwijst naar de organisatie waaraan een agent aan het hoofd staat of leiding geeft."
+          },
+          "usage": {
+            "nl": " "
           },
           "domain": [
             {
@@ -1028,43 +1055,16 @@
           "codelist_uri": ""
         },
         {
-          "uri": "http://www.w3.org/ns/org#hasMembership",
+          "uri": "http://www.w3.org/ns/org#memberOf",
           "name": {
-            "nl": "heeft lidmaatschap"
+            "nl": "is lid van"
           },
-          "sort_nl": "heeft lidmaatschap",
+          "sort_nl": "is lid van",
           "description": {
-            "nl": "Lidmaatschap van een agent (van een organisatie)."
+            "nl": "Niet nader bepaald lidmaatschap van een agent van een organisatie."
           },
           "usage": {
-            "nl": "Het lidmaatschap wordt meer in detail beschreven met de entiteit lidmaatschap."
-          },
-          "domain": [
-            {
-              "uri": "http://purl.org/dc/terms/Agent",
-              "EA-Name": "Agent"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Lidmaatschap",
-              "range_uri": "http://www.w3.org/ns/org#Membership"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "http://www.w3.org/ns/org#headOf",
-          "name": {
-            "nl": "is hoofd van"
-          },
-          "sort_nl": "is hoofd van",
-          "description": {
-            "nl": "Verwijst naar de organisatie waaraan een agent aan het hoofd staat of leiding geeft."
-          },
-          "usage": {
-            "nl": " "
+            "nl": "Dekt elk type aansluiting of betrokkenheid van een agent bij een organisatie, niet enkel formeel lidmaatschap. Kan eventueel verder gespecialiseerd worden."
           },
           "domain": [
             {
@@ -1207,6 +1207,141 @@
       },
       "properties": [
         {
+          "uri": "http://www.w3.org/ns/org#hasPrimarySite",
+          "name": {
+            "nl": "heeft primaire vestiging"
+          },
+          "sort_nl": "heeft primaire vestiging",
+          "description": {
+            "nl": "Verwijst naar de belangrijkste vestiging van de organisatie, niet noodzakelijk het formele hoofdkwartier maar wel de vestiging waarop de organisatie standaard kan worden gecontacteerd."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/ns/org#Organization",
+              "EA-Name": "Organisatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Vestiging",
+              "range_uri": "http://www.w3.org/ns/org#Site"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/org#changedBy",
+          "name": {
+            "nl": "is veranderd door"
+          },
+          "sort_nl": "is veranderd door",
+          "description": {
+            "nl": "Verwijst naar het veranderingsmoment dat deze organisatie heeft veranderd."
+          },
+          "usage": {
+            "nl": "Als het veranderingsmoment bv een stopzetting is hield de organisatie daarna op met bestaan.  Merk op dat deze relatie zinloos is als het veranderingsmoment een oprichting is (de organisatie bestond nog niet en kan dus niet veranderd zijn tgv de oprichting)."
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/ns/org#Organization",
+              "EA-Name": "Organisatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Veranderingsgebeurtenis",
+              "range_uri": "http://www.w3.org/ns/org#ChangeEvent"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/org#hasUnit",
+          "name": {
+            "nl": "heeft eenheid"
+          },
+          "sort_nl": "heeft eenheid",
+          "description": {
+            "nl": "Verwijst naar een organisatie-eenheid die deel uitmaakt van de organisatie, bv een afdeling."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/ns/org#Organization",
+              "EA-Name": "Organisatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "OrganisatieEenheid",
+              "range_uri": "http://www.w3.org/ns/org#OrganizationalUnit"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/org#subOrganizationOf",
+          "name": {
+            "nl": "is suborganisatie van"
+          },
+          "sort_nl": "is suborganisatie van",
+          "description": {
+            "nl": "Organisatie die deze organisatie omvat."
+          },
+          "usage": {
+            "nl": "Wordt gebruikt om een hiërarchie van organisaties te documenteren."
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/ns/org#Organization",
+              "EA-Name": "Organisatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Organisatie",
+              "range_uri": "http://www.w3.org/ns/org#Organization"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/org#resultedFrom",
+          "name": {
+            "nl": "is het resultaat van"
+          },
+          "sort_nl": "is het resultaat van",
+          "description": {
+            "nl": "Verwijst naar het veranderingsmoment dat tot de huidige organisatie heeft geleid."
+          },
+          "usage": {
+            "nl": "Voor een publieke organisatie is een verwijzing naar een veranderingsmoment vh type oprichting verplicht. Dit wordt uitgedrukt dmv de constraint verplichtIndienPubliekeOrganisatie. Merk op dat deze relatie zinloos is als het veranderingsmoment een stopzetting is (de organisatie kan niet het resultaat zijn van zijn eigen stopzetting)."
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/ns/org#Organization",
+              "EA-Name": "Organisatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Veranderingsgebeurtenis",
+              "range_uri": "http://www.w3.org/ns/org#ChangeEvent"
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
           "uri": "http://www.w3.org/ns/org#hasRegisteredSite",
           "name": {
             "nl": "heeft geregistreerde vestiging"
@@ -1261,33 +1396,6 @@
           "codelist_uri": ""
         },
         {
-          "uri": "http://www.w3.org/ns/org#changedBy",
-          "name": {
-            "nl": "is veranderd door"
-          },
-          "sort_nl": "is veranderd door",
-          "description": {
-            "nl": "Verwijst naar het veranderingsmoment dat deze organisatie heeft veranderd."
-          },
-          "usage": {
-            "nl": "Als het veranderingsmoment bv een stopzetting is hield de organisatie daarna op met bestaan.  Merk op dat deze relatie zinloos is als het veranderingsmoment een oprichting is (de organisatie bestond nog niet en kan dus niet veranderd zijn tgv de oprichting)."
-          },
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/org#Organization",
-              "EA-Name": "Organisatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Veranderingsgebeurtenis",
-              "range_uri": "http://www.w3.org/ns/org#ChangeEvent"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
           "uri": "http://www.w3.org/ns/org#linkedTo",
           "name": {
             "nl": "is geassocieerd met"
@@ -1298,60 +1406,6 @@
           },
           "usage": {
             "nl": "Bv om subsidiëring of bevooradingsketens te documenteren. Dient in dat geval verder gespecialiseerd te worden."
-          },
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/org#Organization",
-              "EA-Name": "Organisatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Organisatie",
-              "range_uri": "http://www.w3.org/ns/org#Organization"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "http://www.w3.org/ns/org#hasPrimarySite",
-          "name": {
-            "nl": "heeft primaire vestiging"
-          },
-          "sort_nl": "heeft primaire vestiging",
-          "description": {
-            "nl": "Verwijst naar de belangrijkste vestiging van de organisatie, niet noodzakelijk het formele hoofdkwartier maar wel de vestiging waarop de organisatie standaard kan worden gecontacteerd."
-          },
-          "usage": {
-            "nl": " "
-          },
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/org#Organization",
-              "EA-Name": "Organisatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Vestiging",
-              "range_uri": "http://www.w3.org/ns/org#Site"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "http://www.w3.org/ns/org#subOrganizationOf",
-          "name": {
-            "nl": "is suborganisatie van"
-          },
-          "sort_nl": "is suborganisatie van",
-          "description": {
-            "nl": "Organisatie die deze organisatie omvat."
-          },
-          "usage": {
-            "nl": "Wordt gebruikt om een hiërarchie van organisaties te documenteren."
           },
           "domain": [
             {
@@ -1396,33 +1450,6 @@
           "codelist_uri": ""
         },
         {
-          "uri": "http://www.w3.org/ns/org#hasUnit",
-          "name": {
-            "nl": "heeft eenheid"
-          },
-          "sort_nl": "heeft eenheid",
-          "description": {
-            "nl": "Verwijst naar een organisatie-eenheid die deel uitmaakt van de organisatie, bv een afdeling."
-          },
-          "usage": {
-            "nl": " "
-          },
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/org#Organization",
-              "EA-Name": "Organisatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "OrganisatieEenheid",
-              "range_uri": "http://www.w3.org/ns/org#OrganizationalUnit"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
           "uri": "http://www.w3.org/ns/org#hasSubOrganization",
           "name": {
             "nl": "heeft suborganisatie"
@@ -1444,33 +1471,6 @@
             {
               "range_label": "Organisatie",
               "range_uri": "http://www.w3.org/ns/org#Organization"
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "http://www.w3.org/ns/org#resultedFrom",
-          "name": {
-            "nl": "is het resultaat van"
-          },
-          "sort_nl": "is het resultaat van",
-          "description": {
-            "nl": "Verwijst naar het veranderingsmoment dat tot de huidige organisatie heeft geleid."
-          },
-          "usage": {
-            "nl": "Voor een publieke organisatie is een verwijzing naar een veranderingsmoment vh type oprichting verplicht. Dit wordt uitgedrukt dmv de constraint verplichtIndienPubliekeOrganisatie. Merk op dat deze relatie zinloos is als het veranderingsmoment een stopzetting is (de organisatie kan niet het resultaat zijn van zijn eigen stopzetting)."
-          },
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/org#Organization",
-              "EA-Name": "Organisatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Veranderingsgebeurtenis",
-              "range_uri": "http://www.w3.org/ns/org#ChangeEvent"
             }
           ],
           "cardinality": "0..*",
