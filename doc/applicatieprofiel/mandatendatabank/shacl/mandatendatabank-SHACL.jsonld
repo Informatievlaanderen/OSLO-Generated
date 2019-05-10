@@ -326,65 +326,121 @@
       "sh:targetClass": "http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#OpheffingShape",
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:description": "Het einde van de periode waarover de versie gedefinieerd is.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De laatste dag waarop de regelgeving nog van kracht is.",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "tijdstip",
-          "sh:path": "http://www.w3.org/ns/prov#atTime"
-        }
-      ],
-      "sh:targetClass": "http://www.w3.org/ns/prov#Invalidation"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#CreatieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:description": "De start van de periode waarover de versie gedefinieerd is.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "tijdstip",
-          "sh:path": "http://www.w3.org/ns/prov#atTime"
-        }
-      ],
-      "sh:targetClass": "http://www.w3.org/ns/prov#Generation"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#VersieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.w3.org/ns/prov#Generation",
-          "sh:description": "Beschrijving vh ontstaan vd versie.",
-          "sh:maxCount": "1",
-          "sh:name": "creatie",
-          "sh:path": "http://www.w3.org/ns/prov#qualifiedGeneration"
+          "sh:name": "buitenwerkingtreding",
+          "sh:path": "http://data.europa.eu/eli/ontology#date_no_longer_in_force"
         },
         {
-          "sh:class": "http://www.w3.org/ns/prov#Invalidation",
-          "sh:description": "Beschrijving vh verdwijnen vd versie.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De datum waarop de regelgeving van kracht wordt.",
           "sh:maxCount": "1",
-          "sh:name": "opheffing",
-          "sh:path": "http://www.w3.org/ns/prov#qualifiedInvalidation"
+          "sh:minCount": "1",
+          "sh:name": "inwerkingtreding",
+          "sh:path": "http://data.europa.eu/eli/ontology#first_date_entry_in_force"
+        },
+        {
+          "sh:class": "http://data.europa.eu/eli/ontology#ResourceType",
+          "sh:description": "Het type van de rechtsgrond.",
+          "sh:minCount": "1",
+          "sh:name": "typeDocument",
+          "sh:path": "http://data.europa.eu/eli/ontology#type_document"
         }
       ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#Versie"
+      "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResource"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#VersieVolgensGeldigeTijdShape",
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd"
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Classificatie van de bestuurseenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "classificatie",
+          "sh:path": "http://www.w3.org/ns/org#classification"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Naam van de bestuurseenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/prov#Location",
+          "sh:description": "Geografische gebied waarbinnen de bestuurseenheid bepaalde verantwoordelijkheden heeft waarbinnen het bestuurshandelingen kan stellen.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "werkingsgebied",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#werkingsgebied"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#Bestuursorgaan (in bestuursperiode)Shape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandaat",
+          "sh:description": "Een mandaat binnen het orgaan.",
+          "sh:minCount": "1",
+          "sh:name": "bevat",
+          "sh:path": "http://www.w3.org/ns/org#hasPost"
+        },
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+          "sh:description": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "isTijdspecialisatieVan",
+          "sh:path": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#BestuursorgaanShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+          "sh:description": "De bestuurseenheid die door het orgaan bestuurd wordt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "bestuurt",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#bestuurt"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Het type bestuursorgaan.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "classificatie",
+          "sh:path": "http://www.w3.org/ns/org#classification"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Naam van de eenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#LidmaatschapShape",
@@ -416,22 +472,6 @@
         }
       ],
       "sh:targetClass": "http://www.w3.org/ns/org#Membership"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#GeboorteShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:description": "De geboortedatum.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "datum",
-          "sh:path": "https://data.vlaanderen.be/ns/persoon#datum"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/persoon#Geboorte"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#PersoonShape",
@@ -497,121 +537,81 @@
       "sh:targetClass": "http://www.w3.org/ns/person#Person"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondShape",
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#CreatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "De start van de periode waarover de versie gedefinieerd is.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "tijdstip",
+          "sh:path": "http://www.w3.org/ns/prov#atTime"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/prov#Generation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#OpheffingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Het einde van de periode waarover de versie gedefinieerd is.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "tijdstip",
+          "sh:path": "http://www.w3.org/ns/prov#atTime"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/prov#Invalidation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#VersieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/ns/prov#Generation",
+          "sh:description": "Beschrijving vh ontstaan vd versie.",
+          "sh:maxCount": "1",
+          "sh:name": "creatie",
+          "sh:path": "http://www.w3.org/ns/prov#qualifiedGeneration"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/prov#Invalidation",
+          "sh:description": "Beschrijving vh verdwijnen vd versie.",
+          "sh:maxCount": "1",
+          "sh:name": "opheffing",
+          "sh:path": "http://www.w3.org/ns/prov#qualifiedInvalidation"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#Versie"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#VersieVolgensGeldigeTijdShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#GeboorteShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:description": "De laatste dag waarop de regelgeving nog van kracht is.",
-          "sh:maxCount": "1",
-          "sh:name": "buitenwerkingtreding",
-          "sh:path": "http://data.europa.eu/eli/ontology#date_no_longer_in_force"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:description": "De datum waarop de regelgeving van kracht wordt.",
+          "sh:description": "De geboortedatum.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "inwerkingtreding",
-          "sh:path": "http://data.europa.eu/eli/ontology#first_date_entry_in_force"
-        },
-        {
-          "sh:class": "http://data.europa.eu/eli/ontology#ResourceType",
-          "sh:description": "Het type van de rechtsgrond.",
-          "sh:minCount": "1",
-          "sh:name": "typeDocument",
-          "sh:path": "http://data.europa.eu/eli/ontology#type_document"
+          "sh:name": "datum",
+          "sh:path": "https://data.vlaanderen.be/ns/persoon#datum"
         }
       ],
-      "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResource"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#Bestuursorgaan (in bestuursperiode)Shape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/mandaat#Mandaat",
-          "sh:description": "Een mandaat binnen het orgaan.",
-          "sh:minCount": "1",
-          "sh:name": "bevat",
-          "sh:path": "http://www.w3.org/ns/org#hasPost"
-        },
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
-          "sh:description": "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "isTijdspecialisatieVan",
-          "sh:path": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Classificatie van de bestuurseenheid.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "classificatie",
-          "sh:path": "http://www.w3.org/ns/org#classification"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Naam van de bestuurseenheid.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "naam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
-        },
-        {
-          "sh:class": "http://www.w3.org/ns/prov#Location",
-          "sh:description": "Geografische gebied waarbinnen de bestuurseenheid bepaalde verantwoordelijkheden heeft waarbinnen het bestuurshandelingen kan stellen.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "werkingsgebied",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#werkingsgebied"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/mandatendatabank#BestuursorgaanShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
-          "sh:description": "De bestuurseenheid die door het orgaan bestuurd wordt.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "bestuurt",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#bestuurt"
-        },
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Het type bestuursorgaan.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "classificatie",
-          "sh:path": "http://www.w3.org/ns/org#classification"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Naam van de eenheid.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "naam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/persoon#Geboorte"
     }
   ]
 }

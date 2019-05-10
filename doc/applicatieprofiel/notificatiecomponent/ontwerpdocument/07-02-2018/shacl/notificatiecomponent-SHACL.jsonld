@@ -124,42 +124,6 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/notificatie#Notificatiebericht"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#AgentShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://purl.org/dc/terms/Agent"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GetypeerdeStringShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GeometrieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Geometrie uitgedrukt in gml-formaat.",
-          "sh:maxCount": "1",
-          "sh:name": "gml",
-          "sh:path": "http://www.opengis.net/ont/geosparql#asGML"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Geometrie uitgedrukt in wkt-formaat.",
-          "sh:maxCount": "1",
-          "sh:name": "wkt",
-          "sh:path": "http://www.opengis.net/ont/geosparql#asWKT"
-        }
-      ],
-      "sh:targetClass": "http://www.w3.org/ns/locn#Geometry"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#TijdsintervalShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -183,11 +147,40 @@
       "sh:targetClass": "http://data.europa.eu/m8g/PeriodOfTime"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GeografischeNaamShape",
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#PubliekeOrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://schema.org/Brand",
+          "sh:description": "Het merk dat geassocieerd is met één of meerdere Publieke Organisatie(s), in de context van Publieke Dienstverlening. ",
+          "sh:minCount": "1",
+          "sh:name": "heeftMerk",
+          "sh:path": "http://schema.org/brand"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/PublicOrganisation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#AgentShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+      "sh:targetClass": "http://purl.org/dc/terms/Agent"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#PubliekeDienstverleningShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/PublicOrganisation",
+          "sh:description": "Publieke Organisatie die verantwoordelijk is voor het aanbieden en beheren van de Publieke dienstverlening.",
+          "sh:name": "heeftVerantwoordelijke",
+          "sh:path": "http://data.europa.eu/m8g/hasCompetentAuthority"
+        }
+      ],
+      "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#ContactInfoShape",
@@ -261,33 +254,40 @@
       "sh:targetClass": "http://schema.org/ContactPoint"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#PubliekeDienstverleningShape",
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GeografischeNaamShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.europa.eu/m8g/PublicOrganisation",
-          "sh:description": "Publieke Organisatie die verantwoordelijk is voor het aanbieden en beheren van de Publieke dienstverlening.",
-          "sh:name": "heeftVerantwoordelijke",
-          "sh:path": "http://data.europa.eu/m8g/hasCompetentAuthority"
-        }
-      ],
-      "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#PubliekeOrganisatieShape",
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GetypeerdeStringShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#GeometrieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://schema.org/Brand",
-          "sh:description": "Het merk dat geassocieerd is met één of meerdere Publieke Organisatie(s), in de context van Publieke Dienstverlening. ",
-          "sh:minCount": "1",
-          "sh:name": "heeftMerk",
-          "sh:path": "http://schema.org/brand"
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Geometrie uitgedrukt in gml-formaat.",
+          "sh:maxCount": "1",
+          "sh:name": "gml",
+          "sh:path": "http://www.opengis.net/ont/geosparql#asGML"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Geometrie uitgedrukt in wkt-formaat.",
+          "sh:maxCount": "1",
+          "sh:name": "wkt",
+          "sh:path": "http://www.opengis.net/ont/geosparql#asWKT"
         }
       ],
-      "sh:targetClass": "http://data.europa.eu/m8g/PublicOrganisation"
+      "sh:targetClass": "http://www.w3.org/ns/locn#Geometry"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#AdministratieveEenheidShape",
@@ -338,6 +338,36 @@
         }
       ],
       "sh:targetClass": "https://schema.org/Audience"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#MerkShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://schema.org/ContactPoint",
+          "sh:description": "Informatie zoals email, telefoon... die toelaat de entiteit te contacteren.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "contactinfo",
+          "sh:path": "http://schema.org/contactPoint"
+        },
+        {
+          "sh:class": "http://purl.org/vocab/cpsv#PublicService",
+          "sh:description": "De Publieke Dienstverlening waar het Merk aan gerelateerd is.",
+          "sh:name": "isGerelateerdMet",
+          "sh:path": "http://purl.org/dc/terms/relation"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De naam van het Merk.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://schema.org/name"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/Brand"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#InformeerActieShape",
@@ -424,36 +454,6 @@
         }
       ],
       "sh:targetClass": "https://schema.org/PropertyValue"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/notificatiecomponent#MerkShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://schema.org/ContactPoint",
-          "sh:description": "Informatie zoals email, telefoon... die toelaat de entiteit te contacteren.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "contactinfo",
-          "sh:path": "http://schema.org/contactPoint"
-        },
-        {
-          "sh:class": "http://purl.org/vocab/cpsv#PublicService",
-          "sh:description": "De Publieke Dienstverlening waar het Merk aan gerelateerd is.",
-          "sh:name": "isGerelateerdMet",
-          "sh:path": "http://purl.org/dc/terms/relation"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De naam van het Merk.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "naam",
-          "sh:path": "http://schema.org/name"
-        }
-      ],
-      "sh:targetClass": "https://schema.org/Brand"
     }
   ]
 }

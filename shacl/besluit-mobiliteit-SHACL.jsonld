@@ -398,20 +398,115 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#VoorwaardeShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#RechtsgrondonderdeelShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#AanvullendReglementShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "Periode waarbinnen het aanvullend reglement geldig is.",
+          "sh:name": "tijdsinterval",
+          "sh:path": "http://purl.org/dc/terms/temporal"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#AanvullendReglement"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#ArtikelShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+          "sh:description": "Voorwaarde waaraan het artikel gebonden is.",
+          "sh:name": "heeftVoorwaarde",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde"
+        },
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Besluit",
+          "sh:description": "Het besluit waarvan het artikel een onderdeel is.",
+          "sh:name": "isOnderdeelVan",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#isOnderdeelVan"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Het nummer van het artikel.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "nummer",
+          "sh:path": "http://data.europa.eu/eli/ontology#number"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Artikel"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#BesluitShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Beschrijving van de voorwaarde.",
+          "sh:description": "Een beknopte beschrijving van het besluit.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "beschrijving",
-          "sh:path": "http://purl.org/dc/terms/description"
+          "sh:path": "http://data.europa.eu/eli/ontology#description"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "citeeropschrift",
+          "sh:path": "http://data.europa.eu/eli/ontology#title_short"
+        },
+        {
+          "sh:class": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+          "sh:description": "Voorwaarde waaraan het besluit gebonden is.",
+          "sh:name": "heeftVoorwaarde",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "motivering",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#motivering"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De officiële publicatiedatum van het besluit.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "publicatiedatum",
+          "sh:path": "http://data.europa.eu/eli/ontology#date_publication"
         }
       ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Besluit"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#InnamevergunningShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Type vergunning dat vergunt wordt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "verguntType",
+          "sh:path": "http://data.vlaanderen.be/ns/besluit#verguntType"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Innamevergunning"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#SignalisatievergunningShape",
@@ -443,20 +538,20 @@
       "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#InnamevergunningShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#TijdelijkReglementShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Type vergunning dat vergunt wordt.",
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "Periode waarbinnen het reglement geldig is.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "verguntType",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#verguntType"
+          "sh:name": "tijdsinterval",
+          "sh:path": "http://purl.org/dc/terms/temporal"
         }
       ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Innamevergunning"
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#TijdelijkReglement"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#VergunningShape",
@@ -531,108 +626,20 @@
       "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Vergunning"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#ArtikelShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
-          "sh:description": "Voorwaarde waaraan het artikel gebonden is.",
-          "sh:name": "heeftVoorwaarde",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde"
-        },
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Besluit",
-          "sh:description": "Het besluit waarvan het artikel een onderdeel is.",
-          "sh:name": "isOnderdeelVan",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#isOnderdeelVan"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Het nummer van het artikel.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "nummer",
-          "sh:path": "http://data.europa.eu/eli/ontology#number"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Artikel"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#TijdelijkReglementShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
-          "sh:description": "Periode waarbinnen het reglement geldig is.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "tijdsinterval",
-          "sh:path": "http://purl.org/dc/terms/temporal"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#TijdelijkReglement"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#AanvullendReglementShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
-          "sh:description": "Periode waarbinnen het aanvullend reglement geldig is.",
-          "sh:name": "tijdsinterval",
-          "sh:path": "http://purl.org/dc/terms/temporal"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#AanvullendReglement"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#BesluitShape",
+      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#VoorwaardeShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Een beknopte beschrijving van het besluit.",
+          "sh:description": "Beschrijving van de voorwaarde.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "beschrijving",
-          "sh:path": "http://data.europa.eu/eli/ontology#description"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "citeeropschrift",
-          "sh:path": "http://data.europa.eu/eli/ontology#title_short"
-        },
-        {
-          "sh:class": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
-          "sh:description": "Voorwaarde waaraan het besluit gebonden is.",
-          "sh:name": "heeftVoorwaarde",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#heeftVoorwaarde"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de beslissing die wordt uitgedrukt in het besluit.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "motivering",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#motivering"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:description": "De officiële publicatiedatum van het besluit.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "publicatiedatum",
-          "sh:path": "http://data.europa.eu/eli/ontology#date_publication"
+          "sh:path": "http://purl.org/dc/terms/description"
         }
       ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Besluit"
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#OSLO-Weg::TransportLinkSetShape",
@@ -640,13 +647,6 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/weg#TransportLinkSet"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/besluit-mobiliteit#RechtsgrondonderdeelShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
     }
   ]
 }

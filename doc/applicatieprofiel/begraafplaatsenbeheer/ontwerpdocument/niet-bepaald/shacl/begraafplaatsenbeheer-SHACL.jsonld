@@ -34,11 +34,136 @@
   "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#FysiekVoorkomenShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GeometrieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:description": "Geometrie uitgedrukt in gml-formaat.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "gml",
+          "sh:path": "http://www.opengis.net/ont/geosparql#asGML"
+        },
+        {
+          "sh:description": "Geometrie uitgedrukt in wkt-formaat.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "wkt",
+          "sh:path": "http://www.opengis.net/ont/geosparql#asWKT"
+        }
+      ],
+      "sh:targetClass": "http://www.opengis.net/ont/geosparql#Geometry"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#LijnstringShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen"
+      "sh:targetClass": "http://www.opengis.net/ont/sf#LineString"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PuntShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.opengis.net/ont/sf#Point"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PolygoonShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.opengis.net/ont/sf#Polygon"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GeografischeNaamShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#RelatieObjectShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De naam van de bron.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "bronnaam",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#bronnaam"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Een globaal unieke identificator voor het object.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "uuid",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#uuid"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Resource"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#NauwkeurigsheidsklassenShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GraftypesShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#MaterialenShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#StraatkolktypesShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#OrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Andere naam waaronder de organisatie bekend is.",
+          "sh:maxCount": "1",
+          "sh:name": "alternatieveNaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
+        },
+        {
+          "sh:class": "http://schema.org/ContactPoint",
+          "sh:description": "Informatie zoals email, telefoon die toelaat de Organisatie te contacteren.",
+          "sh:maxCount": "1",
+          "sh:name": "contactinfo",
+          "sh:path": "http://schema.org/contactPoint"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Naam waarmee de organisatie bij voorkeur wordt aangeduid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "voorkeursnaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/org#Organization"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#CollectieShape",
@@ -159,108 +284,61 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#FysiekObject"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TerreinVoorkomenShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#FysiekVoorkomenShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GebiedShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:description": "Eigenschap die aangeeft of er binnen het beheerdeel  al dan niet objecten voorkomen die de vrije werking van machines of andere werktuigen kan verhinderen",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum waarop de huidige versie van het beheergebied in gebruik wordt genomen.",
           "sh:maxCount": "1",
-          "sh:name": "obstakels",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#obstakels"
+          "sh:name": "begindatum",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum"
         },
         {
-          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/TaludWaarde",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Een talud is het kunstmatig gedeelte van een vlak van de wegbaan, dijken, spoorbanen, vestingswerken, dat een helling (min. 20%, max 80% voor kunstmatig verharde taluds) vertoont en bedoeld voor het opvangen van een hoogteverschil.",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het gebied.",
           "sh:maxCount": "1",
-          "sh:name": "talud",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#talud"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#TerreinVoorkomen"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GeografischeNaamShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#NauwkeurigsheidsklassenShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#LijnstringShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.opengis.net/ont/sf#LineString"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GeometrieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:description": "Geometrie uitgedrukt in gml-formaat.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "gml",
-          "sh:path": "http://www.opengis.net/ont/geosparql#asGML"
+          "sh:name": "beheerder",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder"
         },
         {
-          "sh:description": "Geometrie uitgedrukt in wkt-formaat.",
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het gebied.",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "wkt",
-          "sh:path": "http://www.opengis.net/ont/geosparql#asWKT"
-        }
-      ],
-      "sh:targetClass": "http://www.opengis.net/ont/geosparql#Geometry"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PolygoonShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.opengis.net/ont/sf#Polygon"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PuntShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.opengis.net/ont/sf#Point"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#RelatieObjectShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De naam van de bron.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "bronnaam",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#bronnaam"
+          "sh:name": "eigenaar",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar"
         },
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Een globaal unieke identificator voor het object.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum waarop de huidige versie van het beheergebied uit gebruik wordt genomen.",
+          "sh:maxCount": "1",
+          "sh:name": "einddatum",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#einddatum"
+        },
+        {
+          "sh:class": "http://www.opengis.net/ont/sf#Polygon",
+          "sh:description": "De geometrie overeenkomstig met een bepaald gebied.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "uuid",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#uuid"
+          "sh:name": "geometrie",
+          "sh:path": "http://www.w3.org/ns/locn#geometry"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Een naam voor het gebied.",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
         }
       ],
-      "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Resource"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Gebied"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#BegraafplaatsRijShape",
@@ -340,71 +418,6 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#Urnenveld"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GraftypesShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TerreindeelShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.",
-          "sh:maxCount": "1",
-          "sh:name": "breedte",
-          "sh:path": "http://schema.org/width"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De lineare grootte van het object in meter.",
-          "sh:maxCount": "1",
-          "sh:name": "lengte",
-          "sh:path": "http://open.vocab.org/terms/length"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
-          "sh:description": "Het voorkomen van het terreindeel.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "voorkomen",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#voorkomen"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TrapShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Trap"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#VoetwegShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Voetweg"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GroenvlakShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Groenvlak"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GroendakShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Groendak"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#BegraafplaatsShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -427,28 +440,6 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/gebied#Begraafplaats"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#InfrastructuurelementShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "qb:codeList": "https://thesaurus.onroerenderfgoed.be/conceptschemes/MATERIALEN",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Materiaal waar het object uit vervaardigd is.",
-          "sh:name": "materiaal",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#ZichtbaarDekselOfLuikShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#ZichtbaarDekselOfLuik"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#AanplakbordShape",
@@ -559,6 +550,21 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infozuil"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#InfrastructuurelementShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "qb:codeList": "https://thesaurus.onroerenderfgoed.be/conceptschemes/MATERIALEN",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Materiaal waar het object uit vervaardigd is.",
+          "sh:name": "materiaal",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#materiaal"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#LichtpuntShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -589,6 +595,13 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#OpenbaarToilet"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#OpenbareStraatverlichtingAanGevelOfMuurShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#OpenbareStraatverlichtingAanGevelOfMuur"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#OpenbareVerlichtingShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -601,6 +614,20 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#OpenbareVuilnisbak"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PaneelafsluitingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Paneelafsluiting"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#RoosterShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Rooster"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#SelectieveAfsluitingShape",
@@ -656,11 +683,25 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Straatmeubilair"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#ToegangspoortShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Toegangspoort"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#VerlichtingspaalShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Verlichtingspaal"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#ZichtbaarDekselOfLuikShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#ZichtbaarDekselOfLuik"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#ZitbankShape",
@@ -670,126 +711,85 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Zitbank"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#MaterialenShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GroendakShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Groendak"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#StraatkolktypesShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GroenvlakShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Groenvlak"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#PaneelafsluitingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Paneelafsluiting"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#ToegangspoortShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Toegangspoort"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#OpenbareStraatverlichtingAanGevelOfMuurShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#OpenbareStraatverlichtingAanGevelOfMuur"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#RoosterShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Rooster"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#GebiedShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TerreinVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:description": "Datum waarop de huidige versie van het beheergebied in gebruik wordt genomen.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:description": "Eigenschap die aangeeft of er binnen het beheerdeel  al dan niet objecten voorkomen die de vrije werking van machines of andere werktuigen kan verhinderen",
           "sh:maxCount": "1",
-          "sh:name": "begindatum",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#begindatum"
+          "sh:name": "obstakels",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#obstakels"
         },
         {
-          "sh:class": "http://www.w3.org/ns/org#Organization",
-          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het gebied.",
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/TaludWaarde",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Een talud is het kunstmatig gedeelte van een vlak van de wegbaan, dijken, spoorbanen, vestingswerken, dat een helling (min. 20%, max 80% voor kunstmatig verharde taluds) vertoont en bedoeld voor het opvangen van een hoogteverschil.",
           "sh:maxCount": "1",
-          "sh:name": "beheerder",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder"
-        },
-        {
-          "sh:class": "http://www.w3.org/ns/org#Organization",
-          "sh:description": "De entiteit (bv. de gemeente) die eigenaar is van het gebied.",
-          "sh:maxCount": "1",
-          "sh:name": "eigenaar",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#eigenaar"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:description": "Datum waarop de huidige versie van het beheergebied uit gebruik wordt genomen.",
-          "sh:maxCount": "1",
-          "sh:name": "einddatum",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#einddatum"
-        },
-        {
-          "sh:class": "http://www.opengis.net/ont/sf#Polygon",
-          "sh:description": "De geometrie overeenkomstig met een bepaald gebied.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "geometrie",
-          "sh:path": "http://www.w3.org/ns/locn#geometry"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Een naam voor het gebied.",
-          "sh:name": "naam",
-          "sh:path": "http://purl.org/dc/terms/title"
+          "sh:name": "talud",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#talud"
         }
       ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Gebied"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#TerreinVoorkomen"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#OrganisatieShape",
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TerreindeelShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Andere naam waaronder de organisatie bekend is.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:description": "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.",
           "sh:maxCount": "1",
-          "sh:name": "alternatieveNaam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
+          "sh:name": "breedte",
+          "sh:path": "http://schema.org/width"
         },
         {
-          "sh:class": "http://schema.org/ContactPoint",
-          "sh:description": "Informatie zoals email, telefoon die toelaat de Organisatie te contacteren.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:description": "De lineare grootte van het object in meter.",
           "sh:maxCount": "1",
-          "sh:name": "contactinfo",
-          "sh:path": "http://schema.org/contactPoint"
+          "sh:name": "lengte",
+          "sh:path": "http://open.vocab.org/terms/length"
         },
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Naam waarmee de organisatie bij voorkeur wordt aangeduid.",
+          "sh:class": "https://data.vlaanderen.be/ns/openbaardomein#FysiekVoorkomen",
+          "sh:description": "Het voorkomen van het terreindeel.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "voorkeursnaam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+          "sh:name": "voorkomen",
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#voorkomen"
         }
       ],
-      "sh:targetClass": "http://www.w3.org/ns/org#Organization"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#TrapShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Trap"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/begraafplaatsenbeheer#VoetwegShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Voetweg"
     }
   ]
 }

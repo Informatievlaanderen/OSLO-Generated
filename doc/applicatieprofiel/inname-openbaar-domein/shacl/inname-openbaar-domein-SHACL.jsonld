@@ -39,12 +39,6 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Inname",
-          "sh:description": "Inname waarover advies gegeven wordt.",
-          "sh:name": "adviseert",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#adviseert"
-        },
-        {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict",
           "sh:description": "Conflict waarover advies gegeven wordt.",
           "sh:name": "adviseert",
@@ -59,6 +53,12 @@
         {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Project",
           "sh:description": "Project waarover advies gegeven wordt.",
+          "sh:name": "adviseert",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#adviseert"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Inname",
+          "sh:description": "Inname waarover advies gegeven wordt.",
           "sh:name": "adviseert",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#adviseert"
         },
@@ -719,8 +719,8 @@
           "sh:path": "http://www.w3.org/ns/adms#identifier"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder",
-          "sh:description": "Mobiliteitshinder die veroorzaakt is door het project.",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Synergie",
+          "sh:description": "Synergie die binnen dit project uitgevoerd wordt.",
           "sh:name": "omvat",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Project.omvat"
         },
@@ -731,8 +731,8 @@
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Project.omvat"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Synergie",
-          "sh:description": "Synergie die binnen dit project uitgevoerd wordt.",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder",
+          "sh:description": "Mobiliteitshinder die veroorzaakt is door het project.",
           "sh:name": "omvat",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Project.omvat"
         },
@@ -1017,11 +1017,73 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Werk"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#EvenementShape",
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#InnamevergunningShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://schema.org/Event"
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Innamevergunning"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#SignalisatievergunningShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Status van het besluit.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "status",
+          "sh:path": "http://purl.org/dc/terms/status"
+        },
+        {
+          "sh:class": "http://schema.org/URL",
+          "sh:description": "Locatie van het besluit op het web.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "url",
+          "sh:path": "http://schema.org/url"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#VoorwaardeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Beschrijving van de voorwaarde.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#AgentShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:description": "Organisatie waartoe de Agent behoort.",
+          "sh:maxCount": "1",
+          "sh:name": "behoortTotOrganisatie",
+          "sh:path": "http://www.w3.org/ns/org#memberOf"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek",
+          "sh:description": "Informatie die toelaat de Agent te contacteren.",
+          "sh:minCount": "1",
+          "sh:name": "contactinfo",
+          "sh:path": "http://schema.org/contactPoint"
+        }
+      ],
+      "sh:targetClass": "http://purl.org/dc/terms/Agent"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#ContactInfoShape",
@@ -1094,89 +1156,6 @@
       "sh:targetClass": "http://schema.org/ContactPoint"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#AgentShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.w3.org/ns/org#Organization",
-          "sh:description": "Organisatie waartoe de Agent behoort.",
-          "sh:maxCount": "1",
-          "sh:name": "behoortTotOrganisatie",
-          "sh:path": "http://www.w3.org/ns/org#memberOf"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek",
-          "sh:description": "Informatie die toelaat de Agent te contacteren.",
-          "sh:minCount": "1",
-          "sh:name": "contactinfo",
-          "sh:path": "http://schema.org/contactPoint"
-        }
-      ],
-      "sh:targetClass": "http://purl.org/dc/terms/Agent"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#VoorwaardeShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Beschrijving van de voorwaarde.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "beschrijving",
-          "sh:path": "http://purl.org/dc/terms/description"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Voorwaarde"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#BeoordelingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#SignalisatievergunningShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Status van het besluit.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "status",
-          "sh:path": "http://purl.org/dc/terms/status"
-        },
-        {
-          "sh:class": "http://schema.org/URL",
-          "sh:description": "Locatie van het besluit op het web.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "url",
-          "sh:path": "http://schema.org/url"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#InnamevergunningShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Innamevergunning"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#OSLO-Weg::TransportLinkSetShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/weg#TransportLinkSet"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#OV-routeShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -1189,6 +1168,13 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "http://vocab.gtfs.org/terms#Stop"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#BeoordelingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#ConflicttypeShape",
@@ -1245,6 +1231,20 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#OSLO-Weg::TransportLinkSetShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/weg#TransportLinkSet"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/inname-openbaar-domein#EvenementShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://schema.org/Event"
     }
   ]
 }
