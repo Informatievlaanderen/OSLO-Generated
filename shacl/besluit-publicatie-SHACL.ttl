@@ -1,6 +1,6 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix qb:      <http://purl.org/linked-data/cube#> .
-<https://data.vlaanderen.be/shacl/besluit-publicatie#Rechtsgrond (Besluit)Shape>
+<https://data.vlaanderen.be/shacl/besluit-publicatie#rechtsgrondBesluitShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/eli/ontology#LegalResource> ;
 	sh:property [
@@ -20,7 +20,7 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/besluit-publicatie#Rechtsgrondonderdeel (Artikel)Shape>
+<https://data.vlaanderen.be/shacl/besluit-publicatie#Rechtsgrondonderdeel(Artikel)Shape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
 	sh:property [
@@ -391,6 +391,93 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 	sh:closed false .
+
+
+<https://data.vlaanderen.be/shacl/besluit-publicatie#StemmingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Stemming> ;
+	sh:property [
+		sh:name "heeftTegenstander" ;
+		sh:description "Een mandataris die als tegenstander heeft gestemd op het onderwerp van de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftTegenstander> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+	] ;
+	sh:property [
+		sh:name "heeftOnthouder" ;
+		sh:description "Een mandataris die als onthouder heeft gestemd op het onderwerp van de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftOnthouder> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+	] ;
+	sh:property [
+		sh:name "heeftaanwezige" ;
+		sh:description "Een mandataris (van het orgaan dat de zitting houdt) die aanwezig was tijdens de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftAanwezige> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftVoorstander" ;
+		sh:description "Een mandataris die als voorstander heeft gestemd op het onderwerp van de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftVoorstander> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+	] ;
+	sh:property [
+		sh:name "heeftStemmer" ;
+		sh:description "Een mandataris die deelneemt aan de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#heeftStemmer> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalOnthouders" ;
+		sh:description "Het aantal stemmers dat als onthouding heeft gestemd." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#aantalOnthouders> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalTegenstanders" ;
+		sh:description "Het aantal stemmers dat als tegenstander heeft gestemd." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#aantalTegenstanders> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aantalVoorstanders" ;
+		sh:description "Het aantal stemmers dat als voorstander heeft gestemd." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#aantalVoorstanders> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#integer> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "geheim" ;
+		sh:description "Geeft aan of de stemming geheim was. Bij een geheime stemming wordt niet individueel bekend gemaakt wie op wat heeft gestemd." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#geheim> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gevolg" ;
+		sh:description "Het gevolg van de stemming." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#gevolg> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "onderwerp" ;
+		sh:description "De beschrijving van het onderwerp waarover de stemming gaat." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#onderwerp> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
 
 <https://data.vlaanderen.be/shacl/besluit-publicatie#ZittingShape>
 	a sh:NodeShape ;
