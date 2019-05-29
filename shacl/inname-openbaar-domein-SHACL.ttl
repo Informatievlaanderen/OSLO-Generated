@@ -1,31 +1,40 @@
 @prefix sh:      <http://www.w3.org/ns/shacl#> .
 @prefix qb:      <http://purl.org/linked-data/cube#> .
-<https://data.vlaanderen.be/shacl/inname-openbaar-domein#TijdsintervalMetDuurShape>
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#ParkeerverbodShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#TijdsintervalMetDuur> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Parkeerverbod> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#OrganisatieEenheidShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/org#OrganizationalUnit> ;
 	sh:property [
-		sh:name "duur" ;
-		sh:description "Hoelang de gebeurtenis (inname, hinder etc.) gaat duren." ;
-		sh:path <http://schema.org/duration> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "einde" ;
-		sh:description "Moment waarop het tijdsinterval eindigt." ;
-		sh:path <http://data.europa.eu/m8g/endTime> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
-		sh:maxCount 0 ;
+		sh:name "isEenheidVan" ;
+		sh:description "Verwijst naar de organisatie waarbij deze organisatie-eenheid hoort." ;
+		sh:path <http://www.w3.org/ns/org#unitOf> ;
+		sh:class <http://www.w3.org/ns/org#Organization> ;
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/inname-openbaar-domein#TijdsintervalShape>
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#PeriodeMetDuurShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#PeriodeMetDuur> ;
+	sh:property [
+		sh:name "duur" ;
+		sh:description "Hoelang de gebeurtenis (inname, hinder etc.) duurt." ;
+		sh:path <http://schema.org/duration> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#duration> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#PeriodeShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/m8g/PeriodOfTime> ;
 	sh:property [
 		sh:name "begin" ;
-		sh:description "Moment waarop het tijdsinterval begint." ;
+		sh:description "Moment waarop de periode begint." ;
 		sh:path <http://data.europa.eu/m8g/startTime> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:minCount 1 ;
@@ -33,7 +42,7 @@
 	] ;
 	sh:property [
 		sh:name "einde" ;
-		sh:description "Moment waarop het tijdsinterval eindigt." ;
+		sh:description "Moment waarop de periode eindigt." ;
 		sh:path <http://data.europa.eu/m8g/endTime> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:minCount 1 ;
@@ -65,43 +74,22 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek> ;
 		sh:minCount 1 ;
 	] ;
-	sh:property [
-		sh:name "beschrijving" ;
-		sh:description "Beschrijving van de Publieke Organisatie." ;
-		sh:path <http://purl.org/dc/terms/description> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "voorkeursnaam" ;
-		sh:description "Naam waarmee de Organisatie bij voorkeur wordt aangeduid." ;
-		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
-		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:maxCount 1 ;
-	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/inname-openbaar-domein#OrganisatieShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/org#Organization> ;
 	sh:property [
+		sh:name "heeftEenheid" ;
+		sh:description "Verwijst naar een Organisatie-eenheid die deel uitmaakt van de Organisatie, bv een afdeling." ;
+		sh:path <http://www.w3.org/ns/org#hasUnit> ;
+		sh:class <http://www.w3.org/ns/org#OrganizationalUnit> ;
+	] ;
+	sh:property [
 		sh:name "beschrijving" ;
 		sh:description "Beschrijving van de Publieke Organisatie." ;
 		sh:path <http://purl.org/dc/terms/description> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "doel" ;
-		sh:description "Bestaanreden vd Organisatie." ;
-		sh:path <http://www.w3.org/ns/org#purpose> ;
-	] ;
-	sh:property [
-		sh:name "classificatie" ;
-		sh:description "Rangschikking van de Organisatie in een classificatiesysteem." ;
-		sh:path <http://www.w3.org/ns/org#classification> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -116,7 +104,6 @@
 		sh:description "Naam waarmee de Organisatie bij voorkeur wordt aangeduid." ;
 		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
-		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -127,15 +114,9 @@
 	] ;
 	sh:property [
 		sh:name "logo" ;
-		sh:description "Verwijzing naar het logo vd Publieke Organisatie." ;
+		sh:description "Verwijzing naar het logo van de organisatie." ;
 		sh:path <http://schema.org/logo> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "activiteit" ;
-		sh:description "Type activiteit die door de Organisatie wordt uitgeoefend." ;
-		sh:path <http://www.w3.org/ns/regorg#orgActivity> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:class <http://schema.org/URL> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -143,29 +124,12 @@
 		sh:description "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren. " ;
 		sh:path <http://schema.org/contactPoint> ;
 		sh:class <http://schema.org/ContactPoint> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "type" ;
-		sh:description "Type Organisatie." ;
-		sh:path <http://www.w3.org/ns/regorg#orgType> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "status" ;
-		sh:description "Toestand vd Organisatie." ;
-		sh:path <http://www.w3.org/ns/regorg#orgStatus> ;
-		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/inname-openbaar-domein#EvenementShape>
 	a sh:NodeShape ;
-	sh:targetClass <https://schema.org/Event> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Evenement> ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/inname-openbaar-domein#MobiliteitshindergevolgShape>
@@ -193,7 +157,7 @@
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Grondwerk> ;
 	sh:property [
 		sh:name "heeftOorzaakGrondwerk" ;
-		sh:description "Ander grondwerk die dit grondwerk veroorzaakt heeft." ;
+		sh:description "Ander grondwerk dat dit grondwerk veroorzaakt heeft." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftOorzaakGrondwerk> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Grondwerk> ;
 	] ;
@@ -220,16 +184,16 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "soort" ;
+		sh:name "specificatie" ;
 		sh:description "Soort grondwerk." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.soort> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#specificatie> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
 		sh:name "geschatteDuur" ;
 		sh:description "Geschatte tijdsduur van het grondwerk." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#geschatteDuur> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#duration> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -257,21 +221,12 @@
 		sh:description "Email-adres waarnaar men kan mailen." ;
 		sh:path <http://schema.org/email> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "telefoon" ;
 		sh:description "Telefoonnummer waarop men kan bellen." ;
 		sh:path <http://schema.org/telephone> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "fax" ;
-		sh:description "Faxnummer waarnaar men kan faxen." ;
-		sh:path <http://schema.org/faxNumber> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "website" ;
@@ -281,17 +236,11 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "openingsuren" ;
-		sh:description "Uren waarbinnen contact kan worden opgenomen." ;
-		sh:path <http://schema.org/openingHours> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:name "contactType" ;
+		sh:description "Specifieert de contactinformatie volgens een bepaalde functie." ;
+		sh:path <http://schema.org/contactType> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "beschikbaarheid" ;
-		sh:description "Periode waarin contact kan worden opgenomen." ;
-		sh:path <http://schema.org/hoursAvailable> ;
-		sh:class <http://schema.org/OpeningHoursSpecification> ;
 	] ;
 	sh:property [
 		sh:name "adres" ;
@@ -322,7 +271,7 @@
 
 <https://data.vlaanderen.be/shacl/inname-openbaar-domein#SignalisatievergunningShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Signalisatievergunning> ;
+	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Signalisatievergunning> ;
 	sh:property [
 		sh:name "status" ;
 		sh:description "Status van het besluit." ;
@@ -355,10 +304,22 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Advies> ;
 	sh:property [
+		sh:name "heeftVoorwaarde" ;
+		sh:description "Voorwaarde die moet voldaan worden om tegemoet te komen aan het advies." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftVoorwaarde> ;
+		sh:class <http://data.vlaanderen.be/ns/besluit#Voorwaarde> ;
+	] ;
+	sh:property [
 		sh:name "adviseert" ;
 		sh:description "Mobiliteitsmaatregel waarover advies gegeven wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
+	] ;
+	sh:property [
+		sh:name "adviseert" ;
+		sh:description "Project waarover advies gegeven wordt." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
 	] ;
 	sh:property [
 		sh:name "adviseert" ;
@@ -377,12 +338,6 @@
 		sh:description "Inname waarover advies gegeven wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
-	] ;
-	sh:property [
-		sh:name "adviseert" ;
-		sh:description "Project waarover advies gegeven wordt." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
 	] ;
 	sh:property [
 		sh:name "beheerder" ;
@@ -418,7 +373,7 @@
 		sh:name "beschrijving" ;
 		sh:description "Het advies in tekst beschreven." ;
 		sh:path <http://purl.org/dc/terms/description> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -453,12 +408,12 @@
 	] ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/inname-openbaar-domein#OV-routeShape>
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#OpenbaarVervoersrouteShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://vocab.gtfs.org/terms#Route> ;
 	sh:closed false .
 
-<https://data.vlaanderen.be/shacl/inname-openbaar-domein#OV-halteShape>
+<https://data.vlaanderen.be/shacl/inname-openbaar-domein#OpenbaarVervoershalteShape>
 	a sh:NodeShape ;
 	sh:targetClass <http://vocab.gtfs.org/terms#Stop> ;
 	sh:closed false .
@@ -468,9 +423,9 @@
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict> ;
 	sh:property [
 		sh:name "heeftBetrekkingTot" ;
-		sh:description "Openbaar vervoer route die betrokken is bij het ruimtelijk conflict." ;
+		sh:description "Project dat betrokken is bij het conflict." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot> ;
-		sh:class <http://vocab.gtfs.org/terms#Route> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
 	] ;
 	sh:property [
 		sh:name "heeftBetrekkingTot" ;
@@ -480,9 +435,9 @@
 	] ;
 	sh:property [
 		sh:name "heeftBetrekkingTot" ;
-		sh:description "Project die betrokken is bij het conflict." ;
+		sh:description "Openbaar vervoer route die betrokken is bij het ruimtelijk conflict." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
+		sh:class <http://vocab.gtfs.org/terms#Route> ;
 	] ;
 	sh:property [
 		sh:name "classificatie" ;
@@ -498,9 +453,9 @@
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
-		sh:name "tijdsinterval" ;
-		sh:description "Periode wanneer er een overlap in tijd en in ruimte is." ;
-		sh:path <http://purl.org/dc/terms/temporal> ;
+		sh:name "periode" ;
+		sh:description "Periode wanneer er een overlap in tijd en in ruimte is tussen verschillende entiteiten." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#periode> ;
 		sh:class <http://data.europa.eu/m8g/PeriodOfTime> ;
 		sh:minCount 1 ;
 	] ;
@@ -538,8 +493,8 @@
 	] ;
 	sh:property [
 		sh:name "categorie" ;
-		sh:description "Verbodscategorie van de innameverbod." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#categorie> ;
+		sh:description "Verbodscategorie van het innameverbod." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Innameverbod.categorie> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -557,9 +512,9 @@
 		sh:class <http://www.w3.org/ns/adms#Identifier> ;
 	] ;
 	sh:property [
-		sh:name "tijdsinterval" ;
-		sh:description "Periode waarbinnen innamverbod van toepassing is." ;
-		sh:path <http://purl.org/dc/terms/temporal> ;
+		sh:name "periode" ;
+		sh:description "Periode waarbinnen het innamverbod van toepassing is." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#periode> ;
 		sh:class <http://data.europa.eu/m8g/PeriodOfTime> ;
 		sh:minCount 1 ;
 	] ;
@@ -628,9 +583,9 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "synergieStatus" ;
+		sh:name "status" ;
 		sh:description "Status van de synergie." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#synergieStatus> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Synergie.status> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -683,9 +638,9 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord> ;
 	] ;
 	sh:property [
-		sh:name "aanvraagStatus" ;
+		sh:name "status" ;
 		sh:description "Status om samen te werken." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#aanvraagStatus> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.status> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
@@ -745,19 +700,6 @@
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
 	sh:property [
 		sh:name "omvat" ;
-		sh:description "Synergie die binnen dit project uitgevoerd wordt." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Synergie> ;
-	] ;
-	sh:property [
-		sh:name "volgtUit" ;
-		sh:description "Project dat ontstaan is uit een samenwerkingsaanvraag." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#volgtUit> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "omvat" ;
 		sh:description "Mobiliteitshinder die veroorzaakt is door het project." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
@@ -769,11 +711,24 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	] ;
 	sh:property [
+		sh:name "volgtUit" ;
+		sh:description "Project dat ontstaan is uit een samenwerkingsaanvraag." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#volgtUit> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "geeftAanleidingTot" ;
 		sh:description "Samenwerkingsaanvraag die het gevolg is van het project." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.geeftAanleidingTot> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag> ;
 		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "omvat" ;
+		sh:description "Synergie die binnen dit project uitgevoerd wordt." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Synergie> ;
 	] ;
 	sh:property [
 		sh:name "beheerder" ;
@@ -786,7 +741,7 @@
 		sh:name "beschrijving" ;
 		sh:description "Beschrijving van het project." ;
 		sh:path <http://purl.org/dc/terms/description> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -810,7 +765,7 @@
 	sh:property [
 		sh:name "status" ;
 		sh:description "Status van het project." ;
-		sh:path <http://www.w3.org/ns/adms#status> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.status> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:maxCount 1 ;
 	] ;
@@ -833,16 +788,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Werk> ;
 	sh:property [
-		sh:name "soort" ;
+		sh:name "specificatie" ;
 		sh:description "Soort werk." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Werk.soort> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#specificatie> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
 		sh:name "geschatteDuur" ;
 		sh:description "Geschatte tijdsduur dat het werk duurt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#geschatteDuur> ;
-		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#duration> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -853,7 +808,7 @@
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Omleiding> ;
 	sh:property [
 		sh:name "heeftTransportLinkSet" ;
-		sh:description "Verzameling weglinksequenties en/of individuele weglinks die een route vertegenwoordigt." ;
+		sh:description "Verzameling weglinksequenties en/of individuele weglinks die een route vertegenwoordigen." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftTransportLinkSet> ;
 		sh:class <https://data.vlaanderen.be/ns/weg#TransportLinkSet> ;
 		sh:maxCount 2 ;
@@ -877,16 +832,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
 	sh:property [
+		sh:name "wordtAangeduidDoor" ;
+		sh:description "Een signalisatie (bv.: verkeersbord) die bijdraagt tot de aanduiding van een mobiliteitsmaatregel." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.wordtAangeduidDoor> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken> ;
+	] ;
+	sh:property [
 		sh:name "heeftGevolg" ;
 		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het invoeren van een mobiliteitsmaatregel." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.heeftGevolg> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
-	] ;
-	sh:property [
-		sh:name "wordtAangeduidDoor" ;
-		sh:description "Een signalisatie (bv.: verkeersbord) dat bijdraagt tot de aanduiding van een mobiliteitsmaatregel." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.wordtAangeduidDoor> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
@@ -911,7 +866,7 @@
 	] ;
 	sh:property [
 		sh:name "bijdrager" ;
-		sh:description "Bijdrager van de mobiliteitsmaatregel." ;
+		sh:description "Bijdrager aan de mobiliteitsmaatregel." ;
 		sh:path <http://purl.org/dc/elements/1.1/contributor> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
@@ -923,7 +878,7 @@
 	] ;
 	sh:property [
 		sh:name "doelgroep" ;
-		sh:description "Groep of categorie die belang hebben bij de mobiliteitsmaatregel." ;
+		sh:description "Groep of categorie dat belang heeft bij de mobiliteitsmaatregel." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#doelgroep> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
@@ -934,9 +889,9 @@
 		sh:class <http://www.w3.org/ns/adms#Identifier> ;
 	] ;
 	sh:property [
-		sh:name "plaatsbeschrijving" ;
+		sh:name "plaatsbepaling" ;
 		sh:description "Tekstuele beschrijving van de locatie van de mobiliteitsmaatregel." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.plaatsbeschrijving> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#plaatsbepaling> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 		sh:maxCount 1 ;
 	] ;
@@ -961,9 +916,21 @@
 	] ;
 	sh:property [
 		sh:name "heeftRoute" ;
-		sh:description "Traject die hoort bij de mobiliteitsmaatregel." ;
+		sh:description "Traject dat hoort bij de mobiliteitsmaatregel." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftRoute> ;
 		sh:class <http://www.w3.org/ns/locn#Geometry> ;
+	] ;
+	sh:property [
+		sh:name "periode" ;
+		sh:description "Periode waarbinnen de mobiliteitsmaatregel plaatsvindt." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#periode> ;
+		sh:class <http://data.europa.eu/m8g/PeriodOfTime> ;
+	] ;
+	sh:property [
+		sh:name "url" ;
+		sh:description "Link naar website over deze mobiliteitsmaatregel." ;
+		sh:path <http://schema.org/url> ;
+		sh:class <http://schema.org/URL> ;
 	] ;
 	sh:closed false .
 
@@ -971,16 +938,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Effect van de mobiliteitshinder op bepaalde doelgroepen." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg> ;
-	] ;
-	sh:property [
 		sh:name "vereist" ;
 		sh:description "Mobiliteitsmaatregel ter ondersteuning van de mobiliteitshinder." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.vereist> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
+	] ;
+	sh:property [
+		sh:name "heeftGevolg" ;
+		sh:description "Effect van de mobiliteitshinder op bepaalde doelgroepen." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
@@ -1005,7 +972,7 @@
 	] ;
 	sh:property [
 		sh:name "bijdrager" ;
-		sh:description "Entiteit die verantwoordelijk is voor het bijdragen aan de bron." ;
+		sh:description "Agent die betrokken is bij de mobiliteitshinder." ;
 		sh:path <http://purl.org/dc/elements/1.1/contributor> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
@@ -1023,14 +990,14 @@
 	] ;
 	sh:property [
 		sh:name "locatie" ;
-		sh:description "TODO" ;
+		sh:description "Code die de locatie van de hinder aanduidt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.locatie> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 	] ;
 	sh:property [
-		sh:name "tijdsinterval" ;
-		sh:description "Wanneer de mobiliteitshinder van toepassing is binnen een specifieke periode." ;
-		sh:path <http://data.europa.eu/m8g/appliesToPeriodOfTime> ;
+		sh:name "periode" ;
+		sh:description "Wanneer er hinder is." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#periode> ;
 		sh:class <http://data.europa.eu/m8g/PeriodOfTime> ;
 	] ;
 	sh:property [
@@ -1047,7 +1014,7 @@
 	] ;
 	sh:property [
 		sh:name "tijdsschema" ;
-		sh:description "Schedule van de mobiliteitshinder." ;
+		sh:description "Wanneer er hinder is volgens een tijdsschema." ;
 		sh:path <http://schema.org/eventSchedule> ;
 		sh:class <http://schema.org/Schedule> ;
 	] ;
@@ -1057,25 +1024,12 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek> ;
 	sh:property [
-		sh:name "contactType" ;
-		sh:description "Specifieert de contactinfo volgens een bepaalde functie." ;
-		sh:path <http://schema.org/contactType> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isPubliek" ;
+		sh:name "publiek" ;
 		sh:description "Duidt aan of de contactinformatie door iedereen gezien mag worden." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek.isPubliek> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek.publiek> ;
 		sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "telefoon" ;
-		sh:description "Telefoonnummer waarop men kan bellen." ;
-		sh:path <http://schema.org/telephone> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 	] ;
 	sh:closed false .
 
@@ -1083,10 +1037,11 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
+		sh:name "geeftAanleidingTot" ;
+		sh:description "Samenwerkingsaanvraag die het gevolg is van de inname." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.geeftAanleidingTot> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag> ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "isDeelVan" ;
@@ -1095,16 +1050,16 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	] ;
 	sh:property [
+		sh:name "heeftGevolg" ;
+		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
+	] ;
+	sh:property [
 		sh:name "vereist" ;
 		sh:description "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
-	] ;
-	sh:property [
-		sh:name "leidtTot" ;
-		sh:description "Innameverbod dat het gevolg is van een inname." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#leidtTot> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Innameverbod> ;
 	] ;
 	sh:property [
 		sh:name "isGerelateerdAan" ;
@@ -1113,11 +1068,10 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	] ;
 	sh:property [
-		sh:name "geeftAanleidingTot" ;
-		sh:description "Samenwerkingsaanvraag die het gevolg is van de inname." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.geeftAanleidingTot> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag> ;
-		sh:maxCount 1 ;
+		sh:name "leidtTot" ;
+		sh:description "Innameverbod dat het gevolg is van een inname." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#leidtTot> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Innameverbod> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
@@ -1142,7 +1096,7 @@
 	] ;
 	sh:property [
 		sh:name "bijdrager" ;
-		sh:description "Bijdrager van de inname." ;
+		sh:description "Bijdrager aan de inname." ;
 		sh:path <http://purl.org/dc/elements/1.1/contributor> ;
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
@@ -1168,16 +1122,16 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "plaatsbeschrijving" ;
+		sh:name "plaatsbepaling" ;
 		sh:description "Tekstuele weergave van de locatie van de inname." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.plaatsbeschrijving> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#plaatsbepaling> ;
 		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "status" ;
 		sh:description "Status van de inname" ;
-		sh:path <http://www.w3.org/ns/adms#status> ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.status> ;
 		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
 		sh:maxCount 1 ;
 	] ;
@@ -1190,27 +1144,27 @@
 	] ;
 	sh:property [
 		sh:name "tijdsschema" ;
-		sh:description "Tijdsschema dat gevolgd wordt." ;
+		sh:description "Tijdsschema wanneer de inname doorgaat." ;
 		sh:path <http://schema.org/eventSchedule> ;
 		sh:class <http://schema.org/Schedule> ;
 	] ;
 	sh:property [
 		sh:name "url" ;
 		sh:description "Een webadres met meer informatie over de inname." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#url> ;
+		sh:path <http://schema.org/url> ;
 		sh:class <http://schema.org/URL> ;
 	] ;
 	sh:property [
-		sh:name "tijdsinterval" ;
-		sh:description "Wanneer de inname van toepassing is binnen een specifieke periode." ;
-		sh:path <http://data.europa.eu/m8g/appliesToPeriodOfTime> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#TijdsintervalMetDuur> ;
+		sh:name "periode" ;
+		sh:description "Wanneer de inname plaatsvindt." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#periode> ;
+		sh:class <http://data.europa.eu/m8g/PeriodOfTime> ;
 	] ;
 	sh:property [
 		sh:name "vereistSignalisatievergunning" ;
 		sh:description "Signalisatievergunning die vereist is om deze inname uit te voeren." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#vereistSignalisatievergunning> ;
-		sh:class <http://data.vlaanderen.be/ns/besluit#Signalisatievergunning> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Signalisatievergunning> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
