@@ -5,13 +5,13 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/vlaamse-codex> <https://data.vlaanderen.be/shacl/vlaamse-codexshapes> <https://data.vlaanderen.be/shacl/vlaamse-codex#AgentShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbrononderdeelShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#VerschijningsvormShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape>,
+<https://data.vlaanderen.be/shacl/vlaamse-codex> <https://data.vlaanderen.be/shacl/vlaamse-codexshapes> <https://data.vlaanderen.be/shacl/vlaamse-codex#VerschijningsvormShape>,
     <https://data.vlaanderen.be/shacl/vlaamse-codex#TypeRechtsbrononderdeelShape>,
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbrononderdeelShape>,
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape>,
     <https://data.vlaanderen.be/shacl/vlaamse-codex#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape> .
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape>,
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#AgentShape> .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
@@ -24,13 +24,6 @@
 <https://data.vlaanderen.be/shacl/vlaamse-codex#IdentificatorShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
-    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
-    <http://www.w3.org/ns/shacl#description> "String gebruikt om het object uniek te identificeren. ";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "identificator";
-    <http://www.w3.org/ns/shacl#path> skos:notation
-  ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:dateTime;
     <http://www.w3.org/ns/shacl#description> "Tijdstip waarop de identificator werd uitgegeven.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
@@ -48,34 +41,33 @@
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#name> "toegekendDoor";
     <http://www.w3.org/ns/shacl#path> dc:creator
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> rdfs:Literal;
+    <http://www.w3.org/ns/shacl#description> "String gebruikt om het object uniek te identificeren. ";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "identificator";
+    <http://www.w3.org/ns/shacl#path> skos:notation
   ];
   <http://www.w3.org/ns/shacl#targetClass> <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape> a <http://www.w3.org/ns/shacl#NodeShape>;
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/AardWetgeving>;
-    <http://www.w3.org/ns/shacl#class> skos:Concept;
-    <http://www.w3.org/ns/shacl#description> "Het type van het regelgevend document.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "typeDocument";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#type_document>
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde.";
+    <http://www.w3.org/ns/shacl#name> "bekrachtigt";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResourceSubdivision>;
+    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron uit deelbronnen bestaat.";
+    <http://www.w3.org/ns/shacl#name> "heeftDeel";
+    <http://www.w3.org/ns/shacl#path> dc:hasPart
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft een bron aan die deze bron aanvult met juridische impact.";
-    <http://www.w3.org/ns/shacl#name> "ingevoegdBij";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#ingevoegdBij>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Duidt aan dat deze rechtsbron een verandering met legale gevolgen heeft ondergaan door een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
-    <http://www.w3.org/ns/shacl#name> "gewijzigdBij";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#amended_by>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen.";
-    <http://www.w3.org/ns/shacl#name> "citeert";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#cites>
+    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze juridische bron of juridische uitdrukking volledig wordt ingetrokken door een andere juridische hulpbron.";
+    <http://www.w3.org/ns/shacl#name> "opgehevenBij";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#opgehevenBij>
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:date;
     <http://www.w3.org/ns/shacl#description> "Adoptiedatum of handtekendatum (in de vorm jjjj-mm-dd).";
@@ -84,71 +76,15 @@
     <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_document>
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron volledig wordt geannuleerd door een andere bron.";
-    <http://www.w3.org/ns/shacl#name> "ingetrokkenBij";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#ingetrokkenBij>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResourceSubdivision>;
-    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron uit deelbronnen bestaat.";
-    <http://www.w3.org/ns/shacl#name> "heeftDeel";
-    <http://www.w3.org/ns/shacl#path> dc:hasPart
+    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron een andere buiten werking stelt";
+    <http://www.w3.org/ns/shacl#name> "heftOp";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#heftOp>
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:date;
     <http://www.w3.org/ns/shacl#description> "De laatste dag waarop de regelgeving nog van kracht is.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
     <http://www.w3.org/ns/shacl#name> "buitenwerkingtreding";
     <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Duidt op een of ander manier gerelateerd ander document, niet noodzakelijk een legale bron.";
-    <http://www.w3.org/ns/shacl#name> "zieOok";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#related_to>
-  ], [
-    <http://www.w3.org/ns/shacl#class> dc:Agent;
-    <http://www.w3.org/ns/shacl#description> "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud).";
-    <http://www.w3.org/ns/shacl#name> "verantwoordelijke";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#responsibility_of>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalExpression>;
-    <http://www.w3.org/ns/shacl#description> "De verschijningsvorm die deze rechtsbron materialiseert in een concrete tekst.";
-    <http://www.w3.org/ns/shacl#name> "isGerealiseerdDoor";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#is_realized_by>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Inverse van bekrachtigt.";
-    <http://www.w3.org/ns/shacl#name> "bekrachtigdBij";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#bekrachtigdBij>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere.";
-    <http://www.w3.org/ns/shacl#name> "trektIn";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#trektIn>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze juridische bron of juridische uitdrukking volledig wordt ingetrokken door een andere juridische hulpbron.";
-    <http://www.w3.org/ns/shacl#name> "opgehevenBij";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#opgehevenBij>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft een bron aan die volledig vernieuwd is door een andere.";
-    <http://www.w3.org/ns/shacl#name> "vervangenBij";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#vervangenBij>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Duidt aan dat deze rechtsbron een verandering met legale gevolgen doorvoert op een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
-    <http://www.w3.org/ns/shacl#name> "wijzigt";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#amends>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron een andere buiten werking stelt";
-    <http://www.w3.org/ns/shacl#name> "heftOp";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#heftOp>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:date;
-    <http://www.w3.org/ns/shacl#description> "De datum waarop de regelgeving van kracht wordt.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "inwerkingtreding";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
     <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze wetgeving (of een deel van de wetgeving) voldoet aan de doelstellingen van een andere wetgeving, door het nemen van passende uitvoeringsmaatregelen.";
@@ -161,14 +97,78 @@
     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#vervangt>
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Geeft een bron aan die volledig vernieuwd is door een andere.";
+    <http://www.w3.org/ns/shacl#name> "vervangenBij";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#vervangenBij>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere.";
+    <http://www.w3.org/ns/shacl#name> "trektIn";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#trektIn>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Geeft een bron aan die deze bron aanvult met juridische impact.";
+    <http://www.w3.org/ns/shacl#name> "ingevoegdBij";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#ingevoegdBij>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen.";
+    <http://www.w3.org/ns/shacl#name> "citeert";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#cites>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Duidt aan dat deze rechtsbron een verandering met legale gevolgen doorvoert op een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
+    <http://www.w3.org/ns/shacl#name> "wijzigt";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#amends>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Inverse van bekrachtigt.";
+    <http://www.w3.org/ns/shacl#name> "bekrachtigdBij";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#bekrachtigdBij>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:date;
+    <http://www.w3.org/ns/shacl#description> "De datum waarop de regelgeving van kracht wordt.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "inwerkingtreding";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
+  ], [
+    <http://www.w3.org/ns/shacl#class> dc:Agent;
+    <http://www.w3.org/ns/shacl#description> "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud).";
+    <http://www.w3.org/ns/shacl#name> "verantwoordelijke";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#responsibility_of>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Duidt aan dat deze rechtsbron een verandering met legale gevolgen heeft ondergaan door een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
+    <http://www.w3.org/ns/shacl#name> "gewijzigdBij";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#amended_by>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze bron volledig wordt geannuleerd door een andere bron.";
+    <http://www.w3.org/ns/shacl#name> "ingetrokkenBij";
+    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#ingetrokkenBij>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
     <http://www.w3.org/ns/shacl#description> "Deze bron vult een andere aan met legale impact.";
     <http://www.w3.org/ns/shacl#name> "voegtIn";
     <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#voegtIn>
   ], [
     <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde.";
-    <http://www.w3.org/ns/shacl#name> "bekrachtigt";
-    <http://www.w3.org/ns/shacl#path> <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt>
+    <http://www.w3.org/ns/shacl#description> "Duidt op een of ander manier gerelateerd ander document, niet noodzakelijk een legale bron.";
+    <http://www.w3.org/ns/shacl#name> "zieOok";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#related_to>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalExpression>;
+    <http://www.w3.org/ns/shacl#description> "De verschijningsvorm die deze rechtsbron materialiseert in een concrete tekst.";
+    <http://www.w3.org/ns/shacl#name> "isGerealiseerdDoor";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#is_realized_by>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/AardWetgeving>;
+    <http://www.w3.org/ns/shacl#class> skos:Concept;
+    <http://www.w3.org/ns/shacl#description> "Het type van het regelgevend document.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "typeDocument";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#type_document>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/eli/ontology#LegalResource> .
 
@@ -198,17 +198,10 @@
   <http://www.w3.org/ns/shacl#closed> false;
   <http://www.w3.org/ns/shacl#property> [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De taal van de verschijningsvorm.";
+    <http://www.w3.org/ns/shacl#description> "De titel of officiële naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "taal";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#language>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Een identificator of een ander onderscheidend kenmerk voor een verschijningsvorm.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "nummer";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#number>
+    <http://www.w3.org/ns/shacl#name> "opschrift";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#title>
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
     <http://www.w3.org/ns/shacl#description> "Een verslag van de bron.";
@@ -216,68 +209,11 @@
     <http://www.w3.org/ns/shacl#name> "commentaar";
     <http://www.w3.org/ns/shacl#path> dc:description
   ], [
-    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/ns/adms#Identifier>;
-    <http://www.w3.org/ns/shacl#description> "De unieke ID die wordt gebruikt in een lokaal referentiesysteem om compatibiliteit met eerdere versies te handhaven.";
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "lokaleID";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#id_local>
-  ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte.";
-    <http://www.w3.org/ns/shacl#name> "inhoud";
-    <http://www.w3.org/ns/shacl#path> prov:value
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Vrije term als extra zoekingang tot de rechtsbron.";
-    <http://www.w3.org/ns/shacl#name> "trefwoord";
-    <http://www.w3.org/ns/shacl#path> dc:subject
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:date;
-    <http://www.w3.org/ns/shacl#description> "De laatste dag waarop de regelgeving nog van kracht is.";
+    <http://www.w3.org/ns/shacl#description> "Een identificator of een ander onderscheidend kenmerk voor een verschijningsvorm.";
     <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "buitenwerkingtreding";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
-    <http://www.w3.org/ns/shacl#description> "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#minCount> 1;
-    <http://www.w3.org/ns/shacl#name> "realiseert";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#realizes>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De beknopte titel of officiële korte naam van een decreet, wet, besluit...";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "citeeropschrift";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#title_short>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "De titel of officiële naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "opschrift";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#title>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:string;
-    <http://www.w3.org/ns/shacl#description> "Term uit een thesaurus die verwijst naar een bevoegdheidsdomein.";
-    <http://www.w3.org/ns/shacl#name> "thema";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#is_about>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:date;
-    <http://www.w3.org/ns/shacl#description> "De datum waarop de wetgeving van toepassing wordt.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "datumToepasbaarheid";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_applicability>
-  ], [
-    <http://www.w3.org/ns/shacl#datatype> xsd:date;
-    <http://www.w3.org/ns/shacl#description> "De laatste dag waarop een specifieke versie van de regelgeving of een onderdeel ervan nog van kracht is.";
-    <http://www.w3.org/ns/shacl#maxCount> 1;
-    <http://www.w3.org/ns/shacl#name> "inwerkingtreding";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
-  ], [
-    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalExpression>;
-    <http://www.w3.org/ns/shacl#description> "Geeft een hulpmiddel aan dat tekstuele wijzigingen introduceert (zoals correctie of spelfouten) zonder juridische wijzigingen in deze bron, uitdrukking of indeling.";
-    <http://www.w3.org/ns/shacl#name> "gecorrigeerdDoor";
-    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#corrected_by>
+    <http://www.w3.org/ns/shacl#name> "nummer";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#number>
   ], [
     <http://www.w3.org/ns/shacl#datatype> xsd:date;
     <http://www.w3.org/ns/shacl#description> "De officiële publicatiedatum van de verschijningsvorm.";
@@ -289,5 +225,69 @@
     <http://www.w3.org/ns/shacl#description> "Geeft aan dat deze geconsolideerde juridische bron of uitdrukking (meestal het product van een redactioneel proces dat de wetgeving herziet) rekening houdt met een andere.";
     <http://www.w3.org/ns/shacl#name> "consolideert";
     <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#consolidates>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "Vrije term als extra zoekingang tot de rechtsbron.";
+    <http://www.w3.org/ns/shacl#name> "trefwoord";
+    <http://www.w3.org/ns/shacl#path> dc:subject
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte.";
+    <http://www.w3.org/ns/shacl#name> "inhoud";
+    <http://www.w3.org/ns/shacl#path> prov:value
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:date;
+    <http://www.w3.org/ns/shacl#description> "De datum waarop de wetgeving van toepassing wordt.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "datumToepasbaarheid";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_applicability>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:date;
+    <http://www.w3.org/ns/shacl#description> "De laatste dag waarop de regelgeving nog van kracht is.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "buitenwerkingtreding";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> <http://www.w3.org/ns/adms#Identifier>;
+    <http://www.w3.org/ns/shacl#description> "De unieke ID die wordt gebruikt in een lokaal referentiesysteem om compatibiliteit met eerdere versies te handhaven.";
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "lokaleID";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#id_local>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "De beknopte titel of officiële korte naam van een decreet, wet, besluit...";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "citeeropschrift";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#title_short>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalExpression>;
+    <http://www.w3.org/ns/shacl#description> "Geeft een hulpmiddel aan dat tekstuele wijzigingen introduceert (zoals correctie of spelfouten) zonder juridische wijzigingen in deze bron, uitdrukking of indeling.";
+    <http://www.w3.org/ns/shacl#name> "gecorrigeerdDoor";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#corrected_by>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "Term uit een thesaurus die verwijst naar een bevoegdheidsdomein.";
+    <http://www.w3.org/ns/shacl#name> "thema";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#is_about>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:date;
+    <http://www.w3.org/ns/shacl#description> "De laatste dag waarop een specifieke versie van de regelgeving of een onderdeel ervan nog van kracht is.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#name> "inwerkingtreding";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
+  ], [
+    <http://www.w3.org/ns/shacl#class> <http://data.europa.eu/eli/ontology#LegalResource>;
+    <http://www.w3.org/ns/shacl#description> "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "realiseert";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#realizes>
+  ], [
+    <http://www.w3.org/ns/shacl#datatype> xsd:string;
+    <http://www.w3.org/ns/shacl#description> "De taal van de verschijningsvorm.";
+    <http://www.w3.org/ns/shacl#maxCount> 1;
+    <http://www.w3.org/ns/shacl#minCount> 1;
+    <http://www.w3.org/ns/shacl#name> "taal";
+    <http://www.w3.org/ns/shacl#path> <http://data.europa.eu/eli/ontology#language>
   ];
   <http://www.w3.org/ns/shacl#targetClass> <http://data.europa.eu/eli/ontology#LegalExpression> .
