@@ -1,0 +1,607 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> a rdfs:Class .
+
+<http://data.vlaanderen.be/ns/mandaat#Fractie> a owl:Class;
+  rdfs:label "Fractie"@nl;
+  rdfs:comment "Een fractie is een deel van een rechtstreeks verkozen volksvertegenwoordigend orgaan waarvan de leden op inhoudelijk en logistiek vlak willen samenwerken. Het formeel kader bepaalt wie samen een fractie kan vormen, doorgaans bestaat ze uit volksvertegenwoordigers die tot dezelfde politieke partij of stroming behoren."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf org:Organization .
+
+<http://data.vlaanderen.be/ns/mandaat#aantalHouders> a rdf:Property;
+  rdfs:label "aantal houders"@nl;
+  rdfs:comment "Maximale aantal agents die tegelijk deze positie kunnen invullen."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subPropertyOf <https://data.vlaanderen.be/ns/organisatie#aantalHouders> .
+
+<http://data.vlaanderen.be/ns/mandaat#aantalNaamstemmen> a owl:DatatypeProperty;
+  rdfs:label "aantal naamstemmen"@nl;
+  rdfs:comment "Het aantal stemmen dat is uitgebracht op de kandidaat bij de verkiezing, zonder de lijststemmen in rekening te brengen."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:integer .
+
+<http://data.vlaanderen.be/ns/mandaat#behoortTot> a owl:ObjectProperty;
+  rdfs:label "behoort tot"@nl;
+  rdfs:comment "De verkiezing waar de lijst onderdeel van is."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing> .
+
+<http://data.vlaanderen.be/ns/mandaat#bekrachtigtAanstellingVan> a owl:ObjectProperty;
+  rdfs:label "bekrachtigt aanstelling van"@nl;
+  rdfs:comment "De mandataris wiens aanstelling is bekrachtigd."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#Mandataris> .
+
+<http://data.vlaanderen.be/ns/mandaat#bekrachtigtOntslagVan> a owl:ObjectProperty;
+  rdfs:label "bekrachtigt ontslag van"@nl;
+  rdfs:comment "De mandataris wiens ontslag is bekrachtigd."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#Mandataris> .
+
+<http://data.vlaanderen.be/ns/mandaat#beleidsdomein> a owl:ObjectProperty;
+  rdfs:label "beleidsdomein"@nl;
+  rdfs:comment "Het thema of beleidsdomein dat toegewezen is aan een mandataris."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range skos:Concept .
+
+<http://data.vlaanderen.be/ns/mandaat#datum> a owl:DatatypeProperty;
+  rdfs:label "datum"@nl;
+  rdfs:comment "Datum waarop de verkiezing plaatsvond."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:date;
+  rdfs:subPropertyOf dc:date .
+
+<http://data.vlaanderen.be/ns/mandaat#einde> a owl:DatatypeProperty;
+  rdfs:label "einde"@nl;
+  rdfs:comment "Tijdstip vanaf wanneer de mandataris het mandaat niet langer opneemt."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:dateTime .
+
+<http://data.vlaanderen.be/ns/mandaat#gevolg> a owl:ObjectProperty;
+  rdfs:label "gevolg"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Voorbeelden: niet verkozen, effectief, opvolger."@nl;
+  rdfs:comment "Persoonlijk gevolg van de uitslag voor de kandidaat dat vastlegt of de kandidaat al dan niet kan deelnemen aan het bestuursorgaan."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range skos:Concept .
+
+<http://data.vlaanderen.be/ns/mandaat#heeftKandidaat> a owl:ObjectProperty;
+  rdfs:label "heeft kandidaat"@nl;
+  rdfs:comment "Een persoon die deel uitmaakt van de lijst."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://www.w3.org/ns/person#Person> .
+
+<http://data.vlaanderen.be/ns/mandaat#isAangesteldAls> a owl:ObjectProperty;
+  rdfs:label "is aangesteld als"@nl;
+  rdfs:comment "Een mandatarisrol die eigen is aan de persoon."@nl;
+  rdfs:domain <http://www.w3.org/ns/person#Person>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:subPropertyOf prov:generalizationOf .
+
+<http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor> a owl:ObjectProperty;
+  rdfs:label "is aangesteld door"@nl;
+  rdfs:comment "De rechtsgrond die de aanstelling van de mandataris vastlegt."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling> .
+
+<http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan> a owl:ObjectProperty;
+  rdfs:label "is bestuurlijke alias van"@nl;
+  rdfs:comment "De persoon die de mandatarisrol vervult."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://www.w3.org/ns/person#Person>;
+  rdfs:subPropertyOf prov:specializationOf .
+
+<http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor> a owl:ObjectProperty;
+  rdfs:label "is ontslagen door"@nl;
+  rdfs:comment "De rechtsgrond die het ontslag van de mandataris vastlegt."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging> .
+
+<http://data.vlaanderen.be/ns/mandaat#isResultaatVan> a owl:ObjectProperty;
+  rdfs:label "is resultaat van"@nl;
+  rdfs:comment "De persoon horende bij het resultaat."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://www.w3.org/ns/person#Person> .
+
+<http://data.vlaanderen.be/ns/mandaat#isResultaatVoor> a owl:ObjectProperty;
+  rdfs:label "is resultaat voor"@nl;
+  rdfs:comment "De lijst waarop het resultaat betrekking heeft."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> .
+
+<http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor> a owl:ObjectProperty;
+  rdfs:label "is tijdelijk vervangen door"@nl;
+  <http://purl.org/vocab/vann/usageNote> "De periode van vervanging komt overeen met de start-/einddatum van de opname van het mandaat van de vervanger."@nl;
+  rdfs:comment "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/mandaat#Mandataris> .
+
+<http://data.vlaanderen.be/ns/mandaat#lijstnummer> a owl:DatatypeProperty;
+  rdfs:label "lijstnummer"@nl;
+  rdfs:comment "Het volgnummer van de lijst."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:integer .
+
+<http://data.vlaanderen.be/ns/mandaat#lijsttype> a owl:ObjectProperty;
+  rdfs:label "lijsttype"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Bijvoorbeeld: gemeenteraadsverkiezing, effectieven Vlaams Parlement."@nl;
+  rdfs:comment "Het type van de lijst."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range skos:Concept .
+
+<http://data.vlaanderen.be/ns/mandaat#plaatsRangorde> a owl:DatatypeProperty;
+  rdfs:label "plaats rangorde"@nl;
+  rdfs:comment "De positie in de volgorde op de lijst van effectief verkozenen of op de lijst van opvolgers, op basis van het aantal naamstemmen van de kandidaat plus het aantal overgedragen lijststemmen."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:integer .
+
+<http://data.vlaanderen.be/ns/mandaat#rangorde> a owl:DatatypeProperty;
+  rdfs:label "rangorde"@nl;
+  rdfs:comment "Duidt de plaats van de mandataris aan in de formeel vastgelegde volgorde van de mandatarissen binnen het bestuursorgaan waar de mandataris in zetelt."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range rdf:langString .
+
+<http://data.vlaanderen.be/ns/mandaat#redenVanBeeindiging> a owl:ObjectProperty;
+  rdfs:label "reden van beëindiging"@nl;
+  rdfs:comment "De reden waarom deze rechtsgrond werd beëindigd."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range skos:Concept .
+
+<http://data.vlaanderen.be/ns/mandaat#start> a owl:DatatypeProperty;
+  rdfs:label "start"@nl;
+  rdfs:comment "Tijdstip vanaf wanneer de mandataris het mandaat opneemt."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range xsd:dateTime;
+  rdfs:subPropertyOf <http://data.vlaanderen.be/ns/mandaat#specialisatieStart> .
+
+<http://data.vlaanderen.be/ns/mandaat#status> a owl:ObjectProperty;
+  rdfs:label "status"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Voorbeelden: effectief, verhinderd, beëindigd, waarnemend."@nl;
+  rdfs:comment "De gesteldheid van de mandataris."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range skos:Concept .
+
+<http://data.vlaanderen.be/ns/mandaat#steltSamen> a owl:ObjectProperty;
+  rdfs:label "stelt samen"@nl;
+  rdfs:comment "Het orgaan waarvan de samenstelling wordt bepaald door de verkiezing."@nl;
+  rdfs:domain <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing>;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:range <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> .
+
+<http://data.vlaanderen.be/ns/mandaat#Mandaat> a owl:Class;
+  rdfs:label "Mandaat"@nl;
+  rdfs:comment "De bevoegdheid om gedurende een bepaalde periode een bestuursorgaan te vormen of er deel van uit te maken. Een mandaat kan één of meerdere zetels voorstellen."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf org:Post .
+
+dc:valid a rdf:Property;
+  rdfs:label "geldig"@nl .
+
+skos:prefLabel a rdf:Property;
+  rdfs:label "voorkeursnaam"@nl .
+
+org:hasPost a rdf:Property;
+  rdfs:label "heeft positie"@nl .
+
+org:holds a rdf:Property;
+  rdfs:label "bekleedt"@nl .
+
+org:role a rdf:Property;
+  rdfs:label "rol"@nl .
+
+<http://www.w3.org/ns/regorg#legalName> a rdf:Property;
+  rdfs:label "wettelijke naam"@nl .
+
+<http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling> a owl:Class;
+  rdfs:label "Rechtsgrond Aanstelling"@nl;
+  rdfs:comment "De regelgeving, rechtshandeling en/of beleidskeuze waardoor de invulling van een of meerdere mandaten door een persoon vanaf een bepaalde datum (tijdelijk) start."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf <http://data.europa.eu/eli/ontology#LegalResource>,
+    <http://purl.org/vocab/cpsv#FormalFramework> .
+
+<http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging> a owl:Class;
+  rdfs:label "Rechtsgrond Beëindiging"@nl;
+  rdfs:comment "De regelgeving, rechtshandeling en/of beleidskeuze waardoor de invulling van één of meerdere mandaten door een persoon vanaf een bepaalde datum (tijdelijk) beëindigd wordt."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf <http://data.europa.eu/eli/ontology#LegalResource>,
+    <http://purl.org/vocab/cpsv#FormalFramework> .
+
+<http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing> a owl:Class;
+  rdfs:label "Rechtstreekse Verkiezing"@nl;
+  rdfs:comment "De uitvoering van een formele procedure waarbij stemgerechtigde burgers bepalen aan welke persoon een mandaat kan worden toegekend."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf prov:Activity .
+
+<http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> a owl:Class;
+  rdfs:label "Kandidatenlijst"@nl;
+  rdfs:comment "Lijst met kandidaten voor een verkiezing."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat> .
+
+<http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat> a owl:Class;
+  rdfs:label "Verkiezingsresultaat"@nl;
+  rdfs:comment "Individuele verkiezingsuitslag van een kandidaat."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat> .
+
+<http://data.vlaanderen.be/ns/mandaat#Mandataris> a owl:Class;
+  rdfs:label "Mandataris"@nl;
+  rdfs:comment "Een persoon in zijn rol als houder van een mandaat."@nl;
+  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/mandaat>;
+  rdfs:subClassOf dc:Agent .
+
+<http://data.vlaanderen.be/ns/mandaat> a owl:Ontology;
+  rdfs:label "mandaat"@en,
+    "mandaat"@nl;
+  dc:contributor [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://stad.Antwerpen.be>;
+      foaf:name "Antwerpen"
+    ];
+    foaf:firstName "Melissa";
+    foaf:lastName "Merckx"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://stad.gent>;
+      foaf:name "Stad Gent"
+    ];
+    foaf:firstName "Sylvie";
+    foaf:lastName "Roos"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.herzele.be>;
+      foaf:name "Herzele"
+    ];
+    foaf:firstName "Anja";
+    foaf:lastName "Cosijns"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.vlaamsparlement.be>;
+      foaf:name "Vlaams parlement"
+    ];
+    foaf:firstName "Tom";
+    foaf:lastName "Cocquyt"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.herzele.be>;
+      foaf:name "Herzele"
+    ];
+    foaf:firstName "Daniël";
+    foaf:lastName "Adriaens"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.remmicom.be>;
+      foaf:name "Remmicom"
+    ];
+    foaf:firstName "Jef";
+    foaf:lastName "Peeters"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://stad.gent>;
+      foaf:name "Stad Gent"
+    ];
+    foaf:firstName "Ines";
+    foaf:lastName "Acke"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.niel.be>;
+      foaf:name "Niel"
+    ];
+    foaf:firstName "Eric";
+    foaf:lastName "Vermeiren"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://stad.antwerpen.be>;
+      foaf:name "Antwerpen"
+    ];
+    foaf:firstName "Lynn";
+    foaf:lastName "Lodewyckx"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.cevi.be>;
+      foaf:name "CEVI"
+    ];
+    foaf:firstName "Micheline";
+    foaf:lastName "Van Bogaert"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.ibabs.eu/>;
+      foaf:name "iBabs BV"
+    ];
+    foaf:firstName "Niels";
+    foaf:lastName "Manshanden"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.kaprijke.be>;
+      foaf:name "Kaprijke"
+    ];
+    foaf:firstName "Kristel";
+    foaf:lastName "Brusselle"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://Aalst.be>;
+      foaf:name "Stad Aalst"
+    ];
+    foaf:firstName "Chris";
+    foaf:lastName "Van Molle"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.raadvanstate.be/>;
+      foaf:name "Raad Van State"
+    ];
+    foaf:firstName "Wouter";
+    foaf:lastName "De Cock"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.vlaamsparlement.be>;
+      foaf:name "Vlaams Parlement"
+    ];
+    foaf:firstName "Renée";
+    foaf:lastName "Cambré"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.maldegem.be>;
+      foaf:name "Maldegem"
+    ];
+    foaf:firstName "Heidi";
+    foaf:lastName "Van Deynse"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://binnenland.vlaanderen.be>;
+      foaf:name "ABB"
+    ];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Campenhout"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://Aalst.be>;
+      foaf:name "Stad Aalst"
+    ];
+    foaf:firstName "Sophie";
+    foaf:lastName "Podevyn"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.vlaamsparlement.be>;
+      foaf:name "Vlaams Parlement"
+    ];
+    foaf:firstName "Luc";
+    foaf:lastName "Vanpaemel"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.herzele.be>;
+      foaf:name "Herzele"
+    ];
+    foaf:firstName "Marijke";
+    foaf:lastName "Versteels"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.cipalschaubroeck.be>;
+      foaf:name "Cipal Schaubroeck"
+    ];
+    foaf:firstName "Reynder";
+    foaf:lastName "Bierens"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://digipolis.be>;
+      foaf:name "Digipolis"
+    ];
+    foaf:firstName "Katrien";
+    foaf:lastName "Behiels"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.v-ict-or.be>;
+      foaf:name "V-ICT-OR"
+    ];
+    foaf:firstName "Johan";
+    foaf:lastName "Van der Waal"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.herzele.be>;
+      foaf:name "Herzele"
+    ];
+    foaf:firstName "Miranda";
+    foaf:lastName "Van Bockstaele"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://lier.be>;
+      foaf:name "Lier"
+    ];
+    foaf:firstName "Danny";
+    foaf:lastName "Dewelde"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.cipalschaubroeck.be>;
+      foaf:name "Cipal Schaubroeck"
+    ];
+    foaf:firstName "Jonas";
+    foaf:lastName "Tamsyn"
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.vvsg.be>;
+      foaf:name "VVSG"
+    ];
+    foaf:firstName "Marian";
+    foaf:lastName "Verbeek"
+  ];
+  dc:issued "2017-10-11";
+  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    <https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html>;
+  dc:mediator [
+    foaf:homepage <https://data.vlaanderen.be>;
+    foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
+    foaf:name "Data Vlaanderen"
+  ];
+  rdfs:seeAlso <http://www.w3.org/ns/regorg#legalName>,
+    skos:prefLabel,
+    <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>,
+    dc:valid,
+    org:hasPost,
+    org:holds,
+    org:role;
+  <http://www.w3.org/2001/02pd/rec54#editor> [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.ugent.be/ps/communicatiewetenschappen/mict>;
+      foaf:name "imec-MICT-UGent"
+    ];
+    foaf:firstName "Fie";
+    foaf:lastName "Vandamme";
+    foaf:mbox <mailto:fie.vandamme@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec - UGent"
+    ];
+    foaf:firstName "Brecht";
+    foaf:lastName "Van de Vyvere";
+    foaf:mbox <mailto:brecht.vandevyvere@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Raf";
+    foaf:lastName "Buyle";
+    foaf:mbox <mailto:raf.buyle@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec-IDLab-UGent"
+    ];
+    foaf:firstName "Erik";
+    foaf:lastName "Mannens";
+    foaf:mbox <mailto:erik.mannens@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec - UGent"
+    ];
+    foaf:firstName "Laurens";
+    foaf:lastName "De Vocht";
+    foaf:mbox <mailto:laurens.devocht@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec-IDLab-UGent"
+    ];
+    foaf:firstName "Laurens";
+    foaf:lastName "De Vocht";
+    foaf:mbox <mailto:laurens.devocht@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.ugent.be/ps/communicatiewetenschappen/mict>;
+      foaf:name "imec-MICT-UGent"
+    ];
+    foaf:firstName "Mathias";
+    foaf:lastName "Van Compernolle";
+    foaf:mbox <mailto:mathias.vancompernolle@ugent.be>
+  ];
+  foaf:maker [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec - UGent"
+    ];
+    foaf:firstName "Dieter";
+    foaf:lastName "De Paepe";
+    foaf:mbox <mailto:dieter.depaepe@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://binnenland.vlaanderen.be/>;
+      foaf:name "Agentschap Binnenlands Bestuur"
+    ];
+    foaf:firstName "Katrien";
+    foaf:lastName "De Smet";
+    foaf:mbox <mailto:katrien.desmet@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://binnenland.vlaanderen.be/>;
+      foaf:name "Agentschap Binnenlands Bestuur"
+    ];
+    foaf:firstName "Veronique";
+    foaf:lastName "Volders";
+    foaf:mbox <mailto:veronique.volders@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://binnenland.vlaanderen.be/>;
+      foaf:name "Agentschap Binnenlands Bestuur"
+    ];
+    foaf:firstName "Heidi";
+    foaf:lastName "Godderis";
+    foaf:mbox <mailto:heidi.godderis@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec-IDLab-UGent"
+    ];
+    foaf:firstName "Dieter";
+    foaf:lastName "De Paepe";
+    foaf:mbox <mailto:dieter.depaepe@ugent.be>
+  ] .
