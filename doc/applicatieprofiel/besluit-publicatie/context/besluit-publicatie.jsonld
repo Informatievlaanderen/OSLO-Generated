@@ -1,0 +1,357 @@
+{
+  "@context": {
+    "Agendapunt": "http://data.vlaanderen.be/ns/besluit#Agendapunt",
+    "Agendapunt.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Agendapunt.titel": {
+      "@id": "http://purl.org/dc/terms/title",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Agendapunt.type": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#Agendapunt.type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Agent": "http://purl.org/dc/terms/Agent",
+    "Artikel": "http://data.vlaanderen.be/ns/besluit#Artikel",
+    "Artikel.nummer": {
+      "@id": "http://data.europa.eu/eli/ontology#number",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Artikel.realiseert": {
+      "@id": "http://data.europa.eu/eli/ontology#realizes",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
+    },
+    "BehandelingVanAgendapunt": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt",
+    "BehandelingVanAgendapunt.heeftAanwezige": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "BehandelingVanAgendapunt.heeftSecretaris": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "BehandelingVanAgendapunt.heeftVoorzitter": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "Besluit": "http://data.vlaanderen.be/ns/besluit#Besluit",
+    "Besluit.beschrijving": {
+      "@id": "http://data.europa.eu/eli/ontology#description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Besluit.realiseert": {
+      "@id": "http://data.europa.eu/eli/ontology#realizes",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Bestuurseenheid": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+    "Bestuurseenheid.classificatie": {
+      "@id": "http://www.w3.org/ns/org#classification",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Bestuurseenheid.naam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "Bestuursorgaan": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+    "Bestuursorgaan.classificatie": {
+      "@id": "http://www.w3.org/ns/org#classification",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Bestuursorgaan.naam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "Document": "http://xmlns.com/foaf/0.1/Document",
+    "DocumentOnderdeel": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel",
+    "DocumentOnderdeel.isDeelVan": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel"
+    },
+    "DocumentOnderdeel.nummer": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#nummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "DocumentOnderdeel.type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "LegaleVerschijningsvorm": "http://data.europa.eu/eli/ontology#LegalExpression",
+    "LegaleVerschijningsvorm.citeert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#cites",
+      "@type": "http://data.europa.eu/eli/ontology#LegalExpression"
+    },
+    "LegaleVerschijningsvorm.corrigeert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#corrects",
+      "@type": "http://data.europa.eu/eli/ontology#LegalExpression"
+    },
+    "LegaleVerschijningsvorm.gecorrigeerdDoor": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#corrected_by",
+      "@type": "http://data.europa.eu/eli/ontology#LegalExpression"
+    },
+    "LegaleVerschijningsvorm.titel": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#title",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "LegaleVerschijningsvorm.veranderdDoor": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#changed_by",
+      "@type": "http://data.europa.eu/eli/ontology#LegalExpression"
+    },
+    "LegaleVerschijningsvorm.verandert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#changes",
+      "@type": "http://data.europa.eu/eli/ontology#LegalExpression"
+    },
+    "Mandataris": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
+    "Rechtsgrond": "http://data.europa.eu/eli/ontology#LegalResource",
+    "Rechtsgrond (Besluit)": "http://data.europa.eu/eli/ontology#LegalResource",
+    "Rechtsgrond.citeert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#cites",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Rechtsgrond.corrigeert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#corrects",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Rechtsgrond.gecorrigeerdDoor": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#corrected_by",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Rechtsgrond.veranderdDoor": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#changed_by",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Rechtsgrond.verandert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#changes",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Rechtsgrondonderdeel": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+    "Rechtsgrondonderdeel (Artikel)": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+    "Rechtsgrondonderdeel (Artikel).isDeelVan": {
+      "@id": "http://data.europa.eu/eli/ontology#is_part_of",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    "Stemming": "http://data.vlaanderen.be/ns/besluit#Stemming",
+    "Vergaderactiviteit": "http://data.vlaanderen.be/ns/besluit#Vergaderactiviteit",
+    "Vergaderactiviteit.heeftAanwezige": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+      "@type": "http://purl.org/dc/terms/Agent"
+    },
+    "Zitting": "http://data.vlaanderen.be/ns/besluit#Zitting",
+    "Zitting.heeftSecretaris": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftSecretaris",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "Zitting.heeftVoorzitter": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftVoorzitter",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "aangebrachtNa": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#aangebrachtNa",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
+    },
+    "aangenomenDoor": {
+      "@id": "http://data.europa.eu/eli/ontology#passed_by",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
+    },
+    "aantalOnthouders": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#aantalOnthouders",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "aantalTegenstanders": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#aantalTegenstanders",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "aantalVoorstanders": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#aantalVoorstanders",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "behandelt": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#behandelt",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
+    },
+    "bestuurt": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#bestuurt",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid"
+    },
+    "buitenwerkingtreding": {
+      "@id": "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "citeeropschrift": {
+      "@id": "http://data.europa.eu/eli/ontology#title_short",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "eind": {
+      "@id": "http://www.w3.org/ns/prov#endedAtTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "gebeurtNa": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#gebeurtNa",
+      "@type": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
+    },
+    "geeftAanleidingTot": {
+      "@container": "@set",
+      "@id": "http://www.w3.org/ns/prov#generated",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Besluit"
+    },
+    "geheim": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#geheim",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "geplandOpenbaar": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#geplandOpenbaar",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "geplandeStart": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#geplandeStart",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "gevolg": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#gevolg",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "heeft bijlage": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#cites",
+      "@type": "http://xmlns.com/foaf/0.1/Document"
+    },
+    "heeftAanwezigeBijStart": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftAanwezigeBijStart",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "heeftDeel": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#has_part",
+      "@type": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision"
+    },
+    "heeftNotulen": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftNotulen",
+      "@type": "http://xmlns.com/foaf/0.1/Document"
+    },
+    "heeftOnderwerp": {
+      "@id": "http://purl.org/dc/terms/subject",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
+    },
+    "heeftOnthouder": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftOnthouder",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "heeftOntwerpbesluit": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftOntwerpbesluit",
+      "@type": "http://xmlns.com/foaf/0.1/Document"
+    },
+    "heeftStemmer": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftStemmer",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "heeftStemming": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftStemming",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Stemming"
+    },
+    "heeftTegenstander": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftTegenstander",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "heeftVoorstander": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftVoorstander",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "heeftZittingsverslag": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftZittingsverslag",
+      "@type": "http://xmlns.com/foaf/0.1/Document"
+    },
+    "heeftaanwezige": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/besluit#heeftAanwezige",
+      "@type": "http://data.vlaanderen.be/ns/mandaat#Mandataris"
+    },
+    "inhoud": {
+      "@id": "http://www.w3.org/ns/prov#value",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "inwerkingtreding": {
+      "@id": "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "isGehoudenDoor": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#isGehoudenDoor",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan"
+    },
+    "isOnderdeelVan": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "http://xmlns.com/foaf/0.1/Document"
+    },
+    "locatie": {
+      "@id": "http://www.w3.org/ns/prov#atLocation",
+      "@type": "http://www.w3.org/ns/prov#Location"
+    },
+    "motivering": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#motivering",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "onderwerp": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#onderwerp",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "openbaar": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#openbaar",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "publicatiedatum": {
+      "@id": "http://data.europa.eu/eli/ontology#date_publication",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "refereertAan": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/references",
+      "@type": "http://data.vlaanderen.be/ns/besluit#Agendapunt"
+    },
+    "start": {
+      "@id": "http://www.w3.org/ns/prov#startedAtTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "taal": {
+      "@id": "http://data.europa.eu/eli/ontology#language",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "typeDocument": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#type_document",
+      "@type": "http://data.europa.eu/eli/ontology#ResourceType"
+    },
+    "volgtUit": {
+      "@id": "http://www.w3.org/ns/prov#wasGeneratedBy",
+      "@type": "http://data.vlaanderen.be/ns/besluit#BehandelingVanAgendapunt"
+    },
+    "werkingsgebied": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
+      "@type": "http://www.w3.org/ns/prov#Location"
+    }
+  }
+}
