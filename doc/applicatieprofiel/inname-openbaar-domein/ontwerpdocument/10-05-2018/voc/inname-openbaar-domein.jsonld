@@ -883,6 +883,20 @@
       "usage": {}
     },
     {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#TijdsintervalMetDuur",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "De tijdsperiode wanneer iets start en eindigt en hoelang deze hiertussen effectief duurt."
+      },
+      "name": {
+        "nl": "TijdsintervalMetDuur"
+      },
+      "parents": [
+        "http://data.europa.eu/m8g/PeriodOfTime"
+      ],
+      "usage": {}
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
@@ -1230,7 +1244,9 @@
         "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder"
       ],
       "generalization": [],
-      "name": {},
+      "name": {
+        "nl": "vereist"
+      },
       "range": [
         "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel"
       ],
@@ -1777,38 +1793,20 @@
       "usage": {}
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactinfo",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "Contactgegevens per specifieke rol van het innamverbod."
+        "nl": "Wie te contacteren omtrent het innameverbod."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Innameverbod"
       ],
       "generalization": [],
       "name": {
-        "nl": "contactinfo"
+        "nl": "contactpunt"
       },
       "range": [
-        "https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactinfo",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Wie te contacteren volgens de rol omtrent de mobiliteitsmaatregel."
-      },
-      "domain": [
-        "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "contactinfo"
-      },
-      "range": [
-        "https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek"
+        "http://purl.org/dc/terms/Agent"
       ],
       "usage": {}
     },
@@ -1834,6 +1832,24 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
+        "nl": "Wie te contacteren volgens een bepaalde rol omtrent de mobiliteitsmaatregel."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "contactpunt"
+      },
+      "range": [
+        "http://purl.org/dc/terms/Agent"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
         "nl": "Agent die gecontacteerd kan worden over deze mobiliteitshinder."
       },
       "domain": [
@@ -1845,6 +1861,24 @@
       },
       "range": [
         "http://purl.org/dc/terms/Agent"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Organisatie die gecontacteerd kan worden over deze inname."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#Inname"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "contactpunt"
+      },
+      "range": [
+        "http://www.w3.org/ns/org#Organization"
       ],
       "usage": {}
     },
@@ -1896,12 +1930,34 @@
         "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel"
       ],
       "generalization": [],
-      "name": {},
+      "name": {
+        "nl": "doelgroep"
+      },
       "range": [
         "http://www.w3.org/2004/02/skos/core#Concept"
       ],
       "usage": {
         "nl": "Bijvoorbeeld: vrachtwagens boven 3.5 ton"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#effectieveDuur",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Hoelang de inname effectief gaat duren en zal plaatsvinden binnen dit tijdsinterval."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#TijdsintervalMetDuur"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "effectieve duur"
+      },
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Literal"
+      ],
+      "usage": {
+        "nl": "Gebruik xsd:Duration. Bijvoorbeeld: 100 dagen wordt uitgedrukt met 'P100D'. Wordt meestal gebruikt in combinatie met een tijdsinterval met enkel 'begiin' ingevuld."
       }
     },
     {
@@ -2113,6 +2169,26 @@
       "usage": {}
     },
     {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#rol",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Rol die de organisatie speelt."
+      },
+      "domain": [
+        "http://www.w3.org/ns/org#Organization"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "rol"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "usage": {
+        "nl": "Bijvoorbeeld: architect, beheerder etc."
+      }
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#stilzwijgend",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
@@ -2162,25 +2238,7 @@
         "nl": "tijdsschema"
       },
       "range": [
-        "http://data.europa.eu/m8g/Event"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#tijdsschema",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Schedule van de mobiliteitshinder."
-      },
-      "domain": [
-        "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "tijdsschema"
-      },
-      "range": [
-        "http://data.europa.eu/m8g/Event"
+        "http://schema.org/Schedule"
       ],
       "usage": {}
     },
@@ -2257,49 +2315,11 @@
       }
     },
     {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@id": "http://www.w3.org/ns/org#Organization",
       "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {}
+      "name": {
+        "nl": "Organisatie (in rol)"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/weg#TransportLinkSet",
@@ -2317,6 +2337,20 @@
     }
   ],
   "externalproperties": [
+    {
+      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "tijdsinterval"
+      }
+    },
+    {
+      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "tijdsinterval"
+      }
+    },
     {
       "@id": "http://purl.org/dc/elements/1.1/contributor",
       "@type": "rdf:Property",
@@ -2423,17 +2457,17 @@
       }
     },
     {
-      "@id": "http://schema.org/contactType",
+      "@id": "http://schema.org/contactPoint",
       "@type": "rdf:Property",
       "name": {
-        "nl": "rol"
+        "nl": "contactinfo"
       }
     },
     {
-      "@id": "http://schema.org/endDate",
+      "@id": "http://schema.org/contactType",
       "@type": "rdf:Property",
       "name": {
-        "nl": "eindtijd"
+        "nl": "contacttype"
       }
     },
     {
@@ -2444,10 +2478,17 @@
       }
     },
     {
-      "@id": "http://schema.org/startDate",
+      "@id": "http://schema.org/eventSchedule",
       "@type": "rdf:Property",
       "name": {
-        "nl": "starttijd"
+        "nl": "tijdsschema"
+      }
+    },
+    {
+      "@id": "http://schema.org/telephone",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "telefoon"
       }
     },
     {
@@ -2657,14 +2698,14 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot",
       "@type": "rdf:Property",
       "name": {
-        "nl": "heeft betrekking tot"
+        "nl": "heeft betrekking tot project"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot",
       "@type": "rdf:Property",
       "name": {
-        "nl": "heeft betrekking tot project"
+        "nl": "heeft betrekking tot"
       }
     },
     {
