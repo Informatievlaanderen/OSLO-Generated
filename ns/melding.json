@@ -1,74 +1,94 @@
 {
   "@context": {
-    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
-    "org": "http://www.w3.org/ns/org#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "dc": "http://purl.org/dc/terms/",
-    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "foaf": "http://xmlns.com/foaf/0.1/",
-    "dcmitype": "http://purl.org/dc/dcmitype/",
-    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "void": "http://rdfs.org/ns/void#",
+    "dcmitype": "http://purl.org/dc/dcmitype/",
+    "org": "http://www.w3.org/ns/org#",
     "oa": "http://www.w3.org/ns/oa#",
-    "void": "http://rdfs.org/ns/void#"
+    "schema": "http://schema.org/"
   },
   "@graph": [
     {
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "rdfs:label": {
-        "@value": "geometrie",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "rdfs:label",
-      "rdfs:label": {
-        "@value": "label",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
-      "rdfs:label": {
-        "@value": "wkt",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#bronhouder",
-      "rdfs:label": {
-        "@value": "bronhouder",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De bronhouder is verantwoordelijk voor het opnemen van gegevens in de dataset en het bewaken van de kwaliteit daarvan.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#gerelateerdeBody",
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
-        "@id": "org:Organization"
+        "@id": "https://data.vlaanderen.be/ns/melding#MeldingBody"
       },
       "rdfs:domain": {
-        "@id": "rdfs:Resource"
+        "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject"
       },
-      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "De body van de Melding die betrekking heeft op het Meldingsobject.",
+        "@language": "nl"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Indien de Melding meerdere Meldingsobjecten bevat biedt deze eigenschap de mogelijkheid om te beschrijven welke MeldingBody relevant is voor de behandeling van het Meldingsobject.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "gerelateerde body",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#MeldingBody",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": "https://www.w3.org/ns/activitystreams#Object",
+      "rdfs:comment": {
+        "@value": "De body van de Melding,deze omvat relevante informatie voor de verdere afhandeling van de melding.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "Melding Body",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": "http://www.w3.org/ns/oa#SpecificResource",
+      "rdfs:comment": {
+        "@value": "Het Meldingsobject identificeert een resource,een specifiek deel van een resource,een bepaalde representatie van een resource of een combinatie hiervan welke gebruikt wordt binnen de Melding.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "Meldingsobject",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding",
-      "rdfs:label": [
+      "@type": "owl:Ontology",
+      "dc:license": {
+        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
+      },
+      "foaf:maker": [
         {
-          "@value": "Digitale Melding",
-          "@language": "nl"
+          "@id": "_:g47067257811220"
         },
         {
-          "@value": "Digital Annotation",
-          "@language": "en"
+          "@id": "_:g47067261764280"
+        },
+        {
+          "@id": "_:g47067261300460"
+        },
+        {
+          "@id": "_:g47067262079120"
         }
       ],
       "dc:issued": {
@@ -77,287 +97,187 @@
       },
       "http://www.w3.org/2001/02pd/rec54#editor": [
         {
-          "@id": "_:g46932680681560"
+          "@id": "_:g47067261045160"
         },
         {
-          "@id": "_:g46932685629180"
+          "@id": "_:g47067260462620"
         }
       ],
-      "dc:license": {
-        "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
-      },
       "dc:contributor": [
         {
-          "@id": "_:g46932684481380"
+          "@id": "_:g47067261390100"
         },
         {
-          "@id": "_:g46932683680160"
+          "@id": "_:g47067260830580"
         },
         {
-          "@id": "_:g46932681014580"
+          "@id": "_:g47067255111420"
         },
         {
-          "@id": "_:g46932684949860"
+          "@id": "_:g47067261915560"
         },
         {
-          "@id": "_:g46932684233680"
+          "@id": "_:g47067260636920"
         },
         {
-          "@id": "_:g46932685254060"
+          "@id": "_:g47067261944860"
         },
         {
-          "@id": "_:g46932684936520"
+          "@id": "_:g47067257645980"
         },
         {
-          "@id": "_:g46932677926180"
+          "@id": "_:g47067262424340"
         },
         {
-          "@id": "_:g46932684480200"
+          "@id": "_:g47067261497260"
         }
       ],
-      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/melding",
-      "dc:mediator": {
-        "@id": "_:g46932685249560"
-      },
-      "dc:title": [
-        {
-          "@value": "Digitale Melding",
-          "@language": "nl"
-        },
+      "rdfs:label": [
         {
           "@value": "Digital Annotation",
           "@language": "en"
+        },
+        {
+          "@value": "Digitale Melding",
+          "@language": "nl"
         }
       ],
-      "@type": "owl:Ontology",
-      "foaf:maker": [
+      "dc:title": [
         {
-          "@id": "_:g46932684473460"
+          "@value": "Digital Annotation",
+          "@language": "en"
         },
         {
-          "@id": "_:g46932683691960"
-        },
-        {
-          "@id": "_:g46932684780100"
-        },
-        {
-          "@id": "_:g46932684227700"
+          "@value": "Digitale Melding",
+          "@language": "nl"
         }
-      ]
+      ],
+      "dc:mediator": {
+        "@id": "_:g47067258129340"
+      },
+      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/melding"
     },
     {
       "@id": "http://www.opengis.net/ont/geosparql#asGML",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "gml",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#behandelaar",
-      "rdfs:label": {
-        "@value": "behandelaar",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Agent die werd aangewezen om de melding en/of het meldingsobject op te volgen en af te handelen.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
-      },
-      "rdfs:domain": {
-        "@id": "rdfs:Resource"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "dcmitype:Dataset",
-      "rdfs:label": {
-        "@value": "Dataset",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g46932683770280",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#MeldingBody",
-      "rdfs:label": {
-        "@value": "Melding Body",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De body van de Melding,deze omvat relevante informatie voor de verdere afhandeling van de melding.",
-        "@language": "nl"
-      },
-      "rdfs:subClassOf": "https://www.w3.org/ns/activitystreams#Object",
+      "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus",
       "@type": "owl:Class",
+      "rdfs:comment": {
+        "@value": "De Status van de Melding in het verwerkingsproces op een bepaald tijdstip.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "Meldingstatus",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "http://www.w3.org/ns/locn#Geometry",
+      "@id": "skos:prefLabel",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "Geometrie",
+        "@value": "label",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
+      }
     },
     {
-      "@id": "_:g46932684949860",
-      "foaf:firstName": "Liesbeth",
-      "schema:affiliation": {
-        "@id": "_:g46932685157940"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:liesbeth.rombouts@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Rombouts",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "_:g46932685157940",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
-    },
-    {
-      "@id": "skos:Concept",
-      "rdfs:label": {
-        "@value": "Concept",
-        "@language": "nl"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "https://www.w3.org/ns/hydra/core#required",
-      "rdfs:label": {
-        "@value": "verplicht",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#verwachtType",
-      "rdfs:label": {
-        "@value": "verwacht type",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Geeft het bereik van mogelijke waarden aan voor de eigenschap.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#mogelijkeWaarden",
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Gebruik bij voorkeur een regular expression of primitief datatype zoals een integer, boolean, floating-point nummer, string...",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
+        "@id": "skos:Concept"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap"
+      },
+      "rdfs:comment": {
+        "@value": "Associeert de Eigenschap met een exhaustieve lijst aan mogelijk waarden (bv. een codelijst).",
+        "@language": "nl"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Het is aangeraden de mogelijke waarden voor te stellen als een skos:ConceptScheme (https://www.w3.org/TR/skos-primer/)",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "mogelijke waarden",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "skos:Concept",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "Concept",
+        "@language": "nl"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap",
-      "rdfs:label": {
-        "@value": "Eigenschap",
-        "@language": "nl"
-      },
+      "@type": "owl:Class",
       "rdfs:comment": {
         "@value": "De klasse voor het beschrijven van de data velden waaruit een dataset bestaat.",
         "@language": "nl"
       },
-      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Eigenschap",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#voorgesteldeWaarde",
-      "rdfs:label": {
-        "@value": "voorgestelde waarde",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De voorgestelde waarde van een Eigenschap.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#heeftEigenschap",
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "De suggereerde correct waarde zoals aangegeven door de indiener van de melding.",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
+        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
       },
       "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
+        "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "void:property"
+      },
+      "rdfs:comment": {
+        "@value": "Refereert naar een eigenschap die het object beschrijft.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "heeft eigenschap",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut",
-      "rdfs:label": {
-        "@value": "Meldingsobject Attribuut",
-        "@language": "nl"
-      },
+      "@type": "owl:Class",
       "rdfs:comment": {
         "@value": "Beschrijft een attribuut van het Meldingsobject.",
         "@language": "nl"
       },
-      "@type": "owl:Class",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#meldingsorganisatie",
       "rdfs:label": {
-        "@value": "meldingsorganisatie",
+        "@value": "Meldingsobject Attribuut",
         "@language": "nl"
       },
-      "rdfs:comment": {
-        "@value": "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "org:Organization"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "https://www.w3.org/ns/activitystreams#generator"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
-      },
-      "@type": "owl:ObjectProperty",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#Melding",
-      "rdfs:label": {
-        "@value": "Melding",
-        "@language": "nl"
-      },
+      "@type": "owl:Class",
       "rdfs:comment": {
         "@value": "Beschrijft de melding van een probleem of een vaststelling die mogelijks aanleiding geeft tot een actie van de overheid.",
         "@language": "nl"
@@ -366,795 +286,875 @@
         "@value": "Een melding kan gebruikt worden voor vaststellingen in de echte wereld,bijvoorbeeld het melden van een put in de weg of sluikstort,of voor het melden van fouten of onvolledigheden in digitale gegevensbronnen.",
         "@language": "nl"
       },
-      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Melding",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932685254060",
-      "foaf:firstName": "Pieter",
-      "schema:affiliation": {
-        "@id": "_:g46932685534660"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:Pieter.Kempenaers@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Kempenaers",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "_:g46932685534660",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
-    },
-    {
-      "@id": "oa:TimeState",
+      "@id": "http://www.w3.org/ns/locn#Geometry",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "TijdToestand",
+        "@value": "Geometrie",
         "@language": "nl"
-      },
-      "@type": "rdfs:Class"
+      }
     },
     {
-      "@id": "oa:cachedSource",
+      "@id": "dcmitype:Dataset",
+      "@type": "rdfs:Class",
       "rdfs:label": {
-        "@value": "cached bron",
+        "@value": "Dataset",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "https://www.w3.org/ns/activitystreams#summary",
+      "@id": "https://www.w3.org/ns/activitystreams#attachment",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "samenvatting",
+        "@value": "bijlage",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "oa:hasState",
-      "rdfs:label": {
-        "@value": "heeft toestand",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "oa:hasSource",
-      "rdfs:label": {
-        "@value": "heeftBron",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g46932684936520",
-      "foaf:firstName": "Stefan",
-      "schema:affiliation": {
-        "@id": "_:g46932684804540"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:Stefan.VanCamp@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Van Camp",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "_:g46932684804540",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
-    },
-    {
-      "@id": "dc:title",
-      "rdfs:label": {
-        "@value": "titel",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#huidigeWaarde",
-      "rdfs:label": {
-        "@value": "huidige waarde",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De huidige waarde van een Eigenschap.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#meldingsorganisatie",
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
-        "@id": "xsd:string"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Dit is de waarde zoals waargenomen door de indiener van de melding.",
-        "@language": "nl"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
+        "@id": "org:Organization"
       },
       "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
+        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#generator"
+      },
+      "rdfs:comment": {
+        "@value": "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "meldingsorganisatie",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "dc:description",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "beschrijving",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#betrokkene",
-      "rdfs:label": {
-        "@value": "betrokkene",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Agent die als derde belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Bijvoorbeeld indien de melding werd aangemaakt door een derde, bijvoorbeeld een ambtenaar van de gemeente op vraag van een burger.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#gerelateerdeBody",
+      "@id": "oa:hasSource",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "gerelateerde body",
+        "@value": "heeftBron",
         "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De body van de Melding die betrekking heeft op het Meldingsobject.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/melding#MeldingBody"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Indien de Melding meerdere Meldingsobjecten bevat biedt deze eigenschap de mogelijkheid om te beschrijven welke MeldingBody relevant is voor de behandeling van het Meldingsobject.",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject"
       }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject",
-      "rdfs:label": {
-        "@value": "Meldingsobject",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Het Meldingsobject identificeert een resource,een specifiek deel van een resource,een bepaalde representatie van een resource of een combinatie hiervan welke gebruikt wordt binnen de Melding.",
-        "@language": "nl"
-      },
-      "rdfs:subClassOf": "http://www.w3.org/ns/oa#SpecificResource",
-      "@type": "owl:Class",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "_:g46932684481380",
-      "foaf:firstName": "Barbara",
-      "schema:affiliation": {
-        "@id": "_:g46932684657820"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:barbara.vanoggh@bosa.fgov.be"
-      },
-      "foaf:lastName": "Van Gogh",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "_:g46932684657820",
-      "foaf:homepage": {
-        "@id": "https://bosa.belgium.be/"
-      },
-      "foaf:name": "BOSA"
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#meldbaar",
-      "rdfs:label": {
-        "@value": "meldbaar",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Geeft aan of op de eigenschap kan teruggemeld worden (true) of deze louter ter informatie van de gebruiker wordt getoond (false). ",
-        "@language": "nl"
-      },
+      "@type": "owl:DatatypeProperty",
       "rdfs:range": {
         "@id": "xsd:boolean"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap"
       },
-      "@type": "owl:DatatypeProperty",
+      "rdfs:comment": {
+        "@value": "Geeft aan of op de eigenschap kan teruggemeld worden (true) of deze louter ter informatie van de gebruiker wordt getoond (false). ",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "meldbaar",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932683680160",
+      "@id": "_:g47067260830580",
+      "foaf:lastName": "De Rijcker",
+      "@type": "foaf:person",
       "foaf:firstName": "Jasmin",
       "schema:affiliation": {
-        "@id": "_:g46932683772820"
+        "@id": "_:g47067260495820"
       },
       "foaf:mbox": {
         "@id": "mailto:jasmin.derijcker@stad.antwerpen.be"
-      },
-      "foaf:lastName": "De Rijcker",
-      "@type": "foaf:person"
+      }
     },
     {
-      "@id": "_:g46932683772820",
+      "@id": "_:g47067260495820",
+      "foaf:name": "Stad Antwerpen",
       "foaf:homepage": {
         "@id": "https://www.antwerpen.be/"
-      },
-      "foaf:name": "Stad Antwerpen"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#mogelijkeWaarden",
+      "@id": "http://www.w3.org/ns/locn#geometry",
+      "@type": "rdf:Property",
       "rdfs:label": {
-        "@value": "mogelijke waarden",
+        "@value": "geometrie",
         "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Associeert de Eigenschap met een exhaustieve lijst aan mogelijk waarden (bv. een codelijst).",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@value": "Het is aangeraden de mogelijke waarden voor te stellen als een skos:ConceptScheme (https://www.w3.org/TR/skos-primer/)",
-        "@language": "nl"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap"
       }
     },
     {
       "@id": "oa:sourceDate",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "datum vaststelling",
         "@language": "nl"
+      }
+    },
+    {
+      "@id": "oa:hasTarget",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft doelwit",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g47067261915560",
+      "foaf:lastName": "Loutas",
+      "@type": "foaf:person",
+      "foaf:firstName": "Nikolaos",
+      "schema:affiliation": {
+        "@id": "_:g47067262044720"
       },
-      "@type": "rdf:Property"
+      "foaf:mbox": {
+        "@id": "mailto:nikolaos.loutas@pwc.com"
+      }
+    },
+    {
+      "@id": "_:g47067262044720",
+      "foaf:name": "PwC",
+      "foaf:homepage": {
+        "@id": "http://www.pwc.be"
+      }
+    },
+    {
+      "@id": "oa:TimeState",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@value": "TijdToestand",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "oa:motivatedBy",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "meldingstype",
+        "@language": "nl"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#statuswaarde",
-      "rdfs:label": {
-        "@value": "status type",
-        "@language": "nl"
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "skos:Concept"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
       },
       "rdfs:comment": {
         "@value": "Het type van de Status.",
         "@language": "nl"
       },
-      "rdfs:range": {
-        "@id": "skos:Concept"
-      },
       "http://purl.org/vocab/vann/usageNote": {
         "@value": "Er wordt verwacht dat het status type gedefinieerd is in een codelijst. Het bepalen en ontlsuiten van deze codelijst kan applicatie-specifiek worden ingevuld. ",
         "@language": "nl"
       },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus",
       "rdfs:label": {
-        "@value": "Meldingstatus",
+        "@value": "status type",
         "@language": "nl"
       },
-      "rdfs:comment": {
-        "@value": "De Status van de Melding in het verwerkingsproces op een bepaald tijdstip.",
-        "@language": "nl"
-      },
-      "@type": "owl:Class",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932685249560",
-      "foaf:homepage": {
-        "@id": "https://data.vlaanderen.be"
-      },
-      "foaf:name": "Data Vlaanderen",
-      "foaf:mbox": {
-        "@id": "mailto:oslo@kb.vlaanderen.be"
+      "@id": "oa:hasState",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "heeft toestand",
+        "@language": "nl"
       }
     },
     {
-      "@id": "_:g46932684473460",
-      "foaf:firstName": "Jurgen",
+      "@id": "_:g47067261944860",
+      "foaf:lastName": "Kempenaers",
+      "@type": "foaf:person",
+      "foaf:firstName": "Pieter",
       "schema:affiliation": {
-        "@id": "_:g46932684652220"
+        "@id": "_:g47067262197660"
       },
       "foaf:mbox": {
-        "@id": "mailto:Jurgen.Dooms@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Dooms",
-      "@type": "foaf:person"
+        "@id": "mailto:Pieter.Kempenaers@kb.vlaanderen.be"
+      }
     },
     {
-      "@id": "_:g46932684652220",
+      "@id": "_:g47067262197660",
+      "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#eigenschap",
-      "rdfs:label": {
-        "@value": "eigenschap",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Verwijst naar de Eigenschap die deel uitmaakt van een bepaalde Dataset.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#verwachtType",
+      "@type": "owl:DatatypeProperty",
       "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap"
       },
-      "rdfs:domain": {
-        "@id": "rdfs:Resource"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#webpagina",
-      "rdfs:label": {
-        "@value": "webpagina",
-        "@language": "nl"
-      },
       "rdfs:comment": {
-        "@value": "Een doorverwijzing naar een webpagina.",
+        "@value": "Geeft het bereik van mogelijke waarden aan voor de eigenschap.",
         "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:anyURI"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
-      },
-      "@type": "owl:DatatypeProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "https://www.w3.org/ns/activitystreams#attachment",
-      "rdfs:label": {
-        "@value": "bijlage",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "skos:prefLabel",
-      "rdfs:label": {
-        "@value": "label",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g46932680681560",
-      "foaf:firstName": "Jens",
-      "schema:affiliation": {
-        "@id": "_:g46932681129060"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:jens.scheerlinck@pwc.com"
-      },
-      "foaf:lastName": "Scheerlinck",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "_:g46932681129060",
-      "foaf:homepage": {
-        "@id": "http://www.pwc.be"
-      },
-      "foaf:name": "PwC"
-    },
-    {
-      "@id": "_:g46932681244420",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#heeftStatus",
-      "rdfs:label": {
-        "@value": "heeft status",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De Status verbonden aan de Melding.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
-      },
-      "rdfs:domain": {
-        "@id": "rdfs:Resource"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "_:g46932681014580",
-      "foaf:firstName": "Joost",
-      "schema:affiliation": {
-        "@id": "_:g46932681244420"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:Joost.DeGeyndt@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "De Geyndt",
-      "@type": "foaf:person"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#heeftEigenschap",
-      "rdfs:label": {
-        "@value": "heeft eigenschap",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Refereert naar een eigenschap die het object beschrijft.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "void:property"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Meldingsobject"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#Terugmelding",
-      "rdfs:label": {
-        "@value": "Terugmelding",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Beschrijft de terugmelding van fouten of onvolledigheden in digitale gegevensbronnen naar de verantwoordelijke bronbeheerder.",
-        "@language": "nl"
-      },
-      "rdfs:subClassOf": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
-      },
-      "@type": "owl:Class",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      }
-    },
-    {
-      "@id": "_:g46932678634120",
-      "foaf:homepage": {
-        "@id": "http://www.pwc.be"
-      },
-      "foaf:name": "PwC"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#melder",
-      "rdfs:label": {
-        "@value": "melder",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De Agent die het probleem waarover gemeld wordt opmerkte.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "dc:Agent"
       },
       "http://purl.org/vocab/vann/usageNote": {
-        "@value": "De melder zal niet telkens gekend zijn. Bijvoorbeeld in het geval van een anonieme melding via een website.",
+        "@value": "Gebruik bij voorkeur een regular expression of primitief datatype zoals een integer, boolean, floating-point nummer, string...",
         "@language": "nl"
       },
-      "@type": "owl:ObjectProperty",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/melding"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/melding#statusdatum",
       "rdfs:label": {
-        "@value": "statusdatum",
+        "@value": "verwacht type",
         "@language": "nl"
       },
-      "rdfs:comment": {
-        "@value": "De datum van een Status.",
-        "@language": "nl"
-      },
-      "rdfs:range": {
-        "@id": "xsd:dateTime"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
-      },
-      "@type": "owl:DatatypeProperty",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "oa:hasBody",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@value": "heeft body",
         "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      }
     },
     {
-      "@id": "_:g46932683691960",
-      "foaf:firstName": "Carolien",
+      "@id": "rdfs:label",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "label",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "wkt",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g47067261710220",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47067261257720",
+      "foaf:name": "BOSA",
+      "foaf:homepage": {
+        "@id": "https://bosa.belgium.be/"
+      }
+    },
+    {
+      "@id": "_:g47067261045160",
+      "foaf:lastName": "Scheerlinck",
+      "@type": "foaf:person",
+      "foaf:firstName": "Jens",
       "schema:affiliation": {
-        "@id": "_:g46932683770280"
+        "@id": "_:g47067261100220"
       },
       "foaf:mbox": {
-        "@id": "mailto:carolien.willen@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Willen",
-      "@type": "foaf:person"
+        "@id": "mailto:jens.scheerlinck@pwc.com"
+      }
     },
     {
-      "@id": "oa:motivatedBy",
-      "rdfs:label": {
-        "@value": "meldingstype",
-        "@language": "nl"
-      },
-      "@type": "rdf:Property"
+      "@id": "_:g47067261100220",
+      "foaf:name": "PwC",
+      "foaf:homepage": {
+        "@id": "http://www.pwc.be"
+      }
     },
     {
-      "@id": "_:g46932685629180",
-      "foaf:firstName": "Michiel",
+      "@id": "_:g47067261390100",
+      "foaf:lastName": "Van Gogh",
+      "@type": "foaf:person",
+      "foaf:firstName": "Barbara",
       "schema:affiliation": {
-        "@id": "_:g46932678634120"
+        "@id": "_:g47067261257720"
       },
       "foaf:mbox": {
-        "@id": "mailto:michiel.de.keyzer@pwc.com"
-      },
-      "foaf:lastName": "De Keyzer",
-      "@type": "foaf:person"
+        "@id": "mailto:barbara.vanoggh@bosa.fgov.be"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#Applicatie",
-      "rdfs:label": {
-        "@value": "Applicatie",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Een artificiële agent in een softwareomgeving.",
-        "@language": "nl"
-      },
-      "rdfs:subClassOf": {
+      "@id": "https://data.vlaanderen.be/ns/melding#betrokkene",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
         "@id": "dc:Agent"
       },
-      "@type": "owl:Class",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
+      },
+      "rdfs:comment": {
+        "@value": "Agent die als derde belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan.",
+        "@language": "nl"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Bijvoorbeeld indien de melding werd aangemaakt door een derde, bijvoorbeeld een ambtenaar van de gemeente op vraag van een burger.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "betrokkene",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932684233680",
-      "foaf:firstName": "Nikolaos",
-      "schema:affiliation": {
-        "@id": "_:g46932684325300"
+      "@id": "_:g47067258129340",
+      "foaf:name": "Data Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://data.vlaanderen.be"
       },
       "foaf:mbox": {
-        "@id": "mailto:nikolaos.loutas@pwc.com"
-      },
-      "foaf:lastName": "Loutas",
-      "@type": "foaf:person"
+        "@id": "mailto:oslo@kb.vlaanderen.be"
+      }
     },
     {
-      "@id": "_:g46932684325300",
+      "@id": "https://www.w3.org/ns/activitystreams#summary",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "samenvatting",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g47067255024360",
+      "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
-        "@id": "http://www.pwc.be"
-      },
-      "foaf:name": "PwC"
+        "@id": "https://overheid.vlaanderen.be/"
+      }
     },
     {
-      "@id": "_:g46932684480200",
+      "@id": "https://data.vlaanderen.be/ns/melding#melder",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "dc:Agent"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
+      },
+      "rdfs:comment": {
+        "@value": "De Agent die het probleem waarover gemeld wordt opmerkte.",
+        "@language": "nl"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "De melder zal niet telkens gekend zijn. Bijvoorbeeld in het geval van een anonieme melding via een website.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "melder",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "_:g47067258146120",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47067262192860",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "dc:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "titel",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#meldingsapplicatie",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Applicatie"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "https://www.w3.org/ns/activitystreams#generator"
+      },
+      "rdfs:comment": {
+        "@value": "De applicatie dat de Melding creëerde.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "meldingsapplicatie",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#Applicatie",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {
+        "@id": "dc:Agent"
+      },
+      "rdfs:comment": {
+        "@value": "Een artificiële agent in een softwareomgeving.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "Applicatie",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#Terugmelding",
+      "@type": "owl:Class",
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Melding"
+      },
+      "rdfs:comment": {
+        "@value": "Beschrijft de terugmelding van fouten of onvolledigheden in digitale gegevensbronnen naar de verantwoordelijke bronbeheerder.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "Terugmelding",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "_:g47067257811220",
+      "foaf:lastName": "De Weghe",
+      "@type": "foaf:person",
+      "foaf:firstName": "Joost",
+      "schema:affiliation": {
+        "@id": "_:g47067258132040"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:joost.deweghe@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067261764280",
+      "foaf:lastName": "Van der Spiegel",
+      "@type": "foaf:person",
+      "foaf:firstName": "Goedele",
+      "schema:affiliation": {
+        "@id": "_:g47067261680800"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067261300460",
+      "foaf:lastName": "Willen",
+      "@type": "foaf:person",
+      "foaf:firstName": "Carolien",
+      "schema:affiliation": {
+        "@id": "_:g47067261479780"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:carolien.willen@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067262079120",
+      "foaf:lastName": "Dooms",
+      "@type": "foaf:person",
+      "foaf:firstName": "Jurgen",
+      "schema:affiliation": {
+        "@id": "_:g47067262192860"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:Jurgen.Dooms@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067260462620",
+      "foaf:lastName": "De Keyzer",
+      "@type": "foaf:person",
+      "foaf:firstName": "Michiel",
+      "schema:affiliation": {
+        "@id": "_:g47067260525140"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:michiel.de.keyzer@pwc.com"
+      }
+    },
+    {
+      "@id": "_:g47067255111420",
+      "foaf:lastName": "Van Speybroeck",
+      "@type": "foaf:person",
+      "foaf:firstName": "Stijn",
+      "schema:affiliation": {
+        "@id": "_:g47067257200920"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:Stijn.VanSpeybroeck@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067260636920",
+      "foaf:lastName": "De Geyndt",
+      "@type": "foaf:person",
+      "foaf:firstName": "Joost",
+      "schema:affiliation": {
+        "@id": "_:g47067261065900"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:Joost.DeGeyndt@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067257645980",
+      "foaf:lastName": "Van Camp",
+      "@type": "foaf:person",
+      "foaf:firstName": "Stefan",
+      "schema:affiliation": {
+        "@id": "_:g47067258146120"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:Stefan.VanCamp@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067262424340",
+      "foaf:lastName": "Rombouts",
+      "@type": "foaf:person",
+      "foaf:firstName": "Liesbeth",
+      "schema:affiliation": {
+        "@id": "_:g47067255024360"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:liesbeth.rombouts@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47067261497260",
+      "foaf:lastName": "Sobry",
+      "@type": "foaf:person",
       "foaf:firstName": "Thomas",
       "schema:affiliation": {
-        "@id": "_:g46932684642440"
+        "@id": "_:g47067261710220"
       },
       "foaf:mbox": {
         "@id": "mailto:Thomas.Sobry@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Sobry",
-      "@type": "foaf:person"
+      }
     },
     {
-      "@id": "_:g46932684642440",
+      "@id": "_:g47067257200920",
+      "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
+      }
     },
     {
-      "@id": "oa:hasTarget",
-      "rdfs:label": {
-        "@value": "heeft doelwit",
+      "@id": "https://data.vlaanderen.be/ns/melding#voorgesteldeWaarde",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
+      },
+      "rdfs:comment": {
+        "@value": "De voorgestelde waarde van een Eigenschap.",
         "@language": "nl"
       },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g46932684369060",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "De suggereerde correct waarde zoals aangegeven door de indiener van de melding.",
+        "@language": "nl"
       },
-      "foaf:name": "Informatie Vlaanderen"
+      "rdfs:label": {
+        "@value": "voorgestelde waarde",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#statuswijzigingDoor",
-      "rdfs:label": {
-        "@value": "statuswijziging door",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De Agent die deze status heeft geactiveerd. ",
-        "@language": "nl"
-      },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
         "@id": "dc:Agent"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
       },
-      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "De Agent die deze status heeft geactiveerd. ",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "statuswijziging door",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932684836000",
+      "@id": "_:g47067261680800",
+      "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
+      }
     },
     {
-      "@id": "_:g46932684780100",
-      "foaf:firstName": "Joost",
-      "schema:affiliation": {
-        "@id": "_:g46932684836000"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:joost.deweghe@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "De Weghe",
-      "@type": "foaf:person"
+      "@id": "_:g47067258132040",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/melding#meldingsapplicatie",
-      "rdfs:label": {
-        "@value": "meldingsapplicatie",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "De applicatie dat de Melding creëerde.",
-        "@language": "nl"
-      },
+      "@id": "https://data.vlaanderen.be/ns/melding#webpagina",
+      "@type": "owl:DatatypeProperty",
       "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/melding#Applicatie"
-      },
-      "rdfs:subPropertyOf": {
-        "@id": "https://www.w3.org/ns/activitystreams#generator"
+        "@id": "xsd:anyURI"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Melding"
       },
+      "rdfs:comment": {
+        "@value": "Een doorverwijzing naar een webpagina.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "webpagina",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#behandelaar",
       "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "dc:Agent"
+      },
+      "rdfs:domain": {
+        "@id": "rdfs:Resource"
+      },
+      "rdfs:comment": {
+        "@value": "Agent die werd aangewezen om de melding en/of het meldingsobject op te volgen en af te handelen.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "behandelaar",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "_:g47067260525140",
+      "foaf:name": "PwC",
+      "foaf:homepage": {
+        "@id": "http://www.pwc.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#statusdatum",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
+      },
+      "rdfs:comment": {
+        "@value": "De datum van een Status.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "statusdatum",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://www.w3.org/ns/hydra/core#required",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "verplicht",
+        "@language": "nl"
+      }
+    },
+    {
+      "@id": "_:g47067261065900",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#eigenschap",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Eigenschap"
+      },
+      "rdfs:domain": {
+        "@id": "rdfs:Resource"
+      },
+      "rdfs:comment": {
+        "@value": "Verwijst naar de Eigenschap die deel uitmaakt van een bepaalde Dataset.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "eigenschap",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/melding#indiener",
-      "rdfs:label": {
-        "@value": "indiener",
-        "@language": "nl"
-      },
-      "rdfs:comment": {
-        "@value": "Agent die de Melding heeft aangemaakt en/of ingediend.",
-        "@language": "nl"
-      },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
         "@id": "dc:Agent"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/melding#Melding"
       },
-      "@type": "owl:ObjectProperty",
+      "rdfs:comment": {
+        "@value": "Agent die de Melding heeft aangemaakt en/of ingediend.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "indiener",
+        "@language": "nl"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/melding"
       }
     },
     {
-      "@id": "_:g46932679089480",
+      "@id": "https://data.vlaanderen.be/ns/melding#huidigeWaarde",
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut"
+      },
+      "rdfs:comment": {
+        "@value": "De huidige waarde van een Eigenschap.",
+        "@language": "nl"
+      },
+      "http://purl.org/vocab/vann/usageNote": {
+        "@value": "Dit is de waarde zoals waargenomen door de indiener van de melding.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "huidige waarde",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "_:g47067261479780",
+      "foaf:name": "Informatie Vlaanderen",
       "foaf:homepage": {
         "@id": "https://overheid.vlaanderen.be/"
-      },
-      "foaf:name": "Informatie Vlaanderen"
+      }
     },
     {
-      "@id": "_:g46932684227700",
-      "foaf:firstName": "Goedele",
-      "schema:affiliation": {
-        "@id": "_:g46932684369060"
-      },
-      "foaf:mbox": {
-        "@id": "mailto:goedele.vanderspiegel@kb.vlaanderen.be"
-      },
-      "foaf:lastName": "Van der Spiegel",
-      "@type": "foaf:person"
+      "@id": "oa:cachedSource",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cached bron",
+        "@language": "nl"
+      }
     },
     {
-      "@id": "_:g46932677926180",
-      "foaf:firstName": "Stijn",
-      "schema:affiliation": {
-        "@id": "_:g46932679089480"
+      "@id": "https://data.vlaanderen.be/ns/melding#heeftStatus",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/melding#Meldingstatus"
       },
-      "foaf:mbox": {
-        "@id": "mailto:Stijn.VanSpeybroeck@kb.vlaanderen.be"
+      "rdfs:domain": {
+        "@id": "rdfs:Resource"
       },
-      "foaf:lastName": "Van Speybroeck",
-      "@type": "foaf:person"
+      "rdfs:comment": {
+        "@value": "De Status verbonden aan de Melding.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "heeft status",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/melding#bronhouder",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "org:Organization"
+      },
+      "rdfs:domain": {
+        "@id": "rdfs:Resource"
+      },
+      "rdfs:comment": {
+        "@value": "De bronhouder is verantwoordelijk voor het opnemen van gegevens in de dataset en het bewaken van de kwaliteit daarvan.",
+        "@language": "nl"
+      },
+      "rdfs:label": {
+        "@value": "bronhouder",
+        "@language": "nl"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/melding"
+      }
     }
   ]
 }
