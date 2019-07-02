@@ -276,16 +276,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/dc/terms/Agent> ;
 	sh:property [
-		sh:name "heeftParticiperende" ;
-		sh:description "Participatie van de agent (aan een publieke dienstverlening)." ;
-		sh:path <http://data.europa.eu/m8g/playsRole> ;
-		sh:class <http://data.europa.eu/m8g/Participation> ;
-	] ;
-	sh:property [
 		sh:name "verschaft" ;
 		sh:description "Een agent verschaft antwoorden op criterium vereisten om een Publieke Dienstverlening te kunnen consumeren." ;
 		sh:path <http://data.europa.eu/m8g/providesRequirementResponse> ;
 		sh:class <http://data.europa.eu/m8g/RequirementResponse> ;
+	] ;
+	sh:property [
+		sh:name "heeftParticiperende" ;
+		sh:description "Participatie van de agent (aan een publieke dienstverlening)." ;
+		sh:path <http://data.europa.eu/m8g/playsRole> ;
+		sh:class <http://data.europa.eu/m8g/Participation> ;
 	] ;
 	sh:closed false .
 
@@ -298,18 +298,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.europa.eu/m8g/RequirementResponse> ;
 	sh:property [
+		sh:name "bewezenDoor" ;
+		sh:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven." ;
+		sh:path <http://data.europa.eu/m8g/provenByEvidence> ;
+		sh:class <http://data.europa.eu/m8g/Evidence> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "valideert" ;
 		sh:description "Relatie naar de criterium vereiste waaraan het antwoord voldoet." ;
 		sh:path <http://data.europa.eu/m8g/validatesCriterionRequirement> ;
 		sh:class <http://data.europa.eu/m8g/CriterionRequirement> ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "bewezenDoor" ;
-		sh:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven." ;
-		sh:path <http://data.europa.eu/m8g/provenByEvidence> ;
-		sh:class <http://data.europa.eu/m8g/Evidence> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -416,24 +416,6 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://purl.org/vocab/cpsv#PublicService> ;
 	sh:property [
-		sh:name "heeftParticiperende" ;
-		sh:description "Participatie (van een agent) aan de publieke dienstverlening." ;
-		sh:path <http://data.europa.eu/m8g/hasParticipation> ;
-		sh:class <http://data.europa.eu/m8g/Participation> ;
-	] ;
-	sh:property [
-		sh:name "isGerelateerdMet" ;
-		sh:description "Andere Publieke Dienstverlening waarmee de Publieke Dienstverlening gerelateerd is." ;
-		sh:path <http://purl.org/dc/terms/relation> ;
-		sh:class <http://purl.org/vocab/cpsv#PublicService> ;
-	] ;
-	sh:property [
-		sh:name "vereistAlsInput" ;
-		sh:description "Bewijsstuk dat moeten voorgelegd worden om de Publieke Dienstverlening te kunnen gebruiken." ;
-		sh:path <http://purl.org/vocab/cpsv#hasInput> ;
-		sh:class <http://data.europa.eu/m8g/Evidence> ;
-	] ;
-	sh:property [
 		sh:name "isGedocumenteerdDoor" ;
 		sh:description "Verwijzing naar een dossier met een logische bundeling van documenten binnen een bepaalde consumptie van een Publieke Dienstverlening." ;
 		sh:path <https://data.vlaanderen.be/ns/transactie#isGedocumenteerdDoor> ;
@@ -446,10 +428,16 @@
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
-		sh:name "heeftStatus" ;
-		sh:description "Link tussen Publieke Dienstverlening en Status." ;
-		sh:path <https://data.vlaanderen.be/ns/transactie#heeftStatus> ;
-		sh:class <https://data.vlaanderen.be/ns/transactie#Status> ;
+		sh:name "produceert" ;
+		sh:description "Het werkelijke resultaat van de uitvoering vd Publieke Dienstverlening." ;
+		sh:path <http://purl.org/vocab/cpsv#produces> ;
+		sh:class <http://data.europa.eu/m8g/Output> ;
+	] ;
+	sh:property [
+		sh:name "vereistAlsInput" ;
+		sh:description "Bewijsstuk dat moeten voorgelegd worden om de Publieke Dienstverlening te kunnen gebruiken." ;
+		sh:path <http://purl.org/vocab/cpsv#hasInput> ;
+		sh:class <http://data.europa.eu/m8g/Evidence> ;
 	] ;
 	sh:property [
 		sh:name "isInstantieVan" ;
@@ -460,10 +448,22 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "produceert" ;
-		sh:description "Het werkelijke resultaat van de uitvoering vd Publieke Dienstverlening." ;
-		sh:path <http://purl.org/vocab/cpsv#produces> ;
-		sh:class <http://data.europa.eu/m8g/Output> ;
+		sh:name "heeftParticiperende" ;
+		sh:description "Participatie (van een agent) aan de publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasParticipation> ;
+		sh:class <http://data.europa.eu/m8g/Participation> ;
+	] ;
+	sh:property [
+		sh:name "isGerelateerdMet" ;
+		sh:description "Andere Publieke Dienstverlening waarmee de Publieke Dienstverlening gerelateerd is." ;
+		sh:path <http://purl.org/dc/terms/relation> ;
+		sh:class <http://purl.org/vocab/cpsv#PublicService> ;
+	] ;
+	sh:property [
+		sh:name "heeftStatus" ;
+		sh:description "Link tussen Publieke Dienstverlening en Status." ;
+		sh:path <https://data.vlaanderen.be/ns/transactie#heeftStatus> ;
+		sh:class <https://data.vlaanderen.be/ns/transactie#Status> ;
 	] ;
 	sh:property [
 		sh:name "kost" ;
