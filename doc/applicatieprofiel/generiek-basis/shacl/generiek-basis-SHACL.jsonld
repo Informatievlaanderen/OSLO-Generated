@@ -181,6 +181,13 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#StandaardEenheidShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/generiek-basis#VersieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -224,6 +231,29 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#VersieVolgensTransactietijd"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#PeriodeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Aanvang van de tijdsduur.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "begin",
+          "sh:path": "http://data.europa.eu/m8g/startTime"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Einde vd tijdsduur.",
+          "sh:maxCount": "1",
+          "sh:name": "einde",
+          "sh:path": "http://data.europa.eu/m8g/endTime"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/PeriodOfTime"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/generiek-basis#AgentShape",
@@ -385,7 +415,7 @@
           "sh:path": "http://schema.org/openingHours"
         },
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:class": "https://schema.org/OpeningHoursSpecification",
           "sh:description": "Telefoonnummer waarop men kan bellen.",
           "sh:maxCount": "1",
           "sh:name": "telefoon",
@@ -690,6 +720,7 @@
         {
           "sh:class": "http://www.w3.org/ns/adms#Identifier",
           "sh:description": "Identificator van het object.",
+          "sh:minCount": "1",
           "sh:name": "identificator",
           "sh:path": "http://www.w3.org/ns/adms#identifier"
         }
@@ -762,6 +793,175 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/organisatie#Hoedanigheid"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GebeurtenisShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:description": "Beschrijving van de gebeurtenis.",
+          "sh:maxCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#duration",
+          "sh:description": "De duur van de gebeurtenis.",
+          "sh:name": "duur",
+          "sh:path": "https://schema.org/duration"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum waarop de gebeurtenis eindigt.",
+          "sh:maxCount": "1",
+          "sh:name": "einddatum",
+          "sh:path": "https://schema.org/endDate"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Tijd waarop de gebeurtenis eindigt.",
+          "sh:maxCount": "1",
+          "sh:name": "eindtijd",
+          "sh:path": "https://schema.org/endTime"
+        },
+        {
+          "sh:description": "Naam van de gebeurtenis.",
+          "sh:maxCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum waariop de gebeurtenis start.",
+          "sh:maxCount": "1",
+          "sh:name": "startdatum",
+          "sh:path": "https://schema.org/startDate"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Tijd waarop de gebeurtenis start.",
+          "sh:maxCount": "1",
+          "sh:name": "starttijd",
+          "sh:path": "https://schema.org/startTime"
+        },
+        {
+          "sh:class": "https://schema.org/Schedule",
+          "sh:description": "Schema volgens hetwelk een gebeurtenis zich herhaalt.",
+          "sh:name": "tijdschema",
+          "sh:path": "https://schema.org/eventSchedule"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/Event"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#GetalShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://schema.org/Number"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#KwantitatieveWaardeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "eenheid",
+          "sh:path": "https://schema.org/unitText"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid",
+          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "standaardEenheid",
+          "sh:path": "https://schema.org/unitCode"
+        },
+        {
+          "sh:class": "https://schema.org/Number",
+          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://schema.org/value"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/QuantitativeValue"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/generiek-basis#TijdschemaShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "Aantal keer dat het plaatsvindt.",
+          "sh:maxCount": "1",
+          "sh:name": "aantal",
+          "sh:path": "https://schema.org/repeatCount"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:description": "Dagen van de week waarop het plaatsvindt.",
+          "sh:name": "dag",
+          "sh:path": "https://schema.org/byDay"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "Dagen van de maand waarop het plaatsvindt.",
+          "sh:name": "dagVanDeMaand",
+          "sh:path": "https://schema.org/byMonthDay"
+        },
+        {
+          "sh:description": "Datum tot wanneer het plaatsvindt.",
+          "sh:maxCount": "1",
+          "sh:name": "einddatum",
+          "sh:path": "https://schema.org/endDate"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Tijdstip waarop het eindigt.",
+          "sh:maxCount": "1",
+          "sh:name": "eindtijd",
+          "sh:path": "https://schema.org/endTime"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Frequentie waarmee het plaatsvindt, bv dagelijks, wekelijks etc.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "frequentie",
+          "sh:path": "https://schema.org/repeatFrequency"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "Maanden van het jaar waarop het plaatsvindt.",
+          "sh:name": "maand",
+          "sh:path": "https://schema.org/byMonth"
+        },
+        {
+          "sh:description": "Datum vanaf wanneer het plaatsvindt.",
+          "sh:maxCount": "1",
+          "sh:name": "startdatum",
+          "sh:path": "https://schema.org/startDate"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Tijdstip waarop het start.",
+          "sh:maxCount": "1",
+          "sh:name": "starttijd",
+          "sh:path": "https://schema.org/startTime"
+        },
+        {
+          "sh:description": "Datums waarop het uitzonderlijk niet plaatsvindt.",
+          "sh:name": "uitzonderingsdatum",
+          "sh:path": "https://schema.org/exceptDate"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/Schedule"
     }
   ]
 }
