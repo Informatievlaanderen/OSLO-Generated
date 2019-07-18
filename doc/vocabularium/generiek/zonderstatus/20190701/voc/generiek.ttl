@@ -13,7 +13,7 @@
 
 <http://data.europa.eu/m8g/PeriodOfTime> a rdfs:Class;
   rdfs:label "Periode"@nl,
-    "TijdsInterval"@nl .
+    "tijdsinterval"@nl .
 
 dc:Agent a rdfs:Class;
   rdfs:label "Agent"@nl .
@@ -144,6 +144,14 @@ foaf:Document a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
   rdfs:range xsd:boolean .
 
+<https://data.vlaanderen.be/ns/generiek#duur> a owl:DatatypeProperty;
+  rdfs:label "duur "@nl;
+  <http://purl.org/vocab/vann/usageNote> "Uit te drukken als een interval volgens iso 8601, bv P1D 1 dag, P2H twee uur... "@nl;
+  rdfs:comment "Duur van hetgeen plaatsvindt."@nl;
+  rdfs:domain <https://schema.org/Schedule>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
+  rdfs:range xsd:duration .
+
 <https://data.vlaanderen.be/ns/generiek#geplandeStart> a owl:DatatypeProperty;
   rdfs:label "geplande start"@nl;
   rdfs:comment "Het tijdstip waarop de activiteit gepland is om te beginnen."@nl;
@@ -196,6 +204,14 @@ foaf:Document a rdfs:Class;
   <http://purl.org/vocab/vann/usageNote> "Bv nummer vh artikel, paragraaf, hoofdstuk..."@nl;
   rdfs:comment "Nummer vh documentonderdeel."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/generiek#DocumentOnderdeel>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
+  rdfs:range xsd:integer .
+
+<https://data.vlaanderen.be/ns/generiek#perSetPositie> a owl:DatatypeProperty;
+  rdfs:label "per setpositie"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Bv als iets maandelijks plaatsvindt op maandag om te zeggen dat het bv de eerste maandag is vd maand. Frequentie is dan maandelijks, perDag is Maandag en de perSetpositie is dan 1. Ook negatieve cijfers zijn mogelijk, bv -1 zou aangeven dat het op de laatste maandag vd maand plaatsvindt."@nl;
+  rdfs:comment "N-de keer dat iets plaatsvindt uit de verzameling van mogelijke tijdstippen. "@nl;
+  rdfs:domain <https://schema.org/Schedule>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/generiek>;
   rdfs:range xsd:integer .
 
@@ -376,8 +392,8 @@ foaf:page a rdf:Property;
     "begindatum"@nl .
 
 <https://schema.org/startTime> a rdf:Property;
-  rdfs:label "begintijd"@nl,
-    "starttijd"@nl .
+  rdfs:label "starttijd"@nl,
+    "begintijd"@nl .
 
 <https://schema.org/unitCode> a rdf:Property;
   rdfs:label "eenheidcode"@nl .
@@ -424,30 +440,21 @@ foaf:page a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
-      foaf:name "Informatie Vlaanderen"
+      foaf:homepage <https://www.lne.be/>;
+      foaf:name "ANB"
     ];
-    foaf:firstName "Bart";
-    foaf:lastName "Misseeuw";
-    foaf:mbox <mailto:bart.misseeuw@kb.vlaanderen.be>
+    foaf:firstName "Geert";
+    foaf:lastName "Vermeiren";
+    foaf:mbox <mailto:geert.vermeiren@lne.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <http://binnenland.vlaanderen.be/>;
-      foaf:name "ABB"
+      foaf:homepage <http://stad.gent>;
+      foaf:name "Digipolis Gent"
     ];
-    foaf:firstName "Wim";
-    foaf:lastName "Devroey";
-    foaf:mbox <mailto:wim.devroey@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "ABB"
-    ];
-    foaf:firstName "Hannes";
-    foaf:lastName "Lombaert";
-    foaf:mbox <mailto:hannes.lombaert@bz.vlaanderen.be>
+    foaf:firstName "Katrien";
+    foaf:lastName "Leire";
+    foaf:mbox <mailto:katrien.leire@digipolis.gent>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -478,105 +485,114 @@ foaf:page a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.lne.be/>;
-      foaf:name "ANB"
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "ABB"
     ];
-    foaf:firstName "Geert";
-    foaf:lastName "Vermeiren";
-    foaf:mbox <mailto:geert.vermeiren@lne.vlaanderen.be>
+    foaf:firstName "Hannes";
+    foaf:lastName "Lombaert";
+    foaf:mbox <mailto:hannes.lombaert@bz.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <http://stad.gent>;
-      foaf:name "Digipolis Gent"
+      foaf:homepage <http://binnenland.vlaanderen.be/>;
+      foaf:name "ABB"
     ];
-    foaf:firstName "Katrien";
-    foaf:lastName "Leire";
-    foaf:mbox <mailto:katrien.leire@digipolis.gent>
+    foaf:firstName "Wim";
+    foaf:lastName "Devroey";
+    foaf:mbox <mailto:wim.devroey@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Bart";
+    foaf:lastName "Misseeuw";
+    foaf:mbox <mailto:bart.misseeuw@kb.vlaanderen.be>
   ];
   dc:issued "2018-10-04";
-  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
-    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
+  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <http://data.europa.eu/eli/ontology#language>,
-    schema:email,
-    <https://schema.org/Schedule>,
-    dc:relation,
-    <https://schema.org/Event>,
-    <http://www.w3.org/ns/locn#Geometry>,
-    <https://schema.org/value>,
-    prov:Activity,
-    <http://www.opengis.net/ont/sf#LineString>,
-    <https://schema.org/Number>,
-    prov:Invalidation,
-    dc:issued,
-    skos:Concept,
+  rdfs:seeAlso prov:atTime,
     <http://www.opengis.net/ont/sf#Polygon>,
-    schema:hoursAvailable,
+    <https://schema.org/Event>,
+    prov:Activity,
     <http://purl.org/vocab/cpsv#FormalFramework>,
-    dc:creator,
-    dc:Location,
     schema:ContactPoint,
-    dc:Jurisdiction,
-    prov:qualifiedInvalidation,
-    <http://www.opengis.net/ont/sf#Point>,
-    prov:Generation,
-    <http://www.w3.org/ns/locn#geometry>,
-    <http://www.w3.org/ns/adms#Identifier>,
-    <http://data.europa.eu/m8g/PeriodOfTime>,
-    dc:Agent,
-    prov:Entity,
-    prov:atTime,
-    prov:activity,
-    vcard:honorific-prefix,
-    prov:qualifiedGeneration,
-    <https://schema.org/eventSchedule>,
-    <http://www.opengis.net/ont/geosparql#asWKT>,
-    <https://schema.org/duration>,
-    <http://www.w3.org/ns/adms#status>,
-    <https://schema.org/QuantitativeValue>,
-    <https://schema.org/startDate>,
-    <http://data.europa.eu/m8g/startTime>,
-    <https://schema.org/byMonthDay>,
-    dc:type,
-    <https://schema.org/byDay>,
-    prov:Agent,
     <http://data.europa.eu/m8g/territorialApplication>,
-    foaf:Document,
-    <http://www.opengis.net/ont/geosparql#asGML>,
-    <https://schema.org/endTime>,
-    schema:openingHours,
-    <https://schema.org/repeatFrequency>,
+    prov:Generation,
+    <http://data.europa.eu/eli/ontology#language>,
     <http://www.w3.org/ns/adms#schemaAgency>,
-    <http://data.europa.eu/m8g/endTime>,
-    <https://schema.org/exceptDate>,
-    <https://schema.org/startTime>,
-    dc:isPartOf,
-    foaf:page,
+    dc:Agent,
+    schema:hoursAvailable,
+    schema:telephone,
     <http://data.europa.eu/m8g/subject>,
-    <http://www.w3.org/ns/locn#address>,
+    <https://schema.org/QuantitativeValue>,
+    foaf:Document,
+    <https://schema.org/Number>,
+    <http://data.europa.eu/m8g/PeriodOfTime>,
+    rdf:langString,
+    rdfs:label,
+    <https://schema.org/startDate>,
+    <http://www.opengis.net/ont/sf#Point>,
+    <https://schema.org/Schedule>,
+    prov:Entity,
+    skos:Concept,
+    dc:creator,
     rdfs:Literal,
-    dc:description,
+    <https://schema.org/endTime>,
+    <http://www.w3.org/ns/locn#Geometry>,
+    dc:Location,
     <https://schema.org/unitText>,
-    dc:title,
+    <https://schema.org/repeatFrequency>,
+    schema:openingHours,
+    prov:Invalidation,
+    <https://schema.org/eventSchedule>,
+    skos:notation,
+    <http://data.europa.eu/m8g/startTime>,
+    <http://www.opengis.net/ont/sf#LineString>,
+    <https://schema.org/endDate>,
+    <https://schema.org/repeatCount>,
+    <https://schema.org/startTime>,
+    prov:qualifiedGeneration,
+    prov:activity,
+    prov:Location,
+    vcard:honorific-prefix,
+    <https://schema.org/value>,
+    <http://www.w3.org/ns/locn#geometry>,
+    <http://www.w3.org/ns/adms#identifier>,
+    <http://data.europa.eu/m8g/endTime>,
+    dc:Jurisdiction,
+    <https://schema.org/unitCode>,
+    <https://schema.org/byMonthDay>,
+    <http://www.w3.org/ns/adms#status>,
+    <http://www.opengis.net/ont/geosparql#asWKT>,
+    <http://www.opengis.net/ont/geosparql#asGML>,
+    prov:qualifiedInvalidation,
     <https://schema.org/byMonth>,
+    <https://schema.org/exceptDate>,
+    dc:title,
+    dc:description,
+    <https://schema.org/byDay>,
+    dc:issued,
+    <http://www.w3.org/ns/adms#Identifier>,
+    foaf:name,
+    dc:type,
     schema:faxNumber,
     prov:used,
-    prov:Location,
-    foaf:name,
-    schema:telephone,
-    <http://www.w3.org/ns/adms#identifier>,
-    skos:notation,
-    <https://schema.org/repeatCount>,
-    <https://schema.org/endDate>,
+    dc:relation,
+    <https://schema.org/duration>,
+    foaf:page,
+    prov:Agent,
     prov:wasAssociatedWith,
-    rdf:langString,
-    <https://schema.org/unitCode>,
-    rdfs:label;
+    schema:email,
+    <http://www.w3.org/ns/locn#address>,
+    dc:isPartOf;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
@@ -599,21 +615,12 @@ foaf:page a rdf:Property;
   foaf:maker [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
-      foaf:name "Informatie Vlaanderen"
+      foaf:homepage <http://idlab.ugent.be>;
+      foaf:name "imec - UGent"
     ];
-    foaf:firstName "Björn";
-    foaf:lastName "De Vidts";
-    foaf:mbox <mailto:bjorn.devidts@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Geert";
-    foaf:lastName "Thijs";
-    foaf:mbox <mailto:geert.thijs@kb.vlaanderen.be>
+    foaf:firstName "Dieter";
+    foaf:lastName "De Paepe";
+    foaf:mbox <mailto:dieter.depaepe@ugent.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -626,12 +633,30 @@ foaf:page a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
+      foaf:homepage <http://cipalschaubroeck.be>;
+      foaf:name "Cipal Schaubroeck"
+    ];
+    foaf:firstName "Willem";
+    foaf:lastName "Van Hoecke";
+    foaf:mbox <mailto:willem.vanhoecke@cipalschaubroeck.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
     foaf:firstName "An";
     foaf:lastName "Taelemans";
     foaf:mbox <mailto:an.taelemans@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Thomas";
+    foaf:lastName "D'haenens";
+    foaf:mbox <mailto:thomas.dhaenens@bz.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -653,66 +678,12 @@ foaf:page a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.lne.be/>;
-      foaf:name "Departement Omgeving"
-    ];
-    foaf:firstName "Geert";
-    foaf:lastName "Van Haute";
-    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Thomas";
-    foaf:lastName "D'haenens";
-    foaf:mbox <mailto:thomas.dhaenens@bz.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Quincy";
-    foaf:lastName "Oeyen";
-    foaf:mbox <mailto:quincy.oeyen@bz.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Henk";
-    foaf:lastName "Vanderstraeten";
-    foaf:mbox <mailto:henk.vanderstraeten@bz.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://idlab.ugent.be>;
-      foaf:name "imec - UGent"
-    ];
-    foaf:firstName "Dieter";
-    foaf:lastName "De Paepe";
-    foaf:mbox <mailto:dieter.depaepe@ugent.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Dries";
-    foaf:lastName "Beheydt";
-    foaf:mbox <mailto:dries.beheydt@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://cipalschaubroeck.be>;
-      foaf:name "Cipal Schaubroeck"
-    ];
-    foaf:firstName "Willem";
-    foaf:lastName "Van Hoecke";
-    foaf:mbox <mailto:willem.vanhoecke@cipalschaubroeck.be>
+    foaf:firstName "Ziggy";
+    foaf:lastName "Vanlishout";
+    foaf:mbox <mailto:siegfried.vanlishout@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -725,10 +696,55 @@ foaf:page a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Henk";
+    foaf:lastName "Vanderstraeten";
+    foaf:mbox <mailto:henk.vanderstraeten@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Quincy";
+    foaf:lastName "Oeyen";
+    foaf:mbox <mailto:quincy.oeyen@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Ziggy";
-    foaf:lastName "Vanlishout";
-    foaf:mbox <mailto:siegfried.vanlishout@kb.vlaanderen.be>
+    foaf:firstName "Björn";
+    foaf:lastName "De Vidts";
+    foaf:mbox <mailto:bjorn.devidts@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.lne.be/>;
+      foaf:name "Departement Omgeving"
+    ];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute";
+    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Dries";
+    foaf:lastName "Beheydt";
+    foaf:mbox <mailto:dries.beheydt@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Geert";
+    foaf:lastName "Thijs";
+    foaf:mbox <mailto:geert.thijs@kb.vlaanderen.be>
   ] .
