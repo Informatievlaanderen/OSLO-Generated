@@ -1,0 +1,718 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix qb:      <http://purl.org/linked-data/cube#> .
+<https://data.vlaanderen.be/shacl/besluit-subsidie#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:property [
+		sh:name "heeftParticiperende" ;
+		sh:description "Participatie van de agent (aan een publieke dienstverlening)." ;
+		sh:path <http://data.europa.eu/m8g/playsRole> ;
+		sh:class <http://data.europa.eu/m8g/Participation> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#PubliekeOrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/PublicOrganisation> ;
+	sh:property [
+		sh:name "werkingsgebied" ;
+		sh:description "Administratief gebied dat de Publieke Organisatie dekt." ;
+		sh:path <http://purl.org/dc/terms/spatial> ;
+		sh:class <http://purl.org/dc/terms/Location> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#OrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/org#Organization> ;
+	sh:property [
+		sh:name "activiteit" ;
+		sh:description "Type activiteit die door de Organisatie wordt uitgeoefend." ;
+		sh:path <http://www.w3.org/ns/regorg#orgActivity> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "alternatieveNaam" ;
+		sh:description "Andere naam waaronder de organisatie bekend is." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#altLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Beschrijving van de Publieke Organisatie." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "classificatie" ;
+		sh:description "Rangschikking van de Organisatie in een classificatiesysteem." ;
+		sh:path <http://www.w3.org/ns/org#classification> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "contactinfo" ;
+		sh:description "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren. " ;
+		sh:path <http://schema.org/contactPoint> ;
+		sh:class <http://schema.org/ContactPoint> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doel" ;
+		sh:description "Bestaanreden vd Organisatie." ;
+		sh:path <http://www.w3.org/ns/org#purpose> ;
+	] ;
+	sh:property [
+		sh:name "homepage" ;
+		sh:description "Adres vd homepage van de website vd Publieke Organisatie." ;
+		sh:path <http://xmlns.com/foaf/0.1/homepage> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "logo" ;
+		sh:description "Verwijzing naar het logo vd Publieke Organisatie." ;
+		sh:path <http://schema.org/logo> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "status" ;
+		sh:description "Toestand vd Organisatie." ;
+		sh:path <http://www.w3.org/ns/regorg#orgStatus> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Type Organisatie." ;
+		sh:path <http://www.w3.org/ns/regorg#orgType> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "voorkeursNaam" ;
+		sh:description "Naam waarmee de Organisatie bij voorkeur wordt aangeduid." ;
+		sh:path <http://www.w3.org/2004/02/skos/core#prefLabel> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#BeoordelingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Beoordeling> ;
+	sh:property [
+		sh:name "geeftAanleidingTot" ;
+		sh:description "De beslissing die genomen is op basis van de beoordeling." ;
+		sh:path <http://www.w3.org/ns/prov#generated> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opBasisVan" ;
+		sh:description "De criteriumbeoordeling waarop men zich gebaseerd heeft om de beoordeling te vormen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#Beoordeling.opBasisVan> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
+		sh:name "over" ;
+		sh:description "De consumptie die beoordeeld wordt." ;
+		sh:path <http://schema.org/about> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opBasisVan" ;
+		sh:description "Het advies dat men in beraadslaging heeft genomen om de beoordeling te vormen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#Beoordeling.opBasisVan> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
+		sh:name "motivering" ;
+		sh:description "De argumentatie die verklaart waarom de beoordeling is gegeven." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#motivering> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#CriteriumBeoordelingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/Review> ;
+	sh:property [
+		sh:name "over" ;
+		sh:description "Criteriumvereiste waarop de consumptie beoordeeld wordt." ;
+		sh:path <http://schema.org/about> ;
+		sh:class <http://data.europa.eu/m8g/CriterionRequirement> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beoordeelt" ;
+		sh:description "De consumptie waarop de criteriumbeoordeling betrekking heeft." ;
+		sh:path <http://schema.org/itemReviewed> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "over" ;
+		sh:description "Criterium waarop de consumptie beoordeeld wordt." ;
+		sh:path <http://schema.org/about> ;
+		sh:class <http://data.europa.eu/m8g/Criterion> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beoordeeldDoor" ;
+		sh:description "De agent door wie de criteriumbeoordeling is gegeven." ;
+		sh:path <http://schema.org/author> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "criteriumBeoordeling" ;
+		sh:description "De code die de uitkomst van de criteriumbeoordeling beschrijft." ;
+		sh:path <http://schema.org/reviewBody> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "creatiedatum" ;
+		sh:description "De datum waarop de criteriumbeoordeling is gegeven." ;
+		sh:path <http://purl.org/dc/terms/created> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "motivering" ;
+		sh:description "De argumentatie die verklaart waarom de criteriumbeoordeling is gegeven." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#motivering> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieUitbetalingsbeslissingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidieUitbetalingsbeslissing> ;
+	sh:property [
+		sh:name "uitTeBetalenBedrag" ;
+		sh:description "Het bedrag dat men volgens de beslissing zal uitbetalen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#uitTeBetalenBedrag> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#VereistenGroepShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/RequirementGroup> ;
+	sh:property [
+		sh:name "heeftVereiste" ;
+		sh:description "Een vereistengroep is een collectie van criteriumvereisten. Een vereistengroep zal op zijn minst één criteriumvereiste bevatten." ;
+		sh:path <http://data.europa.eu/m8g/hasCriterionRequirement> ;
+		sh:class <http://data.europa.eu/m8g/CriterionRequirement> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "Een label waarmee de vereistengroep wordt aangeduid." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#CriteriumShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/Criterion> ;
+	sh:property [
+		sh:name "isVervuldDoor" ;
+		sh:description "De vereistengroep die dit criterium kan valideren." ;
+		sh:path <http://data.europa.eu/m8g/fulfilledByRequirementGroup> ;
+		sh:class <http://data.europa.eu/m8g/RequirementGroup> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "staatBeschrevenIn" ;
+		sh:description "De subsidieprocedurestap waarin het criterium beschreven staat." ;
+		sh:path <http://purl.org/dc/terms/isPartOf> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "criteriumType" ;
+		sh:description "Het type van het criterium. Deze wordt bepaald door een gecontroleerd vocabularium." ;
+		sh:path <http://data.europa.eu/m8g/criterionType> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "identificator" ;
+		sh:description "Gestructureerde identificatiegegevens van het criterium." ;
+		sh:path <http://www.w3.org/ns/adms#identifier> ;
+		sh:class <http://www.w3.org/ns/adms#Identifier> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "Het label waarmee het criterium wordt aangeduid." ;
+		sh:path <http://purl.org/dc/terms/title> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toepasbaarVoorBeslissing" ;
+		sh:description "Het type beslissing waarvoor het criterium relevant is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#toepasbaarVoorBeslissing> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiebeslissingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing> ;
+	sh:property [
+		sh:name "over" ;
+		sh:description "De consumptie waarover de beslissing is genomen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#over> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "De tekstuele neerslag van de subsidiebeslissing." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aangenomenOnderDelegatieDoor" ;
+		sh:description "Het orgaan dat de rechtsgrond onder delegatie heeft goedgekeurd, waardoor er een rechtsgevolg ontstond." ;
+		sh:path <http://data.vlaanderen.be/ns/besluit#aangenomenOnderDelegatieDoor> ;
+		sh:class <https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieNietToekenningShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidieNietToekenning> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#ParticipatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/Participation> ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Beschrijving van de participatie." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "rol" ;
+		sh:description "De rol die de participant speelt." ;
+		sh:path <http://data.europe.eu/m8g/role> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#FinanciëleTransactieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie> ;
+	sh:property [
+		sh:name "vereist" ;
+		sh:description "Subsidietoekenning die verplicht is voorafgegaan aan de financiële transactie." ;
+		sh:path <http://purl.org/dc/terms/requires> ;
+		sh:class <https://data.vlaanderen.be/ns/subsidie#RechtsgrondToekenningSubsidie> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "transactiebedrag" ;
+		sh:description "Het bedrag dat effectief uitbetaald wordt." ;
+		sh:path <https://data.vlaanderen.be/ns/subsidie#uitgekeerdBedrag> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "transactiedatum" ;
+		sh:description "De datum waarop het bedrag is uitbetaald." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#transactiedatum> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiebedragShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://schema.org/MonetaryAmount> ;
+	sh:property [
+		sh:name "vergt" ;
+		sh:description "Vereistengroep of criteriumvereiste die voldaan moet zijn om recht te hebben op het subsidiebedrag." ;
+		sh:path <http://purl.org/dc/terms/requires> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
+		sh:name "vergt" ;
+		sh:description "Vereistengroep of criteriumvereiste die voldaan moet zijn om recht te hebben op het subsidiebedrag." ;
+		sh:path <http://purl.org/dc/terms/requires> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
+		sh:name "bedrag" ;
+		sh:description "Het feitelijke bedrag; dit kan zowel een omschrijving als een expliciet getal zijn." ;
+		sh:path <https://schema.org/value> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "maximumbedrag" ;
+		sh:description "Het hoogst mogelijke bedrag dat kan worden toegekend." ;
+		sh:path <http://schema.org/maxValue> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "Een label waarmee het subsidiebedrag wordt aangeduid." ;
+		sh:path <https://schema.org/name> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "verdeelsleutel" ;
+		sh:description "Puntensysteem op basis waarvan het toegekend bedrag wordt berekend." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#verdeelsleutel> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieToekenningShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/subsidie#RechtsgrondToekenningSubsidie> ;
+	sh:property [
+		sh:name "principieel" ;
+		sh:description "De indicator die aanduidt dat de toekenning niet definitief is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#principieel> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toegekendAantalPunten" ;
+		sh:description "Het toegekend aantal punten indien er gebruik wordt gemaakt van een verdeelsleutel." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#toegekendAantalPunten> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toegekendBedrag" ;
+		sh:description "Het bedrag dat toegekend wordt." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#toegekendBedrag> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieprocedurestapShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap> ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "De tekstuele beschrijving van de subsidieprocedurestap." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "periode" ;
+		sh:description "De periode waarin de subsidieprocedurestap uitgevoerd wordt." ;
+		sh:path <http://purl.org/dc/terms/date> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "type" ;
+		sh:description "Het type van de subsidieprocedurestap. Deze wordt bepaald door een gecontroleerd vocabularium." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap.type> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieToekenningsbesluitShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidieToekenningsbesluit> ;
+	sh:property [
+		sh:name "realiseert" ;
+		sh:description "De rechtsgrond beschreven door dit besluit." ;
+		sh:path <http://data.europa.eu/eli/ontology#realizes> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing> ;
+		sh:minCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiemaatregelConsumptieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
+	sh:property [
+		sh:name "produceert" ;
+		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
+		sh:path <http://purl.org/vocab/cpsv#produces> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidieToekenningsbesluit> ;
+	] ;
+	sh:property [
+		sh:name "isGevolgVan" ;
+		sh:description "De aanvraag die de consumptie heeft opgestart." ;
+		sh:path <http://www.w3.org/ns/prov#wasGeneratedBy> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Aanvraag> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftParticiperende" ;
+		sh:description "Participatie (van een agent) aan de publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasParticipation> ;
+		sh:class <http://data.europa.eu/m8g/Participation> ;
+	] ;
+	sh:property [
+		sh:name "behandeltEen" ;
+		sh:description "Het voorwerp dat al dan niet gesubsidieerd wordt met de consumptie." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#behandeltEen> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidievoorwerp> ;
+	] ;
+	sh:property [
+		sh:name "produceert" ;
+		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#produceert> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie> ;
+	] ;
+	sh:property [
+		sh:name "isInstantieVan" ;
+		sh:description "Linkt een bepaalde consumptie van een subsidiemaatregel met de subsidiemaatregel uit het subsidiereglement." ;
+		sh:path <http://data.vlaanderen.be/ns/transactie#isInstantieVan> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#CriteriumVereisteShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/CriterionRequirement> ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "De tekstuele omschrijving van de criteriumvereiste." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "toepasbaarInPeriode" ;
+		sh:description "Het expliciete tijdsvenster waarin voldaan kan worden aan de criteriumvereiste." ;
+		sh:path <http://data.europa.eu/m8g/applicableInPeriodOfTime> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#DefinitieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Definitie> ;
+	sh:property [
+		sh:name "begrip" ;
+		sh:description "Een term en diens generieke omschrijving." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#begrip> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "context" ;
+		sh:description "Omschrijving van hoe het begrip wordt toegepast binnen een specifiek subsidiereglement." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#context> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#AdviesShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Advies> ;
+	sh:property [
+		sh:name "adviseert" ;
+		sh:description "De consumptie waarover een advies wordt gegeven." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#adviseert> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "opBasisVan" ;
+		sh:description "Criteriumbeoordeling waarop het advies is gestaafd." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#Advies.opBasisVan> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "De tekstuele beschrijving van het advies" ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "adviesdatum" ;
+		sh:description "De datum waarop het advies is gegeven." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#adviesdatum> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gegevenDoor" ;
+		sh:description "De agent door wie het advies is gegeven." ;
+		sh:path <http://schema.org/author> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "gunstig" ;
+		sh:description "De indicator die aangeeft of het advies positief is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#gunstig> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiemaatregelAanbodShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod> ;
+	sh:property [
+		sh:name "biedtAan" ;
+		sh:description "De verschillende subsidiebedragen die bij een subsidiemaatregel horen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#biedtAan> ;
+		sh:class <http://schema.org/MonetaryAmount> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftCriterium" ;
+		sh:description "Criterium waaraan voldaan moet zijn om recht te hebben op de subsidiemaatregel." ;
+		sh:path <http://data.europa.eu/m8g/hasCriterion> ;
+		sh:class <http://data.europa.eu/m8g/Criterion> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aangebodenBinnen" ;
+		sh:description "Het formeel kader (i.e. het besluit) waarbinnen de subsidiemaatregel werkt en waaraan ze haar wettelijke basis ontleent." ;
+		sh:path <http://data.europa.eu/m8g/hasFormalFramework> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiereglement> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "isGestuurdDoor" ;
+		sh:description "De procedurestap die de werking van de subsidiemaatregel aanstuurt." ;
+		sh:path <http://purl.org/vocab/cpsv#follows> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftVerantwoordelijke" ;
+		sh:description "De publieke organisatie die verantwoordelijk is voor het aanbieden en beheren van de publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasCompetentAuthority> ;
+		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doelstelling" ;
+		sh:description "Het hoger belang dat gediend wordt door deze subsidiemaatregel. Deze is specifieker dan het hoger belang van het subsidiereglement." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#doelstelling> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+	] ;
+	sh:property [
+		sh:name "trefwoord" ;
+		sh:description "Een term die de inhoud van de subsidiemaatregel weergeeft." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#trefwoord> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+	] ;
+	sh:property [
+		sh:name "naam" ;
+		sh:description "Officiële naam van de publieke dienstverlening.	" ;
+		sh:path <http://purl.org/dc/terms/title> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiereglementShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Subsidiereglement> ;
+	sh:property [
+		sh:name "gebruikt" ;
+		sh:description "Definitie die van toepassing is binnen dit besluit." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#gebruikt> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Definitie> ;
+	] ;
+	sh:property [
+		sh:name "budgetbeschrijving" ;
+		sh:description "Een beschrijving hoe dit subsidiereglement gefinancierd is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#budgetbeschrijving> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "doelstelling" ;
+		sh:description "Het hoger belang dat gediend wordt door het subsidiereglement." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#doelstelling> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+	] ;
+	sh:property [
+		sh:name "beleidsdomein" ;
+		sh:description "Het beleidsdomein waartoe het subsidiereglement behoort." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#beleidsdomein> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidievoorwerpShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Subsidievoorwerp> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/besluit-subsidie#AanvraagShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Aanvraag> ;
+	sh:property [
+		sh:name "aangevraagdBedrag" ;
+		sh:description "Het bedrag dat aangevraagd is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#aangevraagdBedrag> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "aanvraagdatum" ;
+		sh:description "Datum waarop de aanvraag gebeurd is." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#aanvraagdatum> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#date> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
