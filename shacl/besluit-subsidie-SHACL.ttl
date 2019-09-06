@@ -64,6 +64,7 @@
 		sh:name "doel" ;
 		sh:description "Bestaanreden vd Organisatie." ;
 		sh:path <http://www.w3.org/ns/org#purpose> ;
+		sh:datatype <http://www.w3.org/1999/02/22-rdf-syntax-ns#langString> ;
 	] ;
 	sh:property [
 		sh:name "homepage" ;
@@ -206,7 +207,7 @@
 		sh:name "uitTeBetalenBedrag" ;
 		sh:description "Het bedrag dat men volgens de beslissing zal uitbetalen." ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#uitTeBetalenBedrag> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#double> ;
+		sh:class <https://schema.org/MonetaryAmount> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -345,10 +346,10 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "transactiebedrag" ;
+		sh:name "uitgekeerdBedrag" ;
 		sh:description "Het bedrag dat effectief uitbetaald wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/subsidie#uitgekeerdBedrag> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#double> ;
+		sh:class <https://schema.org/MonetaryAmount> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -364,7 +365,7 @@
 
 <https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidiebedragShape>
 	a sh:NodeShape ;
-	sh:targetClass <http://schema.org/MonetaryAmount> ;
+	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag> ;
 	sh:property [
 		sh:name "vergt" ;
 		sh:description "Vereistengroep of criteriumvereiste die voldaan moet zijn om recht te hebben op het subsidiebedrag." ;
@@ -378,9 +379,9 @@
 		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
 	] ;
 	sh:property [
-		sh:name "bedrag" ;
-		sh:description "Het feitelijke bedrag; dit kan zowel een omschrijving als een expliciet getal zijn." ;
-		sh:path <https://schema.org/value> ;
+		sh:name "bedragString" ;
+		sh:description "Het feitelijke bedrag; dit is een omschrijving." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#bedragString> ;
 		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
 		sh:maxCount 1 ;
 	] ;
@@ -405,6 +406,13 @@
 		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
 		sh:maxCount 1 ;
 	] ;
+	sh:property [
+		sh:name "bedrag" ;
+		sh:description "Het feitelijke bedrag; dit is een expliciet getal." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#bedrag> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#double> ;
+		sh:maxCount 1 ;
+	] ;
 	sh:closed false .
 
 <https://data.vlaanderen.be/shacl/besluit-subsidie#SubsidieToekenningShape>
@@ -426,9 +434,9 @@
 	] ;
 	sh:property [
 		sh:name "toegekendBedrag" ;
-		sh:description "Het bedrag dat toegekend wordt." ;
+		sh:description "TODO" ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#toegekendBedrag> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#double> ;
+		sh:class <https://schema.org/MonetaryAmount> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:closed false .
@@ -644,7 +652,7 @@
 		sh:name "biedtAan" ;
 		sh:description "De verschillende subsidiebedragen die bij een subsidiemaatregel horen." ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#biedtAan> ;
-		sh:class <http://schema.org/MonetaryAmount> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag> ;
 		sh:minCount 1 ;
 	] ;
 	sh:property [
@@ -711,7 +719,7 @@
 		sh:name "aangevraagdBedrag" ;
 		sh:description "Het bedrag dat aangevraagd is." ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#aangevraagdBedrag> ;
-		sh:datatype <http://www.w3.org/2001/XMLSchema#double> ;
+		sh:class <https://schema.org/MonetaryAmount> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
