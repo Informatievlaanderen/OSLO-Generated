@@ -3,7 +3,7 @@
 - overview.jpg:
   - kopieer oorspronkelijk.jpg naar overview.jpg
   - open overview.jpg met Paint3D
-  - canvas vergroten naar rechts (zet eerst optie om inhoud mee aan te passen uit)
-  - equivalent.jpg rechts invoegen
+  - Canvas > Grootte van canvas aanpassen (uncheck eerst h/b vergrendeling en formaat meewijzigen) en vergroten voldoende naar onder)
+  - equivalent.jpg onderaan invoegen
   - canvas fitten
   - opslaan
