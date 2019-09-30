@@ -1,5 +1,5 @@
 - MijnDomein: copy-paste uit EA naar Paint en opslaan als oorspronkelijk.jpg
-- MijnEquivalentDomein: copy-past uit EA naar PAint en opslaan als equivalent.jpg
+- ZelfdeOutput: copy-past uit EA naar Paint en opslaan als equivalent.jpg
 - overview.jpg:
   - kopieer oorspronkelijk.jpg naar overview.jpg
   - open overview.jpg met Paint3D
