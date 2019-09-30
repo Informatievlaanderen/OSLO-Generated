@@ -1,0 +1,9 @@
+- MijnDomein: copy-paste uit EA naar Paint en opslaan als oorspronkelijk.jpg
+- ZelfdeOutput: copy-past uit EA naar Paint en opslaan als equivalent.jpg
+- overview.jpg:
+  - kopieer oorspronkelijk.jpg naar overview.jpg
+  - open overview.jpg met Paint3D
+  - Canvas > Grootte van canvas aanpassen (uncheck eerst h/b vergrendeling en formaat meewijzigen) en vergroten voldoende naar onder)
+  - equivalent.jpg onderaan invoegen
+  - canvas fitten
+  - opslaan
