@@ -3,33 +3,50 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/toegang> <https://data.vlaanderen.be/shacl/toegangshapes> <https://data.vlaanderen.be/shacl/toegang#DtcAWVIdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/toegang#KlAandachtspunttypeShape>,
-    <https://data.vlaanderen.be/shacl/toegang#SturingShape>,
-    <https://data.vlaanderen.be/shacl/toegang#ToegangspuntShape>,
-    <https://data.vlaanderen.be/shacl/toegang#DtcCoordLambert72Shape>,
-    <https://data.vlaanderen.be/shacl/toegang#DtcAandachtspuntShape>,
-    <https://data.vlaanderen.be/shacl/toegang#KlAlgWeekdagenShape>,
-    <https://data.vlaanderen.be/shacl/toegang#DerdenobjectShape>,
-    <https://data.vlaanderen.be/shacl/toegang#DtcNatuurlijkPersoonShape>,
-    <https://data.vlaanderen.be/shacl/toegang#AWVObjectShape>,
-    <https://data.vlaanderen.be/shacl/toegang#AWVToegangViaObjectShape>,
+<https://data.vlaanderen.be/shacl/toegang> <https://data.vlaanderen.be/shacl/toegangshapes> <https://data.vlaanderen.be/shacl/toegang#DtcNatuurlijkPersoonShape>,
     <https://data.vlaanderen.be/shacl/toegang#KlToegangsprocedureTypeShape>,
-    <https://data.vlaanderen.be/shacl/toegang#DtcOpeningsurenSpecificatieShape>,
+    <https://data.vlaanderen.be/shacl/toegang#AWVObjectShape>,
+    <https://data.vlaanderen.be/shacl/toegang#KlAlgWeekdagenShape>,
+    <https://data.vlaanderen.be/shacl/toegang#KlAandachtspunttypeShape>,
     <https://data.vlaanderen.be/shacl/toegang#VoedingShape>,
-    <https://data.vlaanderen.be/shacl/toegang#DtcAdresShape>,
-    <https://data.vlaanderen.be/shacl/toegang#ToegangsprocedureShape>,
-    <https://data.vlaanderen.be/shacl/toegang#BevestigdShape>,
+    <https://data.vlaanderen.be/shacl/toegang#DtcOpeningsurenSpecificatieShape>,
+    <https://data.vlaanderen.be/shacl/toegang#KlAlgMimeTypeShape>,
+    <https://data.vlaanderen.be/shacl/toegang#DerdenobjectShape>,
+    <https://data.vlaanderen.be/shacl/toegang#DtcCoordLambert72Shape>,
+    <https://data.vlaanderen.be/shacl/toegang#ToegangspuntShape>,
     <https://data.vlaanderen.be/shacl/toegang#DtcAWVDocumentShape>,
-    <https://data.vlaanderen.be/shacl/toegang#KlAlgMimeTypeShape> .
+    <https://data.vlaanderen.be/shacl/toegang#DtcAdresShape>,
+    <https://data.vlaanderen.be/shacl/toegang#BevestigdShape>,
+    <https://data.vlaanderen.be/shacl/toegang#ToegangsprocedureShape>,
+    <https://data.vlaanderen.be/shacl/toegang#DtcAWVIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/toegang#DtcAandachtspuntShape>,
+    <https://data.vlaanderen.be/shacl/toegang#AWVToegangViaObjectShape>,
+    <https://data.vlaanderen.be/shacl/toegang#SturingShape> .
 
 <https://data.vlaanderen.be/shacl/toegang#AWVObjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:date;
+    sh:description "Datum van de oprichting van het object";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "datumOprichtingObject";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.datumOprichtingObject>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
+    sh:description "TODO";
+    sh:name "Sturing";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Sturing>
+  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
     sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
     sh:name "Voeding";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Voeding>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt>;
+    sh:minCount "*"^^xsd:integer;
+    sh:name "Toegang";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#toegang>
   ], [
     sh:class xsd:anyURI;
     sh:description "De URI van het AWV Object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
@@ -50,18 +67,6 @@
     sh:name "Bevestigd";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Bevestigd>
   ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt>;
-    sh:minCount "*"^^xsd:integer;
-    sh:name "Toegang";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#toegang>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Extra notitie voor het AWV object.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "notitie";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.notitie>
-  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
     sh:description "Een id voor lokaal,intern gebruik.";
     sh:maxCount 1;
@@ -69,17 +74,12 @@
     sh:name "lokaleIdentificator";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.lokaleIdentificator>
   ], [
-    sh:datatype xsd:date;
-    sh:description "Datum van de oprichting van het object";
+    sh:datatype xsd:string;
+    sh:description "Extra notitie voor het AWV object.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "datumOprichtingObject";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.datumOprichtingObject>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
-    sh:description "TODO";
-    sh:name "Sturing";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Sturing>
+    sh:name "notitie";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.notitie>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject> .
 
@@ -106,20 +106,12 @@
     sh:name "heeftAansluitkastGeintegreerd";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.heeftAansluitkastGeintegreerd>
   ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
-    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
-    sh:name "Voeding";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Voeding>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
-    sh:description "Deze relatie geeft aan dat 2 onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
-    sh:name "Bevestigd";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Bevestigd>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
-    sh:description "TODO";
-    sh:name "Sturing";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Sturing>
+    sh:datatype xsd:string;
+    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "contactgegevens";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt>;
     sh:minCount "*"^^xsd:integer;
@@ -133,18 +125,26 @@
     sh:name "omschrijving";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.omschrijving>
   ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
+    sh:description "Deze relatie geeft aan dat 2 onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
+    sh:name "Bevestigd";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Bevestigd>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
+    sh:description "TODO";
+    sh:name "Sturing";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Sturing>
+  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
     sh:description "Een foto van het derdenobject die eventuele detailinformatie weergeeft";
     sh:minCount 1;
     sh:name "foto";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.foto>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "contactgegevens";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
+    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
+    sh:name "Voeding";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/toegang/#Voeding>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject> .
 
@@ -210,19 +210,19 @@
 <https://data.vlaanderen.be/shacl/toegang#DtcAandachtspuntShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class skos:Concept;
-    sh:description "Mogelijke types van het aandachtspunt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "type";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt.type>
-  ], [
     sh:datatype xsd:string;
     sh:description "Een toelichting die beschrijft waar precies op gelet moet worden.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "omschrijving";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt.omschrijving>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Mogelijke types van het aandachtspunt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "type";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt.type>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt> .
 
@@ -230,25 +230,18 @@
   sh:closed false;
   sh:property [
     sh:class skos:Concept;
+    sh:description "Het deelgebied waarin het adres gelegen is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "provincie";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.provincie>
+  ], [
+    sh:class skos:Concept;
     sh:description "De bestuurlijke eenheid waarin het adres gelegen is.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "gemeente";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.gemeente>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Een korte reeks tekens die in het postadres wordt opgenomen.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "postcode";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.postcode>
-  ], [
-    sh:class xsd:nonNegativeInteger;
-    sh:description "Een nummer dat de postbus aanduidt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "bus";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.bus>
   ], [
     sh:class xsd:nonNegativeInteger;
     sh:description "Een nummer dat door de gemeente aan bv. een huis wordt toegekend.";
@@ -257,25 +250,39 @@
     sh:name "huisnummer";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.huisnummer>
   ], [
-    sh:class skos:Concept;
-    sh:description "Het deelgebied waarin het adres gelegen is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "provincie";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.provincie>
-  ], [
     sh:datatype xsd:string;
     sh:description "De naam van de straat.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "straatnaam";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.straatnaam>
+  ], [
+    sh:class xsd:nonNegativeInteger;
+    sh:description "Een nummer dat de postbus aanduidt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "bus";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.bus>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een korte reeks tekens die in het postadres wordt opgenomen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "postcode";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.postcode>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres> .
 
 <https://data.vlaanderen.be/shacl/toegang#DtcCoordLambert72Shape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter>;
+    sh:description "X-coordinaat in decimaal getal.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "xcoordinaat";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.xcoordinaat>
+  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter>;
     sh:description "Y-coordinaat in decimaal getal.";
     sh:maxCount 1;
@@ -289,13 +296,6 @@
     sh:minCount 1;
     sh:name "zcoordinaat";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.zcoordinaat>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter>;
-    sh:description "X-coordinaat in decimaal getal.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "xcoordinaat";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.xcoordinaat>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72> .
 
@@ -303,10 +303,17 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:string;
-    sh:description "De faxnummer";
+    sh:description "Het emailadres.";
     sh:minCount 1;
-    sh:name "fax";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.fax>
+    sh:name "emailadres";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.emailadres>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De achternaam.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "achternaam";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.achternaam>
   ], [
     sh:datatype xsd:boolean;
     sh:description "heeft email voorkeur";
@@ -321,31 +328,11 @@
     sh:name "telefoonnnummer";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.telefoonnnummer>
   ], [
-    sh:datatype xsd:string;
-    sh:description "De achternaam.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "achternaam";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.achternaam>
-  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres>;
     sh:description "Het adres.";
     sh:minCount 1;
     sh:name "adres";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.adres>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "De voornaam.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "voornaam";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.voornaam>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Het emailadres.";
-    sh:minCount 1;
-    sh:name "emailadres";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.emailadres>
   ], [
     sh:datatype xsd:boolean;
     sh:description "Aanduiding of een persoon een voorkeur heeft om via fax gegevens te ontvangen.";
@@ -353,18 +340,25 @@
     sh:minCount 1;
     sh:name "heeftFaxVoorkeur";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.heeftFaxVoorkeur>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De faxnummer";
+    sh:minCount 1;
+    sh:name "fax";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.fax>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De voornaam.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "voornaam";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon.voornaam>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon> .
 
 <https://data.vlaanderen.be/shacl/toegang#DtcOpeningsurenSpecificatieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://schema.org/DayOfWeek>;
-    sh:description "Een dag uit de week incl. weekenddagen.";
-    sh:minCount 1;
-    sh:name "weekdag";
-    sh:path <https://schema.org/dayOfWeek>
-  ], [
     sh:datatype xsd:time;
     sh:description "Het tijdsstip waarop de opening plaatsvindt.";
     sh:maxCount 1;
@@ -378,6 +372,12 @@
     sh:minCount 1;
     sh:name "sluitingstijd";
     sh:path <https://schema.org/closes>
+  ], [
+    sh:class <https://schema.org/DayOfWeek>;
+    sh:description "Een dag uit de week incl. weekenddagen.";
+    sh:minCount 1;
+    sh:name "weekdag";
+    sh:path <https://schema.org/dayOfWeek>
   ];
   sh:targetClass <https://schema.org/OpeningHoursSpecification> .
 
@@ -404,37 +404,15 @@
 <https://data.vlaanderen.be/shacl/toegang#ToegangsprocedureShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon>;
-    sh:description "Een persoon die men kan contacteren ivm. de toegangsprocedure.";
-    sh:minCount 1;
-    sh:name "contactpersoon";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.contactpersoon>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "De naam van de toegangsprocedure.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.naam>
-  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
     sh:description "Bijlages die aanvullende informatie bevatten over de toegangsprocedure.";
     sh:minCount 1;
     sh:name "documenten";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.documenten>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Een uitgebreide toelichting die beschrijft hoe de toegangsprocedure gebruikt kan worden.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "omschrijving";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.omschrijving>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
-    sh:description "Het eventuele reglement dat gevolgd moet worden bij de toegangsprocedure.";
-    sh:minCount 1;
-    sh:name "reglement";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.reglement>
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt>;
+    sh:name "Toegangsprocedure";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#toegangsprocedure>
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
     sh:description "Een formulier waarmee toegang aangevraagd kan worden.";
@@ -442,16 +420,11 @@
     sh:name "aanvraagformulier";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.aanvraagformulier>
   ], [
-    sh:class <https://schema.org/OpeningHoursSpecification>;
-    sh:description "De dagen/uren van de dag waarop de procedure geldt.";
-    sh:maxCount 1;
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon>;
+    sh:description "Een persoon die men kan contacteren ivm. de toegangsprocedure.";
     sh:minCount 1;
-    sh:name "geldigheid";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.geldigheid>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt>;
-    sh:name "Toegangsprocedure";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#toegangsprocedure>
+    sh:name "contactpersoon";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.contactpersoon>
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
     sh:description "De unieke identificator van de toegangsprocedure.";
@@ -459,19 +432,6 @@
     sh:minCount 1;
     sh:name "id";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.id>
-  ], [
-    sh:class skos:Concept;
-    sh:description "De manier waarop de toegangsprocedure werkt (bv. badge, sleutel, ...)";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "type";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.type>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
-    sh:description "Bevat de instructies die bij de toegangsprocedure horen.";
-    sh:minCount 1;
-    sh:name "handleiding";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.handleiding>
   ], [
     sh:datatype xsd:boolean;
     sh:description "Geeft aan of de procedure nog in werking is of niet.";
@@ -486,18 +446,52 @@
     sh:minCount 1;
     sh:name "code";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.code>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
+    sh:description "Het eventuele reglement dat gevolgd moet worden bij de toegangsprocedure.";
+    sh:minCount 1;
+    sh:name "reglement";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.reglement>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een uitgebreide toelichting die beschrijft hoe de toegangsprocedure gebruikt kan worden.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "omschrijving";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.omschrijving>
+  ], [
+    sh:class skos:Concept;
+    sh:description "De manier waarop de toegangsprocedure werkt (bv. badge, sleutel, ...)";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "type";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.type>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De naam van de toegangsprocedure.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.naam>
+  ], [
+    sh:class <https://schema.org/OpeningHoursSpecification>;
+    sh:description "De dagen/uren van de dag waarop de procedure geldt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "geldigheid";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.geldigheid>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
+    sh:description "Bevat de instructies die bij de toegangsprocedure horen.";
+    sh:minCount 1;
+    sh:name "handleiding";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangsprocedure.handleiding>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#toegangsprocedure> .
 
 <https://data.vlaanderen.be/shacl/toegang#ToegangspuntShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
-    sh:description "Afbeeldingen die visuele informatie bevatten over het toegangspunt.";
-    sh:minCount 1;
-    sh:name "fotos";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.fotos>
-  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt>;
     sh:description "Lijst van aandachtspunten op dit toegangspunt waar de opgeroepene rekening mee moet houden.";
     sh:minCount 1;
@@ -512,27 +506,6 @@
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.omschrijving>
   ], [
     sh:datatype xsd:string;
-    sh:description "Omschrijving van het gebruiksreden om dit toegangspunt te gebruiken (bv. regulier onderhoud).";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "gebruiksreden";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.gebruiksreden>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres>;
-    sh:description "Het postadres van het toegangspunt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "adres";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.adres>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
-    sh:description "De unieke identificator van het toegangspunt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "id";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.id>
-  ], [
-    sh:datatype xsd:string;
     sh:description "De naam van het toegangspunt.";
     sh:maxCount 1;
     sh:minCount 1;
@@ -545,6 +518,33 @@
     sh:minCount 1;
     sh:name "coordinaten";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.coordinaten>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
+    sh:description "De unieke identificator van het toegangspunt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "id";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.id>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Omschrijving van het gebruiksreden om dit toegangspunt te gebruiken (bv. regulier onderhoud).";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "gebruiksreden";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.gebruiksreden>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument>;
+    sh:description "Afbeeldingen die visuele informatie bevatten over het toegangspunt.";
+    sh:minCount 1;
+    sh:name "fotos";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.fotos>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres>;
+    sh:description "Het postadres van het toegangspunt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "adres";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt.adres>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Toegangspunt> .
 
