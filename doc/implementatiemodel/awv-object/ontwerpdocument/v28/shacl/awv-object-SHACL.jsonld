@@ -34,6 +34,43 @@
   "@id": "https://data.vlaanderen.be/shacl/awv-object",
   "shapes": [
     {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DteURIShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De string bestaat uit een URI volgens https://www.w3.org/2001/XMLSchema#anyURI .",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteURI.waarde"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#BooleanShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DecimalShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#StringShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/awv-object#KlAlgMimeTypeShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -77,7 +114,7 @@
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Een set van objecten (bv. collecties) die aanduiden waar het object zich bevind in de objectenboom (EM-Infra).",
+          "sh:description": "Een set van objecten (bv. collecties) die aanduiden waar het object zich bevindt in de objectenboom (EM-Infra).",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "naampad",
@@ -99,6 +136,7 @@
         },
         {
           "sh:class": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject",
+          "sh:description": "Deze relatie geeft aan of er een of andere vorm van dataverkeer is tussen 2 onderdelen. Een wegverlichtingstoestel dat aan staat wordt ook als sturing beschouwd, in dit geval is het een lang ononderbroken elektrisch aan-signaal. Deze relatie heeft geen richting.",
           "sh:name": "Sturing",
           "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Sturing"
         },
@@ -155,6 +193,7 @@
         },
         {
           "sh:class": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject",
+          "sh:description": "Deze relatie geeft aan of er een of andere vorm van dataverkeer is tussen 2 onderdelen. Een wegverlichtingstoestel dat aan staat wordt ook als sturing beschouwd, in dit geval is het een lang ononderbroken elektrisch aan-signaal. Deze relatie heeft geen richting.",
           "sh:name": "Sturing",
           "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Sturing"
         },
@@ -197,6 +236,94 @@
         }
       ],
       "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DtcAWVDocumentShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De naam van het Document inclusief de bestandsextensie, van de naam gescheiden door een punt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "bestandsnaam",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument.bestandsnaam"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Het MIME type van het document.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "mimeType",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument.mimeType"
+        },
+        {
+          "sh:class": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteTekstblok",
+          "sh:description": "Een korte toelichting over waar het document juist voor dient.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "omschrijving",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument.omschrijving"
+        },
+        {
+          "sh:class": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:description": "De verwijzing naar de bestandslocatie via een link. Bij lokale bestanden kan dit eventueel ook een pad zijn.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "uri",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument.uri"
+        }
+      ],
+      "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVDocument"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DtcAWVIdentificatorShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Een groep van tekens om een AWV object te identificeren of te benoemen.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "identificator",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.identificator"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Gegevens van de organisatie die de toekenning deed.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "toegekendDoor",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendDoor"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "De datum wanneer de toekenning werd uitgevoerd.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "toegekendOp",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendOp"
+        }
+      ],
+      "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DteTekstblokShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De string welke uit meerdere zinnen bestaat, en ook regeleindes kan bevatten. Een tekstblok bevat maximaal 65.000 karakters.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteTekstblok.waarde"
+        }
+      ],
+      "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteTekstblok"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/awv-object#EmInfraLevenscyclusShape",
@@ -247,6 +374,30 @@
       "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#EmInfraToezicht"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#KwantWrdInVoltShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "De standaard eenheid bij dit datatype is uitgedrukt in Volt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "standaardEenheid",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVolt.standaardEenheid"
+        },
+        {
+          "sh:class": "http://www.w3.org/2001/XMLSchema#decimal",
+          "sh:description": "Bevat een getal die bij het datatype hoort.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVolt.waarde"
+        }
+      ],
+      "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVolt"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/awv-object#BevestigingShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -275,6 +426,27 @@
         }
       ],
       "sh:targetClass": "https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Voedt"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#LiteralShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DateShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.w3.org/2001/XMLSchema#date"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/awv-object#DateTimeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.w3.org/2001/XMLSchema#datetime"
     }
   ]
 }
