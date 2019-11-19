@@ -455,7 +455,9 @@
         "nl": "Voorkeur"
       },
       "parents": [],
-      "usage": {}
+      "usage": {
+        "nl": "Bv routetype, vervoermiddel..."
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#Waarde",
@@ -474,10 +476,28 @@
   ],
   "properties": [
     {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#^Verbindt",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Transportobject die de Transportconnectie verbindt met een ander Transportobject."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#TransportConnectie"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "^Verbindt"
+      },
+      "range": [
+        "http://fixme.com#TransportObject"
+      ],
+      "usage": {}
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#^aankomstknoop",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Knoop waar het Routesegment eindigt."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#RouteSegment"
@@ -693,7 +713,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#^vertrekknoop",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Knoop waar het Routesegment begint."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#RouteSegment"
@@ -711,7 +731,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#aanbod",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Door de Aanbieder aangeboden Mobiliteitsdiensten."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Aanbieder"
@@ -847,6 +867,26 @@
       "range": [
         "https://data.vlaanderen.be/ns/mobiliteit#Boeking"
       ],
+      "usage": {
+        "nl": "Boeking van de Reis."
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#dienst",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Mobiliteitsdienst die wordt geboekt."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#Boeking"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "dienst"
+      },
+      "range": [
+        "https://data.vlaanderen.be/ns/mobiliteit#MobiliteitsDienst"
+      ],
       "usage": {}
     },
     {
@@ -868,28 +908,10 @@
       "usage": {}
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#dienst",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "TODO"
-      },
-      "domain": [
-        "https://data.vlaanderen.be/ns/mobiliteit#Boeking"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "dienst"
-      },
-      "range": [
-        "https://data.vlaanderen.be/ns/mobiliteit#MobiliteitsDienst"
-      ],
-      "usage": {}
-    },
-    {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#gekozenRoute",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Route die de Reiziger kiest uit de mogelijke Routes."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reis"
@@ -945,6 +967,24 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdMet",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
+        "nl": "Resource van de Mobiliteitsdienst die de reiziger heeft gebruikt bij het afleggen van het Routesegment."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/mobiliteit#RouteSegment"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "gerealiseerdMet"
+      },
+      "range": [
+        "https://data.vlaanderen.be/ns/mobiliteit#Resource"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdMet",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
         "nl": "Resource van de Mobiliteitsdienst die de reiziger heeft gebruikt in de Routeknoop."
       },
       "domain": [
@@ -960,24 +1000,6 @@
       "usage": {
         "nl": "Bv parkeerplaats."
       }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdMet",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Resource van de Mobiliteitsdienst die de reiziger heeft gebruikt bij het afleggen van het Routesegment."
-      },
-      "domain": [
-        "https://data.vlaanderen.be/ns/mobiliteit#RouteSegment"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "gerealiseerdMet"
-      },
-      "range": [
-        "https://data.vlaanderen.be/ns/mobiliteit#Resource"
-      ],
-      "usage": {}
     },
     {
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeft",
@@ -1040,14 +1062,14 @@
         "nl": "Netwerkinfo die een Routeplanner gebruikt om Routes te berekenen."
       },
       "domain": [
-        "https://data.vlaanderen.be/ns/mobiliteit#NetwerkInfo"
+        "https://data.vlaanderen.be/ns/mobiliteit#Routeplanner"
       ],
       "generalization": [],
       "name": {
         "nl": "integreert"
       },
       "range": [
-        "https://data.vlaanderen.be/ns/mobiliteit#Routeplanner"
+        "https://data.vlaanderen.be/ns/mobiliteit#NetwerkInfo"
       ],
       "usage": {}
     },
@@ -1073,7 +1095,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#kenmerk",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Kenmerken van de Reiziger."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reiziger"
@@ -1145,7 +1167,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#mogelijkeRoute",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Routes die gevolgd kunnen worden om de Reis uit te voeren."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reis"
@@ -1291,7 +1313,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#reis",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Reis die geboekt wordt."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Boeking"
@@ -1531,7 +1553,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#uitgevoerdeRoute",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Route die uiteindelijk uitgevoerd is om de Reis te raliseren."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reis"
@@ -1639,7 +1661,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Vervoersbewijs gebruikt om de Reis uit te voeren."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reiziger"
@@ -1657,7 +1679,7 @@
       "@id": "https://data.vlaanderen.be/ns/mobiliteit#voorkeur",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "Voorkeuren van de Reiziger."
       },
       "domain": [
         "https://data.vlaanderen.be/ns/mobiliteit#Reiziger"
