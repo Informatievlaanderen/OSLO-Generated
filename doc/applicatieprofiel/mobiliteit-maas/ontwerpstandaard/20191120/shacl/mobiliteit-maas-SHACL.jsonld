@@ -62,6 +62,13 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Gebruikerstype",
+          "sh:description": "Type gebruiker waarvoor de Mobiliteitsdienst beschikbaar is.",
+          "sh:maxCount": "1",
+          "sh:name": "gebruiker",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#gebruiker"
+        },
+        {
           "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
           "sh:description": "Uren waarop de Mobiliteitsdienst beschikbaar is.",
           "sh:maxCount": "1",
@@ -84,11 +91,31 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Vervoersbewijs",
+          "sh:description": "Vervoersbewijs van de Boeking van de reis.",
+          "sh:name": "Omvat",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#omvat"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Reservatie",
+          "sh:description": "Reservatie van een Resource van een Mobiliteitsdienst in het kader van een Boeking van een reis.",
+          "sh:name": "Omvat",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#omvat"
+        },
+        {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#MobiliteitsDienst",
           "sh:description": "Mobiliteitsdienst die wordt geboekt.",
           "sh:minCount": "1",
           "sh:name": "dienst",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#dienst"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Cost",
+          "sh:description": "Prijs van de Boeking van de Reis.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "prijs",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#prijs"
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Reis",
@@ -100,6 +127,13 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Boeking"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#GebruikerstypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Gebruikerstype"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#KenmerkShape",
@@ -165,8 +199,8 @@
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#aangebodenBinnen"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Resource",
-          "sh:description": "Resources waarover de Mobiliteitsdienst beschikt.",
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Prijsplan",
+          "sh:description": "Prijsplan van de Mobiliteitsdienst.",
           "sh:name": "Heeft",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeft"
         },
@@ -174,6 +208,12 @@
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Beschikbaarheid",
           "sh:description": "Beschikbaarheid van de Mobiliteitsdienst.",
           "sh:maxCount": "1",
+          "sh:name": "Heeft",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeft"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Resource",
+          "sh:description": "Resources waarover de Mobiliteitsdienst beschikt.",
           "sh:name": "Heeft",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeft"
         },
@@ -189,6 +229,14 @@
           "sh:minCount": "1",
           "sh:name": "UitgevoerdDoor",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#uitgevoerdDoor"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Cost",
+          "sh:description": "Kostprijs van de Mobiliteitsdienst voor de Reiziger.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^kost",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#^kost"
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
@@ -250,6 +298,13 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#NetwerkInfo"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#PrijsplanShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Prijsplan"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#PseudoniemShape",
@@ -364,17 +419,55 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Reiziger"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#ReservatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Resource",
+          "sh:description": "Resource die wordt gereserveerd.",
+          "sh:minCount": "1",
+          "sh:name": "HeeftBetrekkingOp",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingOp"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "Periode waarvoor iets gereserveerd wordt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "periode",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#periode"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Reservatie"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-maas#ResourceShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:description": "Mate waarin de Resource beschikbaar is voor gebruik door een reiziger.",
+          "sh:description": "Geeft aan of de Resource beschikbaar is voor gebruik door een Reiziger.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "beschikbaar",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#beschikbaar"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Merk van de resource.",
+          "sh:maxCount": "1",
+          "sh:name": "fabrikant",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#fabrikant"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:description": "Geeft aan of de Resource gereserveerd is door een Reiziger.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "gereserveerd",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#gereserveerd"
         },
         {
           "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
@@ -391,6 +484,13 @@
           "sh:minCount": "1",
           "sh:name": "locatie",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#locatie"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Model van de resource.",
+          "sh:maxCount": "1",
+          "sh:name": "model",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#model"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
