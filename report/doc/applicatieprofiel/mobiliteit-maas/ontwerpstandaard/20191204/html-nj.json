@@ -15,8 +15,8 @@
     "license": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
     "status": "https://data.vlaanderen.be/id/conceptscheme/OntwerpStandaard",
     "statuslabel": "Onbekend",
-    "repositoryurl": "https://github.com/Informatievlaanderen/OSLOthema-mobiliteit/tree/00655787f9eeee6043333133330599518665c8ca",
-    "changelogurl": "https://github.com/Informatievlaanderen/OSLOthema-mobiliteit/blob/00655787f9eeee6043333133330599518665c8ca/CHANGELOG",
+    "repositoryurl": "https://github.com/Informatievlaanderen/OSLOthema-mobiliteit/tree/ceee1d5cc676fbd32e9fe6c8a593da9ff8ec9b7e",
+    "changelogurl": "https://github.com/Informatievlaanderen/OSLOthema-mobiliteit/blob/ceee1d5cc676fbd32e9fe6c8a593da9ff8ec9b7e/CHANGELOG",
     "feedbackurl": "https://github.com/Informatievlaanderen/OSLO-Discussion/issues",
     "standaardregisterurl": "https://data.vlaanderen.be/standaarden/",
     "usesVocs": [],
@@ -52,7 +52,7 @@
           },
           "sort_nl": "registratie",
           "description": {
-            "nl": "Identificator dat de organisatie verkreeg bij registratie."
+            "nl": "Identificator die de organisatie verkreeg bij registratie."
           },
           "usage": {
             "nl": "In de KBO is dit het ondernemingsnummer."
@@ -88,7 +88,7 @@
           },
           "sort_nl": "voorkeursnaam",
           "description": {
-            "nl": "Naam waarmee de organisatie bij voorkeur wordt aangeduid."
+            "nl": "Naam waarmee de Organisatie bij voorkeur wordt aangeduid."
           },
           "usage": {},
           "domain": [
@@ -192,7 +192,7 @@
       },
       "sort_nl": "Boeking",
       "description": {
-        "nl": "Het voorbehouden van een Resource van een Mobiliteitsdienst voor een Reis."
+        "nl": "Het voorbehouden van een Resource van een Mobiliteitsdienst voor het ondernemen van een Reis."
       },
       "usage": {
         "nl": "Bv een zitplaats op een trein, een parkeerplaats, een auto..."
@@ -293,7 +293,7 @@
           ],
           "scopedrange": [
             {
-              "range_uri": "http://data.europa.eu/m8g/Cost",
+              "range_uri": "#Kost",
               "range_puri": "http://data.europa.eu/m8g/Cost",
               "range_label": {
                 "nl": "Kost"
@@ -344,7 +344,7 @@
           },
           "sort_nl": "vervoersbewijs",
           "description": {
-            "nl": "Vervoersbewijs van de Boeking van de Reis."
+            "nl": "Vervoersbewijs voor de geboekte Reis."
           },
           "usage": {},
           "domain": [
@@ -383,7 +383,7 @@
         "nl": "Eigenschap van de Reiziger."
       },
       "usage": {
-        "nl": "Bv leeftijd, beperking, rijbewijs"
+        "nl": "Bv leeftijd, beperking, rijbewijs."
       },
       "parents": [],
       "properties": [
@@ -534,7 +534,7 @@
               }
             }
           ],
-          "cardinality": "0..*",
+          "cardinality": "1..*",
           "codelist_uri": ""
         },
         {
@@ -596,7 +596,7 @@
           },
           "sort_nl": "beschikbaarheid",
           "description": {
-            "nl": "Beschikbaarheid van de Mobiliteitsdienst."
+            "nl": "Mate waarin iets wordt aangeboden."
           },
           "usage": {
             "nl": "Bv dienstregeling of openingsuren."
@@ -1025,7 +1025,7 @@
         "nl": "Logische verbinding tussen twee Routeknopen."
       },
       "usage": {
-        "nl": "Bedoeld om de overgang tussen twee Routesegmenten te beschjrijven indien deze niet zelf door een Routesegment wordt voorgesteld.  Het is mogelijk om over te stappen tussen twee dezelfde Routeknopen (bv overstap van de ene trein op de andere in hetzelfde station) of tussen twee verschillende (bv overstap van de parking bij het station naar - de perrons van - het station)."
+        "nl": "Bedoeld om de overgang tussen twee Routesegmenten te beschrijven indien deze niet zelf door een Routesegment wordt voorgesteld. Men kan overstappen tussen twee dezelfde Routeknopen (bv overstap van de ene trein op de andere in hetzelfde station) of tussen twee verschillende (bv overstap van de parking bij het station naar - de perrons van - het station)."
       },
       "parents": [],
       "properties": [
@@ -1119,16 +1119,52 @@
           ],
           "range": [
             {
-              "range_label": "Connectietype",
+              "range_label": "OverstapType",
               "range_uri": "http://www.w3.org/2004/02/skos/core#Concept"
             }
           ],
           "scopedrange": [
             {
-              "range_uri": "http://www.w3.org/2004/02/skos/core#Concept",
+              "range_uri": "#OverstapType",
               "range_puri": "http://www.w3.org/2004/02/skos/core#Concept",
               "range_label": {
-                "nl": "Connectietype"
+                "nl": "OverstapType"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": "https://wherever/TODO"
+        },
+        {
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdOp",
+          "name": {
+            "nl": "gerealiseerd op"
+          },
+          "sort_nl": "gerealiseerd op",
+          "description": {
+            "nl": "Transportobject waarmee de Routeconnectie samenvalt."
+          },
+          "usage": {
+            "nl": "Bv de halte waar men overstap tussen twee metrolijnen, het Adresgebied waarbinnen men overstapt tussen twee vervoersmodi."
+          },
+          "domain": [
+            {
+              "uri": "https://data.vlaanderen.be/ns/mobiliteit#Overstap",
+              "EA-Name": "Overstap"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Transportobject",
+              "range_uri": "https://INSPIRE-Transportnetwerk.fixme.com#Transportobject"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Transportobject",
+              "range_puri": "https://INSPIRE-Transportnetwerk.fixme.com#Transportobject",
+              "range_label": {
+                "nl": "Transportobject"
               }
             }
           ],
@@ -1217,7 +1253,7 @@
         "nl": "Prijs van de Reizen die met de Mobiliteitsdienst kunnen worden uitgevoerd."
       },
       "usage": {
-        "nl": "Laat toe te achterhalen hoeveel een specifieke Reis gaat kosten, rekening houdend met bv de reisweg of de afgelegde afstand of hoe lang men van de Mobiliteitsdienst gebruik maakt. Inclusief eventuele kortingen voor doelgroepen bv korting voorkinderen onder 12 jaar."
+        "nl": "Laat toe te achterhalen hoeveel een specifieke Reis gaat kosten, rekening houdend met bv de reisweg of de afgelegde afstand of hoe lang men van de Mobiliteitsdienst gebruik maakt. Inclusief eventuele kortingen voor doelgroepen bv korting voor kinderen onder 12 jaar."
       },
       "parents": [],
       "properties": [
@@ -1312,7 +1348,7 @@
           },
           "sort_nl": "aankomsttijdstip",
           "description": {
-            "nl": "Tijdstip waarop de Reis afgelopen of waarop de Reiziger zou willen dat ze is afgelopen."
+            "nl": "Tijdstip waarop de Reis afgelopen is of waarop de Reiziger zou willen dat ze is afgelopen."
           },
           "usage": {
             "nl": "Doorgaans wordt enkel een vertrek- of een aankomsttijdstip opgegeven"
@@ -1556,7 +1592,7 @@
           },
           "sort_nl": "uitgevoerde route",
           "description": {
-            "nl": "Route die uiteindelijk uitgevoerd is om de Reis te raliseren."
+            "nl": "Route die uiteindelijk uitgevoerd is om de Reis te realiseren."
           },
           "usage": {},
           "domain": [
@@ -1752,7 +1788,7 @@
           },
           "sort_nl": "pseudoniem",
           "description": {
-            "nl": "Naam van de Reiziger die afwijkt van zijn werkelijjke naam."
+            "nl": "Naam van de Reiziger die afwijkt van zijn werkelijke naam."
           },
           "usage": {
             "nl": "Doel is dat de werkelijke identiteit van de Reiziger niet meer achterhaald kan worden maar dat tripdata toch op individueel niveau bestudeerd kan worden."
@@ -1862,9 +1898,7 @@
       "description": {
         "nl": "Kenmerken van de Reservatie van een resource bij een Boeking."
       },
-      "usage": {
-        "nl": " "
-      },
+      "usage": {},
       "parents": [],
       "properties": [
         {
@@ -2021,7 +2055,7 @@
         "nl": "Middel dat de Mobiliteitsdienst aan de Reiziger kan aanbieden om zijn verplaatsing te maken."
       },
       "usage": {
-        "nl": "Bv zitplaats op een trein, deelfiets aan een station, parkeerplaats in een parking"
+        "nl": "Bv zitplaats op een trein, deelfiets aan een station, parkeerplaats in een parking."
       },
       "parents": [],
       "properties": [
@@ -2094,7 +2128,7 @@
               }
             }
           ],
-          "cardinality": "1",
+          "cardinality": "0..1",
           "codelist_uri": ""
         },
         {
@@ -2130,7 +2164,7 @@
               }
             }
           ],
-          "cardinality": "1",
+          "cardinality": "0..1",
           "codelist_uri": ""
         },
         {
@@ -2187,10 +2221,23 @@
               "EA-Name": "Resource"
             }
           ],
-          "range": [],
-          "scopedrange": [],
-          "cardinality": "1",
-          "codelist_uri": ""
+          "range": [
+            {
+              "range_label": "Resourcestatus",
+              "range_uri": "http://www.w3.org/2004/02/skos/core#Concept"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Resourcestatus",
+              "range_puri": "http://www.w3.org/2004/02/skos/core#Concept",
+              "range_label": {
+                "nl": "Resourcestatus"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": "https://wherever/TODO"
         },
         {
           "uri": "https://data.vlaanderen.be/ns/mobiliteit#type",
@@ -2438,7 +2485,7 @@
           ],
           "scopedrange": [
             {
-              "range_uri": "http://data.europa.eu/m8g/Cost",
+              "range_uri": "#Kost",
               "range_puri": "http://data.europa.eu/m8g/Cost",
               "range_label": {
                 "nl": "Kost"
@@ -2639,6 +2686,76 @@
           "codelist_uri": ""
         },
         {
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdOp",
+          "name": {
+            "nl": "gerealiseerd op"
+          },
+          "sort_nl": "gerealiseerd op",
+          "description": {
+            "nl": "Transportobject dat met de Routeknoop samenvalt."
+          },
+          "usage": {
+            "nl": "Bv de halte waar men op- of afstapt, de parking waar men zijn auto parkeert, het deelfietsstation waar men een fiets ophaalt."
+          },
+          "domain": [
+            {
+              "uri": "https://data.vlaanderen.be/ns/mobiliteit#Routeknoop",
+              "EA-Name": "Routeknoop"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Transportobject",
+              "range_uri": "https://INSPIRE-Transportnetwerk.fixme.com#Transportobject"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Transportobject",
+              "range_puri": "https://INSPIRE-Transportnetwerk.fixme.com#Transportobject",
+              "range_label": {
+                "nl": "Transportobject"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "https://data.vlaanderen.be/ns/mobiliteit#overstap",
+          "name": {
+            "nl": "overstap"
+          },
+          "sort_nl": "overstap",
+          "description": {
+            "nl": "Routeknoop waarnaar wordt overgestapt."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "https://data.vlaanderen.be/ns/mobiliteit#Routeknoop",
+              "EA-Name": "Routeknoop"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Routeknoop",
+              "range_uri": "https://data.vlaanderen.be/ns/mobiliteit#Routeknoop"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Routeknoop",
+              "range_puri": "https://data.vlaanderen.be/ns/mobiliteit#Routeknoop",
+              "range_label": {
+                "nl": "Routeknoop"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
           "uri": "https://data.vlaanderen.be/ns/mobiliteit#routeknoop.gerealiseerdDoor",
           "name": {
             "nl": "gerealiseerd door"
@@ -2814,7 +2931,7 @@
       },
       "sort_nl": "Routesegment",
       "description": {
-        "nl": "Deel van een Route dat zonder overstap wordt afgelegd met hetzelfde vervoermiddel."
+        "nl": "Deel van een Route dat zonder Overstap wordt afgelegd met hetzelfde vervoermiddel."
       },
       "usage": {},
       "parents": [
@@ -3152,7 +3269,7 @@
           ],
           "scopedrange": [
             {
-              "range_uri": "http://www.w3.org/2004/02/skos/core#Concept",
+              "range_uri": "#Connectietype",
               "range_puri": "http://www.w3.org/2004/02/skos/core#Concept",
               "range_label": {
                 "nl": "Connectietype"
@@ -3160,7 +3277,7 @@
             }
           ],
           "cardinality": "1",
-          "codelist_uri": ""
+          "codelist_uri": "https://wherever/TODO"
         },
         {
           "uri": "https://data.vlaanderen.be/ns/mobiliteit#verbindt",
@@ -3449,7 +3566,7 @@
           },
           "sort_nl": "duur",
           "description": {
-            "nl": "Totale tijd waarvan men met het Vervoersbewijs van een mobiliteitsdienst gebruik mag maken."
+            "nl": "Totale tijd waarvan men met het Vervoersbewijs van een Mobiliteitsdienst gebruik mag maken."
           },
           "usage": {
             "nl": "Bv 1 uur in het geval van een metroticket of 1 dag voor een dagticket of een krediet van 120 minuten deelstep."
@@ -3536,7 +3653,7 @@
           ],
           "scopedrange": [
             {
-              "range_uri": "http://data.europa.eu/m8g/Cost",
+              "range_uri": "#Kost",
               "range_puri": "http://data.europa.eu/m8g/Cost",
               "range_label": {
                 "nl": "Kost"
@@ -3556,7 +3673,7 @@
             "nl": "Opeenvolging van Locaties waarvoor het Vervoersbewijs geldig is."
           },
           "usage": {
-            "nl": "Typisch de twee opeenvolgende Locaties waartussen men mag reizen met het Vervoersbewijs, bv een treinabonnement tussen Brussel en Gent (waarbij het type Vervoersbewijs dan doorgaans \"retourticket\" is, maw ook een Reis van Gent naar Brussel is mogelijk)."
+            "nl": "Typisch de twee opeenvolgende Locaties waartussen men mag reizen met het Vervoersbewijs, bv een treinabonnement tussen Brussel en Gent (waarbij het type Vervoersbewijs dan doorgaans \"retourticket\" is, maw ook een Reis van Gent naar Brussel is mogelijk). Maar kan ook gewoon het Gebied of de Plaats zijn waarvoor het Vervoersbewijs geldt, bv Antwerpen."
           },
           "domain": [
             {
@@ -4508,7 +4625,7 @@
         "nl": "registratie"
       },
       "description": {
-        "nl": "Identificator dat de organisatie verkreeg bij registratie."
+        "nl": "Identificator die de organisatie verkreeg bij registratie."
       },
       "domain": [
         null
@@ -4595,7 +4712,7 @@
         "nl": "beschikbaarheid"
       },
       "description": {
-        "nl": "Beschikbaarheid van de Mobiliteitsdienst."
+        "nl": "Mate waarin iets wordt aangeboden."
       },
       "domain": [
         null
@@ -5141,6 +5258,44 @@
       "parents": []
     },
     {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdOp",
+      "name": {
+        "nl": "gerealiseerd op"
+      },
+      "description": {
+        "nl": "Transportobject waarmee de Routeconnectie samenvalt."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {
+        "nl": "Bv de halte waar men overstap tussen twee metrolijnen, het Adresgebied waarbinnen men overstapt tussen twee vervoersmodi."
+      },
+      "parents": []
+    },
+    {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#gerealiseerdOp",
+      "name": {
+        "nl": "gerealiseerd op"
+      },
+      "description": {
+        "nl": "Transportobject dat met de Routeknoop samenvalt."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {
+        "nl": "Bv de halte waar men op- of afstapt, de parking waar men zijn auto parkeert, het deelfietsstation waar men een fiets ophaalt."
+      },
+      "parents": []
+    },
+    {
       "uri": "https://data.vlaanderen.be/ns/mobiliteit#isDeelVan",
       "name": {
         "nl": "is deel van"
@@ -5302,6 +5457,23 @@
       "parents": []
     },
     {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#overstap",
+      "name": {
+        "nl": "overstap"
+      },
+      "description": {
+        "nl": "Routeknoop waarnaar wordt overgestapt."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {},
+      "parents": []
+    },
+    {
       "uri": "https://data.vlaanderen.be/ns/mobiliteit#periode",
       "name": {
         "nl": "periode"
@@ -5375,7 +5547,7 @@
         "nl": "pseudoniem"
       },
       "description": {
-        "nl": "Naam van de Reiziger die afwijkt van zijn werkelijjke naam."
+        "nl": "Naam van de Reiziger die afwijkt van zijn werkelijke naam."
       },
       "domain": [
         null
@@ -5439,7 +5611,7 @@
         null
       ],
       "usage": {
-        "nl": "Typisch de twee opeenvolgende Locaties waartussen men mag reizen met het Vervoersbewijs, bv een treinabonnement tussen Brussel en Gent (waarbij het type Vervoersbewijs dan doorgaans \"retourticket\" is, maw ook een Reis van Gent naar Brussel is mogelijk)."
+        "nl": "Typisch de twee opeenvolgende Locaties waartussen men mag reizen met het Vervoersbewijs, bv een treinabonnement tussen Brussel en Gent (waarbij het type Vervoersbewijs dan doorgaans \"retourticket\" is, maw ook een Reis van Gent naar Brussel is mogelijk). Maar kan ook gewoon het Gebied of de Plaats zijn waarvoor het Vervoersbewijs geldt, bv Antwerpen."
       },
       "parents": []
     },
@@ -5590,6 +5762,25 @@
       "parents": []
     },
     {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#status",
+      "name": {
+        "nl": "status"
+      },
+      "description": {
+        "nl": "Toestand waarin een Resource zicht bevindt."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {
+        "nl": "Bv gereserveerd, inactief, beschikbaar. Bepaalt of een Resource gebruikt kan worden."
+      },
+      "parents": []
+    },
+    {
       "uri": "https://data.vlaanderen.be/ns/mobiliteit#type",
       "name": {
         "nl": "type"
@@ -5650,7 +5841,7 @@
         "nl": "uitgevoerde route"
       },
       "description": {
-        "nl": "Route die uiteindelijk uitgevoerd is om de Reis te raliseren."
+        "nl": "Route die uiteindelijk uitgevoerd is om de Reis te realiseren."
       },
       "domain": [
         null
@@ -5809,62 +6000,7 @@
         "nl": "vervoersbewijs"
       },
       "description": {
-        "nl": "Vervoersbewijs van de Reiziger."
-      },
-      "domain": [
-        null
-      ],
-      "range": [
-        null
-      ],
-      "usage": {
-        "nl": "NOTE$ea_notes=Kan los staan van een Reis, ttz men kan beschikken over een Vervoersbewijs waarbij de Reis nog niet vastligt of nog niet is uitgevoerd, bv een abonnement of een dagkaart."
-      },
-      "parents": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
-      "name": {
-        "nl": "vervoersbewijs"
-      },
-      "description": {
-        "nl": "Vervoersbewijs van de Boeking van de Reis."
-      },
-      "domain": [
-        null
-      ],
-      "range": [
-        null
-      ],
-      "usage": {},
-      "parents": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
-      "name": {
-        "nl": "vervoersbewijs"
-      },
-      "description": {
-        "nl": "Vervoersbewijs dat nodig is of gebruikt is in de Routeknoop."
-      },
-      "domain": [
-        null
-      ],
-      "range": [
-        null
-      ],
-      "usage": {
-        "nl": "Bv het parkeerticket nodig voor het parkeren van zijn auto in de Routeknoop."
-      },
-      "parents": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
-      "name": {
-        "nl": "vervoersbewijs"
-      },
-      "description": {
-        "nl": "Vervoersbewijs waarmee het Routesegment kan worden afgelegd of is afgelegd."
+        "nl": "Vervoersbewijs voor de geboekte Reis."
       },
       "domain": [
         null
@@ -5891,6 +6027,61 @@
       ],
       "usage": {
         "nl": "NOTE$ea_notes=Dit is het Vervoersbewijs waarmee men de Reis wil uitvoeren of men de Reis heeft uitgevoerd. Bv het gekochte ticket of het abonnement waarover men beschikt."
+      },
+      "parents": []
+    },
+    {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
+      "name": {
+        "nl": "vervoersbewijs"
+      },
+      "description": {
+        "nl": "Vervoersbewijs waarmee het Routesegment kan worden afgelegd of is afgelegd."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {},
+      "parents": []
+    },
+    {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
+      "name": {
+        "nl": "vervoersbewijs"
+      },
+      "description": {
+        "nl": "Vervoersbewijs van de Reiziger."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {
+        "nl": "NOTE$ea_notes=Kan los staan van een Reis, ttz men kan beschikken over een Vervoersbewijs waarbij de Reis nog niet vastligt of nog niet is uitgevoerd, bv een abonnement of een dagkaart."
+      },
+      "parents": []
+    },
+    {
+      "uri": "https://data.vlaanderen.be/ns/mobiliteit#vervoersbewijs",
+      "name": {
+        "nl": "vervoersbewijs"
+      },
+      "description": {
+        "nl": "Vervoersbewijs dat nodig is of gebruikt is in de Routeknoop."
+      },
+      "domain": [
+        null
+      ],
+      "range": [
+        null
+      ],
+      "usage": {
+        "nl": "Bv het parkeerticket nodig voor het parkeren van zijn auto in de Routeknoop."
       },
       "parents": []
     },
@@ -6136,9 +6327,16 @@
     },
     {
       "uri": "https://data.vlaanderen.be/ns/mobiliteit#Toegankelijkheid",
-      "name": {},
-      "description": {},
-      "usage": {},
+      "name": {
+        "nl": "Toegankelijkheid"
+      },
+      "sort_nl": "Toegankelijkheid",
+      "description": {
+        "nl": "Mate waarin iets toegankelijk is voor gebruik."
+      },
+      "usage": {
+        "nl": "Bv toegankelijk voor slechtzienden."
+      },
       "parents": [],
       "properties": []
     },
@@ -6152,10 +6350,113 @@
         "nl": "Uitdrukking van het belang van iets."
       },
       "usage": {
-        "nl": "Kwantitatief bv gewicht, kwalitatief bv categorie"
+        "nl": "Kwantitatief bv gewicht, kwalitatief bv categorie."
       },
       "parents": [],
       "properties": []
+    },
+    {
+      "uri": "http://data.europa.eu/m8g/Cost",
+      "name": {
+        "nl": "Kost"
+      },
+      "sort_nl": "Kost",
+      "description": {
+        "nl": "Deel vd kost verbonden aan de uitvoering van de dienstverlening te betalen door de gebruiker."
+      },
+      "usage": {},
+      "parents": [],
+      "properties": [
+        {
+          "uri": "http://data.europa.eu/m8g/currency",
+          "name": {
+            "nl": "valuta"
+          },
+          "sort_nl": "valuta",
+          "description": {
+            "nl": "Munteenheid waarin de kost is gedefinieerd."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.europa.eu/m8g/Cost",
+              "EA-Name": "Kost"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://data.europa.eu/m8g/value",
+          "name": {
+            "nl": "waarde"
+          },
+          "sort_nl": "waarde",
+          "description": {
+            "nl": "Omvang van de kost, uitgedrukt in de opgegeven munteenheid."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.europa.eu/m8g/Cost",
+              "EA-Name": "Kost"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Double",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#double"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#double",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#double",
+              "range_label": {
+                "nl": "Double"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://purl.org/dc/terms/description",
+          "name": {
+            "nl": "beschrijving"
+          },
+          "sort_nl": "beschrijving",
+          "description": {
+            "nl": "Beschrijving van de kost."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://data.europa.eu/m8g/Cost",
+              "EA-Name": "Kost"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        }
+      ]
     },
     {
       "uri": "http://data.europa.eu/m8g/PeriodOfTime",
@@ -6254,7 +6555,293 @@
         "nl": "Bvb een persoon of organisatie of dienstverlening... Mogelijke vormen van contact: bellen,mailen etc."
       },
       "parents": [],
-      "properties": []
+      "properties": [
+        {
+          "uri": "http://schema.org/email",
+          "name": {
+            "nl": "email"
+          },
+          "sort_nl": "email",
+          "description": {
+            "nl": "Email-adres waarnaar men kan mailen."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://schema.org/faxNumber",
+          "name": {
+            "nl": "fax"
+          },
+          "sort_nl": "fax",
+          "description": {
+            "nl": "Faxnummer waarnaar men kan faxen."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://schema.org/hoursAvailable",
+          "name": {
+            "nl": "beschikbaarheid"
+          },
+          "sort_nl": "beschikbaarheid",
+          "description": {
+            "nl": "Periode waarin contact kan worden opgenomen."
+          },
+          "usage": {
+            "nl": "Bv aanduiding van het seizoen waarin contact kan worden opgenomen aangeboden. Begin- en einddatum volgens ISO8601 syntax."
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://schema.org/openingHours",
+          "name": {
+            "nl": "openingsuren"
+          },
+          "sort_nl": "openingsuren",
+          "description": {
+            "nl": "Uren waarbinnen contact kan worden opgenomen."
+          },
+          "usage": {
+            "nl": "Syntax volgens schema.org voor openingsuren. Bv als contact kan worden opgenomen tussen 8 en 20u maandag tot zaterdag en tussen 8 en 18u op zondag wordt dit gecodeerd als Ma-za 08:00-20:00, zo 08:00-18:00."
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "GetypeerdeString",
+              "range_uri": "http://www.w3.org/2000/01/rdf-schema#Literal"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Getypeerde String",
+              "range_puri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+              "range_label": {
+                "nl": "Getypeerde String"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://schema.org/telephone",
+          "name": {
+            "nl": "telefoon"
+          },
+          "sort_nl": "telefoon",
+          "description": {
+            "nl": "Telefoonnummer waarop men kan bellen."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://ww.w3.org/2006/vcard/ns#honorific-prefix",
+          "name": {
+            "nl": "aanschrijfvorm"
+          },
+          "sort_nl": "aanschrijfvorm",
+          "description": {
+            "nl": "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen."
+          },
+          "usage": {
+            "nl": "Bvb De heer/Mevrouw, Excellentie, Dokter"
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "TaalString",
+              "range_uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Taalstring",
+              "range_puri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+              "range_label": {
+                "nl": "Taalstring"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://www.w3.org/ns/locn#address",
+          "name": {
+            "nl": "adres"
+          },
+          "sort_nl": "adres",
+          "description": {
+            "nl": "Adres dat men kan aanschrijven of bezoeken."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://xmlns.com/foaf/0.1/name",
+          "name": {
+            "nl": "contactnaam"
+          },
+          "sort_nl": "contactnaam",
+          "description": {
+            "nl": "Naam van bvb de persoon die men kan contacteren."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://xmlns.com/foaf/0.1/page",
+          "name": {
+            "nl": "website"
+          },
+          "sort_nl": "website",
+          "description": {
+            "nl": "Website waarnaar men kan surfen."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://schema.org/ContactPoint",
+              "EA-Name": "ContactInfo"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "URI",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#anyURI"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#anyURI",
+              "range_label": {
+                "nl": "URI"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        }
+      ]
     },
     {
       "uri": "http://www.opengis.net/ont/sf#LineString",
@@ -6334,7 +6921,57 @@
       },
       "usage": {},
       "parents": [],
-      "properties": []
+      "properties": [
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#spelling",
+          "name": {},
+          "description": {
+            "nl": "De naam vh geografisch object."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+              "EA-Name": "GeografischeNaam"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#taal",
+          "name": {},
+          "description": {
+            "nl": "De taal waarin de naam is geschreven."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+              "EA-Name": "GeografischeNaam"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "1",
+          "codelist_uri": ""
+        }
+      ]
     },
     {
       "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
@@ -6349,7 +6986,61 @@
         "nl": "Bvb 'Rue Mercator' als string en 'fr' als taal."
       },
       "parents": [],
-      "properties": []
+      "properties": [
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#string",
+          "name": {},
+          "description": {
+            "nl": "De string."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+              "EA-Name": "TaalString"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#taal",
+          "name": {},
+          "description": {
+            "nl": "De taal."
+          },
+          "usage": {
+            "nl": " "
+          },
+          "domain": [
+            {
+              "uri": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+              "EA-Name": "TaalString"
+            }
+          ],
+          "range": [],
+          "scopedrange": [],
+          "cardinality": "1",
+          "codelist_uri": ""
+        }
+      ]
     },
     {
       "uri": "http://www.w3.org/2000/01/rdf-schema#Literal",
@@ -6364,7 +7055,70 @@
         "nl": "Bvb '20170901' als string en 'datum' als type. Laat automatische interpretatie vd string toe."
       },
       "parents": [],
-      "properties": []
+      "properties": [
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#string",
+          "name": {},
+          "description": {
+            "nl": "De string."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+              "EA-Name": "GetypeerdeString"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "String",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#string",
+              "range_label": {
+                "nl": "String"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "https://data.vlaanderen.be/ns/generiek#type",
+          "name": {},
+          "description": {
+            "nl": "Aard van de string."
+          },
+          "usage": {},
+          "domain": [
+            {
+              "uri": "http://www.w3.org/2000/01/rdf-schema#Literal",
+              "EA-Name": "GetypeerdeString"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "URI",
+              "range_uri": "http://www.w3.org/2001/XMLSchema#anyURI"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "http://www.w3.org/2001/XMLSchema#anyURI",
+              "range_puri": "http://www.w3.org/2001/XMLSchema#anyURI",
+              "range_label": {
+                "nl": "URI"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        }
+      ]
     },
     {
       "uri": "http://www.w3.org/ns/adms#Identifier",
@@ -6517,27 +7271,6 @@
           ],
           "cardinality": "0..1",
           "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator",
-          "name": {
-            "nl": "gestructureerde identificator"
-          },
-          "sort_nl": "gestructureerde identificator",
-          "description": {
-            "nl": "Identificator vh object opgesplitst in zijn onderdelen."
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "http://www.w3.org/ns/adms#Identifier",
-              "EA-Name": "Identificator"
-            }
-          ],
-          "range": [],
-          "scopedrange": [],
-          "cardinality": "0..1",
-          "codelist_uri": ""
         }
       ]
     },
@@ -6639,7 +7372,7 @@
         "nl": "Aanduiding van een geografische positie,dmv coordinaten,een toponiem,een adreslabel,een verwijzing naar een plaats/regio of verwijzing naar een adres."
       },
       "usage": {
-        "nl": "Te gebruiken als de manier waarop de geografische positie wordt aangeduid pas zal worden vastgelegd bij implementatie. Is deze manier nu al gekend dan moet direct gewerkt worden met Geometrie,GeografischeNaam,Adres etc."
+        "nl": "Te gebruiken als de manier waarop de geografische positie wordt aangeduid pas zal worden vastgelegd bij implementatie. Is deze manier nu al gekend dan moet direct gewerkt worden met Geometrie, GeografischeNaam, Adres etc."
       },
       "parents": [],
       "properties": []
