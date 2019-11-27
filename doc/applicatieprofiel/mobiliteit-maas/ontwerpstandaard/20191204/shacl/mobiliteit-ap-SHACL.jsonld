@@ -83,6 +83,13 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "http://schema.org/OpeningHoursSpecification",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschikbaarheid",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#beschikbaarheid"
+        },
+        {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Dienstregeling",
           "sh:description": "Schema met tijdstippen waarop iets wordt aangeboden.",
           "sh:maxCount": "1",
@@ -101,7 +108,7 @@
           "sh:description": "Uren waarop iets beschikbaar is.",
           "sh:maxCount": "1",
           "sh:name": "openingsuren",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#openingsuren"
+          "sh:path": "http://schema.org/openingHours"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit#Beschikbaarheid"
@@ -235,7 +242,7 @@
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/mobiliteit#Beschikbaarheid",
-          "sh:description": "Mate waarin iets wordt aangeboden.",
+          "sh:description": "Beschikbaarheid van de Mobiliteitsdienst.",
           "sh:name": "beschikbaarheid",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsdienst.beschikbaarheid"
         },
@@ -1079,12 +1086,14 @@
           "sh:path": "http://ww.w3.org/2006/vcard/ns#honorific-prefix"
         },
         {
+          "sh:class": "http://www.w3.org/ns/locn#Address",
           "sh:description": "Adres dat men kan aanschrijven of bezoeken.",
           "sh:maxCount": "1",
           "sh:name": "adres",
           "sh:path": "http://www.w3.org/ns/locn#address"
         },
         {
+          "sh:class": "http://schema.org/OpeningHoursSpecification",
           "sh:description": "Periode waarin contact kan worden opgenomen.",
           "sh:maxCount": "1",
           "sh:name": "beschikbaarheid",
@@ -1119,6 +1128,7 @@
           "sh:path": "http://schema.org/openingHours"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "Telefoonnummer waarop men kan bellen.",
           "sh:maxCount": "1",
           "sh:name": "telefoon",
@@ -1133,6 +1143,49 @@
         }
       ],
       "sh:targetClass": "http://schema.org/ContactPoint"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#OpeningsurenSpecificatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:description": "Dag van de week waarvoor de openingsuren geldig zijn.",
+          "sh:maxCount": "1",
+          "sh:name": "dagVanDeWeek",
+          "sh:path": "http://schema.org/dayOfWeek"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum tot wanneer de opgegeven openingsuren gelden.",
+          "sh:maxCount": "1",
+          "sh:name": "geldigTot",
+          "sh:path": "http://schema.org/validThrough"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Datum vanaf wanneer de opgegeven openingsuren gelden.",
+          "sh:maxCount": "1",
+          "sh:name": "geldigVan",
+          "sh:path": "http://schema.org/validFrom"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Sluitingsuur vd plaats of dienst op de opgegeven dag vd week.",
+          "sh:maxCount": "1",
+          "sh:name": "gesloten",
+          "sh:path": "http://schema.org/closes"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:description": "Openingsuur vd plaats of dienst op de opgegeven dag vd week.",
+          "sh:maxCount": "1",
+          "sh:name": "open",
+          "sh:path": "http://schema.org/opens"
+        }
+      ],
+      "sh:targetClass": "http://schema.org/OpeningHoursSpecification"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#LijnStringShape",
@@ -1302,6 +1355,108 @@
         }
       ],
       "sh:targetClass": "http://www.w3.org/ns/adms#Identifier"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#AdresvoorstellingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:description": "Hoogste Administratieve eenheid vh adres, doorgaans een land.",
+          "sh:maxCount": "1",
+          "sh:name": "administratieveEenheidNiveau1",
+          "sh:path": "http://www.w3.org/ns/locn#adminUnitL1"
+        },
+        {
+          "sh:description": "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat.",
+          "sh:maxCount": "1",
+          "sh:name": "administratieveEenheidNiveau2",
+          "sh:path": "http://www.w3.org/ns/locn#adminUnitL2"
+        },
+        {
+          "sh:description": "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is",
+          "sh:maxCount": "1",
+          "sh:name": "adresgebied",
+          "sh:path": "http://www.w3.org/ns/locn#addressArea"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.",
+          "sh:maxCount": "1",
+          "sh:name": "busnummer",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer"
+        },
+        {
+          "sh:description": "Gemeentenaam vh adres.",
+          "sh:maxCount": "1",
+          "sh:name": "gemeentenaam",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#gemeentenaam"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.",
+          "sh:maxCount": "1",
+          "sh:name": "huisnummer",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer"
+        },
+        {
+          "sh:description": "Land waarin het adres gelegen is.",
+          "sh:maxCount": "1",
+          "sh:name": "land",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#land"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc.",
+          "sh:name": "locatieaanduiding",
+          "sh:path": "http://www.w3.org/ns/locn#locatorDesignator"
+        },
+        {
+          "sh:description": "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt.",
+          "sh:name": "locatienaam",
+          "sh:path": "http://www.w3.org/ns/locn#locatorName"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Postbusnummer in een postkantoor.",
+          "sh:maxCount": "1",
+          "sh:name": "postbus",
+          "sh:path": "http://www.w3.org/ns/locn#poBox"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.",
+          "sh:maxCount": "1",
+          "sh:name": "postcode",
+          "sh:path": "http://www.w3.org/ns/locn#postCode"
+        },
+        {
+          "sh:description": "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.",
+          "sh:maxCount": "1",
+          "sh:name": "postnaam",
+          "sh:path": "http://www.w3.org/ns/locn#postName"
+        },
+        {
+          "sh:description": "Straatnaam vh adres.",
+          "sh:maxCount": "1",
+          "sh:name": "straatnaam",
+          "sh:path": "http://www.w3.org/ns/locn#thoroughfare"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/adres#Adres",
+          "sh:description": "Adres waarvan de adresvoorstelling is afgeleid.",
+          "sh:maxCount": "1",
+          "sh:name": "verwijstNaar",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#verwijstNaar"
+        },
+        {
+          "sh:description": "Het complete adres in één string, al dan niet geformatteerd.",
+          "sh:maxCount": "1",
+          "sh:name": "volledigAdres",
+          "sh:path": "http://www.w3.org/ns/locn#fullAddress"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/locn#Address"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#GeometrieShape",
@@ -1493,6 +1648,22 @@
         }
       ],
       "sh:targetClass": "https://INSPIRE-Transportnetwerk.fixme.com#Transportobject"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#AdresShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Identificator van het Adres.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^identificatior",
+          "sh:path": "https://data.vlaanderen.be/ns/adres#Adres.identificator"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/adres#Adres"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-ap#GebruikerstypeShape",
