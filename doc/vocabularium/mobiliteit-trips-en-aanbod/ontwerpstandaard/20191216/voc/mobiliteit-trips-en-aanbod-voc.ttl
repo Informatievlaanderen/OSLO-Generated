@@ -392,13 +392,6 @@
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
   rdfs:range skos:Concept .
 
-<https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur.type> a owl:ObjectProperty;
-  rdfs:label "type"@nl;
-  rdfs:comment "Aard van de Voorkeur van de Reiziger."@nl;
-  rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
-  rdfs:range skos:Concept .
-
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur.waarde> a owl:ObjectProperty;
   rdfs:label "waarde"@nl;
   rdfs:comment "Waarde van de Voorkeur van de Reiziger."@nl;
@@ -785,6 +778,9 @@
 <http://fixme.com#Netwerkelement.identificator> a rdf:Property;
   rdfs:label "identificator"@nl .
 
+dc:type a rdf:Property;
+  rdfs:label "type"@nl .
+
 schema:contactPoint a rdf:Property;
   rdfs:label "contactinfo"@nl .
 
@@ -829,14 +825,20 @@ skos:prefLabel a rdf:Property;
   rdfs:label "Transportconnectie"@nl;
   rdfs:comment "Logische verbinding tussen twee of meer Transportobjecten in verschillende Transportnetwerken."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
-  rdfs:subClassOf <http://fixme.com#Transportobject>,
-    <http://fixme.com#Connectie> .
+  rdfs:subClassOf <http://fixme.com#Connectie>,
+    <http://fixme.com#Transportobject> .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Uitvoerder> a owl:Class;
   rdfs:label "Uitvoerder"@nl;
   rdfs:comment "Geregistreerde Organisatie die Mobiliteitsdiensten uitvoert."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
   rdfs:subClassOf <http://www.w3.org/ns/regorg#RegisteredOrganization> .
+
+<https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur> a owl:Class;
+  rdfs:label "Voorkeur"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Bv routetype, vervoermiddel..."@nl;
+  rdfs:comment "Voorkeur van de Reiziger."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Waarde> a owl:Class;
   rdfs:label "Waarde"@nl;
@@ -861,12 +863,6 @@ skos:prefLabel a rdf:Property;
   rdfs:comment "Software waarmee de Route van een Reis kan worden berekend."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
   rdfs:subClassOf dc:Agent .
-
-<https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur> a owl:Class;
-  rdfs:label "Voorkeur"@nl;
-  <http://purl.org/vocab/vann/usageNote> "Bv routetype, vervoermiddel..."@nl;
-  rdfs:comment "Voorkeur van de Reiziger."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid> a owl:Class;
   rdfs:label "Beschikbaarheid"@nl;
@@ -949,8 +945,8 @@ skos:prefLabel a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> a owl:Ontology;
-  rdfs:label "mobiliteit-trips-en-aanbod-voc"@en,
-    "mobiliteit-trips-en-aanbod-voc"@nl;
+  rdfs:label "mobiliteit-trips-en-aanbod-voc"@nl,
+    "mobiliteit-trips-en-aanbod-voc"@en;
   dc:issued "TODO";
   dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
     <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
@@ -960,10 +956,11 @@ skos:prefLabel a rdf:Property;
     foaf:name "Data Vlaanderen"
   ];
   rdfs:seeAlso skos:prefLabel,
-    schema:openingHours,
-    <http://fixme.com#Netwerkelement.identificator>,
+    <http://www.w3.org/ns/regorg#registration>,
     schema:contactPoint,
-    <http://www.w3.org/ns/regorg#registration>;
+    dc:type,
+    schema:openingHours,
+    <http://fixme.com#Netwerkelement.identificator>;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
@@ -976,19 +973,19 @@ skos:prefLabel a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.imec-int.com/>;
-      foaf:name "IMEC"
-    ];
-    foaf:firstName "Martin";
-    foaf:lastName "Vanbrabant";
-    foaf:mbox <mailto:Martin.Vanbrabant@UGent.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
     foaf:firstName "Geert";
     foaf:lastName "Thijs";
     foaf:mbox <mailto:geert.thijs@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.imec-int.com/>;
+      foaf:name "IMEC"
+    ];
+    foaf:firstName "Martin";
+    foaf:lastName "Vanbrabant";
+    foaf:mbox <mailto:Martin.Vanbrabant@UGent.be>
   ] .
