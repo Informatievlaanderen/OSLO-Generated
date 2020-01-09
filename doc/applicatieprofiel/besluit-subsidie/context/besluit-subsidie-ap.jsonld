@@ -1,0 +1,377 @@
+{
+  "@context": {
+    "Aanvraag": "http://data.vlaanderen.be/ns/subsidie#Aanvraag",
+    "Advies": "http://data.vlaanderen.be/ns/subsidie#Advies",
+    "Advies.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Advies.opBasisVan": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#advies.opBasisVan",
+      "@type": "http://schema.org/Review"
+    },
+    "Agent": "http://purl.org/dc/terms/Agent",
+    "Agent.heeftParticiperende": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/playsRole",
+      "@type": "http://data.europa.eu/m8g/Participation"
+    },
+    "Beoordeling": "http://data.vlaanderen.be/ns/subsidie#Beoordeling",
+    "Beoordeling.motivering": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#motivering",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Beoordeling.opBasisVan": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#beoordeling.opBasisVan",
+      "@type": "http://schema.org/Review"
+    },
+    "Beoordeling.over": {
+      "@id": "http://schema.org/about",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie"
+    },
+    "Bestuursorgaan": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan",
+    "Criterium": "http://data.europa.eu/m8g/Criterion",
+    "Criterium.identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "Criterium.naam": {
+      "@id": "http://purl.org/dc/terms/title",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "CriteriumBeoordeling": "http://schema.org/Review",
+    "CriteriumBeoordeling.motivering": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#motivering",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "CriteriumBeoordeling.over": {
+      "@id": "http://schema.org/about",
+      "@type": "http://data.europa.eu/m8g/CriterionRequirement"
+    },
+    "CriteriumVereiste": "http://data.europa.eu/m8g/CriterionRequirement",
+    "CriteriumVereiste.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Definitie": "http://data.vlaanderen.be/ns/subsidie#Definitie",
+    "FinanciëleTransactie": "http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie",
+    "Geldbedrag": "https://schema.org/MonetaryAmount",
+    "Identificator": "http://www.w3.org/ns/adms#Identifier",
+    "Organisatie": "http://www.w3.org/ns/org#Organization",
+    "Organisatie.^identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "Participatie": "http://data.europa.eu/m8g/Participation",
+    "Participatie.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Periode": "http://data.europa.eu/m8g/PeriodOfTime",
+    "PubliekeOrganisatie": "http://data.europa.eu/m8g/PublicOrganisation",
+    "SubsidieNietToekenning": "http://data.vlaanderen.be/ns/subsidie#SubsidieNietToekenning",
+    "SubsidieToekenning": "http://data.vlaanderen.be/ns/subsidie#SubsidieToekenning",
+    "SubsidieToekenning.toegekendBedrag": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#toegekendBedrag",
+      "@type": "https://schema.org/MonetaryAmount"
+    },
+    "SubsidieToekenningsbesluit": "http://data.vlaanderen.be/ns/subsidie#SubsidieToekenningsbesluit",
+    "SubsidieToekenningsbesluit.identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "SubsidieUitbetalingsbeslissing": "http://data.vlaanderen.be/ns/subsidie#SubsidieUitbetalingsbeslissing",
+    "SubsidieUitbetalingsbeslissing.over": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#over",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie"
+    },
+    "SubsidieUitbetalingsbeslissing.toegekendBedrag": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#toegekendBedrag",
+      "@type": "https://schema.org/MonetaryAmount"
+    },
+    "Subsidiebedrag": "http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag",
+    "Subsidiebedrag.naam": {
+      "@id": "https://schema.org/name",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Subsidiebedrag.vergt": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/requires",
+      "@type": "http://data.europa.eu/m8g/CriterionRequirement"
+    },
+    "Subsidiebeslissing": "http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing",
+    "Subsidiebeslissing.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Subsidiebeslissing.over": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#over",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie"
+    },
+    "SubsidiemaatregelAanbod": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod",
+    "SubsidiemaatregelAanbod.doelstelling": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#doelstelling",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "SubsidiemaatregelConsumptie": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie",
+    "SubsidiemaatregelConsumptie.heeftParticiperende": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/hasParticipation",
+      "@type": "http://data.europa.eu/m8g/Participation"
+    },
+    "SubsidiemaatregelConsumptie.produceert": {
+      "@container": "@set",
+      "@id": "http://purl.org/vocab/cpsv#produces",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie"
+    },
+    "Subsidieprocedurestap": "http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap",
+    "Subsidieprocedurestap.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Subsidiereglement": "http://data.vlaanderen.be/ns/subsidie#Subsidiereglement",
+    "Subsidiereglement.doelstelling": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#doelstelling",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Subsidievoorwerp": "http://data.vlaanderen.be/ns/subsidie#Subsidievoorwerp",
+    "Subsidievoorwerp.^identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "http://www.w3.org/ns/adms#Identifier"
+    },
+    "VereistenGroep": "http://data.europa.eu/m8g/RequirementGroup",
+    "VereistenGroep.naam": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "^heeftVerantwoordelijke": {
+      "@id": "http://data.europa.eu/m8g/hasCompetentAuthority",
+      "@type": "http://data.europa.eu/m8g/PublicOrganisation"
+    },
+    "^naam": {
+      "@id": "http://purl.org/dc/terms/title",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "^trefwoord": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#trefwoord",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "aangebodenBinnen": {
+      "@id": "http://data.europa.eu/m8g/hasFormalFramework",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidiereglement"
+    },
+    "aangenomenDoor": {
+      "@id": "http://data.europa.eu/eli/ontology#passed_by",
+      "@type": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
+    },
+    "aangenomenOnderDelegatieDoor": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#aangenomenOnderDelegatieDoor",
+      "@type": "https://data.vlaanderen.be/ns/bestuur#Bestuursorgaan"
+    },
+    "aangevraagdBedrag": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#aangevraagdBedrag",
+      "@type": "https://schema.org/MonetaryAmount"
+    },
+    "aanvraagdatum": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#aanvraagdatum",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "adviesdatum": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#adviesdatum",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "adviseert": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#adviseert",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie"
+    },
+    "bedrag": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#bedrag",
+      "@type": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    "bedragString": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#bedragString",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "begin": {
+      "@id": "http://data.europa.eu/m8g/startTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "begrip": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#begrip",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "behandeltEen": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#behandeltEen",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidievoorwerp"
+    },
+    "beleidsdomein": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#beleidsdomein",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "beoordeeldDoor": {
+      "@id": "http://schema.org/author",
+      "@type": "http://purl.org/dc/terms/Agent"
+    },
+    "beoordeelt": {
+      "@container": "@set",
+      "@id": "http://schema.org/itemReviewed",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie"
+    },
+    "beoordelingsdatum": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#beoordelingsdatum",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "biedtAan": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#biedtAan",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag"
+    },
+    "budgetbeschrijving": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#budgetbeschrijving",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "classificatie": {
+      "@id": "http://www.w3.org/ns/org#classification",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "context": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#context",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "criteriumBeoordeling": {
+      "@id": "http://schema.org/reviewBody",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "criteriumType": {
+      "@id": "http://data.europa.eu/m8g/criterionType",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "einde": {
+      "@id": "http://data.europa.eu/m8g/endTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "gebruikt": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/subsidie#gebruikt",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Definitie"
+    },
+    "geeftAanleidingTot": {
+      "@id": "http://www.w3.org/ns/prov#generated",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing"
+    },
+    "gegevenDoor": {
+      "@id": "http://schema.org/author",
+      "@type": "http://purl.org/dc/terms/Agent"
+    },
+    "gunstig": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#gunstig",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "heeftCriterium": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/hasCriterion",
+      "@type": "http://data.europa.eu/m8g/Criterion"
+    },
+    "heeftVereiste": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/hasCriterionRequirement",
+      "@type": "http://data.europa.eu/m8g/CriterionRequirement"
+    },
+    "isGestuurdDoor": {
+      "@container": "@set",
+      "@id": "http://purl.org/vocab/cpsv#follows",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap"
+    },
+    "isGevolgVan": {
+      "@id": "http://www.w3.org/ns/prov#wasGeneratedBy",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Aanvraag"
+    },
+    "isInstantieVan": {
+      "@id": "http://data.vlaanderen.be/ns/transactie#isInstantieVan",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod"
+    },
+    "isVervuldDoor": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/fulfilledByRequirementGroup",
+      "@type": "http://data.europa.eu/m8g/RequirementGroup"
+    },
+    "maximumbedrag": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#maximumbedrag",
+      "@type": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    "maximumbedragString": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#maximumbedragString",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "periode": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit#periode",
+      "@type": "http://data.europa.eu/m8g/PeriodOfTime"
+    },
+    "principieel": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#principieel",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "realiseert": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#realizes",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing"
+    },
+    "rol": {
+      "@id": "http://data.europe.eu/m8g/role",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "staatBeschrevenIn": {
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap"
+    },
+    "toegekendAantalPunten": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#toegekendAantalPunten",
+      "@type": "http://www.w3.org/2001/XMLSchema#double"
+    },
+    "toepasbaarInPeriode": {
+      "@id": "http://data.europa.eu/m8g/applicableInPeriodOfTime",
+      "@type": "http://data.europa.eu/m8g/PeriodOfTime"
+    },
+    "toepasbaarVoorBeslissing": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#toepasbaarVoorBeslissing",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "transactiedatum": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#transactiedatum",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "type": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#Subsidieprocedurestap.type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "uitgekeerdBedrag": {
+      "@id": "https://data.vlaanderen.be/ns/subsidie#uitgekeerdBedrag",
+      "@type": "https://schema.org/MonetaryAmount"
+    },
+    "verdeelsleutel": {
+      "@id": "http://data.vlaanderen.be/ns/subsidie#verdeelsleutel",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "vereist": {
+      "@id": "http://purl.org/dc/terms/requires",
+      "@type": "http://data.vlaanderen.be/ns/subsidie#SubsidieToekenning"
+    },
+    "voorkeursNaam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "werkingsgebied": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/spatial",
+      "@type": "http://purl.org/dc/terms/Location"
+    }
+  }
+}
