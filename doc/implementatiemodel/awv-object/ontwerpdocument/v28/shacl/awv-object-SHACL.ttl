@@ -4,29 +4,29 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/awv-object> <https://data.vlaanderen.be/shacl/awv-objectshapes> <https://data.vlaanderen.be/shacl/awv-object#VoedtShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#StringShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#DteTekstblokShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#KwantWrdInVoltShape>,
+<https://data.vlaanderen.be/shacl/awv-object> <https://data.vlaanderen.be/shacl/awv-objectshapes> <https://data.vlaanderen.be/shacl/awv-object#DtcDocumentShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#AnyURIShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#AWVNaampadObjectShape>,
     <https://data.vlaanderen.be/shacl/awv-object#KlEmInfraStatusShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#KlEmInfraToestandShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#BooleanShape>,
     <https://data.vlaanderen.be/shacl/awv-object#DateTimeShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#EmInfraLevenscyclusShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#AWVObjectShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#KlAlgMimeTypeShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#SturingShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#EmInfraToezichtShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#DecimalShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#DteTekstblokShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#StringShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#KwantWrdInVoltShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#DerdenobjectShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#LiteralShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#DateShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#KlEmInfraToestandShape>,
+    <https://data.vlaanderen.be/shacl/awv-object#VoedtShape>,
     <https://data.vlaanderen.be/shacl/awv-object#AWVNaamObjectShape>,
     <https://data.vlaanderen.be/shacl/awv-object#DtcAWVIdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#AnyURIShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#DateShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#AWVNaampadObjectShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#BooleanShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#KlAlgMimeTypeShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#DtcDocumentShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#LiteralShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#DerdenobjectShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#SturingShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#DecimalShape>,
     <https://data.vlaanderen.be/shacl/awv-object#BevestigingShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#AWVObjectShape>,
-    <https://data.vlaanderen.be/shacl/awv-object#EmInfraToezichtShape> .
+    <https://data.vlaanderen.be/shacl/awv-object#EmInfraLevenscyclusShape> .
 
 <https://data.vlaanderen.be/shacl/awv-object#AWVNaamObjectShape> a sh:NodeShape;
   sh:closed false;
@@ -55,24 +55,6 @@
 <https://data.vlaanderen.be/shacl/awv-object#AWVObjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
-    sh:description "De identificator van het object. Zodra een object bestaat binnen de omgeving van AWV moet de id gebruikt worden zoals die daar gekend is. Bij aanlevering van nieuwe objecten wordt een lokale-id (zoals gekend bij de aannemer) ingevuld.";
-    sh:minCount 1;
-    sh:name "id";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.id>
-  ], [
-    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
-    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
-    sh:name "Voedt";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Voedt>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Extra notitie voor het AWV object.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "notitie";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.notitie>
-  ], [
     sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
     sh:description "Deze relatie geeft aan of er een of andere vorm van dataverkeer is tussen 2 onderdelen. Een wegverlichtingstoestel dat aan staat wordt ook als sturing beschouwd, in dit geval is het een lang ononderbroken elektrisch aan-signaal. Deze relatie heeft geen richting.";
     sh:name "Sturing";
@@ -85,17 +67,35 @@
     sh:name "datumOprichtingObject";
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.datumOprichtingObject>
   ], [
-    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
-    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
-    sh:name "Bevestiging";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Bevestiging>
-  ], [
     sh:class xsd:anyURI;
     sh:description "De URI van het AWV Object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "typeURI";
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.typeURI>
+  ], [
+    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
+    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
+    sh:name "Voedt";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Voedt>
+  ], [
+    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
+    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
+    sh:name "Bevestiging";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Bevestiging>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Extra notitie voor het AWV object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "notitie";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.notitie>
+  ], [
+    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
+    sh:description "De identificator van het object. Zodra een object bestaat binnen de omgeving van AWV moet de id gebruikt worden zoals die daar gekend is. Bij aanlevering van nieuwe objecten wordt een lokale-id (zoals gekend bij de aannemer) ingevuld.";
+    sh:minCount 1;
+    sh:name "id";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject.id>
   ];
   sh:targetClass <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject> .
 
@@ -126,12 +126,17 @@
 <https://data.vlaanderen.be/shacl/awv-object#DerdenobjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
+    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
+    sh:description "Deze relatie geeft aan of er een of andere vorm van dataverkeer is tussen 2 onderdelen. Een wegverlichtingstoestel dat aan staat wordt ook als sturing beschouwd, in dit geval is het een lang ononderbroken elektrisch aan-signaal. Deze relatie heeft geen richting.";
+    sh:name "Sturing";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Sturing>
+  ], [
+    sh:datatype xsd:boolean;
+    sh:description "Aanduiding of de aansluitkast geïntegreerd is.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "contactgegevens";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
+    sh:name "heeftAansluitkastGeintegreerd";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.heeftAansluitkastGeintegreerd>
   ], [
     sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
     sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
@@ -150,23 +155,18 @@
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.foto>
   ], [
     sh:datatype xsd:string;
+    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "contactgegevens";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
+  ], [
+    sh:datatype xsd:string;
     sh:description "Omschrijving van het derdenobject";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "omschrijving";
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.omschrijving>
-  ], [
-    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#AWVObject>;
-    sh:description "Deze relatie geeft aan of er een of andere vorm van dataverkeer is tussen 2 onderdelen. Een wegverlichtingstoestel dat aan staat wordt ook als sturing beschouwd, in dit geval is het een lang ononderbroken elektrisch aan-signaal. Deze relatie heeft geen richting.";
-    sh:name "Sturing";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/doc/implementatiemodel/awv-object/#Sturing>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Aanduiding of de aansluitkast geïntegreerd is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftAansluitkastGeintegreerd";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject.heeftAansluitkastGeintegreerd>
   ];
   sh:targetClass <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#Derdenobject> .
 
@@ -174,11 +174,11 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:string;
-    sh:description "Gegevens van de organisatie die de toekenning deed.";
+    sh:description "Een groep van tekens om een AWV object te identificeren of te benoemen.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "toegekendDoor";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendDoor>
+    sh:name "identificator";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.identificator>
   ], [
     sh:datatype xsd:dateTime;
     sh:description "De datum wanneer de toekenning werd uitgevoerd.";
@@ -188,30 +188,30 @@
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendOp>
   ], [
     sh:datatype xsd:string;
-    sh:description "Een groep van tekens om een AWV object te identificeren of te benoemen.";
+    sh:description "Gegevens van de organisatie die de toekenning deed.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "identificator";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.identificator>
+    sh:name "toegekendDoor";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendDoor>
   ];
   sh:targetClass <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator> .
 
 <https://data.vlaanderen.be/shacl/awv-object#DtcDocumentShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DteTekstblok>;
-    sh:description "Een korte toelichting over waar het document juist voor dient.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "omschrijving";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.omschrijving>
-  ], [
     sh:datatype xsd:string;
     sh:description "De naam van het Document inclusief de bestandsextensie, van de naam gescheiden door een punt.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "bestandsnaam";
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.bestandsnaam>
+  ], [
+    sh:class xsd:anyURI;
+    sh:description "De verwijzing naar de bestandslocatie via een link. Bij lokale bestanden kan dit eventueel ook een pad zijn.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "uri";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.uri>
   ], [
     sh:class skos:Concept;
     sh:description "Het MIME type van het document.";
@@ -220,12 +220,12 @@
     sh:name "mimeType";
     sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.mimeType>
   ], [
-    sh:class xsd:anyURI;
-    sh:description "De verwijzing naar de bestandslocatie via een link. Bij lokale bestanden kan dit eventueel ook een pad zijn.";
+    sh:class <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DteTekstblok>;
+    sh:description "Een korte toelichting over waar het document juist voor dient.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "uri";
-    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.uri>
+    sh:name "omschrijving";
+    sh:path <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument.omschrijving>
   ];
   sh:targetClass <https://wegenenverkeer.data.vlaanderen.be/ns/implementatieelement#DtcDocument> .
 
