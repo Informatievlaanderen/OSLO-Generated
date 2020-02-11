@@ -5,14 +5,14 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape>,
+<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#ZonetypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#GeometrieShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape> .
 
@@ -28,12 +28,14 @@
   sh:closed false;
   sh:property [
     sh:datatype rdfs:Literal;
+    sh:description "Geometrie uitgedrukt in gml-formaat.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "gml";
     sh:path <http://www.opengis.net/ont/geosparql#asGML>
   ], [
     sh:datatype rdfs:Literal;
+    sh:description "Geometrie uitgedrukt in wkt-formaat.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "wkt";
@@ -44,6 +46,25 @@
 <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class <https://data.vlaanderen.be/ns/mobiliteit#Zone>;
+    sh:description "Een bepaalde zone die deel uitmaakt van de inname.";
+    sh:minCount 1;
+    sh:name "zone";
+    sh:path <https://data.vlaanderen.be/ns/mobiliteit#zone>
+  ], [
+    sh:datatype xsd:boolean;
+    sh:description "Duidt aan of de inname in een gebied met openbaar karakter doorgaat.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "openbaarDomein";
+    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.openbaarDomein>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Type van inname";
+    sh:minCount 1;
+    sh:name "type";
+    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
+  ], [
     sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
     sh:description "Wanneer de inname plaatsvindt.";
     sh:name "periode";
@@ -55,25 +76,6 @@
     sh:minCount 1;
     sh:name "beschrijving";
     sh:path dc:description
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Duidt aan of de inname in een gebied met openbaar karakter doorgaat.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "openbaarDomein";
-    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.openbaarDomein>
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/mobiliteit#Zone>;
-    sh:description "Een bepaalde zone die deel uitmaakt van de inname.";
-    sh:minCount 1;
-    sh:name "zone";
-    sh:path <https://data.vlaanderen.be/ns/mobiliteit#zone>
-  ], [
-    sh:class skos:Concept;
-    sh:description "Type van inname";
-    sh:minCount 1;
-    sh:name "type";
-    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Inname> .
 
@@ -83,6 +85,13 @@
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape> a sh:NodeShape;
   sh:closed false;
+  sh:property [
+    sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname>;
+    sh:description "TODO";
+    sh:minCount 1;
+    sh:name "vergunt";
+    sh:path <https://data.leuven.be/ns/tiod#vergunt>
+  ];
   sh:targetClass <http://data.vlaanderen.be/ns/besluit#Innamevergunning> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape> a sh:NodeShape;
@@ -107,18 +116,18 @@
 <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "tijdsinterval";
+    sh:path dc:temporal
+  ], [
     sh:class dc:Agent;
     sh:description "Wie de vergunning aanvraagt.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "aanvrager";
     sh:path <http://data.vlaanderen.be/ns/besluit#aanvrager>
-  ], [
-    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "tijdsinterval";
-    sh:path dc:temporal
   ];
   sh:targetClass <http://data.vlaanderen.be/ns/besluit#Vergunning> .
 
