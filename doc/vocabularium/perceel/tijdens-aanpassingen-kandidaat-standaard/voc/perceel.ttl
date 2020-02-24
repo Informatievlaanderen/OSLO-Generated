@@ -1,6 +1,7 @@
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
@@ -8,13 +9,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 skos:Concept a rdfs:Class .
-
-<https://data.vlaanderen.be/ns/perceel#KadastraalPatrimoniumperceel.identificator> a owl:ObjectProperty;
-  rdfs:label "identificator"@nl;
-  rdfs:comment "De identificator van het Kadastraal Patrimoniumperceel."@nl;
-  rdfs:domain <https://data.vlaanderen.be/ns/perceel#KadastraalPatrimoniumperceel>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/ns/perceel#KadastraalPlanperceel> a owl:Class;
   rdfs:label "Kadastraal Planperceel"@nl;
@@ -71,13 +65,6 @@ skos:Concept a rdfs:Class .
   rdfs:domain <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
   rdfs:range <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidGeometrie> .
-
-<https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.identificator> a owl:ObjectProperty;
-  rdfs:label "identificator"@nl;
-  rdfs:comment "De identificator van de Ruimtelijke Eenheid."@nl;
-  rdfs:domain <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.oppervlakte> a owl:ObjectProperty;
   rdfs:label "oppervlakte"@nl;
@@ -186,34 +173,6 @@ skos:Concept a rdfs:Class .
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
   rdfs:range <http://data.europa.eu/m8g/PeriodOfTime> .
 
-<https://data.vlaanderen.be/ns/perceel#heeftRecht> a owl:ObjectProperty;
-  rdfs:label "heeft recht"@nl;
-  rdfs:comment "Voorstelling van de rechten die een agent heeft ten opzichte van een ruimtelijke eenheid."@nl;
-  rdfs:domain dc:Agent;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
-
-<https://data.vlaanderen.be/ns/perceel#heeftRestrictie> a owl:ObjectProperty;
-  rdfs:label "heeft restrictie"@nl;
-  rdfs:comment "Voorstelling van de restricties die een agent heeft ten opzichte van een ruimtelijke eenheid."@nl;
-  rdfs:domain dc:Agent;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
-
-<https://data.vlaanderen.be/ns/perceel#heeftVerantwoordelijkheid> a owl:ObjectProperty;
-  rdfs:label "heeft verantwoordelijkheid"@nl;
-  rdfs:comment "Voorstelling van de verantwoordelijkheden die een agent heeft ten opzichte van een ruimtelijke eenheid."@nl;
-  rdfs:domain dc:Agent;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
-
-<https://data.vlaanderen.be/ns/perceel#heeftZakelijkRecht> a owl:ObjectProperty;
-  rdfs:label "heeft zakelijk recht"@nl;
-  rdfs:comment "Geeft het zakelijk recht weer dat een agent uitoefent op een Kadastraal Patrimoniumperceel."@nl;
-  rdfs:domain dc:Agent;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
-  rdfs:range <https://data.vlaanderen.be/ns/perceel#KadastraalPatrimoniumperceel> .
-
 <https://data.vlaanderen.be/ns/perceel#landgebruik> a owl:ObjectProperty;
   rdfs:label "landgebruik"@nl;
   rdfs:comment "Geeft het gebruik aan van de ruimtelijke eenheid."@nl;
@@ -256,11 +215,15 @@ dc:description a rdf:Property;
 dc:relation a rdf:Property;
   rdfs:label "is gerelateerd aan"@nl .
 
+<http://www.w3.org/ns/adms#identifier> a rdf:Property;
+  rdfs:label "identificator"@nl .
+
 <https://data.vlaanderen.be/ns/perceel#KadastraalPatrimoniumperceel> a owl:Class;
   rdfs:label "Kadastraal Patrimoniumperceel"@nl;
   <http://purl.org/vocab/vann/usageNote> "Deze definitie is gealigneerd met de definitie van de Algemene Administratie van de PatrimoniumDocumentatie (AAPD). Kadastraal Patrimoniumperceel komt overeen met de entiteit BasicPropertyUnit uit INSPIRE Cadastral Parcel."@nl;
   rdfs:comment "Een onroerend goed of onroerend recht dat in hoofde van één of meerdere titularissen van een zakelijk recht onderworpen is aan een bepaald eigendomsstatuut."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/perceel>;
+  rdfs:subClassOf prov:Entity .
 
 <https://data.vlaanderen.be/ns/perceel#Recht> a owl:Class;
   rdfs:label "Recht"@nl;
@@ -307,34 +270,28 @@ dc:relation a rdf:Property;
     "perceel"@nl;
   dc:contributor [
     a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
-    foaf:firstName "Pascal";
-    foaf:lastName "De Greve";
-    foaf:mbox <mailto:pascal.degreve@vlaio.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Vlaamse Landmaatschappij"];
-    foaf:firstName "Bart";
-    foaf:lastName "De Bruyn";
-    foaf:mbox <mailto:bart.debruyn@vlm.be>
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Bert";
+    foaf:lastName "Van Nuffelen";
+    foaf:mbox <mailto:bert.vannuffelen@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Vlaams-Brabant"];
-    foaf:firstName "Jana";
-    foaf:lastName "Van Rompaey";
-    foaf:mbox <mailto:jana.vanrompaey@pomvlaamsbrabant.be>
+    foaf:firstName "Iris";
+    foaf:lastName "Deliever";
+    foaf:mbox <mailto:iris.deliever@pomvlaamsbrabant.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "VLINTER (Interleuven)"];
-    foaf:firstName "Caroline";
-    foaf:lastName "Vandendriessche";
-    foaf:mbox <mailto:caroline.vandendriessche@interleuven.be>
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Hendrik";
+    foaf:lastName "Van Hemelryck";
+    foaf:mbox <mailto:hendrik.vanhemelryck@kb.vlaanderen.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "WVI"];
-    foaf:firstName "Bart";
-    foaf:lastName "Boute";
-    foaf:mbox <mailto:b.boute@wvi.be>
+    schema:affiliation [foaf:name "Stad Gent"];
+    foaf:firstName "Diedrik";
+    foaf:lastName "Gaus";
+    foaf:mbox <mailto:Diedrik.Gaus@stad.gent>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Federale Overheidsdiesnt Financiën"];
@@ -343,39 +300,10 @@ dc:relation a rdf:Property;
     foaf:mbox <mailto:reinhilde.blondeel@minfin.fed.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Dirk";
-    foaf:lastName "De Baere";
-    foaf:mbox <mailto:dirk.debaere@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
-    foaf:firstName "Floris";
-    foaf:lastName "Van den Broeck";
-    foaf:mbox <mailto:floris.vandenbroeck@vlaio.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Departement Landbouw en Visserij"];
+    schema:affiliation [foaf:name "WVI"];
     foaf:firstName "Bart";
-    foaf:lastName "Bollen";
-    foaf:mbox <mailto:Bart.Bollen@lv.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Luc";
-    foaf:lastName "Depredomme";
-    foaf:mbox <mailto:Luc.Depredomme@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Laurens";
-    foaf:lastName "Vercauteren"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Vlaams-Brabant"];
-    foaf:firstName "Iris";
-    foaf:lastName "Deliever";
-    foaf:mbox <mailto:iris.deliever@pomvlaamsbrabant.be>
+    foaf:lastName "Boute";
+    foaf:mbox <mailto:b.boute@wvi.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "VLINTER (Interleuven)"];
@@ -385,32 +313,8 @@ dc:relation a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Veerle";
-    foaf:lastName "Beyaert";
-    foaf:mbox <mailto:veerle.beyaert@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Federale Overheidsdiesnt Financiën"];
-    foaf:firstName "Joke";
-    foaf:lastName "De Wit";
-    foaf:mbox <mailto:joke.dewit@minfin.fed.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Departement Omgeving"];
-    foaf:firstName "Joris";
-    foaf:lastName "Niessen";
-    foaf:mbox <mailto:joris.niessen@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Raf";
-    foaf:lastName "Buyle"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Stad Gent"];
-    foaf:firstName "Diedrik";
-    foaf:lastName "Gaus";
-    foaf:mbox <mailto:Diedrik.Gaus@stad.gent>
+    foaf:firstName "Laurens";
+    foaf:lastName "Vercauteren"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
@@ -419,28 +323,57 @@ dc:relation a rdf:Property;
     foaf:mbox <mailto:Koen.DeBaets@kb.vlaanderen.be>
   ], [
     a foaf:Person;
+    schema:affiliation [foaf:name "Departement Landbouw en Visserij"];
+    foaf:firstName "Bart";
+    foaf:lastName "Bollen";
+    foaf:mbox <mailto:Bart.Bollen@lv.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Vlaamse Landmaatschappij"];
+    foaf:firstName "Bart";
+    foaf:lastName "De Bruyn";
+    foaf:mbox <mailto:bart.debruyn@vlm.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Luc";
+    foaf:lastName "Depredomme";
+    foaf:mbox <mailto:Luc.Depredomme@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Federale Overheidsdiesnt Financiën"];
+    foaf:firstName "Joke";
+    foaf:lastName "De Wit";
+    foaf:mbox <mailto:joke.dewit@minfin.fed.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Vlaams-Brabant"];
+    foaf:firstName "Jana";
+    foaf:lastName "Van Rompaey";
+    foaf:mbox <mailto:jana.vanrompaey@pomvlaamsbrabant.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Raf";
+    foaf:lastName "Buyle"
+  ], [
+    a foaf:Person;
     schema:affiliation [foaf:name "SCIP-CSPI"];
     foaf:firstName "Maxime";
     foaf:lastName "Heyndrickx";
     foaf:mbox <mailto:maxime.heyndrickx@scip-cspi.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Departement Landbouw en Visserij"];
-    foaf:firstName "Pieter";
-    foaf:lastName "Roggemans";
-    foaf:mbox <mailto:pieter.roggemans@lv.vlaanderen.be>
+    schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
+    foaf:firstName "Pascal";
+    foaf:lastName "De Greve";
+    foaf:mbox <mailto:pascal.degreve@vlaio.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Openbare Vlaamse Afvalstoffenmaatschappij"];
-    foaf:firstName "Erwin";
-    foaf:lastName "Sevens";
-    foaf:mbox <mailto:esevens@ovam.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Departement Omgeving"];
-    foaf:firstName "Geert";
-    foaf:lastName "Van Haute";
-    foaf:mbox <mailto:geert.vanhaute@vlaanderen.be>
+    schema:affiliation [foaf:name "CIB"];
+    foaf:firstName "Rebecca";
+    foaf:lastName "Dhaeseleer";
+    foaf:mbox <mailto:rebecca.dhaeseleer@cib.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Hogeschool Gent"];
@@ -449,21 +382,15 @@ dc:relation a rdf:Property;
     foaf:mbox <mailto:nele.vanhoutte@hogent.be>
   ], [
     a foaf:Person;
+    schema:affiliation [foaf:name "Openbare Vlaamse Afvalstoffenmaatschappij"];
+    foaf:firstName "Erwin";
+    foaf:lastName "Sevens";
+    foaf:mbox <mailto:esevens@ovam.be>
+  ], [
+    a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
     foaf:firstName "Ziggy";
     foaf:lastName "Vanlishout"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Bert";
-    foaf:lastName "Van Nuffelen";
-    foaf:mbox <mailto:bert.vannuffelen@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Hendrik";
-    foaf:lastName "Van Hemelryck";
-    foaf:mbox <mailto:hendrik.vanhemelryck@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
@@ -472,20 +399,57 @@ dc:relation a rdf:Property;
     foaf:mbox <mailto:Stefan.VanMalderen@kb.vlaanderen.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "CIB"];
-    foaf:firstName "Rebecca";
-    foaf:lastName "Dhaeseleer";
-    foaf:mbox <mailto:rebecca.dhaeseleer@cib.be>
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Veerle";
+    foaf:lastName "Beyaert";
+    foaf:mbox <mailto:veerle.beyaert@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Landbouw en Visserij"];
+    foaf:firstName "Pieter";
+    foaf:lastName "Roggemans";
+    foaf:mbox <mailto:pieter.roggemans@lv.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Omgeving"];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute";
+    foaf:mbox <mailto:geert.vanhaute@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Omgeving"];
+    foaf:firstName "Joris";
+    foaf:lastName "Niessen";
+    foaf:mbox <mailto:joris.niessen@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
+    foaf:firstName "Floris";
+    foaf:lastName "Van den Broeck";
+    foaf:mbox <mailto:floris.vandenbroeck@vlaio.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "VLINTER (Interleuven)"];
+    foaf:firstName "Caroline";
+    foaf:lastName "Vandendriessche";
+    foaf:mbox <mailto:caroline.vandendriessche@interleuven.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Dirk";
+    foaf:lastName "De Baere";
+    foaf:mbox <mailto:dirk.debaere@kb.vlaanderen.be>
   ];
   dc:issued "2019-06-19";
-  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
-    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
+  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
+    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dc:relation,
+  rdfs:seeAlso <http://www.w3.org/ns/adms#identifier>,
+    dc:relation,
     dc:description,
     skos:Concept;
   <http://www.w3.org/2001/02pd/rec54#editor> [
