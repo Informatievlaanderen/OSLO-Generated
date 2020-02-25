@@ -9,25 +9,25 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/dossier> <https://data.vlaanderen.be/shacl/dossiershapes> <https://data.vlaanderen.be/shacl/dossier#ProjectShape>,
-    <https://data.vlaanderen.be/shacl/dossier#EenheidVanWerkShape>,
-    <https://data.vlaanderen.be/shacl/dossier#StukShape>,
-    <https://data.vlaanderen.be/shacl/dossier#SerieShape>,
-    <https://data.vlaanderen.be/shacl/dossier#CollectieShape>,
-    <https://data.vlaanderen.be/shacl/dossier#InformatieclassificatieShape>,
-    <https://data.vlaanderen.be/shacl/dossier#ZaakShape>,
-    <https://data.vlaanderen.be/shacl/dossier#ActiviteitContextShape>,
-    <https://data.vlaanderen.be/shacl/dossier#StukonderdeelShape>,
+<https://data.vlaanderen.be/shacl/dossier> <https://data.vlaanderen.be/shacl/dossiershapes> <https://data.vlaanderen.be/shacl/dossier#StukonderdeelShape>,
     <https://data.vlaanderen.be/shacl/dossier#ActiviteitShape>,
-    <https://data.vlaanderen.be/shacl/dossier#ParticipatieShape>,
-    <https://data.vlaanderen.be/shacl/dossier#DossierShape>,
-    <https://data.vlaanderen.be/shacl/dossier#BesluitShape>,
+    <https://data.vlaanderen.be/shacl/dossier#ProjectShape>,
+    <https://data.vlaanderen.be/shacl/dossier#StukShape>,
     <https://data.vlaanderen.be/shacl/dossier#EntiteitShape>,
+    <https://data.vlaanderen.be/shacl/dossier#InformatieclassificatieShape>,
+    <https://data.vlaanderen.be/shacl/dossier#ObjectShape>,
+    <https://data.vlaanderen.be/shacl/dossier#SerieShape>,
     <https://data.vlaanderen.be/shacl/dossier#PubliekeDienstverleningShape>,
-    <https://data.vlaanderen.be/shacl/dossier#RepresentatieShape>,
+    <https://data.vlaanderen.be/shacl/dossier#DossierShape>,
+    <https://data.vlaanderen.be/shacl/dossier#ParticipatieShape>,
+    <https://data.vlaanderen.be/shacl/dossier#ZaakShape>,
+    <https://data.vlaanderen.be/shacl/dossier#BesluitShape>,
+    <https://data.vlaanderen.be/shacl/dossier#ActiviteitContextShape>,
     <https://data.vlaanderen.be/shacl/dossier#ProcedurestapShape>,
-    <https://data.vlaanderen.be/shacl/dossier#AgentShape>,
-    <https://data.vlaanderen.be/shacl/dossier#ObjectShape> .
+    <https://data.vlaanderen.be/shacl/dossier#RepresentatieShape>,
+    <https://data.vlaanderen.be/shacl/dossier#CollectieShape>,
+    <https://data.vlaanderen.be/shacl/dossier#EenheidVanWerkShape>,
+    <https://data.vlaanderen.be/shacl/dossier#AgentShape> .
 
 <https://data.vlaanderen.be/shacl/dossier#ActiviteitContextShape> a sh:NodeShape;
   sh:closed false;
@@ -44,17 +44,17 @@
 <https://data.vlaanderen.be/shacl/dossier#ActiviteitShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
-    sh:description "Een activiteit kan een stuk genereren.";
-    sh:name "genereert";
-    sh:path <https://data.vlaanderen.be/ns/dossier#genereert>
-  ], [
-    sh:datatype xsd:date;
-    sh:description "De startdatum van de activiteit.";
+    sh:datatype xsd:string;
+    sh:description "De naam van de activiteit.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "startdatum";
-    sh:path <https://data.vlaanderen.be/ns/dossier#startdatum>
+    sh:name "naam";
+    sh:path dc:title
+  ], [
+    sh:class prov:Agent;
+    sh:description "Participatie van de agent (aan een publieke dienstverlening).";
+    sh:name "speeltRol";
+    sh:path <http://data.europa.eu/m8g/playsRole>
   ], [
     sh:datatype xsd:date;
     sh:description "De einddatum van de activiteit.";
@@ -63,22 +63,22 @@
     sh:name "einddatum";
     sh:path <https://data.vlaanderen.be/ns/dossier#einddatum>
   ], [
-    sh:datatype xsd:string;
-    sh:description "De naam van de activiteit.";
+    sh:datatype xsd:date;
+    sh:description "De startdatum van de activiteit.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "naam";
-    sh:path dc:title
+    sh:name "startdatum";
+    sh:path <https://data.vlaanderen.be/ns/dossier#startdatum>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
+    sh:description "Een activiteit kan een stuk genereren.";
+    sh:name "genereert";
+    sh:path <https://data.vlaanderen.be/ns/dossier#genereert>
   ], [
     sh:class dbo:UnitOfWork;
     sh:description "Een activiteit vindt plaats tijdens een eenheid van werk.";
     sh:name "vindtPlaatsTijdens";
     sh:path <https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens>
-  ], [
-    sh:class prov:Agent;
-    sh:description "Participatie van de agent (aan een publieke dienstverlening).";
-    sh:name "speeltRol";
-    sh:path <http://data.europa.eu/m8g/playsRole>
   ];
   sh:targetClass prov:Activity .
 
@@ -114,15 +114,15 @@
 <https://data.vlaanderen.be/shacl/dossier#CollectieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class prov:Entity;
-    sh:description "Een collectie bestaat uit entiteiten.";
-    sh:name "bestaatUit";
-    sh:path <https://data.vlaanderen.be/ns/dossier#collectie.bestaatUit>
-  ], [
     sh:class dbo:UnitOfWork;
     sh:description "Een collectie is een neerslag van een eenheid van werk.";
     sh:name "isNeerslagVan";
     sh:path <https://data.vlaanderen.be/ns/dossier#isNeerslagVan>
+  ], [
+    sh:class prov:Entity;
+    sh:description "Een collectie bestaat uit entiteiten.";
+    sh:name "bestaatUit";
+    sh:path <https://data.vlaanderen.be/ns/dossier#collectie.bestaatUit>
   ];
   sh:targetClass prov:Collection .
 
@@ -143,17 +143,17 @@
     sh:name "isNeerslagVan";
     sh:path <https://data.vlaanderen.be/ns/dossier#isNeerslagVan>
   ], [
+    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
+    sh:description "Een dossier bestaat uit dossierstukken.";
+    sh:name "bestaatUit";
+    sh:path <https://data.vlaanderen.be/ns/dossier#dossier.bestaatUit>
+  ], [
     sh:datatype xsd:string;
     sh:description "De naam van het dossier.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "naam";
     sh:path dc:title
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
-    sh:description "Een dossier bestaat uit dossierstukken.";
-    sh:name "bestaatUit";
-    sh:path <https://data.vlaanderen.be/ns/dossier#dossier.bestaatUit>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/dossier#Dossier> .
 
@@ -191,19 +191,18 @@
 <https://data.vlaanderen.be/shacl/dossier#ProcedurestapShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class prov:Activity;
+    sh:description "Een activiteit vindt plaats tijdens een procedurestap.";
+    sh:minCount 1;
+    sh:name "vindtPlaatsTijdens";
+    sh:path <https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens>
+  ], [
     sh:datatype xsd:date;
     sh:description "De startdatum van de procedurestap.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "startdatum";
     sh:path <https://data.vlaanderen.be/ns/dossier#startdatum>
-  ], [
-    sh:datatype xsd:date;
-    sh:description "De einddatum van de procedurestap.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "einddatum";
-    sh:path <https://data.vlaanderen.be/ns/dossier#einddatum>
   ], [
     sh:datatype xsd:string;
     sh:description "De naam van de procedurestap.";
@@ -212,11 +211,12 @@
     sh:name "naam";
     sh:path dc:title
   ], [
-    sh:class prov:Activity;
-    sh:description "Een activiteit vindt plaats tijdens een procedurestap.";
+    sh:datatype xsd:date;
+    sh:description "De einddatum van de procedurestap.";
+    sh:maxCount 1;
     sh:minCount 1;
-    sh:name "vindtPlaatsTijdens";
-    sh:path <https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens>
+    sh:name "einddatum";
+    sh:path <https://data.vlaanderen.be/ns/dossier#einddatum>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/dossier#Procedurestap> .
 
@@ -228,26 +228,25 @@
   sh:closed false;
   sh:property [
     sh:datatype rdf:langString;
-    sh:description "Andere naam waaronder de dienstverlening bekend is.";
+    sh:description "Sleutelwoord, term, begrip dat de Publieke Dienst beschrijft.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "alternatieveNaam";
-    sh:path skos:altLabel
+    sh:name "trefwoord";
+    sh:path dcat:keyword
   ], [
-    sh:class skos:Concept;
-    sh:description "Geeft aan of een Publieke Dienstverlening actief, inactief, in ontwikkeling etc is.";
+    sh:class <http://data.europa.eu/m8g/Cost>;
+    sh:description "Kostprijs verbonden aan het gebruik van de Publieke dienstverlening.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "status";
-    sh:path <http://www.w3.org/ns/adms#status>
+    sh:name "kost";
+    sh:path <http://data.europa.eu/m8g/hasCost>
   ], [
-    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/language/>;
-    sh:class skos:Concept;
-    sh:description "Taal waarin een Publieke Dienstverlening wordt aangeboden.";
+    sh:datatype rdf:langString;
+    sh:description "Officiële naam van de Publieke Dienstverlening.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "taal";
-    sh:path dc:language
+    sh:name "naam";
+    sh:path dc:title
   ], [
     <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/atu/index.html>;
     sh:class dc:Location;
@@ -257,33 +256,27 @@
     sh:name "ruimtelijkeDekking";
     sh:path dc:spatial
   ], [
+    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/language/>;
+    sh:class skos:Concept;
+    sh:description "Taal waarin een Publieke Dienstverlening wordt aangeboden.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "taal";
+    sh:path dc:language
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Andere naam waaronder de dienstverlening bekend is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "alternatieveNaam";
+    sh:path skos:altLabel
+  ], [
     sh:class schema:ContactPoint;
     sh:description "Informatie waarmee de Publieke Dienstverlening kan worden gecontacteerd.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "contactinfo";
     sh:path <http://data.europa.eu/m8g/hasContactPoint>
-  ], [
-    sh:class skos:Concept;
-    sh:description "Soort Publieke Dienstverlening.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "type";
-    sh:path dc:type
-  ], [
-    sh:datatype rdfs:Literal;
-    sh:description "Geschatte tijd nodig om de Publieke Dienstverlening af te leveren.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "verwerkingstijd";
-    sh:path <http://data.europa.eu/m8g/processingTime>
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Officiële naam van de Publieke Dienstverlening.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path dc:title
   ], [
     sh:datatype rdf:langString;
     sh:description """Beschrijving van de Publieke Dienstverlening.
@@ -300,19 +293,26 @@
     sh:name "sector";
     sh:path <http://data.europa.eu/m8g/sector>
   ], [
-    sh:datatype rdf:langString;
-    sh:description "Sleutelwoord, term, begrip dat de Publieke Dienst beschrijft.";
+    sh:class skos:Concept;
+    sh:description "Soort Publieke Dienstverlening.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "trefwoord";
-    sh:path dcat:keyword
+    sh:name "type";
+    sh:path dc:type
   ], [
-    sh:class <http://data.europa.eu/m8g/Cost>;
-    sh:description "Kostprijs verbonden aan het gebruik van de Publieke dienstverlening.";
+    sh:datatype rdfs:Literal;
+    sh:description "Geschatte tijd nodig om de Publieke Dienstverlening af te leveren.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "kost";
-    sh:path <http://data.europa.eu/m8g/hasCost>
+    sh:name "verwerkingstijd";
+    sh:path <http://data.europa.eu/m8g/processingTime>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Geeft aan of een Publieke Dienstverlening actief, inactief, in ontwikkeling etc is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "status";
+    sh:path <http://www.w3.org/ns/adms#status>
   ];
   sh:targetClass <http://purl.org/vocab/cpsv#PublicService> .
 
@@ -334,11 +334,17 @@
     sh:name "informatieclassificatie";
     sh:path <https://data.vlaanderen.be/ns/dossier#informatieclassificatie>
   ], [
-    sh:class dcat:Distribution;
-    sh:description "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie.";
+    sh:datatype xsd:string;
+    sh:description "De naam van het stuk.";
+    sh:maxCount 1;
     sh:minCount 1;
-    sh:name "isVoorgesteldDoor";
-    sh:path <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor>
+    sh:name "naam";
+    sh:path dc:title
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
+    sh:description "Een stuk kan een relatie hebben tot een ander stuk.";
+    sh:name "heeftRelatieTot";
+    sh:path dc:relation
   ], [
     sh:datatype xsd:date;
     sh:description "De creatiedatum van het stuk.";
@@ -346,13 +352,6 @@
     sh:minCount 1;
     sh:name "creatiedatum";
     sh:path dc:created
-  ], [
-    sh:datatype xsd:string;
-    sh:description "De naam van het stuk.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path dc:title
   ], [
     sh:class prov:Entity;
     sh:description "Een stuk beschrijft een object.";
@@ -366,26 +365,23 @@
     sh:name "auteur";
     sh:path <https://data.vlaanderen.be/ns/dossier#auteur>
   ], [
-    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
-    sh:description "Een stuk kan een relatie hebben tot een ander stuk.";
-    sh:name "heeftRelatieTot";
-    sh:path dc:relation
+    sh:class dcat:Distribution;
+    sh:description "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie.";
+    sh:minCount 1;
+    sh:name "isVoorgesteldDoor";
+    sh:path <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/dossier#Stuk> .
 
 <https://data.vlaanderen.be/shacl/dossier#StukonderdeelShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class dcat:Distribution;
-    sh:description "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie.";
+    sh:datatype xsd:date;
+    sh:description "De creatiedatum van het stukonderdeel.";
+    sh:maxCount 1;
     sh:minCount 1;
-    sh:name "isVoorgesteldDoor";
-    sh:path <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor>
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
-    sh:description "Een stukonderdeel maakt deel uit van een stuk.";
-    sh:name "isDeelVan";
-    sh:path dc:isPartOf
+    sh:name "creatiedatum";
+    sh:path dc:created
   ], [
     sh:datatype xsd:string;
     sh:description "De naam van het stukonderdeel.";
@@ -401,6 +397,17 @@
     sh:name "informatieclassificatie";
     sh:path <https://data.vlaanderen.be/ns/dossier#informatieclassificatie>
   ], [
+    sh:class dcat:Distribution;
+    sh:description "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie.";
+    sh:minCount 1;
+    sh:name "isVoorgesteldDoor";
+    sh:path <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/dossier#Stukonderdeel>;
+    sh:description "Een stukonderdeel kan deel zijn van een ander stukonderdeel.";
+    sh:name "isDeelVan";
+    sh:path dc:isPartOf
+  ], [
     sh:class prov:Agent;
     sh:description "De auteur van het stukonderdeel.";
     sh:maxCount 1;
@@ -408,15 +415,8 @@
     sh:name "auteur";
     sh:path <https://data.vlaanderen.be/ns/dossier#auteur>
   ], [
-    sh:datatype xsd:date;
-    sh:description "De creatiedatum van het stukonderdeel.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "creatiedatum";
-    sh:path dc:created
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/dossier#Stukonderdeel>;
-    sh:description "Een stukonderdeel kan deel zijn van een ander stukonderdeel.";
+    sh:class <https://data.vlaanderen.be/ns/dossier#Stuk>;
+    sh:description "Een stukonderdeel maakt deel uit van een stuk.";
     sh:name "isDeelVan";
     sh:path dc:isPartOf
   ];
@@ -430,25 +430,11 @@
     sh:name "heeftRelatieTot";
     sh:path dc:relation
   ], [
-    sh:datatype xsd:date;
-    sh:description "De sluitingsdatum van de zaak.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "sluitingsdatum";
-    sh:path <https://data.vlaanderen.be/ns/dossier#sluitingsdatum>
-  ], [
     sh:class <https://data.vlaanderen.be/ns/dossier#Procedurestap>;
     sh:description "Een zaak doorloopt procedurestappen.";
     sh:minCount 1;
     sh:name "doorloopt";
     sh:path <https://data.vlaanderen.be/ns/dossier#doorloopt>
-  ], [
-    sh:datatype xsd:date;
-    sh:description "De openingsdatum van de zaak.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "openingsdatum";
-    sh:path <https://data.vlaanderen.be/ns/dossier#openingsdatum>
   ], [
     sh:class dbo:Project;
     sh:description "Een zaak kan onderdeel uitmaken van een project.";
@@ -461,5 +447,19 @@
     sh:minCount 1;
     sh:name "naam";
     sh:path dc:title
+  ], [
+    sh:datatype xsd:date;
+    sh:description "De sluitingsdatum van de zaak.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "sluitingsdatum";
+    sh:path <https://data.vlaanderen.be/ns/dossier#sluitingsdatum>
+  ], [
+    sh:datatype xsd:date;
+    sh:description "De openingsdatum van de zaak.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "openingsdatum";
+    sh:path <https://data.vlaanderen.be/ns/dossier#openingsdatum>
   ];
   sh:targetClass dbo:Case .
