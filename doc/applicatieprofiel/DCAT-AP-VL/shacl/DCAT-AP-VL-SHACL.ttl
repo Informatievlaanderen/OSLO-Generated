@@ -8,9 +8,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL> <https://data.vlaanderen.be/shacl/DCAT-AP-VLshapes> <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape>,
     <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
     <https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape> .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape> a sh:NodeShape;
@@ -36,13 +36,6 @@
     sh:path dcat:dataset
   ], [
     sh:datatype rdf:langString;
-    sh:description "Een bondige omschrijving van de datasetcatalogus. ";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
-  ], [
-    sh:datatype rdf:langString;
     sh:description "De naam van de datasetcatalogus.";
     sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
@@ -55,6 +48,13 @@
     sh:minCount 1;
     sh:name "heeftLicentie";
     sh:path dc:license
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Een bondige omschrijving van de datasetcatalogus. ";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "beschrijving";
+    sh:path dc:description
   ], [
     sh:class foaf:Agent;
     sh:description "De uitgever van de datasetcatalogus";
@@ -75,27 +75,19 @@
     sh:name "thema";
     sh:path dcat:theme
   ], [
-    <http://purl.org/linked-data/cube#codeList> <https://publications.europa.eu/en/web/eu-vocabularies/at-dataset/-/resource/dataset/access-right>;
-    sh:class skos:Concept;
-    sh:description "De toegankelijkheidscategorie van de dataset.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "toegankelijkheid";
-    sh:path dc:accessRights
-  ], [
-    sh:class dcat:Distribution;
-    sh:description "De distributie van een dataset.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "heeftDistributie";
-    sh:path dcat:distribution
-  ], [
     sh:class vcard:Kind;
     sh:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de dataset. ";
     sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
     sh:name "contactinfo";
     sh:path dcat:contactPoint
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "De naam van de dataset";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
   ], [
     sh:class foaf:Agent;
     sh:description "De uitgever van de dataset. ";
@@ -104,19 +96,27 @@
     sh:name "heeftUitgever";
     sh:path dc:publisher
   ], [
+    sh:class dcat:Distribution;
+    sh:description "De distributie van een dataset.";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "heeftDistributie";
+    sh:path dcat:distribution
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://publications.europa.eu/en/web/eu-vocabularies/at-dataset/-/resource/dataset/access-right>;
+    sh:class skos:Concept;
+    sh:description "De toegankelijkheidscategorie van de dataset.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "toegankelijkheid";
+    sh:path dc:accessRights
+  ], [
     sh:datatype rdf:langString;
     sh:description "Een bondige omschrijving van de dataset.";
     sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
     sh:name "beschrijving";
     sh:path dc:description
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de dataset";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
   ];
   sh:targetClass dcat:Dataset .
 
@@ -130,19 +130,19 @@
     sh:name "toegangsURL";
     sh:path dcat:accessURL
   ], [
-    sh:class dc:LicenseDocument;
-    sh:description "De licentie van de distributie";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftLicentie";
-    sh:path dc:license
-  ], [
     sh:datatype rdf:langString;
     sh:description "Een naam voor de distributie";
     sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
     sh:name "titel";
     sh:path dc:title
+  ], [
+    sh:class dc:LicenseDocument;
+    sh:description "De licentie van de distributie";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "heeftLicentie";
+    sh:path dc:license
   ];
   sh:targetClass dcat:Distribution .
 
