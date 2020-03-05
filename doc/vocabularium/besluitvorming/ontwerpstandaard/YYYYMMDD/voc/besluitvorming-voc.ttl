@@ -90,11 +90,12 @@ prov:Association a rdfs:Class;
   rdfs:range <https://data.vlaanderen.be/ns/besluitvorming#Verslag>;
   rdfs:subPropertyOf prov:generated .
 
-<https://data.vlaanderen.be/ns/besluitvorming#geplandOpenbaar> a rdf:Property;
+<https://data.vlaanderen.be/ns/besluitvorming#geplandOpenbaar> a owl:DatatypeProperty;
   rdfs:label "gepland openbaar"@nl;
   rdfs:comment "Geeft aan over de procedurestap al dan niet openbaar zal zijn."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/dossier#Procedurestap>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
+  rdfs:range xsd:boolean .
 
 <https://data.vlaanderen.be/ns/besluitvorming#heeftAanleiding> a owl:ObjectProperty;
   rdfs:label "heeft aanleiding"@nl;
@@ -146,6 +147,13 @@ prov:Association a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
   rdfs:range <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan>;
   rdfs:subPropertyOf prov:wasStartedBy .
+
+<https://data.vlaanderen.be/ns/besluitvorming#isNeerslagVan> a owl:ObjectProperty;
+  rdfs:label "is neerslag van"@nl;
+  rdfs:comment "Een collectie is een neerslag van een eenheid van werk."@nl;
+  rdfs:domain prov:Collection;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
+  rdfs:range <https://data.vlaanderen.be/ns/besluitvorming#Besluitvormingsaangelegenheid> .
 
 <https://data.vlaanderen.be/ns/besluitvorming#korteTitel> a owl:DatatypeProperty;
   rdfs:label "korte titel"@nl;
@@ -239,12 +247,6 @@ dc:alternative a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
   rdfs:subClassOf prov:Activity .
 
-<https://data.vlaanderen.be/ns/besluitvorming#Besluitvormingsaangelegenheid> a owl:Class;
-  rdfs:label "Besluitvormingsaangelegenheid"@nl;
-  rdfs:comment "Een samenhangende hoeveelheid activiteiten met een aanleiding en een beoogde beslissing."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
-  rdfs:subClassOf dbo:Case .
-
 prov:generated a rdf:Property;
   rdfs:label "geeft aanleiding tot"@nl .
 
@@ -255,69 +257,39 @@ prov:generated a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
   rdfs:subClassOf <https://data.vlaanderen.be/ns/dossier#Stuk> .
 
+<https://data.vlaanderen.be/ns/besluitvorming#Besluitvormingsaangelegenheid> a owl:Class;
+  rdfs:label "Besluitvormingsaangelegenheid"@nl;
+  rdfs:comment "Een samenhangende hoeveelheid activiteiten met een aanleiding en een beoogde beslissing."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
+  rdfs:subClassOf dbo:Case .
+
 <https://data.vlaanderen.be/ns/besluitvorming> a owl:Ontology;
-  rdfs:label "besluitvorming-voc"@nl,
-    "besluitvorming-voc"@en;
+  rdfs:label "besluitvorming-voc"@en,
+    "besluitvorming-voc"@nl;
   dc:issued "2020-02-26";
-  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
-    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
+  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dc:isPartOf,
-    prov:hadRole,
-    dc:alternative,
+  rdfs:seeAlso dc:description,
     prov:Association,
-    dc:description,
     dc:title,
-    prov:generated;
+    dc:isPartOf,
+    prov:hadRole,
+    prov:generated,
+    dc:alternative;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://redpencil.io>;
-      foaf:name "redpencil.io"
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Michaël";
-    foaf:lastName "Dierick";
-    foaf:mbox <mailto:michael.dierick@redpencil.io>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://redpencil.io>;
-      foaf:name "redpencil.io"
-    ];
-    foaf:firstName "Niels";
-    foaf:lastName "Vandekeybus";
-    foaf:mbox <mailto:niels.vandekeybus@redpencil.io>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.ugent.be/ps/communicatiewetenschappen/mict>;
-      foaf:name "imec - UGent"
-    ];
-    foaf:firstName "Eveline";
-    foaf:lastName "Vlassenroot";
-    foaf:mbox <mailto:eveline.vlassenroot@ugent.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://changelab.be>;
-      foaf:name "ChangeLab"
-    ];
-    foaf:firstName "Yana";
-    foaf:lastName "Van Dorst";
-    foaf:mbox <mailto:yana@changelab.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://redpencil.io>;
-      foaf:name "redpencil.io"
-    ];
-    foaf:firstName "Johan";
-    foaf:lastName "Delaure";
-    foaf:mbox <mailto:johan.delaure@redpencil.io>
+    foaf:firstName "Katrien";
+    foaf:lastName "De Smet";
+    foaf:mbox <mailto:katrien.desmet@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -330,21 +302,57 @@ prov:generated a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
+      foaf:homepage <http://redpencil.io>;
+      foaf:name "redpencil.io"
+    ];
+    foaf:firstName "Johan";
+    foaf:lastName "Delaure";
+    foaf:mbox <mailto:johan.delaure@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://redpencil.io>;
+      foaf:name "redpencil.io"
+    ];
+    foaf:firstName "Michaël";
+    foaf:lastName "Dierick";
+    foaf:mbox <mailto:michael.dierick@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.ugent.be/ps/communicatiewetenschappen/mict>;
+      foaf:name "imec - UGent"
+    ];
+    foaf:firstName "Eveline";
+    foaf:lastName "Vlassenroot";
+    foaf:mbox <mailto:eveline.vlassenroot@ugent.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://redpencil.io>;
+      foaf:name "redpencil.io"
+    ];
+    foaf:firstName "Niels";
+    foaf:lastName "Vandekeybus";
+    foaf:mbox <mailto:niels.vandekeybus@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://changelab.be>;
+      foaf:name "ChangeLab"
+    ];
+    foaf:firstName "Yana";
+    foaf:lastName "Van Dorst";
+    foaf:mbox <mailto:yana@changelab.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
       foaf:homepage <https://www.pwc.be>;
       foaf:name "PwC"
     ];
     foaf:firstName "Dimitri";
     foaf:lastName "Schepers";
     foaf:mbox <mailto:dimitri.schepers@pwc.com>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Katrien";
-    foaf:lastName "De Smet";
-    foaf:mbox <mailto:katrien.desmet@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
