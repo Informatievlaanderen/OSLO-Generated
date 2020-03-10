@@ -7,29 +7,29 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/vegetatie-elementen> <https://data.vlaanderen.be/shacl/vegetatie-elementenshapes> <https://data.vlaanderen.be/shacl/vegetatie-elementen#BoomvormconditieKlassenShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#ElementShape>,
+<https://data.vlaanderen.be/shacl/vegetatie-elementen> <https://data.vlaanderen.be/shacl/vegetatie-elementenshapes> <https://data.vlaanderen.be/shacl/vegetatie-elementen#FysiekObjectShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#LeiboomShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#GekandelaardeBoomShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#GeschorenBoomShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#MuurvegetatieShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#KlimvormShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#NauwkeurigsheidsklassenShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#NietZelfhechtendeKlimvormShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#KnotboomShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#FysiekObjectShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#OpgaandeBoomShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#BoomvormShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#BloemenmandShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#VormboomShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#GekandelaardeBoomShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#BloemenmandShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#PlantbakShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#BloementorenShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#SolitaireHeesterShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#ZelfhechtendeKlimvormShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#VegetatieElementShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#OpgaandeBoomShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#KlimvormShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#BoomvormShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#PlantbakvormShape>,
     <https://data.vlaanderen.be/shacl/vegetatie-elementen#GroeifasenShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#PlantbakShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#GeschorenBoomShape>,
-    <https://data.vlaanderen.be/shacl/vegetatie-elementen#VegetatiewandShape> .
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#VegetatieElementShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#KnotboomShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#ElementShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#NauwkeurigsheidsklassenShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#ZelfhechtendeKlimvormShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#BoomvormconditieKlassenShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#VegetatiewandShape>,
+    <https://data.vlaanderen.be/shacl/vegetatie-elementen#SolitaireHeesterShape> .
 
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#BloemenmandShape> a sh:NodeShape;
   sh:closed false;
@@ -42,6 +42,43 @@
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#BoomvormShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:boolean;
+    sh:description "Boomplaten worden aangebracht rond de stam van bomen, bosgoed en heesters en eventueel vastgezet met piketten. Ze hebben een centrale opening en een rechte snede, zodat ze op eenvoudige wijze rond de planten kunnen aangebracht worden. Boomplaten die aangewend worden voor bomen beschikken over extra openingen in de plaat voor het aanbrengen van een boompalen.";
+    sh:maxCount 1;
+    sh:name "boomplaat";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#boomplaat>
+  ], [
+    sh:datatype xsd:double;
+    sh:description "Stamomtrek in cm, gemeten vanaf 1 meter boven de grond.";
+    sh:maxCount 1;
+    sh:name "stamomtrek";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#stamomtrek>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Groeifasen>;
+    sh:class skos:Concept;
+    sh:description "De levensfase van een Boomvorm.";
+    sh:maxCount 1;
+    sh:name "groeifase";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#groeifase>
+  ], [
+    sh:datatype xsd:double;
+    sh:description "De conditiewaarde van een boom is een coëfficiënt die iets vertelt over de gezondheidstoestand (vitaliteit, conditie) en de levensverwachting van een boom. Een dode boom heeft een conditiewaarde nul. Een kerngezonde boom met zeer hoge levensverwachting heeft een conditiewaarde 1.";
+    sh:maxCount 1;
+    sh:name "vrijeDoorrijhoogte";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#vrijeDoorrijhoogte>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://id.erfgoed.net/thesauri/erfgoedtypes/932>;
+    sh:description "Een kenmerk van een boom waardoor deze zich onderscheid van andere bomen van dezelfde soort. Bijvoorbeerld door een bepaalde erfgoedwaarde.";
+    sh:name "markantElement";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#markantElement>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/BoomvormconditieKlassen>;
+    sh:class skos:Concept;
+    sh:description "De conditie beoordeeld volgens de kronenstructuur van Dr. A. Roloff, gelet op de scheutlengte ontwikkeling en vorming van dood hout.";
+    sh:maxCount 1;
+    sh:name "conditiebeoordeling";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#conditiebeoordeling>
+  ], [
     sh:datatype xsd:double;
     sh:description "Diameter van de kroonprojectie.";
     sh:maxCount 1;
@@ -59,43 +96,6 @@
     sh:maxCount 1;
     sh:name "conditiewaarde";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#conditiewaarde>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/BoomvormconditieKlassen>;
-    sh:class skos:Concept;
-    sh:description "De conditie beoordeeld volgens de kronenstructuur van Dr. A. Roloff, gelet op de scheutlengte ontwikkeling en vorming van dood hout.";
-    sh:maxCount 1;
-    sh:name "conditiebeoordeling";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#conditiebeoordeling>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://id.erfgoed.net/thesauri/erfgoedtypes/932>;
-    sh:description "Een kenmerk van een boom waardoor deze zich onderscheid van andere bomen van dezelfde soort. Bijvoorbeerld door een bepaalde erfgoedwaarde.";
-    sh:name "markantElement";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#markantElement>
-  ], [
-    sh:datatype xsd:double;
-    sh:description "Stamomtrek in cm, gemeten vanaf 1 meter boven de grond.";
-    sh:maxCount 1;
-    sh:name "stamomtrek";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#stamomtrek>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Boomplaten worden aangebracht rond de stam van bomen, bosgoed en heesters en eventueel vastgezet met piketten. Ze hebben een centrale opening en een rechte snede, zodat ze op eenvoudige wijze rond de planten kunnen aangebracht worden. Boomplaten die aangewend worden voor bomen beschikken over extra openingen in de plaat voor het aanbrengen van een boompalen.";
-    sh:maxCount 1;
-    sh:name "boomplaat";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#boomplaat>
-  ], [
-    sh:datatype xsd:double;
-    sh:description "De conditiewaarde van een boom is een coëfficiënt die iets vertelt over de gezondheidstoestand (vitaliteit, conditie) en de levensverwachting van een boom. Een dode boom heeft een conditiewaarde nul. Een kerngezonde boom met zeer hoge levensverwachting heeft een conditiewaarde 1.";
-    sh:maxCount 1;
-    sh:name "vrijeDoorrijhoogte";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#vrijeDoorrijhoogte>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Groeifasen>;
-    sh:class skos:Concept;
-    sh:description "De levensfase van een Boomvorm.";
-    sh:maxCount 1;
-    sh:name "groeifase";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#groeifase>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#Boomvorm> .
 
@@ -111,22 +111,10 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:dateTime;
-    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
     sh:maxCount 1;
-    sh:name "begindatum";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
-  ], [
-    sh:class rdfs:Resource;
-    sh:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
-    sh:name "relatie";
-    sh:path dc:relation
-  ], [
-    sh:class <http://www.opengis.net/ont/geosparql#Geometry>;
-    sh:description "De geometrie overeenkomstig met een bepaald object.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "geometrie";
-    sh:path <http://www.w3.org/ns/locn#geometry>
+    sh:name "einddatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
     sh:class skos:Concept;
@@ -136,6 +124,13 @@
     sh:name "nauwkeurigheid";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
   ], [
+    sh:class <http://www.opengis.net/ont/geosparql#Geometry>;
+    sh:description "De geometrie overeenkomstig met een bepaald object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "geometrie";
+    sh:path <http://www.w3.org/ns/locn#geometry>
+  ], [
     sh:datatype xsd:integer;
     sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
     sh:maxCount 1;
@@ -143,10 +138,15 @@
     sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
   ], [
     sh:datatype xsd:dateTime;
-    sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
+    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
     sh:maxCount 1;
-    sh:name "einddatum";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
+    sh:name "begindatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
+  ], [
+    sh:class rdfs:Resource;
+    sh:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
+    sh:name "relatie";
+    sh:path dc:relation
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
@@ -165,18 +165,18 @@
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#KlimvormShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:boolean;
+    sh:description "Duidt aan of het object al dan niet in volle grond staat.";
+    sh:maxCount 1;
+    sh:name "grondgebonden";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#grondgebonden>
+  ], [
     sh:datatype rdfs:Literal;
     sh:description "Oppervlakte in vierkante meter.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "begroeidOppervlak";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#begroeidOppervlak>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Duidt aan of het object al dan niet in volle grond staat.";
-    sh:maxCount 1;
-    sh:name "grondgebonden";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#grondgebonden>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#Klimvorm> .
 
@@ -203,18 +203,18 @@
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#OpgaandeBoomShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:double;
+    sh:description "De lengte in meters, gemeten vanop het aardoppervlak, van het gedeelte van de stam dat takvrij dient gehouden te worden. Alle takken die lager zitten dan de uiteindelijke takvrije stamlengte behoren tot de tijdelijke kroon en zullen gesnoeid worden in verschillende fasen gespreid over verschillende jaren.";
+    sh:maxCount 1;
+    sh:name "takvrijeStamlengte";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#takvrijeStamlengte>
+  ], [
     sh:datatype xsd:boolean;
     sh:description "Geeft aan of de vegetatie of begroeiing al dan niet snoei vereist.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "vrijUitgroeiend";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#vrijUitgroeiend>
-  ], [
-    sh:datatype xsd:double;
-    sh:description "De lengte in meters, gemeten vanop het aardoppervlak, van het gedeelte van de stam dat takvrij dient gehouden te worden. Alle takken die lager zitten dan de uiteindelijke takvrije stamlengte behoren tot de tijdelijke kroon en zullen gesnoeid worden in verschillende fasen gespreid over verschillende jaren.";
-    sh:maxCount 1;
-    sh:name "takvrijeStamlengte";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#takvrijeStamlengte>
   ];
   sh:targetClass <https://id.erfgoed.net/thesauri/erfgoedtypes/1607> .
 
@@ -225,19 +225,6 @@
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#PlantbakvormShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:double;
-    sh:description "De inhoud of grootte van het object in de ruimte in kubieke meter.";
-    sh:maxCount 1;
-    sh:name "volume";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#volume>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Duidt aan of het element al dan niet verplaatsbaar is en dus niet permanent verankerd werd met het aardoppervlak.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "verplaatsbaar";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#verplaatsbaar>
-  ], [
     sh:class <https://data.vlaanderen.be/ns/vegetatie#BegroeidVoorkomen>;
     sh:description "Verwijst naar het fysiek voorkomen van het object.";
     sh:maxCount 1;
@@ -255,6 +242,19 @@
     sh:maxCount 1;
     sh:name "oppervlakte";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#oppervlakte>
+  ], [
+    sh:datatype xsd:boolean;
+    sh:description "Duidt aan of het element al dan niet verplaatsbaar is en dus niet permanent verankerd werd met het aardoppervlak.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "verplaatsbaar";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#verplaatsbaar>
+  ], [
+    sh:datatype xsd:double;
+    sh:description "De inhoud of grootte van het object in de ruimte in kubieke meter.";
+    sh:maxCount 1;
+    sh:name "volume";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#volume>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#Plantbakvorm> .
 
@@ -265,6 +265,17 @@
 <https://data.vlaanderen.be/shacl/vegetatie-elementen#VegetatieElementShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:double;
+    sh:description "De hoogte van het object zelf, in meter.";
+    sh:maxCount 1;
+    sh:name "hoogte";
+    sh:path schema:height
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Soortnaam in het Nederlands.";
+    sh:name "soortnaamNederlands";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands>
+  ], [
     sh:datatype xsd:dateTime;
     sh:description "De datum waarop het vegetatie element werd geplant.";
     sh:maxCount 1;
@@ -272,11 +283,10 @@
     sh:name "plantdatum";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#plantdatum>
   ], [
-    sh:datatype xsd:double;
-    sh:description "De hoogte van het object zelf, in meter.";
-    sh:maxCount 1;
-    sh:name "hoogte";
-    sh:path schema:height
+    sh:description "De wetenschappelijke soortnaam van het vegetatie-element.";
+    sh:minCount 1;
+    sh:name "soortnaamWetenschappelijk";
+    sh:path dwc:scientificName
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://www.gbif.org/species/6>;
     sh:class skos:Concept;
@@ -284,16 +294,6 @@
     sh:minCount 1;
     sh:name "soortcode";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortcode>
-  ], [
-    sh:description "De wetenschappelijke soortnaam van het vegetatie-element.";
-    sh:minCount 1;
-    sh:name "soortnaamWetenschappelijk";
-    sh:path dwc:scientificName
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Soortnaam in het Nederlands.";
-    sh:name "soortnaamNederlands";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/vegetatie#VegetatieElement> .
 
