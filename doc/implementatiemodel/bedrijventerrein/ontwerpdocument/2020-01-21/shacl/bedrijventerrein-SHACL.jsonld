@@ -34,52 +34,6 @@
   "@id": "https://data.vlaanderen.be/shacl/bedrijventerrein",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/bedrijventerrein#BedrijventerreinShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/RuimtelijkeEenheidtype",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "De aard van een ruimtelijke eenheid.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^ruimtelijkeeenheidtype",
-          "sh:path": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Andere naam waaronder het bedrijventerrein bekend is.",
-          "sh:maxCount": "1",
-          "sh:name": "alternatieveNaam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
-          "sh:description": "Deze eigenschap geeft aan of er al dan niet beschikbare kavels aanwezig zijn op het bedrijventerrein.",
-          "sh:maxCount": "1",
-          "sh:name": "beschikbareKavels",
-          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#beschikbareKavels"
-        },
-        {
-          "sh:class": "https://schema.org/QuantitativeValue",
-          "sh:description": "Deze eigenschap geeft aan hoeveel oppervlakte nog beschikbaar is op het bedrijventerrein.",
-          "sh:maxCount": "1",
-          "sh:name": "beschikbareOppervlakte",
-          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#beschikbareOppervlakte"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Voorkeursnaam van het Bedrijventerrein.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "naam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerrein"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/bedrijventerrein#BedrijventerreinperceelShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -122,6 +76,14 @@
           "sh:path": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type"
         },
         {
+          "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+          "sh:description": "De aanbieder van dit perceel (TODO)",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "aanbieder",
+          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#aanbieder"
+        },
+        {
           "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/bedrijventerreinBebouwing",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Deze eigenschap geeft de aanwezigheid van bebouwing aan op het Bedrijventerreinperceel.",
@@ -160,7 +122,7 @@
           "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#inGebruik"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerrein",
+          "sh:class": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
           "sh:description": "Geeft aan tot welk Bedrijventerrein het Bedrijventerreinperceel behoort.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -199,7 +161,7 @@
           "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#aanspreekpunt"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerrein",
+          "sh:class": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
           "sh:description": "Geeft aan tot welk Bedrijventerrein de Beheerde Bedrijvenzone behoort.",
           "sh:name": "isDeelVan",
           "sh:path": "http://purl.org/dc/terms/isPartOf"
@@ -298,7 +260,7 @@
           "sh:path": "http://xmlns.com/foaf/0.1/homepage"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerrein",
+          "sh:class": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
           "sh:description": "Geeft aan tot welk Bedrijventerrein de Ontwikkelbare Bedrijvenzone behoort.",
           "sh:name": "isDeelVan",
           "sh:path": "http://purl.org/dc/terms/isPartOf"
@@ -399,6 +361,60 @@
       "sh:targetClass": "http://data.europa.eu/m8g/PeriodOfTime"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/bedrijventerrein#BedrijventerreinShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "Tijdsinterval waarbinnen iets geldig is.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^geldigheidsperiode",
+          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#^geldigheidsperiode"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/RuimtelijkeEenheidtype",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De aard van een ruimtelijke eenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^ruimtelijkeeenheidtype",
+          "sh:path": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Andere naam waaronder het bedrijventerrein bekend is.",
+          "sh:maxCount": "1",
+          "sh:name": "alternatieveNaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:description": "Deze eigenschap geeft aan of er al dan niet beschikbare kavels aanwezig zijn op het bedrijventerrein.",
+          "sh:maxCount": "1",
+          "sh:name": "beschikbareKavels",
+          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#beschikbareKavels"
+        },
+        {
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "Deze eigenschap geeft aan hoeveel oppervlakte nog beschikbaar is op het bedrijventerrein.",
+          "sh:maxCount": "1",
+          "sh:name": "beschikbareOppervlakte",
+          "sh:path": "https://data.vlaanderen.be/ns/bedrijventerrein#beschikbareOppervlakte"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Voorkeursnaam van het Bedrijventerrein.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        }
+      ],
+      "sh:targetClass": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/bedrijventerrein#AgentShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -420,53 +436,11 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.",
-          "sh:maxCount": "1",
-          "sh:name": "aanschrijfvorm",
-          "sh:path": "http://www.w3.org/2006/vcard/ns#honorific-prefix"
-        },
-        {
-          "sh:class": "http://www.w3.org/ns/locn#Address",
-          "sh:description": "Adres dat men kan aanschrijven of bezoeken.",
-          "sh:maxCount": "1",
-          "sh:name": "adres",
-          "sh:path": "http://www.w3.org/ns/locn#address"
-        },
-        {
-          "sh:class": "http://schema.org/OpeningHoursSpecification",
-          "sh:description": "Periode waarin contact kan worden opgenomen.",
-          "sh:maxCount": "1",
-          "sh:name": "beschikbaarheid",
-          "sh:path": "http://schema.org/hoursAvailable"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Naam van bvb de persoon die men kan contacteren.",
-          "sh:maxCount": "1",
-          "sh:name": "contactnaam",
-          "sh:path": "http://xmlns.com/foaf/0.1/name"
-        },
-        {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "Email-adres waarnaar men kan mailen.",
           "sh:maxCount": "1",
           "sh:name": "email",
           "sh:path": "http://schema.org/email"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Faxnummer waarnaar men kan faxen.",
-          "sh:maxCount": "1",
-          "sh:name": "fax",
-          "sh:path": "http://schema.org/faxNumber"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Uren waarbinnen contact kan worden opgenomen.",
-          "sh:maxCount": "1",
-          "sh:name": "openingsuren",
-          "sh:path": "http://schema.org/openingHours"
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
