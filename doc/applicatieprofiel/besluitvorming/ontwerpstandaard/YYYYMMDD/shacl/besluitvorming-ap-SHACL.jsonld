@@ -62,6 +62,13 @@
       "sh:property": [
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De toestand waarin de agenda zich bevindt voor een specifiek type.",
+          "sh:maxCount": "1",
+          "sh:name": "agendaStatus",
+          "sh:path": "https://data.vlaanderen.be/ns/besluitvorming#agendaStatus"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Soort agenda.",
           "sh:maxCount": "1",
           "sh:name": "agendaType",
@@ -73,12 +80,6 @@
           "sh:maxCount": "1",
           "sh:name": "isAgendaVoor",
           "sh:path": "https://data.vlaanderen.be/ns/besluitvorming#isAgendaVoor"
-        },
-        {
-          "sh:description": "De toestand waarin de agenda zich bevindt voor een specifiek type.",
-          "sh:maxCount": "1",
-          "sh:name": "status",
-          "sh:path": "https://data.vlaanderen.be/ns/besluitvorming#status"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/besluitvorming#Agenda"
@@ -206,6 +207,20 @@
         }
       ],
       "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/besluitvorming-ap#PubliekeOrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://purl.org/dc/terms/Location",
+          "sh:description": "Administratief gebied dat de Publieke Organisatie dekt.",
+          "sh:name": "werkingsgebied",
+          "sh:path": "http://purl.org/dc/terms/spatial"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/PublicOrganisation"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/besluitvorming-ap#AgendapuntShape",
@@ -595,6 +610,91 @@
       "sh:targetClass": "http://www.w3.org/ns/adms#Identifier"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/besluitvorming-ap#OrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Type activiteit die door de Organisatie wordt uitgeoefend.",
+          "sh:maxCount": "1",
+          "sh:name": "activiteit",
+          "sh:path": "http://www.w3.org/ns/regorg#orgActivity"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Andere naam waaronder de organisatie bekend is.",
+          "sh:name": "alternatieveNaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de Publieke Organisatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Rangschikking van de Organisatie in een classificatiesysteem.",
+          "sh:maxCount": "1",
+          "sh:name": "classificatie",
+          "sh:path": "http://www.w3.org/ns/org#classification"
+        },
+        {
+          "sh:class": "http://schema.org/ContactPoint",
+          "sh:description": "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren.\r\n",
+          "sh:maxCount": "1",
+          "sh:name": "contactinfo",
+          "sh:path": "http://schema.org/contactPoint"
+        },
+        {
+          "sh:description": "Bestaanreden vd Organisatie.",
+          "sh:name": "doel",
+          "sh:path": "http://www.w3.org/ns/org#purpose"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Adres vd homepage van de website vd Publieke Organisatie.",
+          "sh:maxCount": "1",
+          "sh:name": "homepage",
+          "sh:path": "http://xmlns.com/foaf/0.1/homepage"
+        },
+        {
+          "sh:description": "Verwijzing naar het logo vd Publieke Organisatie.",
+          "sh:maxCount": "1",
+          "sh:name": "logo",
+          "sh:path": "http://schema.org/logo"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Toestand vd Organisatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "status",
+          "sh:path": "http://www.w3.org/ns/regorg#orgStatus"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Type Organisatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "type",
+          "sh:path": "http://www.w3.org/ns/regorg#orgType"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Naam waarmee de Organisatie bij voorkeur wordt aangeduid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "voorkeursNaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/org#Organization"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/besluitvorming-ap#ActiviteitShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -769,7 +869,6 @@
         {
           "sh:class": "http://purl.org/dc/terms/Agent",
           "sh:description": "De auteur van het stuk.",
-          "sh:maxCount": "1",
           "sh:name": "auteur",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#auteur"
         },
@@ -814,6 +913,11 @@
           "sh:maxCount": "1",
           "sh:name": "publicatiedatum",
           "sh:path": "http://purl.org/dc/terms/issued"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "taal",
+          "sh:path": "http://purl.org/dc/terms/language"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
