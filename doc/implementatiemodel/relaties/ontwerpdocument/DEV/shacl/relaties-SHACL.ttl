@@ -1,0 +1,242 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/shacl/relaties> <https://data.vlaanderen.be/shacl/relatiesshapes> <https://data.vlaanderen.be/shacl/relaties#AnyURIShape>,
+    <https://data.vlaanderen.be/shacl/relaties#BevestigingShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftVerkeersbordConceptShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftNetwerkProtectieShape>,
+    <https://data.vlaanderen.be/shacl/relaties#DtcAWVIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/relaties#DateTimeShape>,
+    <https://data.vlaanderen.be/shacl/relaties#DirectioneleRelatieShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftGerelateerdVerkeerstekenShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HoortBijShape>,
+    <https://data.vlaanderen.be/shacl/relaties#DecimalShape>,
+    <https://data.vlaanderen.be/shacl/relaties#StringShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IntegerShape>,
+    <https://data.vlaanderen.be/shacl/relaties#VoedtShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftBeheerShape>,
+    <https://data.vlaanderen.be/shacl/relaties#NietDirectioneleRelatieShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftVerkeerstekenShape>,
+    <https://data.vlaanderen.be/shacl/relaties#LiteralShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftVerkeersbordCategorieShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftGeometrieShape>,
+    <https://data.vlaanderen.be/shacl/relaties#SturingShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsInspectieVanShape>,
+    <https://data.vlaanderen.be/shacl/relaties#LigtOpShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsSWOnderdeelVanShape>,
+    <https://data.vlaanderen.be/shacl/relaties#SluitAanOpShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsAdmOnderdeelVanShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsTypeVanShape>,
+    <https://data.vlaanderen.be/shacl/relaties#HeeftNetwerktoegangShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsSWGehostOpShape>,
+    <https://data.vlaanderen.be/shacl/relaties#RelatieObjectShape>,
+    <https://data.vlaanderen.be/shacl/relaties#IsNetwerkECCShape>,
+    <https://data.vlaanderen.be/shacl/relaties#KwantWrdInVoltShape> .
+
+<https://data.vlaanderen.be/shacl/relaties#AnyURIShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass xsd:anyURI .
+
+<https://data.vlaanderen.be/shacl/relaties#BevestigingShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Bevestiging> .
+
+<https://data.vlaanderen.be/shacl/relaties#DateTimeShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass xsd:dateTime .
+
+<https://data.vlaanderen.be/shacl/relaties#DecimalShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass xsd:decimal .
+
+<https://data.vlaanderen.be/shacl/relaties#DirectioneleRelatieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DirectioneleRelatie> .
+
+<https://data.vlaanderen.be/shacl/relaties#DtcAWVIdentificatorShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:string;
+    sh:description "Een groep van tekens om een AWV object te identificeren of te benoemen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "identificator";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#identificator>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Gegevens van de organisatie die de toekenning deed.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "toegekendDoor";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendDoor>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "De datum wanneer de toekenning werd uitgevoerd.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "toegekendOp";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendOp>
+  ];
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftBeheerShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftBeheer> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftGeometrieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:integer;
+    sh:description "Geeft de ordening weer van de verschillende geometrische representaties voor een object. Het minimunniveau=0, hogere waarden duiden op een gedetailleerdere geometrische representatie. Negatieve waarden duiden op afgeleide geometrie.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "niveau";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#niveau>
+  ];
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftGeometrie> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftGerelateerdVerkeerstekenShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftGerelateerdVerkeersteken> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftNetwerkProtectieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftNetwerkProtectie> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftNetwerktoegangShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftNetwerktoegang> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftVerkeersbordCategorieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftVerkeersbordCategorie> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftVerkeersbordConceptShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftVerkeersbordConcept> .
+
+<https://data.vlaanderen.be/shacl/relaties#HeeftVerkeerstekenShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HeeftVerkeersteken> .
+
+<https://data.vlaanderen.be/shacl/relaties#HoortBijShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HoortBij> .
+
+<https://data.vlaanderen.be/shacl/relaties#IntegerShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass xsd:integer .
+
+<https://data.vlaanderen.be/shacl/relaties#IsAdmOnderdeelVanShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsAdmOnderdeelVan> .
+
+<https://data.vlaanderen.be/shacl/relaties#IsInspectieVanShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsInspectieVan> .
+
+<https://data.vlaanderen.be/shacl/relaties#IsNetwerkECCShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsNetwerkECC> .
+
+<https://data.vlaanderen.be/shacl/relaties#IsSWGehostOpShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsSWGehostOp> .
+
+<https://data.vlaanderen.be/shacl/relaties#IsSWOnderdeelVanShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsSWOnderdeelVan> .
+
+<https://data.vlaanderen.be/shacl/relaties#IsTypeVanShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#IsTypeVan> .
+
+<https://data.vlaanderen.be/shacl/relaties#KwantWrdInVoltShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class xsd:decimal;
+    sh:description "Bevat een getal die bij het datatype hoort.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "waarde";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde>
+  ], [
+    sh:datatype rdfs:Literal;
+    sh:description "De standaard eenheid bij dit datatype is uitgedrukt in Volt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "standaardEenheid";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid>
+  ];
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInVolt> .
+
+<https://data.vlaanderen.be/shacl/relaties#LigtOpShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#LigtOp> .
+
+<https://data.vlaanderen.be/shacl/relaties#LiteralShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass rdfs:Literal .
+
+<https://data.vlaanderen.be/shacl/relaties#NietDirectioneleRelatieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#NietDirectioneleRelatie> .
+
+<https://data.vlaanderen.be/shacl/relaties#RelatieObjectShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
+    sh:description "De identificator van het object waarin de relatie toekomt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "doelId";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#doelId>
+  ], [
+    sh:class xsd:anyURI;
+    sh:description "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "typeURI";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#typeURI>
+  ], [
+    sh:class <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
+    sh:description "De identificator van het object waaruit de relatie vertrekt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "bronId";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#bronId>
+  ], [
+    sh:class <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator>;
+    sh:description "De identificator van de relatie zoals gekend binnen Em-Infra.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "id";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#id>
+  ];
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#RelatieObject> .
+
+<https://data.vlaanderen.be/shacl/relaties#SluitAanOpShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#SluitAanOp> .
+
+<https://data.vlaanderen.be/shacl/relaties#StringShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass xsd:string .
+
+<https://data.vlaanderen.be/shacl/relaties#SturingShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Sturing> .
+
+<https://data.vlaanderen.be/shacl/relaties#VoedtShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class <https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInVolt>;
+    sh:description "Vermogen van de aansluiting, dit wordt enkel ingevuld op voedingsrelaties voorbij de hoofdschakelaar.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "aansluitvermogen";
+    sh:path <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#aansluitvermogen>
+  ];
+  sh:targetClass <https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Voedt> .

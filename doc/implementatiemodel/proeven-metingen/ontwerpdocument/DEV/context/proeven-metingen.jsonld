@@ -1,0 +1,469 @@
+{
+  "@context": {
+    "AWVObject": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#AWVObject",
+    "AnyURI": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "Boomtoestand": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#Boomtoestand",
+    "Date": "http://www.w3.org/2001/XMLSchema#date",
+    "DateTime": "http://www.w3.org/2001/XMLSchema#dateTime",
+    "Decimal": "http://www.w3.org/2001/XMLSchema#decimal",
+    "DtcAWVIdentificator": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator",
+    "DtcDocument": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument",
+    "DtcGeluidstestRapport": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#DtcGeluidstestRapport",
+    "DtcGeluidstestRapport.testrapport": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#testrapport",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "DteTekstblok": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DteTekstblok",
+    "DteTekstblok.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Integer": "http://www.w3.org/2001/XMLSchema#integer",
+    "KlAlgMimeType": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomConditiebeoordeling": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomConditiewaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomConflicten": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomGebreken": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomOnderhoudstoestand": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomPlantwijzewaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomStandplaatswaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlBoomtoestandMeerwaardefactor": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlGCMeetMethode": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACKerendVermogen": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACPerformantieklasse": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACPerformantieniveau": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACSchokindex": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACSchokindexMVP": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEACVoertuigOverhelling": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEGCNorm": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLEGCTestType": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KwantWrdInCelsius": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCelsius",
+    "KwantWrdInCelsius.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInCelsius.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "KwantWrdInCentimeter": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter",
+    "KwantWrdInCentimeter.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInCentimeter.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "KwantWrdInEuro": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInEuro",
+    "KwantWrdInEuro.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInEuro.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "Literal": "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "Proef": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#Proef",
+    "ProefAPosterioriAndereLaag": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriAndereLaag",
+    "ProefAPosterioriAndereVerharding": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriAndereVerharding",
+    "ProefAPosterioriAndereVerhardingWalsbeton": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriAndereVerhardingWalsbeton",
+    "ProefAPosterioriBestrating": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriBestrating",
+    "ProefAPosterioriBestratingBetonstraatsteen": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriBestratingBetonstraatsteen",
+    "ProefAPosterioriBitumineuze": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriBitumineuze",
+    "ProefAPosterioriBitumineuzeCementbetonLaag": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriBitumineuzeCementbetonLaag",
+    "ProefAPosterioriCementbetonverharding": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriCementbetonverharding",
+    "ProefAPosterioriCementbetonverharding.gemetenDikte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#gemetenDikte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPosterioriCementbetonverharding.wateropslorping": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#wateropslorping",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPosterioriGeluidswerendeConstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriGeluidswerendeConstructie",
+    "ProefAPosterioriKantopsluiting": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriKantopsluiting",
+    "ProefAPosterioriKantopsluiting.druksterkte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#druksterkte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPosterioriKantopsluiting.vlakheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#vlakheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPosterioriKantopsluiting.wateropslorping": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#wateropslorping",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPosterioriMarkering": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriMarkering",
+    "ProefAPosterioriOnderbouw": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriOnderbouw",
+    "ProefAPosterioriVerkeersbord": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPosterioriVerkeersbord",
+    "ProefAPrioriAfschermendeConstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriAfschermendeConstructie",
+    "ProefAPrioriAfschermendeConstructie.testrapport": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#testrapport",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefAPrioriGeleideConstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriGeleideConstructie",
+    "ProefAPrioriGeluidswerendeConstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriGeluidswerendeConstructie",
+    "ProefAPrioriGetesteBeginconstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriGetesteBeginconstructie",
+    "ProefAPrioriMotorvangplank": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriMotorvangplank",
+    "ProefAPrioriObstakelbeveiliger": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriObstakelbeveiliger",
+    "ProefAPrioriOvergangsconstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefAPrioriOvergangsconstructie",
+    "ProefBathymetrie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefBathymetrie",
+    "ProefBathymetrie.bijlage": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#bijlage",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefBoomtoestand": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefBoomtoestand",
+    "ProefDraagvermogen": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefDraagvermogen",
+    "ProefDruksterkte": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefDruksterkte",
+    "ProefDruksterkte.druksterkte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#druksterkte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefGeluidswerendeConstructie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefGeluidswerendeConstructie",
+    "ProefGemetenDikte": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefGemetenDikte",
+    "ProefGemetenDikte.gemetenDikte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#gemetenDikte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+    },
+    "ProefLangsvlakheid": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefLangsvlakheid",
+    "ProefMarkering": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefMarkering",
+    "ProefMarkering.stroefheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#stroefheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefPctHolleruimte": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefPctHolleruimte",
+    "ProefPut": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefPut",
+    "ProefPut.waterdichtheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#waterdichtheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefSchokindex": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefSchokindex",
+    "ProefSleuf": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefSleuf",
+    "ProefSondering": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefSondering",
+    "ProefSondering.bijlage": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#bijlage",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefStroefheid": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefStroefheid",
+    "ProefStroefheid.stroefheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#stroefheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefTijdensAnderLaag": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensAnderLaag",
+    "ProefTijdensAndereVerharding": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensAndereVerharding",
+    "ProefTijdensAndereVerhardingWalsbeton": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensAndereVerhardingWalsbeton",
+    "ProefTijdensBestrating": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensBestrating",
+    "ProefTijdensBitumineuze": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensBitumineuze",
+    "ProefTijdensBitumineuzeDunneOverlaging": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensBitumineuzeDunneOverlaging",
+    "ProefTijdensCementbetonverharding": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensCementbetonverharding",
+    "ProefTijdensCementbetonverharding.consistentie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#consistentie",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefTijdensCementbetonverharding.luchtgehalte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#luchtgehalte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefTijdensKantopsluiting": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensKantopsluiting",
+    "ProefTijdensKantopsluiting.consistentie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#consistentie",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefTijdensKantopsluiting.luchtgehalte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#luchtgehalte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefTijdensMarkering": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensMarkering",
+    "ProefTijdensVerkeersbord": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefTijdensVerkeersbord",
+    "ProefVlakheid": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefVlakheid",
+    "ProefVlakheid.vlakheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#vlakheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefopBuis": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefopBuis",
+    "ProefopBuis.waterdichtheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#waterdichtheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "String": "http://www.w3.org/2001/XMLSchema#string",
+    "adviesmaatregelBoomgebrek": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#adviesmaatregelBoomgebrek",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "adviesmaatregelGroeiplaats": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#adviesmaatregelGroeiplaats",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "basiswaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#basiswaarde",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInEuro"
+    },
+    "bepalingGrondkarakteristieken": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#bepalingGrondkarakteristieken",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "bestandsnaam": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#bestandsnaam",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "conditiebeoordeling": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#conditiebeoordeling",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "conditiewaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#conditiewaarde",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "conflicten": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#conflicten",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "datumOprichtingObject": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#datumOprichtingObject",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "doorlatendheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#doorlatendheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "draagvermogen": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#draagvermogen",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "draineervermogen": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#draineervermogen",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "dwarsvlakheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#dwarsvlakheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "effectiefBindmiddelgehalte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#effectiefBindmiddelgehalte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "gaafheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#gaafheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "gebreken": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#gebreken",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "geluidsabsorptieReflectie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#geluidsabsorptieReflectie",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "geluidstestRapport": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#geluidstestRapport",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#DtcGeluidstestRapport"
+    },
+    "gemetenWaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#gemetenWaarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "hechtsterkte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#hechtsterkte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "id": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#id",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
+    },
+    "identificator": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#identificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "kerendVermogen": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#kerendVermogen",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "korrelverdeling": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#korrelverdeling",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "langsvlakheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#langsvlakheid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "locatieInSitulabo": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#locatieInSitulabo",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "luchtgeluidsisolatie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#luchtgeluidsisolatie",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "luminatiefactor": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#luminatiefactor",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "meerwaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#meerwaarde",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "mimeType": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#mimeType",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "mortelkwaliteit": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#mortelkwaliteit",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "naderOnderzoekTomograaf": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#naderOnderzoekTomograaf",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "norm": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#norm",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "notitie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#notitie",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "omschrijving": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#omschrijving",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DteTekstblok"
+    },
+    "onderhoudstoestand": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#onderhoudstoestand",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "pctHolleruimte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#pctHolleruimte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "performantieklasse": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#performantieklasse",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "performantieniveau": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#performantieniveau",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "plantwijzewaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#plantwijzewaarde",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "retroreflectie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#retroreflectie",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "rolgeluid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#rolgeluid",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "schokindex": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#schokindex",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "schokindexMvp": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#schokindexMvp",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "soortwaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#soortwaarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "staalvezelgehalte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#staalvezelgehalte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "stamomtrek": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#stamomtrek",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+    },
+    "standplaatswaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#standplaatswaarde",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "temperatuur": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#temperatuur",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCelsius"
+    },
+    "textuurdiepte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#textuurdiepte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "tijdstempelBoomtoestand": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#tijdstempelBoomtoestand",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "toegekendDoor": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendDoor",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "toegekendOp": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendOp",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "toestand": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#toestand",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "type": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "typeURI": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#typeURI",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "uri": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#uri",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "verankeringskracht": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#verankeringskracht",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "verderOnderzoekTrekproef": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#verderOnderzoekTrekproef",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "visueleBeoordeling": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#visueleBeoordeling",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "voertuigOverhelling": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#voertuigOverhelling",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "watergehalte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#watergehalte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "weerstandAfschilfering": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#weerstandAfschilfering",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "zichtbaarheidDagOfWegverlichting": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#zichtbaarheidDagOfWegverlichting",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "zichtbaarheidNacht": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#zichtbaarheidNacht",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "zichtbaarheidNachtNatWegdek": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#zichtbaarheidNachtNatWegdek",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "zichtbaarheidNachtRegenweer": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#zichtbaarheidNachtRegenweer",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    }
+  }
+}

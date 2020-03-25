@@ -1,0 +1,388 @@
+{
+  "@context": {
+    "AWVNaamObject": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#AWVNaamObject",
+    "AWVObject": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#AWVObject",
+    "Afsluiting": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Afsluiting",
+    "AnyURI": "http://www.w3.org/2001/XMLSchema#anyURI",
+    "BegroeidVoorkomen": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#BegroeidVoorkomen",
+    "BegroeidVoorkomen.LigtOp": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#ligtOp",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#Laag"
+    },
+    "BegroeidVoorkomen.breedte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#breedte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "BegroeidVoorkomen.lengte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#lengte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "BegroeidVoorkomen.oppervlakte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#oppervlakte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInVierkanteMeter"
+    },
+    "Berm": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Berm",
+    "Berm.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Oever"
+    },
+    "Betuining": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Betuining",
+    "Betuining.technischeFiche": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#technischeFiche",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "Bevestiging": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Bevestiging",
+    "Boolean": "http://www.w3.org/2001/XMLSchema#boolean",
+    "BovenrandOnderwatertalud": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#BovenrandOnderwatertalud",
+    "Date": "http://www.w3.org/2001/XMLSchema#date",
+    "DateTime": "http://www.w3.org/2001/XMLSchema#dateTime",
+    "Decimal": "http://www.w3.org/2001/XMLSchema#decimal",
+    "Dijk": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijk",
+    "Dijk.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Oever"
+    },
+    "Dijkkern": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijkkern",
+    "Dijkkern.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijk"
+    },
+    "Dijkkern.materiaal": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#materiaal",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Dijktalud": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijktalud",
+    "Dijktalud.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijk"
+    },
+    "Dijkteen": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijkteen",
+    "Dijkteen.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Dijk"
+    },
+    "Drasberm": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Drasberm",
+    "DtcAWVIdentificator": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator",
+    "DtcBetuiningBeton": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningBeton",
+    "DtcBetuiningBeton.tekst": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#tekst",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "DtcBetuiningGerecycleerd": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningGerecycleerd",
+    "DtcBetuiningGerecycleerd.tekst": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#tekst",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "DtcBetuiningHout": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningHout",
+    "DtcBetuiningHout.tekst": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#tekst",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "DtcDocument": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument",
+    "DtcVegetatieSoortnaam": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcVegetatieSoortnaam",
+    "DteTekstblok": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DteTekstblok",
+    "DteTekstblok.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "DtuPaalPlankDamwandMateriaal": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtuPaalPlankDamwandMateriaal",
+    "GeprefabriceerdBetonelement": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#GeprefabriceerdBetonelement",
+    "Gracht": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Gracht",
+    "HardhoutenMat": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HardhoutenMat",
+    "HoortBij": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#HoortBij",
+    "Kanaal": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Kanaal",
+    "KlAlgMimeType": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlDijkkant": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlDijkkernMateriaal": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlGrachtFunctie": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlHelling": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlLaagRol": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlOeverKant": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlOeverrolMateriaal": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlPaalDuurzaamheidsklasse": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlPaalOfbetuiningMateriaal": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlProfielelementType": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlTaludWaarde": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlVegetatieDrassigheid": "http://www.w3.org/2004/02/skos/core#Concept",
+    "KlWaterloopVhagCode": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Kruininsteek": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Kruininsteek",
+    "KwantWrdInCentimeter": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter",
+    "KwantWrdInCentimeter.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInCentimeter.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "KwantWrdInMeter": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter",
+    "KwantWrdInMeter.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInMeter.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "KwantWrdInMeterTAW": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeterTAW",
+    "KwantWrdInMeterTAW.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInMeterTAW.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "KwantWrdInVierkanteMeter": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInVierkanteMeter",
+    "KwantWrdInVierkanteMeter.standaardEenheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#standaardEenheid",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "KwantWrdInVierkanteMeter.waarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#waarde",
+      "@type": "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "Laag": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#Laag",
+    "Laag.LigtOp": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#ligtOp",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#Laag"
+    },
+    "Laag.breedte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#breedte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "Laag.lengte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#lengte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "Laag.oppervlakte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#oppervlakte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInVierkanteMeter"
+    },
+    "LigtOp": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#LigtOp",
+    "Literal": "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "Oever": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Oever",
+    "Oeverrol": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Oeverrol",
+    "Oeverrol.materiaal": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#materiaal",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "Oeverrol.technischeFiche": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#technischeFiche",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "Oeverzone": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Oeverzone",
+    "Oeverzone.HoortBij": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoortBij",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Oever"
+    },
+    "Palenrij": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Palenrij",
+    "Palenrij.lengte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#lengte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "Palenrij.materiaal": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#materiaal",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtuPaalPlankDamwandMateriaal"
+    },
+    "Plankenbetuining": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Plankenbetuining",
+    "Plankenbetuining.materiaal": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#materiaal",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtuPaalPlankDamwandMateriaal"
+    },
+    "Plasberm": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Plasberm",
+    "Proef": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#Proef",
+    "ProefBathymetrie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefBathymetrie",
+    "ProefBathymetrie.bijlage": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#bijlage",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "ProefSondering": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#ProefSondering",
+    "ProefSondering.bijlage": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/proefenmeting#bijlage",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcDocument"
+    },
+    "Profielelement": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Profielelement",
+    "String": "http://www.w3.org/2001/XMLSchema#string",
+    "Taludinsteek": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Taludinsteek",
+    "TeenOnderwatertalud": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#TeenOnderwatertalud",
+    "Vooroever": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Vooroever",
+    "Waterloop": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#Waterloop",
+    "WaterloopRelatie": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#WaterloopRelatie",
+    "Waterloopbodem": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Waterloopbodem",
+    "Waterlooptalud": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#Waterlooptalud",
+    "WiepenEnTakkenbos": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#WiepenEnTakkenbos",
+    "bestandsnaam": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#bestandsnaam",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "beton": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#beton",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningBeton"
+    },
+    "code": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#code",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "datumOprichtingObject": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#datumOprichtingObject",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "diameter": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#diameter",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+    },
+    "dijkKant": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#dijkKant",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "dikte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#dikte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+    },
+    "drassigheid": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#drassigheid",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "duurzaamheidsklasse": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#duurzaamheidsklasse",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "functie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#functie",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "gerecycleerdMateriaal": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#gerecycleerdMateriaal",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningGerecycleerd"
+    },
+    "heeftExoten": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#heeftExoten",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "heeftNoodoverlaat": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#heeftNoodoverlaat",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "heeftObstakels": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#heeftObstakels",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "helling": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#helling",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "hoogte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#hoogte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeterTAW"
+    },
+    "hout": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#hout",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcBetuiningHout"
+    },
+    "id": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#id",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
+    },
+    "identificator": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#identificator",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "isBiodegradeerbaar": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#isBiodegradeerbaar",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "isMachinaalBereikbaar": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#isMachinaalBereikbaar",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "kruinBreedte": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#kruinBreedte",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "laagRol": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#laagRol",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "mimeType": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#mimeType",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "naam": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#naam",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "noodoverlaatPeil": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#noodoverlaatPeil",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeterTAW"
+    },
+    "notitie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#notitie",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "oeverkant": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#oeverkant",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "omschrijving": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#omschrijving",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#DteTekstblok"
+    },
+    "soort": {
+      "@container": "@set",
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#soort",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#DtcVegetatieSoortnaam"
+    },
+    "soortnaamNederlands": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#soortnaamNederlands",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "soortnaamWetenschappelijk": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#soortnaamWetenschappelijk",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "taludwaarde": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#taludwaarde",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "teenpaalfrequentie": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/installatie#teenpaalfrequentie",
+      "@type": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+    },
+    "toegekendDoor": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendDoor",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "toegekendOp": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#toegekendOp",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "type": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/onderdeel#type",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    "typeURI": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#typeURI",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "uri": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/implementatieelement#uri",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "vhagCode": {
+      "@id": "https://wegenenverkeer.data.dev-vlaanderen.be/ns/abstracten#vhagCode",
+      "@type": "http://www.w3.org/2004/02/skos/core#Concept"
+    }
+  }
+}
