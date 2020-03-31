@@ -59,13 +59,6 @@
           "sh:minCount": "1",
           "sh:name": "^voorkeursnaam",
           "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst",
-          "sh:description": "Door de Aanbieder aangeboden Mobiliteitsdiensten.",
-          "sh:minCount": "1",
-          "sh:name": "aanbod",
-          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aanbod"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Aanbieder"
@@ -97,14 +90,21 @@
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid.gebruiker"
         },
         {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:class": "http://schema.org/OpeningHoursSpecification",
           "sh:description": "Uren waarop iets beschikbaar is.",
           "sh:maxCount": "1",
           "sh:name": "openingsuren",
+          "sh:path": "https://schema.org/hoursAvailable"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Uren waarop iets beschikbaar is.",
+          "sh:maxCount": "1",
+          "sh:name": "openingsurenString",
           "sh:path": "http://schema.org/openingHours"
         },
         {
-          "sh:class": "http://schema.org/OpeningHoursSpecification",
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
           "sh:description": "Periode waarin iets beschikbaar is.",
           "sh:maxCount": "1",
           "sh:name": "periode",
@@ -261,6 +261,13 @@
           "sh:minCount": "1",
           "sh:name": "UitgevoerdDoor",
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mobiliteitsdienst.uitgevoerdDoor"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Aanbieder",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "aanbieder",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aanbieder"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -477,6 +484,20 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Aandrijving van het vervoermiddel.",
+          "sh:maxCount": "1",
+          "sh:name": "aandrijving",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Resource.aandrijving"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst",
+          "sh:description": "Mobiliteitsdienst van de Resource.",
+          "sh:minCount": "1",
+          "sh:name": "dienst",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#resource.dienst"
+        },
+        {
           "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
           "sh:description": "Identificator van de Resource.",
           "sh:maxCount": "1",
@@ -504,6 +525,13 @@
           "sh:minCount": "1",
           "sh:name": "type",
           "sh:path": "http://purl.org/dc/terms/type"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Het type vervoermiddel van de Resource.",
+          "sh:maxCount": "1",
+          "sh:name": "vervoermiddel",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Resource.vervoermiddel"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reservatie.resource"
@@ -544,6 +572,14 @@
           "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route.aankomsttijdstip"
         },
         {
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "Afstand die met de Route wordt afgelegd.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "afstand",
+          "sh:path": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#afstand"
+        },
+        {
           "sh:class": "https://schema.org/MonetaryAmount",
           "sh:description": "Prijs van de Route.",
           "sh:maxCount": "1",
@@ -569,7 +605,6 @@
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Aard van de Route.",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
           "sh:name": "type",
           "sh:path": "http://purl.org/dc/terms/type"
         },
@@ -818,30 +853,7 @@
       "@id": "https://data.vlaanderen.be/shacl/mobiliteit-trips-en-aanbod-ap#UitvoerderShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://schema.org/ContactPoint",
-          "sh:description": "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren.",
-          "sh:name": "^contactinfo",
-          "sh:path": "http://schema.org/contactPoint"
-        },
-        {
-          "sh:class": "http://www.w3.org/ns/adms#Identifier",
-          "sh:description": "Identificator die de organisatie verkreeg bij registratie.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^registratie",
-          "sh:path": "http://www.w3.org/ns/regorg#registration"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Naam waarmee de organisatie bij voorkeur wordt aangeduid.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^voorkeursnaam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
-        }
-      ],
+      "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Uitvoerder"
     },
     {
