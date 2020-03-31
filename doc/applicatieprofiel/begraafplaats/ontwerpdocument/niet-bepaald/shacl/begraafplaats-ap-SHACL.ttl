@@ -6,18 +6,18 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/begraafplaats-ap> <https://data.vlaanderen.be/shacl/begraafplaats-apshapes> <https://data.vlaanderen.be/shacl/begraafplaats-ap#StrooiweideShape>,
+<https://data.vlaanderen.be/shacl/begraafplaats-ap> <https://data.vlaanderen.be/shacl/begraafplaats-apshapes> <https://data.vlaanderen.be/shacl/begraafplaats-ap#GrafShape>,
     <https://data.vlaanderen.be/shacl/begraafplaats-ap#ColumbariumShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#FysiekObjectShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#NauwkeurigsheidsklassenShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#GrafShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#TerreindeelShape>,
     <https://data.vlaanderen.be/shacl/begraafplaats-ap#ElementShape>,
     <https://data.vlaanderen.be/shacl/begraafplaats-ap#BegraafplaatsRijShape>,
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#FysiekObjectShape>,
     <https://data.vlaanderen.be/shacl/begraafplaats-ap#BegraafplaatsBlokShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#GraftypesShape>,
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#NauwkeurigsheidsklassenShape>,
     <https://data.vlaanderen.be/shacl/begraafplaats-ap#UrnenveldShape>,
-    <https://data.vlaanderen.be/shacl/begraafplaats-ap#DeelShape> .
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#DeelShape>,
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#StrooiweideShape>,
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#GraftypesShape>,
+    <https://data.vlaanderen.be/shacl/begraafplaats-ap#TerreindeelShape> .
 
 <https://data.vlaanderen.be/shacl/begraafplaats-ap#BegraafplaatsBlokShape> a sh:NodeShape;
   sh:closed false;
@@ -49,31 +49,17 @@
 <https://data.vlaanderen.be/shacl/begraafplaats-ap#FysiekObjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:integer;
-    sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
-    sh:maxCount 1;
-    sh:name "niveau";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
-  ], [
     sh:datatype xsd:dateTime;
     sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
     sh:maxCount 1;
     sh:name "einddatum";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
   ], [
-    sh:datatype xsd:dateTime;
-    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    sh:datatype xsd:integer;
+    sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
     sh:maxCount 1;
-    sh:name "begindatum";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
-    sh:class skos:Concept;
-    sh:description "De precisie waarmee het object opgemeten werd.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "nauwkeurigheid";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+    sh:name "niveau";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
   ], [
     sh:class <http://www.opengis.net/ont/geosparql#Geometry>;
     sh:description "De geometrie overeenkomstig met een bepaald object.";
@@ -86,12 +72,33 @@
     sh:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
     sh:name "relatie";
     sh:path dc:relation
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
+    sh:class skos:Concept;
+    sh:description "De precisie waarmee het object opgemeten werd.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "nauwkeurigheid";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    sh:maxCount 1;
+    sh:name "begindatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
 <https://data.vlaanderen.be/shacl/begraafplaats-ap#GrafShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:boolean;
+    sh:description "Duidt aan of het graf voorzien is van een ondergrondse of bovengrondse ruimte.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "grafkelderAanwezig";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafkelderAanwezig>
+  ], [
     sh:datatype xsd:integer;
     sh:description "Geeft het aantal bezette plaatsen van een graf weer.";
     sh:maxCount 1;
@@ -106,13 +113,6 @@
     sh:minCount 1;
     sh:name "graftype";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#graftype>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Duidt aan of het graf voorzien is van een ondergrondse of bovengrondse ruimte.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "grafkelderAanwezig";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein/begraafplaats#grafkelderAanwezig>
   ], [
     sh:datatype xsd:integer;
     sh:description "Geeft het aantal beschikbare plaatsen van een graf weer.";
@@ -146,16 +146,16 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:double;
-    sh:description "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.";
-    sh:maxCount 1;
-    sh:name "breedte";
-    sh:path schema:width
-  ], [
-    sh:datatype xsd:double;
     sh:description "De lineare grootte van het object in meter.";
     sh:maxCount 1;
     sh:name "lengte";
     sh:path <http://open.vocab.org/terms/length>
+  ], [
+    sh:datatype xsd:double;
+    sh:description "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.";
+    sh:maxCount 1;
+    sh:name "breedte";
+    sh:path schema:width
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel> .
 
