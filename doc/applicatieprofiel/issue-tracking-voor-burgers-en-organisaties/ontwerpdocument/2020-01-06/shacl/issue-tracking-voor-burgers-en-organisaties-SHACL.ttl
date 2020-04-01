@@ -9,16 +9,16 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties> <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisatiesshapes> <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#HoedanigheidShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingBodyShape>,
     <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#OrganisatieEenheidShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingstatusShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#AgentShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#ApplicatieShape>,
-    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#OrganisatieShape>,
     <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingBodyShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#AgentShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#ApplicatieShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingstatusShape>,
+    <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingShape>,
     <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#GeregistreerdPersoonShape> .
 
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#AgentShape> a sh:NodeShape;
@@ -91,6 +91,18 @@
 <https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class <https://data.vlaanderen.be/ns/melding#Applicatie>;
+    sh:description "De applicatie dat de Melding creëerde.";
+    sh:maxCount 1;
+    sh:name "meldingsapplicatie";
+    sh:path <https://data.vlaanderen.be/ns/melding#meldingsapplicatie>
+  ], [
+    sh:class <https://www.w3.org/ns/org#Organization>;
+    sh:description "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.";
+    sh:maxCount 1;
+    sh:name "meldingsorganisatie";
+    sh:path <https://data.vlaanderen.be/ns/melding#meldingsorganisatie>
+  ], [
     sh:class dc:Agent;
     sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen.";
     sh:maxCount 1;
@@ -98,10 +110,17 @@
     sh:name "behandelaar";
     sh:path <https://data.vlaanderen.be/ns/melding#behandelaar>
   ], [
-    sh:description "De relatie tussen de Melding en het Meldingstype dat gebruikt worden om de melding te categoriseren.";
+    sh:class dc:Agent;
+    sh:description "Agent die de Melding heeft aangemaakt en/of ingediend.";
+    sh:maxCount 1;
     sh:minCount 1;
-    sh:name "meldingstype";
-    sh:path oa:motivatedBy
+    sh:name "indiener";
+    sh:path <https://data.vlaanderen.be/ns/melding#indiener>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
+    sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody).";
+    sh:name "heeftBody";
+    sh:path oa:hasBody
   ], [
     sh:datatype xsd:string;
     sh:description "De titel van de Melding.";
@@ -109,13 +128,6 @@
     sh:minCount 1;
     sh:name "titel";
     sh:path dc:title
-  ], [
-    sh:class dc:Agent;
-    sh:description "Agent die de Melding heeft aangemaakt en/of ingediend.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "indiener";
-    sh:path <https://data.vlaanderen.be/ns/melding#indiener>
   ], [
     sh:class dc:Agent;
     sh:description "Agent die belang heeft bij de Melding of geïmpacteerd is door de behandeling ervan.";
@@ -128,33 +140,21 @@
     sh:name "webpagina";
     sh:path <https://data.vlaanderen.be/ns/melding#webpagina>
   ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
-    sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody).";
-    sh:name "heeftBody";
-    sh:path oa:hasBody
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
-    sh:description "De Status verbonden aan de Melding.";
-    sh:name "heeftStatus";
-    sh:path <https://data.vlaanderen.be/ns/melding#heeftStatus>
-  ], [
-    sh:class <https://www.w3.org/ns/org#Organization>;
-    sh:description "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.";
-    sh:maxCount 1;
-    sh:name "meldingsorganisatie";
-    sh:path <https://data.vlaanderen.be/ns/melding#meldingsorganisatie>
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#Applicatie>;
-    sh:description "De applicatie dat de Melding creëerde.";
-    sh:maxCount 1;
-    sh:name "meldingsapplicatie";
-    sh:path <https://data.vlaanderen.be/ns/melding#meldingsapplicatie>
-  ], [
     sh:datatype xsd:string;
     sh:description "Een samenvatting van de Melding.";
     sh:maxCount 1;
     sh:name "samenvatting";
     sh:path as:summary
+  ], [
+    sh:description "De relatie tussen de Melding en het Meldingstype dat gebruikt worden om de melding te categoriseren.";
+    sh:minCount 1;
+    sh:name "meldingstype";
+    sh:path oa:motivatedBy
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
+    sh:description "De Status verbonden aan de Melding.";
+    sh:name "heeftStatus";
+    sh:path <https://data.vlaanderen.be/ns/melding#heeftStatus>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Melding> .
 
@@ -167,6 +167,13 @@
     sh:minCount 1;
     sh:name "statuswijzigingDoor";
     sh:path <https://data.vlaanderen.be/ns/melding#statuswijzigingDoor>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "De datum van een Status.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "statusdatum";
+    sh:path <https://data.vlaanderen.be/ns/melding#statusdatum>
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/MeldingStatuswaarde>;
     sh:class skos:Concept;
@@ -182,13 +189,6 @@
     sh:minCount 1;
     sh:name "beschrijving";
     sh:path dc:description
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "De datum van een Status.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "statusdatum";
-    sh:path <https://data.vlaanderen.be/ns/melding#statusdatum>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Meldingstatus> .
 
