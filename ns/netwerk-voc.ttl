@@ -23,6 +23,13 @@ skos:Concept a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:subClassOf <https://data.vlaanderen.be/ns/netwerk#Linkreferentie> .
 
+<https://data.vlaanderen.be/ns/netwerk#Linksequentie.link> a owl:ObjectProperty;
+  rdfs:label "link"@nl;
+  rdfs:comment "Link die deel uitmaakt van de Linksequentie"@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Linksequentie>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
+  rdfs:range <https://data.vlaanderen.be/ns/netwerk#GerichteLink> .
+
 <https://data.vlaanderen.be/ns/netwerk#Netwerk.geografischeNaam> a owl:DatatypeProperty;
   rdfs:label "geografischeNaam"@nl;
   rdfs:comment "Naam van het Netwerk."@nl;
@@ -30,17 +37,19 @@ skos:Concept a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:range rdf:langString .
 
-<https://data.vlaanderen.be/ns/netwerk#Netwerkeigenschap.identificator> a rdf:Property;
+<https://data.vlaanderen.be/ns/netwerk#Netwerkeigenschap.identificator> a owl:ObjectProperty;
   rdfs:label "identificator"@nl;
   rdfs:comment "TODO"@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Netwerkeigenschap>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
+  rdfs:range <http://www.w3.org/ns/adms#Identifier> .
 
-<https://data.vlaanderen.be/ns/netwerk#Netwerkelement.identificator> a rdf:Property;
+<https://data.vlaanderen.be/ns/netwerk#Netwerkelement.identificator> a owl:ObjectProperty;
   rdfs:label "identificator"@nl;
-  rdfs:comment "TODO"@nl;
+  rdfs:comment "Identificator van het Netwerkelement."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Netwerkelement>;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk> .
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
+  rdfs:range <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/ns/netwerk#Puntreferentie> a owl:Class;
   rdfs:label "Puntreferentie"@nl;
@@ -64,7 +73,7 @@ skos:Concept a rdfs:Class;
 
 <https://data.vlaanderen.be/ns/netwerk#geometrie> a owl:ObjectProperty;
   rdfs:label "geometrie"@nl;
-  rdfs:comment "TODO"@nl;
+  rdfs:comment "Beschrijving van de geometrie van het netwerkgebied"@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Netwerkgebied>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:range <http://www.opengis.net/ont/sf#Polygon> .
@@ -76,15 +85,12 @@ skos:Concept a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:range <http://www.opengis.net/ont/sf#LineString> .
 
-<https://data.vlaanderen.be/ns/netwerk#link> a owl:ObjectProperty;
+<https://data.vlaanderen.be/ns/netwerk#gerichteLink;link> a owl:ObjectProperty;
   rdfs:label "link"@nl;
-  rdfs:comment "TODO"@nl,
-    "Verwijzing naar de Link."@nl;
-  rdfs:domain <https://data.vlaanderen.be/ns/netwerk#GerichteLink>,
-    <https://data.vlaanderen.be/ns/netwerk#Linksequentie>;
+  rdfs:comment "Verwijzing naar de Link."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/netwerk#GerichteLink>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
-  rdfs:range <https://data.vlaanderen.be/ns/netwerk#GerichteLink>,
-    <https://data.vlaanderen.be/ns/netwerk#Link> .
+  rdfs:range <https://data.vlaanderen.be/ns/netwerk#Link> .
 
 <https://data.vlaanderen.be/ns/netwerk#linkset.link> a owl:ObjectProperty;
   rdfs:label "link"@nl;
@@ -126,6 +132,16 @@ skos:Concept a rdfs:Class;
   rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Connectie>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:range <https://data.vlaanderen.be/ns/netwerk#Netwerkelement> .
+
+<https://data.vlaanderen.be/ns/netwerk#verwijstNaar> a owl:ObjectProperty;
+  rdfs:label "verwijst naar"@nl;
+  rdfs:comment "TODO"@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/netwerk#Netwerkreferentie>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
+  rdfs:range <https://data.vlaanderen.be/ns/netwerk#Netwerkelement> .
+
+dc:type a rdf:Property;
+  rdfs:label "type"@nl .
 
 <https://data.vlaanderen.be/ns/netwerk#Connectie> a owl:Class;
   rdfs:label "Connectie"@nl;
@@ -175,11 +191,6 @@ skos:Concept a rdfs:Class;
   rdfs:comment "TODO"@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk> .
 
-<https://data.vlaanderen.be/ns/netwerk#Netwerkreferentie> a owl:Class;
-  rdfs:label "Netwerkreferentie"@nl;
-  rdfs:comment "TODO"@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk> .
-
 <https://data.vlaanderen.be/ns/netwerk#GeneriekeLink> a owl:Class;
   rdfs:label "GeneriekeLink"@nl;
   rdfs:comment "Lineair Netwerkelement."@nl;
@@ -196,6 +207,11 @@ skos:Concept a rdfs:Class;
   rdfs:comment "Significante positie in het Netwerk die steeds samenvalt met het begin of het einde van een Link."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk>;
   rdfs:subClassOf <https://data.vlaanderen.be/ns/netwerk#Netwerkelement> .
+
+<https://data.vlaanderen.be/ns/netwerk#Netwerkreferentie> a owl:Class;
+  rdfs:label "Netwerkreferentie"@nl;
+  rdfs:comment "TODO"@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/netwerk> .
 
 <https://data.vlaanderen.be/ns/netwerk#Link> a owl:Class;
   rdfs:label "Link"@nl;
@@ -214,39 +230,12 @@ skos:Concept a rdfs:Class;
   dc:contributor [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.delijn.be/nl/overdelijn/organisatie/organisatie/>;
-      foaf:name "De Lijn"
+      foaf:homepage <https://www.autodelen.net/>;
+      foaf:name "Autodelen.net"
     ];
-    foaf:firstName "Sien";
-    foaf:lastName "Maes";
-    foaf:mbox <mailto:Sien.Maes@delijn.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
-      foaf:name "Departement Mobiliteit en Openbare Werken"
-    ];
-    foaf:firstName "Erwin";
-    foaf:lastName "Hermans";
-    foaf:mbox <mailto:erwin.hermans@mow.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Marc";
-    foaf:lastName "Deleu";
-    foaf:mbox <mailto:marc.deleu@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
-      foaf:name "Departement Mobiliteit en Openbare Werken"
-    ];
-    foaf:firstName "Peter";
-    foaf:lastName "Peeters";
-    foaf:mbox <mailto:peter.peeters@mow.vlaanderen.be>
+    foaf:firstName "Ine";
+    foaf:lastName "Lippens";
+    foaf:mbox <mailto:ine@autodelen.net>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -259,21 +248,39 @@ skos:Concept a rdfs:Class;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://mobilit.belgium.be/nl>;
-      foaf:name "Federale Overheidsdienst Mobiliteit en Vervoer"
+      foaf:homepage <http://www.agentschapmdk.be/>;
+      foaf:name "Agentschap voor Maritieme Dienstverlening en Kust"
     ];
-    foaf:firstName "Hans";
-    foaf:lastName "Buschop";
-    foaf:mbox <mailto:hans.buschop@mobilit.fgov.be>
+    foaf:firstName "Annelies";
+    foaf:lastName "Van den Bruele";
+    foaf:mbox <mailto:annelies.vandenbruele@mow.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.voiscooters.com/>;
-      foaf:name "Voi"
+      foaf:homepage <https://ertico.com/>;
+      foaf:name "Ertico - ITS Europe"
     ];
-    foaf:firstName "Welmoed";
-    foaf:lastName "Neijmeijer";
-    foaf:mbox <mailto:welmoed.neijmeijer@voiapp.io>
+    foaf:firstName "Erwin";
+    foaf:lastName "Vermassen";
+    foaf:mbox <mailto:e.vermassen@mail.ertico.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://mobilit.belgium.be/nl>;
+      foaf:name "Federale Overheidsdienst Mobiliteit en Vervoer"
+    ];
+    foaf:firstName "David";
+    foaf:lastName "Schoenmaekers";
+    foaf:mbox <mailto:david.schoenmaekers@mobilit.fgov.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.delijn.be/nl/overdelijn/organisatie/organisatie/>;
+      foaf:name "De Lijn"
+    ];
+    foaf:firstName "Sien";
+    foaf:lastName "Maes";
+    foaf:mbox <mailto:Sien.Maes@delijn.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -283,6 +290,24 @@ skos:Concept a rdfs:Class;
     foaf:firstName "Luk";
     foaf:lastName "Mutsaerts";
     foaf:mbox <mailto:luk.mutsaerts@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://mobilit.belgium.be/nl>;
+      foaf:name "Federale Overheidsdienst Mobiliteit en Vervoer"
+    ];
+    foaf:firstName "Hans";
+    foaf:lastName "Buschop";
+    foaf:mbox <mailto:hans.buschop@mobilit.fgov.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
+      foaf:name "Departement Mobiliteit en Openbare Werken"
+    ];
+    foaf:firstName "Jeroen";
+    foaf:lastName "Nyckees";
+    foaf:mbox <mailto:https://mow-contact.be/>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -304,21 +329,48 @@ skos:Concept a rdfs:Class;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <http://www.agentschapmdk.be/>;
-      foaf:name "Agentschap voor Maritieme Dienstverlening en Kust"
+      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
+      foaf:name "Departement Mobiliteit en Openbare Werken"
     ];
-    foaf:firstName "Annelies";
-    foaf:lastName "Van den Bruele";
-    foaf:mbox <mailto:annelies.vandenbruele@mow.vlaanderen.be>
+    foaf:firstName "Peter";
+    foaf:lastName "Peeters";
+    foaf:mbox <mailto:peter.peeters@mow.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://wegenenverkeer.be/>;
-      foaf:name "Agentschap Wegen en Verkeer"
+      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
+      foaf:name "Departement Mobiliteit en Openbare Werken"
     ];
-    foaf:firstName "Yanick";
-    foaf:lastName "Van Hoeymissen";
-    foaf:mbox <mailto:yanick.vanhoeymissen@mow.vlaanderen.be>
+    foaf:firstName "Erwin";
+    foaf:lastName "Hermans";
+    foaf:mbox <mailto:erwin.hermans@mow.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.voiscooters.com/>;
+      foaf:name "Voi"
+    ];
+    foaf:firstName "Welmoed";
+    foaf:lastName "Neijmeijer";
+    foaf:mbox <mailto:welmoed.neijmeijer@voiapp.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.taxistop.be>;
+      foaf:name "Taxistop"
+    ];
+    foaf:firstName "Edward";
+    foaf:lastName "Demoor";
+    foaf:mbox <mailto:edm@taxistop.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Marc";
+    foaf:lastName "Deleu";
+    foaf:mbox <mailto:marc.deleu@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -331,39 +383,12 @@ skos:Concept a rdfs:Class;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://departement-mow.vlaanderen.be/nl>;
-      foaf:name "Departement Mobiliteit en Openbare Werken"
-    ];
-    foaf:firstName "Jeroen";
-    foaf:lastName "Nyckees";
-    foaf:mbox <mailto:https://mow-contact.be/>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
       foaf:homepage <http://idlab.technology/>;
       foaf:name "imec - UGent"
     ];
     foaf:firstName "Pieter";
     foaf:lastName "Colpaert";
     foaf:mbox <mailto:pieter.colpaert@imec.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://ertico.com/>;
-      foaf:name "Ertico - ITS Europe"
-    ];
-    foaf:firstName "Erwin";
-    foaf:lastName "Vermassen";
-    foaf:mbox <mailto:e.vermassen@mail.ertico.com>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.autodelen.net/>;
-      foaf:name "Autodelen.net"
-    ];
-    foaf:firstName "Ine";
-    foaf:lastName "Lippens";
-    foaf:mbox <mailto:ine@autodelen.net>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -385,12 +410,12 @@ skos:Concept a rdfs:Class;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://mobilit.belgium.be/nl>;
-      foaf:name "Federale Overheidsdienst Mobiliteit en Vervoer"
+      foaf:homepage <https://wegenenverkeer.be/>;
+      foaf:name "Agentschap Wegen en Verkeer"
     ];
-    foaf:firstName "David";
-    foaf:lastName "Schoenmaekers";
-    foaf:mbox <mailto:david.schoenmaekers@mobilit.fgov.be>
+    foaf:firstName "Yanick";
+    foaf:lastName "Van Hoeymissen";
+    foaf:mbox <mailto:yanick.vanhoeymissen@mow.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -400,25 +425,17 @@ skos:Concept a rdfs:Class;
     foaf:firstName "Paul";
     foaf:lastName "Theyskens";
     foaf:mbox <mailto:Paul.Theyskens.ext@delijn.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.taxistop.be>;
-      foaf:name "Taxistop"
-    ];
-    foaf:firstName "Edward";
-    foaf:lastName "Demoor";
-    foaf:mbox <mailto:edm@taxistop.be>
   ];
   dc:issued "TODO";
-  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
-    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
+  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso skos:Concept;
+  rdfs:seeAlso dc:type,
+    skos:Concept;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
@@ -434,9 +451,9 @@ skos:Concept a rdfs:Class;
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Bert";
-    foaf:lastName "Van Nuffelen";
-    foaf:mbox <mailto:bert.vannuffelen@vlaanderen.be>
+    foaf:firstName "Martin";
+    foaf:lastName "Vanbrabant";
+    foaf:mbox <mailto:martin.vanbrabant@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -449,12 +466,21 @@ skos:Concept a rdfs:Class;
   ], [
     a foaf:Person;
     schema:affiliation [
+      foaf:homepage <https://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Dimitri";
+    foaf:lastName "Schepers";
+    foaf:mbox <mailto:dimitri.schepers@pwc.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Martin";
-    foaf:lastName "Vanbrabant";
-    foaf:mbox <mailto:martin.vanbrabant@vlaanderen.be>
+    foaf:firstName "Bert";
+    foaf:lastName "Van Nuffelen";
+    foaf:mbox <mailto:bert.vannuffelen@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -473,15 +499,6 @@ skos:Concept a rdfs:Class;
     foaf:firstName "Geert";
     foaf:lastName "Thijs";
     foaf:mbox <mailto:geert.thijs@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Dimitri";
-    foaf:lastName "Schepers";
-    foaf:mbox <mailto:dimitri.schepers@pwc.com>
   ];
   foaf:maker [
     a foaf:Person;
