@@ -71,7 +71,7 @@
         "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid"
       ],
       "usage": {
-        "nl": "Dit kunnen business centra, KMO units, aaneengesloten bebouwing, meerdere kadastrale of aktepercelen, ... omvatten."
+        "nl": "Dit kunnen business centra, KMO units, aaneengesloten bebouwing, meerdere kadastrale of aktepercelen, ... omvatten.\r\nEen bedrijventerreinperceel is meestal de aggegratie van meerdere aktepercelen op basis van de kennis van de bedrijventerreinbeheerder, meestal op basis van eigenaarsschap."
       }
     },
     {
@@ -113,18 +113,6 @@
         "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid"
       ],
       "usage": {}
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#SchorsingInfo",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Geeft informatie over een mogelijke schorsing van het plan."
-      },
-      "name": {
-        "nl": "SchorsingInfo"
-      },
-      "parents": [],
-      "usage": {}
     }
   ],
   "properties": [
@@ -147,6 +135,26 @@
       "usage": {
         "nl": "Mogelijke waarden voor dit attribuut zijn: Landbouw, bos, economie, gemeenschapsvoorziening, infrastructuur, water, wonen, braakliggend, buffer, niet gekend en gemengd."
       }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#aanbieder",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De aanbieder van dit perceel (TODO)"
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerreinperceel"
+      ],
+      "generalization": [
+        "https://data.vlaanderen.be/ns/perceel#agentMetVerantwoordelijkheid"
+      ],
+      "name": {
+        "nl": "aanbieder"
+      },
+      "range": [
+        "http://www.w3.org/ns/regorg#RegisteredOrganization"
+      ],
+      "usage": {}
     },
     {
       "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#aanspreekpunt",
@@ -265,20 +273,22 @@
       "usage": {}
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#datumSchorsing",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#digitalebeheerder",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "Geeft de datum weer waarop het plan werd geschorst."
+        "nl": "De beheerder van de informatie over deze beheerde bedrijvenzone"
       },
       "domain": [
-        "https://data.vlaanderen.be/ns/bedrijventerrein#SchorsingInfo"
+        "https://data.vlaanderen.be/ns/bedrijventerrein#BeheerdeBedrijvenzone"
       ],
-      "generalization": [],
+      "generalization": [
+        "https://data.vlaanderen.be/ns/perceel#agentMetVerantwoordelijkheid"
+      ],
       "name": {
-        "nl": "datum schorsing"
+        "nl": "digitale beheerder"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#dateTime"
+        "http://www.w3.org/ns/regorg#RegisteredOrganization"
       ],
       "usage": {}
     },
@@ -303,20 +313,20 @@
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#geschorst",
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#homepageAanbieding",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
-        "nl": "Geeft aan of het plan al dan niet geschorst is."
+        "nl": "de homepage waarop dit bedrijventerreinperceel wordt aangeboden door de aanbieder"
       },
       "domain": [
-        "https://data.vlaanderen.be/ns/bedrijventerrein#SchorsingInfo"
+        "https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerreinperceel"
       ],
       "generalization": [],
       "name": {
-        "nl": "geschorst"
+        "nl": "homepage aanbieding"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#boolean"
+        "http://www.w3.org/2001/XMLSchema#string"
       ],
       "usage": {}
     },
@@ -339,22 +349,66 @@
       "usage": {}
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#linkSchorsing",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#juridischeHandhaver",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "Link naar het arrest van de schorsing"
+        "nl": "de juridische handhaver is de verantwoordelijke voor alle juridische beslissingen van deze zone. Dit omvat oa. de controle op de verkoopsvoorwaarden bij doorverkoop. "
       },
       "domain": [
-        "https://data.vlaanderen.be/ns/bedrijventerrein#SchorsingInfo"
+        "https://data.vlaanderen.be/ns/bedrijventerrein#BeheerdeBedrijvenzone"
+      ],
+      "generalization": [
+        "https://data.vlaanderen.be/ns/perceel#agentMetVerantwoordelijkheid"
+      ],
+      "name": {
+        "nl": "juridische handhaver"
+      },
+      "range": [
+        "http://www.w3.org/ns/regorg#RegisteredOrganization"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#middelenOpenbaarDomein",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De middelen die voorzien zijn voor het openbare domein dat is gelegen in de beheerde bedrijvenzone."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/bedrijventerrein#BeheerdeBedrijvenzone"
       ],
       "generalization": [],
       "name": {
-        "nl": "link schorsing"
+        "nl": "voorziene middelen"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
+        "http://www.w3.org/2004/02/skos/core#Concept"
       ],
-      "usage": {}
+      "usage": {
+        "nl": "Op dit moment is het voldoende om te weten of er al dan niet middelen voorzien zijn."
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#ontwikkelaar",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "de organisatie die verantwoordelijk is voor de ontwikkeling van de zone."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/bedrijventerrein#OntwikkelbareBedrijvenzone"
+      ],
+      "generalization": [
+        "https://data.vlaanderen.be/ns/perceel#agentMetVerantwoordelijkheid"
+      ],
+      "name": {
+        "nl": "ontwikkelaar"
+      },
+      "range": [
+        "http://www.w3.org/ns/regorg#RegisteredOrganization"
+      ],
+      "usage": {
+        "nl": "De verantwoordelijkheid van deze agent is ontwikkeling van het bedrijventerrein."
+      }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#percentage",
@@ -371,24 +425,6 @@
       },
       "range": [
         "http://www.w3.org/2001/XMLSchema#integer"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/bedrijventerrein#schorsingOpmerking",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "Opmerkingen in het kader van de schorsing."
-      },
-      "domain": [
-        "https://data.vlaanderen.be/ns/bedrijventerrein#SchorsingInfo"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "schorsing opmerking"
-      },
-      "range": [
-        "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
       ],
       "usage": {}
     },
@@ -532,14 +568,96 @@
       "@id": "http://www.w3.org/2004/02/skos/core#Concept",
       "@type": "rdfs:Class",
       "name": {}
+    },
+    {
+      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@type": "rdfs:Class",
+      "name": {}
     }
   ],
   "externalproperties": [
     {
-      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@id": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type",
       "@type": "rdf:Property",
       "name": {
-        "nl": "is deel van"
+        "nl": "type"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "type"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "type"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "type"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geldigheidsperiode"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geldigheidsperiode"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geldigheidsperiode"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geldigheidsperiode",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geldigheidsperiode"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geometrie",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geometrie"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geometrie",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geometrie"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geometrie",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geometrie"
+      }
+    },
+    {
+      "@id": "http://data.vlaanderen.be/ns/perceel#geometrie",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "geometrie"
       }
     },
     {
@@ -554,6 +672,20 @@
       "@type": "rdf:Property",
       "name": {
         "nl": "is deel van"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is deel van"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/relation",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is gerelateerd aan"
       }
     },
     {
@@ -592,10 +724,66 @@
       }
     },
     {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "identificator"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "identificator"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "identificator"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "identificator"
+      }
+    },
+    {
       "@id": "http://xmlns.com/foaf/0.1/homepage",
       "@type": "rdf:Property",
       "name": {
         "nl": "homepage"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/perceel#oppervlakte",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "oppervlakte"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/perceel#oppervlakte",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "oppervlakte"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/perceel#oppervlakte",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "oppervlakte"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/perceel#oppervlakte",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "oppervlakte"
       }
     }
   ],
