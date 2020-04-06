@@ -1,0 +1,577 @@
+{
+  "@context": {
+    "Aanbieder": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Aanbieder",
+    "Aandrijftype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "AangebodenBinnen": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aangebodenBinnen",
+      "@type": "@id"
+    },
+    "Afstand": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Afstand",
+    "BerekendMet": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#route.berekendMet",
+      "@type": "@id"
+    },
+    "BeschikbaarOp": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mobiliteitsdienst.beschikbaarOp",
+      "@type": "@id"
+    },
+    "Beschikbaarheid": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid",
+    "Beschikbaarheid.periode": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid.periode",
+      "@type": "@id"
+    },
+    "BestaatUit": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#route.bestaatUit",
+      "@type": "@id"
+    },
+    "Boeking": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reservatie.boeking",
+      "@type": "@id"
+    },
+    "Boeking.resource": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Boeking.resource",
+      "@type": "@id"
+    },
+    "Boeking.status": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Boeking.status",
+      "@type": "@id"
+    },
+    "Boeking.vervoersbewijs": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#boeking.vervoersbewijs",
+      "@type": "@id"
+    },
+    "Boekingstatus": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Connectietype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "ContactInfo": "http://schema.org/ContactPoint",
+    "Dienstregeling": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Dienstregeling",
+    "Dienstverleningtype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "FormeelKader": "http://purl.org/vocab/cpsv#FormalFramework",
+    "Gebruikerstype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Geldbedrag": "https://schema.org/MonetaryAmount",
+    "GeografischeNaam": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+    "Geometrie": "http://www.w3.org/ns/locn#Geometry",
+    "GerichteLink": "http://fixme.com#GerichteLink",
+    "GerichteLink.link": {
+      "@id": "http://fixme.com#link",
+      "@type": "@id"
+    },
+    "GetypeerdeString": "http://www.w3.org/2000/01/rdf-schema#Literal",
+    "Identificator": "http://www.w3.org/ns/adms#Identifier",
+    "IntegreertInfoOver": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routeplanner.integreertInfoOver",
+      "@type": "@id"
+    },
+    "IsDeelVan": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "@id"
+    },
+    "IsMedereizigerVan": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#isMedereizigerVan",
+      "@type": "@id"
+    },
+    "Kenmerk": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Kenmerk",
+    "Licentie": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Licentie",
+    "Licentie.periode": {
+      "@id": "http://purl.org/dc/terms/date",
+      "@type": "@id"
+    },
+    "LijnString": "http://www.opengis.net/ont/sf#LineString",
+    "Link": "http://fixme.com#Link",
+    "Locatie": "http://www.w3.org/ns/prov#Location",
+    "Mobiliteitsdienst": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst",
+    "Mobiliteitsdienst.aandrijving": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst.aandrijving",
+      "@type": "@id"
+    },
+    "Mobiliteitsdienst.beschikbaarheid": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst.beschikbaarheid",
+      "@type": "@id"
+    },
+    "Mobiliteitsdienst.resource": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mobiliteitsdienst.resource",
+      "@type": "@id"
+    },
+    "Mobiliteitsdienst.toegankelijkheid": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst.toegankelijkheid",
+      "@type": "@id"
+    },
+    "Mobiliteitsdienst.vervoermiddel": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst.vervoermiddel",
+      "@type": "@id"
+    },
+    "Omvat": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mobiliteitsdienst.omvat",
+      "@type": "@id"
+    },
+    "Onderneemt": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reiziger.onderneemt",
+      "@type": "@id"
+    },
+    "OpeningsurenSpecificatie": "http://schema.org/OpeningHoursSpecification",
+    "Overstap": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#overstap",
+      "@type": "@id"
+    },
+    "Overstap.GerealiseerdOp": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#overstap.gerealiseerdOp",
+      "@type": "@id"
+    },
+    "Overstap.Routeknoop": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Overstap.routeknoop.target",
+      "@type": "@id"
+    },
+    "Overstap.aandrijving": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Overstap.aandrijving",
+      "@type": "@id"
+    },
+    "Overstap.vervoermiddel": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Overstap.vervoermiddel",
+      "@type": "@id"
+    },
+    "Periode": "http://data.europa.eu/m8g/PeriodOfTime",
+    "Plaats": "http://purl.org/dc/terms/Location",
+    "Polygoon": "http://www.opengis.net/ont/sf#Polygon",
+    "Prijsplan": "https://schema.org/PriceSpecification",
+    "Pseudoniem": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Pseudoniem",
+    "PubliekeOrganisatie": "http://data.europa.eu/m8g/PublicOrganisation",
+    "PubliekeOrganisatie.^identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "@id"
+    },
+    "Punt": "http://www.opengis.net/ont/sf#Point",
+    "Reis": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reis",
+    "Reis.aankomsttijdstip": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reis.aankomsttijdstip",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Reis.reisweg": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reis.reisweg",
+      "@type": "@id"
+    },
+    "Reis.vertrektijdstip": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reis.vertrektijdstip",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Reis.vervoersbewijs": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reis.vervoersbewijs",
+      "@type": "@id"
+    },
+    "Reiziger": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reiziger",
+    "Reiziger.vervoersbewijs": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reiziger.vervoersbewijs",
+      "@type": "@id"
+    },
+    "Reizigerskenmerk": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Reizigersvoorkeur": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Reservatie": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reservatie",
+    "Reservatie.periode": {
+      "@id": "http://purl.org/dc/terms/date",
+      "@type": "@id"
+    },
+    "Reservatie.reisweg": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reservatie.reisweg",
+      "@type": "@id"
+    },
+    "Resource": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Reservatie.resource",
+      "@type": "@id"
+    },
+    "Resource.status": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Resource.status",
+      "@type": "@id"
+    },
+    "Resourcestatus": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Resourcetype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Route": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route",
+    "Route.aankomsttijdstip": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route.aankomsttijdstip",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Route.vertrektijdstip": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route.vertrektijdstip",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Routebeschrijving": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routebeschrijving",
+    "Routeknoop": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routeknoop",
+    "Routeknoop.GerealiseerdDoor": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routeknoop.gerealiseerdDoor",
+      "@type": "@id"
+    },
+    "Routeknoop.GerealiseerdMet": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routeknoop.gerealiseerdMet",
+      "@type": "@id"
+    },
+    "Routeknoop.GerealiseerdOp": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routeknoop.gerealiseerdOp",
+      "@type": "@id"
+    },
+    "Routeknoop.vervoersbewijs": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routeknoop.vervoersbewijs",
+      "@type": "@id"
+    },
+    "Routeplanner": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routeplanner",
+    "Routesegment": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routesegment",
+    "Routesegment.GerealiseerdDoor": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routesegment.gerealiseerdDoor",
+      "@type": "@id"
+    },
+    "Routesegment.GerealiseerdMet": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routesegment.gerealiseerdMet",
+      "@type": "@id"
+    },
+    "Routesegment.aandrijving": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routesegment.aandrijving",
+      "@type": "@id"
+    },
+    "Routesegment.link": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routesegment.link",
+      "@type": "@id"
+    },
+    "Routesegment.vervoermiddel": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routesegment.vervoermiddel",
+      "@type": "@id"
+    },
+    "Routesegment.vervoersbewijs": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routesegment.vervoersbewijs",
+      "@type": "@id"
+    },
+    "Routetype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "TaalString": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+    "Teken": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Toegankelijkheid": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Toegankelijkheid",
+    "Toegankelijkheidsniveau": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Toegankelijkheidsonderdeel": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Toegankelijkheidstype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Transportconnectie": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Transportconnectie",
+    "Transportconnectie.^identificator": {
+      "@id": "http://fixme.com#Netwerkelement.identificator",
+      "@type": "@id"
+    },
+    "Transportgebied": "http://fixme.com#Transportgebied",
+    "Transportgebied.^identificator": {
+      "@id": "http://fixme.com#Netwerkelement.identificator",
+      "@type": "@id"
+    },
+    "Transportgebiedtype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Transportknoop": "http://fixme.com#Transportknoop",
+    "Transportknoop.^identificator": {
+      "@id": "http://fixme.com#Netwerkelement.identificator",
+      "@type": "@id"
+    },
+    "Transportknooptype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Transportnetwerk": "http://fixme.com#Transportnetwerk",
+    "Transportobject": "http://fixme.com#Transportobject",
+    "Transportobject.beschikbaarheid": {
+      "@id": "http://fixme.com#beschikbaarheid",
+      "@type": "@id"
+    },
+    "Transportobject.toegankelijkheid": {
+      "@id": "http://fixme.com#Transportobject.toegankelijkheid",
+      "@type": "@id"
+    },
+    "Transporttype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "UitgevoerdDoor": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mobiliteitsdienst.uitgevoerdDoor",
+      "@type": "@id"
+    },
+    "Uitvoerder": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Uitvoerder",
+    "VerkregenBinnen": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#licentie.verkregenBinnen",
+      "@type": "@id"
+    },
+    "Vervoermiddel": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Vervoersbewijs": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs",
+    "Vervoersbewijs.periode": {
+      "@id": "http://purl.org/dc/terms/date",
+      "@type": "@id"
+    },
+    "Vervoersbewijs.reisweg": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs.reisweg",
+      "@type": "@id"
+    },
+    "Vervoersbewijstype": "http://www.w3.org/2004/02/skos/core#Concept",
+    "Voorkeur": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Voorkeur",
+    "Waarde": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Waarde",
+    "^BestaatUit": {
+      "@container": "@set",
+      "@id": "http://fixme.com#Netwerkelement.bestaatUit",
+      "@type": "@id"
+    },
+    "^Verbindt": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#verbindt",
+      "@type": "@id"
+    },
+    "^aankomstknoop": {
+      "@id": "http://fixme.com#GeneriekeLink.einde",
+      "@type": "@id"
+    },
+    "^contactinfo": {
+      "@id": "http://schema.org/contactPoint",
+      "@type": "@id"
+    },
+    "^geometrie": {
+      "@id": "http://fixme.com#Netwerkgebied.geometrie",
+      "@type": "@id"
+    },
+    "^registratie": {
+      "@id": "http://www.w3.org/ns/regorg#registration",
+      "@type": "@id"
+    },
+    "^vertrekknoop": {
+      "@id": "http://fixme.com#GeneriekeLink.begin",
+      "@type": "@id"
+    },
+    "^voorkeursnaam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "aanbod": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aanbod",
+      "@type": "@id"
+    },
+    "aankomstknoop": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aankomstknoop",
+      "@type": "@id"
+    },
+    "aankomstpunt": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#aankomstpunt",
+      "@type": "@id"
+    },
+    "aantal": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs.aantal",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "afstand": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#afstand",
+      "@type": "@id"
+    },
+    "bedrag": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs.bedrag",
+      "@type": "@id"
+    },
+    "begin": {
+      "@id": "http://data.europa.eu/m8g/startTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "boeking": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reis.boeking",
+      "@type": "@id"
+    },
+    "datum": {
+      "@id": "http://purl.org/dc/terms/date",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "dienst": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#vervoersbewijs.dienst",
+      "@type": "@id"
+    },
+    "dienstregeling": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#dienstregeling",
+      "@type": "@id"
+    },
+    "duur": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs.duur",
+      "@type": "http://www.w3.org/2001/XMLSchema#duration"
+    },
+    "einde": {
+      "@id": "http://data.europa.eu/m8g/endTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "gebruiker": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid.gebruiker",
+      "@type": "@id"
+    },
+    "gekozenRoute": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#gekozenRoute",
+      "@type": "@id"
+    },
+    "geografischeNaam": {
+      "@id": "http://fixme.com#Transportobject.geografischeNaam",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "geometrie": {
+      "@id": "http://www.w3.org/ns/locn#geometry",
+      "@type": "@id"
+    },
+    "geometriemiddenlijn": {
+      "@id": "http://fixme.com#geometriemiddenlijn",
+      "@type": "@id"
+    },
+    "gml": {
+      "@id": "http://www.opengis.net/ont/geosparql#asGML",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "identificator": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Resource.identificator",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "isGerelateerdAan": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/relation",
+      "@type": "@id"
+    },
+    "kenmerk": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reiziger.kenmerk",
+      "@type": "@id"
+    },
+    "kostprijs": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route.kostprijs",
+      "@type": "@id"
+    },
+    "licentie": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#licentie",
+      "@type": "@id"
+    },
+    "locatie": {
+      "@id": "http://purl.org/dc/terms/spatial",
+      "@type": "@id"
+    },
+    "mogelijkeRoute": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#mogelijkeRoute",
+      "@type": "@id"
+    },
+    "naam": {
+      "@id": "http://purl.org/dc/terms/title",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "niveau": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Toegankelijkheid.niveau",
+      "@type": "@id"
+    },
+    "onderdeel": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Toegankelijkheid.onderdeel",
+      "@type": "@id"
+    },
+    "openingsuren": {
+      "@id": "http://schema.org/openingHours",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    },
+    "overstaptijd": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#overstaptijd",
+      "@type": "http://www.w3.org/2001/XMLSchema#duration"
+    },
+    "plaatsnaam": {
+      "@id": "http://www.w3.org/2000/01/rdf-schema#label",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "prijs": {
+      "@id": "https://schema.org/price",
+      "@type": "@id"
+    },
+    "prijsplan": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#prijsplan",
+      "@type": "@id"
+    },
+    "pseudoniem": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#pseudoniem",
+      "@type": "@id"
+    },
+    "reis": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#boeking.reis",
+      "@type": "@id"
+    },
+    "reisduur": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#reisduur",
+      "@type": "http://www.w3.org/2001/XMLSchema#duration"
+    },
+    "richting": {
+      "@id": "http://fixme.com#GerichteLink.richting",
+      "@type": "@id"
+    },
+    "routebeschrijving": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#routebeschrijving",
+      "@type": "@id"
+    },
+    "ruimtelijkeDekking": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/spatial",
+      "@type": "@id"
+    },
+    "toepassingsgebied": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/m8g/territorialApplication",
+      "@type": "@id"
+    },
+    "transporttype": {
+      "@id": "http://fixme.com#transporttype",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "http://purl.org/dc/terms/type",
+      "@type": "@id"
+    },
+    "uitgevoerdeRoute": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#uitgevoerdeRoute",
+      "@type": "@id"
+    },
+    "uitvoerder": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#uitvoerder",
+      "@type": "@id"
+    },
+    "vertrekknoop": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#vertrekknoop",
+      "@type": "@id"
+    },
+    "vertrekpunt": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#vertrekpunt",
+      "@type": "@id"
+    },
+    "vervoersautoriteit": {
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#vervoersautoriteit",
+      "@type": "@id"
+    },
+    "voorkeur": {
+      "@container": "@set",
+      "@id": "https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#voorkeur",
+      "@type": "@id"
+    },
+    "waarde": {
+      "@id": "https://schema.org/value",
+      "@type": "@id"
+    },
+    "werkingsgebied": {
+      "@container": "@set",
+      "@id": "http://purl.org/dc/terms/spatial",
+      "@type": "@id"
+    },
+    "wkt": {
+      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
+      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
+    }
+  }
+}
