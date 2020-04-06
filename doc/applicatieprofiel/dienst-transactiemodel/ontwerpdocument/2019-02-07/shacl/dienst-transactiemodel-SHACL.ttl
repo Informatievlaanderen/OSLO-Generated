@@ -8,22 +8,22 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/dienst-transactiemodel> <https://data.vlaanderen.be/shacl/dienst-transactiemodelshapes> <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumVereisteShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#HoedanigheidShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TaalcodeShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TijdsintervalShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PersoonShape>,
+<https://data.vlaanderen.be/shacl/dienst-transactiemodel> <https://data.vlaanderen.be/shacl/dienst-transactiemodelshapes> <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape>,
     <https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#DossierShape> .
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#HoedanigheidShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumVereisteShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TijdsintervalShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#DossierShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TaalcodeShape> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape> a sh:NodeShape;
   sh:closed false;
@@ -43,6 +43,47 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:anyURI;
+    sh:description "Documentatie gerelateerd ah Bewiijs.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "documentatie";
+    sh:path foaf:page
+  ], [
+    sh:class org:Organization;
+    sh:description "Verwijst naar de organisatie die het bewijs heeft uitgegeven.";
+    sh:maxCount 1;
+    sh:name "uitgegevenDoor";
+    sh:path <http://data.europa.eu/m8g/issuedByOrganisation>
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Officiële naam vh Bewijs.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path dc:title
+  ], [
+    sh:class <http://www.w3.org/ns/adms#Identifier>;
+    sh:description "Identificator van het object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "referentie";
+    sh:path <http://www.w3.org/ns/adms#identifier>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/doc/conceptscheme/BewijsType>;
+    sh:class skos:Concept;
+    sh:description "Aard van het Bewijs.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "type";
+    sh:path dc:type
+  ], [
+    sh:description "Geeft aan hoe betrouwbaar het bewijs is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "betrouwbaarheidsniveau";
+    sh:path <https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau>
+  ], [
     sh:class dc:Agent;
     sh:description "Een Bewijs zal behoren tot een Agent. Een criterium kan invloed hebben op verschillende Agents; voor een Bewijs moet daarom gespecifieerd worden tot welke Agent het behoort.";
     sh:maxCount 1;
@@ -57,20 +98,6 @@
     sh:name "beschrijving";
     sh:path dc:description
   ], [
-    sh:datatype xsd:anyURI;
-    sh:description "Documentatie gerelateerd ah Bewiijs.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "documentatie";
-    sh:path foaf:page
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Officiële naam vh Bewijs.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path dc:title
-  ], [
     <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/language/>;
     sh:class skos:Concept;
     sh:description "Taal waarin het aangeboden Bewijs moet zijn gesteld.";
@@ -78,33 +105,6 @@
     sh:minCount 1;
     sh:name "taal";
     sh:path dc:language
-  ], [
-    sh:class <http://www.w3.org/ns/adms#Identifier>;
-    sh:description "Identificator van het object.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "referentie";
-    sh:path <http://www.w3.org/ns/adms#identifier>
-  ], [
-    sh:class org:Organization;
-    sh:description "Verwijst naar de organisatie die het bewijs heeft uitgegeven.";
-    sh:maxCount 1;
-    sh:name "uitgegevenDoor";
-    sh:path <http://data.europa.eu/m8g/issuedByOrganisation>
-  ], [
-    sh:description "Geeft aan hoe betrouwbaar het bewijs is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "betrouwbaarheidsniveau";
-    sh:path <https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/doc/conceptscheme/BewijsType>;
-    sh:class skos:Concept;
-    sh:description "Aard van het Bewijs.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "type";
-    sh:path dc:type
   ];
   sh:targetClass <http://data.europa.eu/m8g/Evidence> .
 
@@ -118,17 +118,11 @@
     sh:name "valideert";
     sh:path <http://data.europa.eu/m8g/validatesCriterionRequirement>
   ], [
-    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
-    sh:description "Wanneer de het antwoord op het criterium van toepassing is binnen een specifieke periode kan deze eigenschap gebruikt worden om het tijdsinterval te beschrijven.";
+    sh:datatype xsd:string;
+    sh:description "Een beschrijving van het antwoord op de vereiste.";
     sh:maxCount 1;
-    sh:name "vanToepassingOp";
-    sh:path <http://data.europa.eu/m8g/appliesToPeriodOfTime>
-  ], [
-    sh:class <http://data.europa.eu/m8g/Evidence>;
-    sh:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven.";
-    sh:maxCount 1;
-    sh:name "bewezenDoor";
-    sh:path <http://data.europa.eu/m8g/provenByEvidence>
+    sh:name "beschrijving";
+    sh:path dc:description
   ], [
     sh:datatype xsd:string;
     sh:description "Een beantwoorde vereiste moet een waarde bevatten als antwoord op een criterium vereiste. Om de criterium vereiste te vervullen, wanneer de criterium vereiste een verwachte waarde of drempel heeft, moet de waarde gelijk zijn aan de verwachte waarden of binnen het bereik liggen dat bepaald werd door de drempelwaarden.";
@@ -137,11 +131,11 @@
     sh:name "waarde";
     sh:path <http://data.europa.eu/m8g/value>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Een beschrijving van het antwoord op de vereiste.";
+    sh:class <http://data.europa.eu/m8g/Evidence>;
+    sh:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven.";
     sh:maxCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
+    sh:name "bewezenDoor";
+    sh:path <http://data.europa.eu/m8g/provenByEvidence>
   ], [
     sh:class <http://www.w3.org/ns/adms#Identifier>;
     sh:description "Identificator van het object.";
@@ -149,6 +143,12 @@
     sh:minCount 1;
     sh:name "referentie";
     sh:path <http://www.w3.org/ns/adms#identifier>
+  ], [
+    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    sh:description "Wanneer de het antwoord op het criterium van toepassing is binnen een specifieke periode kan deze eigenschap gebruikt worden om het tijdsinterval te beschrijven.";
+    sh:maxCount 1;
+    sh:name "vanToepassingOp";
+    sh:path <http://data.europa.eu/m8g/appliesToPeriodOfTime>
   ];
   sh:targetClass <http://data.europa.eu/m8g/RequirementResponse> .
 
@@ -180,17 +180,17 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:string;
+    sh:description "Naam vd agent die de identificator heeft toegekend.";
+    sh:maxCount 1;
+    sh:name "toegekendDoorString";
+    sh:path <http://www.w3.org/ns/adms#schemaAgency>
+  ], [
     sh:class dc:Agent;
     sh:description "Link naar de agent die de identificator heeft uitgegeven.";
     sh:maxCount 1;
     sh:name "toegekendDoor";
     sh:path dc:creator
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "Tijdstip waarop de identificator werd uitgegeven.";
-    sh:maxCount 1;
-    sh:name "toegekendOp";
-    sh:path dc:issued
   ], [
     sh:datatype rdfs:Literal;
     sh:description "String gebruikt om het object uniek te identificeren. ";
@@ -204,11 +204,11 @@
     sh:name "gestructureerdedentificator";
     sh:path <https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Naam vd agent die de identificator heeft toegekend.";
+    sh:datatype xsd:dateTime;
+    sh:description "Tijdstip waarop de identificator werd uitgegeven.";
     sh:maxCount 1;
-    sh:name "toegekendDoorString";
-    sh:path <http://www.w3.org/ns/adms#schemaAgency>
+    sh:name "toegekendOp";
+    sh:path dc:issued
   ];
   sh:targetClass <http://www.w3.org/ns/adms#Identifier> .
 
@@ -246,13 +246,6 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class skos:Concept;
-    sh:description "Aard van de Output.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "type";
-    sh:path dc:type
-  ], [
     sh:datatype rdf:langString;
     sh:description "Officiële naam van de Output.";
     sh:maxCount 1;
@@ -260,12 +253,19 @@
     sh:name "naam";
     sh:path dc:title
   ], [
-    sh:datatype xsd:date;
-    sh:description "De datum waarop de output werd toegekend of het financieel voordeel werd uitebetaald. ";
+    sh:class skos:Concept;
+    sh:description "Aard van de Output.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "datum";
-    sh:path dc:date
+    sh:name "type";
+    sh:path dc:type
+  ], [
+    sh:class <http://www.w3.org/ns/adms#Identifier>;
+    sh:description "Identificator van het object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "referentie";
+    sh:path <http://www.w3.org/ns/adms#identifier>
   ], [
     sh:datatype rdf:langString;
     sh:description "Beschrijving van de Output.";
@@ -274,31 +274,31 @@
     sh:name "beschrijving";
     sh:path dc:description
   ], [
-    sh:class <http://www.w3.org/ns/adms#Identifier>;
-    sh:description "Identificator van het object.";
+    sh:datatype xsd:date;
+    sh:description "De datum waarop de output werd toegekend of het financieel voordeel werd uitebetaald. ";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "referentie";
-    sh:path <http://www.w3.org/ns/adms#identifier>
+    sh:name "datum";
+    sh:path dc:date
   ];
   sh:targetClass <http://data.europa.eu/m8g/Output> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class skos:Concept;
-    sh:description """	De rol die de participant speelt.""";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "rol";
-    sh:path <http://data.europa.eu/m8g/role>
-  ], [
     sh:datatype rdf:langString;
     sh:description "Beschrijving van de Participatie.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "beschrijving";
     sh:path dc:description
+  ], [
+    sh:class skos:Concept;
+    sh:description """	De rol die de participant speelt.""";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "rol";
+    sh:path <http://data.europa.eu/m8g/role>
   ];
   sh:targetClass <http://data.europa.eu/m8g/Participation> .
 
@@ -313,24 +313,11 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseCode>;
-    sh:class skos:Concept;
-    sh:description "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.";
-    sh:maxCount 1;
-    sh:name "statusVlaamsCode";
-    sh:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsCode>
-  ], [
     sh:datatype xsd:boolean;
     sh:description "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.";
     sh:maxCount 1;
     sh:name "actieNodig";
     sh:path <https://data.vlaanderen.be/ns/transactie#actieNodig>
-  ], [
-    sh:datatype xsd:date;
-    sh:description "Is de verplichte vermelding van de datum + tijdstip waarop de betrokken status werd geregistreerd.";
-    sh:maxCount 1;
-    sh:name "statusWijzigingsdatum";
-    sh:path <https://data.vlaanderen.be/ns/transactie#statusWijzigingsdatum>
   ], [
     sh:datatype xsd:date;
     sh:description "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).";
@@ -345,6 +332,12 @@
     sh:name "statusEDRL";
     sh:path <https://data.vlaanderen.be/ns/transactie#statusEDRL>
   ], [
+    sh:datatype xsd:date;
+    sh:description "Is de verplichte vermelding van de datum + tijdstip waarop de betrokken status werd geregistreerd.";
+    sh:maxCount 1;
+    sh:name "statusWijzigingsdatum";
+    sh:path <https://data.vlaanderen.be/ns/transactie#statusWijzigingsdatum>
+  ], [
     sh:datatype xsd:string;
     sh:description "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.";
     sh:maxCount 1;
@@ -358,6 +351,13 @@
     sh:maxCount 1;
     sh:name "statusVlaamsFase";
     sh:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsFase>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseCode>;
+    sh:class skos:Concept;
+    sh:description "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.";
+    sh:maxCount 1;
+    sh:name "statusVlaamsCode";
+    sh:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsCode>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/transactie#Status> .
 
@@ -369,17 +369,17 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:dateTime;
+    sh:description "Moment waarop het tijdsinterval eindigt.";
+    sh:maxCount 1;
+    sh:name "einde";
+    sh:path <http://data.europa.eu/m8g/endTime>
+  ], [
+    sh:datatype xsd:dateTime;
     sh:description "Moment waarop het tijdsinterval begint.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "begin";
     sh:path <http://data.europa.eu/m8g/startTime>
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "Moment waarop het tijdsinterval eindigt.";
-    sh:maxCount 1;
-    sh:name "einde";
-    sh:path <http://data.europa.eu/m8g/endTime>
   ];
   sh:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
 
