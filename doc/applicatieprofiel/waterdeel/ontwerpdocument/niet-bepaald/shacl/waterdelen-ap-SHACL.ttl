@@ -6,21 +6,21 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
+<https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterVoorkomenShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#SlootShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape> .
 
 <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape> a sh:NodeShape;
@@ -41,18 +41,6 @@
 <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:dateTime;
-    sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
-    sh:maxCount 1;
-    sh:name "einddatum";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
-  ], [
-    sh:datatype xsd:integer;
-    sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
-    sh:maxCount 1;
-    sh:name "niveau";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
-  ], [
     sh:class <http://www.opengis.net/ont/geosparql#Geometry>;
     sh:description "De geometrie overeenkomstig met een bepaald object.";
     sh:maxCount 1;
@@ -60,16 +48,22 @@
     sh:name "geometrie";
     sh:path <http://www.w3.org/ns/locn#geometry>
   ], [
-    sh:datatype xsd:dateTime;
-    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
-    sh:maxCount 1;
-    sh:name "begindatum";
-    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
-  ], [
     sh:class rdfs:Resource;
     sh:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
     sh:name "relatie";
     sh:path dc:relation
+  ], [
+    sh:datatype xsd:integer;
+    sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
+    sh:maxCount 1;
+    sh:name "niveau";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
+    sh:maxCount 1;
+    sh:name "einddatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
     sh:class skos:Concept;
@@ -78,6 +72,12 @@
     sh:minCount 1;
     sh:name "nauwkeurigheid";
     sh:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    sh:maxCount 1;
+    sh:name "begindatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
