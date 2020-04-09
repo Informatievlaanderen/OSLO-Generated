@@ -31,7 +31,7 @@ skos:Concept a rdfs:Class .
 
 <https://data.vlaanderen.be/ns/bedrijventerrein#beperking> a owl:ObjectProperty;
   rdfs:label "beperking"@nl;
-  rdfs:comment "Deze eigenschap geeft aan welke de mogelijk beperking een bepaald bedrijventerreinperceel momenteel ondervindt."@nl;
+  rdfs:comment "Deze eigenschap geeft aan welke mogelijke beperking(en) een bepaald bedrijventerreinperceel momenteel ondervindt."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerreinperceel>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
   rdfs:range skos:Concept .
@@ -99,12 +99,12 @@ skos:Concept a rdfs:Class .
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
   rdfs:range xsd:boolean .
 
-<https://data.vlaanderen.be/ns/bedrijventerrein#inGebruik> a owl:DatatypeProperty;
+<https://data.vlaanderen.be/ns/bedrijventerrein#inGebruik> a owl:ObjectProperty;
   rdfs:label "in gebruik"@nl;
-  rdfs:comment "Dit attribuut geeft aan of een Bedrijventerreinperceel al dan niet in gebruik is."@nl;
+  rdfs:comment "Dit attribuut geeft aan in welke mate een Bedrijventerreinperceel in gebruik is."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerreinperceel>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
-  rdfs:range xsd:boolean .
+  rdfs:range skos:Concept .
 
 <https://data.vlaanderen.be/ns/bedrijventerrein#isGerelateerdAanEconomischGebied> a owl:ObjectProperty;
   rdfs:label "is gerelateerd aan economisch gebied"@nl;
@@ -206,7 +206,7 @@ skos:Concept a rdfs:Class .
 
 <https://data.vlaanderen.be/ns/bedrijventerrein#voorzieneUitgifte> a owl:DatatypeProperty;
   rdfs:label "voorziene uitgifte"@nl;
-  rdfs:comment "Het voorziene tijdstip waarop de ontwikkeling van de ontwikkelbare bedrijvenzone voltooid zal zijn."@nl;
+  rdfs:comment "Het voorziene tijdstip waarop het eerste Bedrijventerreinperceel binnen een ontwikkelbare zone in verkoop zal gaan."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/bedrijventerrein#OntwikkelbareBedrijvenzone>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
   rdfs:range xsd:date .
@@ -243,7 +243,7 @@ foaf:homepage a rdf:Property;
 
 <https://data.vlaanderen.be/ns/bedrijventerrein#OntwikkelbareBedrijvenzone> a owl:Class;
   rdfs:label "Ontwikkelbare Bedrijvenzone"@nl;
-  rdfs:comment "Een Ontwikkelbare Bedrijvenzone bevat de contouren van de Bedrijventerreinen vanaf de mijlpaal publicatie in het Belgisch Staatsblad tot aan de oplevering van de nutsvoorzieningen en infrastructuur. Deze zones kunnen nieuwe terreinen zijn of herontwikkelingstrajecten. Wanneer een (her)ontwikkeling in meerdere fasen gebeurt, dan wordt de ontwikkelbare zone opgesplitst volgens deze fasen."@nl;
+  rdfs:comment "Een (deel van) een Bedrijventerrein vanaf de mijlpaal publicatie in het Belgisch Staatsblad tot aan de oplevering van de nutsvoorzieningen en infrastructuur. Deze zones kunnen nieuwe terreinen zijn of herontwikkelingstrajecten. Wanneer een (her)ontwikkeling in meerdere fasen gebeurt, dan wordt de ontwikkelbare zone opgesplitst volgens deze fasen."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
   rdfs:subClassOf <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
 
@@ -260,7 +260,7 @@ foaf:homepage a rdf:Property;
 
 <https://data.vlaanderen.be/ns/bedrijventerrein#Bedrijventerreinperceel> a owl:Class;
   rdfs:label "Bedrijventerreinperceel"@nl;
-  rdfs:comment "Een ruimtelijke eenheid binnen een Bedrijventerrein met eenzelfde gebruik of functie."@nl;
+  rdfs:comment "Een ruimtelijke eenheid binnen een Bedrijventerrein met eenzelfde gebruik, functie of eigenaar."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/bedrijventerrein>;
   rdfs:subClassOf <https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
 
@@ -279,10 +279,28 @@ foaf:homepage a rdf:Property;
     "bedrijventerrein"@en;
   dc:contributor [
     a foaf:Person;
-    schema:affiliation [foaf:name "Mathieu Gijbels"];
-    foaf:firstName "Griet";
-    foaf:lastName "Keersmaekers";
-    foaf:mbox <mailto:griet.keersmaekers@gijbels.be>
+    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Oost-Vlaanderen"];
+    foaf:firstName "Benoit";
+    foaf:lastName "Bodré";
+    foaf:mbox <mailto:benoit.bodere@pomov.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "VLINTER (Interleuven)"];
+    foaf:firstName "Caroline";
+    foaf:lastName "Vandendriessche";
+    foaf:mbox <mailto:caroline.vandendriessche@interleuven.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Hendrik";
+    foaf:lastName "Van Hemelryck";
+    foaf:mbox <mailto:hendrik.vanhemelryck@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Omgeving"];
+    foaf:firstName "Sophie";
+    foaf:lastName "De Mulder";
+    foaf:mbox <mailto:sophie.demulder@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Quares"];
@@ -292,15 +310,9 @@ foaf:homepage a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
-    foaf:firstName "Floris";
-    foaf:lastName "Van den Broeck";
-    foaf:mbox <mailto:floris.vandenbroeck@vlaio.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Hendrik";
-    foaf:lastName "Van Hemelryck";
-    foaf:mbox <mailto:hendrik.vanhemelryck@kb.vlaanderen.be>
+    foaf:firstName "Pascal";
+    foaf:lastName "De Greve";
+    foaf:mbox <mailto:pascal.degreve@vlaio.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Vlaams-Brabant"];
@@ -315,40 +327,10 @@ foaf:homepage a rdf:Property;
     foaf:mbox <mailto:bram.adams@interleuven.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij West-Vlaanderen"];
-    foaf:firstName "Tom";
-    foaf:lastName "Decock";
-    foaf:mbox <mailto:tom.decock@pomwvl.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Futurn NV"];
-    foaf:firstName "Ben";
-    foaf:lastName "Six";
-    foaf:mbox <mailto:ben@futurn.com>
-  ], [
-    a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Koen";
-    foaf:lastName "De Baets";
-    foaf:mbox <mailto:Koen.DeBaets@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "VLINTER (Interleuven)"];
-    foaf:firstName "Caroline";
-    foaf:lastName "Vandendriessche";
-    foaf:mbox <mailto:caroline.vandendriessche@interleuven.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Departement Omgeving"];
-    foaf:firstName "Veronique";
-    foaf:lastName "Lavaert";
-    foaf:mbox <mailto:Veronique.Lavaert@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Departement Omgeving"];
-    foaf:firstName "Sophie";
-    foaf:lastName "De Mulder";
-    foaf:mbox <mailto:sophie.demulder@vlaanderen.be>
+    foaf:firstName "Dirk";
+    foaf:lastName "De Baere";
+    foaf:mbox <mailto:dirk.debaere@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
@@ -357,34 +339,52 @@ foaf:homepage a rdf:Property;
     foaf:mbox <mailto:bert.vannuffelen@kb.vlaanderen.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Departement Omgeving"];
-    foaf:firstName "Geert";
-    foaf:lastName "Van Haute";
-    foaf:mbox <mailto:geert.vanhaute@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Oost-Vlaanderen"];
-    foaf:firstName "Benoit";
-    foaf:lastName "Bodré";
-    foaf:mbox <mailto:benoit.bodere@pomov.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
-    foaf:firstName "Dirk";
-    foaf:lastName "De Baere";
-    foaf:mbox <mailto:dirk.debaere@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
     schema:affiliation [foaf:name "Aura"];
     foaf:firstName "Raf";
     foaf:lastName "Deblay";
     foaf:mbox <mailto:raf.deblay@aura.eu.com>
   ], [
     a foaf:Person;
+    schema:affiliation [foaf:name "Futurn NV"];
+    foaf:firstName "Ben";
+    foaf:lastName "Six";
+    foaf:mbox <mailto:ben@futurn.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Omgeving"];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute";
+    foaf:mbox <mailto:geert.vanhaute@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Departement Omgeving"];
+    foaf:firstName "Veronique";
+    foaf:lastName "Lavaert";
+    foaf:mbox <mailto:Veronique.Lavaert@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij West-Vlaanderen"];
+    foaf:firstName "Tom";
+    foaf:lastName "Decock";
+    foaf:mbox <mailto:tom.decock@pomwvl.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Agentschap Informatie Vlaanderen"];
+    foaf:firstName "Koen";
+    foaf:lastName "De Baets";
+    foaf:mbox <mailto:Koen.DeBaets@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
     schema:affiliation [foaf:name "Agentschap Innoveren en Ondernemen"];
-    foaf:firstName "Pascal";
-    foaf:lastName "De Greve";
-    foaf:mbox <mailto:pascal.degreve@vlaio.be>
+    foaf:firstName "Floris";
+    foaf:lastName "Van den Broeck";
+    foaf:mbox <mailto:floris.vandenbroeck@vlaio.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Mathieu Gijbels"];
+    foaf:firstName "Griet";
+    foaf:lastName "Keersmaekers";
+    foaf:mbox <mailto:griet.keersmaekers@gijbels.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Provinciale Ontwikkelingsmaatschappij Vlaams-Brabant"];
@@ -400,23 +400,14 @@ foaf:homepage a rdf:Property;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <http://www.w3.org/ns/adms#identifier>,
+  rdfs:seeAlso foaf:homepage,
+    <http://www.w3.org/ns/adms#identifier>,
     dc:isPartOf,
-    skos:prefLabel,
+    skos:Concept,
     skos:altLabel,
     dc:relation,
-    skos:Concept,
-    foaf:homepage;
+    skos:prefLabel;
   <http://www.w3.org/2001/02pd/rec54#editor> [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Michiel";
-    foaf:lastName "De Keyzer";
-    foaf:mbox <mailto:michiel.de.keyzer@pwc.com>
-  ], [
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <http://www.pwc.be>;
@@ -425,6 +416,15 @@ foaf:homepage a rdf:Property;
     foaf:firstName "Kevin";
     foaf:lastName "Haleydt";
     foaf:mbox <mailto:kevin.haleydt@pwc.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Michiel";
+    foaf:lastName "De Keyzer";
+    foaf:mbox <mailto:michiel.de.keyzer@pwc.com>
   ];
   foaf:maker [
     a foaf:Person;
