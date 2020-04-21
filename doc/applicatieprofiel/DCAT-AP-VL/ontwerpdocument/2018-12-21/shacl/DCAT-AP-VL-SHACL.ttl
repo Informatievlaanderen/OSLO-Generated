@@ -7,13 +7,13 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL> <https://data.vlaanderen.be/shacl/DCAT-AP-VLshapes> <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape>,
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL> <https://data.vlaanderen.be/shacl/DCAT-AP-VLshapes> <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape>,
     <https://data.vlaanderen.be/shacl/DCAT-AP-VL#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape>,
     <https://data.vlaanderen.be/shacl/DCAT-AP-VL#ContactpuntShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> .
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape> .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape> a sh:NodeShape;
   sh:closed false;
@@ -34,30 +34,12 @@
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de datasetcatalogus.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
-  ], [
     sh:class dc:LicenseDocument;
     sh:description "De licentie van de datasetcatalogus.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "heeftLicentie";
     sh:path dc:license
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Een bondige omschrijving van de datasetcatalogus. ";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
-  ], [
-    sh:class dcat:Dataset;
-    sh:name "heeftDataset";
-    sh:path dcat:dataset
   ], [
     sh:class foaf:Agent;
     sh:description "de uitgever van de datasetcatalogus";
@@ -71,18 +53,35 @@
     sh:maxCount 1;
     sh:name "laatste wijziging";
     sh:path dc:modified
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "De naam van de datasetcatalogus.";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Een bondige omschrijving van de datasetcatalogus. ";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "beschrijving";
+    sh:path dc:description
+  ], [
+    sh:class dcat:Dataset;
+    sh:name "heeftDataset";
+    sh:path dcat:dataset
   ];
   sh:targetClass dcat:Catalog .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype rdf:langString;
-    sh:description "Een bondige omscrhijving van de dataset.";
+    sh:class vcard:Kind;
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
+    sh:name "contactinfo";
+    sh:path dcat:contactPoint
   ], [
     sh:class foaf:Agent;
     sh:description "De uitgever van de dataset. ";
@@ -90,17 +89,6 @@
     sh:minCount 1;
     sh:name "heeftUitgever";
     sh:path dc:publisher
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de dataset";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
-  ], [
-    sh:class dcat:Distribution;
-    sh:name "heeftDistributie";
-    sh:path dcat:distribution
   ], [
     sh:class skos:Concept;
     sh:maxCount 1;
@@ -114,37 +102,35 @@
     sh:name "publicatiedatum";
     sh:path dc:issued
   ], [
-    sh:class vcard:Kind;
+    sh:datatype rdf:langString;
+    sh:description "Een bondige omscrhijving van de dataset.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "contactinfo";
-    sh:path dcat:contactPoint
+    sh:name "beschrijving";
+    sh:path dc:description
+  ], [
+    sh:class dcat:Distribution;
+    sh:name "heeftDistributie";
+    sh:path dcat:distribution
   ], [
     sh:datatype xsd:dateTime;
     sh:description "Het meest recente moment waarop de data van de dataset is gewijzigd.";
     sh:maxCount 1;
     sh:name "laatste wijziging";
     sh:path dc:modified
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "De naam van de dataset";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
   ];
   sh:targetClass dcat:Dataset .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "De URL waar de data waarnaar de distributie verwijst kan gevonden worden.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "toegangsURL";
-    sh:path dcat:accessURL
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "een naam voor de distributie";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
-  ], [
     sh:class dc:LicenseDocument;
     sh:description "De licentie van de distributie";
     sh:maxCount 1;
@@ -157,6 +143,20 @@
     sh:maxCount 1;
     sh:name "beschrijving";
     sh:path dc:description
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "een naam voor de distributie";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De URL waar de data waarnaar de distributie verwijst kan gevonden worden.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "toegangsURL";
+    sh:path dcat:accessURL
   ];
   sh:targetClass dcat:Distribution .
 
