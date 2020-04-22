@@ -1,17 +1,46 @@
 {
   "@context": {
     "Bestuurseenheid": "http://data.vlaanderen.be/ns/besluit#Bestuurseenheid",
+    "Bestuurseenheid.classificatie": {
+      "@id": "http://www.w3.org/ns/org#classification",
+      "@type": "@id"
+    },
     "Bestuurseenheid.naam": {
       "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
     },
+    "Bestuurseenheid.werkingsgebied": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
+      "@type": "@id"
+    },
     "Bestuursorgaan": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
-    "Bestuursorgaan (in bestuursperiode)": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+    "Bestuursorgaan (inBestuursperiode)": "http://data.vlaanderen.be/ns/besluit#Bestuursorgaan",
+    "Bestuursorgaan (inBestuursperiode).bevat": {
+      "@container": "@set",
+      "@id": "http://www.w3.org/ns/org#hasPost",
+      "@type": "@id"
+    },
+    "Bestuursorgaan (inBestuursperiode).isTijdspecialisatieVan": {
+      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+      "@type": "@id"
+    },
+    "Bestuursorgaan.bestuurt": {
+      "@id": "http://data.vlaanderen.be/ns/besluit#bestuurt",
+      "@type": "@id"
+    },
+    "Bestuursorgaan.classificatie": {
+      "@id": "http://www.w3.org/ns/org#classification",
+      "@type": "@id"
+    },
     "Bestuursorgaan.naam": {
       "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
       "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
     },
     "Creatie": "http://www.w3.org/ns/prov#Generation",
+    "Creatie.tijdstip": {
+      "@id": "http://www.w3.org/ns/prov#atTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
     "Fractie": "http://data.vlaanderen.be/ns/mandaat#Fractie",
     "Fractie.naam": {
       "@id": "http://www.w3.org/ns/regorg#legalName",
@@ -23,222 +52,205 @@
       "@type": "http://www.w3.org/2001/XMLSchema#date"
     },
     "Kandidatenlijst": "http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst",
+    "Kandidatenlijst.behoortTot": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#behoortTot",
+      "@type": "@id"
+    },
+    "Kandidatenlijst.heeftKandidaat": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#heeftKandidaat",
+      "@type": "@id"
+    },
+    "Kandidatenlijst.lijstnaam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Kandidatenlijst.lijstnummer": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#lijstnummer",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Kandidatenlijst.lijsttype": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#lijsttype",
+      "@type": "@id"
+    },
     "Lidmaatschap": "http://www.w3.org/ns/org#Membership",
-    "Lidmaatschap.isLidVan": {
+    "Lidmaatschap.isLidmaatschapBij": {
       "@id": "http://www.w3.org/ns/org#organization",
       "@type": "@id"
     },
+    "Lidmaatschap.lid": {
+      "@id": "http://www.w3.org/ns/org#member",
+      "@type": "@id"
+    },
+    "Lidmaatschap.lidGedurende": {
+      "@id": "http://www.w3.org/ns/org#memberDuring",
+      "@type": "@id"
+    },
     "Mandaat": "http://data.vlaanderen.be/ns/mandaat#Mandaat",
+    "Mandaat.aantalHouders": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#aantalHouders",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Mandaat.bestuursfunctie": {
+      "@id": "http://www.w3.org/ns/org#role",
+      "@type": "@id"
+    },
     "Mandataris": "http://data.vlaanderen.be/ns/mandaat#Mandataris",
-    "Mandataris.isLidVan": {
+    "Mandataris.bekleedt": {
+      "@id": "http://www.w3.org/ns/org#holds",
+      "@type": "@id"
+    },
+    "Mandataris.beleidsdomein": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#beleidsdomein",
+      "@type": "@id"
+    },
+    "Mandataris.einde": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#einde",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Mandataris.heeftLidmaatschap": {
       "@id": "http://www.w3.org/ns/org#hasMembership",
       "@type": "@id"
     },
+    "Mandataris.isAangesteldDoor": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor",
+      "@type": "@id"
+    },
+    "Mandataris.isBestuurlijkeAliasVan": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan",
+      "@type": "@id"
+    },
+    "Mandataris.isOntslagenDoor": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor",
+      "@type": "@id"
+    },
+    "Mandataris.isTijdelijkVervangenDoor": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor",
+      "@type": "@id"
+    },
+    "Mandataris.rangorde": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#rangorde",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Mandataris.start": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#start",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "Mandataris.status": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#status",
+      "@type": "@id"
+    },
     "Opheffing": "http://www.w3.org/ns/prov#Invalidation",
+    "Opheffing.tijdstip": {
+      "@id": "http://www.w3.org/ns/prov#atTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
     "Persoon": "http://www.w3.org/ns/person#Person",
+    "Persoon.achternaam": {
+      "@id": "http://xmlns.com/foaf/0.1/familyName",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Persoon.alternatieveNaam": {
+      "@id": "http://xmlns.com/foaf/0.1/name",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Persoon.gebruikteVoornaam": {
+      "@id": "https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Persoon.geslacht": {
+      "@id": "https://data.vlaanderen.be/ns/persoon#geslacht",
+      "@type": "@id"
+    },
+    "Persoon.heeftGeboorte": {
+      "@id": "https://data.vlaanderen.be/ns/persoon#heeftGeboorte",
+      "@type": "@id"
+    },
+    "Persoon.identificator": {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "@id"
+    },
+    "Persoon.isAangesteldAls": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isAangesteldAls",
+      "@type": "@id"
+    },
     "Rechtsgrond": "http://data.europa.eu/eli/ontology#LegalResource",
+    "Rechtsgrond.buitenwerkingtreding": {
+      "@id": "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "Rechtsgrond.inwerkingtreding": {
+      "@id": "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
+      "@type": "http://www.w3.org/2001/XMLSchema#date"
+    },
+    "Rechtsgrond.typeDocument": {
+      "@container": "@set",
+      "@id": "http://data.europa.eu/eli/ontology#type_document",
+      "@type": "@id"
+    },
     "RechtsgrondAanstelling": "http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling",
-    "RechtsgrondBeeindiging": "http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging",
+    "RechtsgrondAanstelling.bekrachtigtAanstellingVan": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#bekrachtigtAanstellingVan",
+      "@type": "@id"
+    },
+    "RechtsgrondBeëindiging": "http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging",
+    "RechtsgrondBeëindiging.bekrachtigtOntslagVan": {
+      "@container": "@set",
+      "@id": "http://data.vlaanderen.be/ns/mandaat#bekrachtigtOntslagVan",
+      "@type": "@id"
+    },
+    "RechtsgrondBeëindiging.redenVanBeëindiging": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#redenVanBeeindiging",
+      "@type": "@id"
+    },
     "RechtstreekseVerkiezing": "http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing",
     "RechtstreekseVerkiezing.datum": {
       "@id": "http://data.vlaanderen.be/ns/mandaat#datum",
       "@type": "http://www.w3.org/2001/XMLSchema#date"
     },
-    "Verkiezingsresultaat": "http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat",
-    "Versie": "https://data.vlaanderen.be/ns/generiek#Versie",
-    "VersieVolgensGeldigeTijd": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd",
-    "aantalHouders": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#aantalHouders",
-      "@type": "http://www.w3.org/2001/XMLSchema#integer"
-    },
-    "aantalNaamstemmen": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#aantalNaamstemmen",
-      "@type": "http://www.w3.org/2001/XMLSchema#integer"
-    },
-    "achternaam": {
-      "@id": "http://xmlns.com/foaf/0.1/familyName",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "alternatieveNaam": {
-      "@id": "http://xmlns.com/foaf/0.1/name",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "behoortTot": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#behoortTot",
-      "@type": "@id"
-    },
-    "bekleedt": {
-      "@id": "http://www.w3.org/ns/org#holds",
-      "@type": "@id"
-    },
-    "bekrachtigtAanstellingVan": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#bekrachtigtAanstellingVan",
-      "@type": "@id"
-    },
-    "bekrachtigtOntslagVan": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#bekrachtigtOntslagVan",
-      "@type": "@id"
-    },
-    "beleidsdomein": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#beleidsdomein",
-      "@type": "@id"
-    },
-    "bestuursfunctie": {
-      "@id": "http://www.w3.org/ns/org#role",
-      "@type": "@id"
-    },
-    "bestuurt": {
-      "@id": "http://data.vlaanderen.be/ns/besluit#bestuurt",
-      "@type": "@id"
-    },
-    "bevat": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/org#hasPost",
-      "@type": "@id"
-    },
-    "buitenwerkingtreding": {
-      "@id": "http://data.europa.eu/eli/ontology#date_no_longer_in_force",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "classificatie": {
-      "@id": "http://www.w3.org/ns/org#classification",
-      "@type": "@id"
-    },
-    "creatie": {
-      "@id": "http://www.w3.org/ns/prov#qualifiedGeneration",
-      "@type": "@id"
-    },
-    "einde": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#einde",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "gebruikteVoornaam": {
-      "@id": "https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "geldigheid": {
+    "RechtstreekseVerkiezing.geldigheid": {
       "@id": "http://purl.org/dc/terms/valid",
       "@type": "http://www.w3.org/2001/XMLSchema#date"
     },
-    "geslacht": {
-      "@id": "https://data.vlaanderen.be/ns/persoon#geslacht",
-      "@type": "@id"
-    },
-    "gevolg": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#gevolg",
-      "@type": "@id"
-    },
-    "heeftGeboorte": {
-      "@id": "https://data.vlaanderen.be/ns/persoon#heeftGeboorte",
-      "@type": "@id"
-    },
-    "heeftKandidaat": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#heeftKandidaat",
-      "@type": "@id"
-    },
-    "identificator": {
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "inwerkingtreding": {
-      "@id": "http://data.europa.eu/eli/ontology#first_date_entry_in_force",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "isAangesteldAls": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isAangesteldAls",
-      "@type": "@id"
-    },
-    "isAangesteldDoor": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor",
-      "@type": "@id"
-    },
-    "isBestuurlijkeAliasVan": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan",
-      "@type": "@id"
-    },
-    "isOntslagenDoor": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor",
-      "@type": "@id"
-    },
-    "isResultaatVan": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isResultaatVan",
-      "@type": "@id"
-    },
-    "isResultaatVoor": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isResultaatVoor",
-      "@type": "@id"
-    },
-    "isTijdelijkVervangenDoor": {
-      "@container": "@set",
-      "@id": "http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor",
-      "@type": "@id"
-    },
-    "isTijdspecialisatieVan": {
-      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
-      "@type": "@id"
-    },
-    "lidVanTot": {
-      "@id": "http://www.w3.org/ns/org#memberDuring",
-      "@type": "@id"
-    },
-    "lijstnaam": {
-      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "lijstnummer": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#lijstnummer",
-      "@type": "http://www.w3.org/2001/XMLSchema#integer"
-    },
-    "lijsttype": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#lijsttype",
-      "@type": "@id"
-    },
-    "opheffing": {
-      "@id": "http://www.w3.org/ns/prov#qualifiedInvalidation",
-      "@type": "@id"
-    },
-    "plaatsRangorde": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#plaatsRangorde",
-      "@type": "http://www.w3.org/2001/XMLSchema#integer"
-    },
-    "rangorde": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#rangorde",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "redenVanBeeindiging": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#redenVanBeeindiging",
-      "@type": "@id"
-    },
-    "start": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#start",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "status": {
-      "@id": "http://data.vlaanderen.be/ns/mandaat#status",
-      "@type": "@id"
-    },
-    "steltSamen": {
+    "RechtstreekseVerkiezing.steltSamen": {
       "@id": "http://data.vlaanderen.be/ns/mandaat#steltSamen",
       "@type": "@id"
     },
-    "tijdstip": {
-      "@id": "http://www.w3.org/ns/prov#atTime",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    "Verkiezingsresultaat": "http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat",
+    "Verkiezingsresultaat.aantalNaamstemmen": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#aantalNaamstemmen",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
     },
-    "typeDocument": {
-      "@container": "@set",
-      "@id": "http://data.europa.eu/eli/ontology#type_document",
+    "Verkiezingsresultaat.gevolg": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#gevolg",
       "@type": "@id"
     },
-    "werkingsgebied": {
-      "@id": "http://data.vlaanderen.be/ns/besluit#werkingsgebied",
+    "Verkiezingsresultaat.isResultaatVan": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isResultaatVan",
       "@type": "@id"
-    }
+    },
+    "Verkiezingsresultaat.isResultaatVoor": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#isResultaatVoor",
+      "@type": "@id"
+    },
+    "Verkiezingsresultaat.plaatsRangorde": {
+      "@id": "http://data.vlaanderen.be/ns/mandaat#plaatsRangorde",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Versie": "https://data.vlaanderen.be/ns/generiek#Versie",
+    "Versie.creatie": {
+      "@id": "http://www.w3.org/ns/prov#qualifiedGeneration",
+      "@type": "@id"
+    },
+    "Versie.opheffing": {
+      "@id": "http://www.w3.org/ns/prov#qualifiedInvalidation",
+      "@type": "@id"
+    },
+    "VersieVolgensGeldigeTijd": "https://data.vlaanderen.be/ns/generiek#VersieVolgensGeldigeTijd"
   }
 }
