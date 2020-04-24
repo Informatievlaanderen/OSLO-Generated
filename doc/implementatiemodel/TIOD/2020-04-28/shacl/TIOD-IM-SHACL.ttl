@@ -5,39 +5,39 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#GeometrieShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
+<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#ZonetypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#ZonetypeShape> .
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape> a sh:NodeShape;
   sh:closed false;
-  sh:targetClass <https://data.stadx.be/ns/tiod#Aanvrager> .
+  sh:targetClass <https://data.simcity.be/ns/tiod#Aanvrager> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape> a sh:NodeShape;
   sh:closed false;
-  sh:targetClass <https://data.stadx.be/ns/tiod#Beheerder> .
+  sh:targetClass <https://data.simcity.be/ns/tiod#Beheerder> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#GeometrieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
     sh:datatype rdfs:Literal;
-    sh:description "Geometrie uitgedrukt in gml-formaat.";
-    sh:maxCount 1;
-    sh:name "gml";
-    sh:path <http://www.opengis.net/ont/geosparql#asGML>
-  ], [
-    sh:datatype rdfs:Literal;
     sh:description "Geometrie uitgedrukt in wkt-formaat.";
     sh:maxCount 1;
     sh:name "wkt";
     sh:path <http://www.opengis.net/ont/geosparql#asWKT>
+  ], [
+    sh:datatype rdfs:Literal;
+    sh:description "Geometrie uitgedrukt in gml-formaat.";
+    sh:maxCount 1;
+    sh:name "gml";
+    sh:path <http://www.opengis.net/ont/geosparql#asGML>
   ];
   sh:targetClass <http://www.w3.org/ns/locn#Geometry> .
 
@@ -57,18 +57,18 @@
     sh:name "zone";
     sh:path <https://data.vlaanderen.be/ns/mobiliteit#zone>
   ], [
+    sh:class skos:Concept;
+    sh:description "Type van inname";
+    sh:minCount 1;
+    sh:name "type";
+    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
+  ], [
     sh:datatype rdf:langString;
     sh:description "Beschrijving over de inname.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "beschrijving";
     sh:path dc:description
-  ], [
-    sh:class skos:Concept;
-    sh:description "Type van inname";
-    sh:minCount 1;
-    sh:name "type";
-    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
   ], [
     sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
     sh:description "Wanneer de inname plaatsvindt.";
@@ -89,53 +89,53 @@
   sh:closed false;
   sh:property [
     sh:datatype rdfs:Literal;
-    sh:description "Moment waarop de periode eindigt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "einde";
-    sh:path <http://data.europa.eu/m8g/endTime>
-  ], [
-    sh:datatype rdfs:Literal;
     sh:description "Moment waarop de periode begint.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "begin";
     sh:path <http://data.europa.eu/m8g/startTime>
+  ], [
+    sh:datatype rdfs:Literal;
+    sh:description "Moment waarop de periode eindigt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "einde";
+    sh:path <http://data.europa.eu/m8g/endTime>
   ];
   sh:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
-    sh:description "TODO";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "tijdsinterval";
-    sh:path dc:temporal
-  ], [
     sh:class dc:Agent;
     sh:description "Wie de vergunning aanvraagt.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "aanvrager";
     sh:path <http://data.vlaanderen.be/ns/besluit#aanvrager>
+  ], [
+    sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    sh:description "TODO";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "tijdsinterval";
+    sh:path dc:temporal
   ];
   sh:targetClass <http://data.vlaanderen.be/ns/besluit#Vergunning> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class skos:Concept;
+    sh:description "Soort zone.";
+    sh:name "type";
+    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Zone.type>
+  ], [
     sh:class <http://www.w3.org/ns/locn#Geometry>;
     sh:description "2D weergave van de zone.";
     sh:minCount 1;
     sh:name "geometrie";
     sh:path <http://www.w3.org/ns/locn#geometry>
-  ], [
-    sh:class skos:Concept;
-    sh:description "Soort zone.";
-    sh:name "type";
-    sh:path <https://data.vlaanderen.be/ns/mobiliteit#Zone.type>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Zone> .
 
