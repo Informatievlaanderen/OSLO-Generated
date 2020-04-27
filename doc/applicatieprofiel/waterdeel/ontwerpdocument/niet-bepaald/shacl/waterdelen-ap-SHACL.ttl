@@ -1,0 +1,172 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlootShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterVoorkomenShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Beek> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:double;
+    sh:description "De afmeting van het object in vierkante meter.";
+    sh:maxCount 1;
+    sh:name "oppervlakte";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#oppervlakte>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein#Deel> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:dateTime;
+    sh:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    sh:maxCount 1;
+    sh:name "begindatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
+  ], [
+    sh:class rdfs:Resource;
+    sh:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
+    sh:name "relatie";
+    sh:path dc:relation
+  ], [
+    sh:class <http://www.opengis.net/ont/geosparql#Geometry>;
+    sh:description "De geometrie overeenkomstig met een bepaald object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "geometrie";
+    sh:path <http://www.w3.org/ns/locn#geometry>
+  ], [
+    sh:datatype xsd:integer;
+    sh:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
+    sh:maxCount 1;
+    sh:name "niveau";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
+    sh:maxCount 1;
+    sh:name "einddatum";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
+    sh:class skos:Concept;
+    sh:description "De precisie waarmee het object opgemeten werd.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "nauwkeurigheid";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Gracht> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Kanaal> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Meer> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Poel> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Rivier> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#SlootShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Sloot> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Slotgracht> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Ven> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Vijver> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#WaterVoorkomenShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#WaterVoorkomen> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#WaterVoorkomen>;
+    sh:description "Verwijst naar het voorkomen van het waterdeel.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "voorkomen";
+    sh:path <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#voorkomen>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterdeel> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:double;
+    sh:description "De breedte van het object in meter.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "breedte";
+    sh:path schema:width
+  ], [
+    sh:datatype xsd:double;
+    sh:description "De lineare grootte van het object in meter";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "lengte";
+    sh:path <http://open.vocab.org/terms/length>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Naam die de (VHA-) waterloop draagt bij zijn monding, zgn. (VHA-) roepnaam van de waterloop. Kan ook de waarden nvt (niet van toepassing) of ng (niet gekend) aannemen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path dc:title
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterloop> .
+
+<https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:string;
+    sh:description "De naam van het watervlak.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path dc:title
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Watervlak> .
