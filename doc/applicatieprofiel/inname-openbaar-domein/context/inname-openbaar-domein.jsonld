@@ -1,688 +1,482 @@
 {
-  "@context": {
-    "Advies": "https://data.vlaanderen.be/ns/mobiliteit#Advies",
-    "Advies.adviseert": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#adviseert",
-      "@type": "@id"
-    },
-    "Advies.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Advies.beoordeeldDoor": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beoordeeldDoor",
-      "@type": "@id"
-    },
-    "Advies.beoordeling": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beoordeling",
-      "@type": "@id"
-    },
-    "Advies.beoordelingsdatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beoordelingsdatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "Advies.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Advies.bindend": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#bindend",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "Advies.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Advies.reden": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#reden",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Advies.stilzwijgend": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#stilzwijgend",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "Contactinfo": "http://schema.org/ContactPoint",
-    "Contactinfo.aanschrijfvorm": {
-      "@id": "http://ww.w3.org/2006/vcard/ns#honorific-prefix",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Contactinfo.adres": {
-      "@id": "http://www.w3.org/ns/locn#address",
-      "@type": "@id"
-    },
-    "Contactinfo.beschikbaarheid": {
-      "@container": "@set",
-      "@id": "http://schema.org/hoursAvailable",
-      "@type": "@id"
-    },
-    "Contactinfo.contactnaam": {
-      "@id": "http://xmlns.com/foaf/0.1/name",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Contactinfo.email": {
-      "@id": "http://schema.org/email",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Contactinfo.fax": {
-      "@id": "http://schema.org/faxNumber",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Contactinfo.openingsuren": {
-      "@id": "http://schema.org/openingHours",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "Contactinfo.telefoon": {
-      "@id": "http://schema.org/telephone",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Contactinfo.website": {
-      "@id": "http://xmlns.com/foaf/0.1/page",
-      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
-    },
-    "ContactinfoPubliek": "https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek",
-    "ContactinfoPubliek.contacttype": {
-      "@id": "http://schema.org/contactType",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "ContactinfoPubliek.isPubliek": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#ContactinfoVolgensRol.isPubliek",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "ContactinfoPubliek.telefoon": {
-      "@container": "@set",
-      "@id": "http://schema.org/telephone",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Evenement": "https://schema.org/Event",
-    "Grondwerk": "https://data.vlaanderen.be/ns/mobiliteit#Grondwerk",
-    "Grondwerk.categorie": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.categorie",
-      "@type": "@id"
-    },
-    "Grondwerk.geschatteDuur": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#geschatteDuur",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "Grondwerk.heeftOorzaakGrondwerk": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftOorzaakGrondwerk",
-      "@type": "@id"
-    },
-    "Grondwerk.soort": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.soort",
-      "@type": "@id"
-    },
-    "Grondwerk.verplaatsingswerk": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.verplaatsingswerk",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "Grondwerk.voorlopigeOplevering": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.voorlopigeOplevering",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "Halte": "http://vocab.gtfs.org/terms#Stop",
-    "Inname": "https://data.vlaanderen.be/ns/mobiliteit#Inname",
-    "Inname.adresvoorstelling": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#address",
-      "@type": "@id"
-    },
-    "Inname.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Inname.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Inname.bijdrager": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/elements/1.1/contributor",
-      "@type": "@id"
-    },
-    "Inname.contactpunt": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
-      "@type": "@id"
-    },
-    "Inname.geeftAanleidingTot": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.geeftAanleidingTot",
-      "@type": "@id"
-    },
-    "Inname.heeftGevolg": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg",
-      "@type": "@id"
-    },
-    "Inname.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Inname.innamezone": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.innamezone",
-      "@type": "@id"
-    },
-    "Inname.isDeelVan": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/terms/isPartOf",
-      "@type": "@id"
-    },
-    "Inname.isGerelateerdAan": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/terms/references",
-      "@type": "@id"
-    },
-    "Inname.leidtTot": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#leidtTot",
-      "@type": "@id"
-    },
-    "Inname.openbaarDomein": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.openbaarDomein",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "Inname.plaatsbeschrijving": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.plaatsbeschrijving",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Inname.status": {
-      "@id": "http://www.w3.org/ns/adms#status",
-      "@type": "@id"
-    },
-    "Inname.tijdsinterval": {
-      "@container": "@set",
-      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
-      "@type": "@id"
-    },
-    "Inname.tijdsschema": {
-      "@container": "@set",
-      "@id": "http://schema.org/eventSchedule",
-      "@type": "@id"
-    },
-    "Inname.type": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.type",
-      "@type": "@id"
-    },
-    "Inname.url": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#url",
-      "@type": "@id"
-    },
-    "Inname.vereist": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist",
-      "@type": "@id"
-    },
-    "Inname.vereistSignalisatievergunning": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#vereistSignalisatievergunning",
-      "@type": "@id"
-    },
-    "Innameverbod": "https://data.vlaanderen.be/ns/mobiliteit#Innameverbod",
-    "Innameverbod.adresvoorstelling": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#address",
-      "@type": "@id"
-    },
-    "Innameverbod.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Innameverbod.beschrijving": {
-      "@id": "http://purl.org/dc/elements/1.1/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Innameverbod.categorie": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#categorie",
-      "@type": "@id"
-    },
-    "Innameverbod.contactpunt": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
-      "@type": "@id"
-    },
-    "Innameverbod.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Innameverbod.tijdsinterval": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/terms/temporal",
-      "@type": "@id"
-    },
-    "Innameverbod.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Innamevergunning": "http://data.vlaanderen.be/ns/besluit#Innamevergunning",
-    "Innamezone": "https://data.vlaanderen.be/ns/mobiliteit#Innamezone",
-    "Innamezone.type": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Innamezone.type",
-      "@type": "@id"
-    },
-    "Innamezone.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder",
-    "Mobiliteitshinder.adresvoorstelling": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#address",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Mobiliteitshinder.bijdrager": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/elements/1.1/contributor",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.contactpunt": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.heeftBetrekkingOpInnamezone": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftBetrekkingOpInnamezone",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.heeftGevolg": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.locatie": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.locatie",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.tijdsinterval": {
-      "@container": "@set",
-      "@id": "http://data.europa.eu/m8g/appliesToPeriodOfTime",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.tijdsschema": {
-      "@container": "@set",
-      "@id": "http://schema.org/eventSchedule",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.vereist": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.vereist",
-      "@type": "@id"
-    },
-    "Mobiliteitshinder.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Mobiliteitshindergevolg": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg",
-    "Mobiliteitshindergevolg.doelgroep": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#doelgroep",
-      "@type": "@id"
-    },
-    "Mobiliteitshindergevolg.gevolg": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#gevolg",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
-    "Mobiliteitsmaatregel.adresvoorstelling": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#address",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Mobiliteitsmaatregel.bijdrager": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/elements/1.1/contributor",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.contactpunt": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.doelgroep": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#doelgroep",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.heeftGevolg": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.heeftGevolg",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.heeftRoute": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.plaatsbeschrijving": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.plaatsbeschrijving",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Mobiliteitsmaatregel.tijdsschema": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#tijdsschema",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.type": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.type",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.wordtAangeduidDoor": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.wordtAangeduidDoor",
-      "@type": "@id"
-    },
-    "Mobiliteitsmaatregel.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Omleiding": "https://data.vlaanderen.be/ns/mobiliteit#Omleiding",
-    "Omleiding.heeftRoute": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
-      "@type": "@id"
-    },
-    "Omleiding.heeftTransportlinkset": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftTransportLinkSet",
-      "@type": "@id"
-    },
-    "Organisatie": "http://www.w3.org/ns/org#Organization",
-    "Organisatie (inRol)": "http://www.w3.org/ns/org#Organization",
-    "Organisatie (inRol).contactinfo": {
-      "@container": "@set",
-      "@id": "http://schema.org/contactPoint",
-      "@type": "@id"
-    },
-    "Organisatie (inRol).rol": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#rol",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Organisatie.alternatieveLabel": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/2004/02/skos/core#altLabel",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Organisatie.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Organisatie.classificatie": {
-      "@id": "http://www.w3.org/ns/org#classification",
-      "@type": "@id"
-    },
-    "Organisatie.contactinfo": {
-      "@id": "http://schema.org/contactPoint",
-      "@type": "@id"
-    },
-    "Organisatie.doel": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/org#purpose",
-      "@type": ""
-    },
-    "Organisatie.homepage": {
-      "@id": "http://xmlns.com/foaf/0.1/homepage",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Organisatie.logo": {
-      "@id": "http://schema.org/logo",
-      "@type": ""
-    },
-    "Organisatie.organisatieactiviteit": {
-      "@id": "http://www.w3.org/ns/regorg#orgActivity",
-      "@type": "@id"
-    },
-    "Organisatie.organisatiestatus": {
-      "@id": "http://www.w3.org/ns/regorg#orgStatus",
-      "@type": "@id"
-    },
-    "Organisatie.organisatietype": {
-      "@id": "http://www.w3.org/ns/regorg#orgType",
-      "@type": "@id"
-    },
-    "Organisatie.voorkeurslabel": {
-      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Project": "https://data.vlaanderen.be/ns/mobiliteit#Project",
-    "Project.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Project.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "Project.bijdrager": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/elements/1.1/contributor",
-      "@type": "@id"
-    },
-    "Project.contactpunt": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#contactpunt",
-      "@type": "@id"
-    },
-    "Project.geeftAanleidingTot": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Project.geeftAanleidingTot",
-      "@type": "@id"
-    },
-    "Project.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Project.omvat": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Project.omvat",
-      "@type": "@id"
-    },
-    "Project.status": {
-      "@id": "http://www.w3.org/ns/adms#status",
-      "@type": "@id"
-    },
-    "Project.type": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Project.type",
-      "@type": "@id"
-    },
-    "Project.volgtUit": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#volgtUit",
-      "@type": "@id"
-    },
-    "Project.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Route": "http://vocab.gtfs.org/terms#Route",
-    "RuimtelijkConflict": "https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict",
-    "RuimtelijkConflict.classificatie": {
-      "@id": "http://www.w3.org/ns/org#classification",
-      "@type": "@id"
-    },
-    "RuimtelijkConflict.heeftBetrekkingTot": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot",
-      "@type": "@id"
-    },
-    "RuimtelijkConflict.heeftBetrekkingTotProject": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot",
-      "@type": "@id"
-    },
-    "RuimtelijkConflict.tijdsinterval": {
-      "@container": "@set",
-      "@id": "http://purl.org/dc/terms/temporal",
-      "@type": "@id"
-    },
-    "RuimtelijkConflict.type": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict.type",
-      "@type": "@id"
-    },
-    "RuimtelijkConflict.zone": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag",
-    "Samenwerkingsaanvraag.aanvraagstatus": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#aanvraagStatus",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag.beheerder": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#beheerder",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
-    },
-    "Samenwerkingsaanvraag.bijlage": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#bijlage",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag.heeftAntwoord": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#heeftAntwoord",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag.identificator": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/adms#identifier",
-      "@type": "@id"
-    },
-    "Samenwerkingsaanvraag.lanceringsdatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.lanceringsdatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Samenwerkingsaanvraag.uitersteAntwoorddatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.uitersteAntwoorddatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Samenwerkingsaanvraag.zone": {
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "@type": "@id"
-    },
-    "Samenwerkingsantwoord": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord",
-    "Samenwerkingsantwoord.antwoorddatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.antwoordDatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Samenwerkingsantwoord.betrokkenOrganisatie": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#betrokkenOrganisatie",
-      "@type": "@id"
-    },
-    "Samenwerkingsantwoord.gaatAkkoord": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.gaatAkkoord",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-    "Signalisatievergunning": "http://data.vlaanderen.be/ns/besluit#Signalisatievergunning",
-    "Signalisatievergunning.status": {
-      "@id": "http://purl.org/dc/terms/status",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Signalisatievergunning.url": {
-      "@id": "http://schema.org/url",
-      "@type": "@id"
-    },
-    "Synergie": "https://data.vlaanderen.be/ns/mobiliteit#Synergie",
-    "Synergie.coördinatievergaderingsdatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#coordinatieVergaderingsdatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Synergie.registratiedatum": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#registratieDatum",
-      "@type": "http://www.w3.org/2001/XMLSchema#date"
-    },
-    "Synergie.synergiestatus": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#synergieStatus",
-      "@type": "@id"
-    },
-    "Synergie.volgensAfspraken": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Synergie.volgensAfspraken",
-      "@type": "@id"
-    },
-    "Synergie.volgtUit": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#volgtUit",
-      "@type": "@id"
-    },
-    "Synergieaanvraag": "https://data.vlaanderen.be/ns/mobiliteit#Synergieaanvraag",
-    "Synergieaanvraag.volgensAfspraken": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Synergieaanvraag.volgensAfspraken",
-      "@type": "@id"
-    },
-    "TijdsInterval": "http://data.europa.eu/m8g/PeriodOfTime",
-    "TijdsInterval.begin": {
-      "@id": "https://data.vlaanderen.be/ns/generiek#Tijdsinterval.begin",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "TijdsInterval.einde": {
-      "@id": "https://data.vlaanderen.be/ns/generiek#Tijdsinterval.einde",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "TijdsintervalMetDuur": "https://data.vlaanderen.be/ns/mobiliteit#TijdsintervalMetDuur",
-    "TijdsintervalMetDuur.effectieveDuur": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#effectieveDuur",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "TransportLinkSet": "https://data.vlaanderen.be/ns/weg#TransportLinkSet",
-    "Verkeersmaatregel": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel",
-    "Verkeersteken": "https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
-    "Voorwaarde": "http://data.vlaanderen.be/ns/besluit#Voorwaarde",
-    "Voorwaarde.beschrijving": {
-      "@id": "http://purl.org/dc/terms/description",
-      "@type": "http://www.w3.org/2001/XMLSchema#string"
-    },
-    "Werk": "https://data.vlaanderen.be/ns/mobiliteit#Werk",
-    "Werk.geschatteDuur": {
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#geschatteDuur",
-      "@type": "http://www.w3.org/2000/01/rdf-schema#Literal"
-    },
-    "Werk.soort": {
-      "@container": "@set",
-      "@id": "https://data.vlaanderen.be/ns/mobiliteit#Werk.soort",
-      "@type": "@id"
-    }
-  }
+	"@context":
+	{
+		"Advies":"https://data.vlaanderen.be/ns/mobiliteit#Advies",
+		"Evenement":"https://data.vlaanderen.be/ns/mobiliteit#Evenement",
+		"Grondwerk":"https://data.vlaanderen.be/ns/mobiliteit#Grondwerk",
+		"Inname":"https://data.vlaanderen.be/ns/mobiliteit#Inname",
+		"Innameverbod":"https://data.vlaanderen.be/ns/mobiliteit#Innameverbod",
+		"Innamevergunning":"http://data.vlaanderen.be/ns/besluit#Innamevergunning",
+		"Mobiliteitshinder":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder",
+		"Mobiliteitshindergevolg":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg",
+		"Mobiliteitsmaatregel":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
+		"OSLO-Weg::TransportLinkSet":"https://data.vlaanderen.be/ns/weg#TransportLinkSet",
+		"Omleiding":"https://data.vlaanderen.be/ns/mobiliteit#Omleiding",
+		"OpenbaarVervoershalte":"http://vocab.gtfs.org/terms#Stop",
+		"OpenbaarVervoersroute":"http://vocab.gtfs.org/terms#Route",
+		"Organisatie (in rol)":"http://www.w3.org/ns/org#Organization",
+		"Organisatie":"http://www.w3.org/ns/org#Organization",
+		"OrganisatieEenheid":"http://www.w3.org/ns/org#OrganizationalUnit",
+		"Parkeerverbod":"https://data.vlaanderen.be/ns/mobiliteit#Parkeerverbod",
+		"Project":"https://data.vlaanderen.be/ns/mobiliteit#Project",
+		"RuimtelijkConflict":"https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict",
+		"Samenwerkingsaanvraag":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag",
+		"Samenwerkingsantwoord":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord",
+		"Signalisatievergunning":"https://data.vlaanderen.be/ns/mobiliteit#Signalisatievergunning",
+		"Synergie":"https://data.vlaanderen.be/ns/mobiliteit#Synergie",
+		"Synergieaanvraag":"https://data.vlaanderen.be/ns/mobiliteit#Synergieaanvraag",
+		"Verkeersmaatregel":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersmaatregel",
+		"Verkeersteken":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
+		"Voorwaarde":"http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+		"Werk":"https://data.vlaanderen.be/ns/mobiliteit#Werk",
+		"Zone":"https://data.vlaanderen.be/ns/mobiliteit#Zone",
+
+		"Inname.geeftAanleidingTot":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.geeftAanleidingTot",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag"
+		},
+		"Inname.status":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.status",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Inname.type":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.type",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"Innameverbod.beschrijving":{
+			"@id":"http://purl.org/dc/elements/1.1/description",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+		},
+		"Innameverbod.categorie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Innameverbod.categorie",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Mobiliteitshinder.heeftGevolg":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg",
+			"@container":"@set"
+		},
+		"Mobiliteitshinder.vereist":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.vereist",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
+			"@container":"@set"
+		},
+		"Mobiliteitsmaatregel.heeftGevolg":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.heeftGevolg",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder"
+		},
+		"Mobiliteitsmaatregel.type":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.type",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"PeriodeMetDuur.duur":{
+			"@id":"http://schema.org/duration",
+			"@type":"http://www.w3.org/2001/XMLSchema#duration"
+		},
+		"Project.status":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Project.status",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Project.type":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Project.type",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Samenwerkingsaanvraag.status":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.status",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Synergie.status":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Synergie.status",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Synergie.volgensAfspraken":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Synergie.volgensAfspraken",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"Zone.type":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Zone.type",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"aanschrijfvorm":{
+			"@id":"http://ww.w3.org/2006/vcard/ns#honorific-prefix",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+		},
+		"aantal":{
+			"@id":"http://schema.org/repeatCount",
+			"@type":"http://www.w3.org/2001/XMLSchema#integer"
+		},
+		"adres":{
+			"@id":"http://www.w3.org/ns/locn#address",
+			"@type":"http://www.w3.org/ns/locn#Address"
+		},
+		"adviseert":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#adviseert",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict",
+			"@container":"@set"
+		},
+		"alternatieveNaam":{
+			"@id":"http://www.w3.org/2004/02/skos/core#altLabel",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+			"@container":"@set"
+		},
+		"antwoordDatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.antwoordDatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"begin":{
+			"@id":"http://data.europa.eu/m8g/startTime",
+			"@type":"http://www.w3.org/2000/01/rdf-schema#Literal"
+		},
+		"beheerder":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#beheerder",
+			"@type":"http://purl.org/dc/terms/Agent"
+		},
+		"beoordeeldDoor":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#beoordeeldDoor",
+			"@type":"http://purl.org/dc/terms/Agent",
+			"@container":"@set"
+		},
+		"beoordeling":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#beoordeling",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"beoordelingsdatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#beoordelingsdatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"beschrijving":{
+			"@id":"http://purl.org/dc/terms/description",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+		},
+		"betrokkenOrganisatie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#betrokkenOrganisatie",
+			"@type":"http://purl.org/dc/terms/Agent"
+		},
+		"bijdrager":{
+			"@id":"http://purl.org/dc/elements/1.1/contributor",
+			"@type":"http://purl.org/dc/terms/Agent",
+			"@container":"@set"
+		},
+		"bijlage":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#bijlage",
+			"@type":"http://xmlns.com/foaf/0.1/Document",
+			"@container":"@set"
+		},
+		"bindend":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#bindend",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"categorie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.categorie",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"classificatie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict.classificatie",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"contactOrganisatie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#contactOrganisatie",
+			"@type":"http://www.w3.org/ns/org#Organization",
+			"@container":"@set"
+		},
+		"contactType":{
+			"@id":"http://schema.org/contactType",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"contactinfo":{
+			"@id":"http://schema.org/contactPoint",
+			"@type":"http://schema.org/ContactPoint",
+			"@container":"@set"
+		},
+		"contactnaam":{
+			"@id":"http://xmlns.com/foaf/0.1/name",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"coordinatieVergaderingsdatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#coordinatieVergaderingsdatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"doelgroep":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#doelgroep",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"duur":{
+			"@id":"https://data.vlaanderen.be/ns/generiek#Tijdsschema.duur",
+			"@type":"http://www.w3.org/2001/XMLSchema#duration"
+		},
+		"einddatum":{
+			"@id":"http://schema.org/endDate",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"einde":{
+			"@id":"http://data.europa.eu/m8g/endTime",
+			"@type":"http://www.w3.org/2000/01/rdf-schema#Literal"
+		},
+		"eindtijd":{
+			"@id":"https://schema.org/endTime",
+			"@type":"http://www.w3.org/2001/XMLSchema#time"
+		},
+		"email":{
+			"@id":"http://schema.org/email",
+			"@type":"http://www.w3.org/2001/XMLSchema#string",
+			"@container":"@set"
+		},
+		"frequentie":{
+			"@id":"http://schema.org/repeatFrequency",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"gaatAkkoord":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord.gaatAkkoord",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"geeftAanleidingTot":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Project.geeftAanleidingTot",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag"
+		},
+		"geometrie":{
+			"@id":"http://www.w3.org/ns/locn#geometry",
+			"@type":"http://www.w3.org/ns/locn#Geometry",
+			"@container":"@set"
+		},
+		"geschatteDuur":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#geschatteDuur",
+			"@type":"http://www.w3.org/2001/XMLSchema#duration"
+		},
+		"gevolg":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#gevolg",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"heeftAntwoord":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftAntwoord",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsantwoord",
+			"@container":"@set"
+		},
+		"heeftBetrekkingOpInnamezone":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftBetrekkingOpInnamezone",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Zone",
+			"@container":"@set"
+		},
+		"heeftBetrekkingTot":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftBetrekkingTot",
+			"@type":"http://vocab.gtfs.org/terms#Stop",
+			"@container":"@set"
+		},
+		"heeftEenheid":{
+			"@id":"http://www.w3.org/ns/org#hasUnit",
+			"@type":"http://www.w3.org/ns/org#OrganizationalUnit",
+			"@container":"@set"
+		},
+		"heeftGevolg":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder",
+			"@container":"@set"
+		},
+		"heeftOorzaakGrondwerk":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftOorzaakGrondwerk",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Grondwerk",
+			"@container":"@set"
+		},
+		"heeftRoute":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftRoute",
+			"@type":"http://www.w3.org/ns/locn#Geometry"
+		},
+		"heeftTransportLinkSet":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftTransportLinkSet",
+			"@type":"https://data.vlaanderen.be/ns/weg#TransportLinkSet"
+		},
+		"heeftVoorwaarde":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#heeftVoorwaarde",
+			"@type":"http://data.vlaanderen.be/ns/besluit#Voorwaarde",
+			"@container":"@set"
+		},
+		"homepage":{
+			"@id":"http://xmlns.com/foaf/0.1/homepage",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"identificator":{
+			"@id":"http://www.w3.org/ns/adms#identifier",
+			"@type":"http://www.w3.org/ns/adms#Identifier",
+			"@container":"@set"
+		},
+		"isDeelVan":{
+			"@id":"http://purl.org/dc/terms/isPartOf",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Inname",
+			"@container":"@set"
+		},
+		"isEenheidVan":{
+			"@id":"http://www.w3.org/ns/org#unitOf",
+			"@type":"http://www.w3.org/ns/org#Organization"
+		},
+		"isGerelateerdAan":{
+			"@id":"http://purl.org/dc/terms/references",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Inname",
+			"@container":"@set"
+		},
+		"isRolspecialisatieVan":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#isRolspecialisatieVan",
+			"@type":"http://www.w3.org/ns/org#Organization"
+		},
+		"lanceringsDatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.lanceringsdatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"leidtTot":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#leidtTot",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Innameverbod",
+			"@container":"@set"
+		},
+		"locatie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.locatie",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"logo":{
+			"@id":"http://schema.org/logo",
+			"@type":"http://schema.org/URL"
+		},
+		"omvat":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Project.omvat",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Synergie",
+			"@container":"@set"
+		},
+		"openbaarDomein":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.openbaarDomein",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"perDagVanDeMaand":{
+			"@id":"http://schema.org/byMonthDay",
+			"@type":"http://www.w3.org/2001/XMLSchema#integer",
+			"@container":"@set"
+		},
+		"perMaand":{
+			"@id":"http://schema.org/byMonth",
+			"@type":"http://www.w3.org/2001/XMLSchema#integer"
+		},
+		"perSetpositie":{
+			"@id":"https://data.vlaanderen.be/ns/generiek#perSetpositie",
+			"@type":"http://www.w3.org/2001/XMLSchema#integer",
+			"@container":"@set"
+		},
+		"periode":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#periode",
+			"@type":"http://data.europa.eu/m8g/PeriodOfTime",
+			"@container":"@set"
+		},
+		"plaatsbepaling":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#plaatsbepaling",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+		},
+		"publiek":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#ContactInfoPubliek.publiek",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"reden":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#reden",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"registratieDatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#registratieDatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"rol":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#rol",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"specificatie":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#specificatie",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"startdatum":{
+			"@id":"http://schema.org/startDate",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"starttijd":{
+			"@id":"http://schema.org/startTime",
+			"@type":"http://www.w3.org/2001/XMLSchema#time"
+		},
+		"status":{
+			"@id":"http://data.vlaanderen.be/ns/besluit#Signalisatievergunning.status",
+			"@type":"http://www.w3.org/2001/XMLSchema#string"
+		},
+		"stilzwijgend":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#stilzwijgend",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"telefoon":{
+			"@id":"http://schema.org/telephone",
+			"@type":"http://www.w3.org/2001/XMLSchema#string",
+			"@container":"@set"
+		},
+		"tijdschema":{
+			"@id":"http://schema.org/eventSchedule",
+			"@type":"http://schema.org/Schedule",
+			"@container":"@set"
+		},
+		"type":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict.type",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept",
+			"@container":"@set"
+		},
+		"uitersteAntwoordDatum":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag.uitersteAntwoorddatum",
+			"@type":"http://www.w3.org/2001/XMLSchema#date"
+		},
+		"uitzonderingsdatum":{
+			"@id":"http://schema.org/exceptDate",
+			"@type":"http://www.w3.org/2001/XMLSchema#date",
+			"@container":"@set"
+		},
+		"url":{
+			"@id":"http://schema.org/url",
+			"@type":"http://schema.org/URL"
+		},
+		"vereist":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel",
+			"@container":"@set"
+		},
+		"vereistSignalisatievergunning":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#vereistSignalisatievergunning",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Signalisatievergunning"
+		},
+		"verplaatsingswerk":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.verplaatsingswerk",
+			"@type":"http://www.w3.org/2001/XMLSchema#boolean"
+		},
+		"volgensAfspraken":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Synergieaanvraag.volgensAfspraken",
+			"@type":"http://www.w3.org/2004/02/skos/core#Concept"
+		},
+		"volgtUit":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#volgtUit",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Samenwerkingsaanvraag"
+		},
+		"voorkeursNaam":{
+			"@id":"http://www.w3.org/2004/02/skos/core#prefLabel",
+			"@type":"http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+		},
+		"voorlopigeOplevering":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Grondwerk.voorlopigeOplevering",
+			"@type":"http://www.w3.org/2001/XMLSchema#dateTime"
+		},
+		"website":{
+			"@id":"http://xmlns.com/foaf/0.1/page",
+			"@type":"http://www.w3.org/2001/XMLSchema#anyURI"
+		},
+		"wordtAangeduidDoor":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.wordtAangeduidDoor",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken",
+			"@container":"@set"
+		},
+		"zone":{
+			"@id":"https://data.vlaanderen.be/ns/mobiliteit#zone",
+			"@type":"https://data.vlaanderen.be/ns/mobiliteit#Zone",
+			"@container":"@set"
+		}
+	}
 }

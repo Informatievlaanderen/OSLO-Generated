@@ -8,24 +8,42 @@
                     "parent": "Waterdeel",
                     "children": [
                       {
+                        "name": "Natuurlijke Waterloop",
+                        "parent": "Waterloop",
+                        "children": [
+                          {
+                            "name": "Rivier",
+                            "parent": "Natuurlijke Waterloop"
+                          },
+                          {
+                            "name": "Beek",
+                            "parent": "Natuurlijke Waterloop"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Kunstmatige Waterloop",
+                        "parent": "Waterloop",
+                        "children": [
+                          {
+                            "name": "Kanaal",
+                            "parent": "Kunstmatige Waterloop"
+                          }
+                        ]          
+                      },
+                      {
                         "name": "Gracht",
-                        "parent": "Waterloop"       
-                      },
-                      {
-                        "name": "Rivier",
-                        "parent": "Waterloop"           
-                      },
-                      {
-                        "name": "Kanaal",
-                        "parent": "Waterloop"            
-                      },
-                      {
-                        "name": "Sloot",
-                        "parent": "Waterloop"            
-                      },
-                      {
-                        "name": "Beek",
-                        "parent": "Waterloop"            
+                        "parent": "Waterloop",
+                        "children": [
+                          {
+                            "name": "Natuurlijke Gracht",
+                            "parent": "Gracht"
+                          },
+                          {
+                            "name": "Kunstmatige Gracht",
+                            "parent": "Gracht"
+                          }
+                        ]           
                       }
                     ]
                   },

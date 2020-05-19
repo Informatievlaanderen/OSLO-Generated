@@ -61,8 +61,8 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De afmeting van het object in vierkante meter.",
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "De afmeting van het object.",
           "sh:maxCount": "1",
           "sh:name": "oppervlakte",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#oppervlakte"
@@ -99,7 +99,7 @@
         },
         {
           "sh:class": "http://www.w3.org/ns/org#Organization",
-          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het object.",
+          "sh:description": "Instantie die instaat voor het beheer van het object.",
           "sh:maxCount": "1",
           "sh:name": "beheerder",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder"
@@ -172,7 +172,7 @@
         },
         {
           "sh:class": "http://www.w3.org/ns/org#Organization",
-          "sh:description": "Instantie (tot op team- of dienstniveau) die instaat voor het beheer van het gebied.",
+          "sh:description": "Instantie die instaat voor het beheer van het gebied.",
           "sh:maxCount": "1",
           "sh:name": "beheerder",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#beheerder"
@@ -209,11 +209,80 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein#Gebied"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#ContactInfoShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:description": "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.",
+          "sh:maxCount": "1",
+          "sh:name": "aanschrijfvorm",
+          "sh:path": "http://www.w3.org/2006/vcard/ns#honorific-prefix"
+        },
+        {
+          "sh:description": "Adres dat men kan aanschrijven of bezoeken.",
+          "sh:maxCount": "1",
+          "sh:name": "adres",
+          "sh:path": "http://www.w3.org/ns/locn#address"
+        },
+        {
+          "sh:description": "Periode waarin contact kan worden opgenomen.",
+          "sh:maxCount": "1",
+          "sh:name": "beschikbaarheid",
+          "sh:path": "http://schema.org/hoursAvailable"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Naam van bvb de persoon die men kan contacteren.",
+          "sh:maxCount": "1",
+          "sh:name": "contactnaam",
+          "sh:path": "http://xmlns.com/foaf/0.1/name"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Email-adres waarnaar men kan mailen.",
+          "sh:maxCount": "1",
+          "sh:name": "email",
+          "sh:path": "http://schema.org/email"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Faxnummer waarnaar men kan faxen.",
+          "sh:maxCount": "1",
+          "sh:name": "fax",
+          "sh:path": "http://schema.org/faxNumber"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Uren waarbinnen contact kan worden opgenomen.",
+          "sh:maxCount": "1",
+          "sh:name": "openingsuren",
+          "sh:path": "http://schema.org/openingHours"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Telefoonnummer waarop men kan bellen.",
+          "sh:maxCount": "1",
+          "sh:name": "telefoon",
+          "sh:path": "http://schema.org/telephone"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:description": "Website waarnaar men kan surfen.",
+          "sh:maxCount": "1",
+          "sh:name": "website",
+          "sh:path": "http://xmlns.com/foaf/0.1/page"
+        }
+      ],
+      "sh:targetClass": "http://schema.org/ContactPoint"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#GeometrieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
           "sh:description": "Geometrie uitgedrukt in gml-formaat.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -221,6 +290,7 @@
           "sh:path": "http://www.opengis.net/ont/geosparql#asGML"
         },
         {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
           "sh:description": "Geometrie uitgedrukt in wkt-formaat.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -250,6 +320,13 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "http://www.opengis.net/ont/sf#Polygon"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#GeografischeNaamShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#RelatieObjectShape",
@@ -291,6 +368,20 @@
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#NauwkeurigsheidsklassenShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#GBIFcodeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#AantalObstakelsShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
@@ -347,11 +438,13 @@
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortcode"
         },
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "Soortnaam in het Nederlands.",
           "sh:name": "soortnaamNederlands",
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/begroeidvoorkomen#soortnaamNederlands"
         },
         {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "De wetenschappelijke soortnaam.",
           "sh:name": "soortnaamWetenschappelijk",
           "sh:path": "http://rs.tdwg.org/dwc/terms/scientificName"
@@ -375,12 +468,19 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#OnbegroeidVoorkomenShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/onbegroeidvoorkomen#OnbegroeidVoorkomen"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#TerreinVoorkomenShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Eigenschap die aangeeft of er binnen het beheerdeel  al dan niet objecten voorkomen die de vrije werking van machines of andere werktuigen kan verhinderen",
           "sh:maxCount": "1",
           "sh:name": "obstakels",
@@ -403,15 +503,15 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De breedte van het object in meter. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.",
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "De breedte van het object. In geval van een ongelijkmatige breedte wordt de gemiddelde breedte opgenomen.",
           "sh:maxCount": "1",
           "sh:name": "breedte",
           "sh:path": "http://schema.org/width"
         },
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De lineare grootte van het object in meter.",
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "De lineare grootte van het object.",
           "sh:maxCount": "1",
           "sh:name": "lengte",
           "sh:path": "http://open.vocab.org/terms/length"
@@ -422,7 +522,7 @@
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "voorkomen",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein#voorkomen"
+          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#voorkomen"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/terreindeel#Terreindeel"
@@ -433,19 +533,11 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:description": "De hoogte van het object zelf, in meter.",
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:description": "De hoogte van het object zelf.",
           "sh:maxCount": "1",
           "sh:name": "hoogte",
           "sh:path": "http://schema.org/height"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
-          "sh:description": "De datum waarop het vegetatie element werd geplant.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "plantdatum",
-          "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/vegetatie#plantdatum"
         },
         {
           "qb:codeList": "https://www.gbif.org/species/6",
@@ -462,6 +554,7 @@
           "sh:path": "https://data.vlaanderen.be/ns/openbaardomein/vegetatie#soortnaamNederlands"
         },
         {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "De wetenschappelijke soortnaam van het vegetatie-element.",
           "sh:minCount": "1",
           "sh:name": "soortnaamWetenschappelijk",
@@ -492,6 +585,42 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterdeel"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#GetalShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://schema.org/Number"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/openbaar-domein-ap#KwantitatieveWaardeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "eenheid",
+          "sh:path": "https://schema.org/unitText"
+        },
+        {
+          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "standaardEenheid",
+          "sh:path": "https://schema.org/unitCode"
+        },
+        {
+          "sh:class": "https://schema.org/Number",
+          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://schema.org/value"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/QuantitativeValue"
     }
   ]
 }

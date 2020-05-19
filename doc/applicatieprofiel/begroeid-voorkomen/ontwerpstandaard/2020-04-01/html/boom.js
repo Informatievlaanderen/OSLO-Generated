@@ -4,58 +4,56 @@
                 "parent": "null",
                 "children": [
                   {
-                    "name": "Grasachtigen",
+                    "name": "Grazige Vegetatie",
                     "parent": "Begroeid Voorkomen",
                     "children": [
                       {
-                        "name": "Bloemenweide",
-                        "parent": "Grasachtigen"
-                      },
-                      {
-                        "name": "Bloemenakker",
-                        "parent": "Grasachtigen"
-                      },
-                      {
-                        "name": "Bollengrasland",
-                        "parent": "Grasachtigen"
-                      },
-                      {
-                        "name": "Hooiland",
-                        "parent": "Grasachtigen"
-                      },
-                      {
-                        "name": "Weiland",
-                        "parent": "Grasachtigen"
-                      },
+                        "name": "Grasland",
+                        "parent": "Grazige Vegetatie",
+                        "children": [
+                          {
+                            "name": "Bloemenweide",
+                            "parent": "Grasland"
+                          },
+                          {
+                            "name": "Bollengrasland",
+                            "parent": "Grasland"
+                          },
+                          {
+                            "name": "Hooiland",
+                            "parent": "Grasland"
+                          },
+                          {
+                            "name": "Weiland",
+                            "parent": "Grasland"
+                          },
+                        ]
+                      },                               
                       {
                         "name": "Gazon",
-                        "parent": "Grasachtigen",
+                        "parent": "Grazige Vegetatie",
                         "children": [
                           {
                             "name": "Sportgazon",
-                            "parent": "Grasachtigen"
+                            "parent": "Gazon"
                           },
                           {
                             "name": "Speelgazon",
-                            "parent": "Grasachtigen"
+                            "parent": "Gazon"
                           },
                           {
                             "name": "Siergazon",
-                            "parent": "Grasachtigen"
+                            "parent": "Gazon"
                           },
                           {
                             "name": "Grindgazon",
-                            "parent": "Grasachtigen"
+                            "parent": "Gazon"
                           }
                         ]
                       },
                       {
                         "name": "Grasdals",
-                        "parent": "Grasachtigen"
-                      },
-                      {
-                        "name": "Ruw gras",
-                        "parent": "Grasachtigen"
+                        "parent": "Grazige Vegetatie"
                       }
                     ]
                   },
@@ -64,7 +62,29 @@
                     "parent": "Begroeid Voorkomen",
                     "children": [
                       {
-                        "name": "Heestermassief",
+                        "name": "Heester",
+                        "parent": "Houtachtigen",
+                        "children": [
+                          {
+                            "name": "Heestermassief",
+                            "parent": "Heester"
+                          },
+                          {
+                            "name": "Rozen",
+                            "parent": "Heester"
+                          },
+                          {
+                            "name": "Kleinfruit",
+                            "parent": "Heester"
+                          },
+                           {
+                            "name": "Bodembedekkende heesters",
+                            "parent": "Heester"
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Heg",
                         "parent": "Houtachtigen"
                       },
                       {
@@ -72,7 +92,7 @@
                         "parent": "Houtachtigen"
                       },
                       {
-                        "name": "Houtwal",
+                        "name": "Geschoren haag",
                         "parent": "Houtachtigen"
                       },
                       {
@@ -80,48 +100,78 @@
                         "parent": "Houtachtigen"
                       },
                       {
+                        "name": "Houtwal",
+                        "parent": "Houtachtigen"
+                      },
+                      {
                         "name": "Bomen",
+                        "parent": "Houtachtigen"
+                      },
+                      {
+                        "name": "Struweel",
                         "parent": "Houtachtigen"
                       }
                     ]
                   },
                   {
-                    "name": "Kruidachtigen",
+                    "name": "Ruigte",
+                    "parent": "Begroeid Voorkomen",
+                    "children": [
+                      {
+                        "name": "Oevervegetatie",
+                        "parent": "Ruigte"
+                      },
+                      {
+                        "name": "Watervegetatie",
+                        "parent": "Ruigte"
+                      },
+                      {
+                        "name": "Natte ruigte",
+                        "parent": "Ruigte"
+                      },
+                      {
+                        "name": "Droge ruigte",
+                        "parent": "Ruigte"
+                      }                    
+                    ]
+                  },
+                  {
+                    "name": "Sierbeplanting",
                     "parent": "Begroeid Voorkomen",
                     "children": [
                       {
                         "name": "Bodembedekkers",
-                        "parent": "Kruidachtigen"
+                        "parent": "Sierbeplanting"
                       },
                       {
                         "name": "Siergrassen",
-                        "parent": "Kruidachtigen"
+                        "parent": "Sierbeplanting"
                       },
                       {
                         "name": "Vaste planten",
-                        "parent": "Kruidachtigen"
+                        "parent": "Sierbeplanting"
                       },
                       {
                         "name": "Wisselperk",
-                        "parent": "Kruidachtigen"
+                        "parent": "Sierbeplanting"
                       },
                       {
                         "name": "Bol- en knolgewassen",
-                        "parent": "Kruidachtigen"
+                        "parent": "Sierbeplanting"
                       },
                       {
-                        "name": "Ruigte",
-                        "parent": "Grasachtigen"
+                        "name": "Bloemenakker",
+                        "parent": "Sierbeplanting"
                       }                    
                     ]
                   },
                   {
                     "name": "Braakland",
-                    "parent": "Overige begroeiing"
+                    "parent": "Begroeid Voorkomen"
                   },
                   {
                     "name": "Niet begroeid",
-                    "parent": "Overige begroeiing"
+                    "parent": "Begroeid Voorkomen"
                   }
                 ]
               }
