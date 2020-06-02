@@ -1,6 +1,6 @@
 var treeData = [
               {
-                "name": "Object",
+                "name": "Fysiek Object",
                 "parent": "null",
                 "children": [
                   {
