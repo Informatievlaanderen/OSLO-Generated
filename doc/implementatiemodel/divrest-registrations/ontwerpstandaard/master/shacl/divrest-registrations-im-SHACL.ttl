@@ -8,23 +8,35 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
+<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#ContactInfoShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape> .
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape> .
 
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype rdf:langString;
+    sh:description "Straatnaam vh adres.";
+    sh:maxCount 1;
+    sh:name "straatnaam";
+    sh:path <http://www.w3.org/ns/locn#thoroughfare>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
+    sh:maxCount 1;
+    sh:name "postcode";
+    sh:path <http://www.w3.org/ns/locn#postCode>
+  ], [
     sh:datatype xsd:string;
     sh:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.";
     sh:maxCount 1;
@@ -42,18 +54,6 @@
     sh:maxCount 1;
     sh:name "gemeentenaam";
     sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Straatnaam vh adres.";
-    sh:maxCount 1;
-    sh:name "straatnaam";
-    sh:path <http://www.w3.org/ns/locn#thoroughfare>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
-    sh:maxCount 1;
-    sh:name "postcode";
-    sh:path <http://www.w3.org/ns/locn#postCode>
   ], [
     sh:datatype xsd:string;
     sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
@@ -97,18 +97,18 @@
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class skos:Concept;
+    sh:description "Juridisch statuut van de geregistreerde organisatie.";
+    sh:maxCount 1;
+    sh:name "rechtsvorm";
+    sh:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
+  ], [
     sh:class <http://www.w3.org/ns/adms#Identifier>;
     sh:description "Identificator dat de organisatie verkreeg bij registratie.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "registratie";
     sh:path <http://www.w3.org/ns/regorg#registration>
-  ], [
-    sh:class skos:Concept;
-    sh:description "Juridisch statuut van de geregistreerde organisatie.";
-    sh:maxCount 1;
-    sh:name "rechtsvorm";
-    sh:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
   ];
   sh:targetClass <http://www.w3.org/ns/regorg#RegisteredOrganization> .
 
@@ -135,17 +135,17 @@
     sh:name "contactinfo";
     sh:path schema:contactPoint
   ], [
+    sh:class skos:Concept;
+    sh:description "Soort organisatie.";
+    sh:name "type";
+    sh:path <http://www.w3.org/ns/regorg#orgType>
+  ], [
     sh:datatype rdf:langString;
     sh:description "Naam waarmee de organisatie bij voorkeur wordt aangeduid.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "voorkeursnaam";
     sh:path skos:prefLabel
-  ], [
-    sh:class skos:Concept;
-    sh:description "Soort organisatie.";
-    sh:name "type";
-    sh:path <http://www.w3.org/ns/regorg#orgType>
   ];
   sh:targetClass org:Organization .
 
@@ -157,13 +157,6 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:string;
-    sh:description "Gedeelte van de volledige naam vd persoon ontvangen van de vorige generatie.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "achternaam";
-    sh:path foaf:familyName
-  ], [
-    sh:datatype xsd:string;
     sh:description "Naam die een kind bij geboorte wordt gegeven. Onderscheidt het kind van de andere kinderen in de familie.";
     sh:minCount 1;
     sh:name "voornaam";
@@ -174,6 +167,13 @@
     sh:maxCount 1;
     sh:name "contactinfo";
     sh:path schema:contactPoint
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Gedeelte van de volledige naam vd persoon ontvangen van de vorige generatie.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "achternaam";
+    sh:path foaf:familyName
   ];
   sh:targetClass <http://www.w3.org/ns/person#Person> .
 
