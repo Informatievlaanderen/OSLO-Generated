@@ -34,6 +34,36 @@
   "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap",
   "shapes": [
     {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#RolShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
+          "sh:description": "Referentie naar verbonden klasse.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "Activiteit",
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.activiteit"
+        },
+        {
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:description": "Referentie naar verbonden klasse.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "Agent",
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.agent"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Aard van de Rol.",
+          "sh:name": "rol",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PeriodeShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -71,25 +101,25 @@
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
           "sh:description": "Activiteit waarbij de Agent een MaterieelDing in bewaring gaf.",
           "sh:name": "inBewaringGegeven",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P28i_surrendered_custody_through"
         },
         {
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E10_Transfer_of_Custody",
           "sh:description": "Activiteit waarbij de Agent een MaterieelDing in bewaring kreeg.",
           "sh:name": "inBewaringGekregen",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P29i_received_custody_through"
         },
         {
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E8_Acquisition",
           "sh:description": "Activiteit waarbij de Agent een MaterieelDing in eigendom gaf.",
           "sh:name": "inEigendomGegeven",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P23i_surrendered_title_through"
         },
         {
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E8_Acquisition",
           "sh:description": "Activiteit waarbij de Agent een MaterieelDing in eigendom kreeg.",
           "sh:name": "inEigendomGekregen",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P22i_acquired_title_through"
         },
         {
           "sh:class": "https://wherever/TODO",
@@ -101,7 +131,7 @@
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
           "sh:description": "Activiteit waaraan de Agent actief deelnam.",
           "sh:name": "voerdeUit",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P14i_performed"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.agent"
@@ -162,7 +192,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MateriaalDing waarvan de Bewaring werd overgedragen.",
           "sh:minCount": "1",
           "sh:name": "overdrachtVan",
@@ -195,7 +225,7 @@
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P126_employed"
         },
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "Het MaterieelDing dat werd gewijzigd.",
           "sh:minCount": "1",
           "sh:name": "isGewijzigd",
@@ -210,7 +240,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing dat ontstond.",
           "sh:minCount": "1",
           "sh:name": "product",
@@ -235,7 +265,7 @@
           "sh:description": "Het kenmerk dat is toegekend.",
           "sh:minCount": "1",
           "sh:name": "toegekendAttribuut",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#toegekendAttribuut"
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Waarde",
@@ -252,7 +282,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "Het MaterieelDing dat werd beoordeeld tijdens Conditiebeoordeling.",
           "sh:minCount": "1",
           "sh:name": "conditieVan",
@@ -315,15 +345,22 @@
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E17_Type_Assignment"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#MaterieelDingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#EntiteitShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
           "sh:description": "Beschrijving van de Entiteit.",
           "sh:name": "beschrijving",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
         },
         {
           "sh:class": "http://www.w3.org/ns/adms#Identifier",
@@ -335,10 +372,17 @@
           "sh:class": "https://wherever/TODO",
           "sh:description": "Type van de Entiteit.",
           "sh:name": "type",
-          "sh:path": "https://wherever/TODO"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E1_CRM_Entity"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#MensgemaaktObjectShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E22_Man-Made_Object"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#MensgemaaktKenmerkShape",
@@ -360,7 +404,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
           "sh:description": "Beschrijving van de TemporeleEntiteit.",
           "sh:name": "^beschrijving",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
@@ -394,7 +438,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
           "sh:description": "Beschrijving van de Conditie.",
           "sh:name": "beschrijving",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
@@ -422,7 +466,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
           "sh:description": "Beschrijving van de Dimensie.",
           "sh:name": "beschrijving",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
@@ -433,7 +477,7 @@
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "kwantitatieveWaarde",
-          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P90_has_value"
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#kwantitatieveWaarde"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -441,7 +485,7 @@
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "type",
-          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P91_has_unit"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E54_Dimension"
@@ -458,14 +502,6 @@
           "sh:minCount": "1",
           "sh:name": "^tijd",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Titel van de Gebeurtenis.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^titel",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#^titel"
         },
         {
           "sh:class": "http://purl.org/dc/terms/Agent",
@@ -506,19 +542,26 @@
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E73_Information_Object"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#GecureerdeCollectieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E78_Collection"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ToevoegingDeelShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing dat is toegevoegd.",
           "sh:minCount": "1",
           "sh:name": "toegevoegd",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P111_added"
         },
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing waaraan iets is toegevoegd.",
           "sh:minCount": "1",
           "sh:name": "uitbreidingVan",
@@ -554,14 +597,14 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing dat verkleind werd.",
           "sh:minCount": "1",
           "sh:name": "inkrimpingVan",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P112_diminished"
         },
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "materieelDing dat is verwijderd.",
           "sh:minCount": "1",
           "sh:name": "verwijderd",
@@ -576,7 +619,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing dat werd vernietigd.",
           "sh:minCount": "1",
           "sh:name": "vernietigingVan",
@@ -591,7 +634,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E78_Collection",
           "sh:description": "Collectie die werd gecureerd.",
           "sh:minCount": "1",
           "sh:name": "cureerde",
@@ -606,7 +649,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
           "sh:description": "MaterieelDing dat werd verworven.",
           "sh:minCount": "1",
           "sh:name": "overdrachtVan",
@@ -633,7 +676,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://wherever/TODO",
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E22_Man-Made_Object",
           "sh:description": "MensgemaaktObject dat is verhuisd.",
           "sh:minCount": "1",
           "sh:name": "verhuisd",
@@ -789,6 +832,29 @@
       "sh:targetClass": "http://www.w3.org/ns/prov#Location"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#BeschrijvingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Tekst van de Beschrijving.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "tekst",
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#tekst"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#TypeBeschrijving",
+          "sh:description": "Aard van de beschrijving.",
+          "sh:maxCount": "1",
+          "sh:name": "type",
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#type"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#StandaardEenheidShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -833,137 +899,7 @@
       "sh:targetClass": "https://schema.org/QuantitativeValue"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VoorstellingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
-          "sh:description": "Versie van een Werk of ZelfstandigeExpressie van een Werk die wordt opgevoerd.",
-          "sh:name": "uitgevoerdeVersie",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Voorstellingsplan dat wordt gevolgd bij de Voorstelling.",
-          "sh:name": "volgens",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ExpressieCreatieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "ZelfstandigeExpressie die werd gecreëerd.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "expressie",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Werk dat hierdoor werd gerealiseerd.",
-          "sh:minCount": "1",
-          "sh:name": "gerealiseerdWerk",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnamesessieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Opnamewerk dat hierdoor werd gerealiseerd.",
-          "sh:maxCount": "1",
-          "sh:name": "gerealiseerdWerk",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Opname die werd gecreëerd.",
-          "sh:minCount": "1",
-          "sh:name": "opname",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E2_Temporal_Entity",
-          "sh:description": "TemporeleEntiteit die werd opgenomen.",
-          "sh:minCount": "1",
-          "sh:name": "opnameVan",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PublicatieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Publicatiewerk dat hierbij werd gerealiseerd.",
-          "sh:maxCount": "1",
-          "sh:name": "gerealiseerdWerk",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "PublicatieExpressie die werd gecreëerd.",
-          "sh:minCount": "1",
-          "sh:name": "publicatiexpressie",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ConceptieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Het Werk dat gecrëerd werd.",
-          "sh:minCount": "1",
-          "sh:name": "werk",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VoorstellingsplanShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#MaterieelDingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#MensgemaaktObjectShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#GecureerdeCollectieShape",
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#TypeEntiteitShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
@@ -974,102 +910,158 @@
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnameShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnamewerkShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F1"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PublicatiewerkShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F19"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PublicatieExpressieShape",
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnamewerkShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#RolShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E7_Activity",
-          "sh:description": "Referentie naar verbonden klasse.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "Activiteit",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.activiteit"
-        },
-        {
-          "sh:class": "http://purl.org/dc/terms/Agent",
-          "sh:description": "Referentie naar verbonden klasse.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "Agent",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.agent"
-        },
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Aard van de Rol.",
-          "sh:name": "rol",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#BeschrijvingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Tekst van de Beschrijving.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "tekst",
-          "sh:path": "https://wherever/TODO"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#TypeBeschrijving",
-          "sh:description": "Aard van de beschrijving.",
-          "sh:maxCount": "1",
-          "sh:name": "type",
-          "sh:path": "https://wherever/TODO"
-        }
-      ],
-      "sh:targetClass": "https://wherever/TODO"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#TypeEntiteitShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F21"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ZelfstandigeExpressieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
-      "sh:targetClass": "https://wherever/TODO"
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F22"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PublicatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F19",
+          "sh:description": "Publicatiewerk dat hierbij werd gerealiseerd.",
+          "sh:maxCount": "1",
+          "sh:name": "gerealiseerdWerk",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R23"
+        },
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F24",
+          "sh:description": "PublicatieExpressie die werd gecreëerd.",
+          "sh:minCount": "1",
+          "sh:name": "publicatieExpressie",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R24"
+        }
+      ],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F24"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#PublicatieExpressieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F24"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VoorstellingsplanShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F25"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnameShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F26"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ConceptieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F1",
+          "sh:description": "Het Werk dat gecrëerd werd.",
+          "sh:minCount": "1",
+          "sh:name": "werk",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R16"
+        }
+      ],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F27"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#ExpressieCreatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F22",
+          "sh:description": "ZelfstandigeExpressie die werd gecreëerd.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "expressie",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R17"
+        },
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F1",
+          "sh:description": "Werk dat hierdoor werd gerealiseerd.",
+          "sh:minCount": "1",
+          "sh:name": "gerealiseerdWerk",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R19"
+        }
+      ],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F28"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#OpnamesessieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F21",
+          "sh:description": "Opnamewerk dat hierdoor werd gerealiseerd.",
+          "sh:maxCount": "1",
+          "sh:name": "gerealiseerdWerk",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R22"
+        },
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F26",
+          "sh:description": "Opname die werd gecreëerd.",
+          "sh:minCount": "1",
+          "sh:name": "opname",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R21"
+        },
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E2_Temporal_Entity",
+          "sh:description": "TemporeleEntiteit die werd opgenomen.",
+          "sh:minCount": "1",
+          "sh:name": "opnameVan",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R20"
+        }
+      ],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F29"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VoorstellingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object",
+          "sh:description": "Versie van een Werk of ZelfstandigeExpressie van een Werk die wordt opgevoerd.",
+          "sh:name": "uitgevoerdeVersie",
+          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#uitgevoerdeVersie"
+        },
+        {
+          "sh:class": "https://www.iflastandards.info/fr/frbr/frbroo#F25",
+          "sh:description": "Voorstellingsplan dat wordt gevolgd bij de Voorstelling.",
+          "sh:name": "volgens",
+          "sh:path": "https://www.iflastandards.info/fr/frbr/frbroo#R25"
+        }
+      ],
+      "sh:targetClass": "https://www.iflastandards.info/fr/frbr/frbroo#F31"
     }
   ]
 }

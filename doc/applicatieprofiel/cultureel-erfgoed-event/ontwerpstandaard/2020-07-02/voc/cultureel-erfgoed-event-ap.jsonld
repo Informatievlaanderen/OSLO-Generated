@@ -58,7 +58,22 @@
     "foaf:mbox": "mailto:oslo@kb.vlaanderen.be",
     "foaf:name": "Data Vlaanderen"
   },
-  "classes": [],
+  "classes": [
+    {
+      "@id": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Aard van de deelname van de Agent aan de Activiteit."
+      },
+      "name": {
+        "nl": "Rol"
+      },
+      "parents": [],
+      "usage": {
+        "nl": "Bv schilder bij de Productie van een schilderij of muzikant bij de uitvoering van een Voorstelling."
+      }
+    }
+  ],
   "properties": [
     {
       "@id": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol.activiteit",
@@ -67,7 +82,7 @@
         "nl": "Referentie naar verbonden klasse."
       },
       "domain": [
-        "https://wherever/TODO"
+        "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol"
       ],
       "generalization": [],
       "name": {
@@ -85,7 +100,7 @@
         "nl": "Referentie naar verbonden klasse."
       },
       "domain": [
-        "https://wherever/TODO"
+        "https://data.vlaanderen.be/ns/cultureel-erfgoed#Rol"
       ],
       "generalization": [],
       "name": {
@@ -97,22 +112,44 @@
       "usage": {}
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/cultureel-erfgoed#^titel",
+      "@id": "https://data.vlaanderen.be/ns/cultureel-erfgoed#toegekendAttribuut",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
-        "nl": "Titel van de Gebeurtenis."
+        "nl": "Het kenmerk dat is toegekend."
       },
       "domain": [
-        "http://www.cidoc-crm.org/cidoc-crm/E5_Event"
+        "http://www.cidoc-crm.org/cidoc-crm/E13_Attribute_Assignment"
       ],
       "generalization": [],
       "name": {
-        "nl": "titel"
+        "nl": "toegekend attribuut"
       },
       "range": [
-        "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+        "http://www.w3.org/2001/XMLSchema#anyURI"
       ],
-      "usage": {}
+      "usage": {
+        "nl": "Gebruik een URI om het kenmerk te identificeren."
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/cultureel-erfgoed#uitgevoerdeVersie",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Versie van een Werk of ZelfstandigeExpressie van een Werk die wordt opgevoerd."
+      },
+      "domain": [
+        "https://www.iflastandards.info/fr/frbr/frbroo#F31"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "uitgevoerde versie"
+      },
+      "range": [
+        "http://www.cidoc-crm.org/cidoc-crm/E28_Conceptual_Object"
+      ],
+      "usage": {
+        "nl": "Een Voorstelling is een Werk op zich (Voorstellingswerk) maar de uitdrukking ervan (het Voorstellingsplan) omvat Expressies van bestaande Werken, bv de tekst van een toneelstuk of de muziek bij bij een concert. Dit attribuut laat toe om deze Expressies op te lijsten, ttz de \"versie\" van het overeenkomstige Werk (bv een specifieke vertaling van Hamlet in het Italiaans). Eventueel kan ook worden volstaan met een verwijzing naar het Werk (bv Hamlet)."
+      }
     }
   ],
   "externals": [
@@ -250,45 +287,38 @@
       }
     },
     {
-      "@id": "https://wherever/TODO",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "Voorstelling"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "Expressie Creatie"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "Opnamesessie"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#F24",
       "@type": "rdfs:Class",
       "name": {
         "nl": "Publicatie"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#F27",
       "@type": "rdfs:Class",
       "name": {
         "nl": "Conceptie"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#F28",
       "@type": "rdfs:Class",
       "name": {
-        "nl": "Rol"
+        "nl": "Expressie Creatie"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#F29",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Opnamesessie"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#F31",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Voorstelling"
       }
     }
   ],
@@ -347,6 +377,13 @@
       "@type": "rdf:Property",
       "name": {
         "nl": "vernietiging van"
+      }
+    },
+    {
+      "@id": "http://www.cidoc-crm.org/cidoc-crm/P14.1_in_the_role_of",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "rol"
       }
     },
     {
@@ -441,6 +478,13 @@
       }
     },
     {
+      "@id": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "type"
+      }
+    },
+    {
       "@id": "http://www.cidoc-crm.org/cidoc-crm/P30_transferred_cusstody_of",
       "@type": "rdf:Property",
       "name": {
@@ -480,6 +524,13 @@
       "@type": "rdf:Property",
       "name": {
         "nl": "gemeten entiteit"
+      }
+    },
+    {
+      "@id": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "beschrijving"
       }
     },
     {
@@ -539,101 +590,66 @@
       }
     },
     {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "volgt"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "uitgevoerde versie"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "expressie"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "gerealiseerd werk"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "opname van"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "opname"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "gerealiseerd werk"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "publicatiexpressie"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
-      "@type": "rdf:Property",
-      "name": {
-        "nl": "gerealiseerd werk"
-      }
-    },
-    {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R16",
       "@type": "rdf:Property",
       "name": {
         "nl": "werk"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R17",
       "@type": "rdf:Property",
       "name": {
-        "nl": "toegekend attribuut"
+        "nl": "expressie"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R19",
       "@type": "rdf:Property",
       "name": {
-        "nl": "type"
+        "nl": "gerealiseerd werk"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R20",
       "@type": "rdf:Property",
       "name": {
-        "nl": "beschrijving"
+        "nl": "opname van"
       }
     },
     {
-      "@id": "https://wherever/TODO",
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R21",
       "@type": "rdf:Property",
       "name": {
-        "nl": "rol"
+        "nl": "opname"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R22",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "gerealiseerd werk"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R23",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "gerealiseerd werk"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R24",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "publicatieExpressie"
+      }
+    },
+    {
+      "@id": "https://www.iflastandards.info/fr/frbr/frbroo#R25",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "volgt"
       }
     }
   ],
