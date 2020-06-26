@@ -9,24 +9,24 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit> <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteitshapes> <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectAttribuutShape>,
+<https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit> <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteitshapes> <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#GeregistreerdPersoonShape>,
     <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#EigenschapShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#OrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#TijdToestandShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingBodyShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#AgentShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#ApplicatieShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#GeregistreerdPersoonShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#HoedanigheidShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#ConceptShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#PubliekeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#DatasetShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#OrganisatieEenheidShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#GeometrieShape>,
     <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingstatusShape>,
     <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#TerugmeldingShape> .
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectAttribuutShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#ApplicatieShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#TerugmeldingShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#HoedanigheidShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingBodyShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#ConceptShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#AgentShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#TijdToestandShape>,
+    <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#OrganisatieEenheidShape> .
 
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#AgentShape> a sh:NodeShape;
   sh:closed false;
@@ -57,16 +57,18 @@
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#DatasetShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap>;
-    sh:description "Verwijst naar de Eigenschap die deel uitmaakt van de Dataset.";
-    sh:name "eigenschap";
-    sh:path <https://data.vlaanderen.be/ns/melding#eigenschap>
-  ], [
     sh:class <https://www.w3.org/ns/org#Organization>;
     sh:description "De bronhouder is verantwoordelijk voor het opnemen van gegevens in de dataset en het bewaken van de kwaliteit daarvan.";
     sh:maxCount 1;
     sh:name "bronhouder";
     sh:path <https://data.vlaanderen.be/ns/melding#bronhouder>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De titel van een Dataset.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
   ], [
     sh:datatype xsd:string;
     sh:description "Een beschrijving van de Dataset.";
@@ -75,12 +77,10 @@
     sh:name "beschrijving";
     sh:path dc:description
   ], [
-    sh:datatype xsd:string;
-    sh:description "De titel van een Dataset.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
+    sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap>;
+    sh:description "Verwijst naar de Eigenschap die deel uitmaakt van de Dataset.";
+    sh:name "eigenschap";
+    sh:path <https://data.vlaanderen.be/ns/melding#eigenschap>
   ];
   sh:targetClass dcmitype:Dataset .
 
@@ -88,17 +88,17 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:boolean;
+    sh:description "True als de eigenschap verplicht mee te sturen is ter informatie van de behandelaar en bronhouder, anders false.";
+    sh:maxCount 1;
+    sh:name "verplicht";
+    sh:path <https://www.w3.org/ns/hydra/core#required>
+  ], [
+    sh:datatype xsd:boolean;
     sh:description "Geeft aan of op de eigenschap kan teruggemeld worden (true) of deze louter ter informatie van de gebruiker wordt getoond (false). ";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "meldbaar";
     sh:path <https://data.vlaanderen.be/ns/melding#meldbaar>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "True als de eigenschap verplicht mee te sturen is ter informatie van de behandelaar en bronhouder, anders false.";
-    sh:maxCount 1;
-    sh:name "verplicht";
-    sh:path <https://www.w3.org/ns/hydra/core#required>
   ], [
     sh:class <https://www.w3.org/ns/org#Organization>;
     sh:description "De bronhouder is verantwoordelijk voor het opnemen van gegevens in de dataset en het bewaken van de kwaliteit daarvan.";
@@ -112,17 +112,17 @@
     sh:path <https://data.vlaanderen.be/ns/melding#mogelijkeWaarden>
   ], [
     sh:datatype xsd:string;
+    sh:description "True als de eigenschap verplicht mee te geven is, anders false.";
+    sh:maxCount 1;
+    sh:name "verwachtType";
+    sh:path <https://data.vlaanderen.be/ns/melding#verwachtType>
+  ], [
+    sh:datatype xsd:string;
     sh:description "Een label voor de Eigenschap.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "label";
     sh:path rdfs:label
-  ], [
-    sh:datatype xsd:string;
-    sh:description "True als de eigenschap verplicht mee te geven is, anders false.";
-    sh:maxCount 1;
-    sh:name "verwachtType";
-    sh:path <https://data.vlaanderen.be/ns/melding#verwachtType>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Eigenschap> .
 
@@ -170,29 +170,28 @@
     sh:name "geometrie";
     sh:path <http://www.w3.org/ns/locn#geometry>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Een tekstuele beschrijving van de melding.";
-    sh:maxCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
-  ], [
     sh:datatype xsd:anyURI;
     sh:description """Identificeert een resource die aan de MeldingsBody verbonden is en mogelijks speciale verwerking vraagt.
 """;
     sh:maxCount 1;
     sh:name "bijlage";
     sh:path as:attachment
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een tekstuele beschrijving van de melding.";
+    sh:maxCount 1;
+    sh:name "beschrijving";
+    sh:path dc:description
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#MeldingBody> .
 
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectAttribuutShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "De voorgestelde waarde van een Eigenschap.";
-    sh:maxCount 1;
-    sh:name "voorgesteldeWaarde";
-    sh:path <https://data.vlaanderen.be/ns/melding#voorgesteldeWaarde>
+    sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap>;
+    sh:description "Verwijst naar de Eigenschap die deel uitmaakt van een bepaalde Dataset.";
+    sh:name "eigenschap";
+    sh:path <https://data.vlaanderen.be/ns/melding#eigenschap>
   ], [
     sh:datatype xsd:string;
     sh:description "De huidige waarde van een Eigenschap.";
@@ -201,16 +200,41 @@
     sh:name "huidigeWaarde";
     sh:path <https://data.vlaanderen.be/ns/melding#huidigeWaarde>
   ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#Eigenschap>;
-    sh:description "Verwijst naar de Eigenschap die deel uitmaakt van een bepaalde Dataset.";
-    sh:name "eigenschap";
-    sh:path <https://data.vlaanderen.be/ns/melding#eigenschap>
+    sh:datatype xsd:string;
+    sh:description "De voorgestelde waarde van een Eigenschap.";
+    sh:maxCount 1;
+    sh:name "voorgesteldeWaarde";
+    sh:path <https://data.vlaanderen.be/ns/melding#voorgesteldeWaarde>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut> .
 
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingsobjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut>;
+    sh:description "Refereert naar een Eigenschap die deel uitmaakt van het Meldingsobject.";
+    sh:name "heeftEigenschap";
+    sh:path <https://data.vlaanderen.be/ns/melding#heeftEigenschap>
+  ], [
+    sh:class dcmitype:Dataset;
+    sh:description "De bron (Dataset) waar het Meldingsobject in voor komt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "heeftBron";
+    sh:path oa:hasSource
+  ], [
+    sh:class oa:TimeState;
+    sh:description "De relatie tussen het Meldingsobject en een TijdToestand.";
+    sh:maxCount 1;
+    sh:name "heeftToestand";
+    sh:path oa:hasState
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
+    sh:description "De body van de Melding die betrekking heeft op het Meldingsobject.";
+    sh:maxCount 1;
+    sh:name "gerelateerdeBody";
+    sh:path <https://data.vlaanderen.be/ns/melding#gerelateerdeBody>
+  ], [
     sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
     sh:description "De Status verbonden aan het Meldingsobject.";
     sh:name "heeftStatus";
@@ -221,43 +245,12 @@
     sh:minCount 1;
     sh:name "behandelaar";
     sh:path <https://data.vlaanderen.be/ns/melding#behandelaar>
-  ], [
-    sh:class dcmitype:Dataset;
-    sh:description "De bron (Dataset) waar het Meldingsobject in voor komt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftBron";
-    sh:path oa:hasSource
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
-    sh:description "De body van de Melding die betrekking heeft op het Meldingsobject.";
-    sh:maxCount 1;
-    sh:name "gerelateerdeBody";
-    sh:path <https://data.vlaanderen.be/ns/melding#gerelateerdeBody>
-  ], [
-    sh:class oa:TimeState;
-    sh:description "De relatie tussen het Meldingsobject en een TijdToestand.";
-    sh:maxCount 1;
-    sh:name "heeftToestand";
-    sh:path oa:hasState
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#MeldingsobjectAttribuut>;
-    sh:description "Refereert naar een Eigenschap die deel uitmaakt van het Meldingsobject.";
-    sh:name "heeftEigenschap";
-    sh:path <https://data.vlaanderen.be/ns/melding#heeftEigenschap>
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Meldingsobject> .
 
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#MeldingstatusShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:dateTime;
-    sh:description "De datum van een Status.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "statusdatum";
-    sh:path <https://data.vlaanderen.be/ns/melding#statusdatum>
-  ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/MeldingStatuswaarde>;
     sh:class skos:Concept;
     sh:description "Het type van de Status.";
@@ -266,19 +259,26 @@
     sh:name "statuswaarde";
     sh:path <https://data.vlaanderen.be/ns/melding#statuswaarde>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Een beschrijving van de Status.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
-  ], [
     sh:class dc:Agent;
     sh:description "De Agent die deze status heeft geactiveerd. ";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "statuswijzigingDoor";
     sh:path <https://data.vlaanderen.be/ns/melding#statuswijzigingDoor>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "De datum van een Status.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "statusdatum";
+    sh:path <https://data.vlaanderen.be/ns/melding#statusdatum>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een beschrijving van de Status.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "beschrijving";
+    sh:path dc:description
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Meldingstatus> .
 
@@ -321,24 +321,23 @@
     sh:name "samenvatting";
     sh:path as:summary
   ], [
-    sh:class dc:Agent;
-    sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "behandelaar";
-    sh:path <https://data.vlaanderen.be/ns/melding#behandelaar>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "De titel van de Melding.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
-  ], [
     sh:description "De relatie tussen de Melding en het Meldingstype dat gebruikt worden om de melding te categoriseren.";
     sh:minCount 1;
     sh:name "meldingstype";
     sh:path <https://data.vlaanderen.be/ns/melding#meldingstype>
+  ], [
+    sh:class dc:Agent;
+    sh:description "Agent die de Melding heeft aangemaakt en/of ingediend.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "indiener";
+    sh:path <https://data.vlaanderen.be/ns/melding#indiener>
+  ], [
+    sh:class <https://www.w3.org/ns/org#Organization>;
+    sh:description "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.";
+    sh:maxCount 1;
+    sh:name "meldingsorganisatie";
+    sh:path <https://data.vlaanderen.be/ns/melding#meldingsorganisatie>
   ], [
     sh:class <https://data.vlaanderen.be/ns/melding#Applicatie>;
     sh:description "De applicatie dat de Melding creëerde.";
@@ -357,28 +356,22 @@
     sh:name "betrokkene";
     sh:path <https://data.vlaanderen.be/ns/melding#betrokkene>
   ], [
-    sh:class dc:Agent;
-    sh:description "Agent die de Melding heeft aangemaakt en/of ingediend.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "indiener";
-    sh:path <https://data.vlaanderen.be/ns/melding#indiener>
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
-    sh:description "De Status verbonden aan de Melding.";
-    sh:name "heeftStatus";
-    sh:path <https://data.vlaanderen.be/ns/melding#heeftStatus>
-  ], [
-    sh:class <https://www.w3.org/ns/org#Organization>;
-    sh:description "De organisatie die verantwoordelijk is voor de applicatie die werd gebruikt voor de creatie van de melding.";
-    sh:maxCount 1;
-    sh:name "meldingsorganisatie";
-    sh:path <https://data.vlaanderen.be/ns/melding#meldingsorganisatie>
-  ], [
     sh:class <https://data.vlaanderen.be/ns/melding#Meldingsobject>;
     sh:description "De relatie tussen de Melding en het doelwit, het Meldingsobject waarop de melding slaat.";
     sh:name "heeftDoelwit";
     sh:path oa:hasTarget
+  ], [
+    sh:class dc:Agent;
+    sh:description "Agent die werd aangewezen om de melding op te volgen en af te handelen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "behandelaar";
+    sh:path <https://data.vlaanderen.be/ns/melding#behandelaar>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
+    sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody).";
+    sh:name "heeftBody";
+    sh:path oa:hasBody
   ], [
     sh:datatype xsd:anyURI;
     sh:description "Een doorverwijzing naar een webpagina over deze Melding.";
@@ -386,27 +379,34 @@
     sh:name "webpagina";
     sh:path <https://data.vlaanderen.be/ns/melding#webpagina>
   ], [
-    sh:class <https://data.vlaanderen.be/ns/melding#MeldingBody>;
-    sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody).";
-    sh:name "heeftBody";
-    sh:path oa:hasBody
+    sh:class <https://data.vlaanderen.be/ns/melding#Meldingstatus>;
+    sh:description "De Status verbonden aan de Melding.";
+    sh:name "heeftStatus";
+    sh:path <https://data.vlaanderen.be/ns/melding#heeftStatus>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De titel van de Melding.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
   ];
   sh:targetClass <https://data.vlaanderen.be/ns/melding#Terugmelding> .
 
 <https://data.vlaanderen.be/shacl/generieke-terugmeldfaciliteit#TijdToestandShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype xsd:anyURI;
+    sh:description "Een cached momentopname van de bron op het moment van de vaststelling van de fout of onvolledigheid.";
+    sh:maxCount 1;
+    sh:name "cachedBron";
+    sh:path oa:cachedSource
+  ], [
     sh:datatype xsd:dateTime;
     sh:description "De datum en het tijdstip waarop het Meldingsobject moet geïnterpreteerd worden als zijnde van toepassing op de Melding.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "datumVaststelling";
     sh:path oa:sourceDate
-  ], [
-    sh:datatype xsd:anyURI;
-    sh:description "Een cached momentopname van de bron op het moment van de vaststelling van de fout of onvolledigheid.";
-    sh:maxCount 1;
-    sh:name "cachedBron";
-    sh:path oa:cachedSource
   ];
   sh:targetClass oa:TimeState .

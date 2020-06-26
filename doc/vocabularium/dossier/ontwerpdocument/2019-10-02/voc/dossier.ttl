@@ -135,8 +135,8 @@ prov:Entity a rdfs:Class;
   rdfs:comment "Een collectie is een neerslag van een eenheid van werk."@nl;
   rdfs:domain prov:Collection;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
-  rdfs:range dbo:Case,
-    dbo:UnitOfWork .
+  rdfs:range dbo:UnitOfWork,
+    dbo:Case .
 
 <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor> a owl:ObjectProperty;
   rdfs:label "is voorgesteld door"@nl;
@@ -172,11 +172,11 @@ prov:Entity a rdfs:Class;
 <https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens> a owl:ObjectProperty;
   rdfs:label "vindt plaats tijdens"@nl;
   rdfs:comment "Een activiteit vindt plaats tijdens een eenheid van werk."@nl;
-  rdfs:domain prov:Activity,
-    <https://data.vlaanderen.be/ns/dossier#Procedurestap>;
+  rdfs:domain <https://data.vlaanderen.be/ns/dossier#Procedurestap>,
+    prov:Activity;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
-  rdfs:range prov:Activity,
-    dbo:UnitOfWork .
+  rdfs:range dbo:UnitOfWork,
+    prov:Activity .
 
 dc:created a rdf:Property;
   rdfs:label "creatiedatum"@nl .
@@ -212,18 +212,9 @@ prov:actedOnBehalfOf a rdf:Property;
   rdfs:subClassOf prov:Entity .
 
 <https://data.vlaanderen.be/ns/dossier> a owl:Ontology;
-  rdfs:label "dossier"@en,
-    "dossier"@nl;
+  rdfs:label "dossier"@nl,
+    "dossier"@en;
   dc:contributor [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Michiel";
-    foaf:lastName "De Keyzer";
-    foaf:mbox <mailto:michiel.de.keyzer@pwc.com>
-  ], [
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <http://www.pwc.be>;
@@ -232,44 +223,62 @@ prov:actedOnBehalfOf a rdf:Property;
     foaf:firstName "Arne";
     foaf:lastName "De Proft";
     foaf:mbox <mailto:arne.de.proft@pwc.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Michiel";
+    foaf:lastName "De Keyzer";
+    foaf:mbox <mailto:michiel.de.keyzer@pwc.com>
   ];
   dc:issued "2019-09-01";
-  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
-    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
+  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dbo:Project,
-    dbo:Case,
-    dc:isPartOf,
-    dc:relation,
-    prov:Activity,
-    dbo:UnitOfWork,
-    prov:Collection,
-    prov:actedOnBehalfOf,
+  rdfs:seeAlso dc:created,
     <http://data.europa.eu/m8g/Participation>,
-    dc:title,
+    dbo:UnitOfWork,
+    prov:actedOnBehalfOf,
     prov:Entity,
+    dc:title,
+    dbo:Project,
+    skos:Concept,
+    dc:relation,
+    dbo:Case,
     dcat:Distribution,
-    dc:created,
-    skos:Concept;
+    prov:Collection,
+    dc:isPartOf,
+    prov:Activity;
   foaf:maker [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.lne.be/>;
-      foaf:name "Departement Omgeving"
-    ];
-    foaf:firstName "Geert";
-    foaf:lastName "Van Haute";
-    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
-  ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
     foaf:firstName "Bert";
     foaf:lastName "Van Kets";
     foaf:mbox <mailto:bert.vankets@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Cipal Schaubroeck"];
+    foaf:firstName "Wim";
+    foaf:lastName "Lambrecht";
+    foaf:mbox <mailto:wim.lambrecht@cipalschaubroeck.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Onroerend Erfgoed"];
+    foaf:firstName "Inge";
+    foaf:lastName "Roosens";
+    foaf:mbox <mailto:inge.roosens@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Skryv"];
+    foaf:firstName "Anouk";
+    foaf:lastName "De Meester";
+    foaf:mbox <mailto:anouk.demeester@skryv.com>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -281,28 +290,25 @@ prov:actedOnBehalfOf a rdf:Property;
     foaf:mbox <mailto:henk.vanderstraeten@bz.vlaanderen.be>
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Stad Gent"];
-    foaf:firstName "Steven";
-    foaf:lastName "Staelens";
-    foaf:mbox <mailto:steven.staelens@stad.gent>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Onroerend Erfgoed"];
-    foaf:firstName "Inge";
-    foaf:lastName "Roosens";
-    foaf:mbox <mailto:inge.roosens@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Cipal Schaubroeck"];
-    foaf:firstName "Wim";
-    foaf:lastName "Lambrecht";
-    foaf:mbox <mailto:wim.lambrecht@cipalschaubroeck.be>
+    schema:affiliation [
+      foaf:homepage <https://www.lne.be/>;
+      foaf:name "Departement Omgeving"
+    ];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute";
+    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Departement CJM"];
     foaf:firstName "Roel";
     foaf:lastName "Devriendt";
     foaf:mbox <mailto:roel.devriendt@cjsm.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Stad Gent"];
+    foaf:firstName "Steven";
+    foaf:lastName "Staelens";
+    foaf:mbox <mailto:steven.staelens@stad.gent>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -312,10 +318,4 @@ prov:actedOnBehalfOf a rdf:Property;
     foaf:firstName "Toon";
     foaf:lastName "Timbermont";
     foaf:mbox <mailto:toon.timbermont@skryv.com>
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Skryv"];
-    foaf:firstName "Anouk";
-    foaf:lastName "De Meester";
-    foaf:mbox <mailto:anouk.demeester@skryv.com>
   ] .
