@@ -106,16 +106,22 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E30_Right",
-          "sh:description": "Recht dat een Agent bezit.",
-          "sh:name": "Heeft",
-          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P75_possesses"
-        },
-        {
           "sh:class": "http://schema.org/ContactPoint",
           "sh:description": "Contactinfo van de Agent.",
           "sh:name": "contactInfo",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P76_has_contact_point"
+        },
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E30_Right",
+          "sh:description": "Recht dat een Agent bezit.",
+          "sh:name": "heeft",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P75_possesses"
+        },
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E72_Legal_Object",
+          "sh:description": "WettelijkObject waarop een Agent een Recht bezit.",
+          "sh:name": "oefentRechtUitOp",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P105i_has_right_on"
         },
         {
           "sh:class": "http://www.w3.org/ns/prov#Location",
@@ -320,7 +326,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "Beschrijving van de Entiteit.",
           "sh:name": "beschrijving",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
@@ -568,6 +574,18 @@
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
         },
         {
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:description": "Recht waarover een Agent beschikt.",
+          "sh:name": "isInBezitVan",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P75i_is_possessed_by"
+        },
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E72_Legal_Object",
+          "sh:description": "WettelijkObject waarop het recht van toepassing is.",
+          "sh:name": "isVanToepassingOp",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P104i_applies_to"
+        },
+        {
           "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "Titel van het Recht.",
           "sh:name": "titel",
@@ -671,12 +689,18 @@
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
         },
         {
-          "sh:class": "https://schema.org/QuantitativeValue",
-          "sh:description": "Kwantitatieve waarde van de Dimensie.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "kwantitatieveWaarde",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#kwantitatieveWaarde"
+          "sh:name": "eenheid",
+          "sh:path": "https://schema.org/unitText"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid",
+          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "standaardEenheid",
+          "sh:path": "https://schema.org/unitCode"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -685,6 +709,14 @@
           "sh:minCount": "1",
           "sh:name": "type",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
+        },
+        {
+          "sh:class": "https://schema.org/Number",
+          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://schema.org/value"
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E54_Dimension"
@@ -711,7 +743,7 @@
         {
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E30_Right",
           "sh:description": "Recht waaraan het WettelijkObject is onderworpen.",
-          "sh:name": "isOnderworpenAan",
+          "sh:name": "isOnderworpenaan",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P104_is_subject_to"
         },
         {
@@ -789,7 +821,7 @@
           "sh:description": "Agent die de verantwoordelijkheid van curator van de GecureerdeCollectie aanneemt.",
           "sh:minCount": "1",
           "sh:name": "curator",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#curator"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P109_has_current_or_former_curator"
         },
         {
           "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E54_Dimension",
@@ -809,7 +841,7 @@
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "locatie",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#locatie"
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P53_has_former_or_current_location"
         },
         {
           "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
@@ -1007,36 +1039,6 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://schema.org/Number"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-object-ap#KwantitatieveWaardeShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:name": "eenheid",
-          "sh:path": "https://schema.org/unitText"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid",
-          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:name": "standaardEenheid",
-          "sh:path": "https://schema.org/unitCode"
-        },
-        {
-          "sh:class": "https://schema.org/Number",
-          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "waarde",
-          "sh:path": "https://schema.org/value"
-        }
-      ],
-      "sh:targetClass": "https://schema.org/QuantitativeValue"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-object-ap#WerkShape",
