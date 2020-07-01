@@ -8,35 +8,35 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
+<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#SleutelWaardeShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#AgentShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#GetypeerdeStringShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#AgentShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#SleutelWaardeShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape> .
+    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape> .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <http://www.w3.org/ns/locn#Geometry>;
-    sh:description "De geometrische voorstelling van het object.";
-    sh:maxCount 1;
-    sh:name "geometrie";
-    sh:path <http://www.w3.org/ns/locn#geometry>
-  ], [
     sh:datatype rdf:langString;
     sh:description "Naam van de Administratieve Eenheid.";
     sh:maxCount 1;
     sh:name "naam";
     sh:path <https://schema.org/name>
+  ], [
+    sh:class <http://www.w3.org/ns/locn#Geometry>;
+    sh:description "De geometrische voorstelling van het object.";
+    sh:maxCount 1;
+    sh:name "geometrie";
+    sh:path <http://www.w3.org/ns/locn#geometry>
   ];
   sh:targetClass <https://schema.org/AdministrativeArea> .
 
@@ -47,12 +47,6 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype rdfs:Literal;
-    sh:description "Uren waarbinnen contact kan worden opgenomen.";
-    sh:maxCount 1;
-    sh:name "openingsuren";
-    sh:path schema:openingHours
-  ], [
     sh:datatype xsd:anyURI;
     sh:description "Website waarnaar men kan surfen.";
     sh:maxCount 1;
@@ -65,23 +59,17 @@
     sh:name "aanschrijfvorm";
     sh:path vcard:honorific-prefix
   ], [
-    sh:class schema:OpeningHoursSpecification;
-    sh:description "Periode waarin contact kan worden opgenomen.";
-    sh:maxCount 1;
-    sh:name "beschikbaarheid";
-    sh:path schema:hoursAvailable
-  ], [
     sh:datatype xsd:string;
     sh:description "Naam van bvb de persoon die men kan contacteren.";
     sh:maxCount 1;
     sh:name "contactnaam";
     sh:path foaf:name
   ], [
-    sh:class <http://www.w3.org/ns/locn#Address>;
-    sh:description "Adres dat men kan aanschrijven of bezoeken.";
+    sh:datatype rdfs:Literal;
+    sh:description "Uren waarbinnen contact kan worden opgenomen.";
     sh:maxCount 1;
-    sh:name "adres";
-    sh:path <http://www.w3.org/ns/locn#address>
+    sh:name "openingsuren";
+    sh:path schema:openingHours
   ], [
     sh:datatype xsd:string;
     sh:description "Telefoonnummer waarop men kan bellen.";
@@ -95,6 +83,18 @@
     sh:name "email";
     sh:path schema:email
   ], [
+    sh:class <http://www.w3.org/ns/locn#Address>;
+    sh:description "Adres dat men kan aanschrijven of bezoeken.";
+    sh:maxCount 1;
+    sh:name "adres";
+    sh:path <http://www.w3.org/ns/locn#address>
+  ], [
+    sh:class schema:OpeningHoursSpecification;
+    sh:description "Periode waarin contact kan worden opgenomen.";
+    sh:maxCount 1;
+    sh:name "beschikbaarheid";
+    sh:path schema:hoursAvailable
+  ], [
     sh:datatype xsd:string;
     sh:description "Faxnummer waarnaar men kan faxen.";
     sh:maxCount 1;
@@ -106,12 +106,6 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "Een typering van de doelgroep.";
-    sh:maxCount 1;
-    sh:name "doelgroepType";
-    sh:path <https://schema.org/audienceType>
-  ], [
     sh:class <http://www.w3.org/ns/adms#Identifier>;
     sh:description "Een identificator voor de doelgroep.";
     sh:maxCount 1;
@@ -122,6 +116,12 @@
     sh:description "Het geografisch gebied geassocieerd met de doelgroep.";
     sh:name "geografischGebied";
     sh:path <https://schema.org/geographicArea>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een typering van de doelgroep.";
+    sh:maxCount 1;
+    sh:name "doelgroepType";
+    sh:path <https://schema.org/audienceType>
   ];
   sh:targetClass <https://schema.org/Audience> .
 
@@ -133,16 +133,16 @@
   sh:closed false;
   sh:property [
     sh:datatype rdfs:Literal;
-    sh:description "Geometrie uitgedrukt in wkt-formaat.";
-    sh:maxCount 1;
-    sh:name "wkt";
-    sh:path <http://www.opengis.net/ont/geosparql#asWKT>
-  ], [
-    sh:datatype rdfs:Literal;
     sh:description "Geometrie uitgedrukt in gml-formaat.";
     sh:maxCount 1;
     sh:name "gml";
     sh:path <http://www.opengis.net/ont/geosparql#asGML>
+  ], [
+    sh:datatype rdfs:Literal;
+    sh:description "Geometrie uitgedrukt in wkt-formaat.";
+    sh:maxCount 1;
+    sh:name "wkt";
+    sh:path <http://www.opengis.net/ont/geosparql#asWKT>
   ];
   sh:targetClass <http://www.w3.org/ns/locn#Geometry> .
 
@@ -153,39 +153,15 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://schema.org/InformAction>;
-    sh:description "Een relatie tussen twee Informeer Acties.";
-    sh:name "isGerelateerdMet";
-    sh:path dc:relation
-  ], [
-    sh:class skos:Concept;
-    sh:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
-    sh:minCount 1;
-    sh:name "notificatiekanaal";
-    sh:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
-  ], [
     sh:class <https://schema.org/PropertyValue>;
     sh:description "De inhoud van een Notificatiebericht.";
     sh:name "inhoud";
     sh:path <https://data.vlaanderen.be/ns/notificatie#inhoud>
   ], [
-    sh:class skos:Concept;
-    sh:description "Het onderwerp van de informeer actie.";
-    sh:minCount 1;
-    sh:name "onderwerp";
-    sh:path <https://schema.org/about>
-  ], [
-    sh:class <http://data.europa.eu/m8g/PublicOrganisation>;
-    sh:description "Duidt de agent aan die aanleiding gaf tot de InformeerActie.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "agent";
-    sh:path <https://schema.org/agent>
-  ], [
-    sh:class <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht>;
-    sh:description "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen.";
-    sh:name "resulteertIn";
-    sh:path <https://data.vlaanderen.be/ns/notificatie#resulteertIn>
+    sh:class <https://schema.org/InformAction>;
+    sh:description "Een relatie tussen twee Informeer Acties.";
+    sh:name "isGerelateerdMet";
+    sh:path dc:relation
   ], [
     sh:class <http://data.europa.eu/m8g/PeriodOfTime>;
     sh:description "Het tijdsinterval waarbinnen de Informeer Actie relevant is en bijgevolg kan resulteren in de verzending van notificatieberichten.";
@@ -199,18 +175,40 @@
     sh:minCount 1;
     sh:name "doelgroep";
     sh:path schema:recipient
+  ], [
+    sh:class <http://data.europa.eu/m8g/PublicOrganisation>;
+    sh:description "Duidt de agent aan die aanleiding gaf tot de InformeerActie.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "agent";
+    sh:path <https://schema.org/agent>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht>;
+    sh:description "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen.";
+    sh:name "resulteertIn";
+    sh:path <https://data.vlaanderen.be/ns/notificatie#resulteertIn>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
+    sh:minCount 1;
+    sh:name "notificatiekanaal";
+    sh:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Het onderwerp van de informeer actie.";
+    sh:minCount 1;
+    sh:name "onderwerp";
+    sh:path <https://schema.org/about>
   ];
   sh:targetClass <https://schema.org/InformAction> .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "De naam van het Merk.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path schema:name
+    sh:class <http://purl.org/vocab/cpsv#PublicService>;
+    sh:description "De Publieke Dienstverlening waar het Merk aan gerelateerd is.";
+    sh:name "isGerelateerdMet";
+    sh:path dc:relation
   ], [
     sh:class schema:ContactPoint;
     sh:description "Informatie zoals email, telefoon... die toelaat de entiteit te contacteren.";
@@ -219,66 +217,24 @@
     sh:name "contactinfo";
     sh:path schema:contactPoint
   ], [
-    sh:class <http://purl.org/vocab/cpsv#PublicService>;
-    sh:description "De Publieke Dienstverlening waar het Merk aan gerelateerd is.";
-    sh:name "isGerelateerdMet";
-    sh:path dc:relation
+    sh:datatype xsd:string;
+    sh:description "De naam van het Merk.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path schema:name
   ];
   sh:targetClass <https://schema.org/Brand> .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class dc:Agent;
-    sh:description "De agent die het notificatiebericht ontvangt.";
-    sh:name "bestemmeling";
-    sh:path <https://schema.org/recipient>
-  ], [
-    sh:class skos:Concept;
-    sh:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "notificatiekanaal";
-    sh:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "De datum waarop het Notificatiebericht werd ontvangen door de bestemmeling.";
-    sh:maxCount 1;
-    sh:name "datumOntvangen";
-    sh:path schema:dateReceived
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "De datum waarop het Notificatiebericht werd gelezen door de bestemmeling. ";
-    sh:maxCount 1;
-    sh:name "datumGelezen";
-    sh:path schema:dateRead
-  ], [
     sh:datatype xsd:string;
     sh:description "De tekstuele inhoud van het Notificatiebericht.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "tekst";
     sh:path <https://schema.org/text>
-  ], [
-    sh:class <https://schema.org/Brand>;
-    sh:description "De afzender van het Notificatiebericht.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "afzender";
-    sh:path schema:sender
-  ], [
-    sh:datatype xsd:anyURI;
-    sh:description "Een url voor het Notificatiebericht.";
-    sh:maxCount 1;
-    sh:name "url";
-    sh:path schema:url
-  ], [
-    sh:datatype xsd:dateTime;
-    sh:description "De datum waarop het Notificatiebericht gecreëerd werd.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "datumCreatie";
-    sh:path <https://schema.org/dateCreated>
   ], [
     sh:datatype xsd:dateTime;
     sh:description "De datum waarop het Notificatiebericht werd verzonden naar de bestemmeling. ";
@@ -288,10 +244,54 @@
     sh:path schema:dateSent
   ], [
     sh:datatype xsd:dateTime;
+    sh:description "De datum waarop het Notificatiebericht gecreëerd werd.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "datumCreatie";
+    sh:path <https://schema.org/dateCreated>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "De datum waarop het Notificatiebericht werd gelezen door de bestemmeling. ";
+    sh:maxCount 1;
+    sh:name "datumGelezen";
+    sh:path schema:dateRead
+  ], [
+    sh:datatype xsd:anyURI;
+    sh:description "Een url voor het Notificatiebericht.";
+    sh:maxCount 1;
+    sh:name "url";
+    sh:path schema:url
+  ], [
+    sh:class dc:Agent;
+    sh:description "De agent die het notificatiebericht ontvangt.";
+    sh:name "bestemmeling";
+    sh:path <https://schema.org/recipient>
+  ], [
+    sh:datatype xsd:dateTime;
+    sh:description "De datum waarop het Notificatiebericht werd ontvangen door de bestemmeling.";
+    sh:maxCount 1;
+    sh:name "datumOntvangen";
+    sh:path schema:dateReceived
+  ], [
+    sh:datatype xsd:dateTime;
     sh:description "De datum waarop een Notificatiebericht vervalt.";
     sh:maxCount 1;
     sh:name "vervalt";
     sh:path schema:expires
+  ], [
+    sh:class <https://schema.org/Brand>;
+    sh:description "De afzender van het Notificatiebericht.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "afzender";
+    sh:path schema:sender
+  ], [
+    sh:class skos:Concept;
+    sh:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "notificatiekanaal";
+    sh:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
   ], [
     sh:datatype xsd:string;
     sh:description "Een titel voor het Notificatiebericht.";
@@ -327,18 +327,18 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:string;
-    sh:description "De waarde van het sleutel/waarde paar.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "waarde";
-    sh:path <https://schema.org/value>
-  ], [
-    sh:datatype xsd:string;
     sh:description "Het label is de sleutel van het sleutel/waarde paar.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "naam";
     sh:path <https://schema.org/name>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "De waarde van het sleutel/waarde paar.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "waarde";
+    sh:path <https://schema.org/value>
   ];
   sh:targetClass <https://schema.org/PropertyValue> .
 
