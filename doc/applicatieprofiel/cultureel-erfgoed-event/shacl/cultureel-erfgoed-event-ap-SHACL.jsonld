@@ -406,20 +406,14 @@
         {
           "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Beschrijving",
           "sh:description": "Beschrijving van de TemporeleEntiteit.",
-          "sh:name": "^beschrijving",
+          "sh:name": "beschrijving",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
         },
         {
           "sh:class": "http://www.w3.org/ns/adms#Identifier",
           "sh:description": "Identificator van de TemporeleEntiteit.",
-          "sh:name": "^identificator",
+          "sh:name": "identificator",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by"
-        },
-        {
-          "sh:class": "https://wherever/TODO",
-          "sh:description": "Aard van de TemporeleEntiteit",
-          "sh:name": "^type",
-          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/cultureel-erfgoed#Periode",
@@ -428,6 +422,12 @@
           "sh:minCount": "1",
           "sh:name": "tijd",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P4_has_time-span"
+        },
+        {
+          "sh:class": "https://wherever/TODO",
+          "sh:description": "Aard van de TemporeleEntiteit",
+          "sh:name": "type",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E2_Temporal_Entity"
@@ -472,12 +472,18 @@
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P3_has_note"
         },
         {
-          "sh:class": "https://schema.org/QuantitativeValue",
-          "sh:description": "Kwantitatieve waarde van de Dimensie.",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "kwantitatieveWaarde",
-          "sh:path": "https://data.vlaanderen.be/ns/cultureel-erfgoed#kwantitatieveWaarde"
+          "sh:name": "eenheid",
+          "sh:path": "https://schema.org/unitText"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid",
+          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:name": "standaardEenheid",
+          "sh:path": "https://schema.org/unitCode"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -486,6 +492,14 @@
           "sh:minCount": "1",
           "sh:name": "type",
           "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P2_has_type"
+        },
+        {
+          "sh:class": "https://schema.org/Number",
+          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://schema.org/value"
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E54_Dimension"
@@ -533,6 +547,21 @@
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E65_Creation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VernietigingShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
+          "sh:description": "MaterieelDing dat werd vernietigd.",
+          "sh:minCount": "1",
+          "sh:name": "vernietigingVan",
+          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P13_destroyed"
+        }
+      ],
+      "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E6_Destruction"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#InformatieObjectShape",
@@ -612,21 +641,6 @@
         }
       ],
       "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E80_Part_Removal"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#VernietigingShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.cidoc-crm.org/cidoc-crm/E18_Physical_Thing",
-          "sh:description": "MaterieelDing dat werd vernietigd.",
-          "sh:minCount": "1",
-          "sh:name": "vernietigingVan",
-          "sh:path": "http://www.cidoc-crm.org/cidoc-crm/P13_destroyed"
-        }
-      ],
-      "sh:targetClass": "http://www.cidoc-crm.org/cidoc-crm/E81_Transformation"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#CuratieShape",
@@ -867,36 +881,6 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://schema.org/Number"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#KwantitatieveWaardeShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De eenheid waarin de waarde is uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:name": "eenheid",
-          "sh:path": "https://schema.org/unitText"
-        },
-        {
-          "sh:class": "https://data.vlaanderen.be/ns/generiek#StandaardEenheid",
-          "sh:description": "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:name": "standaardEenheid",
-          "sh:path": "https://schema.org/unitCode"
-        },
-        {
-          "sh:class": "https://schema.org/Number",
-          "sh:description": "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "waarde",
-          "sh:path": "https://schema.org/value"
-        }
-      ],
-      "sh:targetClass": "https://schema.org/QuantitativeValue"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/cultureel-erfgoed-event-ap#TypeEntiteitShape",
