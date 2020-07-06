@@ -98,6 +98,7 @@ prov:Association a rdfs:Class;
 
 <https://data.vlaanderen.be/ns/besluitvorming#heeftBijlage> a owl:ObjectProperty;
   rdfs:label "heeft bijlage"@nl;
+  rdfs:comment "Een gerelateerd Stuk dat vereist is om het stuk zijn functie of samenhang te ondersteunen."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/dossier#Stuk>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
   rdfs:range <https://data.vlaanderen.be/ns/dossier#Stuk>;
@@ -173,6 +174,9 @@ dc:isPartOf a rdf:Property;
 dc:language a rdf:Property;
   rdfs:label "taal"@nl .
 
+dc:replaces a rdf:Property;
+  rdfs:label "vervangt"@nl .
+
 dc:title a rdf:Property;
   rdfs:label "naam"@nl .
 
@@ -185,8 +189,11 @@ prov:hadRole a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/besluitvorming>;
   rdfs:subClassOf prov:Activity .
 
-<https://data.vlaanderen.be/ns/dossier#einddatum> a rdf:Property;
+<https://data.vlaanderen.be/ns/dossier#Activiteit.einddatum> a rdf:Property;
   rdfs:label "einddatum"@nl .
+
+<https://data.vlaanderen.be/ns/dossier#Activiteit.startdatum> a rdf:Property;
+  rdfs:label "startdatum"@nl .
 
 <https://data.vlaanderen.be/ns/dossier#isNeerslagVan> a rdf:Property;
   rdfs:label "is neerslag van"@nl .
@@ -196,9 +203,6 @@ prov:hadRole a rdf:Property;
 
 <https://data.vlaanderen.be/ns/dossier#sluitingsdatum> a rdf:Property;
   rdfs:label "sluitingsdatum"@nl .
-
-<https://data.vlaanderen.be/ns/dossier#startdatum> a rdf:Property;
-  rdfs:label "startdatum"@nl .
 
 dc:alternative a rdf:Property;
   rdfs:label "alternatieve naam"@nl .
@@ -243,6 +247,33 @@ prov:generated a rdf:Property;
   dc:contributor [
     a foaf:Person;
     schema:affiliation [
+      foaf:homepage <http://redpencil.io>;
+      foaf:name "redpencil.io"
+    ];
+    foaf:firstName "Johan";
+    foaf:lastName "Delaure";
+    foaf:mbox <mailto:johan.delaure@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://binnenland.vlaanderen.be/>;
+      foaf:name "Agentschap Binnenlands Bestuur"
+    ];
+    foaf:firstName "Veronique";
+    foaf:lastName "Volders";
+    foaf:mbox <mailto:veronique.volders@bz.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://redpencil.io>;
+      foaf:name "redpencil.io"
+    ];
+    foaf:firstName "Michaël";
+    foaf:lastName "Dierick";
+    foaf:mbox <mailto:michael.dierick@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
       foaf:homepage <https://www.ugent.be/ps/communicatiewetenschappen/mict>;
       foaf:name "imec - UGent"
     ];
@@ -267,35 +298,8 @@ prov:generated a rdf:Property;
     foaf:firstName "Katrien";
     foaf:lastName "De Smet";
     foaf:mbox <mailto:katrien.desmet@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://redpencil.io>;
-      foaf:name "redpencil.io"
-    ];
-    foaf:firstName "Michaël";
-    foaf:lastName "Dierick";
-    foaf:mbox <mailto:michael.dierick@redpencil.io>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://binnenland.vlaanderen.be/>;
-      foaf:name "Agentschap Binnenlands Bestuur"
-    ];
-    foaf:firstName "Veronique";
-    foaf:lastName "Volders";
-    foaf:mbox <mailto:veronique.volders@bz.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://redpencil.io>;
-      foaf:name "redpencil.io"
-    ];
-    foaf:firstName "Johan";
-    foaf:lastName "Delaure";
-    foaf:mbox <mailto:johan.delaure@redpencil.io>
   ];
-  dc:issued "2020-02-26";
+  dc:issued "TODO";
   dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
     <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
   dc:mediator [
@@ -303,29 +307,21 @@ prov:generated a rdf:Property;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <https://data.vlaanderen.be/ns/dossier#einddatum>,
-    prov:generated,
-    <https://data.vlaanderen.be/ns/dossier#startdatum>,
-    prov:hadRole,
-    <https://data.vlaanderen.be/ns/dossier#sluitingsdatum>,
-    prov:Association,
-    dc:description,
+  rdfs:seeAlso prov:hadRole,
     dc:title,
-    dc:isPartOf,
-    <https://data.vlaanderen.be/ns/dossier#openingsdatum>,
-    <https://data.vlaanderen.be/ns/dossier#isNeerslagVan>,
+    dc:language,
     dc:alternative,
-    dc:language;
+    <https://data.vlaanderen.be/ns/dossier#sluitingsdatum>,
+    dc:isPartOf,
+    <https://data.vlaanderen.be/ns/dossier#Activiteit.startdatum>,
+    prov:generated,
+    <https://data.vlaanderen.be/ns/dossier#isNeerslagVan>,
+    prov:Association,
+    dc:replaces,
+    dc:description,
+    <https://data.vlaanderen.be/ns/dossier#Activiteit.einddatum>,
+    <https://data.vlaanderen.be/ns/dossier#openingsdatum>;
   <http://www.w3.org/2001/02pd/rec54#editor> [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Dimitri";
-    foaf:lastName "Schepers";
-    foaf:mbox <mailto:dimitri.schepers@pwc.com>
-  ], [
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <https://www.ugent.be>;
@@ -343,6 +339,15 @@ prov:generated a rdf:Property;
     foaf:firstName "Niels";
     foaf:lastName "Vandekeybus";
     foaf:mbox <mailto:niels.vandekeybus@redpencil.io>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Dimitri";
+    foaf:lastName "Schepers";
+    foaf:mbox <mailto:dimitri.schepers@pwc.com>
   ];
   foaf:maker [
     a foaf:Person;
