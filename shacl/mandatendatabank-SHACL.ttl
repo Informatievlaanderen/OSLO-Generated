@@ -182,19 +182,19 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
 	sh:property [
+		sh:name "bevat" ;
+		sh:description "Een mandaat binnen het orgaan." ;
+		sh:path <http://www.w3.org/ns/org#hasPost> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
 		sh:name "isTijdspecialisatieVan" ;
 		sh:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode." ;
 		sh:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan> ;
 		sh:class <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "bevat" ;
-		sh:description "Een mandaat binnen het orgaan." ;
-		sh:path <http://www.w3.org/ns/org#hasPost> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
-		sh:minCount 1 ;
 	] ;
 	sh:closed false .
 
@@ -263,19 +263,19 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> ;
 	sh:property [
+		sh:name "heeftKandidaat" ;
+		sh:description "Een persoon die deel uitmaakt van de lijst." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#heeftKandidaat> ;
+		sh:class <http://www.w3.org/ns/person#Person> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
 		sh:name "behoortTot" ;
 		sh:description "De verkiezing waar de lijst onderdeel van is." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#behoortTot> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "heeftKandidaat" ;
-		sh:description "Een persoon die deel uitmaakt van de lijst." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#heeftKandidaat> ;
-		sh:class <http://www.w3.org/ns/person#Person> ;
-		sh:minCount 1 ;
 	] ;
 	sh:property [
 		sh:name "lijstnaam" ;
@@ -307,18 +307,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/mandaat#Verkiezingsresultaat> ;
 	sh:property [
-		sh:name "isResultaatVoor" ;
-		sh:description "De lijst waarop het resultaat betrekking heeft." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVoor> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isResultaatVan" ;
 		sh:description "De persoon horende bij het resultaat." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVan> ;
 		sh:class <http://www.w3.org/ns/person#Person> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "isResultaatVoor" ;
+		sh:description "De lijst waarop het resultaat betrekking heeft." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVoor> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
 	] ;
@@ -452,18 +452,17 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "isLidVan" ;
-		sh:description "Duidt een lidmaatschap aan van de mandataris." ;
-		sh:path <http://www.w3.org/ns/org#hasMembership> ;
-		sh:class <http://www.w3.org/ns/org#Membership> ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isAangesteldDoor" ;
 		sh:description "De rechtsgrond die de aanstelling van de mandataris vastlegt." ;
 		sh:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling> ;
 		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "isTijdelijkVervangenDoor" ;
+		sh:description "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen." ;
+		sh:path <http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor> ;
+		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 	] ;
 	sh:property [
 		sh:name "isOntslagenDoor" ;
@@ -472,17 +471,18 @@
 		sh:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging> ;
 	] ;
 	sh:property [
+		sh:name "isLidVan" ;
+		sh:description "Duidt een lidmaatschap aan van de mandataris." ;
+		sh:path <http://www.w3.org/ns/org#hasMembership> ;
+		sh:class <http://www.w3.org/ns/org#Membership> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "bekleedt" ;
 		sh:description "Het mandaat dat deze mandataris bekleedt." ;
 		sh:path <http://www.w3.org/ns/org#holds> ;
 		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandaat> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isTijdelijkVervangenDoor" ;
-		sh:description "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen." ;
-		sh:path <http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor> ;
-		sh:class <http://data.vlaanderen.be/ns/mandaat#Mandataris> ;
 	] ;
 	sh:property [
 		sh:name "beleidsdomein" ;
