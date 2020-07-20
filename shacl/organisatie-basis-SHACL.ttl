@@ -50,10 +50,10 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/org#Post> ;
 	sh:property [
-		sh:name "rapporteertAan" ;
-		sh:description "Verwijst naar de positie waaraan een positie verantwoording aflegt." ;
-		sh:path <http://www.w3.org/ns/org#reportsTo> ;
-		sh:class <http://www.w3.org/ns/org#Post> ;
+		sh:name "isPositieIn" ;
+		sh:description "Organisatie waar de positie bestaat." ;
+		sh:path <http://www.w3.org/ns/org#postIn> ;
+		sh:class <http://www.w3.org/ns/org#Organization> ;
 	] ;
 	sh:property [
 		sh:name "wordtIngevuldDoor" ;
@@ -62,10 +62,10 @@
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
-		sh:name "isPositieIn" ;
-		sh:description "Organisatie waar de positie bestaat." ;
-		sh:path <http://www.w3.org/ns/org#postIn> ;
-		sh:class <http://www.w3.org/ns/org#Organization> ;
+		sh:name "rapporteertAan" ;
+		sh:description "Verwijst naar de positie waaraan een positie verantwoording aflegt." ;
+		sh:path <http://www.w3.org/ns/org#reportsTo> ;
+		sh:class <http://www.w3.org/ns/org#Post> ;
 	] ;
 	sh:property [
 		sh:name "rol" ;
@@ -174,16 +174,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/org#ChangeEvent> ;
 	sh:property [
-		sh:name "heeftResulterendeOrganisatie" ;
-		sh:description "Organisatie die uit de verandering voortkwam." ;
-		sh:path <http://www.w3.org/ns/org#resultingOrganization> ;
-		sh:class <http://www.w3.org/ns/org#Organization> ;
-	] ;
-	sh:property [
 		sh:name "vindtPlaatsBinnen" ;
 		sh:description "Verwijst naar het formeel kader dat tot het veranderingsmoment heeft geleid." ;
 		sh:path <http://data.europa.eu/m8g/hasFormalFramework> ;
 		sh:class <http://purl.org/vocab/cpsv#FormalFramework> ;
+	] ;
+	sh:property [
+		sh:name "heeftResulterendeOrganisatie" ;
+		sh:description "Organisatie die uit de verandering voortkwam." ;
+		sh:path <http://www.w3.org/ns/org#resultingOrganization> ;
+		sh:class <http://www.w3.org/ns/org#Organization> ;
 	] ;
 	sh:property [
 		sh:name "heeftOorspronkelijkeOrganisatie" ;
@@ -293,6 +293,12 @@
 		sh:class <http://purl.org/dc/terms/Agent> ;
 	] ;
 	sh:property [
+		sh:name "houdt" ;
+		sh:description "Geeft aan welke positie een agent heeft (typisch bij de organisatie waar de positie is gedefinieerd)." ;
+		sh:path <http://www.w3.org/ns/org#holds> ;
+		sh:class <http://www.w3.org/ns/org#Post> ;
+	] ;
+	sh:property [
 		sh:name "isLidVan" ;
 		sh:description "Niet nader bepaald lidmaatschap van een agent van een organisatie." ;
 		sh:path <http://www.w3.org/ns/org#memberOf> ;
@@ -303,12 +309,6 @@
 		sh:description "Lidmaatschap van een agent (van een organisatie)." ;
 		sh:path <http://www.w3.org/ns/org#hasMembership> ;
 		sh:class <http://www.w3.org/ns/org#Membership> ;
-	] ;
-	sh:property [
-		sh:name "houdt" ;
-		sh:description "Geeft aan welke positie een agent heeft (typisch bij de organisatie waar de positie is gedefinieerd)." ;
-		sh:path <http://www.w3.org/ns/org#holds> ;
-		sh:class <http://www.w3.org/ns/org#Post> ;
 	] ;
 	sh:closed false .
 
@@ -334,34 +334,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://www.w3.org/ns/org#Organization> ;
 	sh:property [
-		sh:name "isHetResultaatVan" ;
-		sh:description "Verwijst naar het veranderingsmoment dat tot de huidige organisatie heeft geleid." ;
-		sh:path <http://www.w3.org/ns/org#resultedFrom> ;
-		sh:class <http://www.w3.org/ns/org#ChangeEvent> ;
-	] ;
-	sh:property [
-		sh:name "heeftSuborganisatie" ;
-		sh:description "Organisatie die dochter of onderdeel is van de organisatie." ;
-		sh:path <http://www.w3.org/ns/org#hasSubOrganization> ;
-		sh:class <http://www.w3.org/ns/org#Organization> ;
-	] ;
-	sh:property [
-		sh:name "heeftEenheid" ;
-		sh:description "Verwijst naar een organisatie-eenheid die deel uitmaakt van de organisatie, bv een afdeling." ;
-		sh:path <http://www.w3.org/ns/org#hasUnit> ;
-		sh:class <http://www.w3.org/ns/org#OrganizationalUnit> ;
-	] ;
-	sh:property [
-		sh:name "isVeranderdDoor" ;
-		sh:description "Verwijst naar het veranderingsmoment dat deze organisatie heeft veranderd." ;
-		sh:path <http://www.w3.org/ns/org#changedBy> ;
-		sh:class <http://www.w3.org/ns/org#ChangeEvent> ;
-	] ;
-	sh:property [
 		sh:name "isGeassocieerdMet" ;
 		sh:description "Niet nader bepaalde relatie met een andere organisatie." ;
 		sh:path <http://www.w3.org/ns/org#linkedTo> ;
 		sh:class <http://www.w3.org/ns/org#Organization> ;
+	] ;
+	sh:property [
+		sh:name "isHetResultaatVan" ;
+		sh:description "Verwijst naar het veranderingsmoment dat tot de huidige organisatie heeft geleid." ;
+		sh:path <http://www.w3.org/ns/org#resultedFrom> ;
+		sh:class <http://www.w3.org/ns/org#ChangeEvent> ;
 	] ;
 	sh:property [
 		sh:name "isSuborganisatieVan" ;
@@ -370,10 +352,16 @@
 		sh:class <http://www.w3.org/ns/org#Organization> ;
 	] ;
 	sh:property [
-		sh:name "heeftPrimaireVestiging" ;
-		sh:description "Verwijst naar de belangrijkste vestiging van de organisatie, niet noodzakelijk het formele hoofdkwartier maar wel de vestiging waarop de organisatie standaard kan worden gecontacteerd." ;
-		sh:path <http://www.w3.org/ns/org#hasPrimarySite> ;
-		sh:class <http://www.w3.org/ns/org#Site> ;
+		sh:name "heeft" ;
+		sh:description "Verwijst naar een positie in de organisatie." ;
+		sh:path <http://www.w3.org/ns/org#hasPost> ;
+		sh:class <http://www.w3.org/ns/org#Post> ;
+	] ;
+	sh:property [
+		sh:name "isVeranderdDoor" ;
+		sh:description "Verwijst naar het veranderingsmoment dat deze organisatie heeft veranderd." ;
+		sh:path <http://www.w3.org/ns/org#changedBy> ;
+		sh:class <http://www.w3.org/ns/org#ChangeEvent> ;
 	] ;
 	sh:property [
 		sh:name "heeftVestiging" ;
@@ -388,10 +376,22 @@
 		sh:class <http://www.w3.org/ns/org#Site> ;
 	] ;
 	sh:property [
-		sh:name "heeft" ;
-		sh:description "Verwijst naar een positie in de organisatie." ;
-		sh:path <http://www.w3.org/ns/org#hasPost> ;
-		sh:class <http://www.w3.org/ns/org#Post> ;
+		sh:name "heeftSuborganisatie" ;
+		sh:description "Organisatie die dochter of onderdeel is van de organisatie." ;
+		sh:path <http://www.w3.org/ns/org#hasSubOrganization> ;
+		sh:class <http://www.w3.org/ns/org#Organization> ;
+	] ;
+	sh:property [
+		sh:name "heeftPrimaireVestiging" ;
+		sh:description "Verwijst naar de belangrijkste vestiging van de organisatie, niet noodzakelijk het formele hoofdkwartier maar wel de vestiging waarop de organisatie standaard kan worden gecontacteerd." ;
+		sh:path <http://www.w3.org/ns/org#hasPrimarySite> ;
+		sh:class <http://www.w3.org/ns/org#Site> ;
+	] ;
+	sh:property [
+		sh:name "heeftEenheid" ;
+		sh:description "Verwijst naar een organisatie-eenheid die deel uitmaakt van de organisatie, bv een afdeling." ;
+		sh:path <http://www.w3.org/ns/org#hasUnit> ;
+		sh:class <http://www.w3.org/ns/org#OrganizationalUnit> ;
 	] ;
 	sh:property [
 		sh:name "activiteit" ;
