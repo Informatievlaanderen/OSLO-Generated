@@ -108,18 +108,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Beoordeling> ;
 	sh:property [
+		sh:name "geeftAanleidingTot" ;
+		sh:description "De beslissing die genomen is op basis van de beoordeling." ;
+		sh:path <http://www.w3.org/ns/prov#generated> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "over" ;
 		sh:description "De consumptie die beoordeeld wordt." ;
 		sh:path <http://schema.org/about> ;
 		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "geeftAanleidingTot" ;
-		sh:description "De beslissing die genomen is op basis van de beoordeling." ;
-		sh:path <http://www.w3.org/ns/prov#generated> ;
-		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebeslissing> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -158,14 +158,14 @@
 		sh:name "over" ;
 		sh:description "Criterium of criteriumvereiste waarop de consumptie beoordeeld wordt." ;
 		sh:path <http://schema.org/about> ;
-		sh:class <http://data.europa.eu/m8g/Criterion> ;
+		sh:class <http://data.europa.eu/m8g/CriterionRequirement> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "over" ;
 		sh:description "Criterium of criteriumvereiste waarop de consumptie beoordeeld wordt." ;
 		sh:path <http://schema.org/about> ;
-		sh:class <http://data.europa.eu/m8g/CriterionRequirement> ;
+		sh:class <http://data.europa.eu/m8g/Criterion> ;
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
@@ -505,6 +505,32 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
 	sh:property [
+		sh:name "produceert" ;
+		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
+		sh:path <http://purl.org/vocab/cpsv#produces> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie> ;
+	] ;
+	sh:property [
+		sh:name "produceert" ;
+		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
+		sh:path <http://purl.org/vocab/cpsv#produces> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidieToekenningsbesluit> ;
+	] ;
+	sh:property [
+		sh:name "heeftParticiperende" ;
+		sh:description "Participatie (van een agent) aan de publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasParticipation> ;
+		sh:class <http://data.europa.eu/m8g/Participation> ;
+	] ;
+	sh:property [
+		sh:name "isInstantieVan" ;
+		sh:description "Linkt een bepaalde consumptie van een subsidiemaatregel met de subsidiemaatregel uit het subsidiereglement." ;
+		sh:path <http://data.vlaanderen.be/ns/transactie#isInstantieVan> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
 		sh:name "behandeltEen" ;
 		sh:description "Het voorwerp dat al dan niet gesubsidieerd wordt met de consumptie." ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#behandeltEen> ;
@@ -516,32 +542,6 @@
 		sh:path <http://www.w3.org/ns/prov#wasGeneratedBy> ;
 		sh:class <http://data.vlaanderen.be/ns/subsidie#Aanvraag> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "isInstantieVan" ;
-		sh:description "Linkt een bepaalde consumptie van een subsidiemaatregel met de subsidiemaatregel uit het subsidiereglement." ;
-		sh:path <http://data.vlaanderen.be/ns/transactie#isInstantieVan> ;
-		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod> ;
-		sh:minCount 1 ;
-		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "produceert" ;
-		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
-		sh:path <http://purl.org/vocab/cpsv#produces> ;
-		sh:class <http://data.vlaanderen.be/ns/subsidie#FinanciëleTransactie> ;
-	] ;
-	sh:property [
-		sh:name "heeftParticiperende" ;
-		sh:description "Participatie (van een agent) aan de publieke dienstverlening." ;
-		sh:path <http://data.europa.eu/m8g/hasParticipation> ;
-		sh:class <http://data.europa.eu/m8g/Participation> ;
-	] ;
-	sh:property [
-		sh:name "produceert" ;
-		sh:description "Het resultaat van de consumptie van de subsidiemaatregel." ;
-		sh:path <http://purl.org/vocab/cpsv#produces> ;
-		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidieToekenningsbesluit> ;
 	] ;
 	sh:closed false .
 
@@ -589,18 +589,18 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#Advies> ;
 	sh:property [
+		sh:name "opBasisVan" ;
+		sh:description "De criteriumbeoordeling waarop het advies is gestaafd." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#Advies.opBasisVan> ;
+		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
+	] ;
+	sh:property [
 		sh:name "adviseert" ;
 		sh:description "De consumptie waarover een advies wordt gegeven." ;
 		sh:path <http://data.vlaanderen.be/ns/subsidie#adviseert> ;
 		sh:class <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelConsumptie> ;
 		sh:minCount 1 ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "opBasisVan" ;
-		sh:description "De criteriumbeoordeling waarop het advies is gestaafd." ;
-		sh:path <http://data.vlaanderen.be/ns/subsidie#Advies.opBasisVan> ;
-		sh:class <http://www.w3.org/2000/01/rdf-schema#Resource> ;
 	] ;
 	sh:property [
 		sh:name "beschrijving" ;
@@ -640,13 +640,6 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/subsidie#SubsidiemaatregelAanbod> ;
 	sh:property [
-		sh:name "biedtAan" ;
-		sh:description "De verschillende subsidiebedragen die bij een subsidiemaatregel horen." ;
-		sh:path <http://data.vlaanderen.be/ns/subsidie#biedtAan> ;
-		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag> ;
-		sh:minCount 1 ;
-	] ;
-	sh:property [
 		sh:name "isGestuurdDoor" ;
 		sh:description "De procedurestap die de werking van de subsidiemaatregel aanstuurt." ;
 		sh:path <http://purl.org/vocab/cpsv#follows> ;
@@ -654,12 +647,11 @@
 		sh:minCount 1 ;
 	] ;
 	sh:property [
-		sh:name "heeftVerantwoordelijke" ;
-		sh:description "De publieke organisatie die verantwoordelijk is voor het aanbieden en beheren van de publieke dienstverlening." ;
-		sh:path <http://data.europa.eu/m8g/hasCompetentAuthority> ;
-		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
+		sh:name "heeftCriterium" ;
+		sh:description "Criterium waaraan voldaan moet zijn om recht te hebben op de subsidiemaatregel." ;
+		sh:path <http://data.europa.eu/m8g/hasCriterion> ;
+		sh:class <http://data.europa.eu/m8g/Criterion> ;
 		sh:minCount 1 ;
-		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "aangebodenBinnen" ;
@@ -670,11 +662,19 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "heeftCriterium" ;
-		sh:description "Criterium waaraan voldaan moet zijn om recht te hebben op de subsidiemaatregel." ;
-		sh:path <http://data.europa.eu/m8g/hasCriterion> ;
-		sh:class <http://data.europa.eu/m8g/Criterion> ;
+		sh:name "biedtAan" ;
+		sh:description "De verschillende subsidiebedragen die bij een subsidiemaatregel horen." ;
+		sh:path <http://data.vlaanderen.be/ns/subsidie#biedtAan> ;
+		sh:class <http://data.vlaanderen.be/ns/subsidie#Subsidiebedrag> ;
 		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftVerantwoordelijke" ;
+		sh:description "De publieke organisatie die verantwoordelijk is voor het aanbieden en beheren van de publieke dienstverlening." ;
+		sh:path <http://data.europa.eu/m8g/hasCompetentAuthority> ;
+		sh:class <http://data.europa.eu/m8g/PublicOrganisation> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
 	] ;
 	sh:property [
 		sh:name "doelstelling" ;
