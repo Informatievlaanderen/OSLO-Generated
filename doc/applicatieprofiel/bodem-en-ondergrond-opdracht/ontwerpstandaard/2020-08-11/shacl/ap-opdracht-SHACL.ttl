@@ -1,0 +1,233 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht> <https://data.vlaanderen.be/shacl/ap-opdrachtshapes> <https://data.vlaanderen.be/shacl/ap-opdracht#BijlageShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtOrigineShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#StatusTypeShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#KwaliteitOpdrachtShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtAardShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#BijlageTypeShape>,
+    <https://data.vlaanderen.be/shacl/ap-opdracht#OpmerkingShape> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#BijlageShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:string;
+    sh:description """Naam van het bestand dat als bijlage wordt gebruikt.
+""";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "bestand";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#bestand>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#BijlageType>;
+    sh:description "Het type document van de bijlage.";
+    sh:maxCount 1;
+    sh:name "bijlageType";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#bijlageType>
+  ], [
+    sh:datatype xsd:integer;
+    sh:description """Jaar van de bijlage.
+""";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "jaar";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#jaar>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Naam of namen van de auteur(s) van de bijlage.";
+    sh:maxCount 1;
+    sh:name "auteurs";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#auteurs>
+  ], [
+    sh:datatype xsd:anyURI;
+    sh:description """URL waarnaar de bijlage verwijst.
+""";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "url";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#url>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opmerking>;
+    sh:description "Opmerking bij de bijlage.";
+    sh:maxCount 1;
+    sh:name "opmerking";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#opmerking>
+  ], [
+    sh:datatype xsd:date;
+    sh:description """Datum van de bijlage.
+""";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "datum";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#datum>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Titel/naam van de bijlage.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#titel>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Bijlage> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#BijlageTypeShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#BijlageType> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#GeometrieShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:description "De EPSG code van het coordinatenstelsel.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "coordinatenstelsel";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#coordinatenstelsel>
+  ], [
+    sh:description "De geometrie als WKT.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "wkt";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#wkt>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Geometrie> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#KwaliteitOpdrachtShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#OpdrachtOrigine>;
+    sh:description "Geeft een indicatie van de herkomst van het ontstaan van de gegevens binnen de opdracht.";
+    sh:maxCount 1;
+    sh:name "origine";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#origine>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#OpdrachtAard>;
+    sh:description "Geeft een indicatie van de thematiek waarbinnen de gegevens verzameld worden binnen de opdracht";
+    sh:maxCount 1;
+    sh:name "aard";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#aard>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "TO DO";
+    sh:maxCount 1;
+    sh:name "controle";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#controle>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#KwaliteitOpdracht> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtAardShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#OpdrachtAard> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtOrigineShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#OpdrachtOrigine> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#OpdrachtShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opdrachtgever>;
+    sh:description "De opdrachtgever.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "opdrachtgever";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#opdrachtgever>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Bijlage>;
+    sh:description "Bijlage bij de Opdracht.";
+    sh:name "bijlage";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#bijlage>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Korte beschrijving van de inhoud van de opdracht.";
+    sh:maxCount 1;
+    sh:name "omschrijving";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#omschrijving>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Geometrie>;
+    sh:description "Een veelhoek die de locatie van de opdracht aangeeft.";
+    sh:maxCount 1;
+    sh:name "locatie";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#locatie>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#StatusType>;
+    sh:description "Status van de opdracht.";
+    sh:maxCount 1;
+    sh:name "status";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#status>
+  ], [
+    sh:datatype xsd:date;
+    sh:description "Datum dat de opdracht afgesloten werd.";
+    sh:maxCount 1;
+    sh:name "einddatum";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#einddatum>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opdrachtnemer>;
+    sh:description "De opdrachtnemer.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "opdrachtnemer";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#opdrachtnemer>
+  ], [
+    sh:datatype xsd:date;
+    sh:description "Datum dat de opdracht werd opgestart.";
+    sh:maxCount 1;
+    sh:name "startdatum";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#startdatum>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Unieke identificatie van de opdracht.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#naam>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Dataleverancier>;
+    sh:description "De organisatie die de data aangeleverd heeft.";
+    sh:maxCount 1;
+    sh:name "dataleverancier";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#dataleverancier>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opmerking>;
+    sh:description "TO DO";
+    sh:name "opmerking";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#opmerking>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#KwaliteitOpdracht>;
+    sh:description "TO DO";
+    sh:maxCount 1;
+    sh:name "kwaliteit";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#kwaliteit>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opdracht> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#OpmerkingShape> a sh:NodeShape;
+  sh:closed false;
+  sh:property [
+    sh:datatype xsd:date;
+    sh:description "Datum van de opmerking.";
+    sh:maxCount 1;
+    sh:name "datum";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#datum>
+  ], [
+    sh:class <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Persoon>;
+    sh:description "De persoon van wie de opmerking afkomstig is.";
+    sh:maxCount 1;
+    sh:name "auteur";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#auteur>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Tekst van de opmerking.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "tekst";
+    sh:path <https://data.vlaanderen.be/ns/bodem-en-ondergrond#tekst>
+  ];
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opmerking> .
+
+<https://data.vlaanderen.be/shacl/ap-opdracht#StatusTypeShape> a sh:NodeShape;
+  sh:closed false;
+  sh:targetClass <https://data.vlaanderen.be/ns/bodem-en-ondergrond#StatusType> .
