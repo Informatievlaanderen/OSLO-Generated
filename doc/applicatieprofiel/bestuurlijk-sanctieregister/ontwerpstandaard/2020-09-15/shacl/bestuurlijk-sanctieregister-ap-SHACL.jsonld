@@ -34,7 +34,7 @@
   "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap",
   "shapes": [
     {
-      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#(Definitieve?)SanctieShape",
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#(Definitieve)BestuurlijkeSanctieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
@@ -47,7 +47,7 @@
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeboetingsinstantie",
-          "sh:description": "De beslissing van de beboetingsinstantie die de opgelegde Sanctie beschrijft.",
+          "sh:description": "De Beslissing van de Beboetingsinstantie die de opgelegde Sanctie beschrijft.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "opgenomenIn",
@@ -61,7 +61,7 @@
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#thema"
         }
       ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#(Definitieve?)Sanctie"
+      "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#(Definitieve)BestuurlijkeSanctie"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingBeboetingsinstantieShape",
@@ -77,7 +77,7 @@
           "sh:path": "http://www.w3.org/ns/prov#wasGeneratedBy"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/sanctie#(Definitieve?)Sanctie",
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#(Definitieve)BestuurlijkeSanctie",
           "sh:description": "De Sanctie die door de Beboetingsinstantie wordt opgelegd.",
           "sh:name": "legtOp",
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#legtOp"
@@ -183,6 +183,14 @@
           "sh:path": "http://purl.org/dc/terms/date"
         },
         {
+          "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+          "sh:description": "De Geregistreerde Organisatie die de Bestuurlijke Beslissing heeft genomen.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "genomenDoor",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#genomenDoor"
+        },
+        {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de Bestuurlijke Beslissing.",
           "sh:maxCount": "1",
@@ -228,7 +236,7 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://data.vlaanderen.be/ns/generiek#Geldbedrag",
+          "sh:class": "https://schema.org/MonetaryAmount",
           "sh:description": "Het effectieve geldbedrag.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -286,7 +294,7 @@
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Tekstuele beschrijving van de Gepleegde Geiten.",
+          "sh:description": "Tekstuele beschrijving van de Gepleegde Feiten.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "beschrijving",
@@ -411,10 +419,73 @@
       "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#VoorstelTotBetalingGeldsom"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#RechtsbronShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De laatste dag waarop de regelgeving nog van kracht is.",
+          "sh:maxCount": "1",
+          "sh:name": "buitenwerkingtreding",
+          "sh:path": "http://data.europa.eu/eli/ontology#date_no_longer_in_force"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "Adoptiedatum of handtekendatum (in de vorm jjjj-mm-dd).",
+          "sh:maxCount": "1",
+          "sh:name": "datumDocument",
+          "sh:path": "http://data.europa.eu/eli/ontology#date_document"
+        },
+        {
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+          "sh:description": "Geeft aan dat deze bron uit deelbronnen bestaat.",
+          "sh:name": "heeftDeel",
+          "sh:path": "http://purl.org/dc/terms/hasPart"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De datum waarop de regelgeving van kracht wordt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "inwerkingtreding",
+          "sh:path": "http://data.europa.eu/eli/ontology#first_date_entry_in_force"
+        },
+        {
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResourceSubdivision",
+          "sh:description": "Relatie die documenten en onderdelen (hoofdstukken, artikels...) aan elkaar linkt.",
+          "sh:name": "isDeelVan",
+          "sh:path": "http://data.europa.eu/eli/ontology#is_part_of"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/AardWetgeving",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Het type van het regelgevend document.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "typeDocument",
+          "sh:path": "http://data.europa.eu/eli/ontology#type_document"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/eli/ontology#LegalResource"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#RechtsbrononderdeelShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResource",
+          "sh:description": "Geeft aan dat deze bron uit deelbronnen bestaat.",
+          "sh:name": "heeftDeel",
+          "sh:path": "http://purl.org/dc/terms/hasPart"
+        },
+        {
+          "sh:class": "http://data.europa.eu/eli/ontology#LegalResource",
+          "sh:description": "Relatie die documenten en onderdelen (hoofdstukken, artikels...) aan elkaar linkt.",
+          "sh:name": "isDeelVan",
+          "sh:path": "http://data.europa.eu/eli/ontology#is_part_of"
+        },
         {
           "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/TypeRechtsbrononderdeel",
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -557,7 +628,7 @@
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#TypeBestuurlijkSepotShape",
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BestuurlijkSepotTypeShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
@@ -761,6 +832,7 @@
       "sh:property": [
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Gedeelte van de volledige naam vd persoon ontvangen van de vorige generatie.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "achternaam",
@@ -774,13 +846,14 @@
         },
         {
           "sh:class": "http://schema.org/ContactPoint",
-          "sh:description": "Informatie zoals email, telefoon... die toelaat de Persoon te contacteren.",
+          "sh:description": "Informatie zoals email, telefoon, ... die toelaat de Persoon te contacteren.",
           "sh:maxCount": "1",
           "sh:name": "contactinfo",
           "sh:path": "http://schema.org/contactPoint"
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Volledige naam vd persoon bij geboorte.",
           "sh:maxCount": "1",
           "sh:name": "geboortenaam",
           "sh:path": "http://www.w3.org/ns/person#birthName"
@@ -810,6 +883,7 @@
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Achternaam gebaseerd op de voornaam vd vader ve persoon.",
           "sh:maxCount": "1",
           "sh:name": "patroniem",
           "sh:path": "http://www.w3.org/ns/person#patronymicName"
@@ -824,6 +898,7 @@
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Naam die een kind bij geboorte wordt gegeven. Onderscheidt het kind van de andere kinderen in de familie.",
           "sh:minCount": "1",
           "sh:name": "voornaam",
           "sh:path": "http://xmlns.com/foaf/0.1/givenName"
@@ -883,27 +958,6 @@
       "sh:targetClass": "http://www.w3.org/ns/regorg#RegisteredOrganization"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#GeldbedragShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "valuta",
-          "sh:path": "https://data.vlaanderen.be/ns/generiek#valuta"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "waarde",
-          "sh:path": "https://data.vlaanderen.be/ns/generiek#waarde"
-        }
-      ],
-      "sh:targetClass": "https://data.vlaanderen.be/ns/generiek#Geldbedrag"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#KadastraalPlanperceelShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -918,6 +972,65 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/perceel#KadastraalPlanperceel"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#RuimtelijkeEenheidShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De dimensie van de ruimtelijke eenheid.",
+          "sh:maxCount": "1",
+          "sh:name": "dimensie",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#dimensie"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidGeometrie",
+          "sh:description": "Geometrie van de ruimtelijke eenheid en metadata over hoe deze werd bepaald.",
+          "sh:minCount": "1",
+          "sh:name": "geometrie",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.geometrie"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "De identificator van de Ruimtelijke Eenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
+          "qb:codeList": "http://inspire.ec.europa.eu/codelist/HILUCSValue/",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Geeft het gebruik aan van de ruimtelijke eenheid.",
+          "sh:maxCount": "1",
+          "sh:name": "landgebruik",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#landgebruik"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.",
+          "sh:maxCount": "1",
+          "sh:name": "niveau",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#niveau"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidOppervlakte",
+          "sh:description": "Oppervlakte van de ruimtelijke eenheid en metadata over de manier waarop deze bepaald werd.",
+          "sh:name": "oppervlakte",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.oppervlakte"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De aard van een ruimtelijke eenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "ruimtelijkeeenheidtype",
+          "sh:path": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#RuimtelijkeEenheidGeometrieShape",
@@ -1002,6 +1115,7 @@
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/persoon#Verblijfplaats",
+          "sh:description": "Plaats waar een persoon verblijft.",
           "sh:name": "heeftVerblijfplaats",
           "sh:path": "https://data.vlaanderen.be/ns/persoon#heeftVerblijfplaats"
         }
@@ -1023,6 +1137,29 @@
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/persoon#Verblijfplaats"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#GeldbedragShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:description": "De munteenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "valuta",
+          "sh:path": "https://schema.org/currency"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:description": "De kwantitatieve waarde.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "https://schema.org/value"
+        }
+      ],
+      "sh:targetClass": "https://schema.org/MonetaryAmount"
     }
   ]
 }
