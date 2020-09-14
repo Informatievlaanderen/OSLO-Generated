@@ -1,66 +1,149 @@
 {
   "@context": {
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "schema": "http://schema.org/",
-    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "owl": "http://www.w3.org/2002/07/owl#",
     "dc": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "foaf": "http://xmlns.com/foaf/0.1/",
-    "skos": "http://www.w3.org/2004/02/skos/core#",
     "prov": "http://www.w3.org/ns/prov#"
   },
   "@graph": [
     {
-      "@id": "schema:caption",
+      "@id": "skos:Concept",
+      "@type": "rdfs:Class",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "caption"
-      },
-      "@type": "rdf:Property"
+        "@value": "Code"
+      }
     },
     {
-      "@id": "schema:worstRating",
+      "@id": "schema:bestRating",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "laagste beoordeling"
-      },
-      "@type": "rdf:Property"
+        "@value": "hoogste beoordeling"
+      }
     },
     {
-      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@id": "schema:thumbnailUrl",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "identificator"
-      },
-      "@type": "rdf:Property"
+        "@value": "thumbnail url"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftKamer",
+      "@id": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep."
+      },
+      "@type": "rdf:Property",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Ruimte"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid"
-      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "locatie aanduiding"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Ruimte",
       "rdfs:comment": {
         "@language": "nl",
-        "@value": "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat."
+        "@value": "Een ruimtelijk onderdeel binnen een verhuureenheid, meestal gescheiden van andere ruimtes door binnenmuren. Bijvoorbeeld een terrein, een kamer, enz."
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
       },
       "rdfs:label": {
         "@language": "nl",
-        "@value": "heeft kamer"
+        "@value": "Ruimte"
       },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Ruimte"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:subPropertyOf": {
-        "@id": "schema:containsPlace"
+      "rdfs:subClassOf": {
+        "@id": "schema:Accomodation"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies",
+      "@type": "owl:Ontology",
+      "dc:contributor": [
+        {
+          "@id": "_:g47116891522020"
+        },
+        {
+          "@id": "_:g47116891803860"
+        },
+        {
+          "@id": "_:g47116886501340"
+        },
+        {
+          "@id": "_:g47116891662160"
+        },
+        {
+          "@id": "_:g47116891245780"
+        },
+        {
+          "@id": "_:g47116880006520"
+        },
+        {
+          "@id": "_:g47116891318220"
+        },
+        {
+          "@id": "_:g47116887099400"
+        },
+        {
+          "@id": "_:g47116884868480"
+        },
+        {
+          "@id": "_:g47116891740880"
+        },
+        {
+          "@id": "_:g47116891459340"
+        },
+        {
+          "@id": "_:g47116891874920"
+        },
+        {
+          "@id": "_:g47116891397260"
+        },
+        {
+          "@id": "_:g47116891204300"
+        },
+        {
+          "@id": "_:g47116887465800"
+        },
+        {
+          "@id": "_:g47116891600140"
+        },
+        {
+          "@id": "_:g47116891986760"
+        }
+      ],
+      "dc:mediator": {
+        "@id": "_:g47116891309180"
+      },
+      "dc:title": {
+        "@language": "nl",
+        "@value": "Logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Logies"
+      },
+      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/logies",
+      "dc:issued": {
+        "@type": "xsd:date",
+        "@value": "2018-11-23"
+      },
+      "http://purl.org/vocab/vann/preferredNamespacePrefix": "logies",
       "dc:license": [
         {
           "@id": "https://overheid.vlaanderen.be/sites/default/files/documenten/ict-egov/licenties/hergebruik/modellicentie_gratis_hergebruik_v1_0.html"
@@ -69,506 +152,27 @@
           "@id": "file:///tmp/workspace/ttl/http://example.com/TODO"
         }
       ],
-      "dc:mediator": {
-        "@id": "_:g47448955135120"
-      },
-      "http://purl.org/vocab/vann/preferredNamespacePrefix": "logies",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Logies"
-      },
       "http://www.w3.org/2001/02pd/rec54#editor": {
-        "@id": "_:g47448955371400"
-      },
-      "http://purl.org/vocab/vann/preferredNamespaceUri": "https://data.vlaanderen.be/ns/logies",
-      "dc:contributor": [
-        {
-          "@id": "_:g47448955721980"
-        },
-        {
-          "@id": "_:g47448955474080"
-        },
-        {
-          "@id": "_:g47448954835660"
-        },
-        {
-          "@id": "_:g47448950051180"
-        },
-        {
-          "@id": "_:g47448954516840"
-        },
-        {
-          "@id": "_:g47448948219180"
-        },
-        {
-          "@id": "_:g47448955558860"
-        },
-        {
-          "@id": "_:g47448954491220"
-        },
-        {
-          "@id": "_:g47448949299140"
-        },
-        {
-          "@id": "_:g47448954994120"
-        },
-        {
-          "@id": "_:g47448954004040"
-        },
-        {
-          "@id": "_:g47448955636660"
-        },
-        {
-          "@id": "_:g47448954249340"
-        },
-        {
-          "@id": "_:g47448955382280"
-        },
-        {
-          "@id": "_:g47448955799440"
-        },
-        {
-          "@id": "_:g47448955262900"
-        },
-        {
-          "@id": "_:g47448954889100"
-        }
-      ],
-      "dc:issued": {
-        "@type": "xsd:date",
-        "@value": "2018-11-23"
-      },
-      "@type": "owl:Ontology",
-      "dc:title": {
-        "@language": "nl",
-        "@value": "Logies"
+        "@id": "_:g47116891384460"
       },
       "foaf:maker": {
-        "@id": "_:g47448955446760"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
-      "rdfs:subClassOf": {
-        "@id": "schema:Accomodation"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een afzonderlijk te huren kamer, ruimte, oppervlakte of onderdeel waar kan worden overnacht."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Verhuureenheid"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Ruimte",
-      "rdfs:subClassOf": {
-        "@id": "schema:Accomodation"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een ruimtelijk onderdeel binnen een verhuureenheid, meestal gescheiden van andere ruimtes door binnenmuren. Bijvoorbeeld een terrein, een kamer, enz."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Ruimte"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "schema:validThrough",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "beschikbaar tot"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "skos:Concept",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Code"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "schema:description",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "beschrijving"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "een plaats die zich fysiek in de regio. bevindt."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "bevat plaats"
-      },
-      "rdfs:range": {
-        "@id": "dc:Location"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
-      "rdfs:subClassOf": {
-        "@id": "dc:Location"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Geografische afbakening van een promotioneel samenhangend gebied. "
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Toeristische regio"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "schema:height",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "hoogte"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:starRating",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft officiële beoordeling"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:CreativeWork",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Creatief Werk"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "dc:type",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "type"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:QuantitativeValue",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Kwantitatieve waarde"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "_:g47448955558860",
-      "schema:affiliation": {
-        "@id": "_:g47448955569480"
-      },
-      "foaf:lastName": "Portier",
-      "foaf:firstName": "Marc",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:marc.portier@westtoer.be"
-      }
-    },
-    {
-      "@id": "_:g47448955569480",
-      "foaf:name": "Westtoer",
-      "foaf:homepage": {
-        "@id": "https://westtoer.be"
-      }
-    },
-    {
-      "@id": "schema:amenityFeature",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft faciliteit"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:bestRating",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "hoogste beoordeling"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448949299140",
-      "schema:affiliation": {
-        "@id": "_:g47448949347200"
-      },
-      "foaf:lastName": "Vansweevelt",
-      "foaf:firstName": "Joris",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:joris.vansweevelt@logereninvlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448949347200",
-      "foaf:name": "Logeren in Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://logereninvlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448954994120",
-      "schema:affiliation": {
-        "@id": "_:g47448955023720"
-      },
-      "foaf:lastName": "Huybrecht",
-      "foaf:firstName": "Tina",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:tina.huybrechts@vlaamsbrabant.be"
-      }
-    },
-    {
-      "@id": "_:g47448955023720",
-      "foaf:name": "Toerisme Vlaams Brabant",
-      "foaf:homepage": {
-        "@id": "https://vlaamsbrabant.be"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftRegistratie",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "De registratie van het logies bij Toerisme Vlaanderen."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft registratie"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Registratie"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Logies",
-      "rdfs:subClassOf": {
-        "@id": "schema:LodgingBusiness"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "http://purl.org/vocab/vann/usageNote": {
-        "@language": "nl",
-        "@value": "Zie ook https://schema.org/docs/hotels.html"
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Logies"
-      },
-      "@type": "owl:Class",
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Elke constructie, inrichting, ruimte of terrein, in eender welke?\r\n\r\nvorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblijf biedt voor een of meer nachten, en dat wordt aangeboden op de toeristische markt."
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Registratie",
-      "rdfs:subClassOf": {
-        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Registratie van het logies bij een officiële instantie."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Registratie"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "schema:validFrom",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "beschikbaar van"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:exifData",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "exif data"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:Rating",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Beoordeling"
-      },
-      "@type": "rdfs:Class"
-    },
-    {
-      "@id": "dc:format",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "formaat"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:ratingValue",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "beoordeling"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:dateModified",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "bewerkt op"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:contentUrl",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "content url"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftKwaliteitsLabel",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een kwaliteitslabel dat is toegekend aan het logies. "
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft kwaliteitslabel"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Kwaliteitslabel"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "dc:issued",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "uitgegeven"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:translationOfWork",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "is vertaling van"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#onthaalLocatie",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "rdf:Resource"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "De geometrische locatie van het object."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "onthaal locatie"
-      },
-      "rdfs:range": {
-        "@id": "http://www.w3.org/ns/locn#Geometry"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:subPropertyOf": {
-        "@id": "http://www.w3.org/ns/locn#geometry"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/ns/locn#geometry",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "geometrie"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448954306300",
-      "foaf:name": "Tenforce",
-      "foaf:homepage": {
-        "@id": "http://tenforce.com"
+        "@id": "_:g47116891456120"
       }
     },
     {
       "@id": "https://data.vlaanderen.be/ns/logies#MediaObject",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een media-object, zoals bijvoorbeeld een afbeelding, video of audio-object."
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Media Object"
+      },
       "rdfs:subClassOf": [
         {
           "@id": "schema:CreativeWork"
@@ -576,782 +180,1178 @@
         {
           "@id": "schema:MediaObject"
         }
-      ],
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een media-object, zoals bijvoorbeeld een afbeelding, video of audio-object."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Media Object"
-      },
-      "@type": "owl:Class"
+      ]
     },
     {
-      "@id": "_:g47448955721980",
-      "schema:affiliation": {
-        "@id": "_:g47448955724640"
-      },
-      "foaf:lastName": "Haleydt",
-      "foaf:firstName": "Kevin",
+      "@id": "schema:CreativeWork",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Creatief Werk"
+      }
+    },
+    {
+      "@id": "_:g47116891803860",
       "@type": "foaf:person",
+      "foaf:lastName": "Portier",
+      "foaf:firstName": "Marc",
+      "schema:affiliation": {
+        "@id": "_:g47116891822960"
+      },
       "foaf:mbox": {
-        "@id": "mailto:kevin.haleydt@kb.vlaanderen.be"
+        "@id": "mailto:marc.portier@westtoer.be"
       }
     },
     {
-      "@id": "_:g47448955724640",
-      "foaf:name": "Informatie Vlaanderen",
+      "@id": "_:g47116891822960",
+      "foaf:name": "Westtoer",
       "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+        "@id": "https://westtoer.be"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#aantalVerhuureenheden",
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftMedia",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Media gerelateerd aan het object."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#MediaObject"
+      },
+      "rdfs:domain": {
+        "@id": "rdf:Resource"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Totale aantal eenheden waarover het logies beschikt."
-      },
       "rdfs:label": {
         "@language": "nl",
-        "@value": "aantal verhuureenheden"
-      },
-      "rdfs:range": {
-        "@id": "xsd:integer"
-      },
-      "@type": "owl:DatatypeProperty"
+        "@value": "heeft media"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Specifieert tot welke regio het logies behoort."
-      },
+      "@id": "schema:alternativeName",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "behoort tot toeristische regio"
+        "@value": "alternatieve naam"
+      }
+    },
+    {
+      "@id": "schema:translationOfWork",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "is vertaling van"
+      }
+    },
+    {
+      "@id": "schema:amenityFeature",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft faciliteit"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#bevatPlaats",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "een plaats die zich fysiek in de regio. bevindt."
       },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
+        "@id": "dc:Location"
+      },
+      "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio"
       },
-      "@type": "owl:ObjectProperty"
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "bevat plaats"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#Beschrijving",
+      "@id": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Geografische afbakening van een promotioneel samenhangend gebied. "
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Toeristische regio"
+      },
       "rdfs:subClassOf": {
-        "@id": "schema:CreativeWork"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een omschrijving van een object."
-      },
+        "@id": "dc:Location"
+      }
+    },
+    {
+      "@id": "schema:unitCode",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "Beschrijving"
-      },
-      "@type": "owl:Class"
+        "@value": "genormeerde eenheid"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#locatieaanduiding",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Ruimte"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep."
-      },
+      "@id": "schema:exifData",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "locatie aanduiding"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448954588140",
-      "foaf:name": "Toerisme Limburg",
-      "foaf:homepage": {
-        "@id": "https://visitlimburg.be"
+        "@value": "exif data"
       }
     },
     {
-      "@id": "_:g47448955474080",
-      "schema:affiliation": {
-        "@id": "_:g47448955492360"
-      },
-      "foaf:lastName": "De Maesschalck",
-      "foaf:firstName": "Filip",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:filip.demaesschalck@vlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448955492360",
-      "foaf:name": "Departement Kanselarij en Bestuur",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/"
-      }
-    },
-    {
-      "@id": "schema:inLanguage",
+      "@id": "schema:contentUrl",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "taal"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448955472820",
-      "foaf:name": "Toerisme Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://toerismevlaanderen.be"
+        "@value": "content url"
       }
     },
     {
-      "@id": "skos:prefLabel",
+      "@id": "dc:type",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "label"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448954835660",
-      "schema:affiliation": {
-        "@id": "_:g47448954679140"
-      },
-      "foaf:lastName": "Versteden",
-      "foaf:firstName": "Aad",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:aad.versteden@redpencil.io"
+        "@value": "type"
       }
     },
     {
-      "@id": "_:g47448954679140",
-      "foaf:name": "redpencil.io",
-      "foaf:homepage": {
-        "@id": "https://redpencil.io"
-      }
-    },
-    {
-      "@id": "schema:width",
+      "@id": "schema:audience",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "breedte"
-      },
-      "@type": "rdf:Property"
+        "@value": "doelpubliek"
+      }
     },
     {
-      "@id": "_:g47448950051180",
-      "schema:affiliation": {
-        "@id": "_:g47448950257460"
-      },
-      "foaf:lastName": "Vandercleyen",
-      "foaf:firstName": "Stéphanie",
+      "@id": "_:g47116891318220",
       "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:stephanie.vandercleyen@logereninvlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448950257460",
-      "foaf:name": "Logeren in Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://logereninvlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448954516840",
-      "schema:affiliation": {
-        "@id": "_:g47448954588140"
-      },
-      "foaf:lastName": "Jammaers",
-      "foaf:firstName": "Sebastiaan",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:sebastiaan.jammaers@limburg.be"
-      }
-    },
-    {
-      "@id": "_:g47448955371900",
-      "foaf:name": "redpencil.io",
-      "foaf:homepage": {
-        "@id": "https://redpencil.io"
-      }
-    },
-    {
-      "@id": "_:g47448955135120",
-      "foaf:mbox": {
-        "@id": "mailto:oslo@kb.vlaanderen.be"
-      },
-      "foaf:name": "Data Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://data.vlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448955371400",
-      "schema:affiliation": {
-        "@id": "_:g47448955371900"
-      },
-      "foaf:lastName": "Vandekeybus",
-      "foaf:firstName": "Niels",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:niels.vandekeybus@redpencil.io"
-      }
-    },
-    {
-      "@id": "_:g47448948219180",
-      "schema:affiliation": {
-        "@id": "_:g47448948323120"
-      },
-      "foaf:lastName": "Scheerlinck",
-      "foaf:firstName": "Jens",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:jens.scheerlinck@kb.vlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448954491220",
-      "schema:affiliation": {
-        "@id": "_:g47448954532300"
-      },
-      "foaf:lastName": "Martin",
-      "foaf:firstName": "Geert",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:geert.martin@toerismevlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448954004040",
-      "schema:affiliation": {
-        "@id": "_:g47448954306300"
-      },
-      "foaf:lastName": "Van Nuffelen",
-      "foaf:firstName": "Bert",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:bert.van.nuffelen@tenforce.com"
-      }
-    },
-    {
-      "@id": "_:g47448955636660",
-      "schema:affiliation": {
-        "@id": "_:g47448955655520"
-      },
       "foaf:lastName": "Van Baelen",
       "foaf:firstName": "Susy",
-      "@type": "foaf:person",
+      "schema:affiliation": {
+        "@id": "_:g47116891337360"
+      },
       "foaf:mbox": {
         "@id": "mailto:susy.vanbaelen@provincieantwerpen.be"
       }
     },
     {
-      "@id": "_:g47448954249340",
-      "schema:affiliation": {
-        "@id": "_:g47448954339040"
-      },
-      "foaf:lastName": "Roothans",
-      "foaf:firstName": "Peter",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:peter.roothans@provincieantwerpen.be"
-      }
-    },
-    {
-      "@id": "_:g47448955382280",
-      "schema:affiliation": {
-        "@id": "_:g47448955400340"
-      },
-      "foaf:lastName": "Buyle",
-      "foaf:firstName": "Raf",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448955799440",
-      "schema:affiliation": {
-        "@id": "_:g47448955817360"
-      },
-      "foaf:lastName": "Scheerlinck",
-      "foaf:firstName": "Jens",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:jens.scheerlinck@pwc.com"
-      }
-    },
-    {
-      "@id": "_:g47448955262900",
-      "schema:affiliation": {
-        "@id": "_:g47448955310900"
-      },
-      "foaf:lastName": "Vercammen",
-      "foaf:firstName": "Frederik",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:frederik.vercammen@cjt.be"
-      }
-    },
-    {
-      "@id": "_:g47448954889100",
-      "schema:affiliation": {
-        "@id": "_:g47448954734720"
-      },
-      "foaf:lastName": "Pauwels",
-      "foaf:firstName": "Erika",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:erika.pauwels@redpencil.io"
-      }
-    },
-    {
-      "@id": "_:g47448955446760",
-      "schema:affiliation": {
-        "@id": "_:g47448955472820"
-      },
-      "foaf:lastName": "Stevens",
-      "foaf:firstName": "Mario",
-      "@type": "foaf:person",
-      "foaf:mbox": {
-        "@id": "mailto:mario.stevens@toerismevlaanderen.be"
-      }
-    },
-    {
-      "@id": "_:g47448948323120",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "_:g47448955655520",
+      "@id": "_:g47116891337360",
       "foaf:name": "Provincie Antwerpen",
       "foaf:homepage": {
         "@id": "https://provincieantwerpen.be"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+      "@id": "schema:height",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": " is tijdspecialisatie van"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:alternativeName",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "alternatieve naam"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:unitText",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "eenheid"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:exampleOfWork",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "is gebaseerd op"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#onthaalAdres",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Adres waar logies zich kunnen aanmelden."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "onthaal adres"
-      },
-      "rdfs:range": {
-        "@id": "http://www.w3.org/ns/locn#Address"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "prov:qualifiedInvalidation",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "opheffing"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448954339040",
-      "foaf:name": "Provincie Antwerpen",
-      "foaf:homepage": {
-        "@id": "http://provincieantwerpen.be"
+        "@value": "hoogte"
       }
     },
     {
-      "@id": "schema:unitCode",
+      "@id": "schema:QuantitativeValue",
+      "@type": "rdfs:Class",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "genormeerde eenheid"
-      },
-      "@type": "rdf:Property"
+        "@value": "Kwantitatieve waarde"
+      }
     },
     {
-      "@id": "_:g47448954532300",
+      "@id": "schema:caption",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "caption"
+      }
+    },
+    {
+      "@id": "schema:license",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "licentie"
+      }
+    },
+    {
+      "@id": "schema:contactPoint",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "contact punt"
+      }
+    },
+    {
+      "@id": "schema:datePublished",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "publicatie datum"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftBeschrijving",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Beschrijving van het object."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Beschrijving"
+      },
+      "rdfs:domain": {
+        "@id": "rdf:Resource"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft beschrijving"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Beschrijving",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een omschrijving van een object."
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Beschrijving"
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:CreativeWork"
+      }
+    },
+    {
+      "@id": "schema:description",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "beschrijving"
+      }
+    },
+    {
+      "@id": "dc:format",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "formaat"
+      }
+    },
+    {
+      "@id": "schema:starRating",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft officiële beoordeling"
+      }
+    },
+    {
+      "@id": "dc:issued",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "uitgegeven"
+      }
+    },
+    {
+      "@id": "schema:value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "waarde"
+      }
+    },
+    {
+      "@id": "schema:Rating",
+      "@type": "rdfs:Class",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Beoordeling"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Logies",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Elke constructie, inrichting, ruimte of terrein, in eender welke?\r\n\r\nvorm, dat aan één of meer toeristen tegen betaling de mogelijkheid tot verblijf biedt voor een of meer nachten, en dat wordt aangeboden op de toeristische markt."
+      },
+      "@type": "owl:Class",
+      "http://purl.org/vocab/vann/usageNote": {
+        "@language": "nl",
+        "@value": "Zie ook https://schema.org/docs/hotels.html"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Logies"
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:LodgingBusiness"
+      }
+    },
+    {
+      "@id": "_:g47116891456120",
+      "@type": "foaf:person",
+      "foaf:lastName": "Stevens",
+      "foaf:firstName": "Mario",
+      "schema:affiliation": {
+        "@id": "_:g47116891475080"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:mario.stevens@toerismevlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891475080",
       "foaf:name": "Toerisme Vlaanderen",
       "foaf:homepage": {
         "@id": "https://toerismevlaanderen.be"
       }
     },
     {
-      "@id": "_:g47448955817360",
+      "@id": "_:g47116891540900",
       "foaf:name": "PwC",
       "foaf:homepage": {
         "@id": "http://www.pwc.be"
       }
     },
     {
-      "@id": "schema:datePublished",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "publicatie datum"
+      "@id": "_:g47116891522020",
+      "@type": "foaf:person",
+      "foaf:lastName": "Scheerlinck",
+      "foaf:firstName": "Jens",
+      "schema:affiliation": {
+        "@id": "_:g47116891540900"
       },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "schema:contactPoint",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "contact punt"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448955310900",
-      "foaf:name": "CJT",
-      "foaf:homepage": {
-        "@id": "http://cjt.be"
+      "foaf:mbox": {
+        "@id": "mailto:jens.scheerlinck@pwc.com"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#locatie",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
+      "@id": "_:g47116891384460",
+      "@type": "foaf:person",
+      "foaf:lastName": "Vandekeybus",
+      "foaf:firstName": "Niels",
+      "schema:affiliation": {
+        "@id": "_:g47116891403140"
       },
-      "rdfs:domain": {
-        "@id": "rdf:Resource"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "De geometrische locatie van het object."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "locatie"
-      },
-      "rdfs:range": {
-        "@id": "http://www.w3.org/ns/locn#Geometry"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:subPropertyOf": {
-        "@id": "http://www.w3.org/ns/locn#geometry"
+      "foaf:mbox": {
+        "@id": "mailto:niels.vandekeybus@redpencil.io"
       }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#isSpecialisatieVan",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "is specialisatie van"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit"
-      },
-      "@type": "owl:ObjectProperty",
-      "rdfs:subPropertyOf": {
-        "@id": "skos:broader"
-      }
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit",
-      "rdfs:subClassOf": {
-        "@id": "schema:LocationFeatureSpecification"
-      },
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Aanwezige infrastructuur of dienst."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "Faciliteit"
-      },
-      "@type": "owl:Class"
-    },
-    {
-      "@id": "_:g47448955400340",
-      "foaf:name": "Informatie Vlaanderen",
-      "foaf:homepage": {
-        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
-      }
-    },
-    {
-      "@id": "schema:audience",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "doelpubliek"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "prov:qualifiedGeneration",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "creatie"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "_:g47448954734720",
+      "@id": "_:g47116891403140",
       "foaf:name": "redpencil.io",
       "foaf:homepage": {
         "@id": "https://redpencil.io"
       }
     },
     {
-      "@id": "schema:thumbnailUrl",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "thumbnail url"
-      },
-      "@type": "rdf:Property"
+      "@id": "_:g47116891222760",
+      "foaf:name": "Logeren in Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://logereninvlaanderen.be"
+      }
     },
     {
-      "@id": "schema:numberOfRooms",
-      "rdfs:label": {
+      "@id": "https://data.vlaanderen.be/ns/logies#locatie",
+      "rdfs:comment": {
         "@language": "nl",
-        "@value": "aantal kamers"
+        "@value": "De geometrische locatie van het object."
       },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid",
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "http://www.w3.org/ns/locn#Geometry"
+      },
+      "rdfs:domain": {
+        "@id": "rdf:Resource"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "locatie"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "http://www.w3.org/ns/locn#geometry"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/locn#geometry",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "geometrie"
+      }
+    },
+    {
+      "@id": "_:g47116891893800",
+      "foaf:name": "Toerisme Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://toerismevlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116886501340",
+      "@type": "foaf:person",
+      "foaf:lastName": "Haleydt",
+      "foaf:firstName": "Kevin",
+      "schema:affiliation": {
+        "@id": "_:g47116886698940"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:kevin.haleydt@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891662160",
+      "@type": "foaf:person",
+      "foaf:lastName": "De Maesschalck",
+      "foaf:firstName": "Filip",
+      "schema:affiliation": {
+        "@id": "_:g47116891681360"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:filip.demaesschalck@vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891245780",
+      "@type": "foaf:person",
+      "foaf:lastName": "Huybrecht",
+      "foaf:firstName": "Tina",
+      "schema:affiliation": {
+        "@id": "_:g47116891262740"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:tina.huybrechts@vlaamsbrabant.be"
+      }
+    },
+    {
+      "@id": "_:g47116880006520",
+      "@type": "foaf:person",
+      "foaf:lastName": "Vercammen",
+      "foaf:firstName": "Frederik",
+      "schema:affiliation": {
+        "@id": "_:g47116881996300"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:frederik.vercammen@cjt.be"
+      }
+    },
+    {
+      "@id": "_:g47116887099400",
+      "@type": "foaf:person",
+      "foaf:lastName": "Roothans",
+      "foaf:firstName": "Peter",
+      "schema:affiliation": {
+        "@id": "_:g47116887179920"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:peter.roothans@provincieantwerpen.be"
+      }
+    },
+    {
+      "@id": "_:g47116884868480",
+      "@type": "foaf:person",
+      "foaf:lastName": "Scheerlinck",
+      "foaf:firstName": "Jens",
+      "schema:affiliation": {
+        "@id": "_:g47116886168340"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:jens.scheerlinck@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891740880",
+      "@type": "foaf:person",
+      "foaf:lastName": "Versteden",
+      "foaf:firstName": "Aad",
+      "schema:affiliation": {
+        "@id": "_:g47116891743880"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:aad.versteden@redpencil.io"
+      }
+    },
+    {
+      "@id": "_:g47116891459340",
+      "@type": "foaf:person",
+      "foaf:lastName": "Pauwels",
+      "foaf:firstName": "Erika",
+      "schema:affiliation": {
+        "@id": "_:g47116891478480"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:erika.pauwels@redpencil.io"
+      }
+    },
+    {
+      "@id": "_:g47116891874920",
+      "@type": "foaf:person",
+      "foaf:lastName": "Martin",
+      "foaf:firstName": "Geert",
+      "schema:affiliation": {
+        "@id": "_:g47116891893800"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:geert.martin@toerismevlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891397260",
+      "@type": "foaf:person",
+      "foaf:lastName": "Vandercleyen",
+      "foaf:firstName": "Stéphanie",
+      "schema:affiliation": {
+        "@id": "_:g47116891399940"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:stephanie.vandercleyen@logereninvlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891204300",
+      "@type": "foaf:person",
+      "foaf:lastName": "Vansweevelt",
+      "foaf:firstName": "Joris",
+      "schema:affiliation": {
+        "@id": "_:g47116891222760"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:joris.vansweevelt@logereninvlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116887465800",
+      "@type": "foaf:person",
+      "foaf:lastName": "Buyle",
+      "foaf:firstName": "Raf",
+      "schema:affiliation": {
+        "@id": "_:g47116887473460"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:raf.buyle@kb.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891600140",
+      "@type": "foaf:person",
+      "foaf:lastName": "Van Nuffelen",
+      "foaf:firstName": "Bert",
+      "schema:affiliation": {
+        "@id": "_:g47116891603100"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:bert.van.nuffelen@tenforce.com"
+      }
+    },
+    {
+      "@id": "_:g47116891986760",
+      "@type": "foaf:person",
+      "foaf:lastName": "Jammaers",
+      "foaf:firstName": "Sebastiaan",
+      "schema:affiliation": {
+        "@id": "_:g47116891989560"
+      },
+      "foaf:mbox": {
+        "@id": "mailto:sebastiaan.jammaers@limburg.be"
+      }
+    },
+    {
+      "@id": "_:g47116891309180",
+      "foaf:name": "Data Vlaanderen",
+      "foaf:mbox": {
+        "@id": "mailto:oslo@kb.vlaanderen.be"
+      },
+      "foaf:homepage": {
+        "@id": "https://data.vlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116891989560",
+      "foaf:name": "Toerisme Limburg",
+      "foaf:homepage": {
+        "@id": "https://visitlimburg.be"
+      }
+    },
+    {
+      "@id": "_:g47116891603100",
+      "foaf:name": "Tenforce",
+      "foaf:homepage": {
+        "@id": "http://tenforce.com"
+      }
+    },
+    {
+      "@id": "_:g47116891743880",
+      "foaf:name": "redpencil.io",
+      "foaf:homepage": {
+        "@id": "https://redpencil.io"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#aantalVerhuureenheden",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Totale aantal eenheden waarover het logies beschikt."
+      },
+      "@type": "owl:DatatypeProperty",
+      "rdfs:range": {
+        "@id": "xsd:integer"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/logies#Logies"
       },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Een verhuureenheid die gerelateerd is aan een logies."
-      },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft verhuureenheid"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#registratieStatus",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
       },
-      "rdfs:domain": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Registratie"
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "aantal verhuureenheden"
+      }
+    },
+    {
+      "@id": "_:g47116891399940",
+      "foaf:name": "Logeren in Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://logereninvlaanderen.be"
+      }
+    },
+    {
+      "@id": "_:g47116886698940",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g47116891681360",
+      "foaf:name": "Departement Kanselarij en Bestuur",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/"
+      }
+    },
+    {
+      "@id": "_:g47116881996300",
+      "foaf:name": "CJT",
+      "foaf:homepage": {
+        "@id": "http://cjt.be"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een afzonderlijk te huren kamer, ruimte, oppervlakte of onderdeel waar kan worden overnacht."
       },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Verhuureenheid"
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Accomodation"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#registratieStatus",
       "rdfs:comment": {
         "@language": "nl",
         "@value": "Status van het geregistreerde logies."
       },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "registratie status"
-      },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
         "@id": "skos:Concept"
       },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Registratie"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
       },
-      "rdfs:domain": {
-        "@id": "rdf:Resource"
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "registratie status"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Registratie",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Registratie van het logies bij een officiële instantie."
       },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Registratie"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://data.vlaanderen.be/ns/generiek#Versie"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen",
       "rdfs:comment": {
         "@language": "nl",
         "@value": "Totale aantal personen dat een logies of verhuureenheid kan bedienen."
       },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "aantal slaapplaatsen"
-      },
+      "@type": "owl:DatatypeProperty",
       "rdfs:range": {
         "@id": "xsd:integer"
       },
-      "@type": "owl:DatatypeProperty"
-    },
-    {
-      "@id": "schema:value",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "waarde"
+      "rdfs:domain": {
+        "@id": "rdf:Resource"
       },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating",
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "aantal slaapplaatsen"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftKamer",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Ruimte"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft kamer"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "schema:containsPlace"
+      }
+    },
+    {
+      "@id": "skos:prefLabel",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "label"
+      }
+    },
+    {
+      "@id": "schema:validThrough",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "beschikbaar tot"
+      }
+    },
+    {
+      "@id": "_:g47116887473460",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "_:g47116891262740",
+      "foaf:name": "Toerisme Vlaams Brabant",
+      "foaf:homepage": {
+        "@id": "https://vlaamsbrabant.be"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/adms#identifier",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "identificator"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#onthaalLocatie",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "De geometrische locatie van het object."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "http://www.w3.org/ns/locn#Geometry"
+      },
+      "rdfs:domain": {
+        "@id": "rdf:Resource"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "onthaal locatie"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "http://www.w3.org/ns/locn#geometry"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een label dat wordt toegekend aan een entiteit wanneer deze aan bepaalde voorwaarden voldoen."
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Kwaliteitslabel"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een verhuureenheid die gerelateerd is aan een logies."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Verhuureenheid"
       },
       "rdfs:domain": {
         "@id": "https://data.vlaanderen.be/ns/logies#Logies"
       },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft verhuureenheid"
+      }
+    },
+    {
+      "@id": "prov:qualifiedGeneration",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "creatie"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating",
       "rdfs:comment": {
         "@language": "nl",
         "@value": "De relatie tussen een logies en andere, commerciele uitbating van het logies. Bijvoorbeeld een B&B die ook als vakantiewoning wordt verhuurt."
       },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "heeft alternatieve uitbating"
-      },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
         "@id": "https://data.vlaanderen.be/ns/logies#Logies"
       },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftBeschrijving",
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
-      },
-      "rdfs:domain": {
-        "@id": "rdf:Resource"
-      },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Beschrijving van het object."
       },
       "rdfs:label": {
         "@language": "nl",
-        "@value": "heeft beschrijving"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#Beschrijving"
-      },
-      "@type": "owl:ObjectProperty"
+        "@value": "heeft alternatieve uitbating"
+      }
     },
     {
-      "@id": "https://data.vlaanderen.be/ns/logies#capaciteit",
+      "@id": "schema:ratingValue",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "beoordeling"
+      }
+    },
+    {
+      "@id": "_:g47116887179920",
+      "foaf:name": "Provincie Antwerpen",
+      "foaf:homepage": {
+        "@id": "http://provincieantwerpen.be"
+      }
+    },
+    {
+      "@id": "_:g47116886168340",
+      "foaf:name": "Informatie Vlaanderen",
+      "foaf:homepage": {
+        "@id": "https://overheid.vlaanderen.be/informatie-vlaanderen"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftRegistratie",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "De registratie van het logies bij Toerisme Vlaanderen."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Registratie"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
+      },
       "rdfs:isDefinedBy": {
         "@id": "https://data.vlaanderen.be/ns/logies"
       },
-      "rdfs:domain": {
-        "@id": "rdf:Resource"
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft registratie"
+      }
+    },
+    {
+      "@id": "schema:width",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "breedte"
+      }
+    },
+    {
+      "@id": "schema:dateModified",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "bewerkt op"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#heeftKwaliteitsLabel",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Een kwaliteitslabel dat is toegekend aan het logies. "
       },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Kwaliteitslabel"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "heeft kwaliteitslabel"
+      }
+    },
+    {
+      "@id": "schema:numberOfRooms",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "aantal kamers"
+      }
+    },
+    {
+      "@id": "schema:exampleOfWork",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "is gebaseerd op"
+      }
+    },
+    {
+      "@id": "schema:name",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "naam"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Specifieert tot welke regio het logies behoort."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#ToeristischeRegio"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "behoort tot toeristische regio"
+      }
+    },
+    {
+      "@id": "_:g47116891478480",
+      "foaf:name": "redpencil.io",
+      "foaf:homepage": {
+        "@id": "https://redpencil.io"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": " is tijdspecialisatie van"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#isSpecialisatieVan",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is."
+      },
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "is specialisatie van"
+      },
+      "rdfs:subPropertyOf": {
+        "@id": "skos:broader"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#Faciliteit",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Aanwezige infrastructuur of dienst."
+      },
+      "@type": "owl:Class",
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "Faciliteit"
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:LocationFeatureSpecification"
+      }
+    },
+    {
+      "@id": "schema:worstRating",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "laagste beoordeling"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#capaciteit",
       "rdfs:comment": {
         "@language": "nl",
         "@value": "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde."
       },
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "capaciteit"
-      },
+      "@type": "owl:ObjectProperty",
       "rdfs:range": {
         "@id": "schema:QuantitativeValue"
-      },
-      "@type": "owl:ObjectProperty"
-    },
-    {
-      "@id": "schema:license",
-      "rdfs:label": {
-        "@language": "nl",
-        "@value": "licentie"
-      },
-      "@type": "rdf:Property"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/ns/logies#heeftMedia",
-      "rdfs:isDefinedBy": {
-        "@id": "https://data.vlaanderen.be/ns/logies"
       },
       "rdfs:domain": {
         "@id": "rdf:Resource"
       },
-      "rdfs:comment": {
-        "@language": "nl",
-        "@value": "Media gerelateerd aan het object."
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
       },
       "rdfs:label": {
         "@language": "nl",
-        "@value": "heeft media"
-      },
-      "rdfs:range": {
-        "@id": "https://data.vlaanderen.be/ns/logies#MediaObject"
-      },
-      "@type": "owl:ObjectProperty"
+        "@value": "capaciteit"
+      }
     },
     {
-      "@id": "schema:name",
+      "@id": "schema:unitText",
+      "@type": "rdf:Property",
       "rdfs:label": {
         "@language": "nl",
-        "@value": "naam"
+        "@value": "eenheid"
+      }
+    },
+    {
+      "@id": "schema:inLanguage",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "taal"
+      }
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/logies#onthaalAdres",
+      "rdfs:comment": {
+        "@language": "nl",
+        "@value": "Adres waar logies zich kunnen aanmelden."
       },
-      "@type": "rdf:Property"
+      "@type": "owl:ObjectProperty",
+      "rdfs:range": {
+        "@id": "http://www.w3.org/ns/locn#Address"
+      },
+      "rdfs:domain": {
+        "@id": "https://data.vlaanderen.be/ns/logies#Logies"
+      },
+      "rdfs:isDefinedBy": {
+        "@id": "https://data.vlaanderen.be/ns/logies"
+      },
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "onthaal adres"
+      }
+    },
+    {
+      "@id": "prov:qualifiedInvalidation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "opheffing"
+      }
+    },
+    {
+      "@id": "schema:validFrom",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "nl",
+        "@value": "beschikbaar van"
+      }
     }
   ]
 }
