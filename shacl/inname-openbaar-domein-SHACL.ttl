@@ -401,16 +401,16 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
 	] ;
 	sh:property [
+		sh:name "adviseert" ;
+		sh:description "Project waarover advies gegeven wordt." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
+	] ;
+	sh:property [
 		sh:name "heeftVoorwaarde" ;
 		sh:description "Voorwaarde die moet voldaan worden om tegemoet te komen aan het advies." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftVoorwaarde> ;
 		sh:class <http://data.vlaanderen.be/ns/besluit#Voorwaarde> ;
-	] ;
-	sh:property [
-		sh:name "adviseert" ;
-		sh:description "Conflict waarover advies gegeven wordt." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict> ;
 	] ;
 	sh:property [
 		sh:name "adviseert" ;
@@ -420,15 +420,15 @@
 	] ;
 	sh:property [
 		sh:name "adviseert" ;
-		sh:description "Mobiliteitshinder waarover advies gegeven wordt." ;
+		sh:description "Conflict waarover advies gegeven wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#RuimtelijkConflict> ;
 	] ;
 	sh:property [
 		sh:name "adviseert" ;
-		sh:description "Project waarover advies gegeven wordt." ;
+		sh:description "Mobiliteitshinder waarover advies gegeven wordt." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#adviseert> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Project> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	] ;
 	sh:property [
 		sh:name "beheerder" ;
@@ -801,12 +801,6 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "omvat" ;
-		sh:description "Mobiliteitshinder die veroorzaakt is door het project." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
-	] ;
-	sh:property [
 		sh:name "volgtUit" ;
 		sh:description "Project dat ontstaan is uit een samenwerkingsaanvraag." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#volgtUit> ;
@@ -818,6 +812,12 @@
 		sh:description "Inname die binnen dit project doorgaat." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
+	] ;
+	sh:property [
+		sh:name "omvat" ;
+		sh:description "Mobiliteitshinder die veroorzaakt is door het project." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Project.omvat> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	] ;
 	sh:property [
 		sh:name "beheerder" ;
@@ -1126,10 +1126,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	sh:property [
-		sh:name "vereist" ;
-		sh:description "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
+		sh:name "isDeelVan" ;
+		sh:description "Een verwante inname waarin deze inname fysiek of logisch is opgenomen." ;
+		sh:path <http://purl.org/dc/terms/isPartOf> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
+	] ;
+	sh:property [
+		sh:name "heeftGevolg" ;
+		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	] ;
 	sh:property [
 		sh:name "leidtTot" ;
@@ -1144,12 +1150,6 @@
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	] ;
 	sh:property [
-		sh:name "isDeelVan" ;
-		sh:description "Een verwante inname waarin deze inname fysiek of logisch is opgenomen." ;
-		sh:path <http://purl.org/dc/terms/isPartOf> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
-	] ;
-	sh:property [
 		sh:name "geeftAanleidingTot" ;
 		sh:description "Samenwerkingsaanvraag die het gevolg is van de inname." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.geeftAanleidingTot> ;
@@ -1157,10 +1157,10 @@
 		sh:maxCount 1 ;
 	] ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
+		sh:name "vereist" ;
+		sh:description "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;

@@ -40,17 +40,17 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken> ;
 	sh:property [
+		sh:name "heeftOnderbord" ;
+		sh:description "Onderbord dat een bepaling toevoegt aan het verkeersteken." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken> ;
+	] ;
+	sh:property [
 		sh:name "heeftVerkeersbordconcept" ;
 		sh:description "Verwijzing naar de eigenlijke betekenis van het verkeersbord zoals vastgelegd in het verkeersbordconcept van het verkeersteken." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftVerkeersbordconcept> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersbordconcept> ;
 		sh:maxCount 1 ;
-	] ;
-	sh:property [
-		sh:name "heeftOnderbord" ;
-		sh:description "Onderbord dat een bepaling toevoegt aan het verkeersteken." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftOnderbord> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersbord-Verkeersteken> ;
 	] ;
 	sh:property [
 		sh:name "isBeginZone" ;
@@ -262,12 +262,6 @@
 	a sh:NodeShape ;
 	sh:targetClass <http://data.vlaanderen.be/ns/besluit#Artikel> ;
 	sh:property [
-		sh:name "heeftMobiliteitsmaatregel" ;
-		sh:description "Mobiliteitsmaatregel die beschreven staat in het artikel." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Artikel.heeftMobiliteitsmaatregel> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
-	] ;
-	sh:property [
 		sh:name "heeftVoorwaarde" ;
 		sh:description "Voorwaarde waaraan het artikel gebonden is." ;
 		sh:path <https://data.vlaanderen.be/ns/besluit#heeftVoorwaarde> ;
@@ -278,6 +272,12 @@
 		sh:description "Het besluit waarvan het artikel een onderdeel is." ;
 		sh:path <http://purl.org/dc/terms/isPartOf> ;
 		sh:class <http://data.vlaanderen.be/ns/besluit#Besluit> ;
+	] ;
+	sh:property [
+		sh:name "heeftMobiliteitsmaatregel" ;
+		sh:description "Mobiliteitsmaatregel die beschreven staat in het artikel." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Artikel.heeftMobiliteitsmaatregel> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
 	] ;
 	sh:property [
 		sh:name "nummer" ;
@@ -395,16 +395,17 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het invoeren van een mobiliteitsmaatregel." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
-	] ;
-	sh:property [
 		sh:name "wordtAangeduidDoor" ;
 		sh:description "Een verkeersteken dat bijdraagt tot de aanduiding van een mobiliteitsmaatregel." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#wordtAangeduidDoor> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Verkeersteken> ;
+	] ;
+	sh:property [
+		sh:name "heeftTransportLinkSet" ;
+		sh:description "Verzameling weglinksequenties en/of individuele weglinks die een route vertegenwoordigen." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftTransportLinkSet> ;
+		sh:class <https://data.vlaanderen.be/ns/weg#TransportLinkSet> ;
+		sh:maxCount 2 ;
 	] ;
 	sh:property [
 		sh:name "verwijstNaar" ;
@@ -413,11 +414,10 @@
 		sh:class <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> ;
 	] ;
 	sh:property [
-		sh:name "heeftTransportLinkSet" ;
-		sh:description "Verzameling weglinksequenties en/of individuele weglinks die een route vertegenwoordigen." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#heeftTransportLinkSet> ;
-		sh:class <https://data.vlaanderen.be/ns/weg#TransportLinkSet> ;
-		sh:maxCount 2 ;
+		sh:name "heeftGevolg" ;
+		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het invoeren van een mobiliteitsmaatregel." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
@@ -494,16 +494,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Effect van de mobiliteitshinder op bepaalde doelgroepen." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg> ;
-	] ;
-	sh:property [
 		sh:name "vereist" ;
 		sh:description "Mobiliteitsmaatregel ter ondersteuning van de mobiliteitshinder." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.vereist> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
+	] ;
+	sh:property [
+		sh:name "heeftGevolg" ;
+		sh:description "Effect van de mobiliteitshinder op bepaalde doelgroepen." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshindergevolg> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
@@ -575,16 +575,16 @@
 	a sh:NodeShape ;
 	sh:targetClass <https://data.vlaanderen.be/ns/mobiliteit#Inname> ;
 	sh:property [
-		sh:name "heeftGevolg" ;
-		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
-		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
-		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
-	] ;
-	sh:property [
 		sh:name "vereist" ;
 		sh:description "Mobiliteitsmaatregel die vereist is om een inname tot stand te brengen." ;
 		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.vereist> ;
 		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitsmaatregel> ;
+	] ;
+	sh:property [
+		sh:name "heeftGevolg" ;
+		sh:description "Mobiliteitshinder (bv.: afgesloten weg) die ontstaan is door het innemen van de openbare ruimte." ;
+		sh:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.heeftGevolg> ;
+		sh:class <https://data.vlaanderen.be/ns/mobiliteit#Mobiliteitshinder> ;
 	] ;
 	sh:property [
 		sh:name "adresVoorstelling" ;
