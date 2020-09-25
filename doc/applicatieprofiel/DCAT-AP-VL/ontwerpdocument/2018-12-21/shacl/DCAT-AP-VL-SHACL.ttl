@@ -28,12 +28,12 @@
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class foaf:Agent;
-    sh:description "De uitgever van de datasetcatalogus";
-    sh:maxCount 1;
+    sh:class dcat:Dataset;
+    sh:description "Een dataset die behoort tot de datasetcatalogus";
+    sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
-    sh:name "heeftUitgever";
-    sh:path dc:publisher
+    sh:name "heeftDataset";
+    sh:path dcat:dataset
   ], [
     sh:datatype rdf:langString;
     sh:description "Een bondige omschrijving van de datasetcatalogus. ";
@@ -42,12 +42,19 @@
     sh:name "beschrijving";
     sh:path dc:description
   ], [
-    sh:class dcat:Dataset;
-    sh:description "Een dataset die behoort tot de datasetcatalogus";
+    sh:datatype rdf:langString;
+    sh:description "De naam van de datasetcatalogus.";
     sh:maxCount "n"^^xsd:integer;
     sh:minCount 1;
-    sh:name "heeftDataset";
-    sh:path dcat:dataset
+    sh:name "titel";
+    sh:path dc:title
+  ], [
+    sh:class foaf:Agent;
+    sh:description "De uitgever van de datasetcatalogus";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "heeftUitgever";
+    sh:path dc:publisher
   ], [
     sh:class dc:LicenseDocument;
     sh:description "De licentie van de datasetcatalogus.";
@@ -55,54 +62,12 @@
     sh:minCount 1;
     sh:name "heeftLicentie";
     sh:path dc:license
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de datasetcatalogus.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
   ];
   sh:targetClass dcat:Catalog .
 
 <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    <http://purl.org/linked-data/cube#codeList> <https://vocab.belgif.be/auth/datatheme>;
-    sh:class skos:Concept;
-    sh:description "Het thema waartoe de dataset behoort.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:name "thema";
-    sh:path dcat:theme
-  ], [
-    sh:class dcat:Distribution;
-    sh:description "De distributie van een dataset.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "heeftDistributie";
-    sh:path dcat:distribution
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de dataset";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Een bondige omschrijving van de dataset.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
-  ], [
-    sh:class foaf:Agent;
-    sh:description "De uitgever van de dataset. ";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftUitgever";
-    sh:path dc:publisher
-  ], [
     <http://purl.org/linked-data/cube#codeList> <https://publications.europa.eu/en/web/eu-vocabularies/at-dataset/-/resource/dataset/access-right>;
     sh:class skos:Concept;
     sh:description "De toegankelijkheidscategorie van de dataset.";
@@ -117,6 +82,41 @@
     sh:minCount 1;
     sh:name "contactinfo";
     sh:path dcat:contactPoint
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Een bondige omschrijving van de dataset.";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "beschrijving";
+    sh:path dc:description
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "De naam van de dataset";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "titel";
+    sh:path dc:title
+  ], [
+    sh:class foaf:Agent;
+    sh:description "De uitgever van de dataset. ";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "heeftUitgever";
+    sh:path dc:publisher
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://vocab.belgif.be/auth/datatheme>;
+    sh:class skos:Concept;
+    sh:description "Het thema waartoe de dataset behoort.";
+    sh:maxCount "n"^^xsd:integer;
+    sh:name "thema";
+    sh:path dcat:theme
+  ], [
+    sh:class dcat:Distribution;
+    sh:description "De distributie van een dataset.";
+    sh:maxCount "n"^^xsd:integer;
+    sh:minCount 1;
+    sh:name "heeftDistributie";
+    sh:path dcat:distribution
   ];
   sh:targetClass dcat:Dataset .
 
