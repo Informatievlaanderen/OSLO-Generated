@@ -9,28 +9,46 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
+<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#ContactInfoShape> .
 
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:datatype rdf:langString;
+    sh:description "Straatnaam vh adres.";
+    sh:maxCount 1;
+    sh:name "straatnaam";
+    sh:path <http://www.w3.org/ns/locn#thoroughfare>
+  ], [
     sh:datatype xsd:string;
     sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
     sh:maxCount 1;
     sh:name "postcode";
     sh:path <http://www.w3.org/ns/locn#postCode>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
+    sh:maxCount 1;
+    sh:name "huisnummer";
+    sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Land waarin het adres gelegen is.";
+    sh:maxCount 1;
+    sh:name "land";
+    sh:path <https://data.vlaanderen.be/ns/adres#land>
   ], [
     sh:datatype rdf:langString;
     sh:description "Gemeentenaam vh adres.";
@@ -43,24 +61,6 @@
     sh:maxCount 1;
     sh:name "busnummer";
     sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
-    sh:maxCount 1;
-    sh:name "huisnummer";
-    sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Straatnaam vh adres.";
-    sh:maxCount 1;
-    sh:name "straatnaam";
-    sh:path <http://www.w3.org/ns/locn#thoroughfare>
-  ], [
-    sh:datatype rdf:langString;
-    sh:description "Land waarin het adres gelegen is.";
-    sh:maxCount 1;
-    sh:name "land";
-    sh:path <https://data.vlaanderen.be/ns/adres#land>
   ];
   sh:targetClass <http://www.w3.org/ns/locn#Address> .
 
@@ -131,13 +131,6 @@
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype rdf:langString;
-    sh:description "Naam waarmee de organisatie bij voorkeur wordt aangeduid.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "voorkeursnaam";
-    sh:path skos:prefLabel
-  ], [
     sh:class skos:Concept;
     sh:description "Soort organisatie.";
     sh:name "type";
@@ -147,6 +140,13 @@
     sh:description "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren.";
     sh:name "contactinfo";
     sh:path schema:contactPoint
+  ], [
+    sh:datatype rdf:langString;
+    sh:description "Naam waarmee de organisatie bij voorkeur wordt aangeduid.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "voorkeursnaam";
+    sh:path skos:prefLabel
   ];
   sh:targetClass org:Organization .
 
