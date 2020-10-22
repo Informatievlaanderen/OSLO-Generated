@@ -4,30 +4,31 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
+@prefix schemas: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://schema.org/AdministrativeArea> a rdfs:Class;
+schemas:AdministrativeArea a rdfs:Class;
   rdfs:label "Administratieve Eenheid"@nl .
 
-<https://schema.org/Audience> a rdfs:Class;
+schemas:Audience a rdfs:Class;
   rdfs:label "Doelgroep"@nl .
 
-<https://schema.org/Brand> a rdfs:Class;
+schemas:Brand a rdfs:Class;
   rdfs:label "Merk"@nl .
 
-<https://schema.org/InformAction> a rdfs:Class;
+schemas:InformAction a rdfs:Class;
   rdfs:label "InformeerActie"@nl .
 
-<https://schema.org/PropertyValue> a rdfs:Class;
+schemas:PropertyValue a rdfs:Class;
   rdfs:label "Sleutel/Waarde Paar"@nl .
 
 <https://data.vlaanderen.be/ns/notificatie#inhoud> a owl:ObjectProperty;
   rdfs:label "inhoud"@nl;
   rdfs:comment "De inhoud van een Notificatiebericht."@nl;
-  rdfs:domain <https://schema.org/InformAction>;
+  rdfs:domain schemas:InformAction;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie>;
-  rdfs:range <https://schema.org/PropertyValue> .
+  rdfs:range schemas:PropertyValue .
 
 <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal> a owl:ObjectProperty;
   rdfs:label "notificatiekanaal"@nl;
@@ -40,13 +41,13 @@
   rdfs:label "periode verzending"@nl;
   <http://purl.org/vocab/vann/usageNote> "Bijvoorbeeld, wanneer het stedelijk zwembad een week gesloten is, kan de periode voor verzending van de Informeer Actie beginnen een maand voor de sluiting en eindigen op de laatste dag van de sluitingsperiode."@nl;
   rdfs:comment "Het tijdsinterval waarbinnen de Informeer Actie relevant is en bijgevolg kan resulteren in de verzending van notificatieberichten."@nl;
-  rdfs:domain <https://schema.org/InformAction>;
+  rdfs:domain schemas:InformAction;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
 
 <https://data.vlaanderen.be/ns/notificatie#resulteertIn> a owl:ObjectProperty;
   rdfs:label "resulteert in"@nl;
   rdfs:comment "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen."@nl;
-  rdfs:domain <https://schema.org/InformAction>;
+  rdfs:domain schemas:InformAction;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie>;
   rdfs:range <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> .
 
@@ -91,32 +92,68 @@ schema:url a rdf:Property;
   rdfs:comment "Een bericht van een afzender naar een bestemmeling met als doel het informeren van de bestemmeling."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/notificatie> .
 
-<https://schema.org/about> a rdf:Property;
+schemas:about a rdf:Property;
   rdfs:label "onderwerp"@nl .
 
-<https://schema.org/audienceType> a rdf:Property;
+schemas:audienceType a rdf:Property;
   rdfs:label "doelgroep type"@nl .
 
-<https://schema.org/dateCreated> a rdf:Property;
+schemas:dateCreated a rdf:Property;
   rdfs:label "datum creatie"@nl .
 
-<https://schema.org/geographicArea> a rdf:Property;
+schemas:geographicArea a rdf:Property;
   rdfs:label "geografisch gebied"@nl .
 
-<https://schema.org/name> a rdf:Property;
+schemas:name a rdf:Property;
   rdfs:label "titel"@nl,
     "naam"@nl .
 
-<https://schema.org/text> a rdf:Property;
+schemas:text a rdf:Property;
   rdfs:label "tekst"@nl .
 
-<https://schema.org/value> a rdf:Property;
+schemas:value a rdf:Property;
   rdfs:label "waarde"@nl .
 
 <https://data.vlaanderen.be/ns/notificatie> a owl:Ontology;
   rdfs:label "notificatie"@en,
     "notificatie"@nl;
   dc:contributor [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://bosa.belgium.be/>;
+      foaf:name "BOSA"
+    ];
+    foaf:firstName "Steven";
+    foaf:lastName "Tielemans";
+    foaf:mbox <mailto:steven.tielemans@bosa.fgov.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Nikolaos";
+    foaf:lastName "Loutas";
+    foaf:mbox <mailto:nikolaos.loutas@pwc.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "Informatie Vlaanderen"
+    ];
+    foaf:firstName "Liesbeth";
+    foaf:lastName "Rombouts";
+    foaf:mbox <mailto:liesbeth.rombouts@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://bosa.belgium.be/>;
+      foaf:name "BOSA"
+    ];
+    foaf:firstName "Barbara";
+    foaf:lastName "Van Gogh";
+    foaf:mbox <mailto:barbara.vanoggh@bosa.fgov.be>
+  ], [
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/>;
@@ -134,42 +171,6 @@ schema:url a rdf:Property;
     foaf:firstName "Ginette";
     foaf:lastName "Schollaert";
     foaf:mbox <mailto:ginette.schollaert@cspi-scip.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://bosa.belgium.be/>;
-      foaf:name "BOSA"
-    ];
-    foaf:firstName "Steven";
-    foaf:lastName "Tielemans";
-    foaf:mbox <mailto:steven.tielemans@bosa.fgov.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Informatie Vlaanderen"
-    ];
-    foaf:firstName "Liesbeth";
-    foaf:lastName "Rombouts";
-    foaf:mbox <mailto:liesbeth.rombouts@kb.vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Nikolaos";
-    foaf:lastName "Loutas";
-    foaf:mbox <mailto:nikolaos.loutas@pwc.com>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://bosa.belgium.be/>;
-      foaf:name "BOSA"
-    ];
-    foaf:firstName "Barbara";
-    foaf:lastName "Van Gogh";
-    foaf:mbox <mailto:barbara.vanoggh@bosa.fgov.be>
   ];
   dc:issued "2018-12-19";
   dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
@@ -179,40 +180,31 @@ schema:url a rdf:Property;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso <https://schema.org/geographicArea>,
-    <https://schema.org/Brand>,
-    schema:sender,
-    <https://schema.org/name>,
-    <https://schema.org/InformAction>,
-    schema:name,
-    dc:relation,
-    <http://www.w3.org/ns/locn#geometry>,
+  rdfs:seeAlso schema:name,
     schema:dateRead,
-    schema:expires,
-    <https://schema.org/AdministrativeArea>,
-    schema:dateReceived,
-    <https://schema.org/PropertyValue>,
-    <https://schema.org/Audience>,
-    schema:contactPoint,
+    <http://www.w3.org/ns/adms#identifier>,
+    schemas:Audience,
+    schemas:name,
+    schemas:InformAction,
+    dc:relation,
+    schemas:dateCreated,
+    schemas:Brand,
+    schema:url,
+    schemas:AdministrativeArea,
     schema:recipient,
     schema:dateSent,
-    <https://schema.org/text>,
-    <https://schema.org/dateCreated>,
-    <https://schema.org/about>,
-    <https://schema.org/audienceType>,
-    <https://schema.org/value>,
-    <http://www.w3.org/ns/adms#identifier>,
-    schema:url;
+    schemas:PropertyValue,
+    schema:dateReceived,
+    schema:expires,
+    schema:contactPoint,
+    schemas:about,
+    schemas:geographicArea,
+    schemas:text,
+    <http://www.w3.org/ns/locn#geometry>,
+    schemas:value,
+    schema:sender,
+    schemas:audienceType;
   <http://www.w3.org/2001/02pd/rec54#editor> [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <http://www.pwc.be>;
-      foaf:name "PwC"
-    ];
-    foaf:firstName "Jens";
-    foaf:lastName "Scheerlinck";
-    foaf:mbox <mailto:jens.scheerlinck@pwc.com>
-  ], [
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <http://www.pwc.be>;
@@ -221,6 +213,15 @@ schema:url a rdf:Property;
     foaf:firstName "Michiel";
     foaf:lastName "De Keyzer";
     foaf:mbox <mailto:michiel.de.keyzer@pwc.com>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <http://www.pwc.be>;
+      foaf:name "PwC"
+    ];
+    foaf:firstName "Jens";
+    foaf:lastName "Scheerlinck";
+    foaf:mbox <mailto:jens.scheerlinck@pwc.com>
   ];
   foaf:maker [
     a foaf:Person;
@@ -228,9 +229,9 @@ schema:url a rdf:Property;
       foaf:homepage <https://overheid.vlaanderen.be/>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Goedele";
-    foaf:lastName "Van der Spiegel";
-    foaf:mbox <mailto:goedele.vanderspiegel@kb.vlaanderen.be>
+    foaf:firstName "Joost";
+    foaf:lastName "De Weghe";
+    foaf:mbox <mailto:joost.deweghe@kb.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -264,7 +265,7 @@ schema:url a rdf:Property;
       foaf:homepage <https://overheid.vlaanderen.be/>;
       foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Joost";
-    foaf:lastName "De Weghe";
-    foaf:mbox <mailto:joost.deweghe@kb.vlaanderen.be>
+    foaf:firstName "Goedele";
+    foaf:lastName "Van der Spiegel";
+    foaf:mbox <mailto:goedele.vanderspiegel@kb.vlaanderen.be>
   ] .
