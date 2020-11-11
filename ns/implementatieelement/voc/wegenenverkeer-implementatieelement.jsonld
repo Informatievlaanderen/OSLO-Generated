@@ -1596,7 +1596,7 @@
   "license": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
   "namespace": null,
   "navigation": {
-    "prev": "/doc/vocabularium/wegenenverkeer/implementatieelement/ontwerpdocument/v26"
+    "prev": "/doc/vocabularium/wegenenverkeer/implementatieelement/ontwerpdocument/v29"
   },
   "publication-date": "2020-01-29",
   "publication-state": "https://data.vlaanderen.be/doc/concept/StandaardStatus/OntwerpdocumentInOntwikkeling",
@@ -1609,65 +1609,54 @@
   },
   "classes": [
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSLevenscyclus",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMNaamObject",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Abstracte die de attributen toevoegt die nodig zijn voor de levenscyclus van een object zoals gebruikt binnen de AWV-AIMS."
+        "nl": "Abstracte als de basisklasse voor elk OTL object dat benoemd wordt met een mensleesbare identificator."
       },
       "name": {
-        "nl": "AIMS levenscyclus"
+        "nl": "AIM naam object"
+      },
+      "parents": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Abstracte als de basisklasse voor alle uniek geïdentificeerde OTL objecten met de basiseigenschappen die elk OTL object minstens heeft."
+      },
+      "name": {
+        "nl": "AIM object"
+      },
+      "parents": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMToestand",
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Voegt een atribuut met de status (actief/inactief) toe aan de subklasse die overerft van de abstracte."
+      },
+      "name": {
+        "nl": "AIM Status"
       },
       "parents": [],
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSToezicht",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMToestand",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Abstracte die de attributen toevoegt die nodig zijn voor toezicht zoals gebruikt binnen de AWV-AIMS."
+        "nl": "Voegt een atribuut toe aan de subklasse die overerft van de abstracte waarmee die een moment in de levenscyclus van het object aangeeft."
       },
       "name": {
-        "nl": "AIMS toezicht"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaamObject",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Abstracte als de basisklasse voor elk OTL object dat benoemd wordt met een mensleesbare identificator. "
-      },
-      "name": {
-        "nl": "AWV naam object"
-      },
-      "parents": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaampadObject",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Abstracte als de basisklasse voor elk OTL object dat gebruik maakt van een naampad."
-      },
-      "name": {
-        "nl": "AWV naampad object"
-      },
-      "parents": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaamObject"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Abstracte als de basisklasse (super class) voor alle uniek geïdentificeerde OTL objecten met de basiseigenschappen die elk OTL object minstens heeft."
-      },
-      "name": {
-        "nl": "AWV object"
+        "nl": "AIM Toestand"
       },
       "parents": [],
       "usage": {}
@@ -1676,12 +1665,15 @@
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Object niet in eigendom van AWV maar verbonden met een object van AWV."
+        "nl": "Object niet in eigendom van de assetbeheerder dat zonder verdere typering bewaard wordt om relaties met getypeerde assets te kunnen beheren."
       },
       "name": {
         "nl": "Derdenobject"
       },
-      "parents": [],
+      "parents": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMToestand",
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus"
+      ],
       "usage": {}
     },
     {
@@ -1699,34 +1691,10 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Complex datatype voor de identifictor van het AWV-object."
-      },
-      "name": {
-        "nl": "AWV-identificator"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Iets waar speciaal op gelet moet worden, meestal in het kader van de veiligheid."
-      },
-      "name": {
-        "nl": "Aandachtspunt"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "De aanduiding van een bepaalde locatie, doorgaans van een huis, woning, gebouw of faciliteit, op de aarde."
+        "nl": "De aanduiding van een bepaalde locatie,doorgaans van een huis,woning,gebouw of faciliteit,op de aarde."
       },
       "name": {
         "nl": "Adres"
@@ -1735,37 +1703,85 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxh",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInM",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
         "nl": "De afmeting van de breedte en hoogte in meter."
       },
       "name": {
-        "nl": "Afmeting bxh"
+        "nl": "Afmeting bxh in meter"
       },
       "parents": [],
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxl",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInMm",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "De afmeting van de breedte en hoogte in millimeter."
+      },
+      "name": {
+        "nl": "Afmeting bxh in millimeter"
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInCm",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "De afmeting van de breedte en de lengte in centimeter."
+      },
+      "name": {
+        "nl": "Afmeting bxl in centimeter."
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInM",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
         "nl": "De afmeting van de breedte en de lengte in meter."
       },
       "name": {
-        "nl": "Afmeting bxl"
+        "nl": "Afmeting bxl in meter"
       },
       "parents": [],
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "De afmeting van de breedte, de lengte en hoogte in meter."
+        "nl": "De afmeting van de breedte,de lengte en hoogte in centimeter"
       },
       "name": {
-        "nl": "Afmeting bxlxh"
+        "nl": "Afmeting bxlxh in centimeter"
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "De afmeting van de breedte,de lengte en hoogte in meter."
+      },
+      "name": {
+        "nl": "Afmeting bxlxh in meter"
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "De afmeting van de breedte,de lengte en hoogte in millimeter."
+      },
+      "name": {
+        "nl": "Afmeting bxlxh in millimeter"
       },
       "parents": [],
       "usage": {}
@@ -1774,7 +1790,7 @@
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingDiameter",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "De afmeting van een diameter."
+        "nl": "De afmeting van een diameter in millimeter."
       },
       "name": {
         "nl": "Afmeting diameter"
@@ -1786,22 +1802,10 @@
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingZijde",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "De afmeting van een zijde."
+        "nl": "De afmeting van een zijde in millimeter."
       },
       "name": {
         "nl": "Afmeting zijde"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Complex datatype, beschrijft een locatie volgens het Lambert72 coördinatenstelsel."
-      },
-      "name": {
-        "nl": "Coördinaat Lambert72"
       },
       "parents": [],
       "usage": {}
@@ -1819,6 +1823,18 @@
       "usage": {}
     },
     {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Complex datatype voor de identificator van een object volgens de bron van de identificator."
+      },
+      "name": {
+        "nl": "identificator"
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcNatuurlijkPersoon",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
@@ -1826,6 +1842,18 @@
       },
       "name": {
         "nl": "Natuurlijk persoon"
+      },
+      "parents": [],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Complex datatype dat alle nodige informatie van het product capteert."
+      },
+      "name": {
+        "nl": "Productidentificatiecode"
       },
       "parents": [],
       "usage": {}
@@ -1882,7 +1910,7 @@
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteTekstblok",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Een tekst welke uit meerdere zinnen bestaat, en ook regeleindes kan bevatten. Een tekstblok bevat maximaal 65.000 karakters."
+        "nl": "Een tekst welke uit meerdere zinnen bestaat,en ook regeleindes kan bevatten. Een tekstblok bevat maximaal 65.000 karakters."
       },
       "name": {
         "nl": "Tekstblok"
@@ -1994,18 +2022,6 @@
       },
       "name": {
         "nl": "Kwantitatieve waarde in aantal jaar"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKelvin",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Een kwantitatieve waarde die een getal in Kelvin uitdrukt."
-      },
-      "name": {
-        "nl": "Kwantitatieve waarde in Kelvin"
       },
       "parents": [],
       "usage": {}
@@ -2203,18 +2219,6 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVoltAmpere",
-      "@type": "http://www.w3.org/2002/07/owl#Class",
-      "description": {
-        "nl": "Een kwantitatieve waarde die een getal in VoltAmpere uitdrukt."
-      },
-      "name": {
-        "nl": "Kwantitatieve waarde in VoltAmpere"
-      },
-      "parents": [],
-      "usage": {}
-    },
-    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInWatt",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
@@ -2251,6 +2255,20 @@
       "usage": {}
     },
     {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#NaampadObject",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Abstracte als de basisklasse voor elk OTL object dat gebruik maakt van een naampad."
+      },
+      "name": {
+        "nl": "Naampad object"
+      },
+      "parents": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMNaamObject"
+      ],
+      "usage": {}
+    },
+    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#NietDirectioneleRelatie",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
@@ -2273,91 +2291,21 @@
       "name": {
         "nl": "Relatieobject"
       },
-      "parents": [],
+      "parents": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus"
+      ],
       "usage": {}
     }
   ],
   "properties": [
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSLevenscyclus.status",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "TODO"
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSLevenscyclus"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "status"
-      },
-      "range": [
-        "http://www.w3.org/2004/02/skos/core#Concept"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSLevenscyclus.toestand",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "TODO"
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSLevenscyclus"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "toestand"
-      },
-      "range": [
-        "http://www.w3.org/2004/02/skos/core#Concept"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSToezicht.toezichter",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMNaamObject.naam",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
-        "nl": "TODO"
+        "nl": "De mensleesbare naam van een asset zoals dit bv. ook terug te vinden is op een etiket op het object zelf. De assetbeheerder kent deze naam toe of geeft de opdracht om deze toe te kennen. Indien een object een algemeen gangbare naam heeft zoals bv. bij een waterloop dan wordt deze gebruikt."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSToezicht"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "toezichter"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSToezicht.toezichtsgroep",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "TODO"
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMSToezicht"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "toezichtsgroep"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaamObject.naam",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "De mensleesbare naam van een AWVObject zoals dit bv. ook terug te vinden is op een etiket op het object zelf. AWV kent deze naam toe of geeft de opdracht om deze toe te kennen. Indien een object een algemeen gangbare naam heeft zoals bv. bij een waterloop dan wordt deze gebruikt."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaamObject"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMNaamObject"
       ],
       "generalization": [],
       "name": {
@@ -2369,31 +2317,31 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaampadObject.naampad",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.assetId",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "Een set van objecten (bv. collecties) die aanduiden waar het object zich bevindt in de objectenboom (EM-Infra)."
+        "nl": "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVNaampadObject"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject"
       ],
       "generalization": [],
       "name": {
-        "nl": "naampad"
+        "nl": "asset-id"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
       ],
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.datumOprichtingObject",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.datumOprichtingObject",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
         "nl": "Datum van de oprichting van het object."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject"
       ],
       "generalization": [],
       "name": {
@@ -2405,31 +2353,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.id",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "De identificator van het object. Zodra een object bestaat binnen de omgeving van AWV moet de id gebruikt worden zoals die daar gekend is. Bij aanlevering van nieuwe objecten wordt een lokale-id (zoals gekend bij de aannemer) ingevuld."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "id"
-      },
-      "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.notitie",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.notitie",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
         "nl": "Extra notitie voor het object."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject"
       ],
       "generalization": [],
       "name": {
@@ -2441,13 +2371,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject.typeURI",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.typeURI",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI ."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AWVObject"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject"
       ],
       "generalization": [],
       "name": {
@@ -2455,6 +2385,64 @@
       },
       "range": [
         "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus.isActief",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Geeft aan of het object actief kan gebruikt worden of (zacht) verwijderd is uit het asset beheer systeem."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMStatus"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "status"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#boolean"
+      ],
+      "usage": {
+        "nl": "De status die hier bedoeld wordt valt samen met de status van het record voor de asset in het asset mangement systeem. De staat waarin de asset zich bevindt, de fase in een levenscyclus en de operationele status zijn andere types die in aparte attributen bijgehouden worden."
+      }
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMToestand.toestand",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Vat de levenscyclus van het object op een bepaald moment."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMToestand"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "toestand"
+      },
+      "range": [
+        "http://www.w3.org/2004/02/skos/core#Concept"
+      ],
+      "usage": {
+        "nl": "TODO"
+      }
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.assetId",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "asset-id"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
       ],
       "usage": {}
     },
@@ -2533,92 +2521,20 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.identificator",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "Een groep van tekens om een AWV object te identificeren of te benoemen."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "identificator"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendDoor",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "Gegevens van de organisatie die de toekenning deed."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "toegekend door"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator.toegekendOp",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "De datum wanneer de toekenning werd uitgevoerd."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "toegekend op"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#dateTime"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt.omschrijving",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "Een toelichting die beschrijft waar precies op gelet moet worden."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "omschrijving"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt.type",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.typeURI",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
-        "nl": "Mogelijke types van het aandachtspunt."
+        "nl": "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI ."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAandachtspunt"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject"
       ],
       "generalization": [],
       "name": {
-        "nl": "type"
+        "nl": "type URI"
       },
       "range": [
-        "http://www.w3.org/2004/02/skos/core#Concept"
+        "http://www.w3.org/2001/XMLSchema#anyURI"
       ],
       "usage": {}
     },
@@ -2731,13 +2647,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxh.breedte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInM.breedte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De breedte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxh"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInM"
       ],
       "generalization": [],
       "name": {
@@ -2749,13 +2665,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxh.hoogte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInM.hoogte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De hoogte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxh"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInM"
       ],
       "generalization": [],
       "name": {
@@ -2767,13 +2683,85 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxl.breedte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInMm.breedte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De breedte in millimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInMm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "breedte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInMm.hoogte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De hoogte in millimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxhInMm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "hoogte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInCm.breedte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De breedte in centimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInCm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "breedte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInCm.lengte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De lengte in centimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInCm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "lengte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInM.breedte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De breedte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxl"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInM"
       ],
       "generalization": [],
       "name": {
@@ -2785,13 +2773,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxl.lengte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInM.lengte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De lengte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxl"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlInM"
       ],
       "generalization": [],
       "name": {
@@ -2803,13 +2791,67 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh.breedte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm.breedte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De breedte in centimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "breedte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm.hoogte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De hoogte in centimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "hoogte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm.lengte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De lengte in centimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInCm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "lengte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInCentimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM.breedte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De breedte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM"
       ],
       "generalization": [],
       "name": {
@@ -2821,13 +2863,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh.hoogte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM.hoogte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De hoogte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM"
       ],
       "generalization": [],
       "name": {
@@ -2839,13 +2881,13 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh.lengte",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM.lengte",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De lengte in meter."
       },
       "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxh"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInM"
       ],
       "generalization": [],
       "name": {
@@ -2853,6 +2895,60 @@
       },
       "range": [
         "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm.breedte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De breedte in millimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "breedte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm.hoogte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De hoogte in millimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "hoogte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm.lengte",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De lengte in millimeter."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAfmetingBxlxhInMm"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "lengte"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
       ],
       "usage": {}
     },
@@ -2889,60 +2985,6 @@
       },
       "range": [
         "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMillimeter"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.xcoordinaat",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "X-coordinaat in decimaal getal."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "x-coördinaat"
-      },
-      "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.ycoordinaat",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Y-coordinaat in decimaal getal."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "y-coördinaat"
-      },
-      "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeter"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72.zcoordinaat",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Z-coordinaat tov. het TAW-peil in decimaal getal."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcCoordLambert72"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "z-coördinaat"
-      },
-      "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMeterTAW"
       ],
       "usage": {}
     },
@@ -3015,6 +3057,42 @@
       },
       "range": [
         "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator.identificator",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Een groep van tekens om een AWV object te identificeren of te benoemen."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "identificator"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator.toegekendDoor",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Gegevens van de organisatie die de toekenning deed."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "toegekend door"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
       ],
       "usage": {}
     },
@@ -3156,6 +3234,78 @@
       "generalization": [],
       "name": {
         "nl": "voornaam"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode.keuringsverslag",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een rapport met de resultaten van de keuring."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "keuringsverslag"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode.linkTechnischeFiche",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De link naar de technische fiche van het gerelateerd product."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "link technische fiche"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#anyURI"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode.producent",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "De gerelateerde fabrikant."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "producent"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode.productidentificatiecode",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "De code van het gebruikte product (COPRO/BENOR)."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcProductidentificatiecode"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "productidentificatiecode"
       },
       "range": [
         "http://www.w3.org/2001/XMLSchema#string"
@@ -3689,44 +3839,6 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKelvin.standaardEenheid",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "De standaard eenheid bij dit datatype is uitgedrukt in Kelvin."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKelvin"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "standaard eenheid"
-      },
-      "range": [
-        "http://www.w3.org/2000/01/rdf-schema#Literal"
-      ],
-      "usage": {
-        "nl": "\"K\"^^cdt:ucumunit"
-      }
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKelvin.waarde",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Bevat een getal die bij het datatype hoort."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKelvin"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "waarde"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ],
-      "usage": {}
-    },
-    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInKiloVolt.standaardEenheid",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
@@ -4046,7 +4158,9 @@
       "range": [
         "http://www.w3.org/2000/01/rdf-schema#Literal"
       ],
-      "usage": {}
+      "usage": {
+        "nl": "\"min\"^^cdt:ucumunit"
+      }
     },
     {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInMinuut.waarde",
@@ -4333,44 +4447,6 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVoltAmpere.standaardEenheid",
-      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
-      "description": {
-        "nl": "De standaard eenheid bij dit datatype is uitgedrukt in VoltAmpere."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVoltAmpere"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "standaard eenheid"
-      },
-      "range": [
-        "http://www.w3.org/2000/01/rdf-schema#Literal"
-      ],
-      "usage": {
-        "nl": "\"VA\"^^cdt:ucumunit"
-      }
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVoltAmpere.waarde",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "Bevat een getal die bij het datatype hoort."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInVoltAmpere"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "waarde"
-      },
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ],
-      "usage": {}
-    },
-    {
       "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#KwantWrdInWatt.standaardEenheid",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
@@ -4485,7 +4561,43 @@
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.bronId",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#NaampadObject.naampad",
+      "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "description": {
+        "nl": "Een set van objecten (bv. collecties) die aanduiden waar het object zich bevindt in de objectenboom (EM-Infra)."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#NaampadObject"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "naampad"
+      },
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.assetId",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier."
+      },
+      "domain": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "asset-id"
+      },
+      "range": [
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.bronAssetId",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De identificator van het object waaruit de relatie vertrekt."
@@ -4495,15 +4607,15 @@
       ],
       "generalization": [],
       "name": {
-        "nl": "bron-id"
+        "nl": "asset-id bron-asset"
       },
       "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
       ],
       "usage": {}
     },
     {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.doelId",
+      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.doelAssetId",
       "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
       "description": {
         "nl": "De identificator van het object waarin de relatie toekomt."
@@ -4513,28 +4625,10 @@
       ],
       "generalization": [],
       "name": {
-        "nl": "doel-id"
+        "nl": "asset-id doel-asset"
       },
       "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
-      ],
-      "usage": {}
-    },
-    {
-      "@id": "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject.id",
-      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
-      "description": {
-        "nl": "De identificator van de relatie zoals gekend binnen Em-Infra."
-      },
-      "domain": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#RelatieObject"
-      ],
-      "generalization": [],
-      "name": {
-        "nl": "id"
-      },
-      "range": [
-        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAWVIdentificator"
+        "https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator"
       ],
       "usage": {}
     },
@@ -4559,6 +4653,27 @@
   ],
   "externals": [
     {
+      "@id": "http://purl.org/dc/terms/Agent",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Agent"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "AIM toestand"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Mimetype"
+      }
+    },
+    {
       "@id": "http://www.w3.org/2004/02/skos/core#Concept",
       "@type": "rdfs:Class",
       "name": {
@@ -4573,31 +4688,10 @@
       }
     },
     {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+      "@id": "https://schema.org/ContactPoint",
       "@type": "rdfs:Class",
       "name": {
-        "nl": "Mimetype"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "AIMS toestand"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "AIMS status"
-      }
-    },
-    {
-      "@id": "http://www.w3.org/2004/02/skos/core#Concept",
-      "@type": "rdfs:Class",
-      "name": {
-        "nl": "Aandachtspunttype"
+        "nl": "Contactinfo"
       }
     },
     {
@@ -4616,6 +4710,83 @@
     }
   ],
   "externalproperties": [
+    {
+      "@id": "http://purl.org/dc/terms/Agent.agentId",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "agent identificatie"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/Agent.contactinfo",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "Contactinfo"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/Agent.naam",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "naam"
+      }
+    },
+    {
+      "@id": "http://schema.org/email",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "email"
+      }
+    },
+    {
+      "@id": "http://schema.org/faxNumber",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "fax"
+      }
+    },
+    {
+      "@id": "http://schema.org/hoursAvailable",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "beschikbaarheid"
+      }
+    },
+    {
+      "@id": "http://schema.org/telephone",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "telefoon"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/locn#address",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "adres"
+      }
+    },
+    {
+      "@id": "http://xmlns.com/foaf/0.1/name",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "contactnaam"
+      }
+    },
+    {
+      "@id": "http://xmlns.com/foaf/0.1/page",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "website"
+      }
+    },
+    {
+      "@id": "https://schema.org/ContactPoint.opmerkingen",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "opmerkingen"
+      }
+    },
     {
       "@id": "https://schema.org/closes",
       "@type": "rdf:Property",
