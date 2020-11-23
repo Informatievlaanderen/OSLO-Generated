@@ -9,19 +9,19 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
+<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#ContactInfoShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape> .
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape> .
 
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape> a sh:NodeShape;
   sh:closed false;
@@ -38,11 +38,11 @@
     sh:name "gemeentenaam";
     sh:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
   ], [
-    sh:datatype rdf:langString;
-    sh:description "Straatnaam vh adres.";
+    sh:datatype xsd:string;
+    sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
     sh:maxCount 1;
-    sh:name "straatnaam";
-    sh:path <http://www.w3.org/ns/locn#thoroughfare>
+    sh:name "huisnummer";
+    sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
   ], [
     sh:datatype xsd:string;
     sh:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
@@ -50,11 +50,11 @@
     sh:name "postcode";
     sh:path <http://www.w3.org/ns/locn#postCode>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
+    sh:datatype rdf:langString;
+    sh:description "Straatnaam vh adres.";
     sh:maxCount 1;
-    sh:name "huisnummer";
-    sh:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
+    sh:name "straatnaam";
+    sh:path <http://www.w3.org/ns/locn#thoroughfare>
   ], [
     sh:datatype rdf:langString;
     sh:description "Land waarin het adres gelegen is.";
@@ -157,12 +157,6 @@
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class schemas:ContactPoint;
-    sh:description "Informatie zoals email, telefoon... die toelaat de Persoon te contacteren.";
-    sh:maxCount 1;
-    sh:name "contactinfo";
-    sh:path schema:contactPoint
-  ], [
     sh:datatype xsd:string;
     sh:description "Naam die een kind bij geboorte wordt gegeven. Onderscheidt het kind van de andere kinderen in de familie.";
     sh:minCount 1;
@@ -175,6 +169,12 @@
     sh:minCount 1;
     sh:name "achternaam";
     sh:path foaf:familyName
+  ], [
+    sh:class schemas:ContactPoint;
+    sh:description "Informatie zoals email, telefoon... die toelaat de Persoon te contacteren.";
+    sh:maxCount 1;
+    sh:name "contactinfo";
+    sh:path schema:contactPoint
   ];
   sh:targetClass <http://www.w3.org/ns/person#Person> .
 
