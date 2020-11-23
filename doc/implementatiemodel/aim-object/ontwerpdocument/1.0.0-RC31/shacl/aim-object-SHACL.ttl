@@ -7,35 +7,35 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/aim-object> <https://data.vlaanderen.be/shacl/aim-objectshapes> <https://data.vlaanderen.be/shacl/aim-object#DtcContactinfoShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#AIMDBStatusShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#BooleanShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#TimeShape>,
+<https://data.vlaanderen.be/shacl/aim-object> <https://data.vlaanderen.be/shacl/aim-objectshapes> <https://data.vlaanderen.be/shacl/aim-object#SturingShape>,
     <https://data.vlaanderen.be/shacl/aim-object#AgentShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#AIMObjectShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#AnyURIShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#KlAlgGemeenteShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DateShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#AIMToestandShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#LigtOpShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DtcOpeningsurenSpecificatieShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#AIMNaamObjectShape>,
     <https://data.vlaanderen.be/shacl/aim-object#BevestigingShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#BooleanShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#AIMDBStatusShape>,
     <https://data.vlaanderen.be/shacl/aim-object#KlAlgMimeTypeShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DerdenobjectShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#StringShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#NaampadObjectShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#SluitAanOpShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DtcDocumentShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#AIMToestandShape>,
     <https://data.vlaanderen.be/shacl/aim-object#DtcAdresShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DtcIdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#KlAlgWeekdagenShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#SturingShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#VoedtShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#StringShape>,
     <https://data.vlaanderen.be/shacl/aim-object#HeeftBetrokkeneShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#DteTekstblokShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#AIMObjectShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#KlAlgProvincieShape>,
     <https://data.vlaanderen.be/shacl/aim-object#KlAIMToestandShape>,
-    <https://data.vlaanderen.be/shacl/aim-object#KlAlgProvincieShape> .
+    <https://data.vlaanderen.be/shacl/aim-object#TimeShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#LigtOpShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#AnyURIShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DerdenobjectShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DtcIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DateShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#AIMNaamObjectShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#KlAlgWeekdagenShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DtcDocumentShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#VoedtShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DteTekstblokShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DtcContactinfoShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#SluitAanOpShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#DtcOpeningsurenSpecificatieShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#KlAlgGemeenteShape>,
+    <https://data.vlaanderen.be/shacl/aim-object#NaampadObjectShape> .
 
 <https://data.vlaanderen.be/shacl/aim-object#AIMDBStatusShape> a sh:NodeShape;
   sh:closed false;
@@ -64,14 +64,21 @@
 <https://data.vlaanderen.be/shacl/aim-object#AIMObjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
+    sh:class dc:Agent;
+    sh:description "Koppelt een natuurlijk persoon,rechtspersoon of een hoedanigheid (een functie eerder dan de persoon die de functie uitoefent) aan een object in een bepaalde rol.";
+    sh:name "HeeftBetrokkene"
+  ], [
+    sh:class xsd:anyURI;
+    sh:description "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "typeURI";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.typeURI>
+  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
     sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
     sh:name "Voedt";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Voedt>
-  ], [
-    sh:class dc:Agent;
-    sh:description "Koppelt een natuurlijk persoon,rechtspersoon of een hoedanigheid (een functie eerder dan de persoon die de functie uitoefent) aan een object in een bepaalde rol.";
-    sh:name "HeeftBetrokkene"
   ], [
     sh:datatype xsd:date;
     sh:description "Datum van de oprichting van het object.";
@@ -80,12 +87,8 @@
     sh:name "datumOprichtingObject";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.datumOprichtingObject>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Extra notitie voor het object.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "notitie";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.notitie>
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
+    sh:name "SluitAanOp"
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
     sh:name "Sturing";
@@ -95,27 +98,24 @@
     sh:description "Deze relatie geeft aan dat 2 onderdelen direct fysiek op elkaar liggen. Deze relatie heeft een richting en gaat van het bovenste naar het onderste onderdeel.";
     sh:name "LigtOp"
   ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
+    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
+    sh:name "Bevestiging";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Bevestiging>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Extra notitie voor het object.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "notitie";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.notitie>
+  ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator>;
     sh:description "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "assetId";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.assetId>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
-    sh:name "SluitAanOp"
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject>;
-    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
-    sh:name "Bevestiging";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Bevestiging>
-  ], [
-    sh:class xsd:anyURI;
-    sh:description "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "typeURI";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject.typeURI>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject> .
 
@@ -138,6 +138,13 @@
     sh:description "Koppelt een natuurlijk persoon,rechtspersoon of een hoedanigheid (een functie eerder dan de persoon die de functie uitoefent) aan een object in een bepaalde rol.";
     sh:name "HeeftBetrokkene"
   ], [
+    sh:datatype xsd:string;
+    sh:description "De naam waarmee de agent doorgaans benoemd wordt.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "naam";
+    sh:path dc:Agent.naam
+  ], [
     sh:class schemas:ContactPoint;
     sh:description "Algemene contactgegevens voor de agent.";
     sh:minCount 1;
@@ -150,13 +157,6 @@
     sh:minCount 1;
     sh:name "agentId";
     sh:path dc:Agent.agentId
-  ], [
-    sh:datatype xsd:string;
-    sh:description "De naam waarmee de agent doorgaans benoemd wordt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path dc:Agent.naam
   ];
   sh:targetClass dc:Agent .
 
@@ -179,55 +179,6 @@
 <https://data.vlaanderen.be/shacl/aim-object#DerdenobjectShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
-    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
-    sh:name "Bevestiging";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Bevestiging>
-  ], [
-    sh:class dc:Agent;
-    sh:description "Koppelt een natuurlijk persoon,rechtspersoon of een hoedanigheid (een functie eerder dan de persoon die de functie uitoefent) aan een object in een bepaalde rol.";
-    sh:name "HeeftBetrokkene"
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument>;
-    sh:description "Een foto van het derdenobject die eventuele detailinformatie weergeeft";
-    sh:minCount 1;
-    sh:name "foto";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.foto>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
-    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
-    sh:name "Voedt";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Voedt>
-  ], [
-    sh:datatype xsd:boolean;
-    sh:description "Aanduiding of de aansluitkast geïntegreerd is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftAansluitkastGeintegreerd";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.heeftAansluitkastGeintegreerd>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
-    sh:description "Deze relatie geeft aan dat 2 onderdelen direct fysiek op elkaar liggen. Deze relatie heeft een richting en gaat van het bovenste naar het onderste onderdeel.";
-    sh:name "LigtOp"
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
-    sh:name "Sturing";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Sturing>
-  ], [
-    sh:datatype xsd:string;
-    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "contactgegevens";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator>;
-    sh:description "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "assetId";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.assetId>
-  ], [
     sh:datatype xsd:string;
     sh:description "Omschrijving van het derdenobject";
     sh:maxCount 1;
@@ -236,7 +187,42 @@
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.omschrijving>
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
+    sh:description "Deze relatie geeft aan dat 2 onderdelen direct fysiek op elkaar liggen. Deze relatie heeft een richting en gaat van het bovenste naar het onderste onderdeel.";
+    sh:name "LigtOp"
+  ], [
+    sh:class dc:Agent;
+    sh:description "Koppelt een natuurlijk persoon,rechtspersoon of een hoedanigheid (een functie eerder dan de persoon die de functie uitoefent) aan een object in een bepaalde rol.";
+    sh:name "HeeftBetrokkene"
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
+    sh:name "Sturing";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Sturing>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
     sh:name "SluitAanOp"
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
+    sh:description "Deze relatie wordt enkel gelegd naar onderdelen die permanent onder spanning staan in normaal bedrijf. Aan deze relatie wordt steeds een richting toegekend van de voedinggever naar de ontvanger.";
+    sh:name "Voedt";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Voedt>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator>;
+    sh:description "Unieke identificatie van de asset zoals toegekend door de assetbeheerder of n.a.v. eerste aanlevering door de leverancier.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "assetId";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.assetId>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#AIMObject>;
+    sh:description "Deze relatie geeft aan dat twee onderdelen direct fysiek op elkaar bevestigd zijn. Dit kan zowel aan de buitenkant als aan de binnenkant zijn zoals bv. een camera aan een paal of een laagspanningsbord in een kast. Deze relatie heeft geen richting.";
+    sh:name "Bevestiging";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/doc/implementatiemodel/aim-object/#Bevestiging>
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument>;
+    sh:description "Een foto van het derdenobject die eventuele detailinformatie weergeeft";
+    sh:minCount 1;
+    sh:name "foto";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.foto>
   ], [
     sh:class xsd:anyURI;
     sh:description "De URI van het object volgens https://www.w3.org/2001/XMLSchema#anyURI .";
@@ -244,32 +230,39 @@
     sh:minCount 1;
     sh:name "typeURI";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.typeURI>
+  ], [
+    sh:datatype xsd:boolean;
+    sh:description "Aanduiding of de aansluitkast geïntegreerd is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "heeftAansluitkastGeintegreerd";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.heeftAansluitkastGeintegreerd>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Naam, voornaam, telefoonnummer en/of e-mailadres van de contactpersoon.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "contactgegevens";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject.contactgegevens>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#Derdenobject> .
 
 <https://data.vlaanderen.be/shacl/aim-object#DtcAdresShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:class skos:Concept;
-    sh:description "Het deelgebied waarin het adres gelegen is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "provincie";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.provincie>
-  ], [
-    sh:class skos:Concept;
-    sh:description "De bestuurlijke eenheid waarin het adres gelegen is.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "gemeente";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.gemeente>
-  ], [
     sh:datatype xsd:string;
     sh:description "De naam van de straat.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "straatnaam";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.straatnaam>
+  ], [
+    sh:class skos:Concept;
+    sh:description "Het deelgebied waarin het adres gelegen is.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "provincie";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.provincie>
   ], [
     sh:datatype xsd:string;
     sh:description "Een nummer dat de postbus aanduidt.";
@@ -279,36 +272,31 @@
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.bus>
   ], [
     sh:datatype xsd:string;
+    sh:description "Een korte reeks tekens die in het postadres wordt opgenomen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "postcode";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.postcode>
+  ], [
+    sh:datatype xsd:string;
     sh:description "Een nummer dat door de gemeente aan bv. een huis wordt toegekend.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "huisnummer";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.huisnummer>
   ], [
-    sh:datatype xsd:string;
-    sh:description "Een korte reeks tekens die in het postadres wordt opgenomen.";
+    sh:class skos:Concept;
+    sh:description "De bestuurlijke eenheid waarin het adres gelegen is.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "postcode";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.postcode>
+    sh:name "gemeente";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres.gemeente>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres> .
 
 <https://data.vlaanderen.be/shacl/aim-object#DtcContactinfoShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "Website waarnaar men kan surfen.";
-    sh:maxCount 1;
-    sh:name "website";
-    sh:path foaf:page
-  ], [
-    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres>;
-    sh:description "Adres dat men kan aanschrijven of bezoeken.";
-    sh:maxCount 1;
-    sh:name "adres";
-    sh:path <http://www.w3.org/ns/locn#address>
-  ], [
     sh:class schemas:OpeningHoursSpecification;
     sh:description "Periode waarin contact kan worden opgenomen.";
     sh:name "beschikbaarheid";
@@ -319,6 +307,12 @@
     sh:maxCount 1;
     sh:name "contactnaam";
     sh:path foaf:name
+  ], [
+    sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcAdres>;
+    sh:description "Adres dat men kan aanschrijven of bezoeken.";
+    sh:maxCount 1;
+    sh:name "adres";
+    sh:path <http://www.w3.org/ns/locn#address>
   ], [
     sh:datatype xsd:string;
     sh:description "Bijkomende informatie met betrekking tot het gebruik van de contactgegevens.";
@@ -343,25 +337,31 @@
     sh:maxCount 1;
     sh:name "telefoon";
     sh:path schema:telephone
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Website waarnaar men kan surfen.";
+    sh:maxCount 1;
+    sh:name "website";
+    sh:path foaf:page
   ];
   sh:targetClass schemas:ContactPoint .
 
 <https://data.vlaanderen.be/shacl/aim-object#DtcDocumentShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:string;
-    sh:description "De naam van het Document inclusief de bestandsextensie, van de naam gescheiden door een punt.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "bestandsnaam";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.bestandsnaam>
-  ], [
     sh:class skos:Concept;
     sh:description "Het MIME type van het document.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "mimeType";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.mimeType>
+  ], [
+    sh:class xsd:anyURI;
+    sh:description "De verwijzing naar de bestandslocatie via een link. Bij lokale bestanden kan dit eventueel ook een pad zijn.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "uri";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.uri>
   ], [
     sh:class <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DteTekstblok>;
     sh:description "Een korte toelichting over waar het document juist voor dient.";
@@ -370,12 +370,12 @@
     sh:name "omschrijving";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.omschrijving>
   ], [
-    sh:class xsd:anyURI;
-    sh:description "De verwijzing naar de bestandslocatie via een link. Bij lokale bestanden kan dit eventueel ook een pad zijn.";
+    sh:datatype xsd:string;
+    sh:description "De naam van het Document inclusief de bestandsextensie, van de naam gescheiden door een punt.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "uri";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.uri>
+    sh:name "bestandsnaam";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument.bestandsnaam>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcDocument> .
 
@@ -383,30 +383,30 @@
   sh:closed false;
   sh:property [
     sh:datatype xsd:string;
-    sh:description "Een groep van tekens om een AWV object te identificeren of te benoemen.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "identificator";
-    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator.identificator>
-  ], [
-    sh:datatype xsd:string;
     sh:description "Gegevens van de organisatie die de toekenning deed.";
     sh:maxCount 1;
     sh:minCount 1;
     sh:name "toegekendDoor";
     sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator.toegekendDoor>
+  ], [
+    sh:datatype xsd:string;
+    sh:description "Een groep van tekens om een AWV object te identificeren of te benoemen.";
+    sh:maxCount 1;
+    sh:minCount 1;
+    sh:name "identificator";
+    sh:path <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator.identificator>
   ];
   sh:targetClass <https://wegenenverkeer-test.data.vlaanderen.be/ns/implementatieelement#DtcIdentificator> .
 
 <https://data.vlaanderen.be/shacl/aim-object#DtcOpeningsurenSpecificatieShape> a sh:NodeShape;
   sh:closed false;
   sh:property [
-    sh:datatype xsd:time;
-    sh:description "Het tijdsstip waarop de opening plaatsvindt.";
+    sh:class schemas:DayOfWeek;
+    sh:description "Een dag uit de week incl. weekenddagen.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "openingstijd";
-    sh:path schemas:opens
+    sh:name "weekdag";
+    sh:path schemas:dayOfWeek
   ], [
     sh:datatype xsd:time;
     sh:description "Het tijdsstip waarop de sluiting plaatsvindt.";
@@ -415,12 +415,12 @@
     sh:name "sluitingstijd";
     sh:path schemas:closes
   ], [
-    sh:class schemas:DayOfWeek;
-    sh:description "Een dag uit de week incl. weekenddagen.";
+    sh:datatype xsd:time;
+    sh:description "Het tijdsstip waarop de opening plaatsvindt.";
     sh:maxCount 1;
     sh:minCount 1;
-    sh:name "weekdag";
-    sh:path schemas:dayOfWeek
+    sh:name "openingstijd";
+    sh:path schemas:opens
   ];
   sh:targetClass schemas:OpeningHoursSpecification .
 
