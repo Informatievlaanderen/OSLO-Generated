@@ -1,0 +1,202 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix qb:      <http://purl.org/linked-data/cube#> .
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#GeometrieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/locn#Geometry> ;
+	sh:property [
+		sh:name "gml" ;
+		sh:description "Geometrie uitgedrukt in gml-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asGML> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "wkt" ;
+		sh:description "Geometrie uitgedrukt in wkt-formaat." ;
+		sh:path <http://www.opengis.net/ont/geosparql#asWKT> ;
+		sh:datatype <http://www.w3.org/2000/01/rdf-schema#Literal> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PubliekeOrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://data.europa.eu/m8g/PublicOrganisation> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#OrganisatieEenheidShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/org#OrganizationalUnit> ;
+	sh:property [
+		sh:name "isEenheidVan" ;
+		sh:description "Organisatie waarvan de organisatie-eenheid deel uitmaakt." ;
+		sh:path <http://www.w3.org/ns/org#unitOf> ;
+		sh:class <https://www.w3.org/ns/org#Organization> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#GeregistreerdPersoonShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/persoon#GeregistreerdPersoon> ;
+	sh:property [
+		sh:name "registratie" ;
+		sh:description "Identificatiecode van de persoon in het register." ;
+		sh:path <http://data.vlaanderen.be/ns/persoon#registratie> ;
+		sh:class <http://www.w3.org/ns/adms#Identifier> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#ApplicatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://fixme.com#Applicatie> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingstatusShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://fixme.com#Meldingstatus> ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Een beschrijving van de Status." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "statusdatum" ;
+		sh:description "De datum van een Status." ;
+		sh:path <http://fixme.com#statusdatum> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#dateTime> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "statuswaarde" ;
+		sh:description "Het type van de Status." ;
+		sh:path <http://fixme.com#statuswaarde> ;
+		sh:class <http://fixme.com#MeldingStatuswaarde> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+		qb:codeList <https://data.vlaanderen.be/id/conceptscheme/MeldingStatuswaarde> ;
+	] ;
+	sh:property [
+		sh:name "statuswijzigingDoor" ;
+		sh:description "De Agent die deze status heeft geactiveerd. " ;
+		sh:path <http://fixme.com#statuswijzigingDoor> ;
+		sh:class <http://purl.org/dc/terms/Agent> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingBodyShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://fixme.com#MeldingBody> ;
+	sh:property [
+		sh:name "beschrijving" ;
+		sh:description "Een tekstuele beschrijving van de melding." ;
+		sh:path <http://purl.org/dc/terms/description> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "bijlage" ;
+		sh:description "Identificeert een resource die aan de MeldingsBody verbonden is en mogelijks speciale verwerking vraagt. " ;
+		sh:path <https://www.w3.org/ns/activitystreams#attachment> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "geometrie" ;
+		sh:description "De relatie tussen de MeldingBody en een geometrie." ;
+		sh:path <http://www.w3.org/ns/locn#geometry> ;
+		sh:class <http://www.w3.org/ns/locn#Geometry> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#PersoonShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://www.w3.org/ns/person#Person> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#OrganisatieShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://www.w3.org/ns/org#Organization> ;
+	sh:property [
+		sh:name "heeftEenheid" ;
+		sh:description "Verwijst naar een organisatie-eenheid die deel uitmaakt van de organisatie, bv een afdeling.	" ;
+		sh:path <http://www.w3.org/ns/org#hasUnit> ;
+		sh:class <http://www.w3.org/ns/org#OrganizationalUnit> ;
+	] ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#HoedanigheidShape>
+	a sh:NodeShape ;
+	sh:targetClass <https://data.vlaanderen.be/ns/organisatie#Hoedanigheid> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#AgentShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://purl.org/dc/terms/Agent> ;
+	sh:closed false .
+
+<https://data.vlaanderen.be/shacl/issue-tracking-voor-burgers-en-organisaties#MeldingShape>
+	a sh:NodeShape ;
+	sh:targetClass <http://fixme.com#Melding> ;
+	sh:property [
+		sh:name "meldingsapplicatie" ;
+		sh:description "De applicatie dat de Melding creëerde." ;
+		sh:path <http://fixme.com#meldingsapplicatie> ;
+		sh:class <http://fixme.com#Applicatie> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "heeftBody" ;
+		sh:description "Het object van deze associatie is een resource die de body van de Melding beschrijft (MeldingBody)." ;
+		sh:path <http://www.w3.org/ns/oa#hasBody> ;
+		sh:class <http://fixme.com#MeldingBody> ;
+	] ;
+	sh:property [
+		sh:name "heeftStatus" ;
+		sh:description "De Status verbonden aan de Melding." ;
+		sh:path <http://fixme.com#heeftStatus> ;
+		sh:class <http://fixme.com#Meldingstatus> ;
+	] ;
+	sh:property [
+		sh:name "meldingstype" ;
+		sh:description "De relatie tussen de Melding en het Meldingstype dat gebruikt worden om de melding te categoriseren." ;
+		sh:path <http://www.w3.org/ns/oa#motivatedBy> ;
+		sh:class <http://www.w3.org/2004/02/skos/core#Concept> ;
+		sh:minCount 1 ;
+	] ;
+	sh:property [
+		sh:name "samenvatting" ;
+		sh:description "Een samenvatting van de Melding." ;
+		sh:path <https://www.w3.org/ns/activitystreams#summary> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "titel" ;
+		sh:description "De titel van de Melding." ;
+		sh:path <http://purl.org/dc/terms/title> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+		sh:minCount 1 ;
+		sh:maxCount 1 ;
+	] ;
+	sh:property [
+		sh:name "webpagina" ;
+		sh:description "Een doorverwijzing naar een webpagina over deze Melding." ;
+		sh:path <http://fixme.com#webpagina> ;
+		sh:datatype <http://www.w3.org/2001/XMLSchema#anyURI> ;
+		sh:maxCount 1 ;
+	] ;
+	sh:closed false .
+

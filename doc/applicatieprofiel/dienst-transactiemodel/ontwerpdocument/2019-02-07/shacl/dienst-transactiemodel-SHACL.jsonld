@@ -1,0 +1,578 @@
+{
+  "@context": {
+    "@vocab": "https://data.vlaanderen.be/shacl/dienst-transactiemodel",
+    "qb": "http://purl.org/linked-data/cube#",
+    "qb:codeList": {
+      "@type": "@id"
+    },
+    "sh": "http://www.w3.org/ns/shacl#",
+    "sh:class": {
+      "@type": "@id"
+    },
+    "sh:datatype": {
+      "@type": "@id"
+    },
+    "sh:maxCount": {
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "sh:minCount": {
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "sh:path": {
+      "@type": "@id"
+    },
+    "sh:property": {
+      "@type": "@id"
+    },
+    "sh:targetClass": {
+      "@type": "@id"
+    },
+    "shapes": {
+      "@type": "@id"
+    }
+  },
+  "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel",
+  "shapes": [
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.",
+          "sh:maxCount": "1",
+          "sh:name": "actie",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#actie"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:description": "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.",
+          "sh:maxCount": "1",
+          "sh:name": "actieNodig",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#actieNodig"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/StatusEDRL",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De status volgens de Europese Dienstenrichtlijn",
+          "sh:maxCount": "1",
+          "sh:name": "statusEDRL",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#statusEDRL"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseCode",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.",
+          "sh:maxCount": "1",
+          "sh:name": "statusVlaamsCode",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#statusVlaamsCode"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseFase",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Is het eerste veld van 2 verplichte velden (Fase+Status) die samen de 'Generieke Vlaamse status' specifiëren. De StatusVlaamsFase vormt de eerste en hogere indeling van het dossierverloop (in aanvraag, in behandeling, in beroep, in uitvoering enz). Verdere precisering binnen de Fase gebeurt dan in het veld StatusVlaamsCode.\r\n",
+          "sh:maxCount": "1",
+          "sh:name": "statusVlaamsFase",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#statusVlaamsFase"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "Is de verplichte vermelding van de datum + tijdstip waarop de betrokken status werd geregistreerd.",
+          "sh:maxCount": "1",
+          "sh:name": "statusWijzigingsdatum",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#statusWijzigingsdatum"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).",
+          "sh:maxCount": "1",
+          "sh:name": "streefdatum",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#streefdatum"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/transactie#Status"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de Kost.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "qb:codeList": "http://publications.europa.eu/mdr/authority/currency/",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Munteenheid waarin de Kost is gedefinieerd.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "valuta",
+          "sh:path": "http://data.europa.eu/m8g/currency"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#double",
+          "sh:description": "Omvang van de Kost, uitgedrukt in de opgegeven munteenheid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "http://data.europa.eu/m8g/value"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/Cost"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumVereisteShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://data.europa.eu/m8g/CriterionRequirement"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:description": "Een Bewijs zal behoren tot een Agent. Een criterium kan invloed hebben op verschillende Agents; voor een Bewijs moet daarom gespecifieerd worden tot welke Agent het behoort.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "behoortTotAgent",
+          "sh:path": "http://data.europa.eu/m8g/belongsToAgent"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving vh Bewijs.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:description": "Geeft aan hoe betrouwbaar het bewijs is.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "betrouwbaarheidsniveau",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:description": "Documentatie gerelateerd ah Bewiijs.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "documentatie",
+          "sh:path": "http://xmlns.com/foaf/0.1/page"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Officiële naam vh Bewijs.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Identificator van het object.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "referentie",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
+          "qb:codeList": "http://publications.europa.eu/mdr/authority/language/",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Taal waarin het aangeboden Bewijs moet zijn gesteld.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "taal",
+          "sh:path": "http://purl.org/dc/terms/language"
+        },
+        {
+          "qb:codeList": "https://data.vlaanderen.be/doc/conceptscheme/BewijsType",
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Aard van het Bewijs.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "type",
+          "sh:path": "http://purl.org/dc/terms/type"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:description": "Verwijst naar de organisatie die het bewijs heeft uitgegeven.",
+          "sh:maxCount": "1",
+          "sh:name": "uitgegevenDoor",
+          "sh:path": "http://data.europa.eu/m8g/issuedByOrganisation"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/Evidence"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de Output.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De datum waarop de output werd toegekend of het financieel voordeel werd uitebetaald. ",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "datum",
+          "sh:path": "http://purl.org/dc/terms/date"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Officiële naam van de Output.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Identificator van het object.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "referentie",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Aard van de Output.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "type",
+          "sh:path": "http://purl.org/dc/terms/type"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/Output"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de Participatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "\tDe rol die de participant speelt.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "rol",
+          "sh:path": "http://data.europa.eu/m8g/role"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/Participation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#TijdsintervalShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Moment waarop het tijdsinterval begint.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "begin",
+          "sh:path": "http://data.europa.eu/m8g/startTime"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Moment waarop het tijdsinterval eindigt.",
+          "sh:maxCount": "1",
+          "sh:name": "einde",
+          "sh:path": "http://data.europa.eu/m8g/endTime"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/PeriodOfTime"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeOrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://data.europa.eu/m8g/PublicOrganisation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Een beschrijving van het antwoord op de vereiste.",
+          "sh:maxCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Evidence",
+          "sh:description": "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven.",
+          "sh:maxCount": "1",
+          "sh:name": "bewezenDoor",
+          "sh:path": "http://data.europa.eu/m8g/provenByEvidence"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Identificator van het object.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "referentie",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/CriterionRequirement",
+          "sh:description": "Relatie naar de criterium vereiste waaraan het antwoord voldoet.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "valideert",
+          "sh:path": "http://data.europa.eu/m8g/validatesCriterionRequirement"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "Wanneer de het antwoord op het criterium van toepassing is binnen een specifieke periode kan deze eigenschap gebruikt worden om het tijdsinterval te beschrijven.",
+          "sh:maxCount": "1",
+          "sh:name": "vanToepassingOp",
+          "sh:path": "http://data.europa.eu/m8g/appliesToPeriodOfTime"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Een beantwoorde vereiste moet een waarde bevatten als antwoord op een criterium vereiste. Om de criterium vereiste te vervullen, wanneer de criterium vereiste een verwachte waarde of drempel heeft, moet de waarde gelijk zijn aan de verwachte waarden of binnen het bereik liggen dat bepaald werd door de drempelwaarden.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "waarde",
+          "sh:path": "http://data.europa.eu/m8g/value"
+        }
+      ],
+      "sh:targetClass": "http://data.europa.eu/m8g/RequirementResponse"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/Participation",
+          "sh:description": "Participatie van de agent (aan een publieke dienstverlening).",
+          "sh:name": "heeftParticiperende",
+          "sh:path": "http://data.europa.eu/m8g/playsRole"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/RequirementResponse",
+          "sh:description": "Een agent verschaft antwoorden op criterium vereisten om een Publieke Dienstverlening te kunnen consumeren.",
+          "sh:name": "verschaft",
+          "sh:path": "http://data.europa.eu/m8g/providesRequirementResponse"
+        }
+      ],
+      "sh:targetClass": "http://purl.org/dc/terms/Agent"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeDienstverlening (aanbod)Shape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/CriterionRequirement",
+          "sh:description": "Criterium waaraan de gebruiker moet voldoen om recht te hebben op een dienstverlening of om een dienstverlening te mogen gebruiken.",
+          "sh:name": "heeftCriterium",
+          "sh:path": "http://data.europa.eu/m8g/hasCriterion"
+        }
+      ],
+      "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeDienstverlening (consumptie)Shape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://data.europa.eu/m8g/Participation",
+          "sh:description": "Participatie (van een agent) aan de publieke dienstverlening.",
+          "sh:name": "heeftParticiperende",
+          "sh:path": "http://data.europa.eu/m8g/hasParticipation"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/transactie#Status",
+          "sh:description": "Link tussen Publieke Dienstverlening en Status.",
+          "sh:name": "heeftStatus",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#heeftStatus"
+        },
+        {
+          "sh:class": "https://lod.milieuinfo.be/ns/dossier",
+          "sh:description": "Verwijzing naar een dossier met een logische bundeling van documenten binnen een bepaalde consumptie van een Publieke Dienstverlening.",
+          "sh:name": "isGedocumenteerdDoor",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#isGedocumenteerdDoor"
+        },
+        {
+          "sh:class": "http://purl.org/vocab/cpsv#PublicService",
+          "sh:description": "Andere Publieke Dienstverlening waarmee de Publieke Dienstverlening gerelateerd is.",
+          "sh:name": "isGerelateerdMet",
+          "sh:path": "http://purl.org/dc/terms/relation"
+        },
+        {
+          "sh:class": "http://purl.org/vocab/cpsv#PublicService",
+          "sh:description": "Linkt een bepaalde consumptie van een publieke dienstverlening (een transactie) met het product uit het dienstverleningsregister.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "isInstantieVan",
+          "sh:path": "https://data.vlaanderen.be/ns/transactie#isInstantieVan"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Cost",
+          "sh:description": "Kostprijs verbonden aan het gebruik van de publieke dienstverlening.",
+          "sh:maxCount": "1",
+          "sh:name": "kost",
+          "sh:path": "http://data.europa.eu/m8g/hasCost"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Officiële naam van de publieke dienstverlening.",
+          "sh:maxCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Output",
+          "sh:description": "Het werkelijke resultaat van de uitvoering vd Publieke Dienstverlening.",
+          "sh:name": "produceert",
+          "sh:path": "http://purl.org/vocab/cpsv#produces"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Taal waarin een publieke dienstverlening wordt aangeboden.",
+          "sh:maxCount": "1",
+          "sh:name": "taal",
+          "sh:path": "http://purl.org/dc/terms/language"
+        },
+        {
+          "sh:class": "http://data.europa.eu/m8g/Evidence",
+          "sh:description": "Bewijsstuk dat moeten voorgelegd worden om de Publieke Dienstverlening te kunnen gebruiken.",
+          "sh:name": "vereistAlsInput",
+          "sh:path": "http://purl.org/vocab/cpsv#hasInput"
+        },
+        {
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:description": "Agent die de Publieke Dienstverlening verstrekt.",
+          "sh:name": "wordtUitgevoerdDoor",
+          "sh:path": "http://data.europa.eu/m8g/serviceProvider"
+        }
+      ],
+      "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#TaalcodeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator",
+          "sh:description": "Identificator vh object opgesplitst in zijn onderdelen.",
+          "sh:maxCount": "1",
+          "sh:name": "gestructureerdedentificator",
+          "sh:path": "https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "String gebruikt om het object uniek te identificeren. ",
+          "sh:maxCount": "1",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#notation"
+        },
+        {
+          "sh:class": "http://purl.org/dc/terms/Agent",
+          "sh:description": "Link naar de agent die de identificator heeft uitgegeven.",
+          "sh:maxCount": "1",
+          "sh:name": "toegekendDoor",
+          "sh:path": "http://purl.org/dc/terms/creator"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Naam vd agent die de identificator heeft toegekend.",
+          "sh:maxCount": "1",
+          "sh:name": "toegekendDoorString",
+          "sh:path": "http://www.w3.org/ns/adms#schemaAgency"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+          "sh:description": "Tijdstip waarop de identificator werd uitgegeven.",
+          "sh:maxCount": "1",
+          "sh:name": "toegekendOp",
+          "sh:path": "http://purl.org/dc/terms/issued"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/adms#Identifier"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#OrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/ns/org#Organization"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#PersoonShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/ns/person#Person"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#HoedanigheidShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://schema.org/ContactPoint",
+          "sh:description": "Informatie zoals email, telefoon die toelaat de hoedanigheid te contacteren.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "contactinfo",
+          "sh:path": "https://data.vlaanderen.be/ns/organisatie#contactinfo"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/org#Organization",
+          "sh:description": "Associeert de hoedanigheid met een bepaalde organisatie. Bv. een persoon in de hoedanigheid van zaakvoerder bij een organisatie.",
+          "sh:name": "isLidVan",
+          "sh:path": "http://www.w3.org/ns/org#memberOf"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/organisatie#Hoedanigheid"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/dienst-transactiemodel#DossierShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://lod.milieuinfo.be/ns/dossier"
+    }
+  ]
+}

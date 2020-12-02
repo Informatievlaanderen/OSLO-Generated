@@ -5,10 +5,11 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
+@prefix schemas: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://schema.org/PriceSpecification> a rdfs:Class;
+schemas:PriceSpecification a rdfs:Class;
   rdfs:label "Prijsspecificatie"@nl .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Beschikbaarheid.gebruiker> a owl:ObjectProperty;
@@ -288,7 +289,7 @@
   rdfs:comment "Prijs van de Route."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
-  rdfs:range <https://schema.org/MonetaryAmount> .
+  rdfs:range schemas:MonetaryAmount .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Route.vertrektijdstip> a owl:DatatypeProperty;
   rdfs:label "vertrektijdstip"@nl;
@@ -405,7 +406,7 @@
   rdfs:comment "Geldbedrag dat aan de Mobiliteitsdienst kan worden besteed;"@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
-  rdfs:range <https://schema.org/MonetaryAmount> .
+  rdfs:range schemas:MonetaryAmount .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Vervoersbewijs.dienst> a owl:ObjectProperty;
   rdfs:label "dienst"@nl;
@@ -527,7 +528,7 @@
   rdfs:comment "Prijsplan van de Mobiliteitsdienst."@nl;
   rdfs:domain <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Mobiliteitsdienst>;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod>;
-  rdfs:range <https://schema.org/PriceSpecification> .
+  rdfs:range schemas:PriceSpecification .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#pseudoniem> a owl:ObjectProperty;
   rdfs:label "pseudoniem"@nl;
@@ -690,10 +691,10 @@ skos:prefLabel a rdf:Property;
   rdfs:comment "Voorkeur van de Reiziger."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> .
 
-<https://schema.org/price> a rdf:Property;
+schemas:price a rdf:Property;
   rdfs:label "prijs"@nl .
 
-<https://schema.org/value> a rdf:Property;
+schemas:value a rdf:Property;
   rdfs:label "waarde"@nl .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod#Routeplanner> a owl:Class;
@@ -789,8 +790,8 @@ skos:prefLabel a rdf:Property;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> .
 
 <https://data.vlaanderen.be/ns/mobiliteit/trips-en-aanbod> a owl:Ontology;
-  rdfs:label "mobiliteit-trips-en-aanbod-voc"@en,
-    "mobiliteit-trips-en-aanbod-voc"@nl;
+  rdfs:label "mobiliteit-trips-en-aanbod-voc"@nl,
+    "mobiliteit-trips-en-aanbod-voc"@en;
   dc:issued "TODO";
   dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
     "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
@@ -799,22 +800,22 @@ skos:prefLabel a rdf:Property;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dc:isPartOf,
-    schema:openingHours,
-    dc:title,
-    <http://fixme.com#Netwerkelement.identificator>,
+  rdfs:seeAlso <http://data.europa.eu/m8g/territorialApplication>,
+    dc:isPartOf,
     dc:spatial,
-    <http://data.europa.eu/m8g/territorialApplication>,
-    <http://www.w3.org/ns/regorg#registration>,
-    <https://schema.org/price>,
+    schemas:value,
     dc:type,
-    dc:description,
-    skos:prefLabel,
-    <https://schema.org/PriceSpecification>,
-    schema:contactPoint,
-    <https://schema.org/value>,
     <http://www.w3.org/ns/locn#geometry>,
-    dc:date;
+    dc:description,
+    dc:date,
+    schema:contactPoint,
+    dc:title,
+    schemas:PriceSpecification,
+    schema:openingHours,
+    skos:prefLabel,
+    <http://fixme.com#Netwerkelement.identificator>,
+    schemas:price,
+    <http://www.w3.org/ns/regorg#registration>;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
@@ -827,19 +828,19 @@ skos:prefLabel a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.pwc.be>;
-      foaf:name "PWC"
-    ];
-    foaf:firstName "Dimitri";
-    foaf:lastName "Schepers";
-    foaf:mbox <mailto:dimitri.schepers@pwc.com>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/informatie-vlaanderen>;
       foaf:name "Informatie Vlaanderen"
     ];
     foaf:firstName "Geert";
     foaf:lastName "Thijs";
     foaf:mbox <mailto:geert.thijs@kb.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.pwc.be>;
+      foaf:name "PWC"
+    ];
+    foaf:firstName "Dimitri";
+    foaf:lastName "Schepers";
+    foaf:mbox <mailto:dimitri.schepers@pwc.com>
   ] .
