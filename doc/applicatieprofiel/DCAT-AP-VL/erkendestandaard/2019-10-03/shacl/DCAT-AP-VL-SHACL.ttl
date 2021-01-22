@@ -2,159 +2,159 @@
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL> <https://data.vlaanderen.be/shacl/DCAT-AP-VLshapes> <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape>,
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL> <https://data.vlaanderen.be/shacl/DCAT-AP-VLshapes> <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape>,
     <https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape>,
-    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> .
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape>,
+    <https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape> .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape> a sh:NodeShape;
-  sh:closed false;
-  sh:property [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de uitgever";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "naam";
-    sh:path foaf:name
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL#AgentShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype rdf:langString;
+    shacl:description "De naam van de uitgever";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "naam";
+    shacl:path foaf:name
   ];
-  sh:targetClass foaf:Agent .
+  shacl:targetClass foaf:Agent .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape> a sh:NodeShape;
-  sh:closed false;
-  sh:property [
-    sh:class dcat:Dataset;
-    sh:description "Een dataset die behoort tot de datasetcatalogus";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "heeftDataset";
-    sh:path dcat:dataset
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetCatalogusShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:class dc:LicenseDocument;
+    shacl:description "De licentie van de datasetcatalogus.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "heeftLicentie";
+    shacl:path dc:license
   ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de datasetcatalogus.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
+    shacl:class foaf:Agent;
+    shacl:description "De uitgever van de datasetcatalogus";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "heeftUitgever";
+    shacl:path dc:publisher
   ], [
-    sh:datatype rdf:langString;
-    sh:description "Een bondige omschrijving van de datasetcatalogus. ";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
+    shacl:datatype rdf:langString;
+    shacl:description "Een bondige omschrijving van de datasetcatalogus. ";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ], [
-    sh:class dc:LicenseDocument;
-    sh:description "De licentie van de datasetcatalogus.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftLicentie";
-    sh:path dc:license
+    shacl:datatype rdf:langString;
+    shacl:description "De naam van de datasetcatalogus.";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "titel";
+    shacl:path dc:title
   ], [
-    sh:class foaf:Agent;
-    sh:description "De uitgever van de datasetcatalogus";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftUitgever";
-    sh:path dc:publisher
+    shacl:class dcat:Dataset;
+    shacl:description "Een dataset die behoort tot de datasetcatalogus";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "heeftDataset";
+    shacl:path dcat:dataset
   ];
-  sh:targetClass dcat:Catalog .
+  shacl:targetClass dcat:Catalog .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> a sh:NodeShape;
-  sh:closed false;
-  sh:property [
-    sh:class vcard:Kind;
-    sh:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de dataset. ";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "contactinfo";
-    sh:path dcat:contactPoint
-  ], [
-    sh:class foaf:Agent;
-    sh:description "De uitgever van de dataset. ";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftUitgever";
-    sh:path dc:publisher
-  ], [
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DatasetShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
     <http://purl.org/linked-data/cube#codeList> <https://publications.europa.eu/en/web/eu-vocabularies/at-dataset/-/resource/dataset/access-right>;
-    sh:class skos:Concept;
-    sh:description "De toegankelijkheidscategorie van de dataset.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "toegankelijkheid";
-    sh:path dc:accessRights
+    shacl:class skos:Concept;
+    shacl:description "De toegankelijkheidscategorie van de dataset.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "toegankelijkheid";
+    shacl:path dc:accessRights
   ], [
-    sh:datatype rdf:langString;
-    sh:description "Een bondige omschrijving van de dataset.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "beschrijving";
-    sh:path dc:description
+    shacl:class dcat:Distribution;
+    shacl:description "De distributie van een dataset.";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "heeftDistributie";
+    shacl:path dcat:distribution
   ], [
-    sh:class dcat:Distribution;
-    sh:description "De distributie van een dataset.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "heeftDistributie";
-    sh:path dcat:distribution
+    shacl:class foaf:Agent;
+    shacl:description "De uitgever van de dataset. ";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "heeftUitgever";
+    shacl:path dc:publisher
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://vocab.belgif.be/auth/datatheme>;
-    sh:class skos:Concept;
-    sh:description "Het thema waartoe de dataset behoort.";
-    sh:maxCount "n"^^xsd:integer;
-    sh:name "thema";
-    sh:path dcat:theme
+    shacl:class skos:Concept;
+    shacl:description "Het thema waartoe de dataset behoort.";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:name "thema";
+    shacl:path dcat:theme
   ], [
-    sh:datatype rdf:langString;
-    sh:description "De naam van de dataset";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
+    shacl:datatype rdf:langString;
+    shacl:description "Een bondige omschrijving van de dataset.";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
+  ], [
+    shacl:class vcard:Kind;
+    shacl:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de dataset. ";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "contactinfo";
+    shacl:path dcat:contactPoint
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "De naam van de dataset";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "titel";
+    shacl:path dc:title
   ];
-  sh:targetClass dcat:Dataset .
+  shacl:targetClass dcat:Dataset .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape> a sh:NodeShape;
-  sh:closed false;
-  sh:property [
-    sh:datatype xsd:anyURI;
-    sh:description "De URL waar de data kan gevonden worden.";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "toegangsURL";
-    sh:path dcat:accessURL
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL#DistributieShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype rdf:langString;
+    shacl:description "Een naam voor de distributie";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "titel";
+    shacl:path dc:title
   ], [
-    sh:class dc:LicenseDocument;
-    sh:description "De licentie van de distributie";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "heeftLicentie";
-    sh:path dc:license
+    shacl:class dc:LicenseDocument;
+    shacl:description "De licentie van de distributie";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "heeftLicentie";
+    shacl:path dc:license
   ], [
-    sh:datatype rdf:langString;
-    sh:description "Een naam voor de distributie";
-    sh:maxCount "n"^^xsd:integer;
-    sh:minCount 1;
-    sh:name "titel";
-    sh:path dc:title
+    shacl:datatype xsd:anyURI;
+    shacl:description "De URL waar de data kan gevonden worden.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "toegangsURL";
+    shacl:path dcat:accessURL
   ];
-  sh:targetClass dcat:Distribution .
+  shacl:targetClass dcat:Distribution .
 
-<https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape> a sh:NodeShape;
-  sh:closed false;
-  sh:targetClass dc:LicenseDocument .
+<https://data.vlaanderen.be/shacl/DCAT-AP-VL#LicentieDocumentShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass dc:LicenseDocument .
 
  [
-    sh:datatype xsd:anyURI;
-    sh:description "Het e-mail adres waarmee je contact kan opnemen";
-    sh:maxCount 1;
-    sh:minCount 1;
-    sh:name "e-mail";
-    sh:path vcard:hasEmail
+    shacl:datatype xsd:anyURI;
+    shacl:description "Het e-mail adres waarmee je contact kan opnemen";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "e-mail";
+    shacl:path vcard:hasEmail
   ] .
