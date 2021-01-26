@@ -7,26 +7,26 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape>,
+<https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeWaterloopShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeWaterloopShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeGrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeWaterloopShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeGrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterVoorkomenShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#KwantitatieveWaardeShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeGrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape> .
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape> .
 
 <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape> a shacl:NodeShape;
   shacl:closed false;
@@ -46,20 +46,10 @@
 <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.opengis.net/ont/geosparql#Geometry>;
-    shacl:description "De geometrie overeenkomstig met een bepaald object.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "geometrie";
-    shacl:path <http://www.w3.org/ns/locn#geometry>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
-    shacl:class skos:Concept;
-    shacl:description "De precisie waarmee het object opgemeten werd.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "nauwkeurigheid";
-    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+    shacl:class rdfs:Resource;
+    shacl:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
+    shacl:name "relatie";
+    shacl:path dc:relation
   ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
@@ -73,16 +63,26 @@
     shacl:name "niveau";
     shacl:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
   ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
+    shacl:class skos:Concept;
+    shacl:description "De precisie waarmee het object opgemeten werd.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "nauwkeurigheid";
+    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
+  ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
     shacl:maxCount 1;
     shacl:name "einddatum";
     shacl:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
   ], [
-    shacl:class rdfs:Resource;
-    shacl:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
-    shacl:name "relatie";
-    shacl:path dc:relation
+    shacl:class <http://www.opengis.net/ont/geosparql#Geometry>;
+    shacl:description "De geometrie overeenkomstig met een bepaald object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "geometrie";
+    shacl:path <http://www.w3.org/ns/locn#geometry>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
@@ -177,6 +177,13 @@
 <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class schemas:QuantitativeValue;
+    shacl:description "De breedte van het object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "breedte";
+    shacl:path schema:width
+  ], [
     shacl:datatype xsd:string;
     shacl:description "Naam die de (VHA-) waterloop draagt bij zijn monding, zgn. (VHA-) roepnaam van de waterloop. Kan ook de waarden nvt (niet van toepassing) of ng (niet gekend) aannemen.";
     shacl:maxCount 1;
@@ -190,13 +197,6 @@
     shacl:minCount 1;
     shacl:name "lengte";
     shacl:path <http://open.vocab.org/terms/length>
-  ], [
-    shacl:class schemas:QuantitativeValue;
-    shacl:description "De breedte van het object.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "breedte";
-    shacl:path schema:width
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein/waterdeel#Waterloop> .
 
