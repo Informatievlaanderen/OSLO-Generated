@@ -133,14 +133,12 @@
         {
           "sh:class": "http://www.w3.org/ns/prov#Agent",
           "sh:description": "De auteur van het stuk.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
           "sh:name": "auteur",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#auteur"
         },
         {
-          "sh:class": "http://www.w3.org/ns/prov#Entity",
-          "sh:description": "Een stuk beschrijft een object.",
+          "sh:class": "http://www.w3.org/2000/01/rdf-schema#Resource",
+          "sh:description": "Een stuk beschrijft een resource.",
           "sh:name": "beschrijft",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#beschrijft"
         },
@@ -190,8 +188,6 @@
         {
           "sh:class": "http://www.w3.org/ns/prov#Agent",
           "sh:description": "De auteur van het stukonderdeel.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
           "sh:name": "auteur",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#auteur"
         },
@@ -271,8 +267,8 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "http://www.w3.org/ns/prov#Entity",
-          "sh:description": "Een zaak behandelt een object.",
+          "sh:class": "http://www.w3.org/2000/01/rdf-schema#Resource",
+          "sh:description": "Een zaak behandelt een resource.",
           "sh:name": "behandelt",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#behandelt"
         },
@@ -437,6 +433,22 @@
       "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/dossier-ap#ResourceShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "De identificator van de Resource.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Resource"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/dossier-ap#InformatieclassificatieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
@@ -492,15 +504,15 @@
           "sh:path": "https://data.vlaanderen.be/ns/dossier#Activiteit.startdatum"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/dossier#Procedurestap",
-          "sh:description": "Een activiteit vindt plaats tijdens een procedurestap.",
-          "sh:maxCount": "1",
+          "sh:class": "http://dbpedia.org/ontology/UnitOfWork",
+          "sh:description": "Een activiteit vindt plaats tijdens een eenheid van werk.",
           "sh:name": "vindtPlaatsTijdens",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens"
         },
         {
-          "sh:class": "http://dbpedia.org/ontology/UnitOfWork",
-          "sh:description": "Een activiteit vindt plaats tijdens een eenheid van werk.",
+          "sh:class": "https://data.vlaanderen.be/ns/dossier#Procedurestap",
+          "sh:description": "Een activiteit vindt plaats tijdens een procedurestap.",
+          "sh:maxCount": "1",
           "sh:name": "vindtPlaatsTijdens",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens"
         },
@@ -541,7 +553,7 @@
           "sh:path": "http://www.w3.org/ns/prov#agent"
         },
         {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:class": "http://www.w3.org/ns/org#Role",
           "sh:description": "De functie van een agent met betrekking tot een activiteit.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -566,24 +578,10 @@
           "sh:class": "http://dbpedia.org/ontology/UnitOfWork",
           "sh:description": "Een collectie is een neerslag van een eenheid van werk.",
           "sh:name": "isNeerslagVan",
-          "sh:path": "https://data.vlaanderen.be/ns/dossier#Collectie.isNeerslagVan"
+          "sh:path": "https://data.vlaanderen.be/ns/dossier#isNeerslagVan"
         }
       ],
       "sh:targetClass": "http://www.w3.org/ns/prov#Collection"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/dossier-ap#ObjectShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://www.w3.org/ns/adms#Identifier",
-          "sh:description": "Identificator van het object.",
-          "sh:name": "identificator",
-          "sh:path": "http://www.w3.org/ns/adms#identifier"
-        }
-      ],
-      "sh:targetClass": "http://www.w3.org/ns/prov#Entity"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/dossier-ap#EntiteitShape",
