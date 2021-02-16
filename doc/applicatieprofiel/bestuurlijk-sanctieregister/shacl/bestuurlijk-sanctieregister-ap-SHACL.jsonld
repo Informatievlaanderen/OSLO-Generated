@@ -100,15 +100,44 @@
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#opschortingProefperiode"
         },
         {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Type van de Beslissing van de Beboetingsinstantie.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "type",
-          "sh:path": "http://purl.org/dc/terms/type"
+          "sh:name": "resultaat",
+          "sh:path": "https://data.vlaanderen.be/ns/besluitvorming#resultaat"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeboetingsinstantie"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingBeroepsinstantieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeboetingsinstantie",
+          "sh:description": "De Beslissing van de Beboetingsinstantie die wordt behandeld.",
+          "sh:maxCount": "1",
+          "sh:name": "over",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#over"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeroepsinstantieResultaat",
+          "sh:description": "Het eindoordeel van de Beslissing van de Beroepsinstantie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "resultaat",
+          "sh:path": "https://data.vlaanderen.be/ns/besluitvorming#resultaat"
+        }
+      ],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeroepsinstantie"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingBeroepsinstantieResultaatShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeroepsinstantieResultaat"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingToezichthouderShape",
@@ -160,15 +189,15 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:class": "https://data.vlaanderen.be/ns/sanctie#VervalSanctiemogelijkheidDoorBetalingGeldsom",
-          "sh:description": "De Voorstel tot Betaling Geldsom die een gevolg is van de Beslissing van de Vervolgingsinstantie.",
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeboetingsinstantie",
+          "sh:description": "De Beslissing van de Beboetingsinstantie die een gevolg is van de Beslissing van de Vervolgingsinstantie.",
           "sh:maxCount": "1",
           "sh:name": "leidtTot",
           "sh:path": "http://www.w3.org/ns/prov#generated"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/sanctie#BeslissingBeboetingsinstantie",
-          "sh:description": "De Beslissing van de Beboetingsinstantie die een gevolg is van de Beslissing van de Vervolgingsinstantie.",
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#VervalSanctiemogelijkheidDoorBetalingGeldsom",
+          "sh:description": "De Voorstel tot Betaling Geldsom die een gevolg is van de Beslissing van de Vervolgingsinstantie.",
           "sh:maxCount": "1",
           "sh:name": "leidtTot",
           "sh:path": "http://www.w3.org/ns/prov#generated"
@@ -197,28 +226,18 @@
           "sh:path": "http://purl.org/dc/terms/date"
         },
         {
+          "sh:class": "https://data.vlaanderen.be/ns/dossier#Stuk",
+          "sh:description": "Een Bestuurlijke Beslissing genereert een Stuk.",
+          "sh:name": "genereert",
+          "sh:path": "https://data.vlaanderen.be/ns/dossier#genereert"
+        },
+        {
           "sh:class": "http://www.w3.org/ns/regorg#RegisteredOrganization",
           "sh:description": "De Geregistreerde Organisatie die de Bestuurlijke Beslissing heeft genomen.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "genomenDoor",
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#genomenDoor"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "Beschrijving van de juridische en feitelijke motivering achter de Bestuurlijke Beslissing.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "motivering",
-          "sh:path": "http://data.vlaanderen.be/ns/besluit#motivering"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De tekstuele inhoud van de Bestuurlijke Beslissing.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "omschrijving",
-          "sh:path": "http://purl.org/dc/terms/description"
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/sanctie#GepleegdFeit",
@@ -236,7 +255,7 @@
       "sh:property": [
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "De status van betaling van de Geldboete.",
+          "sh:description": "De betalingsstatus van de Bestuurlijke Geldboete.",
           "sh:maxCount": "1",
           "sh:name": "betalingsstatus",
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#betalingsstatus"
@@ -264,13 +283,6 @@
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Indicator die aangeeft of een beroep is ingesteld tegen de Bestuurlijke Sanctie.",
-          "sh:maxCount": "1",
-          "sh:name": "beroep",
-          "sh:path": "https://data.vlaanderen.be/ns/sanctie#beroep"
-        },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "De tekstuele inhoud van de sanctie.",
@@ -339,6 +351,12 @@
           "sh:path": "http://purl.org/dc/terms/date"
         },
         {
+          "sh:class": "https://data.vlaanderen.be/ns/sanctie#GepleegdFeit",
+          "sh:description": "Een gerelateerd Gepleegd Feit, bv. omwille van gelijkheid in tijd en ruimte.",
+          "sh:name": "gerelateerd",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#gerelateerd"
+        },
+        {
           "sh:class": "http://www.w3.org/ns/prov#Location",
           "sh:description": "Locatie waar het Gepleegd Feit heeft plaatsgevonden.",
           "sh:name": "locatie",
@@ -360,9 +378,12 @@
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#overtreedt"
         },
         {
-          "sh:description": "Thema van het Gepleegd Feit.",
-          "sh:name": "thema",
-          "sh:path": "https://data.vlaanderen.be/ns/sanctie#thema"
+          "sh:class": "http://data.europa.eu/m8g/PeriodOfTime",
+          "sh:description": "De periode waarbinnen het Gepleegd Feit heeft plaatsgevonden.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "periode",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#periode"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -440,6 +461,13 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://schema.org/MonetaryAmount",
+          "sh:description": "De verbeurdverklaarde som.",
+          "sh:maxCount": "1",
+          "sh:name": "bedrag",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#bedrag"
+        },
+        {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Het type van Verbeurdverklaring.",
           "sh:maxCount": "1",
@@ -456,6 +484,13 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De betalingsstatus van de geldsom.",
+          "sh:maxCount": "1",
+          "sh:name": "betalingsstatus",
+          "sh:path": "https://data.vlaanderen.be/ns/sanctie#betalingsstatus"
+        },
+        {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
           "sh:description": "De datum waarop de geldsom is betaald.",
           "sh:maxCount": "1",
@@ -469,13 +504,6 @@
           "sh:minCount": "1",
           "sh:name": "geldsom",
           "sh:path": "https://data.vlaanderen.be/ns/sanctie#geldsom"
-        },
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "De status van de betaling van de geldsom.",
-          "sh:maxCount": "1",
-          "sh:name": "status",
-          "sh:path": "https://data.vlaanderen.be/ns/sanctie#status"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/sanctie#VervalSanctiemogelijkheidDoorBetalingGeldsom"
@@ -685,7 +713,7 @@
       "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingBeboetingsinstantieTypeShape",
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#BeslissingBeboetingsinstantieResultaatShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [],
@@ -1056,6 +1084,13 @@
       "sh:closed": false,
       "sh:property": [],
       "sh:targetClass": "https://data.vlaanderen.be/ns/adres#AdresseerbaarObject"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#StukShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://data.vlaanderen.be/ns/dossier#Stuk"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/bestuurlijk-sanctieregister-ap#GebouwShape",
