@@ -61,7 +61,6 @@
       "sh:property": [
         {
           "sh:class": "https://schema.org/QuantitativeValue",
-          "sh:description": "De hoeveelheid.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "maat",
@@ -234,7 +233,6 @@
       "sh:property": [
         {
           "sh:class": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure",
-          "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "resultaat",
@@ -274,7 +272,7 @@
       "sh:property": [
         {
           "sh:class": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Object",
-          "sh:description": "Het moment waarop het resultaat van de Observatie van toepassing was.",
+          "sh:description": "Typisch het moment waarop geobserveerd of bemonsterd werd. Als de Observatie temporeel is en het moment waarop iets plaatsvindt wordt geregistreerd dan is dit meteen ook de fenomeentijd.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "fenomeentijd",
@@ -282,20 +280,20 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
-          "sh:description": "Observaties waarvan de resultaten op een of andere manier samenhangen.",
+          "sh:description": "Het gaat om samenhang die van belang is om het resultaat van individuele Observaties te begrijpen, bv biotische relaties (dier A is roofdier en is aanwezig omdat dier B prooi voorkomt). Dergelijke relaties vereisen expliciet te worden beschreven (in tegenstelling tot relaties zoals het samenvallen van resultaten van Observaties in ruimte of tijd die impliciet mogen blijven). Ook nuttig voor relaties waarbij de output van Observatie A de input vormt voor Observatie B.",
           "sh:name": "geassocieerdeObservatie",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#ObservationContext.relatedObservation"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period",
-          "sh:description": "Periode waarvoor het resultaat van de Observatie geldt.",
+          "sh:description": "Bv nuttig voor weersvoorspellingen.",
           "sh:maxCount": "1",
           "sh:name": "geldigeTijd",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.validTime"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType",
-          "sh:description": "Kenmerk dat men observeert vh geobserveerdObject.",
+          "sh:description": "Soms is de procedure waarmee de waarden vh kenmerk worden bekomen indirect, ttz men meet om praktische reden een ander kenmerk dat een proxy is voor het kenmerk dat men werkelijk wil observeren. Is die proxy geen kenmerk van het geobserveerdObject dan gebeurt de Observatie op een proxy van het geobserveerdObject. Bv om de vegetatie in een gebied te achterhalen meten we de kleurreflectie op het aardoppervlak. CONSTRAINT: Het geobserveerdKenmerk moet werkelijk een kenmerk zijn van het geobserveerdObject.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "geobserveerdKenmerk",
@@ -303,7 +301,7 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
-          "sh:description": "Object dat men observeert.",
+          "sh:description": "Dat kan het Object zelf zijn of een proxy ervan, ttz een Bemonsteringsobject. OPMERKING: In dat laatste geval weet men soms pas na het observeren welke real-world Objecten men juist geobserveerd heeft.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "geobserveerdObject",
@@ -311,20 +309,19 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19115/2006/MetadataEntitySetInformation#MD_Metadata",
-          "sh:description": "Verwijzing naar Metadata over de Observatie.",
+          "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "metadata",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.metadata"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
-          "sh:description": "Willekeurig gegeven gassocieerd met het gebeuren van de Observatie.",
+          "sh:description": "Het gaat hier niet om kenmerken van het geobserveerdObject (die worden al beschreven door het geobserveerdKenmerk) of om parameters geassocieerd met het observatieproces (zoals een instelling van een instrument). Het gaat hier bv om omgevingsparameters die het resultaat kunnen beïnvloeden en van belang zijn om het resultaat correct te interpreteren.  Een voorbeeld is de diepte in een waterput waarop de waterkwaliteit is gemeten of de omgevingstemperatuur bij het meten van de vochtigheidsgraad.",
           "sh:name": "parameter",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.parameter"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process",
-          "sh:description": "Verwijzing naar het Proces waarmee het resultaat van een Observatie is bekomen.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "procedure",
@@ -332,7 +329,7 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any",
-          "sh:description": "De waarde van het geobserveerdeKenmerk als resultaat van de Observatie.",
+          "sh:description": "Het resultaat kan van om het even welk type zijn aangezien om het even welk Kenmerk van om het even welk type Object kan worden geobserveerd. CONSTRAINT: Het type van het resultaat van de Observatie moet kloppen met het geobserveerdKenmerk en de verkregen waarde moet binnen het bereik vallen van het geobserveerdKenmerk.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "resultaat",
@@ -340,13 +337,13 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_Element",
-          "sh:description": "Mate waarin het resultaat van de Observatie voldoet aan de vereisten of verwachtingen.",
+          "sh:description": "Het gaat hier om gegevens die eigen zijn aan de Observatie en complementair aan de beschrijving van de procedure die bij de Observatie is gevolgd (analysemethode edm, zie klasse Proces) wat op zich iets zegt over de kwaliteit van het resultaat.",
           "sh:name": "resultaatkwaliteit",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.resultQuality"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Instant",
-          "sh:description": "Tijdstip waarop het resultaat van de Observatie werd bekomen.",
+          "sh:description": "Is voor sommige Observaties gelijk aan de fenomeentijd maar kan ook verschillen, bv bij het uitvoeren van een analyse op een Monster dat eerder (en doorgaans dan ook eders) werd genomen of bij sensormetingen die pas later worden verwerkt. Ook bruikbaar om herhaalde Observaties bv op eenzelfde Monster uiteen te houden. Is het resultaat een voorspelling dan is de fenomeentijd het moment waarop deze van toepassing zou moeten zijn.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "resultaattijd",
@@ -359,14 +356,7 @@
       "@id": "https://data.vlaanderen.be/shacl/ap-observaties-en-metingen#ProcesShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
-          "sh:description": "Verwijzing naar de verkregen Observatie.",
-          "sh:name": "gegenereerdeObservatie",
-          "sh:path": "https://data.vlaanderen.be/ns/observaties-en-metingen#gegenereerdeObservatie"
-        }
-      ],
+      "sh:property": [],
       "sh:targetClass": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process"
     },
     {
@@ -440,20 +430,19 @@
       "sh:property": [
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
-          "sh:description": "Verwijzing naar het Object dat men wil bemonsteren.",
+          "sh:description": "Bv een profiel bemonstert een water- of atmosferische kolom, een peilput bemonstert het water in een watervoerende laag, een weefselstaal bemonstert een deel van een organisme.",
           "sh:minCount": "1",
           "sh:name": "bemonsterdObject",
           "sh:path": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.sampledFeature"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
-          "sh:description": "Ander Bemonsteringsobject waarmee het Bemonsteringsobject geassocieerd is.",
+          "sh:description": "Bv Bemonsteringspunten langs een Bemonsteringscurve of Monsters genomen op een Bemonsteringspunt of deelmonsters (Monster van een Monster)...",
           "sh:name": "geassocieerdBemonsteringsobject",
           "sh:path": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SamplingFeatureComplex.relatedSamplingFeature"
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
-          "sh:description": "Observatie die op het Bemonsteringsobject is uitgevoerd.",
           "sh:name": "geassocieerdeObservatie",
           "sh:path": "http://def.isotc211.org/iso19156/2011/Observation#ObservationContext.relatedObservation"
         },
@@ -466,7 +455,7 @@
         },
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
-          "sh:description": "Willekeurig gegeven gassocieerd met het Bemonsteringsobject.",
+          "sh:description": "Bv een parameter die een aspect van de bemonstering beschrijft (bv hoogte bij een luchtopname) of een belangrijke omgevingsparameter (bv het waterpeil bij een boring).",
           "sh:name": "parameter",
           "sh:path": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.parameter"
         }
@@ -480,7 +469,6 @@
       "sh:property": [
         {
           "sh:class": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
-          "sh:description": "Bemonsteringsobject dat deel uitmaakt van de verzameling van Bemonsteringsobjecten.",
           "sh:minCount": "1",
           "sh:name": "lid",
           "sh:path": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeatureCollection.member"
