@@ -13,14 +13,758 @@
     "license": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
     "status": "https://data.vlaanderen.be/id/concept/StandaardStatus/OntwerpStandaard",
     "statuslabel": "Ontwerp Standaard",
-    "repositoryurl": "https://github.com/Informatievlaanderen/OSLOthema-bodemEnOndergrond/tree/03dadf355d0ac58c692e3c3c9100b19d9cc99f3d",
-    "changelogurl": "https://github.com/Informatievlaanderen/OSLOthema-bodemEnOndergrond/blob/03dadf355d0ac58c692e3c3c9100b19d9cc99f3d/CHANGELOG",
+    "repositoryurl": "https://github.com/Informatievlaanderen/OSLOthema-bodemEnOndergrond/tree/79bce53aede6631fa517042eae25bb265a6c92ee",
+    "changelogurl": "https://github.com/Informatievlaanderen/OSLOthema-bodemEnOndergrond/blob/79bce53aede6631fa517042eae25bb265a6c92ee/CHANGELOG",
     "feedbackurl": "https://github.com/Informatievlaanderen/OSLOthema-bodemEnOndergrond/issues",
     "standaardregisterurl": "https://data.vlaanderen.be/standaarden/standaarden-in-ontwikkeling/bodem-en-ondergrond/index.html",
     "usesVocs": [],
     "usesAPs": []
   },
   "classes": [
+    {
+      "uri": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure",
+      "name": {
+        "nl": "Maat"
+      },
+      "sort_nl": "Maat",
+      "description": {
+        "nl": "Een afgemeten hoeveelheid ve bepaalde grootheid, uitgedrukt in een bepaalde eenheid."
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": [
+        {
+          "uri": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure.value",
+          "name": {
+            "nl": "maat"
+          },
+          "sort_nl": "maat",
+          "description": {
+            "nl": "De hoeveelheid."
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure",
+              "EA-Name": "Maat"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "KwantitatieveWaarde",
+              "range_uri": "https://schema.org/QuantitativeValue"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Kwantitatieve Waarde",
+              "range_puri": "https://schema.org/QuantitativeValue",
+              "range_label": {
+                "nl": "Kwantitatieve Waarde"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType",
+      "name": {
+        "nl": "Kenmerk"
+      },
+      "sort_nl": "Kenmerk",
+      "description": {
+        "nl": "Klasse die kenmerken van instanties van om het even welk type vertegenwoordigt."
+      },
+      "usage": {
+        "nl": "In de context van Observaties en Metingen is dit een kenmerk van het geobseveerdObject en in het bijzonder van alle instanties van het type geobserveerdObject."
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19115/2006/MetadataEntitySetInformation#MD_Metadata",
+      "name": {
+        "nl": "Metadata"
+      },
+      "sort_nl": "Metadata",
+      "description": {
+        "nl": "Gegevens die informatie over gegevens bevatten."
+      },
+      "usage": {
+        "nl": "Observaties kunnen beschouwd worden als gegevens en dus zijn data over Observaties wel degelijk metadata. Omdat al heel wat metagegevens elders in het model kunnen worden meegegeven beperkt deze klasse zich tot beschrijvende metadata, ttz informatie zoals titel, samenvatting, auteur en sleutelwoorden. Dergelijke metadata is in hoofdzaak bedoeld voor identificatie en datacatalogen."
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
+      "name": {
+        "nl": "Object"
+      },
+      "sort_nl": "Object",
+      "description": {
+        "nl": "Klasse die instanties van om het even welk type vertegenwoordigt."
+      },
+      "usage": {
+        "nl": "In de context van Observaties en Metingen is dit het geobserveerdObject waarvan een kenmerk wordt geobserveerd. Het geobserveerdObject kan ook een Object zijn dat de werkelijkheid bemonstert (subklasse Bemonsteringsobject). OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+      "name": {
+        "nl": "Observatie"
+      },
+      "sort_nl": "Observatie",
+      "description": {
+        "nl": "Het vaststellen van de waarde van een bepaald kenmerk van een Object op een bepaald tijdstip of tussen twee tijdstippen."
+      },
+      "usage": {
+        "nl": "Het gaat om schattingen van de waarde, maw op de waarde zit een zekere foutmarge.Voorbeelden zijn temperatuur, klasse, kleur. Dit is verschillend van waarden die zijn toegekend en dus geen schattingen zijn zoals naam of prijs."
+      },
+      "parents": [],
+      "properties": [
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.featureOfInterest",
+          "name": {
+            "nl": "geobserveerdObject"
+          },
+          "sort_nl": "geobserveerdObject",
+          "description": {
+            "nl": "Object dat men observeert."
+          },
+          "usage": {
+            "nl": "Dat kan het Object zelf zijn of een proxy ervan, ttz een Bemonsteringsobject. OPMERKING: In dat laatste geval weet men soms pas na het observeren welke real-world Objecten men juist geobserveerd heeft."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Object",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Object",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
+              "range_label": {
+                "nl": "Object"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.metadata",
+          "name": {
+            "nl": "metadata"
+          },
+          "sort_nl": "metadata",
+          "description": {
+            "nl": "Verwijzing naar Metadata over de Observatie."
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Metadata",
+              "range_uri": "http://def.isotc211.org/iso19115/2006/MetadataEntitySetInformation#MD_Metadata"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Metadata",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/MetadataEntitySetInformation#MD_Metadata",
+              "range_label": {
+                "nl": "Metadata"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.observedProperty",
+          "name": {
+            "nl": "geobserveerdKenmerk"
+          },
+          "sort_nl": "geobserveerdKenmerk",
+          "description": {
+            "nl": "Kenmerk dat men observeert vh geobserveerdObject."
+          },
+          "usage": {
+            "nl": "Soms is de procedure waarmee de waarden vh kenmerk worden bekomen indirect, ttz men meet om praktische reden een ander kenmerk dat een proxy is voor het kenmerk dat men werkelijk wil observeren. Is die proxy geen kenmerk van het geobserveerdObject dan gebeurt de Observatie op een proxy van het geobserveerdObject. Bv om de vegetatie in een gebied te achterhalen meten we de kleurreflectie op het aardoppervlak. CONSTRAINT: Het geobserveerdKenmerk moet werkelijk een kenmerk zijn van het geobserveerdObject."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Kenmerk",
+              "range_uri": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Kenmerk",
+              "range_puri": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType",
+              "range_label": {
+                "nl": "Kenmerk"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.parameter",
+          "name": {
+            "nl": "parameter"
+          },
+          "sort_nl": "parameter",
+          "description": {
+            "nl": "Willekeurig gegeven gassocieerd met het gebeuren van de Observatie."
+          },
+          "usage": {
+            "nl": "Het gaat hier niet om kenmerken van het geobserveerdObject (die worden al beschreven door het geobserveerdKenmerk) of om parameters geassocieerd met het observatieproces (zoals een instelling van een instrument). Het gaat hier bv om omgevingsparameters die het resultaat kunnen beïnvloeden en van belang zijn om het resultaat correct te interpreteren.  Een voorbeeld is de diepte in een waterput waarop de waterkwaliteit is gemeten of de omgevingstemperatuur bij het meten van de vochtigheidsgraad."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "BenoemdeWaarde",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#BenoemdeWaarde",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
+              "range_label": {
+                "nl": "BenoemdeWaarde"
+              }
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.phenomenonTime",
+          "name": {
+            "nl": "fenomeentijd"
+          },
+          "sort_nl": "fenomeentijd",
+          "description": {
+            "nl": "Het moment waarop het resultaat van de Observatie van toepassing was."
+          },
+          "usage": {
+            "nl": "Typisch het moment waarop geobserveerd of bemonsterd werd. Als de Observatie temporeel is en het moment waarop iets plaatsvindt wordt geregistreerd dan is dit meteen ook de fenomeentijd."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "TM_Object",
+              "range_uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Object"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#TM_Object",
+              "range_puri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Object",
+              "range_label": {
+                "nl": "TM_Object"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.procedure",
+          "name": {
+            "nl": "procedure"
+          },
+          "sort_nl": "procedure",
+          "description": {
+            "nl": "Verwijzing naar het Proces waarmee het resultaat van een Observatie is bekomen."
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Proces",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Proces",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process",
+              "range_label": {
+                "nl": "Proces"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.result",
+          "name": {
+            "nl": "resultaat"
+          },
+          "sort_nl": "resultaat",
+          "description": {
+            "nl": "De waarde van het geobserveerdeKenmerk als resultaat van de Observatie."
+          },
+          "usage": {
+            "nl": "Het resultaat kan van om het even welk type zijn aangezien om het even welk Kenmerk van om het even welk type Object kan worden geobserveerd. CONSTRAINT: Het type van het resultaat van de Observatie moet kloppen met het geobserveerdKenmerk en de verkregen waarde moet binnen het bereik vallen van het geobserveerdKenmerk."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "GeneriekDatatype",
+              "range_uri": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#GeneriekDatatype",
+              "range_puri": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any",
+              "range_label": {
+                "nl": "GeneriekDatatype"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.resultQuality",
+          "name": {
+            "nl": "resultaatkwaliteit"
+          },
+          "sort_nl": "resultaatkwaliteit",
+          "description": {
+            "nl": "Mate waarin het resultaat van de Observatie voldoet aan de vereisten of verwachtingen."
+          },
+          "usage": {
+            "nl": "Het gaat hier om gegevens die eigen zijn aan de Observatie en complementair aan de beschrijving van de procedure die bij de Observatie is gevolgd (analysemethode edm, zie klasse Proces) wat op zich iets zegt over de kwaliteit van het resultaat."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "DQ_Element",
+              "range_uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_Element"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#DQ_Element",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_Element",
+              "range_label": {
+                "nl": "DQ_Element"
+              }
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.resultTime",
+          "name": {
+            "nl": "resultaattijd"
+          },
+          "sort_nl": "resultaattijd",
+          "description": {
+            "nl": "Tijdstip waarop het resultaat van de Observatie werd bekomen."
+          },
+          "usage": {
+            "nl": "Is voor sommige Observaties gelijk aan de fenomeentijd maar kan ook verschillen, bv bij het uitvoeren van een analyse op een Monster dat eerder (en doorgaans dan ook eders) werd genomen of bij sensormetingen die pas later worden verwerkt. Ook bruikbaar om herhaalde Observaties bv op eenzelfde Monster uiteen te houden. Is het resultaat een voorspelling dan is de fenomeentijd het moment waarop deze van toepassing zou moeten zijn."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "TM_Instant",
+              "range_uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Instant"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#TM_Instant",
+              "range_puri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Instant",
+              "range_label": {
+                "nl": "TM_Instant"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.validTime",
+          "name": {
+            "nl": "geldigeTijd"
+          },
+          "sort_nl": "geldigeTijd",
+          "description": {
+            "nl": "Periode waarvoor het resultaat van de Observatie geldt."
+          },
+          "usage": {
+            "nl": "Bv nuttig voor weersvoorspellingen."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "TM_Period",
+              "range_uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#TM_Period",
+              "range_puri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period",
+              "range_label": {
+                "nl": "TM_Period"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#ObservationContext.relatedObservation",
+          "name": {
+            "nl": "geassocieerdeObservatie"
+          },
+          "sort_nl": "geassocieerdeObservatie",
+          "description": {
+            "nl": "Observaties waarvan de resultaten op een of andere manier samenhangen."
+          },
+          "usage": {
+            "nl": "Het gaat om samenhang die van belang is om het resultaat van individuele Observaties te begrijpen, bv biotische relaties (dier A is roofdier en is aanwezig omdat dier B prooi voorkomt). Dergelijke relaties vereisen expliciet te worden beschreven (in tegenstelling tot relaties zoals het samenvallen van resultaten van Observaties in ruimte of tijd die impliciet mogen blijven). Ook nuttig voor relaties waarbij de output van Observatie A de input vormt voor Observatie B."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "EA-Name": "Observatie"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Observatie",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Observatie",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
+              "range_label": {
+                "nl": "Observatie"
+              }
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process",
+      "name": {
+        "nl": "Proces"
+      },
+      "sort_nl": "Proces",
+      "description": {
+        "nl": "Manier waarop het resultaat van de Observatie is verkregen."
+      },
+      "usage": {
+        "nl": "Dat kan dmv een instrument of een sensor zijn; maar het kan ook een menselijke observator zijn of een simulatie of een verwerking of algoritme toegepast op meer primitieve resultaten. Het Proces vormt samen met het Bemonsteringsobject dat is gebruikt het zgn observatieprotocol. OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+      "name": {
+        "nl": "Bemonsteringsobject"
+      },
+      "sort_nl": "Bemonsteringsobject",
+      "description": {
+        "nl": "Deel van het Object dat men wil observeren en dat representatief is voor dat Object."
+      },
+      "usage": {
+        "nl": "Het deel waarvan sprake kan fysiek zijn (een Monster) of ruimtelijk (een Ruimtelijk Bemonsteringsobject). Men observeert een Bemonsteringsobject ipv het werkelijk Object als dat laatste niet in zijn geheel geobserveerd kan worden (bv omdat exhaustieve observatie onpraktisch zou zijn). Het Bemonsteringsobject vormt samen met het Proces dat voor observatie is gebruikt het zgn observatieprotocol. OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
+      },
+      "parents": [
+        {
+          "name": "Object",
+          "label": "Object",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
+          "scoped_uri": "#Object"
+        }
+      ],
+      "properties": [
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.lineage",
+          "name": {
+            "nl": "herkomst"
+          },
+          "sort_nl": "herkomst",
+          "description": {
+            "nl": "Verwijzing naar de Herkomst van een Bemonsteringsobject."
+          },
+          "usage": {
+            "nl": "De Herkomst beschrijf de oorsprong en historiek vh Bemonsteringsobject. Bv de manier van monstername of de werkwijze gevolgd bij een veldonderzoek."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "EA-Name": "Bemonsteringsobject"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "LI_Lineage",
+              "range_uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#LI_Lineage"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#LI_Lineage",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#LI_Lineage",
+              "range_label": {
+                "nl": "LI_Lineage"
+              }
+            }
+          ],
+          "cardinality": "0..1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.parameter",
+          "name": {
+            "nl": "parameter"
+          },
+          "sort_nl": "parameter",
+          "description": {
+            "nl": "Willekeurig gegeven gassocieerd met het Bemonsteringsobject."
+          },
+          "usage": {
+            "nl": "Bv een parameter die een aspect van de bemonstering beschrijft (bv hoogte bij een luchtopname) of een belangrijke omgevingsparameter (bv het waterpeil bij een boring)."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "EA-Name": "Bemonsteringsobject"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "BenoemdeWaarde",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#BenoemdeWaarde",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
+              "range_label": {
+                "nl": "BenoemdeWaarde"
+              }
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.sampledFeature",
+          "name": {
+            "nl": "bemonsterdObject"
+          },
+          "sort_nl": "bemonsterdObject",
+          "description": {
+            "nl": "Verwijzing naar het Object dat men wil bemonsteren."
+          },
+          "usage": {
+            "nl": "Bv een profiel bemonstert een water- of atmosferische kolom, een peilput bemonstert het water in een watervoerende laag, een weefselstaal bemonstert een deel van een organisme."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "EA-Name": "Bemonsteringsobject"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Object",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Object",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
+              "range_label": {
+                "nl": "Object"
+              }
+            }
+          ],
+          "cardinality": "1..*",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SamplingFeatureComplex.relatedSamplingFeature",
+          "name": {
+            "nl": "geassocieerdBemonsteringsobject"
+          },
+          "sort_nl": "geassocieerdBemonsteringsobject",
+          "description": {
+            "nl": "Ander Bemonsteringsobject waarmee het Bemonsteringsobject geassocieerd is."
+          },
+          "usage": {
+            "nl": "Bv Bemonsteringspunten langs een Bemonsteringscurve of Monsters genomen op een Bemonsteringspunt of deelmonsters (Monster van een Monster)..."
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "EA-Name": "Bemonsteringsobject"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Bemonsteringsobject",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Bemonsteringsobject",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "range_label": {
+                "nl": "Bemonsteringsobject"
+              }
+            }
+          ],
+          "cardinality": "0..*",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeatureCollection",
+      "name": {
+        "nl": "Bemonsteringsobjectverzameling"
+      },
+      "sort_nl": "Bemonsteringsobjectverzameling",
+      "description": {
+        "nl": "Aantal bij elkaar horende Bemonsteringsobjecten."
+      },
+      "usage": {
+        "nl": "Bv een reeks grondmonsters verzameld in eenzelfde ontsluiting of een set meetstations die deel uitmaken van eenzelfde meetnet."
+      },
+      "parents": [],
+      "properties": [
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeatureCollection.member",
+          "name": {
+            "nl": "lid"
+          },
+          "sort_nl": "lid",
+          "description": {
+            "nl": "Bemonsteringsobject dat deel uitmaakt van de verzameling van Bemonsteringsobjecten."
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeatureCollection",
+              "EA-Name": "Bemonsteringsobjectverzameling"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "Bemonsteringsobject",
+              "range_uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#Bemonsteringsobject",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+              "range_label": {
+                "nl": "Bemonsteringsobject"
+              }
+            }
+          ],
+          "cardinality": "1..*",
+          "codelist_uri": ""
+        }
+      ]
+    },
     {
       "uri": "http://fixme.com#Interpretatie",
       "name": {
@@ -493,8 +1237,8 @@
         {
           "name": "Proces",
           "label": "Proces",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process",
           "scoped_uri": "#Proces"
         }
       ],
@@ -650,13 +1394,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -709,13 +1453,13 @@
           "range": [
             {
               "range_label": "BenoemdeWaarde",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde"
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#BenoemdeWaarde",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
               "range_label": {
                 "nl": "BenoemdeWaarde"
               }
@@ -743,13 +1487,13 @@
           "range": [
             {
               "range_label": "TM_Period",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Period"
+              "range_uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#TM_Period",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Period",
+              "range_puri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period",
               "range_label": {
                 "nl": "TM_Period"
               }
@@ -774,7 +1518,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -839,23 +1583,28 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
       "properties": [
         {
           "uri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#^geobserveerdKenmerk",
-          "name": {},
-          "description": {},
+          "name": {
+            "nl": "^geobserveerdKenmerk"
+          },
+          "sort_nl": "^geobserveerdKenmerk",
+          "description": {
+            "nl": "TODO"
+          },
           "usage": {},
           "domain": [
             {
@@ -933,7 +1682,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -1245,7 +1994,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -1303,15 +2052,15 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         },
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         }
       ],
@@ -1370,7 +2119,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -1481,13 +2230,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -1551,13 +2300,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -1657,13 +2406,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -1691,13 +2440,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -1725,13 +2474,13 @@
           "range": [
             {
               "range_label": "CI_ResponsibleParty",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#CI_ResponsibleParty",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
               "range_label": {
                 "nl": "CI_ResponsibleParty"
               }
@@ -2044,8 +2793,8 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         }
       ],
@@ -2115,8 +2864,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         },
         {
@@ -2284,8 +3033,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         },
         {
@@ -2501,8 +3250,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         },
         {
@@ -2778,7 +3527,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -2843,15 +3592,15 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -3030,15 +3779,15 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -3127,7 +3876,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -3192,23 +3941,28 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
       "properties": [
         {
           "uri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#^geobserveerdKenmerk",
-          "name": {},
-          "description": {},
+          "name": {
+            "nl": "^geobserveerdKenmerk"
+          },
+          "sort_nl": "^geobserveerdKenmerk",
+          "description": {
+            "nl": "TODO"
+          },
           "usage": {},
           "domain": [
             {
@@ -3286,15 +4040,15 @@
         {
           "name": "Bemonsteringscurve",
           "label": "Bemonsteringscurve",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringscurve",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingCurve#SF_SamplingCurve",
           "scoped_uri": "#Bemonsteringscurve"
         },
         {
           "name": "Bemonsteringsobject",
           "label": "Bemonsteringsobject",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
           "scoped_uri": "#Bemonsteringsobject"
         },
         {
@@ -3327,13 +4081,13 @@
           "range": [
             {
               "range_label": "Proces",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces"
+              "range_uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#Proces",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces",
+              "range_puri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.OM_Process",
               "range_label": {
                 "nl": "Proces"
               }
@@ -3399,13 +4153,13 @@
           "range": [
             {
               "range_label": "DQ_PositionalAccuracy",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_PositionalAccuracy"
+              "range_uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_PositionalAccuracy"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#DQ_PositionalAccuracy",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_PositionalAccuracy",
+              "range_puri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_PositionalAccuracy",
               "range_label": {
                 "nl": "DQ_PositionalAccuracy"
               }
@@ -3570,15 +4324,15 @@
         {
           "name": "Monster",
           "label": "Monster",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Monster",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen",
           "scoped_uri": "#Monster"
         },
         {
           "name": "Bemonsteringsobject",
           "label": "Bemonsteringsobject",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
           "scoped_uri": "#Bemonsteringsobject"
         }
       ],
@@ -3640,13 +4394,13 @@
           "range": [
             {
               "range_label": "Maat",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Maat"
+              "range_uri": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure"
             }
           ],
           "scopedrange": [
             {
               "range_uri": "#Maat",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Maat",
+              "range_puri": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure",
               "range_label": {
                 "nl": "Maat"
               }
@@ -3862,7 +4616,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -3927,15 +4681,15 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -4024,7 +4778,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -4089,15 +4843,15 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -4188,7 +4942,7 @@
         {
           "name": "DiscreetCurvebereik",
           "label": "DiscreetCurvebereik",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurvebereik",
           "scoped_uri": "#DiscreetCurvebereik"
         }
@@ -4253,15 +5007,15 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -4352,8 +5106,8 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         }
       ],
@@ -4382,8 +5136,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -4754,8 +5508,8 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         },
         {
@@ -4768,8 +5522,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -5244,8 +5998,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -5565,8 +6319,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -5814,8 +6568,8 @@
         {
           "name": "Observatie",
           "label": "Observatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
           "scoped_uri": "#Observatie"
         }
       ],
@@ -6124,8 +6878,8 @@
         {
           "name": "DiscreetBereikObservatie",
           "label": "DiscreetBereikObservatie",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
+          "package": "OSLO-ObservatiesEnMetingen",
+          "uri": "http://def.isotc211.org/iso19156/2011/CoverageObservation#OM_DiscreteCoverageObservation",
           "scoped_uri": "#DiscreetBereikObservatie"
         }
       ],
@@ -6252,296 +7006,6 @@
       "properties": []
     },
     {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-      "name": {
-        "nl": "Bemonsteringsobject"
-      },
-      "sort_nl": "Bemonsteringsobject",
-      "description": {
-        "nl": "Deel van het Object dat men wil observeren en dat representatief is voor dat Object."
-      },
-      "usage": {
-        "nl": "Het deel waarvan sprake kan fysiek zijn (een Monster) of ruimtelijk (een Ruimtelijk Bemonsteringsobject). Men observeert een Bemonsteringsobject ipv het werkelijk Object als dat laatste niet in zijn geheel geobserveerd kan worden (bv omdat exhaustieve observatie onpraktisch zou zijn). Het Bemonsteringsobject vormt samen met het Proces dat voor observatie is gebruikt het zgn observatieprotocol. OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
-      },
-      "parents": [
-        {
-          "name": "Object",
-          "label": "Object",
-          "package": "ISO-ObservatiesEnMetingen",
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object",
-          "scoped_uri": "#Object"
-        }
-      ],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#identificator",
-          "name": {
-            "nl": "identificator"
-          },
-          "sort_nl": "identificator",
-          "description": {
-            "nl": "Verwijzing naar de informatie die het Bemonsteringsobject uniek identificeert."
-          },
-          "usage": {
-            "nl": "Bv het uniek nummer dat aan een Monster wordt toegekend of het numer van een meetstation."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Identificator",
-              "range_uri": "http://www.w3.org/ns/adms#Identifier"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Identificator",
-              "range_puri": "http://www.w3.org/ns/adms#Identifier",
-              "range_label": {
-                "nl": "Identificator"
-              }
-            }
-          ],
-          "cardinality": "1..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#opdracht",
-          "name": {
-            "nl": "opdracht"
-          },
-          "sort_nl": "opdracht",
-          "description": {
-            "nl": "Verwijzing naar de Opdracht waarvoor het Bemonsteringsobject werd gecreëerd."
-          },
-          "usage": {
-            "nl": "Bv de Opdracht voor een veldonderzoek of voor het uitvoeren van specifieke Metingen of analyses van een Monster."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Opdracht",
-              "range_uri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opdracht"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Opdracht",
-              "range_puri": "https://data.vlaanderen.be/ns/bodem-en-ondergrond#Opdracht",
-              "range_label": {
-                "nl": "Opdracht"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#bemonsterdObject",
-          "name": {
-            "nl": "bemonsterdObject"
-          },
-          "sort_nl": "bemonsterdObject",
-          "description": {
-            "nl": "Verwijzing naar het Object dat men wil bemonsteren."
-          },
-          "usage": {
-            "nl": "Bv een profiel bemonstert een water- of atmosferische kolom, een peilput bemonstert het water in een watervoerende laag, een weefselstaal bemonstert een deel van een organisme."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Object",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Object",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object",
-              "range_label": {
-                "nl": "Object"
-              }
-            }
-          ],
-          "cardinality": "1..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#geassocieerdBemonsteringsobject",
-          "name": {
-            "nl": "geassocieerdBemonsteringsobject"
-          },
-          "sort_nl": "geassocieerdBemonsteringsobject",
-          "description": {
-            "nl": "Ander Bemonsteringsobject waarmee het Bemonsteringsobject geassocieerd is."
-          },
-          "usage": {
-            "nl": "Bv Bemonsteringspunten langs een Bemonsteringscurve of Monsters genomen op een Bemonsteringspunt of deelmonsters (Monster van een Monster)..."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Bemonsteringsobject",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Bemonsteringsobject",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "range_label": {
-                "nl": "Bemonsteringsobject"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#herkomst",
-          "name": {
-            "nl": "herkomst"
-          },
-          "sort_nl": "herkomst",
-          "description": {
-            "nl": "Verwijzing naar de Herkomst van een Bemonsteringsobject."
-          },
-          "usage": {
-            "nl": "De Herkomst beschrijf de oorsprong en historiek vh Bemonsteringsobject. Bv de manier van monstername of de werkwijze gevolgd bij een veldonderzoek."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "LI_Lineage",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#LI_Lineage"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#LI_Lineage",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#LI_Lineage",
-              "range_label": {
-                "nl": "LI_Lineage"
-              }
-            }
-          ],
-          "cardinality": "0..1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#parameter",
-          "name": {
-            "nl": "parameter"
-          },
-          "sort_nl": "parameter",
-          "description": {
-            "nl": "Willekeurig gegeven gassocieerd met het Bemonsteringsobject."
-          },
-          "usage": {
-            "nl": "Bv een parameter die een aspect van de bemonstering beschrijft (bv hoogte bij een luchtopname) of een belangrijke omgevingsparameter (bv het waterpeil bij een boring)."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "EA-Name": "Bemonsteringsobject"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "BenoemdeWaarde",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#BenoemdeWaarde",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
-              "range_label": {
-                "nl": "BenoemdeWaarde"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobjectverzameling",
-      "name": {
-        "nl": "Bemonsteringsobjectverzameling"
-      },
-      "sort_nl": "Bemonsteringsobjectverzameling",
-      "description": {
-        "nl": "Aantal bij elkaar horende Bemonsteringsobjecten."
-      },
-      "usage": {
-        "nl": "Bv een reeks grondmonsters verzameld in eenzelfde ontsluiting of een set meetstations die deel uitmaken van eenzelfde meetnet."
-      },
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#lid",
-          "name": {
-            "nl": "lid"
-          },
-          "sort_nl": "lid",
-          "description": {
-            "nl": "Bemonsteringsobject dat deel uitmaakt van de verzameling van Bemonsteringsobjecten."
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobjectverzameling",
-              "EA-Name": "Bemonsteringsobjectverzameling"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Bemonsteringsobject",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Bemonsteringsobject",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Bemonsteringsobject",
-              "range_label": {
-                "nl": "Bemonsteringsobject"
-              }
-            }
-          ],
-          "cardinality": "1..*",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
       "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DiscreetBereikObservatie",
       "name": {
         "nl": "DiscreetBereikObservatie"
@@ -6552,84 +7016,6 @@
       },
       "usage": {
         "nl": "De opdeling in discrete stukken tijd en/of ruimte gebeurt binnen de ruimtetijdbegrenzing van het geobserveerd Object. Bv de kleur van een satellietbeeld varieert volgens de positie in het beeld. Om die variatie praktisch weer te geven deelt men het beeld op in pixels en meet men van elke pixel de kleur. Het beeld kan opnieuw worden samengesteld omdat van elke pixel de positie gekend is. Het geobserveerd Object kan ook een Bemonsteringsobject zijn, bv een Grondboring waarlangs de lithologie varieert volgens de diepte (variatie die van nature al discreet is door de gelaagdheid waarbij de lithologie min of meer gelijk is binnen de grenzen van de laag). OPMERKING: Meer info over deze klasse in het AP Observaties en Metingen."
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Kenmerk",
-      "name": {
-        "nl": "Kenmerk"
-      },
-      "sort_nl": "Kenmerk",
-      "description": {
-        "nl": "Klasse die kenmerken van instanties van om het even welk type vertegenwoordigt."
-      },
-      "usage": {
-        "nl": "In de context van Observaties en Metingen is dit een kenmerk van het geobseveerdObject en in het bijzonder van alle instanties van het type geobserveerdObject."
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Maat",
-      "name": {
-        "nl": "Maat"
-      },
-      "sort_nl": "Maat",
-      "description": {
-        "nl": "Een afgemeten hoeveelheid ve bepaalde grootheid, uitgedrukt in een bepaalde eenheid."
-      },
-      "usage": {},
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#maat",
-          "name": {
-            "nl": "maat"
-          },
-          "sort_nl": "maat",
-          "description": {
-            "nl": "De hoeveelheid."
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Maat",
-              "EA-Name": "Maat"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "KwantitatieveWaarde",
-              "range_uri": "https://schema.org/QuantitativeValue"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Kwantitatieve Waarde",
-              "range_puri": "https://schema.org/QuantitativeValue",
-              "range_label": {
-                "nl": "Kwantitatieve Waarde"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Metadata",
-      "name": {
-        "nl": "Metadata"
-      },
-      "sort_nl": "Metadata",
-      "description": {
-        "nl": "Gegevens die informatie over gegevens bevatten."
-      },
-      "usage": {
-        "nl": "Observaties kunnen beschouwd worden als gegevens en dus zijn data over Observaties wel degelijk metadata. Omdat al heel wat metagegevens elders in het model kunnen worden meegegeven beperkt deze klasse zich tot beschrijvende metadata, ttz informatie zoals titel, samenvatting, auteur en sleutelwoorden. Dergelijke metadata is in hoofdzaak bedoeld voor identificatie en datacatalogen."
       },
       "parents": [],
       "properties": []
@@ -6648,516 +7034,6 @@
       },
       "parents": [],
       "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object",
-      "name": {
-        "nl": "Object"
-      },
-      "sort_nl": "Object",
-      "description": {
-        "nl": "Klasse die instanties van om het even welk type vertegenwoordigt."
-      },
-      "usage": {
-        "nl": "In de context van Observaties en Metingen is dit het geobserveerdObject waarvan een kenmerk wordt geobserveerd. Het geobserveerdObject kan ook een Object zijn dat de werkelijkheid bemonstert (subklasse Bemonsteringsobject). OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
-      },
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#waardeverschaffer",
-          "name": {
-            "nl": "waardeverschaffer"
-          },
-          "sort_nl": "waardeverschaffer",
-          "description": {
-            "nl": "Observaties die een waarde geven aan Kenmerken van het Object;"
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object",
-              "EA-Name": "Object"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Observatie",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Observatie",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "range_label": {
-                "nl": "Observatie"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-      "name": {
-        "nl": "Observatie"
-      },
-      "sort_nl": "Observatie",
-      "description": {
-        "nl": "Het vaststellen van de waarde van een bepaald kenmerk van een Object op een bepaald tijdstip of tussen twee tijdstippen."
-      },
-      "usage": {
-        "nl": "Het gaat om schattingen van de waarde, maw op de waarde zit een zekere foutmarge.Voorbeelden zijn temperatuur, klasse, kleur. Dit is verschillend van waarden die zijn toegekend en dus geen schattingen zijn zoals naam of prijs."
-      },
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#fenomeentijd",
-          "name": {
-            "nl": "fenomeentijd"
-          },
-          "sort_nl": "fenomeentijd",
-          "description": {
-            "nl": "Het moment waarop het resultaat van de Observatie van toepassing was."
-          },
-          "usage": {
-            "nl": "Typisch het moment waarop geobserveerd of bemonsterd werd. Als de Observatie temporeel is en het moment waarop iets plaatsvindt wordt geregistreerd dan is dit meteen ook de fenomeentijd."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "TM_Object",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Object"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#TM_Object",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Object",
-              "range_label": {
-                "nl": "TM_Object"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#geassocieerdeObservatie",
-          "name": {
-            "nl": "geassocieerdeObservatie"
-          },
-          "sort_nl": "geassocieerdeObservatie",
-          "description": {
-            "nl": "Observaties waarvan de resultaten op een of andere manier samenhangen."
-          },
-          "usage": {
-            "nl": "Het gaat om samenhang die van belang is om het resultaat van individuele Observaties te begrijpen, bv biotische relaties (dier A is roofdier en is aanwezig omdat dier B prooi voorkomt). Dergelijke relaties vereisen expliciet te worden beschreven (in tegenstelling tot relaties zoals het samenvallen van resultaten van Observaties in ruimte of tijd die impliciet mogen blijven). Ook nuttig voor relaties waarbij de output van Observatie A de input vormt voor Observatie B."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Observatie",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Observatie",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "range_label": {
-                "nl": "Observatie"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#geldigeTijd",
-          "name": {
-            "nl": "geldigeTijd"
-          },
-          "sort_nl": "geldigeTijd",
-          "description": {
-            "nl": "Periode waarvoor het resultaat van de Observatie geldt."
-          },
-          "usage": {
-            "nl": "Bv nuttig voor weersvoorspellingen."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "TM_Period",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Period"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#TM_Period",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Period",
-              "range_label": {
-                "nl": "TM_Period"
-              }
-            }
-          ],
-          "cardinality": "0..1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#geobserveerdKenmerk",
-          "name": {
-            "nl": "geobserveerdKenmerk"
-          },
-          "sort_nl": "geobserveerdKenmerk",
-          "description": {
-            "nl": "Kenmerk dat men observeert vh geobserveerdObject."
-          },
-          "usage": {
-            "nl": "Soms is de procedure waarmee de waarden vh kenmerk worden bekomen indirect, ttz men meet om praktische reden een ander kenmerk dat een proxy is voor het kenmerk dat men werkelijk wil observeren. Is die proxy geen kenmerk van het geobserveerdObject dan gebeurt de Observatie op een proxy van het geobserveerdObject. Bv om de vegetatie in een gebied te achterhalen meten we de kleurreflectie op het aardoppervlak. CONSTRAINT: Het geobserveerdKenmerk moet werkelijk een kenmerk zijn van het geobserveerdObject."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Kenmerk",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Kenmerk"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Kenmerk",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Kenmerk",
-              "range_label": {
-                "nl": "Kenmerk"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#geobserveerdObject",
-          "name": {
-            "nl": "geobserveerdObject"
-          },
-          "sort_nl": "geobserveerdObject",
-          "description": {
-            "nl": "Object dat men observeert."
-          },
-          "usage": {
-            "nl": "Dat kan het Object zelf zijn of een proxy ervan, ttz een Bemonsteringsobject. OPMERKING: In dat laatste geval weet men soms pas na het observeren welke real-world Objecten men juist geobserveerd heeft."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Object",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Object",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Object",
-              "range_label": {
-                "nl": "Object"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#metadata",
-          "name": {
-            "nl": "metadata"
-          },
-          "sort_nl": "metadata",
-          "description": {
-            "nl": "Verwijzing naar Metadata over de Observatie."
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Metadata",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Metadata"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Metadata",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Metadata",
-              "range_label": {
-                "nl": "Metadata"
-              }
-            }
-          ],
-          "cardinality": "0..1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#parameter",
-          "name": {
-            "nl": "parameter"
-          },
-          "sort_nl": "parameter",
-          "description": {
-            "nl": "Willekeurig gegeven gassocieerd met het gebeuren van de Observatie."
-          },
-          "usage": {
-            "nl": "Het gaat hier niet om kenmerken van het geobserveerdObject (die worden al beschreven door het geobserveerdKenmerk) of om parameters geassocieerd met het observatieproces (zoals een instelling van een instrument). Het gaat hier bv om omgevingsparameters die het resultaat kunnen beïnvloeden en van belang zijn om het resultaat correct te interpreteren.  Een voorbeeld is de diepte in een waterput waarop de waterkwaliteit is gemeten of de omgevingstemperatuur bij het meten van de vochtigheidsgraad."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "BenoemdeWaarde",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#BenoemdeWaarde",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
-              "range_label": {
-                "nl": "BenoemdeWaarde"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#procedure",
-          "name": {
-            "nl": "procedure"
-          },
-          "sort_nl": "procedure",
-          "description": {
-            "nl": "Verwijzing naar het Proces waarmee het resultaat van een Observatie is bekomen."
-          },
-          "usage": {},
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Proces",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Proces",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces",
-              "range_label": {
-                "nl": "Proces"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#resultaat",
-          "name": {
-            "nl": "resultaat"
-          },
-          "sort_nl": "resultaat",
-          "description": {
-            "nl": "De waarde van het geobserveerdeKenmerk als resultaat van de Observatie."
-          },
-          "usage": {
-            "nl": "Het resultaat kan van om het even welk type zijn aangezien om het even welk Kenmerk van om het even welk type Object kan worden geobserveerd. CONSTRAINT: Het type van het resultaat van de Observatie moet kloppen met het geobserveerdKenmerk en de verkregen waarde moet binnen het bereik vallen van het geobserveerdKenmerk."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "GeneriekDatatype",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekDatatype"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#GeneriekDatatype",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekDatatype",
-              "range_label": {
-                "nl": "GeneriekDatatype"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#resultaatkwaliteit",
-          "name": {
-            "nl": "resultaatkwaliteit"
-          },
-          "sort_nl": "resultaatkwaliteit",
-          "description": {
-            "nl": "Mate waarin het resultaat van de Observatie voldoet aan de vereisten of verwachtingen."
-          },
-          "usage": {
-            "nl": "Het gaat hier om gegevens die eigen zijn aan de Observatie en complementair aan de beschrijving van de procedure die bij de Observatie is gevolgd (analysemethode edm, zie klasse Proces) wat op zich iets zegt over de kwaliteit van het resultaat."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "DQ_Element",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_Element"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#DQ_Element",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_Element",
-              "range_label": {
-                "nl": "DQ_Element"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#resultaattijd",
-          "name": {
-            "nl": "resultaattijd"
-          },
-          "sort_nl": "resultaattijd",
-          "description": {
-            "nl": "Tijdstip waarop het resultaat van de Observatie werd bekomen."
-          },
-          "usage": {
-            "nl": "Is voor sommige Observaties gelijk aan de fenomeentijd maar kan ook verschillen, bv bij het uitvoeren van een analyse op een Monster dat eerder (en doorgaans dan ook eders) werd genomen of bij sensormetingen die pas later worden verwerkt. Ook bruikbaar om herhaalde Observaties bv op eenzelfde Monster uiteen te houden. Is het resultaat een voorspelling dan is de fenomeentijd het moment waarop deze van toepassing zou moeten zijn."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "EA-Name": "Observatie"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "TM_Instant",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Instant"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#TM_Instant",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Instant",
-              "range_label": {
-                "nl": "TM_Instant"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces",
-      "name": {
-        "nl": "Proces"
-      },
-      "sort_nl": "Proces",
-      "description": {
-        "nl": "Manier waarop het resultaat van de Observatie is verkregen."
-      },
-      "usage": {
-        "nl": "Dat kan dmv een instrument of een sensor zijn; maar het kan ook een menselijke observator zijn of een simulatie of een verwerking of algoritme toegepast op meer primitieve resultaten. Het Proces vormt samen met het Bemonsteringsobject dat is gebruikt het zgn observatieprotocol. OPGELET: deze klasse is abstract, ze moet gespecialiseerd worden in functie van het applicatiedomein."
-      },
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#gegenereerdeObservatie",
-          "name": {
-            "nl": "gegenereerdeObservatie"
-          },
-          "sort_nl": "gegenereerdeObservatie",
-          "description": {
-            "nl": "Verwijzing naar de verkregen Observatie."
-          },
-          "usage": {
-            "nl": "Het Proces dat gebruikt werd om het resultaat van de Observatie te verkrijgen levert mogelijk ook resultaten voor andere Observaties."
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Proces",
-              "EA-Name": "Proces"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "Observatie",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#Observatie",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#Observatie",
-              "range_label": {
-                "nl": "Observatie"
-              }
-            }
-          ],
-          "cardinality": "0..*",
-          "codelist_uri": ""
-        }
-      ]
     },
     {
       "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#DiscreetCurveBereik",
@@ -7285,6 +7161,229 @@
               "range_puri": "http://www.w3.org/2001/XMLSchema#dateTime",
               "range_label": {
                 "nl": "DateTime"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        }
+      ]
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19103/2005/Names#GenericName",
+      "name": {
+        "nl": "GeneriekeNaam"
+      },
+      "sort_nl": "GeneriekeNaam",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any",
+      "name": {
+        "nl": "GeneriekDatatype"
+      },
+      "sort_nl": "GeneriekDatatype",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Instant",
+      "name": {
+        "nl": "TM_Instant"
+      },
+      "sort_nl": "TM_Instant",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Object",
+      "name": {
+        "nl": "TM_Object"
+      },
+      "sort_nl": "TM_Object",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Period",
+      "name": {
+        "nl": "TM_Period"
+      },
+      "sort_nl": "TM_Period",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19115/2006/CitationAndResponsiblePartyInformation#CI_ResponsibleParty",
+      "name": {
+        "nl": "CI_ResponsibleParty"
+      },
+      "sort_nl": "CI_ResponsibleParty",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_Element",
+      "name": {
+        "nl": "DQ_Element"
+      },
+      "sort_nl": "DQ_Element",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_PositionalAccuracy",
+      "name": {
+        "nl": "DQ_PositionalAccuracy"
+      },
+      "sort_nl": "DQ_PositionalAccuracy",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#LI_Lineage",
+      "name": {
+        "nl": "LI_Lineage"
+      },
+      "sort_nl": "LI_Lineage",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": []
+    },
+    {
+      "uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
+      "name": {
+        "nl": "BenoemdeWaarde"
+      },
+      "sort_nl": "BenoemdeWaarde",
+      "description": {
+        "nl": "TODO"
+      },
+      "usage": {
+        "nl": "TODO"
+      },
+      "parents": [],
+      "properties": [
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue.name",
+          "name": {
+            "nl": "naam"
+          },
+          "sort_nl": "naam",
+          "description": {
+            "nl": "TODO"
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
+              "EA-Name": "BenoemdeWaarde"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "GeneriekeNaam",
+              "range_uri": "http://def.isotc211.org/iso19103/2005/Names#GenericName"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#GeneriekeNaam",
+              "range_puri": "http://def.isotc211.org/iso19103/2005/Names#GenericName",
+              "range_label": {
+                "nl": "GeneriekeNaam"
+              }
+            }
+          ],
+          "cardinality": "1",
+          "codelist_uri": ""
+        },
+        {
+          "uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue.value",
+          "name": {
+            "nl": "waarde"
+          },
+          "sort_nl": "waarde",
+          "description": {
+            "nl": "TODO"
+          },
+          "usage": {
+            "nl": "TODO"
+          },
+          "domain": [
+            {
+              "uri": "http://def.isotc211.org/iso19156/2011/Observation#NamedValue",
+              "EA-Name": "BenoemdeWaarde"
+            }
+          ],
+          "range": [
+            {
+              "range_label": "GeneriekDatatype",
+              "range_uri": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any"
+            }
+          ],
+          "scopedrange": [
+            {
+              "range_uri": "#GeneriekDatatype",
+              "range_puri": "http://def.isotc211.org/iso19103/2005/RecordsAndClassMetadata#Any",
+              "range_label": {
+                "nl": "GeneriekDatatype"
               }
             }
           ],
@@ -7582,7 +7681,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -7776,7 +7875,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -7868,7 +7967,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -7926,7 +8025,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -8115,7 +8214,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -8605,7 +8704,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -9097,7 +9196,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -9303,7 +9402,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -9393,7 +9492,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -9451,7 +9550,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -9625,7 +9724,7 @@
         {
           "name": "CurveWaardepaar",
           "label": "CurveWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
           "scoped_uri": "#CurveWaardepaar"
         }
@@ -10575,223 +10674,6 @@
       "properties": []
     },
     {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
-      "name": {
-        "nl": "BenoemdeWaarde"
-      },
-      "sort_nl": "BenoemdeWaarde",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": [
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#naam",
-          "name": {
-            "nl": "naam"
-          },
-          "sort_nl": "naam",
-          "description": {
-            "nl": "TODO"
-          },
-          "usage": {
-            "nl": "TODO"
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
-              "EA-Name": "BenoemdeWaarde"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "GeneriekeNaam",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekeNaam"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#GeneriekeNaam",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekeNaam",
-              "range_label": {
-                "nl": "GeneriekeNaam"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        },
-        {
-          "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#waarde",
-          "name": {
-            "nl": "waarde"
-          },
-          "sort_nl": "waarde",
-          "description": {
-            "nl": "TODO"
-          },
-          "usage": {
-            "nl": "TODO"
-          },
-          "domain": [
-            {
-              "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#BenoemdeWaarde",
-              "EA-Name": "BenoemdeWaarde"
-            }
-          ],
-          "range": [
-            {
-              "range_label": "GeneriekDatatype",
-              "range_uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekDatatype"
-            }
-          ],
-          "scopedrange": [
-            {
-              "range_uri": "#GeneriekDatatype",
-              "range_puri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekDatatype",
-              "range_label": {
-                "nl": "GeneriekDatatype"
-              }
-            }
-          ],
-          "cardinality": "1",
-          "codelist_uri": ""
-        }
-      ]
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#CI_ResponsibleParty",
-      "name": {
-        "nl": "CI_ResponsibleParty"
-      },
-      "sort_nl": "CI_ResponsibleParty",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_Element",
-      "name": {
-        "nl": "DQ_Element"
-      },
-      "sort_nl": "DQ_Element",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#DQ_PositionalAccuracy",
-      "name": {
-        "nl": "DQ_PositionalAccuracy"
-      },
-      "sort_nl": "DQ_PositionalAccuracy",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekDatatype",
-      "name": {
-        "nl": "GeneriekDatatype"
-      },
-      "sort_nl": "GeneriekDatatype",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#GeneriekeNaam",
-      "name": {
-        "nl": "GeneriekeNaam"
-      },
-      "sort_nl": "GeneriekeNaam",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#LI_Lineage",
-      "name": {
-        "nl": "LI_Lineage"
-      },
-      "sort_nl": "LI_Lineage",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {
-        "nl": "TODO"
-      },
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Instant",
-      "name": {
-        "nl": "TM_Instant"
-      },
-      "sort_nl": "TM_Instant",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {},
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Object",
-      "name": {
-        "nl": "TM_Object"
-      },
-      "sort_nl": "TM_Object",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {},
-      "parents": [],
-      "properties": []
-    },
-    {
-      "uri": "https://data.vlaanderen.be/ns/observaties-en-metingen#TM_Period",
-      "name": {
-        "nl": "TM_Period"
-      },
-      "sort_nl": "TM_Period",
-      "description": {
-        "nl": "TODO"
-      },
-      "usage": {},
-      "parents": [],
-      "properties": []
-    },
-    {
       "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#CurveWaardepaar",
       "name": {
         "nl": "CurveWaardepaar"
@@ -10807,7 +10689,7 @@
         {
           "name": "GeometrieWaardepaar",
           "label": "GeometrieWaardepaar",
-          "package": "ISO-RuimtelijkeBereiken",
+          "package": "OSLO-RuimtelijkeBereiken",
           "uri": "https://data.vlaanderen.be/ns/ruimtelijke-bereiken#GeometrieWaardepaar",
           "scoped_uri": "#GeometrieWaardepaar"
         }
