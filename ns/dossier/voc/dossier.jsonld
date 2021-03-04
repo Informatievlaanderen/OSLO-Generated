@@ -169,7 +169,7 @@
       "foaf:mbox": "mailto:dimitri.schepers@pwc.com"
     }
   ],
-  "issued": "2020-06-24",
+  "issued": "2019-09-01",
   "label": {
     "en": "dossier",
     "nl": "dossier"
@@ -177,9 +177,9 @@
   "license": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
   "namespace": null,
   "navigation": {
-    "next": "/doc/vocabularium/dossier/kandidaatstandaard/2020-06-01"
+    "prev": "/doc/vocabularium/dossier/kandidaatstandaard/2021-02-04"
   },
-  "publication-date": "2020-10-01",
+  "publication-date": "2021-02-28",
   "publication-state": "https://data.vlaanderen.be/id/concept/StandaardStatus/KandidaatStandaard",
   "title": "OSLO Dossier",
   "dcterms:license": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
@@ -190,6 +190,20 @@
   },
   "classes": [
     {
+      "@id": "https://data.vlaanderen.be/ns/dossier#ActiviteitContext",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Context van een relatie tussen dossierstukken. Deze context maakt de samenhang van dossierstukken duidelijk in het kader van één bepaalde activiteit."
+      },
+      "name": {
+        "nl": "Activiteitcontext"
+      },
+      "parents": [
+        "http://www.w3.org/ns/prov#EntityInfluence"
+      ],
+      "usage": {}
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/dossier#Dossier",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
@@ -198,7 +212,9 @@
       "name": {
         "nl": "Dossier"
       },
-      "parents": [],
+      "parents": [
+        "http://www.w3.org/ns/prov#Collection"
+      ],
       "usage": {}
     },
     {
@@ -216,13 +232,43 @@
       "usage": {}
     },
     {
+      "@id": "https://data.vlaanderen.be/ns/dossier#Serie",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Een serie is een collectie van stukken die gemeenschappelijke eigenschappen deelt."
+      },
+      "name": {
+        "nl": "Serie"
+      },
+      "parents": [
+        "http://www.w3.org/ns/prov#Collection"
+      ],
+      "usage": {
+        "nl": "Voor attributen, zie model \"Digitaal Archief Vlaanderen\""
+      }
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/dossier#Stuk",
       "@type": "http://www.w3.org/2002/07/owl#Class",
       "description": {
-        "nl": "Een stuk uit het dossier dat iets beschrijft en/of informatie bevat."
+        "nl": "Eenheid van bewijs ter ondersteuning van een feit."
       },
       "name": {
         "nl": "Stuk"
+      },
+      "parents": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#Stukonderdeel",
+      "@type": "http://www.w3.org/2002/07/owl#Class",
+      "description": {
+        "nl": "Een apart onderdeel van een groter stuk."
+      },
+      "name": {
+        "nl": "Stukonderdeel"
       },
       "parents": [
         "http://www.w3.org/ns/prov#Entity"
@@ -247,7 +293,7 @@
         "nl": "einddatum"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#date"
+        "http://www.w3.org/2001/XMLSchema#dateTime"
       ],
       "usage": {}
     },
@@ -267,7 +313,27 @@
         "nl": "startdatum"
       },
       "range": [
-        "http://www.w3.org/2001/XMLSchema#date"
+        "http://www.w3.org/2001/XMLSchema#dateTime"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#Collectie.bestaatUit",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een collectie bestaat uit entiteiten."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Collection"
+      ],
+      "generalization": [
+        "http://www.w3.org/ns/prov#hadMember"
+      ],
+      "name": {
+        "nl": "bestaat uit"
+      },
+      "range": [
+        "http://www.w3.org/ns/prov#Entity"
       ],
       "usage": {}
     },
@@ -301,7 +367,7 @@
         "https://data.vlaanderen.be/ns/dossier#Dossier"
       ],
       "generalization": [
-        "https://data.vlaanderen.be/ns/dossier#Collectie.isNeerslagVan"
+        "https://data.vlaanderen.be/ns/dossier#isNeerslagVan"
       ],
       "name": {
         "nl": "is neerslag van"
@@ -320,9 +386,7 @@
       "domain": [
         "https://data.vlaanderen.be/ns/dossier#Procedurestap"
       ],
-      "generalization": [
-        "http://www.w3.org/ns/prov#endedAtTime"
-      ],
+      "generalization": [],
       "name": {
         "nl": "einddatum"
       },
@@ -340,14 +404,30 @@
       "domain": [
         "https://data.vlaanderen.be/ns/dossier#Procedurestap"
       ],
-      "generalization": [
-        "http://www.w3.org/ns/prov#startedAtTime"
-      ],
+      "generalization": [],
       "name": {
         "nl": "startdatum"
       },
       "range": [
         "http://www.w3.org/2001/XMLSchema#date"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#activiteit",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "URI van de activiteit."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/dossier#ActiviteitContext"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "activiteit"
+      },
+      "range": [
+        "http://www.w3.org/ns/prov#Activity"
       ],
       "usage": {}
     },
@@ -368,6 +448,62 @@
       },
       "range": [
         "http://www.w3.org/ns/prov#Agent"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#auteur",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "De auteur van het stuk(onderdeel)."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "generalization": [
+        "http://purl.org/dc/terms/creator"
+      ],
+      "name": {
+        "nl": "auteur"
+      },
+      "range": [
+        "http://www.w3.org/ns/prov#Agent"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#behandelt",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een zaak behandelt een resource."
+      },
+      "domain": [
+        "http://dbpedia.org/ontology/Case"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "behandelt"
+      },
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#beschrijft",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een stuk beschrijft een resource."
+      },
+      "domain": [
+        "https://data.vlaanderen.be/ns/dossier#Stuk"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "beschrijft"
+      },
+      "range": [
+        "http://www.w3.org/2000/01/rdf-schema#Resource"
       ],
       "usage": {}
     },
@@ -446,6 +582,78 @@
       "usage": {}
     },
     {
+      "@id": "https://data.vlaanderen.be/ns/dossier#informatieclassificatie",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Duidt aan welke veiligheidsmaatregelen (waaronder toegangsmaatregelen) genomen moeten worden."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "informatieclassificatie"
+      },
+      "range": [
+        "http://www.w3.org/2004/02/skos/core#Concept"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#isNeerslagVan",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een collectie is een neerslag van een eenheid van werk."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Collection"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "is neerslag van"
+      },
+      "range": [
+        "http://dbpedia.org/ontology/UnitOfWork"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "is voorgesteld door"
+      },
+      "range": [
+        "http://www.w3.org/ns/dcat#Distribution"
+      ],
+      "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {
+        "nl": "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie."
+      },
+      "domain": [
+        "http://www.w3.org/ns/prov#Entity"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "is voorgesteld door"
+      },
+      "range": [
+        "http://www.w3.org/ns/dcat#Distribution"
+      ],
+      "usage": {}
+    },
+    {
       "@id": "https://data.vlaanderen.be/ns/dossier#openingsdatum",
       "@type": "http://www.w3.org/2002/07/owl#DatatypeProperty",
       "description": {
@@ -502,6 +710,22 @@
         "http://dbpedia.org/ontology/UnitOfWork"
       ],
       "usage": {}
+    },
+    {
+      "@id": "https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens",
+      "@type": "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "description": {},
+      "domain": [
+        "http://www.w3.org/ns/prov#Activity"
+      ],
+      "generalization": [],
+      "name": {
+        "nl": "vindt plaats tijdens"
+      },
+      "range": [
+        "https://data.vlaanderen.be/ns/dossier#Procedurestap"
+      ],
+      "usage": {}
     }
   ],
   "externals": [
@@ -513,10 +737,24 @@
       }
     },
     {
+      "@id": "http://dbpedia.org/ontology/Project",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Project"
+      }
+    },
+    {
       "@id": "http://dbpedia.org/ontology/UnitOfWork",
       "@type": "rdfs:Class",
       "name": {
         "nl": "Eenheid Van Werk"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/2000/01/rdf-schema#Resource",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Resource"
       }
     },
     {
@@ -525,10 +763,38 @@
       "name": {}
     },
     {
+      "@id": "http://www.w3.org/ns/dcat#Distribution",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Representatie"
+      }
+    },
+    {
       "@id": "http://www.w3.org/ns/prov#Activity",
       "@type": "rdfs:Class",
       "name": {
         "nl": "Activiteit"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#Agent",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Agent"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#Association",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Agent (in rol)"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#Collection",
+      "@type": "rdfs:Class",
+      "name": {
+        "nl": "Collectie"
       }
     },
     {
@@ -541,17 +807,38 @@
   ],
   "externalproperties": [
     {
-      "@id": "http://purl.org/dc/terms/created",
+      "@id": "http://purl.org/dc/terms/date",
       "@type": "rdf:Property",
       "name": {
-        "nl": "creatiedatum"
+        "nl": "datum"
       }
     },
     {
-      "@id": "http://purl.org/dc/terms/language",
+      "@id": "http://purl.org/dc/terms/date",
       "@type": "rdf:Property",
       "name": {
-        "nl": "taal"
+        "nl": "datum"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is deel van"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is deel van"
+      }
+    },
+    {
+      "@id": "http://purl.org/dc/terms/isPartOf",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is deel van"
       }
     },
     {
@@ -597,6 +884,13 @@
       }
     },
     {
+      "@id": "http://purl.org/dc/terms/title",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "naam"
+      }
+    },
+    {
       "@id": "http://www.w3.org/ns/adms#identifier",
       "@type": "rdf:Property",
       "name": {
@@ -604,10 +898,38 @@
       }
     },
     {
-      "@id": "http://www.w3.org/ns/prov#value",
+      "@id": "http://www.w3.org/ns/prov#actedOnBehalfOf",
       "@type": "rdf:Property",
       "name": {
-        "nl": "inhoud"
+        "nl": "handelt in opdracht van"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#agent",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "is rolspecialisatie van"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#hadRole",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "rol"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#qualifiedAssociation",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "heeft deelnemer"
+      }
+    },
+    {
+      "@id": "http://www.w3.org/ns/prov#wasAssociatedWith",
+      "@type": "rdf:Property",
+      "name": {
+        "nl": "was geassocieerd met"
       }
     }
   ],
