@@ -8,25 +8,25 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://data.vlaanderen.be/shacl/waterdelen-ap> <https://data.vlaanderen.be/shacl/waterdelen-apshapes> <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterVoorkomenShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeGrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#VenShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeWaterloopShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#KanaalShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeGrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeGrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterdeelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#SlotgrachtShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#KwantitatieveWaardeShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#MeerShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeWaterloopShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#DeelShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#RivierShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#GrachtShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#VijverShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#NatuurlijkeWaterloopShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#WatervlakShape>,
     <https://data.vlaanderen.be/shacl/waterdelen-ap#WaterloopShape>,
-    <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape> .
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KwantitatieveWaardeShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#KunstmatigeWaterloopShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape>,
+    <https://data.vlaanderen.be/shacl/waterdelen-ap#PoelShape> .
 
 <https://data.vlaanderen.be/shacl/waterdelen-ap#BeekShape> a shacl:NodeShape;
   shacl:closed false;
@@ -46,19 +46,6 @@
 <https://data.vlaanderen.be/shacl/waterdelen-ap#FysiekObjectShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:integer;
-    shacl:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
-    shacl:maxCount 1;
-    shacl:name "niveau";
-    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
-  ], [
-    shacl:class <http://www.opengis.net/ont/geosparql#Geometry>;
-    shacl:description "De geometrie overeenkomstig met een bepaald object.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "geometrie";
-    shacl:path <http://www.w3.org/ns/locn#geometry>
-  ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
     shacl:maxCount 1;
@@ -71,6 +58,18 @@
     shacl:name "begindatum";
     shacl:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
   ], [
+    shacl:class <http://www.opengis.net/ont/geosparql#Geometry>;
+    shacl:description "De geometrie overeenkomstig met een bepaald object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "geometrie";
+    shacl:path <http://www.w3.org/ns/locn#geometry>
+  ], [
+    shacl:class rdfs:Resource;
+    shacl:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
+    shacl:name "relatie";
+    shacl:path dc:relation
+  ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Nauwkeurigsheidsklassen>;
     shacl:class skos:Concept;
     shacl:description "De precisie waarmee het object opgemeten werd.";
@@ -79,10 +78,11 @@
     shacl:name "nauwkeurigheid";
     shacl:path <https://data.vlaanderen.be/ns/openbaardomein#nauwkeurigheid>
   ], [
-    shacl:class rdfs:Resource;
-    shacl:description "Verwijst naar een object in een andere databank dat meer informatie kan verschaffen over het beheerobject.";
-    shacl:name "relatie";
-    shacl:path dc:relation
+    shacl:datatype xsd:integer;
+    shacl:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
+    shacl:maxCount 1;
+    shacl:name "niveau";
+    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#niveau>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
 
@@ -105,18 +105,18 @@
 <https://data.vlaanderen.be/shacl/waterdelen-ap#KwantitatieveWaardeShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <https://data.vlaanderen.be/ns/generiek#StandaardEenheid>;
+    shacl:description "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.";
+    shacl:maxCount 1;
+    shacl:name "standaardEenheid";
+    shacl:path schemas:unitCode
+  ], [
     shacl:class schemas:Number;
     shacl:description "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "waarde";
     shacl:path schemas:value
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/generiek#StandaardEenheid>;
-    shacl:description "De gestandaardiseerde eenheid waarin de waarde is uitgedrukt.";
-    shacl:maxCount 1;
-    shacl:name "standaardEenheid";
-    shacl:path schemas:unitCode
   ], [
     shacl:datatype xsd:string;
     shacl:description "De eenheid waarin de waarde is uitgedrukt.";
