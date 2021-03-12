@@ -9,34 +9,40 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
+<https://data.vlaanderen.be/shacl/divrest-registrations-im> <https://data.vlaanderen.be/shacl/divrest-registrations-imshapes> <https://data.vlaanderen.be/shacl/divrest-registrations-im#AgentShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#RechtsvormtypeShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
-    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#TaalStringShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#IdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieTypeShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#GetypeerdeStringShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#FormeleOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape>,
     <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdPersoonShape> .
 
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#AdresvoorstellingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:string;
-    shacl:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.";
-    shacl:maxCount 1;
-    shacl:name "busnummer";
-    shacl:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer>
-  ], [
     shacl:datatype rdf:langString;
     shacl:description "Straatnaam vh adres.";
     shacl:maxCount 1;
     shacl:name "straatnaam";
     shacl:path <http://www.w3.org/ns/locn#thoroughfare>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Gemeentenaam vh adres.";
+    shacl:maxCount 1;
+    shacl:name "gemeentenaam";
+    shacl:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.";
+    shacl:maxCount 1;
+    shacl:name "busnummer";
+    shacl:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.busnummer>
   ], [
     shacl:datatype xsd:string;
     shacl:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
@@ -49,12 +55,6 @@
     shacl:maxCount 1;
     shacl:name "postcode";
     shacl:path <http://www.w3.org/ns/locn#postCode>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Gemeentenaam vh adres.";
-    shacl:maxCount 1;
-    shacl:name "gemeentenaam";
-    shacl:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Land waarin het adres gelegen is.";
@@ -98,18 +98,18 @@
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#GeregistreerdeOrganisatieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class skos:Concept;
+    shacl:description "Juridisch statuut van de geregistreerde organisatie.";
+    shacl:maxCount 1;
+    shacl:name "rechtsvorm";
+    shacl:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
+  ], [
     shacl:class <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "Identificator dat de organisatie verkreeg bij registratie.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "registratie";
     shacl:path <http://www.w3.org/ns/regorg#registration>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Juridisch statuut van de geregistreerde organisatie.";
-    shacl:maxCount 1;
-    shacl:name "rechtsvorm";
-    shacl:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
   ];
   shacl:targetClass <http://www.w3.org/ns/regorg#RegisteredOrganization> .
 
@@ -131,6 +131,13 @@
 <https://data.vlaanderen.be/shacl/divrest-registrations-im#OrganisatieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype rdf:langString;
+    shacl:description "Naam waarmee de organisatie bij voorkeur wordt aangeduid.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "voorkeursnaam";
+    shacl:path skos:prefLabel
+  ], [
     shacl:class schemas:ContactPoint;
     shacl:description "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren.";
     shacl:name "contactinfo";
@@ -140,13 +147,6 @@
     shacl:description "Soort organisatie.";
     shacl:name "type";
     shacl:path <http://www.w3.org/ns/regorg#orgType>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Naam waarmee de organisatie bij voorkeur wordt aangeduid.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "voorkeursnaam";
-    shacl:path skos:prefLabel
   ];
   shacl:targetClass org:Organization .
 
