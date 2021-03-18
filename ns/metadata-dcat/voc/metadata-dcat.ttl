@@ -9,12 +9,17 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+dc:LicenseDocument a rdfs:Class .
+
+dc:RightsStatement a rdfs:Class .
+
+dc:Standard a rdfs:Class .
+
 vcard:Kind a rdfs:Class .
 
 dcat:Catalog a rdfs:Class .
 
-dcat:CatalogRecord a rdfs:Class;
-  rdfs:label "Catalogus Record"@nl .
+dcat:CatalogRecord a rdfs:Class .
 
 dcat:DataService a rdfs:Class .
 
@@ -24,61 +29,44 @@ dcat:Distribution a rdfs:Class .
 
 dcat:Resource a rdfs:Class .
 
-<http://data.vlaanderen.be/ns/metadata-dcat#authenticatie> a owl:DatatypeProperty;
-  rdfs:label "authenticatie"@nl;
-  rdfs:comment "landingspagina met informatie over authenticatie"@nl;
+<http://data.vlaanderen.be/ns/metadata-dcat#landingspaginaVoorAuthenticatie> a owl:DatatypeProperty;
+  rdfs:label "landingspagina voor authenticatie"@nl;
+  rdfs:comment "Een verwijzing naar de landingspagina met de specifieke informatie over de authenticatie voor de dataservice."@nl;
   rdfs:domain dcat:DataService;
   rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
   rdfs:range xsd:anyURI .
 
-<http://data.vlaanderen.be/ns/metadata-dcat#dienstverleningsKwaliteit> a owl:DatatypeProperty;
-  rdfs:label "dienstverleningskwaliteit"@nl;
-  rdfs:comment "landingspagina met informatie over kwaliteit van de dienstverlening"@nl;
+<http://data.vlaanderen.be/ns/metadata-dcat#landingspaginaVoorGebruiksinformatie> a owl:DatatypeProperty;
+  rdfs:label "landingspagina voor gebruiksinformatie"@nl;
+  rdfs:comment "Een verwijzing naar de landingspagina met de specifieke informatie over het gebruik van de dataservice."@nl;
   rdfs:domain dcat:DataService;
   rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
   rdfs:range xsd:anyURI .
 
-<http://data.vlaanderen.be/ns/metadata-dcat#doelpopulatie> a owl:DatatypeProperty;
-  rdfs:label "doelpopulatie"@nl;
-  rdfs:comment "landingspagina met informatie over de doelpopulatie"@nl;
+<http://data.vlaanderen.be/ns/metadata-dcat#landingspaginaVoorStatusinformatie> a owl:DatatypeProperty;
+  rdfs:label "landingspagina voor statusinformatie"@nl;
+  rdfs:comment "Een verwijzing naar de statuspagina van de dataservice"@nl;
   rdfs:domain dcat:DataService;
   rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
   rdfs:range xsd:anyURI .
 
-<http://data.vlaanderen.be/ns/metadata-dcat#gebruiksbepaling> a owl:DatatypeProperty;
-  rdfs:label "gebruiksbepaling"@nl;
-  rdfs:comment "landingspagina met informatie over de genomen voorwaarden om de service te mogen gebruiken. "@nl;
-  rdfs:domain dcat:DataService;
-  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
-  rdfs:range xsd:anyURI .
-
-<http://data.vlaanderen.be/ns/metadata-dcat#licentie> a owl:ObjectProperty;
-  rdfs:domain dcat:Catalog;
-  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
-  rdfs:range dc:LicenseDocument .
-
-<http://data.vlaanderen.be/ns/metadata-dcat#statusVanGebruik> a owl:ObjectProperty;
-  rdfs:label "gebruiksstatus"@nl;
-  rdfs:comment "huidige toestand van gebruiksmogelijkheden"@nl;
+<http://data.vlaanderen.be/ns/metadata-dcat#levensfase> a owl:ObjectProperty;
+  rdfs:label "levensfase"@nl;
+  rdfs:comment "De levensfase waarin de dataservice zich bevindt."@nl;
   rdfs:domain dcat:DataService;
   rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
   rdfs:range skos:Concept .
 
-<http://data.vlaanderen.be/ns/metadata-dcat#statusVanOntwikkeling> a owl:ObjectProperty;
-  rdfs:label "ontwikkelingsstatus"@nl;
-  rdfs:comment "huidige toestand van de ontwikkelingsstatus "@nl;
+<http://data.vlaanderen.be/ns/metadata-dcat#ontwikkelingstoestand> a owl:ObjectProperty;
+  rdfs:label "ontwikkelingstoestand"@nl;
+  rdfs:comment "De ontwikkelingstoestand waarin de dataservice is gedeployed."@nl;
   rdfs:domain dcat:DataService;
   rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
   rdfs:range skos:Concept .
-
-<http://data.vlaanderen.be/ns/metadata-dcat#wettelijkeBeperkingen> a owl:DatatypeProperty;
-  rdfs:label "wettelijke beperkingen"@nl;
-  rdfs:comment "landingspagina met informatie over de wettelijke beperkingen i.v.m. dataService"@nl;
-  rdfs:domain dcat:DataService;
-  rdfs:isDefinedBy <http://data.vlaanderen.be/ns/metadata-dcat>;
-  rdfs:range xsd:anyURI .
 
 dc:accessRights a rdf:Property .
+
+dc:conformsTo a rdf:Property .
 
 dc:description a rdf:Property .
 
@@ -88,11 +76,17 @@ dc:issued a rdf:Property .
 
 dc:license a rdf:Property .
 
+dc:modified a rdf:Property .
+
+dc:rights a rdf:Property .
+
 dc:title a rdf:Property .
 
 owl:versionInfo a rdf:Property .
 
 vcard:hasEmail a rdf:Property .
+
+<http://www.w3.org/ns/adms#identifier> a rdf:Property .
 
 dcat:accessService a rdf:Property .
 
@@ -122,6 +116,8 @@ dcat:service a rdf:Property .
 
 dcat:theme a rdf:Property .
 
+foaf:page a rdf:Property .
+
 foaf:primaryTopic a rdf:Property .
 
 <http://data.vlaanderen.be/ns/metadata-dcat> a owl:Ontology;
@@ -130,33 +126,8 @@ foaf:primaryTopic a rdf:Property .
   dc:contributor [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Mathias";
-    foaf:lastName "De Schrijver"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
     foaf:firstName "Eline";
     foaf:lastName "Deweirdt"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "De Lijn"];
-    foaf:firstName "Tim";
-    foaf:lastName "Coninx"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Tom";
-    foaf:lastName "Van Haute"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Fluvius"];
-    foaf:firstName "Chrisophe";
-    foaf:lastName "Borry"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Bert";
-    foaf:lastName "Van Kets"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "GIM"];
@@ -164,14 +135,9 @@ foaf:primaryTopic a rdf:Property .
     foaf:lastName "Vandeboel"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Universiteit Gent"];
-    foaf:firstName "Pieter";
-    foaf:lastName "Heyvaert"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Cipal Schaubroeck"];
-    foaf:firstName "Willem";
-    foaf:lastName "Van Hoecke"
+    schema:affiliation [foaf:name "Department Mobiliteit en Openbare Werken"];
+    foaf:firstName "Odette";
+    foaf:lastName "Buntix"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Departement Omgeving"];
@@ -179,39 +145,64 @@ foaf:primaryTopic a rdf:Property .
     foaf:lastName "Van Damme"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Fluvius"];
-    foaf:firstName "Dries";
-    foaf:lastName "Vlaeminck"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "GIM"];
-    foaf:firstName "An";
-    foaf:lastName "Heirman"
-  ], [
-    a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
     foaf:firstName "Wim";
     foaf:lastName "Joostens"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Werkplaats Immaterieel Erfgoed"];
-    foaf:firstName "Floris";
-    foaf:lastName "Zuallaert"
+    schema:affiliation [foaf:name "Fluvius"];
+    foaf:firstName "Chrisophe";
+    foaf:lastName "Borry"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "MOW"];
-    foaf:firstName "Odette";
-    foaf:lastName "Buntix"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "ABB"];
+    schema:affiliation [foaf:name "Agentschap Binnenlands Bestuur"];
     foaf:firstName "Alex";
-    foaf:lastName " Tavernier"
+    foaf:lastName "Tavernier"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Smals"];
+    foaf:firstName "Chrysoula";
+    foaf:lastName "Logara"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Loes";
-    foaf:lastName "Deventer"
+    foaf:firstName "Henk";
+    foaf:lastName "Vanderstraeten"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "DIDM/Departement Omgeving"];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Sarah";
+    foaf:lastName "Blomme"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Dirk";
+    foaf:lastName "De Baere"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "GIM"];
+    foaf:firstName "Mathieu";
+    foaf:lastName "Ghaussier"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Bert";
+    foaf:lastName "Van Kets"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Cipal Schaubroeck"];
+    foaf:firstName "Willem";
+    foaf:lastName "Van Hoecke"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Werkplaats Immaterieel Erfgoed"];
+    foaf:firstName "Floris";
+    foaf:lastName "Zuallaert"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Digipolis"];
@@ -220,27 +211,8 @@ foaf:primaryTopic a rdf:Property .
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Henk";
-    foaf:lastName "Vanderstraeten"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "VLIZ - Vlaams Instituut voor de zee"];
-    foaf:firstName "Laurian";
-    foaf:lastName "Van Maldeghem"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Dwight";
-    foaf:lastName " Van Lancker"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "RIVM"];
-    foaf:firstName "Cor"
-  ], [
-    a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Dirk";
-    foaf:lastName "De Baere"
+    foaf:firstName "Mathias";
+    foaf:lastName "De Schrijver"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
@@ -248,58 +220,101 @@ foaf:primaryTopic a rdf:Property .
     foaf:lastName "Hennequin"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "DIDM/Departement Omgeving"];
-    foaf:firstName "Geert";
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Tom";
     foaf:lastName "Van Haute"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "Smals"];
-    foaf:firstName "Chrysoula";
-    foaf:lastName "Logara"
+    schema:affiliation [foaf:name "VLIZ - Vlaams Instituut voor de Zee"];
+    foaf:firstName "Laurian";
+    foaf:lastName "Van Maldeghem"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "RIVM"];
+    foaf:firstName "Cor";
+    foaf:lastName "Melse"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Dwight";
+    foaf:lastName "Van Lancker"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "De Lijn"];
+    foaf:firstName "Tim";
+    foaf:lastName "Coninx"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Loes";
+    foaf:lastName "Deventer"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "GIM"];
+    foaf:firstName "An";
+    foaf:lastName "Heirman"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Fluvius"];
+    foaf:firstName "Dries";
+    foaf:lastName "Vlaeminck"
+  ], [
+    a foaf:Person;
+    schema:affiliation [foaf:name "Universiteit Gent"];
+    foaf:firstName "Pieter";
+    foaf:lastName "Heyvaert"
   ];
   dc:issued "TODO";
-  dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
-    <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>;
+  dc:license <https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0>,
+    "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0";
   dc:mediator [
     foaf:homepage <https://data.vlaanderen.be>;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dcat:Resource,
-    dcat:dataset,
+  rdfs:seeAlso dcat:landingPage,
     vcard:hasEmail,
-    dcat:distribution,
-    dc:accessRights,
+    dcat:downloadURL,
+    dc:LicenseDocument,
+    dcat:record,
+    dcat:service,
+    dcat:Distribution,
+    dcat:endpointDescription,
+    dc:rights,
+    dcat:dataset,
+    dcat:Resource,
+    dcat:Catalog,
+    vcard:Kind,
+    dc:conformsTo,
+    dc:identifier,
     foaf:primaryTopic,
     dc:license,
-    dcat:Distribution,
-    dc:description,
-    dcat:Catalog,
-    dcat:record,
-    vcard:Kind,
-    owl:versionInfo,
+    dc:RightsStatement,
+    dc:Standard,
     dcat:Dataset,
-    dcat:DataService,
-    dc:identifier,
-    dc:title,
-    dcat:servesdataset,
-    dcat:endpointURL,
-    dcat:keyword,
-    dcat:endpointDescription,
-    dcat:contactPoint,
-    dcat:theme,
-    dcat:CatalogRecord,
     dc:issued,
-    dcat:service,
-    dcat:landingPage,
-    dcat:accessURL,
+    dc:accessRights,
+    <http://www.w3.org/ns/adms#identifier>,
+    dcat:endpointURL,
+    owl:versionInfo,
+    dcat:contactPoint,
+    foaf:page,
+    dcat:servesdataset,
+    dcat:DataService,
     dcat:accessService,
-    dcat:downloadURL;
+    dcat:CatalogRecord,
+    dcat:distribution,
+    dc:modified,
+    dc:description,
+    dcat:theme,
+    dc:title,
+    dcat:keyword,
+    dcat:accessURL;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
-    schema:affiliation [foaf:name "Informatie Vlaanderen"];
-    foaf:firstName "Bert";
-    foaf:lastName "Van Nuffelen"
+    schema:affiliation [foaf:name "imec-mict-UGent"];
+    foaf:firstName "Eveline";
+    foaf:lastName "Vlassenroot"
   ], [
     a foaf:Person;
     schema:affiliation [foaf:name "Informatie Vlaanderen"];
@@ -307,9 +322,9 @@ foaf:primaryTopic a rdf:Property .
     foaf:lastName "Vanbrabant"
   ], [
     a foaf:Person;
-    schema:affiliation [foaf:name "UGent"];
-    foaf:firstName "Eveline";
-    foaf:lastName "Vlassenroot"
+    schema:affiliation [foaf:name "Informatie Vlaanderen"];
+    foaf:firstName "Bert";
+    foaf:lastName "Van Nuffelen"
   ];
   foaf:maker [
     a foaf:Person;
