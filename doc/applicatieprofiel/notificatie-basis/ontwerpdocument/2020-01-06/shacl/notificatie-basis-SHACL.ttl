@@ -9,20 +9,20 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
+<https://data.vlaanderen.be/shacl/notificatie-basis> <https://data.vlaanderen.be/shacl/notificatie-basisshapes> <https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#AgentShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#GeometrieShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#SleutelWaardeShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#GeografischeNaamShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeDienstverleningShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#GetypeerdeStringShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#MerkShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#TijdsintervalShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape>,
+    <https://data.vlaanderen.be/shacl/notificatie-basis#PubliekeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape>,
-    <https://data.vlaanderen.be/shacl/notificatie-basis#GetypeerdeStringShape> .
+    <https://data.vlaanderen.be/shacl/notificatie-basis#DoelgroepShape> .
 
 <https://data.vlaanderen.be/shacl/notificatie-basis#AdministratieveEenheidShape> a shacl:NodeShape;
   shacl:closed false;
@@ -48,11 +48,11 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#ContactInfoShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:string;
-    shacl:description "Naam van bvb de persoon die men kan contacteren.";
+    shacl:class <http://www.w3.org/ns/locn#Address>;
+    shacl:description "Adres dat men kan aanschrijven of bezoeken.";
     shacl:maxCount 1;
-    shacl:name "contactnaam";
-    shacl:path foaf:name
+    shacl:name "adres";
+    shacl:path <http://www.w3.org/ns/locn#address>
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "Website waarnaar men kan surfen.";
@@ -61,10 +61,22 @@
     shacl:path foaf:page
   ], [
     shacl:datatype xsd:string;
-    shacl:description "Email-adres waarnaar men kan mailen.";
+    shacl:description "Telefoonnummer waarop men kan bellen.";
     shacl:maxCount 1;
-    shacl:name "email";
-    shacl:path schema:email
+    shacl:name "telefoon";
+    shacl:path schema:telephone
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Naam van bvb de persoon die men kan contacteren.";
+    shacl:maxCount 1;
+    shacl:name "contactnaam";
+    shacl:path foaf:name
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
+    shacl:maxCount 1;
+    shacl:name "aanschrijfvorm";
+    shacl:path vcard:honorific-prefix
   ], [
     shacl:datatype rdfs:Literal;
     shacl:description "Uren waarbinnen contact kan worden opgenomen.";
@@ -78,29 +90,17 @@
     shacl:name "fax";
     shacl:path schema:faxNumber
   ], [
-    shacl:class <http://www.w3.org/ns/locn#Address>;
-    shacl:description "Adres dat men kan aanschrijven of bezoeken.";
-    shacl:maxCount 1;
-    shacl:name "adres";
-    shacl:path <http://www.w3.org/ns/locn#address>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Telefoonnummer waarop men kan bellen.";
-    shacl:maxCount 1;
-    shacl:name "telefoon";
-    shacl:path schema:telephone
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
-    shacl:maxCount 1;
-    shacl:name "aanschrijfvorm";
-    shacl:path vcard:honorific-prefix
-  ], [
     shacl:class schema:OpeningHoursSpecification;
     shacl:description "Periode waarin contact kan worden opgenomen.";
     shacl:maxCount 1;
     shacl:name "beschikbaarheid";
     shacl:path schema:hoursAvailable
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Email-adres waarnaar men kan mailen.";
+    shacl:maxCount 1;
+    shacl:name "email";
+    shacl:path schema:email
   ];
   shacl:targetClass schema:ContactPoint .
 
@@ -134,16 +134,16 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype rdfs:Literal;
-    shacl:description "Geometrie uitgedrukt in wkt-formaat.";
-    shacl:maxCount 1;
-    shacl:name "wkt";
-    shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
-  ], [
-    shacl:datatype rdfs:Literal;
     shacl:description "Geometrie uitgedrukt in gml-formaat.";
     shacl:maxCount 1;
     shacl:name "gml";
     shacl:path <http://www.opengis.net/ont/geosparql#asGML>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Geometrie uitgedrukt in wkt-formaat.";
+    shacl:maxCount 1;
+    shacl:name "wkt";
+    shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
   ];
   shacl:targetClass <http://www.w3.org/ns/locn#Geometry> .
 
@@ -154,6 +154,42 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#InformeerActieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class schemas:InformAction;
+    shacl:description "Een relatie tussen twee Informeer Acties.";
+    shacl:name "isGerelateerdMet";
+    shacl:path dc:relation
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
+    shacl:minCount 1;
+    shacl:name "notificatiekanaal";
+    shacl:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
+  ], [
+    shacl:class schemas:PropertyValue;
+    shacl:description "De inhoud van een Notificatiebericht.";
+    shacl:name "inhoud";
+    shacl:path <https://data.vlaanderen.be/ns/notificatie#inhoud>
+  ], [
+    shacl:class <http://data.europa.eu/m8g/PublicOrganisation>;
+    shacl:description "Duidt de agent aan die aanleiding gaf tot de InformeerActie.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "agent";
+    shacl:path schemas:agent
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Het onderwerp van de informeer actie.";
+    shacl:minCount 1;
+    shacl:name "onderwerp";
+    shacl:path schemas:about
+  ], [
+    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    shacl:description "Het tijdsinterval waarbinnen de Informeer Actie relevant is en bijgevolg kan resulteren in de verzending van notificatieberichten.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "periodeVerzending";
+    shacl:path <https://data.vlaanderen.be/ns/notificatie#periodeVerzending>
+  ], [
     shacl:class schemas:Audience;
     shacl:description "De bestemmeling(en) die de informatie dien(t)(en) te ontvangen.";
     shacl:minCount 1;
@@ -164,42 +200,6 @@
     shacl:description "De relatie tussen een Informeer Actie en het (de) Notificatiebericht(en) die hier uit voortkomen.";
     shacl:name "resulteertIn";
     shacl:path <https://data.vlaanderen.be/ns/notificatie#resulteertIn>
-  ], [
-    shacl:class <http://data.europa.eu/m8g/PublicOrganisation>;
-    shacl:description "Duidt de agent aan die aanleiding gaf tot de InformeerActie.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "agent";
-    shacl:path schemas:agent
-  ], [
-    shacl:class schemas:PropertyValue;
-    shacl:description "De inhoud van een Notificatiebericht.";
-    shacl:name "inhoud";
-    shacl:path <https://data.vlaanderen.be/ns/notificatie#inhoud>
-  ], [
-    shacl:class schemas:InformAction;
-    shacl:description "Een relatie tussen twee Informeer Acties.";
-    shacl:name "isGerelateerdMet";
-    shacl:path dc:relation
-  ], [
-    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
-    shacl:description "Het tijdsinterval waarbinnen de Informeer Actie relevant is en bijgevolg kan resulteren in de verzending van notificatieberichten.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "periodeVerzending";
-    shacl:path <https://data.vlaanderen.be/ns/notificatie#periodeVerzending>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
-    shacl:minCount 1;
-    shacl:name "notificatiekanaal";
-    shacl:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Het onderwerp van de informeer actie.";
-    shacl:minCount 1;
-    shacl:name "onderwerp";
-    shacl:path schemas:about
   ];
   shacl:targetClass schemas:InformAction .
 
@@ -230,48 +230,18 @@
 <https://data.vlaanderen.be/shacl/notificatie-basis#NotificatieberichtShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "De datum waarop het Notificatiebericht gecreëerd werd.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "datumCreatie";
-    shacl:path schemas:dateCreated
-  ], [
-    shacl:datatype xsd:dateTime;
-    shacl:description "De datum waarop een Notificatiebericht vervalt.";
-    shacl:maxCount 1;
-    shacl:name "vervalt";
-    shacl:path schema:expires
-  ], [
-    shacl:datatype xsd:dateTime;
-    shacl:description "De datum waarop het Notificatiebericht werd gelezen door de bestemmeling. ";
-    shacl:maxCount 1;
-    shacl:name "datumGelezen";
-    shacl:path schema:dateRead
-  ], [
-    shacl:class dc:Agent;
-    shacl:description "De agent die het notificatiebericht ontvangt.";
-    shacl:name "bestemmeling";
-    shacl:path schemas:recipient
-  ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "Een url voor het Notificatiebericht.";
-    shacl:maxCount 1;
-    shacl:name "url";
-    shacl:path schema:url
-  ], [
-    shacl:datatype xsd:dateTime;
-    shacl:description "De datum waarop het Notificatiebericht werd ontvangen door de bestemmeling.";
-    shacl:maxCount 1;
-    shacl:name "datumOntvangen";
-    shacl:path schema:dateReceived
-  ], [
     shacl:class skos:Concept;
     shacl:description "Het notificatiekanaal duidt het technisch medium aan waarlangs het Notificatiebericht wordt verzonden.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "notificatiekanaal";
     shacl:path <https://data.vlaanderen.be/ns/notificatie#notificatiekanaal>
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "De datum waarop het Notificatiebericht werd ontvangen door de bestemmeling.";
+    shacl:maxCount 1;
+    shacl:name "datumOntvangen";
+    shacl:path schema:dateReceived
   ], [
     shacl:class schemas:Brand;
     shacl:description "De afzender van het Notificatiebericht.";
@@ -281,18 +251,29 @@
     shacl:path schema:sender
   ], [
     shacl:datatype xsd:dateTime;
-    shacl:description "De datum waarop het Notificatiebericht werd verzonden naar de bestemmeling. ";
+    shacl:description "De datum waarop het Notificatiebericht gecreëerd werd.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "datumVerzending";
-    shacl:path schema:dateSent
+    shacl:name "datumCreatie";
+    shacl:path schemas:dateCreated
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "De tekstuele inhoud van het Notificatiebericht.";
+    shacl:datatype xsd:dateTime;
+    shacl:description "De datum waarop het Notificatiebericht werd gelezen door de bestemmeling. ";
     shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "tekst";
-    shacl:path schemas:text
+    shacl:name "datumGelezen";
+    shacl:path schema:dateRead
+  ], [
+    shacl:datatype xsd:anyURI;
+    shacl:description "Een url voor het Notificatiebericht.";
+    shacl:maxCount 1;
+    shacl:name "url";
+    shacl:path schema:url
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "De datum waarop een Notificatiebericht vervalt.";
+    shacl:maxCount 1;
+    shacl:name "vervalt";
+    shacl:path schema:expires
   ], [
     shacl:datatype xsd:string;
     shacl:description "Een titel voor het Notificatiebericht.";
@@ -300,6 +281,25 @@
     shacl:minCount 1;
     shacl:name "titel";
     shacl:path schemas:name
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "De datum waarop het Notificatiebericht werd verzonden naar de bestemmeling. ";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "datumVerzending";
+    shacl:path schema:dateSent
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "De agent die het notificatiebericht ontvangt.";
+    shacl:name "bestemmeling";
+    shacl:path schemas:recipient
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "De tekstuele inhoud van het Notificatiebericht.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "tekst";
+    shacl:path schemas:text
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/notificatie#Notificatiebericht> .
 
@@ -328,18 +328,18 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype xsd:string;
-    shacl:description "Het label is de sleutel van het sleutel/waarde paar.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "naam";
-    shacl:path schemas:name
-  ], [
-    shacl:datatype xsd:string;
     shacl:description "De waarde van het sleutel/waarde paar.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "waarde";
     shacl:path schemas:value
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Het label is de sleutel van het sleutel/waarde paar.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "naam";
+    shacl:path schemas:name
   ];
   shacl:targetClass schemas:PropertyValue .
 
@@ -347,16 +347,16 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype xsd:dateTime;
+    shacl:description "Moment waarop het tijdsinterval eindigt.";
+    shacl:maxCount 1;
+    shacl:name "einde";
+    shacl:path <http://data.europa.eu/m8g/endTime>
+  ], [
+    shacl:datatype xsd:dateTime;
     shacl:description "Moment waarop het tijdsinterval begint.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "begin";
     shacl:path <http://data.europa.eu/m8g/startTime>
-  ], [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Moment waarop het tijdsinterval eindigt.";
-    shacl:maxCount 1;
-    shacl:name "einde";
-    shacl:path <http://data.europa.eu/m8g/endTime>
   ];
   shacl:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
