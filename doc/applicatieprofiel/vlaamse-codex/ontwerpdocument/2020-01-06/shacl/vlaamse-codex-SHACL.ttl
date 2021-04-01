@@ -6,13 +6,13 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/vlaamse-codex> <https://data.vlaanderen.be/shacl/vlaamse-codexshapes> <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape>,
+<https://data.vlaanderen.be/shacl/vlaamse-codex> <https://data.vlaanderen.be/shacl/vlaamse-codexshapes> <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape>,
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbrononderdeelShape>,
     <https://data.vlaanderen.be/shacl/vlaamse-codex#VerschijningsvormShape>,
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape>,
     <https://data.vlaanderen.be/shacl/vlaamse-codex#AgentShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#TypeRechtsbrononderdeelShape>,
     <https://data.vlaanderen.be/shacl/vlaamse-codex#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape>,
-    <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbrononderdeelShape> .
+    <https://data.vlaanderen.be/shacl/vlaamse-codex#TypeRechtsbrononderdeelShape> .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#AardWetgevingShape> a shacl:NodeShape;
   shacl:closed false;
@@ -38,43 +38,48 @@
     shacl:name "identificator";
     shacl:path skos:notation
   ], [
-    shacl:class dc:Agent;
-    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
-    shacl:maxCount 1;
-    shacl:name "toegekendDoor";
-    shacl:path dc:creator
-  ], [
     shacl:datatype xsd:string;
     shacl:description "Naam vd agent die de identificator heeft toegekend.";
     shacl:maxCount 1;
     shacl:name "toegekendDoorString";
     shacl:path <http://www.w3.org/ns/adms#schemaAgency>
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoor";
+    shacl:path dc:creator
   ];
   shacl:targetClass <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbronShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Duidt aan dat deze rechtsbron een verandering met legale gevolgen doorvoert op een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
+    shacl:name "wijzigt";
+    shacl:path <http://data.europa.eu/eli/ontology#amends>
+  ], [
     shacl:datatype xsd:date;
-    shacl:description "Adoptiedatum of handtekendatum (in de vorm jjjj-mm-dd).";
+    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
     shacl:maxCount 1;
-    shacl:name "datumDocument";
-    shacl:path <http://data.europa.eu/eli/ontology#date_document>
+    shacl:name "buitenwerkingtreding";
+    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen.";
-    shacl:name "citeert";
-    shacl:path <http://data.europa.eu/eli/ontology#cites>
+    shacl:description "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde.";
+    shacl:name "bekrachtigt";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Duidt aan dat deze rechtsbron een verandering met legale gevolgen heeft ondergaan door een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
-    shacl:name "gewijzigdBij";
-    shacl:path <http://data.europa.eu/eli/ontology#amended_by>
+    shacl:description "Geeft een bron aan die deze bron aanvult met juridische impact.";
+    shacl:name "ingevoegdBij";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#ingevoegdBij>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig wordt ingetrokken door een andere juridische hulpbron.";
-    shacl:name "opgehevenBij";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#opgehevenBij>
+    shacl:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere.";
+    shacl:name "trektIn";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#trektIn>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
     shacl:description "Inverse van bekrachtigt.";
@@ -82,14 +87,45 @@
     shacl:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigdBij>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft aan dat deze bron een andere buiten werking stelt";
-    shacl:name "heftOp";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#heftOp>
+    shacl:description "Een citatie in de wettelijke tekst. Dit omvat zowel woordelijke citaten als citaten in verwijzingen.";
+    shacl:name "citeert";
+    shacl:path <http://data.europa.eu/eli/ontology#cites>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalExpression>;
     shacl:description "De verschijningsvorm die deze rechtsbron materialiseert in een concrete tekst.";
     shacl:name "isGerealiseerdDoor";
     shacl:path <http://data.europa.eu/eli/ontology#is_realized_by>
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud).";
+    shacl:name "verantwoordelijke";
+    shacl:path <http://data.europa.eu/eli/ontology#responsibility_of>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Geeft aan dat deze bron een andere buiten werking stelt";
+    shacl:name "heftOp";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#heftOp>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Duidt op een of ander manier gerelateerd ander document, niet noodzakelijk een legale bron.";
+    shacl:name "zieOok";
+    shacl:path <http://data.europa.eu/eli/ontology#related_to>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig wordt ingetrokken door een andere juridische hulpbron.";
+    shacl:name "opgehevenBij";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#opgehevenBij>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Duidt aan dat deze rechtsbron een verandering met legale gevolgen heeft ondergaan door een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
+    shacl:name "gewijzigdBij";
+    shacl:path <http://data.europa.eu/eli/ontology#amended_by>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "Adoptiedatum of handtekendatum (in de vorm jjjj-mm-dd).";
+    shacl:maxCount 1;
+    shacl:name "datumDocument";
+    shacl:path <http://data.europa.eu/eli/ontology#date_document>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
     shacl:description "Geeft aan dat deze wetgeving (of een deel van de wetgeving) voldoet aan de doelstellingen van een andere wetgeving, door het nemen van passende uitvoeringsmaatregelen.";
@@ -102,15 +138,9 @@
     shacl:path dc:hasPart
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Betekent dat dit document instemt met een ander type document waardoor dat laatste volledige rechtskracht krijgt. De bekrachtiging is in dit geval een opschortende voorwaarde.";
-    shacl:name "bekrachtigt";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#bekrachtigt>
-  ], [
-    shacl:datatype xsd:date;
-    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
-    shacl:maxCount 1;
-    shacl:name "buitenwerkingtreding";
-    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
+    shacl:description "Deze bron vult een andere aan met legale impact.";
+    shacl:name "voegtIn";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#voegtIn>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
     shacl:description "Geeft aan dat deze bron volledig wordt geannuleerd door een andere bron.";
@@ -126,34 +156,14 @@
     shacl:path <http://data.europa.eu/eli/ontology#type_document>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft een bron aan die deze bron aanvult met juridische impact.";
-    shacl:name "ingevoegdBij";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#ingevoegdBij>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft een bron aan die volledig vernieuwd is door een andere.";
-    shacl:name "vervangenBij";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#vervangenBij>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Duidt aan dat deze rechtsbron een verandering met legale gevolgen doorvoert op een andere rechtsbron. Dit omvat amendementen, vervangingen, herroepingen en andere types verandering.";
-    shacl:name "wijzigt";
-    shacl:path <http://data.europa.eu/eli/ontology#amends>
-  ], [
-    shacl:class dc:Agent;
-    shacl:description "Een aparte intellectuele creatie (d.w.z. de intellectuele inhoud).";
-    shacl:name "verantwoordelijke";
-    shacl:path <http://data.europa.eu/eli/ontology#responsibility_of>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
     shacl:description "Geeft aan dat deze bron een andere volledig vernieuwt.";
     shacl:name "vervangt";
     shacl:path <https://data.vlaanderen.be/ns/wetgeving#vervangt>
   ], [
     shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Duidt op een of ander manier gerelateerd ander document, niet noodzakelijk een legale bron.";
-    shacl:name "zieOok";
-    shacl:path <http://data.europa.eu/eli/ontology#related_to>
+    shacl:description "Geeft een bron aan die volledig vernieuwd is door een andere.";
+    shacl:name "vervangenBij";
+    shacl:path <https://data.vlaanderen.be/ns/wetgeving#vervangenBij>
   ], [
     shacl:datatype xsd:date;
     shacl:description "De datum waarop de regelgeving van kracht wordt.";
@@ -161,27 +171,12 @@
     shacl:minCount 1;
     shacl:name "inwerkingtreding";
     shacl:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Deze bron vult een andere aan met legale impact.";
-    shacl:name "voegtIn";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#voegtIn>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft aan dat deze juridische bron of juridische uitdrukking volledig kan worden geannuleerd door een andere.";
-    shacl:name "trektIn";
-    shacl:path <https://data.vlaanderen.be/ns/wetgeving#trektIn>
   ];
   shacl:targetClass <http://data.europa.eu/eli/ontology#LegalResource> .
 
 <https://data.vlaanderen.be/shacl/vlaamse-codex#RechtsbrononderdeelShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Relatie die documenten en onderdelen (hoofdstukken, artikels...) aan elkaar linkt.";
-    shacl:name "isDeelVan";
-    shacl:path <http://data.europa.eu/eli/ontology#is_part_of>
-  ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/TypeRechtsbrononderdeel>;
     shacl:class skos:Concept;
     shacl:description "Het type van het rechtsbrononderdeel.";
@@ -189,6 +184,11 @@
     shacl:minCount 1;
     shacl:name "type";
     shacl:path dc:type
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Relatie die documenten en onderdelen (hoofdstukken, artikels...) aan elkaar linkt.";
+    shacl:name "isDeelVan";
+    shacl:path <http://data.europa.eu/eli/ontology#is_part_of>
   ];
   shacl:targetClass <http://data.europa.eu/eli/ontology#LegalResourceSubdivision> .
 
@@ -199,63 +199,6 @@
 <https://data.vlaanderen.be/shacl/vlaamse-codex#VerschijningsvormShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:date;
-    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
-    shacl:maxCount 1;
-    shacl:name "buitenwerkingtreding";
-    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Geeft aan dat deze geconsolideerde juridische bron of uitdrukking (meestal het product van een redactioneel proces dat de wetgeving herziet) rekening houdt met een andere.";
-    shacl:name "consolideert";
-    shacl:path <http://data.europa.eu/eli/ontology#consolidates>
-  ], [
-    shacl:datatype xsd:date;
-    shacl:description "De datum waarop de wetgeving van toepassing wordt.";
-    shacl:maxCount 1;
-    shacl:name "datumToepasbaarheid";
-    shacl:path <http://data.europa.eu/eli/ontology#date_applicability>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Term uit een thesaurus die verwijst naar een bevoegdheidsdomein.";
-    shacl:name "thema";
-    shacl:path <http://data.europa.eu/eli/ontology#is_about>
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalExpression>;
-    shacl:description "Geeft een hulpmiddel aan dat tekstuele wijzigingen introduceert (zoals correctie of spelfouten) zonder juridische wijzigingen in deze bron, uitdrukking of indeling.";
-    shacl:name "gecorrigeerdDoor";
-    shacl:path <http://data.europa.eu/eli/ontology#corrected_by>
-  ], [
-    shacl:datatype xsd:date;
-    shacl:description "De laatste dag waarop een specifieke versie van de regelgeving of een onderdeel ervan nog van kracht is.";
-    shacl:maxCount 1;
-    shacl:name "inwerkingtreding";
-    shacl:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Een verslag van de bron.";
-    shacl:maxCount 1;
-    shacl:name "commentaar";
-    shacl:path dc:description
-  ], [
-    shacl:datatype xsd:date;
-    shacl:description "De officiële publicatiedatum van de verschijningsvorm.";
-    shacl:maxCount 1;
-    shacl:name "publicatiedatum";
-    shacl:path <http://data.europa.eu/eli/ontology#date_publication>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Vrije term als extra zoekingang tot de rechtsbron.";
-    shacl:name "trefwoord";
-    shacl:path dc:subject
-  ], [
-    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
-    shacl:description "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "realiseert";
-    shacl:path <http://data.europa.eu/eli/ontology#realizes>
-  ], [
     shacl:datatype <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "De unieke ID die wordt gebruikt in een lokaal referentiesysteem om compatibiliteit met eerdere versies te handhaven.";
     shacl:minCount 1;
@@ -268,6 +211,33 @@
     shacl:name "citeeropschrift";
     shacl:path <http://data.europa.eu/eli/ontology#title_short>
   ], [
+    shacl:datatype xsd:date;
+    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
+    shacl:maxCount 1;
+    shacl:name "buitenwerkingtreding";
+    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "De officiële publicatiedatum van de verschijningsvorm.";
+    shacl:maxCount 1;
+    shacl:name "publicatiedatum";
+    shacl:path <http://data.europa.eu/eli/ontology#date_publication>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalExpression>;
+    shacl:description "Geeft een hulpmiddel aan dat tekstuele wijzigingen introduceert (zoals correctie of spelfouten) zonder juridische wijzigingen in deze bron, uitdrukking of indeling.";
+    shacl:name "gecorrigeerdDoor";
+    shacl:path <http://data.europa.eu/eli/ontology#corrected_by>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Vrije term als extra zoekingang tot de rechtsbron.";
+    shacl:name "trefwoord";
+    shacl:path dc:subject
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Geeft aan dat deze geconsolideerde juridische bron of uitdrukking (meestal het product van een redactioneel proces dat de wetgeving herziet) rekening houdt met een andere.";
+    shacl:name "consolideert";
+    shacl:path <http://data.europa.eu/eli/ontology#consolidates>
+  ], [
     shacl:datatype xsd:string;
     shacl:description "De taal van de verschijningsvorm.";
     shacl:maxCount 1;
@@ -276,9 +246,16 @@
     shacl:path <http://data.europa.eu/eli/ontology#language>
   ], [
     shacl:datatype xsd:string;
-    shacl:description "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte.";
-    shacl:name "inhoud";
-    shacl:path prov:value
+    shacl:description "De titel of officiële naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd.";
+    shacl:maxCount 1;
+    shacl:name "opschrift";
+    shacl:path <http://data.europa.eu/eli/ontology#title>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "De laatste dag waarop een specifieke versie van de regelgeving of een onderdeel ervan nog van kracht is.";
+    shacl:maxCount 1;
+    shacl:name "inwerkingtreding";
+    shacl:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
   ], [
     shacl:datatype xsd:string;
     shacl:description "Een identificator of een ander onderscheidend kenmerk voor een verschijningsvorm.";
@@ -286,10 +263,33 @@
     shacl:name "nummer";
     shacl:path <http://data.europa.eu/eli/ontology#number>
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "De titel of officiële naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd.";
+    shacl:datatype xsd:date;
+    shacl:description "De datum waarop de wetgeving van toepassing wordt.";
     shacl:maxCount 1;
-    shacl:name "opschrift";
-    shacl:path <http://data.europa.eu/eli/ontology#title>
+    shacl:name "datumToepasbaarheid";
+    shacl:path <http://data.europa.eu/eli/ontology#date_applicability>
+  ], [
+    shacl:class <http://data.europa.eu/eli/ontology#LegalResource>;
+    shacl:description "Heeft betrekking op de rechtsbron die door de verschijningsvorm gematerialiseerd wordt.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "realiseert";
+    shacl:path <http://data.europa.eu/eli/ontology#realizes>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Een verslag van de bron.";
+    shacl:maxCount 1;
+    shacl:name "commentaar";
+    shacl:path dc:description
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Term uit een thesaurus die verwijst naar een bevoegdheidsdomein.";
+    shacl:name "thema";
+    shacl:path <http://data.europa.eu/eli/ontology#is_about>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "De beschrijving van de beoogde rechtsgevolgen, het zogenaamde beschikkend gedeelte.";
+    shacl:name "inhoud";
+    shacl:path prov:value
   ];
   shacl:targetClass <http://data.europa.eu/eli/ontology#LegalExpression> .
