@@ -5,16 +5,16 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#ZonetypeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape>,
+<https://data.vlaanderen.be/shacl/TIOD-IM> <https://data.vlaanderen.be/shacl/TIOD-IMshapes> <https://data.vlaanderen.be/shacl/TIOD-IM#InnametypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#PeriodeShape>,
     <https://data.vlaanderen.be/shacl/TIOD-IM#GeometrieShape>,
-    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape> .
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#BeheerderShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#VergunningShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#ZonetypeShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape>,
+    <https://data.vlaanderen.be/shacl/TIOD-IM#ZoneShape> .
 
 <https://data.vlaanderen.be/shacl/TIOD-IM#AanvragerShape> a shacl:NodeShape;
   shacl:closed false;
@@ -56,16 +56,17 @@
 <https://data.vlaanderen.be/shacl/TIOD-IM#InnameShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class skos:Concept;
-    shacl:description "Type van inname";
-    shacl:minCount 1;
-    shacl:name "type";
-    shacl:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
-  ], [
     shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
     shacl:description "Wanneer de inname plaatsvindt.";
     shacl:name "periode";
     shacl:path <https://data.vlaanderen.be/ns/mobiliteit#periode>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Beschrijving over de inname.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ], [
     shacl:datatype xsd:boolean;
     shacl:description "Duidt aan of de inname in een gebied met openbaar karakter doorgaat.";
@@ -74,12 +75,11 @@
     shacl:name "openbaarDomein";
     shacl:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.openbaarDomein>
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Beschrijving over de inname.";
-    shacl:maxCount 1;
+    shacl:class skos:Concept;
+    shacl:description "Type van inname";
     shacl:minCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
+    shacl:name "type";
+    shacl:path <https://data.vlaanderen.be/ns/mobiliteit#Inname.type>
   ], [
     shacl:class <https://data.vlaanderen.be/ns/mobiliteit#Zone>;
     shacl:description "Een bepaalde zone die deel uitmaakt van de inname.";
@@ -96,18 +96,18 @@
 <https://data.vlaanderen.be/shacl/TIOD-IM#InnamevergunningShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <https://data.vlaanderen.be/ns/mobiliteit#Inname>;
+    shacl:description "De vergunde Inname.";
+    shacl:minCount 1;
+    shacl:name "vergunt";
+    shacl:path <https://data.simcity.be/ns/tiod#vergunt>
+  ], [
     shacl:class skos:Concept;
     shacl:description "Type vergunning dat vergunt wordt.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "verguntType";
     shacl:path <http://data.vlaanderen.be/ns/besluit#verguntType>
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/mobiliteit#Inname>;
-    shacl:description "De vergunde Inname.";
-    shacl:minCount 1;
-    shacl:name "vergunt";
-    shacl:path <https://data.simcity.be/ns/tiod#vergunt>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/besluit#Innamevergunning> .
 
@@ -115,18 +115,18 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype rdfs:Literal;
-    shacl:description "Moment waarop de periode eindigt.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "einde";
-    shacl:path <http://data.europa.eu/m8g/endTime>
-  ], [
-    shacl:datatype rdfs:Literal;
     shacl:description "Moment waarop de periode begint.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "begin";
     shacl:path <http://data.europa.eu/m8g/startTime>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Moment waarop de periode eindigt.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "einde";
+    shacl:path <http://data.europa.eu/m8g/endTime>
   ];
   shacl:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
 
