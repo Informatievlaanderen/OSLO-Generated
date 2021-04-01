@@ -8,54 +8,46 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/dienst-transactiemodel> <https://data.vlaanderen.be/shacl/dienst-transactiemodelshapes> <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#DossierShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumVereisteShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TaalcodeShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape>,
+<https://data.vlaanderen.be/shacl/dienst-transactiemodel> <https://data.vlaanderen.be/shacl/dienst-transactiemodelshapes> <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumVereisteShape>,
     <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#DossierShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PubliekeOrganisatieShape>,
     <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#HoedanigheidShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape>,
     <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TijdsintervalShape>,
-    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#HoedanigheidShape> .
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#TaalcodeShape>,
+    <https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#AgentShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://data.europa.eu/m8g/Participation>;
-    shacl:description "Participatie van de agent (aan een publieke dienstverlening).";
-    shacl:name "heeftParticiperende";
-    shacl:path <http://data.europa.eu/m8g/playsRole>
-  ], [
     shacl:class <http://data.europa.eu/m8g/RequirementResponse>;
     shacl:description "Een agent verschaft antwoorden op criterium vereisten om een Publieke Dienstverlening te kunnen consumeren.";
     shacl:name "verschaft";
     shacl:path <http://data.europa.eu/m8g/providesRequirementResponse>
+  ], [
+    shacl:class <http://data.europa.eu/m8g/Participation>;
+    shacl:description "Participatie van de agent (aan een publieke dienstverlening).";
+    shacl:name "heeftParticiperende";
+    shacl:path <http://data.europa.eu/m8g/playsRole>
   ];
   shacl:targetClass dc:Agent .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#BewijsShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Identificator van het object.";
+    shacl:description "Geeft aan hoe betrouwbaar het bewijs is.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "referentie";
-    shacl:path <http://www.w3.org/ns/adms#identifier>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Beschrijving vh Bewijs.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
+    shacl:name "betrouwbaarheidsniveau";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Officiële naam vh Bewijs.";
@@ -64,33 +56,12 @@
     shacl:name "naam";
     shacl:path dc:title
   ], [
-    shacl:description "Geeft aan hoe betrouwbaar het bewijs is.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "betrouwbaarheidsniveau";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#betrouwbaarheidsniveau>
-  ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "Documentatie gerelateerd ah Bewiijs.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "documentatie";
-    shacl:path foaf:page
-  ], [
     shacl:class dc:Agent;
     shacl:description "Een Bewijs zal behoren tot een Agent. Een criterium kan invloed hebben op verschillende Agents; voor een Bewijs moet daarom gespecifieerd worden tot welke Agent het behoort.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "behoortTotAgent";
     shacl:path <http://data.europa.eu/m8g/belongsToAgent>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/language/>;
-    shacl:class skos:Concept;
-    shacl:description "Taal waarin het aangeboden Bewijs moet zijn gesteld.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "taal";
-    shacl:path dc:language
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/doc/conceptscheme/BewijsType>;
     shacl:class skos:Concept;
@@ -100,23 +71,71 @@
     shacl:name "type";
     shacl:path dc:type
   ], [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Identificator van het object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "referentie";
+    shacl:path <http://www.w3.org/ns/adms#identifier>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/language/>;
+    shacl:class skos:Concept;
+    shacl:description "Taal waarin het aangeboden Bewijs moet zijn gesteld.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "taal";
+    shacl:path dc:language
+  ], [
+    shacl:datatype xsd:anyURI;
+    shacl:description "Documentatie gerelateerd ah Bewiijs.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "documentatie";
+    shacl:path foaf:page
+  ], [
     shacl:class org:Organization;
     shacl:description "Verwijst naar de organisatie die het bewijs heeft uitgegeven.";
     shacl:maxCount 1;
     shacl:name "uitgegevenDoor";
     shacl:path <http://data.europa.eu/m8g/issuedByOrganisation>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Beschrijving vh Bewijs.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ];
   shacl:targetClass <http://data.europa.eu/m8g/Evidence> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#CriteriumAntwoordShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <http://data.europa.eu/m8g/Evidence>;
+    shacl:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven.";
+    shacl:maxCount 1;
+    shacl:name "bewezenDoor";
+    shacl:path <http://data.europa.eu/m8g/provenByEvidence>
+  ], [
     shacl:class <http://data.europa.eu/m8g/CriterionRequirement>;
     shacl:description "Relatie naar de criterium vereiste waaraan het antwoord voldoet.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "valideert";
     shacl:path <http://data.europa.eu/m8g/validatesCriterionRequirement>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Een beschrijving van het antwoord op de vereiste.";
+    shacl:maxCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
+  ], [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Identificator van het object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "referentie";
+    shacl:path <http://www.w3.org/ns/adms#identifier>
   ], [
     shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
     shacl:description "Wanneer de het antwoord op het criterium van toepassing is binnen een specifieke periode kan deze eigenschap gebruikt worden om het tijdsinterval te beschrijven.";
@@ -130,25 +149,6 @@
     shacl:minCount 1;
     shacl:name "waarde";
     shacl:path <http://data.europa.eu/m8g/value>
-  ], [
-    shacl:class <http://data.europa.eu/m8g/Evidence>;
-    shacl:description "Het criterium antwoord kan gelinkt zijn aan het bewijs om het antwoord te staven.";
-    shacl:maxCount 1;
-    shacl:name "bewezenDoor";
-    shacl:path <http://data.europa.eu/m8g/provenByEvidence>
-  ], [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Identificator van het object.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "referentie";
-    shacl:path <http://www.w3.org/ns/adms#identifier>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Een beschrijving van het antwoord op de vereiste.";
-    shacl:maxCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
   ];
   shacl:targetClass <http://data.europa.eu/m8g/RequirementResponse> .
 
@@ -180,23 +180,11 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#IdentificatorShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:string;
-    shacl:description "Naam vd agent die de identificator heeft toegekend.";
-    shacl:maxCount 1;
-    shacl:name "toegekendDoorString";
-    shacl:path <http://www.w3.org/ns/adms#schemaAgency>
-  ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Tijdstip waarop de identificator werd uitgegeven.";
     shacl:maxCount 1;
     shacl:name "toegekendOp";
     shacl:path dc:issued
-  ], [
-    shacl:class dc:Agent;
-    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
-    shacl:maxCount 1;
-    shacl:name "toegekendDoor";
-    shacl:path dc:creator
   ], [
     shacl:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
     shacl:description "Identificator vh object opgesplitst in zijn onderdelen.";
@@ -204,25 +192,29 @@
     shacl:name "gestructureerdedentificator";
     shacl:path <https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator>
   ], [
+    shacl:class dc:Agent;
+    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoor";
+    shacl:path dc:creator
+  ], [
     shacl:datatype rdfs:Literal;
     shacl:description "String gebruikt om het object uniek te identificeren. ";
     shacl:maxCount 1;
     shacl:name "identificator";
     shacl:path skos:notation
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Naam vd agent die de identificator heeft toegekend.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoorString";
+    shacl:path <http://www.w3.org/ns/adms#schemaAgency>
   ];
   shacl:targetClass <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#KostShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/currency/>;
-    shacl:class skos:Concept;
-    shacl:description "Munteenheid waarin de Kost is gedefinieerd.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "valuta";
-    shacl:path <http://data.europa.eu/m8g/currency>
-  ], [
     shacl:datatype rdf:langString;
     shacl:description "Beschrijving van de Kost.";
     shacl:maxCount 1;
@@ -236,6 +228,14 @@
     shacl:minCount 1;
     shacl:name "waarde";
     shacl:path <http://data.europa.eu/m8g/value>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/currency/>;
+    shacl:class skos:Concept;
+    shacl:description "Munteenheid waarin de Kost is gedefinieerd.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "valuta";
+    shacl:path <http://data.europa.eu/m8g/currency>
   ];
   shacl:targetClass <http://data.europa.eu/m8g/Cost> .
 
@@ -246,12 +246,12 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#OutputShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Identificator van het object.";
+    shacl:datatype rdf:langString;
+    shacl:description "Officiële naam van de Output.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "referentie";
-    shacl:path <http://www.w3.org/ns/adms#identifier>
+    shacl:name "naam";
+    shacl:path dc:title
   ], [
     shacl:datatype xsd:date;
     shacl:description "De datum waarop de output werd toegekend of het financieel voordeel werd uitebetaald. ";
@@ -260,19 +260,12 @@
     shacl:name "datum";
     shacl:path dc:date
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Officiële naam van de Output.";
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Identificator van het object.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "naam";
-    shacl:path dc:title
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Beschrijving van de Output.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
+    shacl:name "referentie";
+    shacl:path <http://www.w3.org/ns/adms#identifier>
   ], [
     shacl:class skos:Concept;
     shacl:description "Aard van de Output.";
@@ -280,25 +273,32 @@
     shacl:minCount 1;
     shacl:name "type";
     shacl:path dc:type
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Beschrijving van de Output.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ];
   shacl:targetClass <http://data.europa.eu/m8g/Output> .
 
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#ParticipatieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class skos:Concept;
-    shacl:description """	De rol die de participant speelt.""";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "rol";
-    shacl:path <http://data.europa.eu/m8g/role>
-  ], [
     shacl:datatype rdf:langString;
     shacl:description "Beschrijving van de Participatie.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "beschrijving";
     shacl:path dc:description
+  ], [
+    shacl:class skos:Concept;
+    shacl:description """	De rol die de participant speelt.""";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "rol";
+    shacl:path <http://data.europa.eu/m8g/role>
   ];
   shacl:targetClass <http://data.europa.eu/m8g/Participation> .
 
@@ -313,12 +313,6 @@
 <https://data.vlaanderen.be/shacl/dienst-transactiemodel#StatusShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:boolean;
-    shacl:description "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.";
-    shacl:maxCount 1;
-    shacl:name "actieNodig";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#actieNodig>
-  ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseFase>;
     shacl:class skos:Concept;
     shacl:description """Is het eerste veld van 2 verplichte velden (Fase+Status) die samen de 'Generieke Vlaamse status' specifiëren. De StatusVlaamsFase vormt de eerste en hogere indeling van het dossierverloop (in aanvraag, in behandeling, in beroep, in uitvoering enz). Verdere precisering binnen de Fase gebeurt dan in het veld StatusVlaamsCode.
@@ -327,12 +321,17 @@
     shacl:name "statusVlaamsFase";
     shacl:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsFase>
   ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseCode>;
-    shacl:class skos:Concept;
-    shacl:description "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.";
+    shacl:datatype xsd:string;
+    shacl:description "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.";
     shacl:maxCount 1;
-    shacl:name "statusVlaamsCode";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsCode>
+    shacl:name "actie";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#actie>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).";
+    shacl:maxCount 1;
+    shacl:name "streefdatum";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#streefdatum>
   ], [
     shacl:datatype xsd:date;
     shacl:description "Is de verplichte vermelding van de datum + tijdstip waarop de betrokken status werd geregistreerd.";
@@ -340,11 +339,11 @@
     shacl:name "statusWijzigingsdatum";
     shacl:path <https://data.vlaanderen.be/ns/transactie#statusWijzigingsdatum>
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "Deze parameter laat toe om aan te geven dat - qua procesverloop van de transactie - de bal expliciet in het kamp van de klant (= de Agent) ligt en dat er dus een actie verwacht wordt van zijn kant.";
+    shacl:datatype xsd:boolean;
+    shacl:description "Indien Actie Nodig 'Ja', dan laat dit veld toe te specifiëren welke Actie van de klant (Agent) wordt verwacht.";
     shacl:maxCount 1;
-    shacl:name "actie";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#actie>
+    shacl:name "actieNodig";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#actieNodig>
   ], [
     <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusEDRL>;
     shacl:class skos:Concept;
@@ -353,11 +352,12 @@
     shacl:name "statusEDRL";
     shacl:path <https://data.vlaanderen.be/ns/transactie#statusEDRL>
   ], [
-    shacl:datatype xsd:date;
-    shacl:description "Is de datum waarop verwacht wordt dat de volgende stap (status-wijziging) in de transactie zal of zou moeten plaatsvinden. Dit kan in bepaalde gevallen bepaald worden door een wettelijke termijn (van een fase of status).";
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/StatusVlaamseCode>;
+    shacl:class skos:Concept;
+    shacl:description "Verdere precisering van de status-fase volgens de 'Generieke Vlaamse status'.";
     shacl:maxCount 1;
-    shacl:name "streefdatum";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#streefdatum>
+    shacl:name "statusVlaamsCode";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#statusVlaamsCode>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/transactie#Status> .
 
@@ -384,11 +384,18 @@
   shacl:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
 
  [
-    shacl:class <http://data.europa.eu/m8g/Cost>;
-    shacl:description "Kostprijs verbonden aan het gebruik van de publieke dienstverlening.";
+    shacl:class <http://data.europa.eu/m8g/Evidence>;
+    shacl:description "Bewijsstuk dat moeten voorgelegd worden om de Publieke Dienstverlening te kunnen gebruiken.";
+    shacl:name "vereistAlsInput";
+    shacl:path <http://purl.org/vocab/cpsv#hasInput>
+  ] .
+
+ [
+    shacl:class skos:Concept;
+    shacl:description "Taal waarin een publieke dienstverlening wordt aangeboden.";
     shacl:maxCount 1;
-    shacl:name "kost";
-    shacl:path <http://data.europa.eu/m8g/hasCost>
+    shacl:name "taal";
+    shacl:path dc:language
   ] .
 
  [
@@ -407,39 +414,27 @@
   ] .
 
  [
-    shacl:class skos:Concept;
-    shacl:description "Taal waarin een publieke dienstverlening wordt aangeboden.";
+    shacl:class <http://data.europa.eu/m8g/Cost>;
+    shacl:description "Kostprijs verbonden aan het gebruik van de publieke dienstverlening.";
     shacl:maxCount 1;
-    shacl:name "taal";
-    shacl:path dc:language
+    shacl:name "kost";
+    shacl:path <http://data.europa.eu/m8g/hasCost>
   ] .
 
  [
-    shacl:class <http://data.europa.eu/m8g/Evidence>;
-    shacl:description "Bewijsstuk dat moeten voorgelegd worden om de Publieke Dienstverlening te kunnen gebruiken.";
-    shacl:name "vereistAlsInput";
-    shacl:path <http://purl.org/vocab/cpsv#hasInput>
+    shacl:class <http://purl.org/vocab/cpsv#PublicService>;
+    shacl:description "Linkt een bepaalde consumptie van een publieke dienstverlening (een transactie) met het product uit het dienstverleningsregister.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "isInstantieVan";
+    shacl:path <https://data.vlaanderen.be/ns/transactie#isInstantieVan>
   ] .
 
  [
-    shacl:class dc:Agent;
-    shacl:description "Agent die de Publieke Dienstverlening verstrekt.";
-    shacl:name "wordtUitgevoerdDoor";
-    shacl:path <http://data.europa.eu/m8g/serviceProvider>
-  ] .
-
- [
-    shacl:class <http://data.europa.eu/m8g/Participation>;
-    shacl:description "Participatie (van een agent) aan de publieke dienstverlening.";
-    shacl:name "heeftParticiperende";
-    shacl:path <http://data.europa.eu/m8g/hasParticipation>
-  ] .
-
- [
-    shacl:class <http://data.europa.eu/m8g/CriterionRequirement>;
-    shacl:description "Criterium waaraan de gebruiker moet voldoen om recht te hebben op een dienstverlening of om een dienstverlening te mogen gebruiken.";
-    shacl:name "heeftCriterium";
-    shacl:path <http://data.europa.eu/m8g/hasCriterion>
+    shacl:class <http://purl.org/vocab/cpsv#PublicService>;
+    shacl:description "Andere Publieke Dienstverlening waarmee de Publieke Dienstverlening gerelateerd is.";
+    shacl:name "isGerelateerdMet";
+    shacl:path dc:relation
   ] .
 
  [
@@ -457,17 +452,22 @@
   ] .
 
  [
-    shacl:class <http://purl.org/vocab/cpsv#PublicService>;
-    shacl:description "Linkt een bepaalde consumptie van een publieke dienstverlening (een transactie) met het product uit het dienstverleningsregister.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "isInstantieVan";
-    shacl:path <https://data.vlaanderen.be/ns/transactie#isInstantieVan>
+    shacl:class <http://data.europa.eu/m8g/Participation>;
+    shacl:description "Participatie (van een agent) aan de publieke dienstverlening.";
+    shacl:name "heeftParticiperende";
+    shacl:path <http://data.europa.eu/m8g/hasParticipation>
   ] .
 
  [
-    shacl:class <http://purl.org/vocab/cpsv#PublicService>;
-    shacl:description "Andere Publieke Dienstverlening waarmee de Publieke Dienstverlening gerelateerd is.";
-    shacl:name "isGerelateerdMet";
-    shacl:path dc:relation
+    shacl:class <http://data.europa.eu/m8g/CriterionRequirement>;
+    shacl:description "Criterium waaraan de gebruiker moet voldoen om recht te hebben op een dienstverlening of om een dienstverlening te mogen gebruiken.";
+    shacl:name "heeftCriterium";
+    shacl:path <http://data.europa.eu/m8g/hasCriterion>
+  ] .
+
+ [
+    shacl:class dc:Agent;
+    shacl:description "Agent die de Publieke Dienstverlening verstrekt.";
+    shacl:name "wordtUitgevoerdDoor";
+    shacl:path <http://data.europa.eu/m8g/serviceProvider>
   ] .
