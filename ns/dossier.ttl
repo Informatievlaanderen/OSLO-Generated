@@ -22,8 +22,6 @@ dbo:UnitOfWork a rdfs:Class;
 rdfs:Resource a rdfs:Class;
   rdfs:label "Resource"@nl .
 
-skos:Concept a rdfs:Class .
-
 dcat:Distribution a rdfs:Class;
   rdfs:label "Representatie"@nl .
 
@@ -103,12 +101,6 @@ prov:Entity a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
   rdfs:subClassOf prov:Collection .
 
-<https://data.vlaanderen.be/ns/dossier#Stukonderdeel> a owl:Class;
-  rdfs:label "Stukonderdeel"@nl;
-  rdfs:comment "Een apart onderdeel van een groter stuk."@nl;
-  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
-  rdfs:subClassOf prov:Entity .
-
 <https://data.vlaanderen.be/ns/dossier#activiteit> a owl:ObjectProperty;
   rdfs:label "activiteit"@nl;
   rdfs:comment "URI van de activiteit."@nl;
@@ -160,6 +152,12 @@ prov:Entity a rdfs:Class;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
   rdfs:range skos:Concept .
 
+<https://data.vlaanderen.be/ns/dossier#inhoud> a owl:DatatypeProperty;
+  rdfs:comment "Een waarde die een directe representatie is van de entiteit."@nl;
+  rdfs:domain <https://data.vlaanderen.be/ns/dossier#Stukonderdeel>;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
+  rdfs:range rdfs:Literal .
+
 <https://data.vlaanderen.be/ns/dossier#isVoorgesteldDoor> a owl:ObjectProperty;
   rdfs:label "is voorgesteld door"@nl;
   rdfs:comment "Een stuk of een onderdeel daarvan worden voorgesteld door een representatie."@nl;
@@ -185,14 +183,18 @@ prov:Entity a rdfs:Class;
 
 <https://data.vlaanderen.be/ns/dossier#vindtPlaatsTijdens> a owl:ObjectProperty;
   rdfs:label "vindt plaats tijdens"@nl;
-  rdfs:comment "Een activiteit vindt plaats tijdens een eenheid van werk."@nl;
+  rdfs:comment "Een activiteit vindt plaats tijdens een eenheid van werk."@nl,
+    "Een activiteit vindt plaats tijdens een procedurestap."@nl;
   rdfs:domain prov:Activity;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
-  rdfs:range dbo:UnitOfWork,
-    <https://data.vlaanderen.be/ns/dossier#Procedurestap> .
+  rdfs:range <https://data.vlaanderen.be/ns/dossier#Procedurestap>,
+    dbo:UnitOfWork .
 
 dc:isPartOf a rdf:Property;
   rdfs:label "is deel van"@nl .
+
+dc:language a rdf:Property;
+  rdfs:label "taal"@nl .
 
 dc:relation a rdf:Property;
   rdfs:label "heeft relatie tot"@nl .
@@ -202,6 +204,12 @@ dc:title a rdf:Property;
 
 <http://www.w3.org/ns/adms#identifier> a rdf:Property;
   rdfs:label "identificator"@nl .
+
+dcat:byteSize a rdf:Property;
+  rdfs:label "bestandsgrootte"@nl .
+
+dcat:mediaType a rdf:Property;
+  rdfs:label "bestandsformaat"@nl .
 
 prov:actedOnBehalfOf a rdf:Property;
   rdfs:label "handelt in opdracht van"@nl .
@@ -215,6 +223,9 @@ prov:hadRole a rdf:Property;
 prov:qualifiedAssociation a rdf:Property;
   rdfs:label "heeft deelnemer"@nl .
 
+prov:value a rdf:Property;
+  rdfs:label "inhoud"@nl .
+
 prov:wasAssociatedWith a rdf:Property;
   rdfs:label "was geassocieerd met"@nl .
 
@@ -223,6 +234,12 @@ prov:wasAssociatedWith a rdf:Property;
   rdfs:comment "Context van een relatie tussen dossierstukken. Deze context maakt de samenhang van dossierstukken duidelijk in het kader van één bepaalde activiteit."@nl;
   rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
   rdfs:subClassOf prov:EntityInfluence .
+
+<https://data.vlaanderen.be/ns/dossier#Stukonderdeel> a owl:Class;
+  rdfs:label "Stukonderdeel"@nl;
+  rdfs:comment "Een apart onderdeel van een groter stuk."@nl;
+  rdfs:isDefinedBy <https://data.vlaanderen.be/ns/dossier>;
+  rdfs:subClassOf prov:Entity .
 
 <https://data.vlaanderen.be/ns/dossier#isNeerslagVan> a owl:ObjectProperty;
   rdfs:label "is neerslag van"@nl;
@@ -259,11 +276,11 @@ dc:date a rdf:Property;
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Departement CJM"
+      foaf:name "Onroerend Erfgoed"
     ];
-    foaf:firstName "Roel";
-    foaf:lastName "Devriendt";
-    foaf:mbox <mailto:roel.devriendt@cjsm.vlaanderen.be>
+    foaf:firstName "Inge";
+    foaf:lastName "Roosens";
+    foaf:mbox <mailto:inge.roosens@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -285,21 +302,30 @@ dc:date a rdf:Property;
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.skryv.com/>;
-      foaf:name "Skryv"
+      foaf:homepage <https://overheid.vlaanderen.be/facilitairbedrijf>;
+      foaf:name "Het Facilitair Bedrijf"
     ];
-    foaf:firstName "Toon";
-    foaf:lastName "Timbermont";
-    foaf:mbox <mailto:toon.timbermont@skryv.com>
+    foaf:firstName "Jana";
+    foaf:lastName "Van Bouwel";
+    foaf:mbox <mailto:jana.vanbouwel@vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://www.oost-vlaanderen.be/>;
-      foaf:name "Provincie Oost-Vlaanderen"
+      foaf:homepage <https://overheid.vlaanderen.be/>;
+      foaf:name "Departement CJM"
     ];
-    foaf:firstName "Remco";
-    foaf:lastName "Bruijnje";
-    foaf:mbox <mailto:remco.bruijnje@oost-vlaanderen.be>
+    foaf:firstName "Roel";
+    foaf:lastName "Devriendt";
+    foaf:mbox <mailto:roel.devriendt@cjsm.vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.lne.be/>;
+      foaf:name "Departement Omgeving"
+    ];
+    foaf:firstName "Geert";
+    foaf:lastName "Van Haute";
+    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -313,11 +339,20 @@ dc:date a rdf:Property;
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Informatie Vlaanderen"
+      foaf:name "Departement Kanselarij en Bestuur"
     ];
-    foaf:firstName "Henk";
-    foaf:lastName "Vanderstraeten";
-    foaf:mbox <mailto:henk.vanderstraeten@bz.vlaanderen.be>
+    foaf:firstName "Alvin";
+    foaf:lastName "Demeyer";
+    foaf:mbox <mailto:alvin.demeyer@vlaanderen.be>
+  ], [
+    a foaf:Person;
+    schema:affiliation [
+      foaf:homepage <https://www.skryv.com/>;
+      foaf:name "Skryv"
+    ];
+    foaf:firstName "Toon";
+    foaf:lastName "Timbermont";
+    foaf:mbox <mailto:toon.timbermont@skryv.com>
   ], [
     a foaf:Person;
     schema:affiliation [
@@ -331,20 +366,20 @@ dc:date a rdf:Property;
     a foaf:Person;
     schema:affiliation [
       foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Departement Kanselarij en Bestuur"
+      foaf:name "Informatie Vlaanderen"
     ];
-    foaf:firstName "Alvin";
-    foaf:lastName "Demeyer";
-    foaf:mbox <mailto:alvin.demeyer@vlaanderen.be>
+    foaf:firstName "Henk";
+    foaf:lastName "Vanderstraeten";
+    foaf:mbox <mailto:henk.vanderstraeten@bz.vlaanderen.be>
   ], [
     a foaf:Person;
     schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/>;
-      foaf:name "Onroerend Erfgoed"
+      foaf:homepage <https://www.oost-vlaanderen.be/>;
+      foaf:name "Provincie Oost-Vlaanderen"
     ];
-    foaf:firstName "Inge";
-    foaf:lastName "Roosens";
-    foaf:mbox <mailto:inge.roosens@vlaanderen.be>
+    foaf:firstName "Remco";
+    foaf:lastName "Bruijnje";
+    foaf:mbox <mailto:remco.bruijnje@oost-vlaanderen.be>
   ];
   dc:issued "2019-09-01";
   dc:license "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
@@ -354,27 +389,30 @@ dc:date a rdf:Property;
     foaf:mbox <mailto:oslo@kb.vlaanderen.be>;
     foaf:name "Data Vlaanderen"
   ];
-  rdfs:seeAlso dc:title,
-    dbo:Project,
-    dbo:UnitOfWork,
-    dc:relation,
-    dcat:Distribution,
-    prov:Agent,
-    rdfs:Resource,
-    prov:wasAssociatedWith,
-    prov:Entity,
-    skos:Concept,
-    dbo:Case,
-    prov:Collection,
-    prov:hadRole,
-    <http://www.w3.org/ns/adms#identifier>,
-    dc:date,
-    prov:Activity,
-    prov:agent,
-    prov:Association,
+  rdfs:seeAlso dcat:Distribution,
     dc:isPartOf,
+    dc:language,
+    prov:Association,
     prov:actedOnBehalfOf,
-    prov:qualifiedAssociation;
+    dbo:Project,
+    prov:value,
+    prov:Activity,
+    prov:hadRole,
+    prov:Collection,
+    dbo:Case,
+    dc:title,
+    dcat:mediaType,
+    dc:date,
+    dbo:UnitOfWork,
+    prov:Agent,
+    dc:relation,
+    rdfs:Resource,
+    prov:Entity,
+    prov:qualifiedAssociation,
+    prov:wasAssociatedWith,
+    <http://www.w3.org/ns/adms#identifier>,
+    prov:agent,
+    dcat:byteSize;
   <http://www.w3.org/2001/02pd/rec54#editor> [
     a foaf:Person;
     schema:affiliation [
@@ -412,22 +450,4 @@ dc:date a rdf:Property;
     foaf:firstName "Quincy";
     foaf:lastName "Oeyen";
     foaf:mbox <mailto:quincy.oeyen@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://overheid.vlaanderen.be/facilitairbedrijf>;
-      foaf:name "Het Facilitair Bedrijf"
-    ];
-    foaf:firstName "Jana";
-    foaf:lastName "Van Bouwel";
-    foaf:mbox <mailto:jana.vanbouwel@vlaanderen.be>
-  ], [
-    a foaf:Person;
-    schema:affiliation [
-      foaf:homepage <https://www.lne.be/>;
-      foaf:name "Departement Omgeving"
-    ];
-    foaf:firstName "Geert";
-    foaf:lastName "Van Haute";
-    foaf:mbox <mailto:geert.vanhaute@lne.vlaanderen.be>
   ] .
