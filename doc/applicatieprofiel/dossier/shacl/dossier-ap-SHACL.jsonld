@@ -61,6 +61,12 @@
           "sh:path": "https://data.vlaanderen.be/ns/dossier#Dossier.bestaatUit"
         },
         {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Een identificator voor het dossier.",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Duidt aan welke veiligheidsmaatregelen (waaronder toegangsmaatregelen) genomen moeten worden voor het Dossier.",
           "sh:maxCount": "1",
@@ -156,11 +162,24 @@
           "sh:path": "http://purl.org/dc/terms/relation"
         },
         {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Een identificator voor het stuk.",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
           "sh:description": "Duidt aan welke veiligheidsmaatregelen (waaronder toegangsmaatregelen) genomen moeten worden voor het Stuk.",
           "sh:maxCount": "1",
           "sh:name": "informatieclassificatie",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#informatieclassificatie"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Een waarde die een directe representatie is van de entiteit.",
+          "sh:maxCount": "1",
+          "sh:name": "inhoud",
+          "sh:path": "http://www.w3.org/ns/prov#value"
         },
         {
           "sh:class": "http://www.w3.org/ns/dcat#Distribution",
@@ -176,6 +195,13 @@
           "sh:minCount": "1",
           "sh:name": "naam",
           "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De taal van het stuk.",
+          "sh:maxCount": "1",
+          "sh:name": "taal",
+          "sh:path": "http://purl.org/dc/terms/language"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/dossier#Stuk"
@@ -193,11 +219,16 @@
         },
         {
           "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
-          "sh:description": "De creatiedatum van het stukonderdeel.",
-          "sh:maxCount": "1",
+          "sh:description": "De datum van het stukonderdeel.",
           "sh:minCount": "1",
           "sh:name": "datum",
           "sh:path": "http://purl.org/dc/terms/date"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Een identificator voor het stukonderdeel.",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
         },
         {
           "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
@@ -207,15 +238,22 @@
           "sh:path": "https://data.vlaanderen.be/ns/dossier#informatieclassificatie"
         },
         {
-          "sh:class": "https://data.vlaanderen.be/ns/dossier#Stukonderdeel",
-          "sh:description": "Een stukonderdeel kan deel zijn van een ander stukonderdeel.",
+          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+          "sh:description": "Een waarde die een directe representatie is van de entiteit.",
           "sh:maxCount": "1",
-          "sh:name": "isDeelVan",
-          "sh:path": "http://purl.org/dc/terms/isPartOf"
+          "sh:name": "inhoud",
+          "sh:path": "https://data.vlaanderen.be/ns/dossier#inhoud"
         },
         {
           "sh:class": "https://data.vlaanderen.be/ns/dossier#Stuk",
           "sh:description": "Een stukonderdeel maakt deel uit van een stuk.",
+          "sh:name": "isDeelVan",
+          "sh:path": "http://purl.org/dc/terms/isPartOf"
+        },
+        {
+          "sh:class": "https://data.vlaanderen.be/ns/dossier#Stukonderdeel",
+          "sh:description": "Een stukonderdeel kan deel zijn van een ander stukonderdeel.",
+          "sh:maxCount": "1",
           "sh:name": "isDeelVan",
           "sh:path": "http://purl.org/dc/terms/isPartOf"
         },
@@ -233,33 +271,16 @@
           "sh:minCount": "1",
           "sh:name": "naam",
           "sh:path": "http://purl.org/dc/terms/title"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "De taal van het stukonderdeel.",
+          "sh:maxCount": "1",
+          "sh:name": "taal",
+          "sh:path": "http://purl.org/dc/terms/language"
         }
       ],
       "sh:targetClass": "https://data.vlaanderen.be/ns/dossier#Stukonderdeel"
-    },
-    {
-      "@id": "https://data.vlaanderen.be/shacl/dossier-ap#BesluitShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De beknopte beschrijving van de beslissing.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "beschrijving",
-          "sh:path": "http://data.europa.eu/eli/ontology#description"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
-          "sh:description": "De beknopte titel of officiële korte naam van een decreet, wet, besluit... Deze wordt officieel vastgelegd. Deze benaming wordt in de praktijk gebruikt om naar de rechtsgrond te verwijzen.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "citeeropschrift",
-          "sh:path": "http://data.europa.eu/eli/ontology#title_short"
-        }
-      ],
-      "sh:targetClass": "http://data.vlaanderen.be/ns/besluit#Besluit"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/dossier-ap#ZaakShape",
@@ -277,6 +298,14 @@
           "sh:description": "Een zaak doorloopt procedurestappen.",
           "sh:name": "doorloopt",
           "sh:path": "https://data.vlaanderen.be/ns/dossier#doorloopt"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Een identificator voor de zaak.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
         },
         {
           "sh:class": "http://dbpedia.org/ontology/Project",
@@ -326,120 +355,13 @@
       "sh:targetClass": "http://dbpedia.org/ontology/UnitOfWork"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/dossier-ap#PubliekeDienstverleningShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Andere naam waaronder de dienstverlening bekend is.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "alternatieveNaam",
-          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Beschrijving van de Publieke Dienstverlening.\r\n",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "beschrijving",
-          "sh:path": "http://purl.org/dc/terms/description"
-        },
-        {
-          "sh:class": "http://schema.org/ContactPoint",
-          "sh:description": "Informatie waarmee de Publieke Dienstverlening kan worden gecontacteerd.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "contactinfo",
-          "sh:path": "http://data.europa.eu/m8g/hasContactPoint"
-        },
-        {
-          "sh:class": "http://data.europa.eu/m8g/Cost",
-          "sh:description": "Kostprijs verbonden aan het gebruik van de Publieke dienstverlening.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "kost",
-          "sh:path": "http://data.europa.eu/m8g/hasCost"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Officiële naam van de Publieke Dienstverlening.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "naam",
-          "sh:path": "http://purl.org/dc/terms/title"
-        },
-        {
-          "qb:codeList": "http://publications.europa.eu/mdr/authority/atu/index.html",
-          "sh:class": "http://purl.org/dc/terms/Location",
-          "sh:description": "Gebied waarin de Publieke Dienstverlening beschikbaar is.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "ruimtelijkeDekking",
-          "sh:path": "http://purl.org/dc/terms/spatial"
-        },
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Sector of bedrijvigheid waarop de Publieke Dienstverlening betrekking heeft of waarvoor deze is bedoeld.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "sector",
-          "sh:path": "http://data.europa.eu/m8g/sector"
-        },
-        {
-          "qb:codeList": " http://purl.org/adms/status/",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Geeft aan of een Publieke Dienstverlening actief, inactief, in ontwikkeling etc is.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "status",
-          "sh:path": "http://www.w3.org/ns/adms#status"
-        },
-        {
-          "qb:codeList": "http://publications.europa.eu/mdr/authority/language/",
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Taal waarin een Publieke Dienstverlening wordt aangeboden.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "taal",
-          "sh:path": "http://purl.org/dc/terms/language"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-          "sh:description": "Sleutelwoord, term, begrip dat de Publieke Dienst beschrijft.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "trefwoord",
-          "sh:path": "http://www.w3.org/ns/dcat#keyword"
-        },
-        {
-          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
-          "sh:description": "Soort Publieke Dienstverlening.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "type",
-          "sh:path": "http://purl.org/dc/terms/type"
-        },
-        {
-          "sh:datatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
-          "sh:description": "Geschatte tijd nodig om de Publieke Dienstverlening af te leveren.",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "verwerkingstijd",
-          "sh:path": "http://data.europa.eu/m8g/processingTime"
-        }
-      ],
-      "sh:targetClass": "http://purl.org/vocab/cpsv#PublicService"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/dossier-ap#ResourceShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
           "sh:class": "http://www.w3.org/ns/adms#Identifier",
-          "sh:description": "De identificator van de Resource.",
+          "sh:description": "Een identificator voor de resource.",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "identificator",
@@ -449,17 +371,46 @@
       "sh:targetClass": "http://www.w3.org/2000/01/rdf-schema#Resource"
     },
     {
-      "@id": "https://data.vlaanderen.be/shacl/dossier-ap#InformatieclassificatieShape",
-      "@type": "sh:NodeShape",
-      "sh:closed": false,
-      "sh:property": [],
-      "sh:targetClass": "http://www.w3.org/2004/02/skos/core#Concept"
-    },
-    {
       "@id": "https://data.vlaanderen.be/shacl/dossier-ap#RepresentatieShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
-      "sh:property": [],
+      "sh:property": [
+        {
+          "sh:class": "http://purl.org/dc/terms/MediaType",
+          "sh:description": "Het mediatype van de representatie.",
+          "sh:maxCount": "1",
+          "sh:name": "bestandsformaat",
+          "sh:path": "http://www.w3.org/ns/dcat#mediaType"
+        },
+        {
+          "sh:description": "De bestandsgrootte (in bytes).",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "bestandsgrootte",
+          "sh:path": "http://www.w3.org/ns/dcat#byteSize"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#date",
+          "sh:description": "De datum van de representatie.",
+          "sh:minCount": "1",
+          "sh:name": "datum",
+          "sh:path": "http://purl.org/dc/terms/date"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Een identificator voor de representatie.",
+          "sh:name": "identificator",
+          "sh:path": "http://www.w3.org/ns/adms#identifier"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:description": "Een naam voor de representatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "naam",
+          "sh:path": "http://purl.org/dc/terms/title"
+        }
+      ],
       "sh:targetClass": "http://www.w3.org/ns/dcat#Distribution"
     },
     {
