@@ -6,32 +6,32 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/perceel> <https://data.vlaanderen.be/shacl/perceelshapes> <https://data.vlaanderen.be/shacl/perceel#VerantwoordelijkheidtypeShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RestrictieShape>,
-    <https://data.vlaanderen.be/shacl/perceel#KadastraalPlanperceelShape>,
-    <https://data.vlaanderen.be/shacl/perceel#ZakelijkRechtShape>,
+<https://data.vlaanderen.be/shacl/perceel> <https://data.vlaanderen.be/shacl/perceelshapes> <https://data.vlaanderen.be/shacl/perceel#DimensieShape>,
+    <https://data.vlaanderen.be/shacl/perceel#VerantwoordelijkheidtypeShape>,
     <https://data.vlaanderen.be/shacl/perceel#PeriodeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#GestructureerdeIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/perceel#KadastraalPlanperceelShape>,
+    <https://data.vlaanderen.be/shacl/perceel#GeometrieMethodeWaardeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#GeometrieShape>,
     <https://data.vlaanderen.be/shacl/perceel#RechtShape>,
+    <https://data.vlaanderen.be/shacl/perceel#KadastraalPatrimoniumperceelShape>,
+    <https://data.vlaanderen.be/shacl/perceel#KwantitatieveWaardeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RechtstypeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidOppervlakteShape>,
+    <https://data.vlaanderen.be/shacl/perceel#ZakelijkRechttypeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidGeometrieShape>,
     <https://data.vlaanderen.be/shacl/perceel#GetypeerdeStringShape>,
     <https://data.vlaanderen.be/shacl/perceel#GebouwShape>,
-    <https://data.vlaanderen.be/shacl/perceel#GeometrieShape>,
-    <https://data.vlaanderen.be/shacl/perceel#KadastraalPatrimoniumperceelShape>,
-    <https://data.vlaanderen.be/shacl/perceel#DimensieShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidGeometrieShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidOppervlakteShape>,
-    <https://data.vlaanderen.be/shacl/perceel#GeometrieMethodeWaardeShape>,
     <https://data.vlaanderen.be/shacl/perceel#VerantwoordelijkheidShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidShape>,
-    <https://data.vlaanderen.be/shacl/perceel#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/perceel#ZakelijkRechttypeShape>,
-    <https://data.vlaanderen.be/shacl/perceel#KwantitatieveWaardeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RestrictieShape>,
     <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidtypeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#RestrictietypeShape>,
+    <https://data.vlaanderen.be/shacl/perceel#IdentificatorShape>,
     <https://data.vlaanderen.be/shacl/perceel#AgentShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RechtstypeShape>,
-    <https://data.vlaanderen.be/shacl/perceel#GestructureerdeIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/perceel#ZakelijkRechtShape>,
     <https://data.vlaanderen.be/shacl/perceel#LandgebruikShape>,
-    <https://data.vlaanderen.be/shacl/perceel#OppervlaktetypeShape>,
-    <https://data.vlaanderen.be/shacl/perceel#RestrictietypeShape> .
+    <https://data.vlaanderen.be/shacl/perceel#OppervlaktetypeShape> .
 
 <https://data.vlaanderen.be/shacl/perceel#AgentShape> a shacl:NodeShape;
   shacl:closed false;
@@ -59,24 +59,31 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype rdfs:Literal;
-    shacl:description "Geometrie uitgedrukt in gml-formaat.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "gml";
-    shacl:path <http://www.opengis.net/ont/geosparql#asGML>
-  ], [
-    shacl:datatype rdfs:Literal;
     shacl:description "Geometrie uitgedrukt in wkt-formaat.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "wkt";
     shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Geometrie uitgedrukt in gml-formaat.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "gml";
+    shacl:path <http://www.opengis.net/ont/geosparql#asGML>
   ];
   shacl:targetClass <http://www.w3.org/ns/locn#Geometry> .
 
 <https://data.vlaanderen.be/shacl/perceel#GestructureerdeIdentificatorShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "String gebruikt om het object uniek te identificeren binnen de naamruimte.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "lokaleIdentificator";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#lokaleIdentificator>
+  ], [
     shacl:datatype xsd:string;
     shacl:description "String die toegvoegd wordt aan de lokaleidentificator om deze globaal uniek te maken.";
     shacl:maxCount 1;
@@ -89,13 +96,6 @@
     shacl:maxCount 1;
     shacl:name "versieIdentificator";
     shacl:path <https://data.vlaanderen.be/ns/generiek#versieIdentificator>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "String gebruikt om het object uniek te identificeren binnen de naamruimte.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "lokaleIdentificator";
-    shacl:path <https://data.vlaanderen.be/ns/generiek#lokaleIdentificator>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> .
 
@@ -106,11 +106,11 @@
 <https://data.vlaanderen.be/shacl/perceel#IdentificatorShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
-    shacl:description "Identificator vh object opgesplitst in zijn onderdelen.";
+    shacl:class dc:Agent;
+    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
     shacl:maxCount 1;
-    shacl:name "gestructureerdedentificator";
-    shacl:path <https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator>
+    shacl:name "toegekendDoor";
+    shacl:path dc:creator
   ], [
     shacl:datatype rdfs:Literal;
     shacl:description "String gebruikt om het object uniek te identificeren. ";
@@ -124,11 +124,11 @@
     shacl:name "toegekendDoorString";
     shacl:path <http://www.w3.org/ns/adms#schemaAgency>
   ], [
-    shacl:class dc:Agent;
-    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
+    shacl:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
+    shacl:description "Identificator vh object opgesplitst in zijn onderdelen.";
     shacl:maxCount 1;
-    shacl:name "toegekendDoor";
-    shacl:path dc:creator
+    shacl:name "gestructureerdedentificator";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#gestructureerdedentificator>
   ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Tijdstip waarop de identificator werd uitgegeven.";
@@ -141,12 +141,12 @@
 <https://data.vlaanderen.be/shacl/perceel#KadastraalPatrimoniumperceelShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "De identificator van een kadastraal patrimoniumperceel.";
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum van de laatste bijwerking.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "identificator";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#identificator>
+    shacl:name "datumbijwerking";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#datumbijwerking>
   ], [
     shacl:class <http://data.vlaanderen.be/ns/perceel#KadastraalPlanperceel>;
     shacl:description "Duidt het kadastraal planperceel aan waaraan het patrimoniumperceel gekoppeld kan worden.";
@@ -155,12 +155,12 @@
     shacl:name "IsGerelateerdAan";
     shacl:path dc:relation
   ], [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Datum van de laatste bijwerking.";
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "De identificator van een kadastraal patrimoniumperceel.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "datumbijwerking";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#datumbijwerking>
+    shacl:name "identificator";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#identificator>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#KadastraalPatrimoniumperceel> .
 
@@ -185,18 +185,18 @@
     shacl:name "standaardEenheid";
     shacl:path schemas:unitCode
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "De eenheid waarin de waarde is uitgedrukt.";
-    shacl:maxCount 1;
-    shacl:name "eenheid";
-    shacl:path schemas:unitText
-  ], [
     shacl:class schemas:Number;
     shacl:description "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "waarde";
     shacl:path schemas:value
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "De eenheid waarin de waarde is uitgedrukt.";
+    shacl:maxCount 1;
+    shacl:name "eenheid";
+    shacl:path schemas:unitText
   ];
   shacl:targetClass schemas:QuantitativeValue .
 
@@ -212,49 +212,49 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype xsd:dateTime;
-    shacl:description """Vervaldatum van een resource.
-""";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "einde";
-    shacl:path <http://data.europa.eu/m8g/endTime>
-  ], [
-    shacl:datatype xsd:dateTime;
     shacl:description """Startpunt vanaf wanneer een resource van toepassing is.
 """;
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "begin";
     shacl:path <http://data.europa.eu/m8g/startTime>
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description """Vervaldatum van een resource.
+""";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "einde";
+    shacl:path <http://data.europa.eu/m8g/endTime>
   ];
   shacl:targetClass <http://data.europa.eu/m8g/PeriodOfTime> .
 
 <https://data.vlaanderen.be/shacl/perceel#RechtShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
-    shacl:description "De aard van het recht dat een agent heeft ten opzichte van een ruimtelijke eenheid.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "rechtstype";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#Recht.type>
-  ], [
-    shacl:description "Procentuele aanduiding van het recht.";
-    shacl:maxCount 1;
-    shacl:name "aandeel";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#aandeel>
-  ], [
     shacl:datatype xsd:string;
     shacl:description "Een beschrijving van het recht.";
     shacl:maxCount 1;
     shacl:name "omschrijving";
     shacl:path dc:description
   ], [
+    shacl:description "Procentuele aanduiding van het recht.";
+    shacl:maxCount 1;
+    shacl:name "aandeel";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#aandeel>
+  ], [
     shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
     shacl:description "Tijdsinterval waarbinnen het recht van toepassing is.";
     shacl:maxCount 1;
     shacl:name "geldigheidsperiode";
     shacl:path <http://data.vlaanderen.be/ns/perceel#geldigheidsperiode>
+  ], [
+    shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
+    shacl:description "De aard van het recht dat een agent heeft ten opzichte van een ruimtelijke eenheid.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "rechtstype";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#Recht.type>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#Recht> .
 
@@ -265,6 +265,12 @@
 <https://data.vlaanderen.be/shacl/perceel#RestrictieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "Een beschrijving van de restrictie.";
+    shacl:maxCount 1;
+    shacl:name "omschrijving";
+    shacl:path dc:description
+  ], [
     shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
     shacl:description "De aard van de restrictie die een agent heeft ten opzichte van een ruimtelijke eenheid.";
     shacl:maxCount 1;
@@ -282,12 +288,6 @@
     shacl:maxCount 1;
     shacl:name "geldigheidperiode";
     shacl:path <http://data.vlaanderen.be/ns/perceel#geldigheidperiode>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Een beschrijving van de restrictie.";
-    shacl:maxCount 1;
-    shacl:name "omschrijving";
-    shacl:path dc:description
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#Restrictie> .
 
@@ -323,12 +323,12 @@
 <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidOppervlakteShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class schemas:QuantitativeValue;
-    shacl:description "Afmeting van een twee-dimensionaal gebied.";
+    shacl:datatype xsd:boolean;
+    shacl:description "Geeft aan of de oppervlakte al dan niet officieel is.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "oppervlakte";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#oppervlakte>
+    shacl:name "officiëleOppervlakte";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#officiëleOppervlakte>
   ], [
     shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
     shacl:description "De methode waarop de oppervlakte bepaald werd;";
@@ -336,29 +336,34 @@
     shacl:name "oppervlaktetype";
     shacl:path <http://data.vlaanderen.be/ns/perceel#oppervlaktetype>
   ], [
-    shacl:datatype xsd:boolean;
-    shacl:description "Geeft aan of de oppervlakte al dan niet officieel is.";
+    shacl:class schemas:QuantitativeValue;
+    shacl:description "Afmeting van een twee-dimensionaal gebied.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "officiëleOppervlakte";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#officiëleOppervlakte>
+    shacl:name "oppervlakte";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#oppervlakte>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidOppervlakte> .
 
 <https://data.vlaanderen.be/shacl/perceel#RuimtelijkeEenheidShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidOppervlakte>;
+    shacl:description "Oppervlakte van de ruimtelijke eenheid en metadata over de manier waarop deze bepaald werd.";
+    shacl:name "oppervlakte";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#oppervlakte>
+  ], [
     shacl:datatype xsd:integer;
     shacl:description "Het niveau waarop het object zich bevindt, relatief ten opzichte van andere objecten.";
     shacl:maxCount 1;
     shacl:name "niveau";
     shacl:path <http://data.vlaanderen.be/ns/perceel#niveau>
   ], [
-    shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
-    shacl:description "De dimensie van de ruimtelijke eenheid.";
-    shacl:maxCount 1;
-    shacl:name "dimensie";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#dimensie>
+    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidGeometrie>;
+    shacl:description "Geometrie van de ruimtelijke eenheid en metadata over hoe deze werd bepaald.";
+    shacl:minCount 1;
+    shacl:name "geometrie";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#geometrie>
   ], [
     <http://purl.org/linked-data/cube#codeList> <http://inspire.ec.europa.eu/codelist/HILUCSValue/>;
     shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
@@ -375,11 +380,6 @@
     shacl:name "identificator";
     shacl:path <http://data.vlaanderen.be/ns/perceel#identificator>
   ], [
-    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid>;
-    shacl:description "Andere ruimtelijke eenheid waarmee deze ruimtelijke eenheid kan worden gekoppeld.";
-    shacl:name "IsGerelateerdAan";
-    shacl:path dc:relation
-  ], [
     shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
     shacl:description "De aard van een ruimtelijke eenheid.";
     shacl:maxCount 1;
@@ -387,22 +387,22 @@
     shacl:name "ruimtelijkeeenheidtype";
     shacl:path <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid.type>
   ], [
+    shacl:class <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>;
+    shacl:description "De dimensie van de ruimtelijke eenheid.";
+    shacl:maxCount 1;
+    shacl:name "dimensie";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#dimensie>
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid>;
+    shacl:description "Andere ruimtelijke eenheid waarmee deze ruimtelijke eenheid kan worden gekoppeld.";
+    shacl:name "IsGerelateerdAan";
+    shacl:path dc:relation
+  ], [
     shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
     shacl:description "Tijdsinterval waarbinnen de ruimtelijke eenheid van toepassing is.";
     shacl:maxCount 1;
     shacl:name "geldigheidsperiode";
     shacl:path <http://data.vlaanderen.be/ns/perceel#geldigheidsperiode>
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidGeometrie>;
-    shacl:description "Geometrie van de ruimtelijke eenheid en metadata over hoe deze werd bepaald.";
-    shacl:minCount 1;
-    shacl:name "geometrie";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#geometrie>
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheidOppervlakte>;
-    shacl:description "Oppervlakte van de ruimtelijke eenheid en metadata over de manier waarop deze bepaald werd.";
-    shacl:name "oppervlakte";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#oppervlakte>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#RuimtelijkeEenheid> .
 
@@ -413,11 +413,11 @@
 <https://data.vlaanderen.be/shacl/perceel#VerantwoordelijkheidShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:string;
-    shacl:description "Een beschrijving van de verantwoordelijkheid.";
+    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    shacl:description "Tijdsinterval waarbinnen de verantwoordelijkheid van toepassing is.";
     shacl:maxCount 1;
-    shacl:name "omschrijving";
-    shacl:path dc:description
+    shacl:name "geldigheidsperiode";
+    shacl:path <http://data.vlaanderen.be/ns/perceel#geldigheidsperiode>
   ], [
     shacl:description "Procentuele aanduiding van de verantwoordelijkheid";
     shacl:maxCount 1;
@@ -431,11 +431,11 @@
     shacl:name "verantwoordelijkheidtype";
     shacl:path <http://data.vlaanderen.be/ns/perceel#Verantwoordelijkheid.type>
   ], [
-    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
-    shacl:description "Tijdsinterval waarbinnen de verantwoordelijkheid van toepassing is.";
+    shacl:datatype xsd:string;
+    shacl:description "Een beschrijving van de verantwoordelijkheid.";
     shacl:maxCount 1;
-    shacl:name "geldigheidsperiode";
-    shacl:path <http://data.vlaanderen.be/ns/perceel#geldigheidsperiode>
+    shacl:name "omschrijving";
+    shacl:path dc:description
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/perceel#Verantwoordelijkheid> .
 
