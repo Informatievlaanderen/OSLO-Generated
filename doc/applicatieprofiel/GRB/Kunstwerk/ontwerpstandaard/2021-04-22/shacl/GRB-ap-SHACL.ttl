@@ -1,0 +1,262 @@
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap> <https://data.vlaanderen.be/shacl/GRB-apshapes> <https://data.vlaanderen.be/shacl/GRB-ap#KunstwerkShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#GestructureerdeIdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#GetypeerdeStringShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#ElementShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#PolygoonShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#FysiekObjectShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#VormTypeShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#GeometrieShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#InventarisatieopdrachtTypeShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#IdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#CreatieShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#PuntShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#InfrastructuurelementShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#KunstwerkTypeShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#LijnStringShape>,
+    <https://data.vlaanderen.be/shacl/GRB-ap#OSLOGeneriek::VersieShape> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#CreatieShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Tijdstip waarop de creatie vd entiteit plaatsvond.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "tijdstip";
+    shacl:path xsd:dateTime
+  ];
+  shacl:targetClass prov:Generation .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#ElementShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein#Element> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#FysiekObjectShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:class <http://www.w3.org/ns/locn#Geometry>;
+    shacl:description "De geometrie overeenkomstig met een bepaald object.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "geometrie";
+    shacl:path <http://www.w3.org/ns/locn#geometry>
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum waarop de huidige versie van het beheerobject uit gebruik wordt genomen.";
+    shacl:maxCount 1;
+    shacl:name "einddatum";
+    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#einddatum>
+  ], [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "identificator";
+    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#identificator>
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum waarop de huidige versie van het gebied of object in gebruik wordt genomen.";
+    shacl:maxCount 1;
+    shacl:name "begindatum";
+    shacl:path <https://data.vlaanderen.be/ns/openbaardomein#begindatum>
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/generiek#Versie>;
+    shacl:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.";
+    shacl:name "isTijdspecialisatieVan";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan>
+  ];
+  shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#GeometrieShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Geometrie uitgedrukt in wkt-formaat.";
+    shacl:maxCount 1;
+    shacl:name "wkt";
+    shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Geometrie uitgedrukt in gml-formaat.";
+    shacl:maxCount 1;
+    shacl:name "gml";
+    shacl:path <http://www.opengis.net/ont/geosparql#asGML>
+  ];
+  shacl:targetClass <http://www.w3.org/ns/locn#Geometry> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#GestructureerdeIdentificatorShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "String die toegvoegd wordt aan de lokaleidentificator om deze globaal uniek te maken.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "naamruimte";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#naamruimte>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Identificator van de specifieke versie van een object.";
+    shacl:maxCount 1;
+    shacl:name "versieIdentificator";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#versieIdentificator>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "String gebruikt om het object uniek te identificeren binnen de naamruimte.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "lokaleIdentificator";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#lokaleIdentificator>
+  ];
+  shacl:targetClass <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#GetypeerdeStringShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass rdfs:Literal .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#IdentificatorShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "Naam vd agent die de identificator heeft toegekend.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoorString";
+    shacl:path <http://www.w3.org/ns/adms#schemaAgency>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "String gebruikt om het object uniek te identificeren. ";
+    shacl:maxCount 1;
+    shacl:name "identificator";
+    shacl:path skos:notation
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/generiek#GestructureerdeIdentificator>;
+    shacl:description "Identificator vh object opgesplitst in zijn onderdelen.";
+    shacl:maxCount 1;
+    shacl:name "gestructureerdeIdentificator";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#gestructureerdeIdentificator>
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "Link naar de agent die de identificator heeft uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoor";
+    shacl:path dc:creator
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Tijdstip waarop de identificator werd uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendOp";
+    shacl:path dc:issued
+  ];
+  shacl:targetClass <http://www.w3.org/ns/adms#Identifier> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#InfrastructuurelementShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass <https://data.vlaanderen.be/ns/openbaardomein/infrastructuur#Infrastructuurelement> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#InventarisatieopdrachtTypeShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#KunstwerkShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:class skos:Concept;
+    shacl:description "Type van het kunstwerk.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "Kunstwerktype";
+    shacl:path <http://fixme.com#Kunstwerk.type>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Beknopte omschrijving van de vorm van het kunstwerk.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "vormLabel";
+    shacl:path xsd:string
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "type inventarisatieopdracht waardoor het object of een versie van het object werd geïnitialiseerd of geüpdatet in de GRB-beheerdatabank.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "beginInventarisatieopdracht";
+    shacl:path <http://fixme.com#BeginInventarisatieopdracht.type>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Beknopte omschrijving van de begin inventarisatieopdracht.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "labelInventarisatieopdracht";
+    shacl:path xsd:string
+  ], [
+    shacl:datatype xsd:integer;
+    shacl:description "Lengte in meter van de geometrie van de omtreklijn.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "lengte omtreklijn";
+    shacl:path xsd:integer
+  ], [
+    shacl:class skos:Concept;
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "vormType";
+    shacl:path <http://fixme.com#vormType>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description """Beknopte omschrijving van het type kunstwerk.
+""";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "labelTypeKunstwerk";
+    shacl:path xsd:string
+  ], [
+    shacl:datatype xsd:integer;
+    shacl:description "Oppervlakte in m2 van de veelhoek.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "oppervlakte veelhoek";
+    shacl:path xsd:integer
+  ];
+  shacl:targetClass <http://fixme.com#Kunstwerk> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#KunstwerkTypeShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#LijnStringShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass <http://www.opengis.net/ont/sf#LineString> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#OSLOGeneriek::VersieShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:property [
+    shacl:class prov:Generation;
+    shacl:description "Beschrijving vh ontstaan vd versie.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "creatie";
+    shacl:path prov:qualifiedGeneration
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/openbaardomein#FysiekObject>;
+    shacl:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.";
+    shacl:name "isTijdspecialisatieVan";
+    shacl:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan>
+  ];
+  shacl:targetClass <https://data.vlaanderen.be/ns/generiek#Versie> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#PolygoonShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass <http://www.opengis.net/ont/sf#Polygon> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#PuntShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass <http://www.opengis.net/ont/sf#Point> .
+
+<https://data.vlaanderen.be/shacl/GRB-ap#VormTypeShape> a shacl:NodeShape;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
