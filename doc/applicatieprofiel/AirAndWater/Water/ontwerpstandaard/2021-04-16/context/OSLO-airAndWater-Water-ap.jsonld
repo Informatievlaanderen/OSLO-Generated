@@ -1,5 +1,13 @@
 {
   "@context": {
+    ".observation(source)": {
+      "@id": "http://fixme.com#ObservationContext.observation.source",
+      "@type": "@id"
+    },
+    ".observation(target)": {
+      "@id": "http://fixme.com#ObservationContext.observation.target",
+      "@type": "@id"
+    },
     ".samplingFeature(source)": {
       "@id": "http://fixme.com#SamplingFeaturecomplex.samplingFeature.source",
       "@type": "@id"
@@ -38,36 +46,19 @@
       "@type": "@id"
     },
     "ChemicalAgentType": "http://fixme.com#ChemicalAgentType",
+    "DqElement": "http://def.isotc211.org/iso19115/2006/DataQualityInformation#DQ_Element",
     "Feature": "https://def.isotc211.org/iso19156/2011/GeneralFeatureInstance#GFI_Feature",
-    "Feature.propertyValueProvider": {
-      "@container": "@set",
-      "@id": "TODO",
-      "@type": "@id"
-    },
-    "Geometry": "http://fixme.com#Geometry",
-    "Geometry.gml": {
-      "@id": "http://www.opengis.net/ont/geosparql#asGML",
-      "@type": ""
-    },
-    "Geometry.wkt": {
-      "@id": "http://www.opengis.net/ont/geosparql#asWKT",
-      "@type": ""
-    },
-    "Identifier": "http://fixme.com#Identifier",
     "Maat": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure",
     "Maat.maat": {
       "@id": "http://def.isotc211.org/iso19103/2005/UnitsOfMeasure#Measure.value",
       "@type": "@id"
     },
+    "Measurement": "https://def.isotc211.org/iso19156/2011/Observation#Measurement",
     "Metadata": "http://def.isotc211.org/iso19115/2006/MetadataEntitySetInformation#MD_Metadata",
+    "NamedValue": "https://def.isotc211.org/iso19156/2011/Observation#NamedValue",
     "Observation": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation",
-    "Observation.associatedObservation": {
-      "@container": "@set",
-      "@id": "http://fixme.com#associatedObservation",
-      "@type": "@id"
-    },
     "Observation.featureOfInterest": {
-      "@id": "http://fixme.com#featureOfInterest",
+      "@id": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.featureOfInterest",
       "@type": "@id"
     },
     "Observation.hasSimpleResult": {
@@ -88,7 +79,7 @@
       "@type": "@id"
     },
     "Observation.observedProperty": {
-      "@id": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType",
+      "@id": "http://www.w3.org/ns/sosa/observedProperty",
       "@type": "@id"
     },
     "Observation.parameter": {
@@ -98,16 +89,21 @@
     },
     "Observation.phenomenonTime": {
       "@id": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.phenomenonTime",
-      "@type": ""
+      "@type": "@id"
+    },
+    "Observation.relatedObservation": {
+      "@container": "@set",
+      "@id": "http://def.isotc211.org/iso19156/2011/Observation#ObservationContext.relatedObservation",
+      "@type": "@id"
     },
     "Observation.result": {
-      "@id": "TODO",
+      "@id": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.result",
       "@type": "@id"
     },
     "Observation.resultQuality": {
       "@container": "@set",
       "@id": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.resultQuality",
-      "@type": ""
+      "@type": "@id"
     },
     "Observation.resultTime": {
       "@id": "http://def.isotc211.org/iso19156/2011/Observation#OM_Observation.resultTime",
@@ -118,91 +114,29 @@
       "@id": "http://www.w3.org/ns/sosa/usedProcedure",
       "@type": "@id"
     },
-    "Platform": "https://www.w3.org/TR/vocab-ssn/#SOSAPlatform",
-    "Platform.hosts": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/sosa/hosts",
-      "@type": "@id"
-    },
+    "ObservationCollection": "https://www.w3.org/TR/vocab-ssn-ext/#sosa:ObservationCollection",
     "Procedure": "https://www.w3.org/TR/vocab-ssn/#SOSAProcedure",
-    "Procedure.implements": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/ssn/implements",
-      "@type": "@id"
-    },
     "PropertyType": "http://def.isotc211.org/iso19109/2005/GeneralFeatureModel#GF_PropertyType",
-    "PropertyType.isObservedBy": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/sosa/isObservedBy",
-      "@type": "@id"
-    },
     "QuantitativeValue": "http://fixme.com#QuantitativeValue",
     "SamplingFeature": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
-    "SamplingFeature.lineage": {
-      "@id": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.lineage",
-      "@type": "@id"
-    },
-    "SamplingFeature.parameter": {
-      "@container": "@set",
-      "@id": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.parameter",
-      "@type": "@id"
-    },
     "SamplingFeature.relatedSamplingFeature": {
       "@container": "@set",
-      "@id": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature",
+      "@id": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SamplingFeatureComplex.relatedSamplingFeature",
+      "@type": "@id"
+    },
+    "SamplingFeature.sampledFeature": {
+      "@container": "@set",
+      "@id": "http://def.isotc211.org/iso19156/2011/SamplingFeature#SF_SamplingFeature.sampledFeature",
       "@type": "@id"
     },
     "ScopedName": "http://def.isotc211.org/iso19103/2005/Names#ScopedName",
     "Sensor": "https://www.w3.org/TR/vocab-ssn/#SOSASensor",
-    "Sensor.isHostedBy": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/sosa/isHostedBy",
-      "@type": "@id"
-    },
     "Sensor.madeObservation": {
       "@container": "@set",
       "@id": "http://www.w3.org/ns/sosa/madeObservation",
       "@type": "@id"
     },
-    "Sensor.observes": {
-      "@container": "@set",
-      "@id": "http://www.w3.org/ns/sosa/observes",
-      "@type": "@id"
-    },
-    "SpatialSamplingFeature": "http://def.isotc211.org/iso19156/2011/SpatialSamplingFeature#SF_SpatialSamplingFeature",
-    "SpatialSamplingFeature.address": {
-      "@id": "http://fixme.com#address",
-      "@type": "@id"
-    },
-    "SpatialSamplingFeature.areaServed": {
-      "@id": "http://fixme.com#areaServed",
-      "@type": "@id"
-    },
-    "SpatialSamplingFeature.refPointOfInterest": {
-      "@id": "http://fixme.com#refPointOfInterest",
-      "@type": ""
-    },
-    "SpatialSamplingFeature.shape": {
-      "@id": "http://fixme.com#shape",
-      "@type": "@id"
-    },
-    "Specimen": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen",
-    "Specimen.materialClass": {
-      "@id": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen.materialClass",
-      "@type": "@id"
-    },
-    "Specimen.samplingLocation": {
-      "@id": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen.samplingLocation",
-      "@type": "@id"
-    },
-    "Specimen.samplingMethod": {
-      "@id": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen.samplingMethod",
-      "@type": ""
-    },
-    "Specimen.samplingTime": {
-      "@id": "http://def.isotc211.org/iso19156/2011/Specimen#SF_Specimen.samplingTime",
-      "@type": "@id"
-    },
+    "TmObject": "http://def.isotc211.org/iso19108/2006/TemporalObjects#TM_Object",
     "WaterFeature": "http://fixme.com#WaterFeature",
     "WaterFeature.type": {
       "@id": "http://fixme.com#type",
@@ -216,22 +150,6 @@
     },
     "WaterQualityObservationCollection.^phenomenonTime": {
       "@id": "http://fixme.com#^phenomenonTime",
-      "@type": ""
-    },
-    "WaterQualityObservationCollection.dataProvider": {
-      "@id": "http://fixme.com#dataProvider",
-      "@type": ""
-    },
-    "WaterQualityObservationCollection.dateCreated": {
-      "@id": "http://fixme.com#dateCreated",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "WaterQualityObservationCollection.dateModified": {
-      "@id": "http://fixme.com#dateModified",
-      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-    },
-    "WaterQualityObservationCollection.id": {
-      "@id": "http://fixme.com#id",
       "@type": "@id"
     },
     "WaterQualityObservationCollection.member": {
@@ -243,10 +161,6 @@
       "@id": "http://fixme.com#refWeatherObserved",
       "@type": "@id"
     },
-    "WaterQualityObservationCollection.source": {
-      "@id": "http://fixme.com#source",
-      "@type": "@id"
-    },
     "WaterQualityParameterObservation": "http://fixme.com#WaterQualityParameterObservation",
     "WaterQualityParameterObservation.observedProperty": {
       "@id": "http://fixme.com#observedProperty",
@@ -256,6 +170,7 @@
       "@id": "http://fixme.com#waterQualityParameterResult",
       "@type": "@id"
     },
-    "WaterQualityParameterType": "http://fixme.com#WaterQualityParameterType"
+    "WaterQualityParameterType": "http://fixme.com#WaterQualityParameterType",
+    "WeatherObserved": "http://fixme.com#WeatherObserved"
   }
 }
