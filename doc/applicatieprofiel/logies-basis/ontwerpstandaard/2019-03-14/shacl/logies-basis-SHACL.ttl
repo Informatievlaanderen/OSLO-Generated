@@ -9,28 +9,28 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/logies-basis> <https://data.vlaanderen.be/shacl/logies-basisshapes> <https://data.vlaanderen.be/shacl/logies-basis#VerhuureenheidShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#AdresShape>,
+<https://data.vlaanderen.be/shacl/logies-basis> <https://data.vlaanderen.be/shacl/logies-basisshapes> <https://data.vlaanderen.be/shacl/logies-basis#BeoordelingShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#KwantitatieveWaardeShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#BeschrijvingShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#ToeristischeRegioShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#RuimteShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#IdentificatorShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#CodeShape>,
     <https://data.vlaanderen.be/shacl/logies-basis#GeregistreerdeOrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#LogiesShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#AdresShape>,
     <https://data.vlaanderen.be/shacl/logies-basis#MediaObjectShape>,
     <https://data.vlaanderen.be/shacl/logies-basis#RegistratieShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#ToeristischeRegioShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#LogiesShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#AgentShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#IdentificatorShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#RuimteShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#BeschrijvingShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#KwantitatieveWaardeShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#BeoordelingShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#LocatieaanduidingShape>,
     <https://data.vlaanderen.be/shacl/logies-basis#GeometrieShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape>,
     <https://data.vlaanderen.be/shacl/logies-basis#PuntShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#CodeShape>,
-    <https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape> .
+    <https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#LocatieaanduidingShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#AgentShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/logies-basis#VerhuureenheidShape> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#AdresShape> a shacl:NodeShape;
   shacl:closed false;
@@ -39,6 +39,12 @@
 <https://data.vlaanderen.be/shacl/logies-basis#AdresvoorstellingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
+    shacl:maxCount 1;
+    shacl:name "huisnummer";
+    shacl:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
+  ], [
     shacl:datatype xsd:string;
     shacl:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.";
     shacl:maxCount 1;
@@ -52,16 +58,10 @@
     shacl:path <http://www.w3.org/ns/locn#thoroughfare>
   ], [
     shacl:datatype rdf:langString;
-    shacl:description "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat.";
+    shacl:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is";
     shacl:maxCount 1;
-    shacl:name "administratieveEenheidNiveau2";
-    shacl:path <http://www.w3.org/ns/locn#adminUnitL2>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Postbusnummer in een postkantoor.";
-    shacl:maxCount 1;
-    shacl:name "postbus";
-    shacl:path <http://www.w3.org/ns/locn#poBox>
+    shacl:name "adresgebied";
+    shacl:path <http://www.w3.org/ns/locn#addressArea>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Het complete adres in één string, al dan niet geformatteerd.";
@@ -70,12 +70,6 @@
     shacl:name "volledigAdres";
     shacl:path <http://www.w3.org/ns/locn#fullAddress>
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Hoogste Administratieve eenheid vh adres, doorgaans een land.";
-    shacl:maxCount 1;
-    shacl:name "administratieveEenheidNiveau1";
-    shacl:path <http://www.w3.org/ns/locn#adminUnitL1>
-  ], [
     shacl:datatype xsd:string;
     shacl:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
     shacl:maxCount 1;
@@ -83,16 +77,10 @@
     shacl:path <http://www.w3.org/ns/locn#postCode>
   ], [
     shacl:datatype rdf:langString;
-    shacl:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is";
+    shacl:description "De regio vh adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat.";
     shacl:maxCount 1;
-    shacl:name "adresgebied";
-    shacl:path <http://www.w3.org/ns/locn#addressArea>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Gemeentenaam vh adres.";
-    shacl:maxCount 1;
-    shacl:name "gemeentenaam";
-    shacl:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
+    shacl:name "administratieveEenheidNiveau2";
+    shacl:path <http://www.w3.org/ns/locn#adminUnitL2>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Naam of omschrijving vh het geografisch object dat de adreslocator aanduidt.";
@@ -101,16 +89,34 @@
     shacl:path <http://www.w3.org/ns/locn#locatorName>
   ], [
     shacl:datatype xsd:string;
-    shacl:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
+    shacl:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc.";
     shacl:maxCount 1;
-    shacl:name "huisnummer";
-    shacl:path <https://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
+    shacl:name "locatieaanduiding";
+    shacl:path <http://www.w3.org/ns/locn#locatorDesignator>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Land waarin het adres gelegen is.";
     shacl:maxCount 1;
     shacl:name "land";
     shacl:path <https://data.vlaanderen.be/ns/adres#land>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Hoogste Administratieve eenheid vh adres, doorgaans een land.";
+    shacl:maxCount 1;
+    shacl:name "administratieveEenheidNiveau1";
+    shacl:path <http://www.w3.org/ns/locn#adminUnitL1>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Postbusnummer in een postkantoor.";
+    shacl:maxCount 1;
+    shacl:name "postbus";
+    shacl:path <http://www.w3.org/ns/locn#poBox>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
+    shacl:maxCount 1;
+    shacl:name "postnaam";
+    shacl:path <http://www.w3.org/ns/locn#postName>
   ], [
     shacl:class <https://data.vlaanderen.be/ns/adres#Adres>;
     shacl:description "Adres waarvan de adresvoorstelling is afgeleid.";
@@ -119,16 +125,10 @@
     shacl:path <https://data.vlaanderen.be/ns/adres#verwijstNaar>
   ], [
     shacl:datatype rdf:langString;
-    shacl:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
+    shacl:description "Gemeentenaam vh adres.";
     shacl:maxCount 1;
-    shacl:name "postnaam";
-    shacl:path <http://www.w3.org/ns/locn#postName>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc.";
-    shacl:maxCount 1;
-    shacl:name "locatieaanduiding";
-    shacl:path <http://www.w3.org/ns/locn#locatorDesignator>
+    shacl:name "gemeentenaam";
+    shacl:path <https://data.vlaanderen.be/ns/adres#gemeentenaam>
   ];
   shacl:targetClass <http://www.w3.org/ns/locn#Address> .
 
@@ -139,18 +139,12 @@
 <https://data.vlaanderen.be/shacl/logies-basis#BeoordelingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Datum waarop de beoordeling is toegekend.";
+    shacl:class <http://www.w3.org/ns/regorg#RegisteredOrganization>;
+    shacl:description "De organisatie die de beoordeling uitvaardigt.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "toegekendOp";
-    shacl:path dc:issued
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Omschrijving van de beoordeling.";
-    shacl:maxCount 1;
-    shacl:name "beschrijving";
-    shacl:path schema:description
+    shacl:name "heeftAuteur";
+    shacl:path schema:author
   ], [
     shacl:datatype xsd:string;
     shacl:description "De laagste beoordeling die kan worden gegeven.";
@@ -158,6 +152,12 @@
     shacl:minCount 1;
     shacl:name "laagsteBeoordeling";
     shacl:path schema:worstRating
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Omschrijving van de beoordeling.";
+    shacl:maxCount 1;
+    shacl:name "beschrijving";
+    shacl:path schema:description
   ], [
     shacl:datatype xsd:string;
     shacl:description "De hoogste beoordeling die kan worden gegeven.";
@@ -173,12 +173,12 @@
     shacl:name "beoordeling";
     shacl:path schema:ratingValue
   ], [
-    shacl:class <http://www.w3.org/ns/regorg#RegisteredOrganization>;
-    shacl:description "De organisatie die de beoordeling uitvaardigt.";
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum waarop de beoordeling is toegekend.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "heeftAuteur";
-    shacl:path schema:author
+    shacl:name "toegekendOp";
+    shacl:path dc:issued
   ];
   shacl:targetClass schema:Rating .
 
@@ -201,30 +201,6 @@
 <https://data.vlaanderen.be/shacl/logies-basis#ContactInfoShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.w3.org/ns/locn#Address>;
-    shacl:description "Adres dat men kan aanschrijven of bezoeken.";
-    shacl:maxCount 1;
-    shacl:name "adres";
-    shacl:path <http://www.w3.org/ns/locn#address>
-  ], [
-    shacl:class schema:OpeningHoursSpecification;
-    shacl:description "Uren waarbinnen contact kan worden opgenomen.";
-    shacl:maxCount 1;
-    shacl:name "openingsuren";
-    shacl:path schema:openingHours
-  ], [
-    shacl:class schema:OpeningHoursSpecification;
-    shacl:description "Periode waarin contact kan worden opgenomen.";
-    shacl:maxCount 1;
-    shacl:name "beschikbaarheid";
-    shacl:path schema:hoursAvailable
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
-    shacl:maxCount 1;
-    shacl:name "aanschrijfvorm";
-    shacl:path <http://ww.w3.org/2006/vcard/ns#honorific-prefix>
-  ], [
     shacl:datatype xsd:anyURI;
     shacl:description "Website waarnaar men kan surfen.";
     shacl:maxCount 1;
@@ -237,12 +213,29 @@
     shacl:name "email";
     shacl:path schema:email
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "Naam van het contact, bijvoorbeeld de persoon die men kan contacteren.";
+    shacl:class <http://www.w3.org/ns/locn#Address>;
+    shacl:description "Adres dat men kan aanschrijven of bezoeken.";
     shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "contactnaam";
-    shacl:path foaf:name
+    shacl:name "adres";
+    shacl:path <http://www.w3.org/ns/locn#address>
+  ], [
+    shacl:class schema:OpeningHoursSpecification;
+    shacl:description "Periode waarin contact kan worden opgenomen.";
+    shacl:maxCount 1;
+    shacl:name "beschikbaarheid";
+    shacl:path schema:hoursAvailable
+  ], [
+    shacl:class schema:OpeningHoursSpecification;
+    shacl:description "Uren waarbinnen contact kan worden opgenomen.";
+    shacl:maxCount 1;
+    shacl:name "openingsuren";
+    shacl:path schema:openingHours
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Telefoonnummer waarop men kan bellen.";
+    shacl:maxCount 1;
+    shacl:name "telefoon";
+    shacl:path schema:telephone
   ], [
     shacl:datatype xsd:string;
     shacl:description "Faxnummer waarnaar men kan faxen.";
@@ -250,52 +243,28 @@
     shacl:name "fax";
     shacl:path schema:faxNumber
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "Telefoonnummer waarop men kan bellen.";
+    shacl:datatype rdf:langString;
+    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
     shacl:maxCount 1;
-    shacl:name "telefoon";
-    shacl:path schema:telephone
+    shacl:name "aanschrijfvorm";
+    shacl:path <http://ww.w3.org/2006/vcard/ns#honorific-prefix>
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Naam van het contact, bijvoorbeeld de persoon die men kan contacteren.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "contactnaam";
+    shacl:path foaf:name
   ];
   shacl:targetClass schema:ContactPoint .
 
 <https://data.vlaanderen.be/shacl/logies-basis#CreatiefWerkShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Datum waarop werk werd aangepast.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "bewerkt";
-    shacl:path schema:dateModified
-  ], [
-    shacl:class schema:CreativeWork;
-    shacl:description "Het werk dat als bron werd gebruikt voor dit werk.";
-    shacl:maxCount 1;
-    shacl:name "isGebaseerdOp";
-    shacl:path schema:exampleOfWork
-  ], [
-    shacl:class dc:Agent;
-    shacl:description "de auteur van het werk.";
-    shacl:name "heeftAuteur";
-    shacl:path schema:author
-  ], [
     shacl:class skos:Concept;
     shacl:description "Een beoogd publiek, d.w.z. een groep waarvoor iets is gemaakt.";
     shacl:name "doelpubliek";
     shacl:path schema:audience
-  ], [
-    shacl:class dc:LicenseDocument;
-    shacl:description "Licentie document dat van toepassing is op het werk";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "licentie";
-    shacl:path schema:license
-  ], [
-    shacl:class schema:CreativeWork;
-    shacl:description "Het werk waarop deze vertaling is gebaseerd.";
-    shacl:maxCount 1;
-    shacl:name "isVertalingVan";
-    shacl:path schema:translationOfWork
   ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Datum van publicatie.";
@@ -309,19 +278,43 @@
     shacl:minCount 1;
     shacl:name "naam";
     shacl:path schema:name
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "de auteur van het werk.";
+    shacl:name "heeftAuteur";
+    shacl:path schema:author
+  ], [
+    shacl:class schema:CreativeWork;
+    shacl:description "Het werk dat als bron werd gebruikt voor dit werk.";
+    shacl:maxCount 1;
+    shacl:name "isGebaseerdOp";
+    shacl:path schema:exampleOfWork
+  ], [
+    shacl:class schema:CreativeWork;
+    shacl:description "Het werk waarop deze vertaling is gebaseerd.";
+    shacl:maxCount 1;
+    shacl:name "isVertalingVan";
+    shacl:path schema:translationOfWork
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum waarop werk werd aangepast.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "bewerkt";
+    shacl:path schema:dateModified
+  ], [
+    shacl:class dc:LicenseDocument;
+    shacl:description "Licentie document dat van toepassing is op het werk";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "licentie";
+    shacl:path schema:license
   ];
   shacl:targetClass schema:CreativeWork .
 
 <https://data.vlaanderen.be/shacl/logies-basis#FaciliteitShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Datum waarna de faciliteit niet meer beschikbaar is.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "beschikbaarTot";
-    shacl:path schema:validThrough
-  ], [
     shacl:datatype rdf:langString;
     shacl:description "Een omschrijving van de aanwezige infrastructuur of aangeboden diensten.";
     shacl:maxCount 1;
@@ -329,11 +322,12 @@
     shacl:name "beschrijving";
     shacl:path schema:description
   ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
-    shacl:description "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is.";
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum waarop de faciliteit beschikbaar wordt.";
     shacl:maxCount 1;
-    shacl:name "isSpecialisatieVan";
-    shacl:path <https://data.vlaanderen.be/ns/logies#isSpecialisatieVan>
+    shacl:minCount 1;
+    shacl:name "beschikbaarVan";
+    shacl:path schema:validFrom
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Een label of naam van de aangeboden dienst of aanwezige infrastructuur.";
@@ -343,11 +337,17 @@
     shacl:path schema:name
   ], [
     shacl:datatype xsd:dateTime;
-    shacl:description "Datum waarop de faciliteit beschikbaar wordt.";
+    shacl:description "Datum waarna de faciliteit niet meer beschikbaar is.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "beschikbaarVan";
-    shacl:path schema:validFrom
+    shacl:name "beschikbaarTot";
+    shacl:path schema:validThrough
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
+    shacl:description "Verwijst naar de bronfaciliteit waarvan deze faciliteit een specialisatie is.";
+    shacl:maxCount 1;
+    shacl:name "isSpecialisatieVan";
+    shacl:path <https://data.vlaanderen.be/ns/logies#isSpecialisatieVan>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Faciliteit> .
 
@@ -355,24 +355,37 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype rdfs:Literal;
-    shacl:description "Geometrie uitgedrukt in wkt-formaat.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "wkt";
-    shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
-  ], [
-    shacl:datatype rdfs:Literal;
     shacl:description "Geometrie uitgedrukt in gml-formaat.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "gml";
     shacl:path <http://www.opengis.net/ont/geosparql#asGML>
+  ], [
+    shacl:datatype rdfs:Literal;
+    shacl:description "Geometrie uitgedrukt in wkt-formaat.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "wkt";
+    shacl:path <http://www.opengis.net/ont/geosparql#asWKT>
   ];
   shacl:targetClass <http://www.w3.org/ns/locn#Geometry> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#GeregistreerdeOrganisatieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype rdf:langString;
+    shacl:description "Wettelijk geregistreerde naam vd organisatie.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "wettelijkeNaam";
+    shacl:path <http://www.w3.org/ns/regorg#legalName>
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Juridisch statuut van de geregistreerde organisatie.";
+    shacl:maxCount 1;
+    shacl:name "rechtsvorm";
+    shacl:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
+  ], [
     shacl:class <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "Identificator dat de organisatie verkreeg bij registratie.";
     shacl:maxCount 1;
@@ -387,19 +400,6 @@
     shacl:path <https://data.vlaanderen.be/ns/organisatie#rechtspersoonlijkheid>
   ], [
     shacl:class skos:Concept;
-    shacl:description "Juridisch statuut van de geregistreerde organisatie.";
-    shacl:maxCount 1;
-    shacl:name "rechtsvorm";
-    shacl:path <https://data.vlaanderen.be/ns/organisatie#rechtsvorm>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Wettelijk geregistreerde naam vd organisatie.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "wettelijkeNaam";
-    shacl:path <http://www.w3.org/ns/regorg#legalName>
-  ], [
-    shacl:class skos:Concept;
     shacl:description "Status van de geregistreerde organisatie.";
     shacl:maxCount 1;
     shacl:name "rechtstoestand";
@@ -410,18 +410,6 @@
 <https://data.vlaanderen.be/shacl/logies-basis#IdentificatorShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Tijdstip waarop de identificator werd uitgegeven.";
-    shacl:maxCount 1;
-    shacl:name "toegekendOp";
-    shacl:path dc:issued
-  ], [
-    shacl:class dc:Agent;
-    shacl:description "Organisatie of persoon die de identificator heeft uitgegeven.";
-    shacl:maxCount 1;
-    shacl:name "toegekendDoor";
-    shacl:path dc:creator
-  ], [
     shacl:datatype rdfs:Literal;
     shacl:description "String gebruikt om het object uniek te identificeren. ";
     shacl:maxCount 1;
@@ -434,17 +422,29 @@
     shacl:maxCount 1;
     shacl:name "toegekendDoorString";
     shacl:path <http://www.w3.org/ns/adms#schemaAgency>
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "Organisatie of persoon die de identificator heeft uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendDoor";
+    shacl:path dc:creator
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Tijdstip waarop de identificator werd uitgegeven.";
+    shacl:maxCount 1;
+    shacl:name "toegekendOp";
+    shacl:path dc:issued
   ];
   shacl:targetClass <http://www.w3.org/ns/adms#Identifier> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#KwaliteitslabelShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype rdf:langString;
-    shacl:description "Beschrijving van het toegekende label.";
-    shacl:maxCount 1;
-    shacl:name "beschrijving";
-    shacl:path schema:description
+    shacl:class <http://www.w3.org/ns/regorg#RegisteredOrganization>;
+    shacl:description "De organisatie die het kwaliteitslabel heeft toegekend.";
+    shacl:minCount 1;
+    shacl:name "heeftAuteur";
+    shacl:path schema:author
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Naam van het label.";
@@ -453,24 +453,31 @@
     shacl:name "beoordeling";
     shacl:path skos:prefLabel
   ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Beschrijving van het toegekende label.";
+    shacl:maxCount 1;
+    shacl:name "beschrijving";
+    shacl:path schema:description
+  ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Datum waarop het kwaliteitslabel is toegekend.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "toegekendOp";
     shacl:path dc:issued
-  ], [
-    shacl:class <http://www.w3.org/ns/regorg#RegisteredOrganization>;
-    shacl:description "De organisatie die het kwaliteitslabel heeft toegekend.";
-    shacl:minCount 1;
-    shacl:name "heeftAuteur";
-    shacl:path schema:author
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Kwaliteitslabel> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#KwantitatieveWaardeShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class skos:Concept;
+    shacl:description "Een eenheid zoals vastgesteld door een standardisatieorgaan of overheid.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "genormeerdeEenheid";
+    shacl:path schema:unitCode
+  ], [
     shacl:datatype xsd:integer;
     shacl:description "De waarde of hoeveelheid van de kwanitatieve waarde. ";
     shacl:maxCount 1;
@@ -484,38 +491,66 @@
     shacl:minCount 1;
     shacl:name "eenheid";
     shacl:path schema:unitText
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Een eenheid zoals vastgesteld door een standardisatieorgaan of overheid.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "genormeerdeEenheid";
-    shacl:path schema:unitCode
   ];
   shacl:targetClass schema:QuantitativeValue .
 
 <https://data.vlaanderen.be/shacl/logies-basis#LocatieaanduidingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    <http://purl.org/linked-data/cube#codeList> <http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue>;
-    shacl:description "Aard van de locatieaanduiding.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "type";
-    shacl:path <https://data.vlaanderen.be/ns/adres#Locatieaanduiding.type>
-  ], [
     shacl:datatype xsd:string;
     shacl:description "Identificatie van de locatie.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "aanduiding";
     shacl:path <https://data.vlaanderen.be/ns/adres#Locatieaanduiding.aanduiding>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue>;
+    shacl:description "Aard van de locatieaanduiding.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "type";
+    shacl:path <https://data.vlaanderen.be/ns/adres#Locatieaanduiding.type>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/adres#Locatieaanduiding> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#LogiesShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Ident";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "identificator";
+    shacl:path <http://www.w3.org/ns/adms#identifier>
+  ], [
+    shacl:class schema:QuantitativeValue;
+    shacl:description "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde.";
+    shacl:name "capaciteit";
+    shacl:path <https://data.vlaanderen.be/ns/logies#capaciteit>
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Een beoogd publiek, d.w.z. een groep waarvoor iets is gemaakt.";
+    shacl:name "doelpubliek";
+    shacl:path schema:audience
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/logies#Beschrijving>;
+    shacl:description "Beschrijving van het object.";
+    shacl:name "heeftBeschrijving";
+    shacl:path <https://data.vlaanderen.be/ns/logies#heeftBeschrijving>
+  ], [
+    shacl:class <http://www.w3.org/ns/locn#Address>;
+    shacl:description "Adres waar logies zich kunnen aanmelden.";
+    shacl:minCount 1;
+    shacl:name "onthaalAdres";
+    shacl:path <https://data.vlaanderen.be/ns/logies#onthaalAdres>
+  ], [
+    shacl:datatype xsd:integer;
+    shacl:description "Totale aantal eenheden waarover het logies beschikt.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "aantalVerhuureenheden";
+    shacl:path <https://data.vlaanderen.be/ns/logies#aantalVerhuureenheden>
+  ], [
     shacl:class <https://data.vlaanderen.be/ns/logies#Kwaliteitslabel>;
     shacl:description "Een kwaliteitslabel dat is toegekend aan het logies. ";
     shacl:name "heeftKwaliteitsLabel";
@@ -526,59 +561,6 @@
     shacl:name "heeftAlternatieveUitbating";
     shacl:path <https://data.vlaanderen.be/ns/logies#heeftAlternatieveUitbating>
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "alternatieve benaming van het logies.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "alternatieveNaam";
-    shacl:path schema:alternativeName
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Verhuureenheid>;
-    shacl:description "Een verhuureenheid die gerelateerd is aan een logies.";
-    shacl:minCount 1;
-    shacl:name "heeftVerhuureenheid";
-    shacl:path <https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid>
-  ], [
-    shacl:class schema:QuantitativeValue;
-    shacl:description "Een capaciteitsgegeven van de resource. De capaciteit is een gestructureerde waarde met een eenheid en een waarde.";
-    shacl:name "capaciteit";
-    shacl:path <https://data.vlaanderen.be/ns/logies#capaciteit>
-  ], [
-    shacl:datatype xsd:integer;
-    shacl:description "Totale aantal eenheden waarover het logies beschikt.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "aantalVerhuureenheden";
-    shacl:path <https://data.vlaanderen.be/ns/logies#aantalVerhuureenheden>
-  ], [
-    shacl:class schema:Rating;
-    shacl:description "Een officiele beoordeling voor een logies, door een erkende organisatie.";
-    shacl:name "heeftOfficieleBeoordeling";
-    shacl:path schema:starRating
-  ], [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Ident";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "identificator";
-    shacl:path <http://www.w3.org/ns/adms#identifier>
-  ], [
-    shacl:class <http://www.w3.org/ns/locn#Address>;
-    shacl:description "Adres waar logies zich kunnen aanmelden.";
-    shacl:minCount 1;
-    shacl:name "onthaalAdres";
-    shacl:path <https://data.vlaanderen.be/ns/logies#onthaalAdres>
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#ToeristischeRegio>;
-    shacl:description "Specifieert tot welke regio het logies behoort.";
-    shacl:name "behoortTotToeristischeRegio";
-    shacl:path <https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Een beoogd publiek, d.w.z. een groep waarvoor iets is gemaakt.";
-    shacl:name "doelpubliek";
-    shacl:path schema:audience
-  ], [
     shacl:datatype xsd:integer;
     shacl:description "Totale aantal personen dat een logies kan bedienen.";
     shacl:maxCount 1;
@@ -586,15 +568,32 @@
     shacl:name "aantalSlaapplaatsen";
     shacl:path <https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen>
   ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
-    shacl:description "Aanwezige infrastructuur of dienst.";
-    shacl:name "heeftFaciliteit";
-    shacl:path schema:amenityFeature
+    shacl:class schema:ContactPoint;
+    shacl:description "Contact informatie van het logies. ";
+    shacl:name "contactPunt";
+    shacl:path schema:contactPoint
   ], [
     shacl:class <https://data.vlaanderen.be/ns/logies#MediaObject>;
     shacl:description "Media gerelateerd aan het object.";
     shacl:name "heeftMedia";
     shacl:path <https://data.vlaanderen.be/ns/logies#heeftMedia>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "alternatieve benaming van het logies.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "alternatieveNaam";
+    shacl:path schema:alternativeName
+  ], [
+    shacl:class schema:Rating;
+    shacl:description "Een officiele beoordeling voor een logies, door een erkende organisatie.";
+    shacl:name "heeftOfficieleBeoordeling";
+    shacl:path schema:starRating
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/logies#Registratie>;
+    shacl:description "De registratie van het logies bij Toerisme Vlaanderen.";
+    shacl:name "heeftRegistratie";
+    shacl:path <https://data.vlaanderen.be/ns/logies#heeftRegistratie>
   ], [
     shacl:class <http://www.w3.org/ns/locn#Geometry>;
     shacl:description "De geometrische locatie van de ingang van het logies.";
@@ -602,10 +601,16 @@
     shacl:name "onthaalLocatie";
     shacl:path <https://data.vlaanderen.be/ns/logies#onthaalLocatie>
   ], [
-    shacl:class schema:ContactPoint;
-    shacl:description "Contact informatie van het logies. ";
-    shacl:name "contactPunt";
-    shacl:path schema:contactPoint
+    shacl:class <https://data.vlaanderen.be/ns/logies#Verhuureenheid>;
+    shacl:description "Een verhuureenheid die gerelateerd is aan een logies.";
+    shacl:minCount 1;
+    shacl:name "heeftVerhuureenheid";
+    shacl:path <https://data.vlaanderen.be/ns/logies#heeftVerhuureenheid>
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/logies#ToeristischeRegio>;
+    shacl:description "Specifieert tot welke regio het logies behoort.";
+    shacl:name "behoortTotToeristischeRegio";
+    shacl:path <https://data.vlaanderen.be/ns/logies#behoortTotToeristischeRegio>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "De commerciele naam van het logies.";
@@ -614,26 +619,31 @@
     shacl:name "naam";
     shacl:path schema:name
   ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Beschrijving>;
-    shacl:description "Beschrijving van het object.";
-    shacl:name "heeftBeschrijving";
-    shacl:path <https://data.vlaanderen.be/ns/logies#heeftBeschrijving>
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Registratie>;
-    shacl:description "De registratie van het logies bij Toerisme Vlaanderen.";
-    shacl:name "heeftRegistratie";
-    shacl:path <https://data.vlaanderen.be/ns/logies#heeftRegistratie>
+    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
+    shacl:description "Aanwezige infrastructuur of dienst.";
+    shacl:name "heeftFaciliteit";
+    shacl:path schema:amenityFeature
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Logies> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#MediaObjectShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class schema:QuantitativeValue;
-    shacl:description "De breedte van het mediaobject.";
+    shacl:datatype xsd:string;
+    shacl:description "Exif data van het object, voornamelijk voor gebruik bij afbeeldingen.";
     shacl:maxCount 1;
-    shacl:name "breedte";
-    shacl:path schema:width
+    shacl:name "exifData";
+    shacl:path schema:exifData
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "De taal van de inhoud van het media object.";
+    shacl:name "taal";
+    shacl:path schema:inLanguage
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Omschrijving van het werk.";
+    shacl:name "beschrijving";
+    shacl:path schema:description
   ], [
     shacl:class skos:Concept;
     shacl:description "Het bestandsformaat van het media object.";
@@ -642,38 +652,17 @@
     shacl:name "formaat";
     shacl:path dc:format
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Omschrijving van het werk.";
-    shacl:name "beschrijving";
-    shacl:path schema:description
-  ], [
-    shacl:class <http://www.w3.org/ns/locn#Geometry>;
-    shacl:description "De geometrische locatie van het object.";
+    shacl:class schema:QuantitativeValue;
+    shacl:description "De breedte van het mediaobject.";
     shacl:maxCount 1;
-    shacl:name "locatie";
-    shacl:path <https://data.vlaanderen.be/ns/logies#locatie>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "De taal van de inhoud van het media object.";
-    shacl:name "taal";
-    shacl:path schema:inLanguage
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Exif data van het object, voornamelijk voor gebruik bij afbeeldingen.";
-    shacl:maxCount 1;
-    shacl:name "exifData";
-    shacl:path schema:exifData
+    shacl:name "breedte";
+    shacl:path schema:width
   ], [
     shacl:description "Locatie waar het media object kan worden gedownload. De eigenlijke bytes van het object.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "contentUrl";
     shacl:path schema:contentUrl
-  ], [
-    shacl:description "Een miniatuurafbeelding die relevant is voor het media object.";
-    shacl:maxCount 1;
-    shacl:name "thumbnailUrl";
-    shacl:path schema:thumbnailUrl
   ], [
     shacl:datatype rdf:langString;
     shacl:description "Het onderschrift van het media object.";
@@ -686,6 +675,17 @@
     shacl:maxCount 1;
     shacl:name "hoogte";
     shacl:path schema:height
+  ], [
+    shacl:description "Een miniatuurafbeelding die relevant is voor het media object.";
+    shacl:maxCount 1;
+    shacl:name "thumbnailUrl";
+    shacl:path schema:thumbnailUrl
+  ], [
+    shacl:class <http://www.w3.org/ns/locn#Geometry>;
+    shacl:description "De geometrische locatie van het object.";
+    shacl:maxCount 1;
+    shacl:name "locatie";
+    shacl:path <https://data.vlaanderen.be/ns/logies#locatie>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#MediaObject> .
 
@@ -712,18 +712,11 @@
   shacl:closed false;
   shacl:property [
     shacl:class skos:Concept;
-    shacl:description "Status van het geregistreerde logies.";
+    shacl:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "registratieStatus";
-    shacl:path <https://data.vlaanderen.be/ns/logies#registratieStatus>
-  ], [
-    shacl:class prov:Invalidation;
-    shacl:description "Beschrijving van het verdwijnen van de versie.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "opheffing";
-    shacl:path prov:qualifiedInvalidation
+    shacl:name "type";
+    shacl:path dc:type
   ], [
     shacl:class <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "Identificator dat de organisatie verkreeg bij registratie.";
@@ -732,18 +725,18 @@
     shacl:name "identificator";
     shacl:path <http://www.w3.org/ns/adms#identifier>
   ], [
+    shacl:class prov:Invalidation;
+    shacl:description "Beschrijving van het verdwijnen van de versie.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "opheffing";
+    shacl:path prov:qualifiedInvalidation
+  ], [
     shacl:class <https://data.vlaanderen.be/ns/logies#Registratie>;
     shacl:description "Duidt de bronentiteit aan waarvan deze entiteit een tijdsgebonden specialisatie is. De specialisatie stelt de bron voor gedurende een bepaalde periode.";
     shacl:maxCount 1;
     shacl:name "isTijdspecialisatieVan";
     shacl:path <https://data.vlaanderen.be/ns/generiek#isTijdspecialisatieVan>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Categorie van het logies, zoals bepaad door de verantwoordelijke organisatie.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "type";
-    shacl:path dc:type
   ], [
     shacl:class prov:Generation;
     shacl:description "Beschrijving van het ontstaan van de versie.";
@@ -751,32 +744,39 @@
     shacl:minCount 1;
     shacl:name "creatie";
     shacl:path prov:qualifiedGeneration
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Status van het geregistreerde logies.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "registratieStatus";
+    shacl:path <https://data.vlaanderen.be/ns/logies#registratieStatus>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Registratie> .
 
 <https://data.vlaanderen.be/shacl/logies-basis#RuimteShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:description "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep.";
+    shacl:maxCount 1;
+    shacl:name "locatieaanduiding";
+    shacl:path <https://data.vlaanderen.be/ns/logies#locatieaanduiding>
+  ], [
     shacl:class skos:Concept;
     shacl:description "Type van de kamer.";
     shacl:maxCount 1;
     shacl:name "type";
     shacl:path dc:type
   ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
-    shacl:description "Aanwezige infrastructuur of dienst.";
-    shacl:name "heeftFaciliteit";
-    shacl:path schema:amenityFeature
-  ], [
     shacl:datatype rdf:langString;
     shacl:description "beschrijving van de ruimte";
     shacl:name "beschrijving";
     shacl:path schema:description
   ], [
-    shacl:description "Locatie waar de ruimte zich bevind, bijvoorbeeld het verdiep.";
-    shacl:maxCount 1;
-    shacl:name "locatieaanduiding";
-    shacl:path <https://data.vlaanderen.be/ns/logies#locatieaanduiding>
+    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
+    shacl:description "Aanwezige infrastructuur of dienst.";
+    shacl:name "heeftFaciliteit";
+    shacl:path schema:amenityFeature
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Ruimte> .
 
@@ -818,23 +818,6 @@
     shacl:name "aantalSlaapplaatsen";
     shacl:path <https://data.vlaanderen.be/ns/logies#aantalSlaapplaatsen>
   ], [
-    shacl:class <http://www.w3.org/ns/locn#Geometry>;
-    shacl:description "De geometrische locatie van het object.";
-    shacl:maxCount 1;
-    shacl:name "locatie";
-    shacl:path <https://data.vlaanderen.be/ns/logies#locatie>
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
-    shacl:description "Aanwezige infrastructuur of dienst.";
-    shacl:name "heeftFaciliteit";
-    shacl:path schema:amenityFeature
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Benaming van de verhuureenheid";
-    shacl:maxCount 1;
-    shacl:name "naam";
-    shacl:path schema:name
-  ], [
     shacl:datatype xsd:integer;
     shacl:description "Aantal kamers dat de verhuureenheid ter beschikking heeft.";
     shacl:maxCount 1;
@@ -845,5 +828,22 @@
     shacl:description "De relatie  tussen de kamer en de verhuureenheid die de kamer bevat.";
     shacl:name "heeftKamer";
     shacl:path <https://data.vlaanderen.be/ns/logies#heeftKamer>
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/logies#Faciliteit>;
+    shacl:description "Aanwezige infrastructuur of dienst.";
+    shacl:name "heeftFaciliteit";
+    shacl:path schema:amenityFeature
+  ], [
+    shacl:class <http://www.w3.org/ns/locn#Geometry>;
+    shacl:description "De geometrische locatie van het object.";
+    shacl:maxCount 1;
+    shacl:name "locatie";
+    shacl:path <https://data.vlaanderen.be/ns/logies#locatie>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Benaming van de verhuureenheid";
+    shacl:maxCount 1;
+    shacl:name "naam";
+    shacl:path schema:name
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/logies#Verhuureenheid> .
