@@ -9,13 +9,13 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/metadata-voor-services-ap> <https://data.vlaanderen.be/shacl/metadata-voor-services-apshapes> <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DatasetShape>,
-    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DistributieShape>,
-    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#AgentShape>,
-    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DataServiceShape>,
-    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusResourceShape>,
+<https://data.vlaanderen.be/shacl/metadata-voor-services-ap> <https://data.vlaanderen.be/shacl/metadata-voor-services-apshapes> <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#AgentShape>,
+    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusShape>,
     <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusRecordShape>,
-    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusShape> .
+    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusResourceShape>,
+    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DistributieShape>,
+    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DatasetShape>,
+    <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DataServiceShape> .
 
 <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#AgentShape> a shacl:NodeShape;
   shacl:closed false;
@@ -32,23 +32,17 @@
 <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusRecordShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class dcat:Resource;
-    shacl:description "de geregistreerde catalogusResource";
-    shacl:maxCount 1;
-    shacl:name "hoofdonderwerp";
-    shacl:path foaf:primaryTopic
-  ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Het moment waarop de registratie van de catalogusResource voor de eerste keer gebeurde in de catalogus";
     shacl:maxCount 1;
     shacl:name "aanmaakdatum";
     shacl:path dc:issued
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "de naam van het registratie van de catalogusresource ";
+    shacl:class dcat:Resource;
+    shacl:description "de geregistreerde catalogusResource";
     shacl:maxCount 1;
-    shacl:name "titel";
-    shacl:path dc:title
+    shacl:name "hoofdonderwerp";
+    shacl:path foaf:primaryTopic
   ], [
     shacl:class <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "een identificator van het catalogusrecord";
@@ -56,6 +50,12 @@
     shacl:minCount 1;
     shacl:name "identificator";
     shacl:path dc:identifier
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "de naam van het registratie van de catalogusresource ";
+    shacl:maxCount 1;
+    shacl:name "titel";
+    shacl:path dc:title
   ];
   shacl:targetClass dcat:CatalogRecord .
 
@@ -73,10 +73,11 @@
 <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#CatalogusShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class dcat:CatalogRecord;
-    shacl:description "provenance informatie over de registratie van een catalogsResource in de catalogus ";
-    shacl:name "record";
-    shacl:path dcat:record
+    shacl:class dc:LicenseDocument;
+    shacl:description "de licentie voor de catalogus";
+    shacl:maxCount 1;
+    shacl:name "licentie";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#licentie>
   ], [
     shacl:datatype rdf:langString;
     shacl:description "een bondige omschrijving van de catalogus";
@@ -90,22 +91,15 @@
     shacl:name "titel";
     shacl:path dc:title
   ], [
-    shacl:class dc:Agent;
-    shacl:description "de uitgever van een catalogus";
-    shacl:maxCount 1;
-    shacl:name "uitgever";
-    shacl:path dc:publisher
+    shacl:class dcat:CatalogRecord;
+    shacl:description "provenance informatie over de registratie van een catalogsResource in de catalogus ";
+    shacl:name "record";
+    shacl:path dcat:record
   ], [
-    shacl:class vcard:Kind;
-    shacl:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de catalogus";
-    shacl:maxCount "n"^^xsd:integer;
-    shacl:name "contactinformatie";
-    shacl:path dcat:contactPoint
-  ], [
-    shacl:class dcat:DataService;
-    shacl:description "geregistreerde DataServices in de catalogus";
-    shacl:name "heeftDataService";
-    shacl:path dcat:service
+    shacl:class dcat:Dataset;
+    shacl:description "geregistreerde dataset in de catalogus ";
+    shacl:name "heeftDataset";
+    shacl:path dcat:dataset
   ], [
     shacl:class <http://www.w3.org/ns/adms#Identifier>;
     shacl:description "een identificator voor de catalogus";
@@ -114,63 +108,33 @@
     shacl:name "identificator";
     shacl:path dc:identifier
   ], [
-    shacl:class dc:LicenseDocument;
-    shacl:description "de licentie voor de catalogus";
-    shacl:maxCount 1;
-    shacl:name "licentie";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#licentie>
+    shacl:class dcat:DataService;
+    shacl:description "geregistreerde DataServices in de catalogus";
+    shacl:name "heeftDataService";
+    shacl:path dcat:service
   ], [
-    shacl:class dcat:Dataset;
-    shacl:description "geregistreerde dataset in de catalogus ";
-    shacl:name "heeftDataset";
-    shacl:path dcat:dataset
+    shacl:class vcard:Kind;
+    shacl:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de catalogus";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:name "contactinformatie";
+    shacl:path dcat:contactPoint
+  ], [
+    shacl:class dc:Agent;
+    shacl:description "de uitgever van een catalogus";
+    shacl:maxCount 1;
+    shacl:name "uitgever";
+    shacl:path dc:publisher
   ];
   shacl:targetClass dcat:Catalog .
 
 <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DataServiceShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype rdf:langString;
-    shacl:description "Een bondige omschrijving van de dataService";
-    shacl:maxCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Een trefwoord of tag die de resource beschrijft";
-    shacl:maxCount 1;
-    shacl:name "trefwoord";
-    shacl:path dcat:keyword
-  ], [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Een unieke identificator van de dataService";
-    shacl:maxCount "n"^^xsd:integer;
-    shacl:minCount 1;
-    shacl:name "identificator";
-    shacl:path dc:identifier
-  ], [
-    shacl:class dcat:Dataset;
-    shacl:description "data die aangeboden wordt door de datasService";
-    shacl:name "biedtInformatieAanOver";
-    shacl:path dcat:servesdataset
-  ], [
     shacl:datatype xsd:anyURI;
-    shacl:description "landingspagina met informatie over authenticatie";
+    shacl:description "De rootlocatie of het primaire eindpunt van de dienst (een web-resolvable URI)";
     shacl:maxCount 1;
-    shacl:name "authenticatie";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#authenticatie>
-  ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "Algemene pagina met vaak beschrijvende tekst";
-    shacl:maxCount 1;
-    shacl:name "landingspagina";
-    shacl:path dcat:landingPage
-  ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "landingspagina met informatie over kwaliteit van de dienstverlening";
-    shacl:maxCount 1;
-    shacl:name "dienstverleningsKwaliteit";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#dienstverleningsKwaliteit>
+    shacl:name "endpointURL";
+    shacl:path dcat:endpointURL
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "landingspagina met informatie over de genomen voorwaarden om de service te mogen gebruiken. ";
@@ -178,11 +142,17 @@
     shacl:name "gebruiksbepaling";
     shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#gebruiksbepaling>
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "unieke aanduiding van de gedeployde service toestand gegeven door de endpointbeheerder";
+    shacl:datatype xsd:anyURI;
+    shacl:description "landingspagina met informatie over de wettelijke beperkingen i.v.m. dataService";
     shacl:maxCount 1;
-    shacl:name "versie";
-    shacl:path owl:versionInfo
+    shacl:name "wettelijkeBeperkingen";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#wettelijkeBeperkingen>
+  ], [
+    shacl:datatype xsd:anyURI;
+    shacl:description "landingspagina met informatie over de doelpopulatie";
+    shacl:maxCount 1;
+    shacl:name "doelpopulatie";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#doelpopulatie>
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "Een beschrijving van de diensten die beschikbaar zijn via de end-points, met inbegrip van hun werking, parameters, enz. ";
@@ -190,19 +160,6 @@
     shacl:minCount 1;
     shacl:name "endpointbeschrijving";
     shacl:path dcat:endpointDescription
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "naam voor de dataService. ";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "titel";
-    shacl:path dc:title
-  ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "landingspagina met informatie over de doelpopulatie";
-    shacl:maxCount 1;
-    shacl:name "doelpopulatie";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#doelpopulatie>
   ], [
     shacl:class vcard:Kind;
     shacl:description "De contactinformatie via men in contact kan treden met de verantwoordelijken van de dataservice. ";
@@ -212,10 +169,22 @@
     shacl:path dcat:contactPoint
   ], [
     shacl:datatype xsd:anyURI;
-    shacl:description "landingspagina met informatie over de wettelijke beperkingen i.v.m. dataService";
+    shacl:description "landingspagina met informatie over kwaliteit van de dienstverlening";
     shacl:maxCount 1;
-    shacl:name "wettelijkeBeperkingen";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#wettelijkeBeperkingen>
+    shacl:name "dienstverleningsKwaliteit";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#dienstverleningsKwaliteit>
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "huidige toestand van de ontwikkelingsstatus ";
+    shacl:maxCount 1;
+    shacl:name "statusVanOntwikkeling";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#statusVanOntwikkeling>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Een bondige omschrijving van de dataService";
+    shacl:maxCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ], [
     shacl:class skos:Concept;
     shacl:description "huidige toestand van gebruiksmogelijkheden";
@@ -223,17 +192,48 @@
     shacl:name "statusVanGebruik";
     shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#statusVanGebruik>
   ], [
-    shacl:datatype xsd:anyURI;
-    shacl:description "De rootlocatie of het primaire eindpunt van de dienst (een web-resolvable URI)";
-    shacl:maxCount 1;
-    shacl:name "endpointURL";
-    shacl:path dcat:endpointURL
+    shacl:class dcat:Dataset;
+    shacl:description "data die aangeboden wordt door de datasService";
+    shacl:name "biedtInformatieAanOver";
+    shacl:path dcat:servesdataset
   ], [
-    shacl:class skos:Concept;
-    shacl:description "huidige toestand van de ontwikkelingsstatus ";
+    shacl:datatype xsd:string;
+    shacl:description "unieke aanduiding van de gedeployde service toestand gegeven door de endpointbeheerder";
     shacl:maxCount 1;
-    shacl:name "statusVanOntwikkeling";
-    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#statusVanOntwikkeling>
+    shacl:name "versie";
+    shacl:path owl:versionInfo
+  ], [
+    shacl:datatype xsd:anyURI;
+    shacl:description "landingspagina met informatie over authenticatie";
+    shacl:maxCount 1;
+    shacl:name "authenticatie";
+    shacl:path <http://data.vlaanderen.be/ns/metadata-dcat#authenticatie>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Een trefwoord of tag die de resource beschrijft";
+    shacl:maxCount 1;
+    shacl:name "trefwoord";
+    shacl:path dcat:keyword
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "naam voor de dataService. ";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "titel";
+    shacl:path dc:title
+  ], [
+    shacl:datatype xsd:anyURI;
+    shacl:description "Algemene pagina met vaak beschrijvende tekst";
+    shacl:maxCount 1;
+    shacl:name "landingspagina";
+    shacl:path dcat:landingPage
+  ], [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Een unieke identificator van de dataService";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "identificator";
+    shacl:path dc:identifier
   ];
   shacl:targetClass dcat:DataService .
 
@@ -241,10 +241,10 @@
   shacl:closed false;
   shacl:property [
     shacl:datatype rdf:langString;
-    shacl:description " Een bondige omschrijving van de dataset.";
+    shacl:description "De naam van de dataset";
     shacl:maxCount 1;
-    shacl:name "beschrijving";
-    shacl:path dc:description
+    shacl:name "titel";
+    shacl:path dc:title
   ], [
     shacl:class dcat:Distribution;
     shacl:description "een distributie van de de dataset.";
@@ -257,12 +257,11 @@
     shacl:name "contactinformatie";
     shacl:path dcat:contactPoint
   ], [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Een unieke identificator van de dataset";
-    shacl:maxCount "n"^^xsd:integer;
-    shacl:minCount 1;
-    shacl:name "identificator";
-    shacl:path dc:identifier
+    shacl:datatype rdf:langString;
+    shacl:description " Een bondige omschrijving van de dataset.";
+    shacl:maxCount 1;
+    shacl:name "beschrijving";
+    shacl:path dc:description
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "Een webpagina waar via een browser informatie kan gevonden worden over de dataset.";
@@ -270,41 +269,36 @@
     shacl:name "landingspagina";
     shacl:path dcat:landingPage
   ], [
-    shacl:datatype rdf:langString;
-    shacl:description "De naam van de dataset";
-    shacl:maxCount 1;
-    shacl:name "titel";
-    shacl:path dc:title
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Het thema waartoe de dataset behoort";
-    shacl:maxCount "n"^^xsd:integer;
-    shacl:name "thema";
-    shacl:path dcat:theme
-  ], [
     <http://purl.org/linked-data/cube#codeList> <https://publications.europa.eu/en/web/eu-vocabularies/at-dataset/-/resource/dataset/access-right>;
     shacl:class skos:Concept;
     shacl:description "De toegankelijkheidscategorie van de dataset.";
     shacl:maxCount 1;
     shacl:name "toegankelijkheid";
     shacl:path dc:accessRights
+  ], [
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Een unieke identificator van de dataset";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "identificator";
+    shacl:path dc:identifier
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Het thema waartoe de dataset behoort";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:name "thema";
+    shacl:path dcat:theme
   ];
   shacl:targetClass dcat:Dataset .
 
 <https://data.vlaanderen.be/shacl/metadata-voor-services-ap#DistributieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class dcat:DataService;
-    shacl:description "de dataservice die deze distributie aanbiedt";
-    shacl:name "wordtAangebodenDoor";
-    shacl:path dcat:accessService
-  ], [
-    shacl:class <http://www.w3.org/ns/adms#Identifier>;
-    shacl:description "Een unieke identificator van de distributie";
-    shacl:maxCount "n"^^xsd:integer;
-    shacl:minCount 1;
-    shacl:name "identificator";
-    shacl:path dc:identifier
+    shacl:class dc:LicenseDocument;
+    shacl:description "de licentie van de distributie";
+    shacl:maxCount 1;
+    shacl:name "licentie";
+    shacl:path dc:license
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "De URL waar de data gedownload kan worden. ";
@@ -318,11 +312,17 @@
     shacl:name "titel";
     shacl:path dc:title
   ], [
-    shacl:class dc:LicenseDocument;
-    shacl:description "de licentie van de distributie";
-    shacl:maxCount 1;
-    shacl:name "licentie";
-    shacl:path dc:license
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Een unieke identificator van de distributie";
+    shacl:maxCount "n"^^xsd:integer;
+    shacl:minCount 1;
+    shacl:name "identificator";
+    shacl:path dc:identifier
+  ], [
+    shacl:class dcat:DataService;
+    shacl:description "de dataservice die deze distributie aanbiedt";
+    shacl:name "wordtAangebodenDoor";
+    shacl:path dcat:accessService
   ], [
     shacl:datatype xsd:anyURI;
     shacl:description "De URL waar de data kan gevonden worden.";
