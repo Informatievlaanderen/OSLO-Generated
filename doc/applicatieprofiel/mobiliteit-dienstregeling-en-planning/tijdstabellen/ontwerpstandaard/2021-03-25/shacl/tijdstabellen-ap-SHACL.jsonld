@@ -34,15 +34,229 @@
   "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap",
   "shapes": [
     {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TaalStringShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#OrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Andere naam waaronder de organisatie bekend is.",
+          "sh:name": "alternatieveNaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#altLabel"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Beschrijving van de organisatie.",
+          "sh:maxCount": "1",
+          "sh:name": "beschrijving",
+          "sh:path": "http://purl.org/dc/terms/description"
+        },
+        {
+          "sh:class": "http://schema.org/ContactPoint",
+          "sh:description": "Informatie zoals email, telefoon... die toelaat de Organisatie te contacteren.",
+          "sh:name": "contactinfo",
+          "sh:path": "http://schema.org/contactPoint"
+        },
+        {
+          "sh:class": "http://www.w3.org/2004/02/skos/core#Concept",
+          "sh:description": "Soort organisatie.",
+          "sh:name": "type",
+          "sh:path": "http://www.w3.org/ns/regorg#orgType"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Naam waarmee de organisatie bij voorkeur wordt aangeduid.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "voorkeursnaam",
+          "sh:path": "http://www.w3.org/2004/02/skos/core#prefLabel"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/org#Organization"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#GeregistreerdeOrganisatieShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "http://www.w3.org/ns/adms#Identifier",
+          "sh:description": "Identificator dat de organisatie verkreeg bij registratie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "registratie",
+          "sh:path": "http://www.w3.org/ns/regorg#registration"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "Wettelijk geregistreerde naam vd organisatie.",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "wettelijkeNaam",
+          "sh:path": "http://www.w3.org/ns/regorg#legalName"
+        }
+      ],
+      "sh:targetClass": "http://www.w3.org/ns/regorg#RegisteredOrganization"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#AccessibilityAssessmentShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#AccessibilityAssessment"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#AuthorityShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:maxCount": "1",
+          "sh:name": "address",
+          "sh:path": "https://purl.eu/ns/mobility#address"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "country",
+          "sh:path": "https://purl.eu/ns/mobility#country"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Authority"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#AuthorityOrOperatorShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#AuthorityOrOperator"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#BookingArrangementShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#BookingArrangement"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#DestinationDisplayShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "frontText",
+          "sh:path": "https://purl.eu/ns/mobility#frontText"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Code",
+          "sh:maxCount": "1",
+          "sh:name": "publicCode",
+          "sh:path": "https://purl.eu/ns/mobility#publicCode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "sideText",
+          "sh:path": "https://purl.eu/ns/mobility#sideText"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Via",
+          "sh:name": "via",
+          "sh:path": "https://purl.eu/ns/mobility#via"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#DestinationDisplay"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#DestinationDisplayVariantShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://purl.eu/ns/mobility#DestinationDisplayVariantType",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "destinationVariantDisplayType",
+          "sh:path": "https://purl.eu/ns/mobility#destinationVariantDisplayType"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "frontText",
+          "sh:path": "https://purl.eu/ns/mobility#frontText"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "sideText",
+          "sh:path": "https://purl.eu/ns/mobility#sideText"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#DestinationDisplay",
+          "sh:name": "variant",
+          "sh:path": "https://purl.eu/ns/mobility#variant"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Via",
+          "sh:name": "via",
+          "sh:path": "https://purl.eu/ns/mobility#via"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#DestinationDisplayVariant"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#DestinationDisplayVariantTypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#DestinationDisplayVariantType"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#DirectionShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:class": "https://purl.eu/ns/mobility#DirectionType",
+          "sh:maxCount": "1",
+          "sh:name": "directionType",
+          "sh:path": "https://purl.eu/ns/mobility#directionType"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Direction",
+          "sh:maxCount": "1",
+          "sh:name": "oppositeDirection",
+          "sh:path": "https://purl.eu/ns/mobility#oppositeDirection"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Direction"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#DirectionTypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#DirectionType"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#GroupOfLinesShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^name",
-          "sh:path": "https://purl.eu/ns/mobility#^name"
+          "sh:path": "https://purl.eu/ns/mobility#name"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#Line",
@@ -52,13 +266,13 @@
           "sh:path": "https://purl.eu/ns/mobility#composedOf"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#Line",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "mainline",
+          "sh:path": "https://purl.eu/ns/mobility#mainline"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "transportmode",
@@ -68,22 +282,29 @@
       "sh:targetClass": "https://purl.eu/ns/mobility#GroupOfLines"
     },
     {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#JourneyPartShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#JourneyPart"
+    },
+    {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#JourneyPatternShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://purl.eu/ns/mobility#DestinationDisplay",
           "sh:description": "TODO",
           "sh:maxCount": "1",
-          "sh:name": "destinationDisplayRef",
-          "sh:path": "https://purl.eu/ns/mobility#destinationDisplayRef"
+          "sh:name": "destinationDisplay",
+          "sh:path": "https://purl.eu/ns/mobility#destinationDisplay"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#Direction",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "direction",
+          "sh:path": "https://purl.eu/ns/mobility#direction"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#PointInJourneyPattern",
@@ -91,6 +312,12 @@
           "sh:minCount": "1",
           "sh:name": "madeUpOf",
           "sh:path": "https://purl.eu/ns/mobility#madeUpOf"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Route",
+          "sh:maxCount": "1",
+          "sh:name": "route",
+          "sh:path": "https://purl.eu/ns/mobility#route"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#JourneyPattern"
@@ -101,11 +328,30 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#AccessibilityAssessment",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "accessibilityAssesment",
+          "sh:path": "https://purl.eu/ns/mobility#accessibilityAssesment"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#AuthorityOrOperator",
+          "sh:name": "additionalOperators",
+          "sh:path": "https://purl.eu/ns/mobility#additionalOperators"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Direction",
+          "sh:name": "allowedDirection",
+          "sh:path": "https://purl.eu/ns/mobility#allowedDirection"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "description",
+          "sh:path": "https://purl.eu/ns/mobility#description"
+        },
+        {
+          "sh:name": "documentLink",
+          "sh:path": "https://purl.eu/ns/mobility#documentLink"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#Route",
@@ -115,6 +361,13 @@
           "sh:path": "https://purl.eu/ns/mobility#madeUpOf"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1",
+          "sh:name": "monitored",
+          "sh:path": "https://purl.eu/ns/mobility#monitored"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -122,16 +375,69 @@
           "sh:path": "https://purl.eu/ns/mobility#name"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#NoticeAssignment",
+          "sh:name": "noticeAssignment",
+          "sh:path": "https://purl.eu/ns/mobility#noticeAssignment"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:name": "otherModes",
+          "sh:path": "https://purl.eu/ns/mobility#otherModes"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Presentation",
+          "sh:maxCount": "1",
+          "sh:name": "presentation",
+          "sh:path": "https://purl.eu/ns/mobility#presentation"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:name": "privateCode",
+          "sh:path": "https://purl.eu/ns/mobility#privateCode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "publicCode",
           "sh:path": "https://purl.eu/ns/mobility#publicCode"
         },
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "shortName",
+          "sh:path": "https://purl.eu/ns/mobility#shortName"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#AuthorityOrOperator",
+          "sh:maxCount": "1",
+          "sh:name": "transportOrganisation",
+          "sh:path": "https://purl.eu/ns/mobility#transportOrganisation"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "transportSubmode",
+          "sh:path": "https://purl.eu/ns/mobility#transportSubmode"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "transportmode",
           "sh:path": "https://purl.eu/ns/mobility#transportmode"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#TypeOfLine",
+          "sh:maxCount": "1",
+          "sh:name": "typeOfLine",
+          "sh:path": "https://purl.eu/ns/mobility#typeOfLine"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "url",
+          "sh:path": "https://purl.eu/ns/mobility#url"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#Line"
@@ -142,20 +448,52 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
-        },
-        {
           "sh:class": "https://purl.eu/ns/mobility#GroupOfLines",
           "sh:description": "TODO",
           "sh:name": "madeUpOf",
           "sh:path": "https://purl.eu/ns/mobility#madeUpOf"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "name",
+          "sh:path": "https://purl.eu/ns/mobility#name"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#AuthorityOrOperator",
+          "sh:maxCount": "1",
+          "sh:name": "transportOrganisation",
+          "sh:path": "https://purl.eu/ns/mobility#transportOrganisation"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#Network"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#NoticeAssignmentShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#NoticeAssignment"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#OperatorShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:maxCount": "1",
+          "sh:name": "address",
+          "sh:path": "https://purl.eu/ns/mobility#address"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "primaryMode",
+          "sh:path": "https://purl.eu/ns/mobility#primaryMode"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Operator"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#PassengerStopAssignmentShape",
@@ -194,6 +532,32 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "http://www.w3.org/ns/prov#Location",
+          "sh:description": "TODO",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "location",
+          "sh:path": "https://purl.eu/ns/mobility#location"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:description": "TODO",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "name",
+          "sh:path": "https://purl.eu/ns/mobility#name"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:name": "pointNumber",
+          "sh:path": "https://purl.eu/ns/mobility#pointNumber"
+        },
+        {
+          "sh:name": "projection",
+          "sh:path": "https://purl.eu/ns/mobility#projection"
+        },
+        {
           "sh:class": "https://purl.eu/ns/mobility#PointInJourneyPattern",
           "sh:description": "TODO",
           "sh:name": "viewedAs",
@@ -207,6 +571,20 @@
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^description",
+          "sh:path": "https://purl.eu/ns/mobility#^description"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "TODO",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^order",
+          "sh:path": "https://purl.eu/ns/mobility#^order"
+        },
         {
           "sh:class": "https://purl.eu/ns/mobility#Point",
           "sh:description": "TODO",
@@ -222,18 +600,17 @@
           "sh:path": "https://purl.eu/ns/mobility#at"
         },
         {
-          "sh:description": "TODO",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:maxCount": "1",
           "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "changeOfdestinationDisplay",
+          "sh:path": "https://purl.eu/ns/mobility#changeOfdestinationDisplay"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#DestinationDisplay",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "order",
-          "sh:path": "https://purl.eu/ns/mobility#order"
+          "sh:name": "destinationDisplay",
+          "sh:path": "https://purl.eu/ns/mobility#destinationDisplay"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#PointInJourneyPattern"
@@ -244,29 +621,43 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^description",
+          "sh:path": "https://purl.eu/ns/mobility#^description"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "TODO",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^order",
+          "sh:path": "https://purl.eu/ns/mobility#^order"
+        },
+        {
           "sh:class": "https://purl.eu/ns/mobility#RoutePoint",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "aViewOf",
           "sh:path": "https://purl.eu/ns/mobility#aViewOf"
-        },
-        {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
-        },
-        {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "order",
-          "sh:path": "https://purl.eu/ns/mobility#order"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#PointOnRoute"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#PresentationShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Presentation"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#RequestMethodTypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#RequestMethodType"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#RouteShape",
@@ -274,30 +665,54 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://schema.org/QuantitativeValue",
+          "sh:maxCount": "1",
+          "sh:name": "^distance",
+          "sh:path": "https://purl.eu/ns/mobility#^distance"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^name",
+          "sh:path": "https://purl.eu/ns/mobility#^name"
+        },
+        {
           "sh:class": "https://purl.eu/ns/mobility#JourneyPattern",
           "sh:description": "TODO",
           "sh:name": "coveredBy",
           "sh:path": "https://purl.eu/ns/mobility#coveredBy"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#Direction",
           "sh:maxCount": "1",
-          "sh:name": "directionRef",
-          "sh:path": "https://purl.eu/ns/mobility#directionRef"
+          "sh:name": "direction",
+          "sh:path": "https://purl.eu/ns/mobility#direction"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#DirectionType",
           "sh:description": "TODO",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "directionType",
+          "sh:path": "https://purl.eu/ns/mobility#directionType"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Route",
+          "sh:maxCount": "1",
+          "sh:name": "inverseRoute",
+          "sh:path": "https://purl.eu/ns/mobility#inverseRoute"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Line",
+          "sh:maxCount": "1",
+          "sh:name": "line",
+          "sh:path": "https://purl.eu/ns/mobility#line"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#PointOnRoute",
           "sh:description": "TODO",
-          "sh:minCount": "1",
-          "sh:name": "trough",
-          "sh:path": "https://purl.eu/ns/mobility#trough"
+          "sh:minCount": "2",
+          "sh:name": "through",
+          "sh:path": "https://purl.eu/ns/mobility#through"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#Route"
@@ -308,24 +723,25 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "http://www.opengis.net/ont/sf#LineString",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^linestring",
-          "sh:path": "https://purl.eu/ns/mobility#^linestring"
+          "sh:path": "https://purl.eu/ns/mobility#linestring"
         },
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^name",
+          "sh:path": "https://purl.eu/ns/mobility#^name"
+        },
+        {
+          "sh:class": "https://schema.org/QuantitativeValue",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "distance",
           "sh:path": "https://purl.eu/ns/mobility#distance"
-        },
-        {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#RoutePoint",
@@ -352,31 +768,16 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:description": "TODO",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^location",
-          "sh:path": "https://purl.eu/ns/mobility#^location"
-        },
-        {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "^name",
-          "sh:path": "https://purl.eu/ns/mobility#^name"
+          "sh:name": "borderCrossing",
+          "sh:path": "https://purl.eu/ns/mobility#borderCrossing"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#RouteLink",
           "sh:description": "TODO",
           "sh:name": "endOf",
           "sh:path": "https://purl.eu/ns/mobility#endOf"
-        },
-        {
-          "sh:description": "TODO",
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#RouteLink",
@@ -406,11 +807,24 @@
           "sh:path": "https://purl.eu/ns/mobility#^location"
         },
         {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
           "sh:name": "^name",
           "sh:path": "https://purl.eu/ns/mobility#^name"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#TimingpointStatus",
+          "sh:maxCount": "1",
+          "sh:name": "^timingpointStatus",
+          "sh:path": "https://purl.eu/ns/mobility#^timingpointStatus"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "description",
+          "sh:path": "https://purl.eu/ns/mobility#description"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#ServiceLink",
@@ -419,11 +833,28 @@
           "sh:path": "https://purl.eu/ns/mobility#endOf"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#Presentation",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "presentation",
+          "sh:path": "https://purl.eu/ns/mobility#presentation"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:name": "privateCode",
+          "sh:path": "https://purl.eu/ns/mobility#privateCode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
+          "sh:maxCount": "1",
+          "sh:name": "publicCode",
+          "sh:path": "https://purl.eu/ns/mobility#publicCode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "shortName",
+          "sh:path": "https://purl.eu/ns/mobility#shortName"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#ServiceLink",
@@ -439,6 +870,11 @@
           "sh:path": "https://purl.eu/ns/mobility#stopType"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#TariffZone",
+          "sh:name": "tariffZones",
+          "sh:path": "https://purl.eu/ns/mobility#tariffZones"
+        },
+        {
           "sh:class": "https://purl.eu/ns/mobility#StopPointInJourneyPattern",
           "sh:description": "TODO",
           "sh:name": "viewedAs",
@@ -446,6 +882,13 @@
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#PassengerStopAssignment.scheduledStopPoint"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#ServiceFacilitySetShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#ServiceFacilitySet"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#ServiceJourneyShape",
@@ -459,11 +902,65 @@
           "sh:path": "https://purl.eu/ns/mobility#^madeUsing"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#DayType",
+          "sh:name": "daytype",
+          "sh:path": "https://purl.eu/ns/mobility#daytype"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "departureDayOffset",
+          "sh:path": "https://purl.eu/ns/mobility#departureDayOffset"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
+          "sh:maxCount": "1",
+          "sh:name": "departureTime",
+          "sh:path": "https://purl.eu/ns/mobility#departureTime"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#ServiceFacilitySet",
+          "sh:name": "facility",
+          "sh:path": "https://purl.eu/ns/mobility#facility"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "flexibleLineView",
+          "sh:path": "https://purl.eu/ns/mobility#flexibleLineView"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "flexibleserviceProperties",
+          "sh:path": "https://purl.eu/ns/mobility#flexibleserviceProperties"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#duration",
+          "sh:maxCount": "1",
+          "sh:name": "journeyDuration",
+          "sh:path": "https://purl.eu/ns/mobility#journeyDuration"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Operator",
+          "sh:maxCount": "1",
+          "sh:name": "operator",
+          "sh:path": "https://purl.eu/ns/mobility#operator"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#TrainNumber",
+          "sh:name": "trainNumber",
+          "sh:path": "https://purl.eu/ns/mobility#trainNumber"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#TrainSizetype",
+          "sh:maxCount": "1",
+          "sh:name": "trainSize",
+          "sh:path": "https://purl.eu/ns/mobility#trainSize"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#VehicleType",
+          "sh:maxCount": "1",
+          "sh:name": "vehicleType",
+          "sh:path": "https://purl.eu/ns/mobility#vehicleType"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#ServiceJourney"
@@ -482,6 +979,7 @@
           "sh:path": "https://purl.eu/ns/mobility#arrivalStop"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -497,6 +995,7 @@
           "sh:path": "https://purl.eu/ns/mobility#departureStop"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -504,6 +1003,7 @@
           "sh:path": "https://purl.eu/ns/mobility#departureTime"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -511,6 +1011,7 @@
           "sh:path": "https://purl.eu/ns/mobility#forAlighting"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:minCount": "1",
@@ -548,17 +1049,22 @@
       "sh:closed": false,
       "sh:property": [
         {
-          "sh:description": "TODO",
+          "sh:class": "https://schema.org/QuantitativeValue",
           "sh:maxCount": "1",
-          "sh:name": "^linestring",
-          "sh:path": "https://purl.eu/ns/mobility#^linestring"
+          "sh:name": "^distance",
+          "sh:path": "https://purl.eu/ns/mobility#^distance"
         },
         {
           "sh:description": "TODO",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "^linestring",
+          "sh:path": "https://purl.eu/ns/mobility#linestring"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^name",
+          "sh:path": "https://purl.eu/ns/mobility#^name"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#ScheduledStopPoint",
@@ -588,57 +1094,131 @@
           "sh:class": "https://purl.eu/ns/mobility#AccessModes",
           "sh:description": "TODO",
           "sh:name": "^accessModes",
-          "sh:path": "https://purl.eu/ns/mobility#^accessModes"
+          "sh:path": "https://purl.eu/ns/mobility#accessModes"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#AccessibilityAssessment",
           "sh:description": "TODO",
           "sh:maxCount": "1",
-          "sh:name": "^accessabilityAssesment",
-          "sh:path": "https://purl.eu/ns/mobility#^accessabilityAssesment"
+          "sh:name": "^accessabilityAssessment",
+          "sh:path": "https://purl.eu/ns/mobility#accessabilityAssessment"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+          "sh:maxCount": "1",
+          "sh:name": "^afbeelding",
+          "sh:path": "https://purl.eu/ns/mobility#^afbeelding"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:name": "^alternativeName",
+          "sh:path": "https://purl.eu/ns/mobility#^alternativeName"
+        },
+        {
+          "sh:class": "http://www.opengis.net/ont/sf#Point",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^centroid",
-          "sh:path": "https://purl.eu/ns/mobility#^centroid"
+          "sh:path": "https://purl.eu/ns/mobility#centroid"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#CoveredType",
+          "sh:maxCount": "1",
+          "sh:name": "^covered",
+          "sh:path": "https://purl.eu/ns/mobility#^covered"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^crossRoad",
+          "sh:path": "https://purl.eu/ns/mobility#^crossRoad"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#GatedType",
+          "sh:maxCount": "1",
+          "sh:name": "^gated",
+          "sh:path": "https://purl.eu/ns/mobility#^gated"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:name": "^landmark",
+          "sh:path": "https://purl.eu/ns/mobility#^landmark"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Level",
+          "sh:name": "^level",
+          "sh:path": "https://purl.eu/ns/mobility#^level"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#LightingType",
+          "sh:maxCount": "1",
+          "sh:name": "^lighting",
+          "sh:path": "https://purl.eu/ns/mobility#^lighting"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Locale",
+          "sh:maxCount": "1",
+          "sh:name": "^locale",
+          "sh:path": "https://purl.eu/ns/mobility#^locale"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Operator",
+          "sh:maxCount": "1",
+          "sh:name": "^organisation",
+          "sh:path": "https://purl.eu/ns/mobility#^organisation"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#PlaceType",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^placeType",
-          "sh:path": "https://purl.eu/ns/mobility#^placeType"
+          "sh:path": "https://purl.eu/ns/mobility#placeType"
         },
         {
+          "sh:class": "http://www.opengis.net/ont/sf#Polygon",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^polygon",
-          "sh:path": "https://purl.eu/ns/mobility#^polygon"
+          "sh:path": "https://purl.eu/ns/mobility#polygon"
         },
         {
+          "sh:class": "http://www.w3.org/ns/locn#Address",
+          "sh:maxCount": "1",
+          "sh:name": "^postalAddress",
+          "sh:path": "https://purl.eu/ns/mobility#^postalAddress"
+        },
+        {
+          "sh:class": "http://www.w3.org/ns/locn#Address",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "^roadAddress",
-          "sh:path": "https://purl.eu/ns/mobility#^roadAddress"
+          "sh:path": "https://purl.eu/ns/mobility#roadAddress"
         },
         {
-          "sh:description": "TODO",
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#anyURI",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "^url",
+          "sh:path": "https://purl.eu/ns/mobility#^url"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1",
+          "sh:name": "borderCrossing",
+          "sh:path": "https://purl.eu/ns/mobility#borderCrossing"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "otherTransportmode",
+          "sh:path": "https://purl.eu/ns/mobility#otherTransportmode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#string",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "publicCode",
           "sh:path": "https://purl.eu/ns/mobility#publicCode"
-        },
-        {
-          "sh:class": "https://purl.eu/ns/mobility#TopographicPlace",
-          "sh:description": "TODO",
-          "sh:name": "serves",
-          "sh:path": "https://purl.eu/ns/mobility#serves"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#StopPlaceType",
@@ -649,20 +1229,58 @@
           "sh:path": "https://purl.eu/ns/mobility#stopPlaceType"
         },
         {
+          "sh:class": "https://purl.eu/ns/mobility#StopPlaceWeightyType",
+          "sh:maxCount": "1",
+          "sh:name": "stopPlaceWeight",
+          "sh:path": "https://purl.eu/ns/mobility#stopPlaceWeight"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "submode",
+          "sh:path": "https://purl.eu/ns/mobility#submode"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#TariffZone",
+          "sh:name": "tariffZone",
+          "sh:path": "https://purl.eu/ns/mobility#tariffZone"
+        },
+        {
           "sh:class": "https://purl.eu/ns/mobility#Transportmode",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "transportMode",
           "sh:path": "https://purl.eu/ns/mobility#transportMode"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#InterchangeUseType",
+          "sh:maxCount": "1",
+          "sh:name": "weighting",
+          "sh:path": "https://purl.eu/ns/mobility#weighting"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#PassengerStopAssignment.stopPlace"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#StopPlaceTypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#StopPlaceType"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#StopPointInJourneyPatternShape",
       "@type": "sh:NodeShape",
       "sh:closed": false,
       "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
+          "sh:description": "TODO",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "^order",
+          "sh:path": "https://purl.eu/ns/mobility#^order"
+        },
         {
           "sh:class": "https://purl.eu/ns/mobility#ScheduledStopPoint",
           "sh:description": "TODO",
@@ -672,33 +1290,87 @@
           "sh:path": "https://purl.eu/ns/mobility#aViewOf"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#BookingArrangement",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etrc",
-          "sh:path": "https://purl.eu/ns/mobility#etrc"
+          "sh:name": "bookingArrangements",
+          "sh:path": "https://purl.eu/ns/mobility#bookingArrangements"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1",
+          "sh:name": "changeOfDestinationDisplay",
+          "sh:path": "https://purl.eu/ns/mobility#changeOfDestinationDisplay"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#DestinationDisplay",
+          "sh:maxCount": "1",
+          "sh:name": "destinationDisplay",
+          "sh:path": "https://purl.eu/ns/mobility#destinationDisplay"
+        },
+        {
+          "sh:maxCount": "1",
+          "sh:name": "flexiblePointProperties",
+          "sh:path": "https://purl.eu/ns/mobility#flexiblePointProperties"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "forAlighting",
           "sh:path": "https://purl.eu/ns/mobility#forAlighting"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "forBoarding",
           "sh:path": "https://purl.eu/ns/mobility#forBoarding"
         },
         {
-          "sh:description": "TODO",
+          "sh:class": "https://purl.eu/ns/mobility#NoticeAssignment",
+          "sh:name": "noticeAssignment",
+          "sh:path": "https://purl.eu/ns/mobility#noticeAssignment"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#ServiceLink",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "order",
-          "sh:path": "https://purl.eu/ns/mobility#order"
+          "sh:name": "onwardServiceLink",
+          "sh:path": "https://purl.eu/ns/mobility#onwardServiceLink"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#RequestMethodType",
+          "sh:maxCount": "1",
+          "sh:name": "requestMethod",
+          "sh:path": "https://purl.eu/ns/mobility#requestMethod"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#boolean",
+          "sh:maxCount": "1",
+          "sh:name": "requestStop",
+          "sh:path": "https://purl.eu/ns/mobility#requestStop"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#StopUse",
+          "sh:maxCount": "1",
+          "sh:name": "stopUse",
+          "sh:path": "https://purl.eu/ns/mobility#stopUse"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#StopPointInJourneyPattern"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#StopUseShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#StopUse"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TariffZoneShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#TariffZone"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TimeTabledPassingTimeShape",
@@ -706,38 +1378,75 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "arrivalDayOffset",
           "sh:path": "https://purl.eu/ns/mobility#arrivalDayOffset"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "arrivalTime",
           "sh:path": "https://purl.eu/ns/mobility#arrivalTime"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#integer",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "departureDayOffset",
           "sh:path": "https://purl.eu/ns/mobility#departureDayOffset"
         },
         {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "departureTime",
           "sh:path": "https://purl.eu/ns/mobility#departureTime"
         },
         {
-          "sh:description": "TODO",
           "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
+          "sh:name": "headway",
+          "sh:path": "https://purl.eu/ns/mobility#headway"
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#TimeTabledPassingTime"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TimingpointStatusShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#TimingpointStatus"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TrainNumberShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#TrainNumber"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TrainSizetypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#TrainSizetype"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TransportmodeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Transportmode"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#TypeOfLineShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#TypeOfLine"
     },
     {
       "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#VehicleJourneyShape",
@@ -745,22 +1454,39 @@
       "sh:closed": false,
       "sh:property": [
         {
+          "sh:class": "https://purl.eu/ns/mobility#NoticeAssignment",
+          "sh:name": "^noticeAssignment",
+          "sh:path": "https://purl.eu/ns/mobility#^noticeAssignment"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "^transportMode",
+          "sh:path": "https://purl.eu/ns/mobility#^transportMode"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#Transportmode",
+          "sh:maxCount": "1",
+          "sh:name": "^transportsubmode",
+          "sh:path": "https://purl.eu/ns/mobility#^transportsubmode"
+        },
+        {
+          "sh:datatype": "http://www.w3.org/2001/XMLSchema#time",
           "sh:description": "TODO",
           "sh:maxCount": "1",
           "sh:name": "departureTime",
           "sh:path": "https://purl.eu/ns/mobility#departureTime"
         },
         {
-          "sh:maxCount": "1",
-          "sh:minCount": "1",
-          "sh:name": "etc",
-          "sh:path": "https://purl.eu/ns/mobility#etc"
-        },
-        {
           "sh:class": "https://purl.eu/ns/mobility#JourneyPattern",
           "sh:description": "TODO",
           "sh:name": "madeUsing",
           "sh:path": "https://purl.eu/ns/mobility#madeUsing"
+        },
+        {
+          "sh:class": "https://purl.eu/ns/mobility#JourneyPart",
+          "sh:name": "part",
+          "sh:path": "https://purl.eu/ns/mobility#part"
         },
         {
           "sh:class": "https://purl.eu/ns/mobility#TimeTabledPassingTime",
@@ -776,6 +1502,28 @@
         }
       ],
       "sh:targetClass": "https://purl.eu/ns/mobility#VehicleJourney"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#VehicleTypeShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [],
+      "sh:targetClass": "https://purl.eu/ns/mobility#VehicleType"
+    },
+    {
+      "@id": "https://data.vlaanderen.be/shacl/tijdstabellen-ap#ViaShape",
+      "@type": "sh:NodeShape",
+      "sh:closed": false,
+      "sh:property": [
+        {
+          "sh:datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+          "sh:maxCount": "1",
+          "sh:minCount": "1",
+          "sh:name": "name",
+          "sh:path": "https://purl.eu/ns/mobility#name"
+        }
+      ],
+      "sh:targetClass": "https://purl.eu/ns/mobility#Via"
     }
   ]
 }

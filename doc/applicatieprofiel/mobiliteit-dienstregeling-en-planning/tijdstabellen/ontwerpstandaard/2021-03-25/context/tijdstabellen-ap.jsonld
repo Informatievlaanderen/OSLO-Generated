@@ -1,5 +1,59 @@
 {
   "@context": {
+    "AccessibilityAssessment": "https://purl.eu/ns/mobility#AccessibilityAssessment",
+    "Authority": "https://purl.eu/ns/mobility#Authority",
+    "Authority.address": {
+      "@id": "https://purl.eu/ns/mobility#address",
+      "@type": ""
+    },
+    "Authority.country": {
+      "@id": "https://purl.eu/ns/mobility#country",
+      "@type": ""
+    },
+    "AuthorityOrOperator": "https://purl.eu/ns/mobility#AuthorityOrOperator",
+    "BookingArrangement": "https://purl.eu/ns/mobility#BookingArrangement",
+    "DestinationDisplay": "https://purl.eu/ns/mobility#DestinationDisplay",
+    "DestinationDisplay.frontText": {
+      "@id": "https://purl.eu/ns/mobility#frontText",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "DestinationDisplay.publicCode": {
+      "@id": "https://purl.eu/ns/mobility#publicCode",
+      "@type": "@id"
+    },
+    "DestinationDisplay.sideText": {
+      "@id": "https://purl.eu/ns/mobility#sideText",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "DestinationDisplay.via": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#via",
+      "@type": "@id"
+    },
+    "DestinationDisplayVariant": "https://purl.eu/ns/mobility#DestinationDisplayVariant",
+    "DestinationDisplayVariant.destinationVariantDisplayType": {
+      "@id": "https://purl.eu/ns/mobility#destinationVariantDisplayType",
+      "@type": "@id"
+    },
+    "DestinationDisplayVariant.frontText": {
+      "@id": "https://purl.eu/ns/mobility#frontText",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "DestinationDisplayVariant.sideText": {
+      "@id": "https://purl.eu/ns/mobility#sideText",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "DestinationDisplayVariant.variant": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#variant",
+      "@type": "@id"
+    },
+    "DestinationDisplayVariant.via": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#via",
+      "@type": "@id"
+    },
+    "DestinationDisplayVariantType": "https://purl.eu/ns/mobility#DestinationDisplayVariantType",
     "DienstRitpatroon": "https://purl.eu/ns/mobility#ServiceJourneyPattern",
     "DienstRitpatroon.todo": {
       "@container": "@set",
@@ -7,46 +61,266 @@
       "@type": "@id"
     },
     "DienstVerbinding": "https://purl.eu/ns/mobility#ServiceLink",
+    "DienstVerbinding.^distance": {
+      "@id": "https://purl.eu/ns/mobility#^distance",
+      "@type": "@id"
+    },
+    "DienstVerbinding.^name": {
+      "@id": "https://purl.eu/ns/mobility#^name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
     "DienstVerbinding.todo": {
       "@id": "https://purl.eu/ns/mobility#to",
       "@type": "@id"
     },
     "Dienstrit": "https://purl.eu/ns/mobility#ServiceJourney",
-    "Dienstrit.todo": {
-      "@id": "https://purl.eu/ns/mobility#etc",
+    "Dienstrit.daytype": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#daytype",
+      "@type": "@id"
+    },
+    "Dienstrit.departureDayOffset": {
+      "@id": "https://purl.eu/ns/mobility#departureDayOffset",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "Dienstrit.departureTime": {
+      "@id": "https://purl.eu/ns/mobility#departureTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#time"
+    },
+    "Dienstrit.facility": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#facility",
+      "@type": "@id"
+    },
+    "Dienstrit.flexibleLineView": {
+      "@id": "https://purl.eu/ns/mobility#flexibleLineView",
       "@type": ""
+    },
+    "Dienstrit.flexibleserviceProperties": {
+      "@id": "https://purl.eu/ns/mobility#flexibleserviceProperties",
+      "@type": ""
+    },
+    "Dienstrit.journeyDuration": {
+      "@id": "https://purl.eu/ns/mobility#journeyDuration",
+      "@type": "http://www.w3.org/2001/XMLSchema#duration"
+    },
+    "Dienstrit.operator": {
+      "@id": "https://purl.eu/ns/mobility#operator",
+      "@type": "@id"
+    },
+    "Dienstrit.todo": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#^madeUsing",
+      "@type": "@id"
+    },
+    "Dienstrit.trainNumber": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#trainNumber",
+      "@type": "@id"
+    },
+    "Dienstrit.trainSize": {
+      "@id": "https://purl.eu/ns/mobility#trainSize",
+      "@type": "@id"
+    },
+    "Dienstrit.vehicleType": {
+      "@id": "https://purl.eu/ns/mobility#vehicleType",
+      "@type": "@id"
     },
     "Dienstritverbinding": "https://purl.eu/ns/mobility#ServiceJourneyLink",
     "Dienstritverbinding.todo": {
       "@id": "https://purl.eu/ns/mobility#line",
       "@type": "@id"
     },
+    "Direction": "https://purl.eu/ns/mobility#Direction",
+    "Direction.directionType": {
+      "@id": "https://purl.eu/ns/mobility#directionType",
+      "@type": "@id"
+    },
+    "Direction.oppositeDirection": {
+      "@id": "https://purl.eu/ns/mobility#oppositeDirection",
+      "@type": "@id"
+    },
+    "DirectionType": "https://purl.eu/ns/mobility#DirectionType",
     "GeplandeDoorkomsttijd": "https://purl.eu/ns/mobility#TimeTabledPassingTime",
-    "GeplandeDoorkomsttijd.todo": {
-      "@id": "https://purl.eu/ns/mobility#etc",
+    "GeplandeDoorkomsttijd.headway": {
+      "@id": "https://purl.eu/ns/mobility#headway",
       "@type": ""
     },
+    "GeplandeDoorkomsttijd.todo": {
+      "@id": "https://purl.eu/ns/mobility#departureTime",
+      "@type": "http://www.w3.org/2001/XMLSchema#time"
+    },
     "GeplandeStopplaats": "https://purl.eu/ns/mobility#ScheduledStopPoint",
+    "GeplandeStopplaats.^timingpointStatus": {
+      "@id": "https://purl.eu/ns/mobility#^timingpointStatus",
+      "@type": "@id"
+    },
+    "GeplandeStopplaats.description": {
+      "@id": "https://purl.eu/ns/mobility#description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "GeplandeStopplaats.presentation": {
+      "@id": "https://purl.eu/ns/mobility#presentation",
+      "@type": "@id"
+    },
+    "GeplandeStopplaats.privateCode": {
+      "@id": "https://purl.eu/ns/mobility#privateCode",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "GeplandeStopplaats.publicCode": {
+      "@id": "https://purl.eu/ns/mobility#publicCode",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "GeplandeStopplaats.shortName": {
+      "@id": "https://purl.eu/ns/mobility#shortName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "GeplandeStopplaats.tariffZones": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#tariffZones",
+      "@type": "@id"
+    },
     "GeplandeStopplaats.todo": {
       "@container": "@set",
       "@id": "https://purl.eu/ns/mobility#viewedAs",
       "@type": "@id"
     },
+    "GeregistreerdeOrganisatie": "http://www.w3.org/ns/regorg#RegisteredOrganization",
+    "GeregistreerdeOrganisatie.registratie": {
+      "@id": "http://www.w3.org/ns/regorg#registration",
+      "@type": "@id"
+    },
+    "GeregistreerdeOrganisatie.wettelijkeNaam": {
+      "@id": "http://www.w3.org/ns/regorg#legalName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
     "GroepVanLijnen": "https://purl.eu/ns/mobility#GroupOfLines",
+    "GroepVanLijnen.mainline": {
+      "@id": "https://purl.eu/ns/mobility#mainline",
+      "@type": "@id"
+    },
     "GroepVanLijnen.todo": {
       "@id": "https://purl.eu/ns/mobility#transportmode",
+      "@type": "@id"
+    },
+    "JourneyPart": "https://purl.eu/ns/mobility#JourneyPart",
+    "Lijn": "https://purl.eu/ns/mobility#Line",
+    "Lijn.accessibilityAssesment": {
+      "@id": "https://purl.eu/ns/mobility#accessibilityAssesment",
+      "@type": "@id"
+    },
+    "Lijn.additionalOperators": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#additionalOperators",
+      "@type": "@id"
+    },
+    "Lijn.allowedDirection": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#allowedDirection",
+      "@type": "@id"
+    },
+    "Lijn.description": {
+      "@id": "https://purl.eu/ns/mobility#description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Lijn.documentLink": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#documentLink",
       "@type": ""
     },
-    "Lijn": "https://purl.eu/ns/mobility#Line",
+    "Lijn.monitored": {
+      "@id": "https://purl.eu/ns/mobility#monitored",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "Lijn.noticeAssignment": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#noticeAssignment",
+      "@type": "@id"
+    },
+    "Lijn.otherModes": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#otherModes",
+      "@type": "@id"
+    },
+    "Lijn.presentation": {
+      "@id": "https://purl.eu/ns/mobility#presentation",
+      "@type": "@id"
+    },
+    "Lijn.privateCode": {
+      "@id": "https://purl.eu/ns/mobility#privateCode",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Lijn.shortName": {
+      "@id": "https://purl.eu/ns/mobility#shortName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
     "Lijn.todo": {
       "@id": "https://purl.eu/ns/mobility#transportmode",
+      "@type": "@id"
+    },
+    "Lijn.transportOrganisation": {
+      "@id": "https://purl.eu/ns/mobility#transportOrganisation",
+      "@type": "@id"
+    },
+    "Lijn.transportSubmode": {
+      "@id": "https://purl.eu/ns/mobility#transportSubmode",
+      "@type": "@id"
+    },
+    "Lijn.typeOfLine": {
+      "@id": "https://purl.eu/ns/mobility#typeOfLine",
+      "@type": "@id"
+    },
+    "Lijn.url": {
+      "@id": "https://purl.eu/ns/mobility#url",
       "@type": ""
     },
     "Netwerk": "https://purl.eu/ns/mobility#Network",
+    "Netwerk.name": {
+      "@id": "https://purl.eu/ns/mobility#name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
     "Netwerk.todo": {
       "@container": "@set",
       "@id": "https://purl.eu/ns/mobility#madeUpOf",
       "@type": "@id"
+    },
+    "Netwerk.transportOrganisation": {
+      "@id": "https://purl.eu/ns/mobility#transportOrganisation",
+      "@type": "@id"
+    },
+    "NoticeAssignment": "https://purl.eu/ns/mobility#NoticeAssignment",
+    "Operator": "https://purl.eu/ns/mobility#Operator",
+    "Operator.address": {
+      "@id": "https://purl.eu/ns/mobility#address",
+      "@type": ""
+    },
+    "Operator.primaryMode": {
+      "@id": "https://purl.eu/ns/mobility#primaryMode",
+      "@type": "@id"
+    },
+    "Organisatie": "http://www.w3.org/ns/org#Organization",
+    "Organisatie.alternatieveNaam": {
+      "@container": "@set",
+      "@id": "http://www.w3.org/2004/02/skos/core#altLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Organisatie.beschrijving": {
+      "@id": "http://purl.org/dc/terms/description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Organisatie.contactinfo": {
+      "@container": "@set",
+      "@id": "http://schema.org/contactPoint",
+      "@type": "@id"
+    },
+    "Organisatie.type": {
+      "@container": "@set",
+      "@id": "http://www.w3.org/ns/regorg#orgType",
+      "@type": "@id"
+    },
+    "Organisatie.voorkeursnaam": {
+      "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
     },
     "PassagierStopplaatstoewijzing": "https://purl.eu/ns/mobility#PassengerStopAssignment",
     "PassagierStopplaatstoewijzing.geplandeStopplaats": {
@@ -61,26 +335,68 @@
       "@id": "https://purl.eu/ns/mobility#quay",
       "@type": "@id"
     },
+    "Presentation": "https://purl.eu/ns/mobility#Presentation",
     "Punt": "https://purl.eu/ns/mobility#Point",
+    "Punt.pointNumber": {
+      "@id": "https://purl.eu/ns/mobility#pointNumber",
+      "@type": "http://www.w3.org/2001/XMLSchema#string"
+    },
+    "Punt.projection": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#projection",
+      "@type": ""
+    },
     "Punt.todo": {
       "@container": "@set",
       "@id": "https://purl.eu/ns/mobility#viewedAs",
       "@type": "@id"
     },
     "PuntInRitpatroon": "https://purl.eu/ns/mobility#PointInJourneyPattern",
+    "PuntInRitpatroon.^description": {
+      "@id": "https://purl.eu/ns/mobility#^description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "PuntInRitpatroon.changeOfdestinationDisplay": {
+      "@id": "https://purl.eu/ns/mobility#changeOfdestinationDisplay",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "PuntInRitpatroon.destinationDisplay": {
+      "@id": "https://purl.eu/ns/mobility#destinationDisplay",
+      "@type": "@id"
+    },
     "PuntInRitpatroon.todo": {
-      "@id": "https://purl.eu/ns/mobility#order",
-      "@type": ""
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#at",
+      "@type": "@id"
     },
     "PuntOpRoute": "https://purl.eu/ns/mobility#PointOnRoute",
-    "PuntOpRoute.todo": {
-      "@id": "https://purl.eu/ns/mobility#order",
-      "@type": ""
+    "PuntOpRoute.^description": {
+      "@id": "https://purl.eu/ns/mobility#^description",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
     },
+    "PuntOpRoute.todo": {
+      "@id": "https://purl.eu/ns/mobility#aViewOf",
+      "@type": "@id"
+    },
+    "RequestMethodType": "https://purl.eu/ns/mobility#RequestMethodType",
     "Rit": "https://purl.eu/ns/mobility#VehicleJourney",
-    "Rit.etc": {
-      "@id": "https://purl.eu/ns/mobility#etc",
-      "@type": ""
+    "Rit.^noticeAssignment": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#^noticeAssignment",
+      "@type": "@id"
+    },
+    "Rit.^transportMode": {
+      "@id": "https://purl.eu/ns/mobility#^transportMode",
+      "@type": "@id"
+    },
+    "Rit.^transportsubmode": {
+      "@id": "https://purl.eu/ns/mobility#^transportsubmode",
+      "@type": "@id"
+    },
+    "Rit.part": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#part",
+      "@type": "@id"
     },
     "Rit.todo": {
       "@container": "@set",
@@ -93,37 +409,201 @@
       "@type": "@id"
     },
     "Ritpatroon": "https://purl.eu/ns/mobility#JourneyPattern",
+    "Ritpatroon.direction": {
+      "@id": "https://purl.eu/ns/mobility#direction",
+      "@type": "@id"
+    },
+    "Ritpatroon.route": {
+      "@id": "https://purl.eu/ns/mobility#route",
+      "@type": "@id"
+    },
     "Ritpatroon.todo": {
       "@container": "@set",
       "@id": "https://purl.eu/ns/mobility#madeUpOf",
       "@type": "@id"
     },
     "Route": "https://purl.eu/ns/mobility#Route",
+    "Route.^distance": {
+      "@id": "https://purl.eu/ns/mobility#^distance",
+      "@type": "@id"
+    },
+    "Route.^name": {
+      "@id": "https://purl.eu/ns/mobility#^name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Route.direction": {
+      "@id": "https://purl.eu/ns/mobility#direction",
+      "@type": "@id"
+    },
+    "Route.inverseRoute": {
+      "@id": "https://purl.eu/ns/mobility#inverseRoute",
+      "@type": "@id"
+    },
+    "Route.line": {
+      "@id": "https://purl.eu/ns/mobility#line",
+      "@type": "@id"
+    },
     "Route.todo": {
       "@container": "@set",
-      "@id": "https://purl.eu/ns/mobility#trough",
+      "@id": "https://purl.eu/ns/mobility#through",
       "@type": "@id"
     },
     "Routelink": "https://purl.eu/ns/mobility#RouteLink",
+    "Routelink.^name": {
+      "@id": "https://purl.eu/ns/mobility#^name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
     "Routelink.todo": {
       "@id": "https://purl.eu/ns/mobility#to",
       "@type": "@id"
     },
     "Routepunt": "https://purl.eu/ns/mobility#RoutePoint",
+    "Routepunt.borderCrossing": {
+      "@id": "https://purl.eu/ns/mobility#borderCrossing",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
     "Routepunt.todo": {
       "@container": "@set",
       "@id": "https://purl.eu/ns/mobility#viewedAs",
       "@type": "@id"
     },
+    "ServiceFacilitySet": "https://purl.eu/ns/mobility#ServiceFacilitySet",
+    "StopPlaceType": "https://purl.eu/ns/mobility#StopPlaceType",
+    "StopUse": "https://purl.eu/ns/mobility#StopUse",
     "Stopplaats": "https://purl.eu/ns/mobility#StopPlace",
+    "Stopplaats.^afbeelding": {
+      "@id": "https://purl.eu/ns/mobility#^afbeelding",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "Stopplaats.^alternativeName": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#^alternativeName",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Stopplaats.^covered": {
+      "@id": "https://purl.eu/ns/mobility#^covered",
+      "@type": "@id"
+    },
+    "Stopplaats.^crossRoad": {
+      "@id": "https://purl.eu/ns/mobility#^crossRoad",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Stopplaats.^gated": {
+      "@id": "https://purl.eu/ns/mobility#^gated",
+      "@type": "@id"
+    },
+    "Stopplaats.^landmark": {
+      "@id": "https://purl.eu/ns/mobility#^landmark",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
+    },
+    "Stopplaats.^level": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#^level",
+      "@type": "@id"
+    },
+    "Stopplaats.^lighting": {
+      "@id": "https://purl.eu/ns/mobility#^lighting",
+      "@type": "@id"
+    },
+    "Stopplaats.^locale": {
+      "@id": "https://purl.eu/ns/mobility#^locale",
+      "@type": "@id"
+    },
+    "Stopplaats.^organisation": {
+      "@id": "https://purl.eu/ns/mobility#^organisation",
+      "@type": "@id"
+    },
+    "Stopplaats.^postalAddress": {
+      "@id": "https://purl.eu/ns/mobility#^postalAddress",
+      "@type": "@id"
+    },
+    "Stopplaats.^url": {
+      "@id": "https://purl.eu/ns/mobility#^url",
+      "@type": "http://www.w3.org/2001/XMLSchema#anyURI"
+    },
+    "Stopplaats.borderCrossing": {
+      "@id": "https://purl.eu/ns/mobility#borderCrossing",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "Stopplaats.otherTransportmode": {
+      "@id": "https://purl.eu/ns/mobility#otherTransportmode",
+      "@type": "@id"
+    },
+    "Stopplaats.stopPlaceWeight": {
+      "@id": "https://purl.eu/ns/mobility#stopPlaceWeight",
+      "@type": "@id"
+    },
+    "Stopplaats.submode": {
+      "@id": "https://purl.eu/ns/mobility#submode",
+      "@type": "@id"
+    },
+    "Stopplaats.tariffZone": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#tariffZone",
+      "@type": "@id"
+    },
     "Stopplaats.todo": {
       "@id": "https://purl.eu/ns/mobility#transportMode",
       "@type": "@id"
     },
+    "Stopplaats.weighting": {
+      "@id": "https://purl.eu/ns/mobility#weighting",
+      "@type": "@id"
+    },
     "StopplaatsInReispatroon": "https://purl.eu/ns/mobility#StopPointInJourneyPattern",
-    "StopplaatsInReispatroon.todo": {
-      "@id": "https://purl.eu/ns/mobility#order",
+    "StopplaatsInReispatroon.bookingArrangements": {
+      "@id": "https://purl.eu/ns/mobility#bookingArrangements",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.changeOfDestinationDisplay": {
+      "@id": "https://purl.eu/ns/mobility#changeOfDestinationDisplay",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "StopplaatsInReispatroon.destinationDisplay": {
+      "@id": "https://purl.eu/ns/mobility#destinationDisplay",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.flexiblePointProperties": {
+      "@id": "https://purl.eu/ns/mobility#flexiblePointProperties",
       "@type": ""
+    },
+    "StopplaatsInReispatroon.noticeAssignment": {
+      "@container": "@set",
+      "@id": "https://purl.eu/ns/mobility#noticeAssignment",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.onwardServiceLink": {
+      "@id": "https://purl.eu/ns/mobility#onwardServiceLink",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.requestMethod": {
+      "@id": "https://purl.eu/ns/mobility#requestMethod",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.requestStop": {
+      "@id": "https://purl.eu/ns/mobility#requestStop",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "StopplaatsInReispatroon.stopUse": {
+      "@id": "https://purl.eu/ns/mobility#stopUse",
+      "@type": "@id"
+    },
+    "StopplaatsInReispatroon.todo": {
+      "@id": "https://purl.eu/ns/mobility#forBoarding",
+      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+    },
+    "Taalstring": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+    "TariffZone": "https://purl.eu/ns/mobility#TariffZone",
+    "TimingpointStatus": "https://purl.eu/ns/mobility#TimingpointStatus",
+    "TrainNumber": "https://purl.eu/ns/mobility#TrainNumber",
+    "TrainSizetype": "https://purl.eu/ns/mobility#TrainSizetype",
+    "Transportmode": "https://purl.eu/ns/mobility#Transportmode",
+    "TypeOfLine": "https://purl.eu/ns/mobility#TypeOfLine",
+    "VehicleType": "https://purl.eu/ns/mobility#VehicleType",
+    "Via": "https://purl.eu/ns/mobility#Via",
+    "Via.name": {
+      "@id": "https://purl.eu/ns/mobility#name",
+      "@type": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
     }
   }
 }
