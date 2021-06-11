@@ -8,24 +8,24 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/mandatendatabank> <https://data.vlaanderen.be/shacl/mandatendatabankshapes> <https://data.vlaanderen.be/shacl/mandatendatabank#GeboorteShape>,
+<https://data.vlaanderen.be/shacl/mandatendatabank> <https://data.vlaanderen.be/shacl/mandatendatabankshapes> <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondShape>,
     <https://data.vlaanderen.be/shacl/mandatendatabank#FractieShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#CreatieShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondAanstellingShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#RechtstreekseVerkiezingShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#VersieVolgensGeldigeTijdShape>,
     <https://data.vlaanderen.be/shacl/mandatendatabank#VerkiezingsresultaatShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#MandaatShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#MandatarisShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#OpheffingShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#KandidatenlijstShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#BestuursorgaanShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#VersieShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape>,
     <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondBeeindigingShape>,
-    <https://data.vlaanderen.be/shacl/mandatendatabank#LidmaatschapShape> .
+    <https://data.vlaanderen.be/shacl/mandatendatabank#MandaatShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#GeboorteShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#RechtstreekseVerkiezingShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#KandidatenlijstShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#VersieShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#BestuursorgaanShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#MandatarisShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondAanstellingShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#LidmaatschapShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#PersoonShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#CreatieShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#VersieVolgensGeldigeTijdShape>,
+    <https://data.vlaanderen.be/shacl/mandatendatabank#OpheffingShape> .
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#BestuurseenheidShape> a shacl:NodeShape;
   shacl:closed false;
@@ -63,19 +63,19 @@
     shacl:name "naam";
     shacl:path skos:prefLabel
   ], [
-    shacl:class skos:Concept;
-    shacl:description "Het type bestuursorgaan.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "classificatie";
-    shacl:path org:classification
-  ], [
     shacl:class <http://data.vlaanderen.be/ns/besluit#Bestuurseenheid>;
     shacl:description "De bestuurseenheid die door het orgaan bestuurd wordt.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "bestuurt";
     shacl:path <http://data.vlaanderen.be/ns/besluit#bestuurt>
+  ], [
+    shacl:class skos:Concept;
+    shacl:description "Het type bestuursorgaan.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "classificatie";
+    shacl:path org:classification
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/besluit#Bestuursorgaan> .
 
@@ -118,18 +118,12 @@
 <https://data.vlaanderen.be/shacl/mandatendatabank#KandidatenlijstShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <http://www.w3.org/ns/person#Person>;
-    shacl:description "Een persoon die deel uitmaakt van de lijst.";
-    shacl:minCount 1;
-    shacl:name "heeftKandidaat";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#heeftKandidaat>
-  ], [
-    shacl:datatype xsd:integer;
-    shacl:description "Het volgnummer van de lijst.";
+    shacl:class skos:Concept;
+    shacl:description "Het type van de lijst.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "lijstnummer";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#lijstnummer>
+    shacl:name "lijsttype";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#lijsttype>
   ], [
     shacl:class <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing>;
     shacl:description "De verkiezing waar de lijst onderdeel van is.";
@@ -145,12 +139,18 @@
     shacl:name "lijstnaam";
     shacl:path skos:prefLabel
   ], [
-    shacl:class skos:Concept;
-    shacl:description "Het type van de lijst.";
+    shacl:datatype xsd:integer;
+    shacl:description "Het volgnummer van de lijst.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "lijsttype";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#lijsttype>
+    shacl:name "lijstnummer";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#lijstnummer>
+  ], [
+    shacl:class <http://www.w3.org/ns/person#Person>;
+    shacl:description "Een persoon die deel uitmaakt van de lijst.";
+    shacl:minCount 1;
+    shacl:name "heeftKandidaat";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#heeftKandidaat>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst> .
 
@@ -163,62 +163,61 @@
     shacl:name "lidVanTot";
     shacl:path org:memberDuring
   ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
-    shacl:description "De mandataris van wie het lidmaatschap beschreven wordt.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "isLidVan";
-    shacl:path org:member
-  ], [
     shacl:class <http://data.vlaanderen.be/ns/mandaat#Fractie>;
     shacl:description "De fractie waarvan de mandataris lid is.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "isLidVan";
     shacl:path org:organization
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+    shacl:description "De mandataris van wie het lidmaatschap beschreven wordt.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "isLidVan";
+    shacl:path org:member
   ];
   shacl:targetClass org:Membership .
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#MandaatShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class org:Role;
-    shacl:description "Een code die de functie van het mandaat aangeeft.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "bestuursfunctie";
-    shacl:path org:role
-  ], [
     shacl:datatype xsd:integer;
     shacl:description "Maximale aantal mandatarissen dat tegelijk dit mandaat kan opnemen.";
     shacl:maxCount 1;
     shacl:minCount 1;
     shacl:name "aantalHouders";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#aantalHouders>
+  ], [
+    shacl:class org:Role;
+    shacl:description "Een code die de functie van het mandaat aangeeft.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "bestuursfunctie";
+    shacl:path org:role
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandaat> .
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#MandatarisShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:dateTime;
-    shacl:description "Tijdstip vanaf wanneer de mandataris het mandaat niet langer opneemt.";
+    shacl:class skos:Concept;
+    shacl:description "Het thema of beleidsdomein dat toegewezen is aan een mandataris.";
     shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "einde";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#einde>
+    shacl:name "beleidsdomein";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#beleidsdomein>
   ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
-    shacl:description "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen.";
-    shacl:name "isTijdelijkVervangenDoor";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor>
-  ], [
-    shacl:class <http://www.w3.org/ns/person#Person>;
-    shacl:description "De persoon die de mandatarisrol vervult.";
+    shacl:class org:Membership;
+    shacl:description "Duidt een lidmaatschap aan van de mandataris.";
     shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "isBestuurlijkeAliasVan";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan>
+    shacl:name "isLidVan";
+    shacl:path org:hasMembership
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandaat>;
+    shacl:description "Het mandaat dat deze mandataris bekleedt.";
+    shacl:maxCount 1;
+    shacl:name "bekleedt";
+    shacl:path org:holds
   ], [
     shacl:datatype xsd:dateTime;
     shacl:description "Tijdstip vanaf wanneer de mandataris het mandaat opneemt.";
@@ -227,11 +226,41 @@
     shacl:name "start";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#start>
   ], [
-    shacl:class org:Membership;
-    shacl:description "Duidt een lidmaatschap aan van de mandataris.";
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling>;
+    shacl:description "De rechtsgrond die de aanstelling van de mandataris vastlegt.";
+    shacl:minCount 1;
+    shacl:name "isAangesteldDoor";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor>
+  ], [
+    shacl:class <http://www.w3.org/ns/person#Person>;
+    shacl:description "De persoon die de mandatarisrol vervult.";
     shacl:maxCount 1;
-    shacl:name "isLidVan";
-    shacl:path org:hasMembership
+    shacl:minCount 1;
+    shacl:name "isBestuurlijkeAliasVan";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isBestuurlijkeAliasVan>
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+    shacl:description "Duidt een mandataris aan die tijdelijk de uitvoering van het mandaat heeft overgenomen.";
+    shacl:name "isTijdelijkVervangenDoor";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isTijdelijkVervangenDoor>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Duidt de plaats van de mandataris aan in de formeel vastgelegde volgorde van de mandatarissen binnen het bestuursorgaan waar de mandataris in zetelt.";
+    shacl:maxCount 1;
+    shacl:name "rangorde";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#rangorde>
+  ], [
+    shacl:datatype xsd:dateTime;
+    shacl:description "Tijdstip vanaf wanneer de mandataris het mandaat niet langer opneemt.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "einde";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#einde>
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging>;
+    shacl:description "De rechtsgrond die het ontslag van de mandataris vastlegt.";
+    shacl:name "isOntslagenDoor";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor>
   ], [
     shacl:class skos:Concept;
     shacl:description "De gesteldheid van de mandataris.";
@@ -239,35 +268,6 @@
     shacl:minCount 1;
     shacl:name "status";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#status>
-  ], [
-    shacl:class skos:Concept;
-    shacl:description "Het thema of beleidsdomein dat toegewezen is aan een mandataris.";
-    shacl:maxCount 1;
-    shacl:name "beleidsdomein";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#beleidsdomein>
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondBeeindiging>;
-    shacl:description "De rechtsgrond die het ontslag van de mandataris vastlegt.";
-    shacl:name "isOntslagenDoor";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isOntslagenDoor>
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#RechtsgrondAanstelling>;
-    shacl:description "De rechtsgrond die de aanstelling van de mandataris vastlegt.";
-    shacl:minCount 1;
-    shacl:name "isAangesteldDoor";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldDoor>
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandaat>;
-    shacl:description "Het mandaat dat deze mandataris bekleedt.";
-    shacl:maxCount 1;
-    shacl:name "bekleedt";
-    shacl:path org:holds
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Duidt de plaats van de mandataris aan in de formeel vastgelegde volgorde van de mandatarissen binnen het bestuursorgaan waar de mandataris in zetelt.";
-    shacl:maxCount 1;
-    shacl:name "rangorde";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#rangorde>
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/mandaat#Mandataris> .
 
@@ -286,13 +286,6 @@
 <https://data.vlaanderen.be/shacl/mandatendatabank#PersoonShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class <https://data.vlaanderen.be/ns/persoon#Geboorte>;
-    shacl:description "Duidt de geboorte van de persoon aan.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "heeftGeboorte";
-    shacl:path <https://data.vlaanderen.be/ns/persoon#heeftGeboorte>
-  ], [
     <http://purl.org/linked-data/cube#codeList> <http://publications.europa.eu/mdr/authority/human-sex/>;
     shacl:class skos:Concept;
     shacl:description "Het officiële geslacht van de persoon.";
@@ -302,17 +295,11 @@
     shacl:path <https://data.vlaanderen.be/ns/persoon#geslacht>
   ], [
     shacl:datatype xsd:string;
-    shacl:description "De familienaam van de persoon.";
+    shacl:description "De te gebruiken voornaam van alle officiële voornamen van de persoon.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "achternaam";
-    shacl:path foaf:familyName
-  ], [
-    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
-    shacl:description "Een mandatarisrol die eigen is aan de persoon.";
-    shacl:minCount 1;
-    shacl:name "isAangesteldAls";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldAls>
+    shacl:name "gebruikteVoornaam";
+    shacl:path <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam>
   ], [
     shacl:datatype xsd:string;
     shacl:description "Een roepnaam van de persoon.";
@@ -328,11 +315,24 @@
     shacl:path <http://www.w3.org/ns/adms#identifier>
   ], [
     shacl:datatype xsd:string;
-    shacl:description "De te gebruiken voornaam van alle officiële voornamen van de persoon.";
+    shacl:description "De familienaam van de persoon.";
     shacl:maxCount 1;
     shacl:minCount 1;
-    shacl:name "gebruikteVoornaam";
-    shacl:path <https://data.vlaanderen.be/ns/persoon#gebruikteVoornaam>
+    shacl:name "achternaam";
+    shacl:path foaf:familyName
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/persoon#Geboorte>;
+    shacl:description "Duidt de geboorte van de persoon aan.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "heeftGeboorte";
+    shacl:path <https://data.vlaanderen.be/ns/persoon#heeftGeboorte>
+  ], [
+    shacl:class <http://data.vlaanderen.be/ns/mandaat#Mandataris>;
+    shacl:description "Een mandatarisrol die eigen is aan de persoon.";
+    shacl:minCount 1;
+    shacl:name "isAangesteldAls";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isAangesteldAls>
   ];
   shacl:targetClass <http://www.w3.org/ns/person#Person> .
 
@@ -368,12 +368,6 @@
 <https://data.vlaanderen.be/shacl/mandatendatabank#RechtsgrondShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:date;
-    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
-    shacl:maxCount 1;
-    shacl:name "buitenwerkingtreding";
-    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
-  ], [
     shacl:class <http://data.europa.eu/eli/ontology#ResourceType>;
     shacl:description "Het type van de rechtsgrond.";
     shacl:minCount 1;
@@ -386,12 +380,25 @@
     shacl:minCount 1;
     shacl:name "inwerkingtreding";
     shacl:path <http://data.europa.eu/eli/ontology#first_date_entry_in_force>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "De laatste dag waarop de regelgeving nog van kracht is.";
+    shacl:maxCount 1;
+    shacl:name "buitenwerkingtreding";
+    shacl:path <http://data.europa.eu/eli/ontology#date_no_longer_in_force>
   ];
   shacl:targetClass <http://data.europa.eu/eli/ontology#LegalResource> .
 
 <https://data.vlaanderen.be/shacl/mandatendatabank#RechtstreekseVerkiezingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:date;
+    shacl:description "Datum waarop de verkiezing geldig verklaard werd.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "geldigheid";
+    shacl:path dc:valid
+  ], [
     shacl:datatype xsd:date;
     shacl:description "Datum waarop de verkiezing plaatsvond.";
     shacl:maxCount 1;
@@ -405,13 +412,6 @@
     shacl:minCount 1;
     shacl:name "steltSamen";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#steltSamen>
-  ], [
-    shacl:datatype xsd:date;
-    shacl:description "Datum waarop de verkiezing geldig verklaard werd.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "geldigheid";
-    shacl:path dc:valid
   ];
   shacl:targetClass <http://data.vlaanderen.be/ns/mandaat#RechtstreekseVerkiezing> .
 
@@ -424,6 +424,13 @@
     shacl:minCount 1;
     shacl:name "aantalNaamstemmen";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#aantalNaamstemmen>
+  ], [
+    shacl:class <http://www.w3.org/ns/person#Person>;
+    shacl:description "De persoon horende bij het resultaat.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "isResultaatVan";
+    shacl:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVan>
   ], [
     shacl:datatype xsd:integer;
     shacl:description "De positie in de volgorde op de lijst van effectief verkozenen of op de lijst van opvolgers, op basis van het aantal naamstemmen van de kandidaat plus het aantal overgedragen lijststemmen.";
@@ -439,13 +446,6 @@
     shacl:name "gevolg";
     shacl:path <http://data.vlaanderen.be/ns/mandaat#gevolg>
   ], [
-    shacl:class <http://www.w3.org/ns/person#Person>;
-    shacl:description "De persoon horende bij het resultaat.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "isResultaatVan";
-    shacl:path <http://data.vlaanderen.be/ns/mandaat#isResultaatVan>
-  ], [
     shacl:class <http://data.vlaanderen.be/ns/mandaat#Kandidatenlijst>;
     shacl:description "De lijst waarop het resultaat betrekking heeft.";
     shacl:maxCount 1;
@@ -458,17 +458,17 @@
 <https://data.vlaanderen.be/shacl/mandatendatabank#VersieShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:class prov:Invalidation;
-    shacl:description "Beschrijving vh verdwijnen vd versie.";
-    shacl:maxCount 1;
-    shacl:name "opheffing";
-    shacl:path prov:qualifiedInvalidation
-  ], [
     shacl:class prov:Generation;
     shacl:description "Beschrijving vh ontstaan vd versie.";
     shacl:maxCount 1;
     shacl:name "creatie";
     shacl:path prov:qualifiedGeneration
+  ], [
+    shacl:class prov:Invalidation;
+    shacl:description "Beschrijving vh verdwijnen vd versie.";
+    shacl:maxCount 1;
+    shacl:name "opheffing";
+    shacl:path prov:qualifiedInvalidation
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/generiek#Versie> .
 
