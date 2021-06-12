@@ -8,42 +8,37 @@
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://data.vlaanderen.be/shacl/contactvoorkeuren> <https://data.vlaanderen.be/shacl/contactvoorkeurenshapes> <https://data.vlaanderen.be/shacl/contactvoorkeuren#AgentShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#AdresvoorstellingShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeDienstverleningShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkingsactiviteitShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#ToestemmingShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#OrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkersovereenkomstShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#AlgemeneVoorwaardenShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#DocumentShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#ContactInfoShape>,
+<https://data.vlaanderen.be/shacl/contactvoorkeuren> <https://data.vlaanderen.be/shacl/contactvoorkeurenshapes> <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkersovereenkomstShape>,
     <https://data.vlaanderen.be/shacl/contactvoorkeuren#PrivacyverklaringShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#CookieverklaringShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#DocumentShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#ToestemmingShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#ContactInfoShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#OrganisatieShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkingsactiviteitShape>,
     <https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeOrganisatieShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#PersoonShape>,
-    <https://data.vlaanderen.be/shacl/contactvoorkeuren#HoedanigheidShape> .
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#AgentShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#CookieverklaringShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#AlgemeneVoorwaardenShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#PubliekeDienstverleningShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#HoedanigheidShape>,
+    <https://data.vlaanderen.be/shacl/contactvoorkeuren#PersoonShape> .
 
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#AdresvoorstellingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "postcode";
+    shacl:path <http://www.w3.org/ns/locn#postCode>
+  ], [
     shacl:datatype rdf:langString;
     shacl:description "Gemeentenaam van het adres.";
     shacl:maxCount 1;
     shacl:name "gemeentenaam";
     shacl:path <http://data.vlaanderen.be/ns/adres#gemeentenaam>
-  ], [
-    shacl:datatype rdf:langString;
-    shacl:description "Land waarin het adres gelegen is.";
-    shacl:maxCount 1;
-    shacl:name "land";
-    shacl:path <http://data.vlaanderen.be/ns/adres#land>
-  ], [
-    shacl:class <https://data.vlaanderen.be/ns/adres#Adres>;
-    shacl:description "Verwijst naar de identificator (URI) van een adres in het adresregister.";
-    shacl:maxCount 1;
-    shacl:name "verwijstNaar";
-    shacl:path <http://data.vlaanderen.be/ns/adres#verwijstNaar>
   ], [
     shacl:datatype xsd:string;
     shacl:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen.";
@@ -51,13 +46,6 @@
     shacl:minCount 1;
     shacl:name "huisnummer";
     shacl:path <http://data.vlaanderen.be/ns/adres#Adresvoorstelling.huisnummer>
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "postcode";
-    shacl:path <http://www.w3.org/ns/locn#postCode>
   ], [
     shacl:datatype xsd:string;
     shacl:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben.";
@@ -71,6 +59,18 @@
     shacl:minCount 1;
     shacl:name "straatnaam";
     shacl:path <http://www.w3.org/ns/locn#thoroughfare>
+  ], [
+    shacl:datatype rdf:langString;
+    shacl:description "Land waarin het adres gelegen is.";
+    shacl:maxCount 1;
+    shacl:name "land";
+    shacl:path <http://data.vlaanderen.be/ns/adres#land>
+  ], [
+    shacl:class <https://data.vlaanderen.be/ns/adres#Adres>;
+    shacl:description "Verwijst naar de identificator (URI) van een adres in het adresregister.";
+    shacl:maxCount 1;
+    shacl:name "verwijstNaar";
+    shacl:path <http://data.vlaanderen.be/ns/adres#verwijstNaar>
   ];
   shacl:targetClass <http://www.w3.org/ns/locn#Address> .
 
@@ -93,11 +93,11 @@
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#ContactInfoShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype rdf:langString;
-    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
+    shacl:datatype xsd:string;
+    shacl:description "Telefoonnummer waarop men kan bellen of smsen.";
     shacl:maxCount 1;
-    shacl:name "aanschrijfvorm";
-    shacl:path vcard:honorific-prefix
+    shacl:name "telefoon";
+    shacl:path schema:telephone
   ], [
     shacl:datatype xsd:string;
     shacl:description "Naam van de persoon die men kan contacteren.";
@@ -105,23 +105,23 @@
     shacl:name "contactnaam";
     shacl:path foaf:name
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "Email-adres waarnaar men kan mailen.";
-    shacl:maxCount 1;
-    shacl:name "email";
-    shacl:path schema:email
-  ], [
     shacl:class <http://www.w3.org/ns/locn#Address>;
     shacl:description "Adres dat men kan aanschrijven.";
     shacl:maxCount 1;
     shacl:name "adres";
     shacl:path <http://www.w3.org/ns/locn#address>
   ], [
-    shacl:datatype xsd:string;
-    shacl:description "Telefoonnummer waarop men kan bellen of smsen.";
+    shacl:datatype rdf:langString;
+    shacl:description "Titel waarmee iemand wordt aangeschreven of aangesproken of waarmee naar iemand wordt verwezen.";
     shacl:maxCount 1;
-    shacl:name "telefoon";
-    shacl:path schema:telephone
+    shacl:name "aanschrijfvorm";
+    shacl:path vcard:honorific-prefix
+  ], [
+    shacl:datatype xsd:string;
+    shacl:description "Email-adres waarnaar men kan mailen.";
+    shacl:maxCount 1;
+    shacl:name "email";
+    shacl:path schema:email
   ];
   shacl:targetClass schema:ContactPoint .
 
@@ -160,26 +160,6 @@
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#ToestemmingShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
-    shacl:datatype xsd:date;
-    shacl:description "De datum waarop de toestemming vervalt.";
-    shacl:maxCount 1;
-    shacl:name "vervalt";
-    shacl:path schema:expires
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/ToestemmingStatus>;
-    shacl:description "De status geeft aan of de toestemming al dan niet actief is.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "status";
-    shacl:path <https://data.vlaanderen.be/ns/toestemming#status>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Contactkanaal>;
-    shacl:description "Het kanaal of medium langs waar een gebruiker gecontacteerd kan worden. Bijvoorbeeld sms of e-mail.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "contactkanaal";
-    shacl:path <https://data.vlaanderen.be/ns/toestemming#contactkanaal>
-  ], [
     shacl:class <https://data.vlaanderen.be/ns/toestemming#Verwerkingsactiviteit>;
     shacl:description "Relatie met de verwerkingsactiviteit waarvoor expliciet toestemming werd gegeven.";
     shacl:maxCount 1;
@@ -198,6 +178,26 @@
     shacl:maxCount 1;
     shacl:name "notificatiecategorie";
     shacl:path <https://data.vlaanderen.be/ns/toestemming#notificatiecategorie>
+  ], [
+    shacl:datatype xsd:date;
+    shacl:description "De datum waarop de toestemming vervalt.";
+    shacl:maxCount 1;
+    shacl:name "vervalt";
+    shacl:path schema:expires
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Contactkanaal>;
+    shacl:description "Het kanaal of medium langs waar een gebruiker gecontacteerd kan worden. Bijvoorbeeld sms of e-mail.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "contactkanaal";
+    shacl:path <https://data.vlaanderen.be/ns/toestemming#contactkanaal>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/ToestemmingStatus>;
+    shacl:description "De status geeft aan of de toestemming al dan niet actief is.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "status";
+    shacl:path <https://data.vlaanderen.be/ns/toestemming#status>
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/toestemming#Toestemming> .
 
@@ -208,17 +208,17 @@
 <https://data.vlaanderen.be/shacl/contactvoorkeuren#VerwerkingsactiviteitShape> a shacl:NodeShape;
   shacl:closed false;
   shacl:property [
+    shacl:datatype xsd:string;
+    shacl:description "De vraag die gesteld wordt aan gebruikers om hun toestemming te verlenen.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "toestemmingsvraag";
+    shacl:path <https://data.vlaanderen.be/ns/toestemming#toestemmingsvraag>
+  ], [
     shacl:description "Het kanaal of medium langs waar een gebruiker gecontacteerd kan worden. Bijvoorbeeld sms of e-mail.";
     shacl:minCount 1;
     shacl:name "contactkanaal";
     shacl:path <https://data.vlaanderen.be/ns/toestemming#contactkanaal>
-  ], [
-    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Verwerkingstypes>;
-    shacl:description "Het type van de verwerkingsactiviteit.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "type";
-    shacl:path dc:type
   ], [
     shacl:datatype xsd:string;
     shacl:description "Een label voor de ToestemmingDescriptor.";
@@ -226,13 +226,6 @@
     shacl:minCount 1;
     shacl:name "label";
     shacl:path rdfs:label
-  ], [
-    shacl:datatype xsd:string;
-    shacl:description "De vraag die gesteld wordt aan gebruikers om hun toestemming te verlenen.";
-    shacl:maxCount 1;
-    shacl:minCount 1;
-    shacl:name "toestemmingsvraag";
-    shacl:path <https://data.vlaanderen.be/ns/toestemming#toestemmingsvraag>
   ], [
     shacl:class <http://purl.org/vocab/cpsv#PublicService>;
     shacl:description "De Publieke Dienstverlening waarbinnen de toestemming kadert.";
@@ -246,5 +239,12 @@
     shacl:minCount 1;
     shacl:name "verwerkingsgrond";
     shacl:path <https://data.vlaanderen.be/ns/toestemming#verwerkingsgrond>
+  ], [
+    <http://purl.org/linked-data/cube#codeList> <https://data.vlaanderen.be/id/conceptscheme/Verwerkingstypes>;
+    shacl:description "Het type van de verwerkingsactiviteit.";
+    shacl:maxCount 1;
+    shacl:minCount 1;
+    shacl:name "type";
+    shacl:path dc:type
   ];
   shacl:targetClass <https://data.vlaanderen.be/ns/toestemming#Verwerkingsactiviteit> .
